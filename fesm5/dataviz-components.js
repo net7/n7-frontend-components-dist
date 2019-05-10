@@ -45,7 +45,7 @@ var TitleComponent = /** @class */ (function () {
     TitleComponent.decorators = [
         { type: Component, args: [{
                     selector: 'dv-title-component',
-                    template: "<h1 *ngIf=\"data\">{{ data.label }}</h1>",
+                    template: "<h1 *ngIf=\"data\">{{ data.label }} ({{ data.value }})</h1>",
                     styles: ["h1{color:red}"]
                 }] }
     ];
