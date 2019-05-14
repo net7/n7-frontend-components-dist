@@ -5,14 +5,39 @@ import { Component, Input, NgModule } from '@angular/core';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * TestComponent <dv-test-component>
+ *
+ * example:
+ * ```html
+ * <dv-test-component [data]="{
+ *   'id': 'test-component-id',
+ *   'title': 'test component title',
+ *   'body': 'test body...'
+ * }"></dv-test-component>
+ * ```
+ */
 var TestComponent = /** @class */ (function () {
     function TestComponent() {
     }
     /**
+     * click event
+     *
+     * @param data
+     * @returns
+     * @memberof TestComponent
+     */
+    /**
+     * click event
+     *
+     * \@memberof TestComponent
      * @param {?} data
      * @return {?}
      */
     TestComponent.prototype.onClick = /**
+     * click event
+     *
+     * \@memberof TestComponent
      * @param {?} data
      * @return {?}
      */
@@ -38,6 +63,17 @@ var TestComponent = /** @class */ (function () {
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * TitleComponent <dv-title-component>
+ *
+ * example:
+ * ```html
+ * <dv-title-component [data]="{
+ *   'label': 'title component label',
+ *   'value': 123
+ * }"></dv-title-component>
+ * ```
  */
 var TitleComponent = /** @class */ (function () {
     function TitleComponent() {
