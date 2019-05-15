@@ -1,19 +1,19 @@
 {
-  "name": "@dataviz/components",
+  "name": "@n7-frontend/components",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0"
   },
-  "main": "bundles/dataviz-components.umd.js",
-  "module": "fesm5/dataviz-components.js",
-  "es2015": "fesm2015/dataviz-components.js",
-  "esm5": "esm5/dataviz-components.js",
-  "esm2015": "esm2015/dataviz-components.js",
-  "fesm5": "fesm5/dataviz-components.js",
-  "fesm2015": "fesm2015/dataviz-components.js",
-  "typings": "dataviz-components.d.ts",
-  "metadata": "dataviz-components.metadata.json",
+  "main": "bundles/n7-frontend-components.umd.js",
+  "module": "fesm5/n7-frontend-components.js",
+  "es2015": "fesm2015/n7-frontend-components.js",
+  "esm5": "esm5/n7-frontend-components.js",
+  "esm2015": "esm2015/n7-frontend-components.js",
+  "fesm5": "fesm5/n7-frontend-components.js",
+  "fesm2015": "fesm2015/n7-frontend-components.js",
+  "typings": "n7-frontend-components.d.ts",
+  "metadata": "n7-frontend-components.metadata.json",
   "sideEffects": false,
   "dependencies": {
     "tslib": "^1.9.0"
