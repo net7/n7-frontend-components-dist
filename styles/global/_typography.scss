@@ -1,0 +1,116 @@
+/**
+ * TYPOGRAPHY
+ *
+ * Definition of typographic styles
+ */
+
+/* ------------------------------------ *\
+   #HEADINGS
+\* ------------------------------------ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: $font-weight-light;
+    font-family: $font-family-headings;
+    margin: 0;
+    padding: 0;
+    color: $color-text;
+}
+
+h1 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-light;
+    line-height: 1.2;
+    margin-bottom: .3em;
+}
+
+h2 {
+    font-size: $font-size-l;
+    line-height: 1;
+    margin-bottom: .3em;
+}
+
+h3 {
+    font-size: $font-size-m;
+    line-height: 1;
+    margin-bottom: .3em;
+}
+
+h4 {
+    font-size: $font-size-m;
+    line-height: 0.8;
+    margin-bottom: .3em;
+}
+
+h5 {
+    font-size: $font-size-s;
+    line-height: 1.2;
+    margin-bottom: .3em;
+}
+p, .single-content p {
+    margin: 0 0 $spacing-unit/2 0;
+    padding: 0;
+    color: $color-text;
+    font-size: $font-size-m;
+    font-weight: $font-weight-normal;
+    line-height: 1.6;
+}
+
+b, strong {
+    font-weight: $font-weight-bold;
+}
+
+
+/* ------------------------------------ *\
+   #LINKS
+\* ------------------------------------ */
+
+a, .single-content a, .single-content p a {
+    color: $color-text-link;
+    text-decoration: none;
+    transition: color $transition-durations;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: inherit;
+    }
+
+    &:hover, &:focus {
+        color: $color-text-link-hover;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #HR
+\* ------------------------------------ */
+hr {
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid $color-border-normal;
+}
+
+
+/* ------------------------------------ *\
+   #EMPTY-STATES
+\* ------------------------------------ */
+.empty-state, .sn-empty-state {
+    font-weight: $font-weight-normal;
+    font-size: $font-size-l;
+    color: $color-text-light;
+    line-height: 1.65;
+    text-align: center;
+}
+
+
+/* ------------------------------------ *\
+   #LABEL-VALUE
+\* ------------------------------------ */
+.sn-label {
+    color: $color-text;
+    font-weight: $font-weight-bold;
+}
+
+.sn-value {
+    color: $color-text;
+    font-weight: $font-weight-normal;
+}

@@ -9,90 +9,60 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * TestComponent <dv-test-component>
+     * ListComponent <dv-list-component>
      *
      * example:
      * ```html
-     * <dv-test-component [data]="{
-     *   'id': 'test-component-id',
-     *   'title': 'test component title',
-     *   'body': 'test body...'
-     * }"></dv-test-component>
+     * <dv-list-component [data]="{
+     *   items: [{
+     *     body: 'hello',
+     *     payload: 'first item!',
+     *     classes: 'is-active'
+     *   }, {
+     *     body: 'hello',
+     *     left: '<i class=\'fas fa-thumbs-up\'></i>',
+     *     payload: 'second item!'
+     *   }, {
+     *     body: 'hello',
+     *     right: '<span>33</span>',
+     *     payload: 'third item!'
+     *   }]
+     * }"></dv-list-component>
      * ```
      */
-    var TestComponent = /** @class */ (function () {
-        function TestComponent() {
+    var ListComponent = /** @class */ (function () {
+        function ListComponent() {
         }
         /**
-         * click event
-         *
-         * @param data
-         * @returns
-         * @memberof TestComponent
-         */
-        /**
-         * click event
-         *
-         * \@memberof TestComponent
-         * @param {?} data
+         * @param {?} payload
          * @return {?}
          */
-        TestComponent.prototype.onClick = /**
-         * click event
-         *
-         * \@memberof TestComponent
-         * @param {?} data
+        ListComponent.prototype.onClick = /**
+         * @param {?} payload
          * @return {?}
          */
-            function (data) {
+            function (payload) {
                 if (!this.emit)
                     return;
-                this.emit('click', data);
+                this.emit('click', payload);
             };
-        TestComponent.decorators = [
+        ListComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'dv-test-component',
-                        template: "<div *ngIf=\"data\" class=\"dv-component__test\" (click)=\"onClick(data)\">\n  <h2><small>({{ data.id }})</small> {{ data.title }}</h2>\n  <p>{{ data.body }}</p>\n</div>",
-                        styles: [".dv-component__test{background-color:#eee}"]
+                        selector: 'dv-list-component',
+                        template: "<ul *ngIf=\"data\" class=\"n7-component-list\">\n  <li \n  *ngFor=\"let item of data.items\"\n  class=\"n7-component-list__item {{ item.classes || '' }}\"\n  (click)=\"onClick(item.payload)\">\n    <div *ngIf=\"item.left\" class=\"n7-component-list__item-left\" [innerHTML]=\"item.left\"></div>\n    <div class=\"n7-component-list__item-body\" [innerHTML]=\"item.body\"></div>\n    <div *ngIf=\"item.right\" class=\"n7-component-list__item-right\" [innerHTML]=\"item.right\"></div>\n  </li>\n</ul>"
                     }] }
         ];
-        TestComponent.propDecorators = {
+        ListComponent.propDecorators = {
             data: [{ type: core.Input }],
             emit: [{ type: core.Input }]
         };
-        return TestComponent;
+        return ListComponent;
     }());
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /**
-     * TitleComponent <dv-title-component>
-     *
-     * example:
-     * ```html
-     * <dv-title-component [data]="{
-     *   'label': 'title component label',
-     *   'value': 123
-     * }"></dv-title-component>
-     * ```
-     */
-    var TitleComponent = /** @class */ (function () {
-        function TitleComponent() {
-        }
-        TitleComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'dv-title-component',
-                        template: "<h1 *ngIf=\"data\">{{ data.label }} ({{ data.value }})</h1>",
-                        styles: ["h1{color:red}"]
-                    }] }
-        ];
-        TitleComponent.propDecorators = {
-            data: [{ type: core.Input }]
-        };
-        return TitleComponent;
-    }());
 
     /**
      * @fileoverview added by tsickle
@@ -100,8 +70,7 @@
      */
     /** @type {?} */
     var COMPONENTS = [
-        TestComponent,
-        TitleComponent
+        ListComponent
     ];
     var DvComponentsLibModule = /** @class */ (function () {
         function DvComponentsLibModule() {
@@ -128,8 +97,8 @@
      */
 
     exports.DvComponentsLibModule = DvComponentsLibModule;
-    exports.TestComponent = TestComponent;
-    exports.TitleComponent = TitleComponent;
+    exports.ListComponent = ListComponent;
+    exports.ɵa = ListComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
