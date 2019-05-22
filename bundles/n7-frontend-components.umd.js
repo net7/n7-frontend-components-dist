@@ -63,6 +63,97 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * NavbarComponent <dv-navbar-component>
+     *
+     * example:
+     * ```html
+     * <dv-navbar-component [data]="{
+     *   brand: {
+     *     image: '/assets/images/placeholder_75x75.png',
+     *     label: 'MY BRAND',
+     *     payload: 'brand clicked!'
+     *   },
+     *   links: {
+     *     items: [{
+     *       body: 'link 1',
+     *       payload: 'navigate to /link-1'
+     *     }, {
+     *       body: 'link 2',
+     *      payload: 'navigate to /link-2'
+     *     }, {
+     *       body: 'link 3',
+     *       payload: 'navigate to /link-3'
+     *     }]
+     *   },
+     *   actions: {
+     *     items: [{
+     *       body: '<img src=\'/assets/images/placeholder_75x75.png\'>',
+     *       payload: 'avatar clicked!',
+     *       classes: 'n7-navbar-component__action-avatar'
+     *     }]
+     *   },
+     * }"></dv-navbar-component>
+     * ```
+     */
+    var NavbarComponent = /** @class */ (function () {
+        function NavbarComponent() {
+        }
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        NavbarComponent.prototype.onBrandClick = /**
+         * @param {?} payload
+         * @return {?}
+         */
+            function (payload) {
+                if (!this.emit)
+                    return;
+                this.emit('brand_click', payload);
+            };
+        /**
+         * @param {?} type
+         * @param {?} payload
+         * @return {?}
+         */
+        NavbarComponent.prototype.onLinkClick = /**
+         * @param {?} type
+         * @param {?} payload
+         * @return {?}
+         */
+            function (type, payload) {
+                if (!this.emit)
+                    return;
+                this.emit('link_click', payload);
+            };
+        /**
+         * @param {?} type
+         * @param {?} payload
+         * @return {?}
+         */
+        NavbarComponent.prototype.onActionClick = /**
+         * @param {?} type
+         * @param {?} payload
+         * @return {?}
+         */
+            function (type, payload) {
+                if (!this.emit)
+                    return;
+                this.emit('action_click', payload);
+            };
+        NavbarComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'dv-navbar-component',
+                        template: "<nav *ngIf=\"data\" class=\"n7-component-navbar {{ data.classes || '' }}\">\n  <!-- Brand -->\n  <div \n  *ngIf=\"data.brand\"\n  (click)=\"onBrandClick(data.brand.payload)\" \n  class=\"n7-component-navbar__brand {{ data.brand.classes || '' }}\">\n    <div *ngIf=\"data.brand.image\" class=\"n7-component-navbar__brand-image\">\n      <img src=\"{{ data.brand.image }}\" />\n    </div>\n    <div *ngIf=\"data.brand.label\" class=\"n7-component-navbar__brand-label\">\n      {{ data.brand.label }}\n    </div>\n  </div>\n  <!-- END // Brand -->\n\n  <!-- Links -->\n  <div *ngIf=\"data.links\" class=\"n7-component-navbar__links\">\n    <dv-list-component\n    [data]=\"data.links\"\n    [emit]=\"onLinkClick.bind(this)\"\n    ></dv-list-component>\n  </div>\n  <!-- END // Links -->\n  \n  <!-- Actions -->\n  <div *ngIf=\"data.actions\" class=\"n7-component-navbar__actions\">\n    <dv-list-component\n    [data]=\"data.actions\"\n    [emit]=\"onActionClick.bind(this)\"\n    ></dv-list-component>\n  </div>\n  <!-- END // Actions -->\n</nav>"
+                    }] }
+        ];
+        NavbarComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return NavbarComponent;
+    }());
 
     /**
      * @fileoverview added by tsickle
@@ -70,7 +161,8 @@
      */
     /** @type {?} */
     var COMPONENTS = [
-        ListComponent
+        ListComponent,
+        NavbarComponent
     ];
     var DvComponentsLibModule = /** @class */ (function () {
         function DvComponentsLibModule() {
@@ -98,7 +190,7 @@
 
     exports.DvComponentsLibModule = DvComponentsLibModule;
     exports.ListComponent = ListComponent;
-    exports.ɵa = ListComponent;
+    exports.NavbarComponent = NavbarComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

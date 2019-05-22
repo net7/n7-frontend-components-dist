@@ -1,0 +1,65 @@
+/* ------------------------------------ *\
+   #NAVBAR
+\* ------------------------------------ */
+.n7-component-navbar {
+  display: flex;
+
+  .n7-component-navbar__brand,
+  .n7-component-navbar__links,
+  .n7-component-navbar__actions {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    width: 100%;
+    align-items: center;
+  }
+
+  .n7-component-navbar__links, 
+  .n7-component-navbar__actions {
+    .n7-component-list .n7-component-list__item {
+      display: inline-block;
+      background-color: transparent;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .n7-component-navbar__brand {
+    &-label {
+      margin-left: $spacing-unit;
+    }
+  }
+
+  .n7-component-navbar__links {
+    justify-content: center;
+  }
+
+  .n7-component-navbar__actions {
+    justify-content: flex-end;
+  }
+}
+
+/* ------------------------------------ *\
+   #SIZES
+\* ------------------------------------ */
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}
