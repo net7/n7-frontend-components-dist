@@ -1,13 +1,13 @@
 //
 // VARIABLES
 //
-// Definition of default Surfy Nomads variables
+// Definition of all variables used by the components library
 //
 
 // ------------------------------------ //
 // #SPACING-UNIT
 // ------------------------------------ //
-$spacing-unit: 10px !default;
+$space: 8px;
 
 
 // ------------------------------------ //
@@ -30,16 +30,6 @@ $susy: (
 
 
 // ------------------------------------ //
-// #MEDIA-QUERIES-BREAKPOINT
-// ------------------------------------ //
-$breakpoint-desktop-wide: 1180px;
-$breakpoint-laptop: 960px;
-$breakpoint-ipad-portrait: 768px;
-$breakpoint-smartphone-landscape: 480px;
-$breakpoint-smartphone-portrait: 400px;
-
-
-// ------------------------------------ //
 // TYPOGRAPHY
 // ------------------------------------ //
 $font-family-main: 'Lato', sans-serif;
@@ -51,65 +41,43 @@ $font-size-xl: 26px; // 1.425rem; // 26px
 $font-size-l: 20px; // 1.25rem; // 20px
 $font-size-m: 16px; // 1rem; // 16px
 $font-size-s: 14px; // 0.875rem; // 14px
-$font-size-xs: 11px; // 0.75rem; // 12px
+$font-size-xs: 12px; // 0.75rem; // 12px
 
 // Font weight
-$font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-bold: 700;
-$font-weight-black: 900;
 
 
 // ------------------------------------ //
 // COLORS
 // ------------------------------------ //
-$color-super-light: #fafafa;
-$color-ultra-light: #f3f2f2; // #f7f7f7;
-$color-light: #eaeaea; // #dfe3da;
-$color-light-gray: #dce0e0; // #ced7d9;
-$color-dark-gray: #B6B6B6; // #a3a3a3; // #7E858C;
-$color-dark: #4d4d4d;
-$color-darker: #202428;
-
-$color-brand: #acca56; // #24717C;
-$color-brand-dark: #629ea6; // #24717C;
-$color-second: #59768a; // #f3cd57; // #24717C;
-$color-cta: #ff7a59; // #4596cc; // #ff7a59;
-$color-error: #ff643f;
-$color-warning: #febe53;
-$color-success: #4ecb6c;
-
-$color-warning: #ffa800;
-$color-error: #f85c5d;
-
 // Text Colors
-$color-text: $color-dark; // TOD Rename @color-text
-$color-text-inverse: #ffffff;
-$color-text-light: #979ea6; // #A6ADB5; // #7f858c; //
-$color-text-headings: $color-text;
-$color-text-link: $color-brand;
-$color-text-link-hover: darken($color-brand, 15);
-$color-text-link-visited: #4c2c92;
-$color-text-form-placeholder: #aeb1b5;
-// $color-alt: $color-text-light; // #54b4e6; // #005474;
+$color-text: $color-gray-06;
+$color-text-inverse: $color-gray-00;
+$color-text-light: $color-gray-04;
+$color-text-link: $color-main;
+$color-text-link-hover: $color-text-hover;
+$color-text-link-visited: $color-text-hover;
+$color-text-form-placeholder: $color-gray-04;
 
 // Borders
-$color-border-light: $color-light-gray;
-$color-border-normal: $color-dark-gray;
-$color-border-dark: $color-dark-gray;
+$color-border-light: $color-gray-02;
+$color-border-normal: $color-gray-03;
 
-// Backgrounds, shadows
-$color-background-base: #ffffff;
-$color-background-ultralight: $color-super-light;
-$color-background-light: $color-ultra-light;
-$color-background-medium: $color-dark-gray;
-$color-background-dark: $color-dark;
+// Backgrounds
+$color-background-base: $color-gray-00;
+$color-background-medium: $color-gray-01;
+$color-background-dark: $color-gray-03;
 
 
 // ------------------------------------ //
-// #STRUCTURE
+// #MEDIA-QUERIES-BREAKPOINT
 // ------------------------------------ //
-$page-max-width: 1220px;
+$breakpoint-desktop-wide: 1180px;
+$breakpoint-laptop: 960px;
+$breakpoint-ipad-portrait: 768px;
+$breakpoint-smartphone-landscape: 480px;
+$breakpoint-smartphone-portrait: 400px;
 
 
 // ------------------------------------ //
@@ -124,70 +92,39 @@ $border-radius-hard: 8px;
 // ------------------------------------ //
 $button-border-width: 1px;
 $button-border-radius: $border-radius;
-$button-normal-height: 30px;
 $button-small-height: 24px;
+$button-normal-height: 30px;
 $button-large-height: 50px;
 
 // Normal button
-$color-button-text: $color-text-light; // $color-text-link;
-$color-button-text-hover: $color-text-link; // $color-text-link-hover;
-$color-button-text-disabled: rgba($color-text, .4); // rgba($color-button-text, .4);
+$color-button-text: $color-text-light;
+$color-button-text-hover: $color-text-link;
+$color-button-text-disabled: rgba($color-text, .4);
 
-$color-button-bg: $color-background-light; // $color-background-light;
-$color-button-bg-hover: lighten($color-background-light, 3); // $color-background-medium;
-$color-button-bg-disabled: lighten($color-background-light, 10); // $color-background-medium;
+$color-button-bg: $color-gray-02;
+$color-button-bg-hover: $color-gray-01;
+$color-button-bg-disabled: $color-gray-01;
 
 $color-button-border: $color-border-normal;
-$color-button-border-hover: $color-border-normal; // $color-text-link; // lighten($color-border-normal, 10);
-
-// Light button (no background or border, only text)
-$color-button-light-text: $color-text-link;
-$color-button-light-text-hover: $color-text-link-hover;
-$color-button-light-text-disabled: rgba($color-button-light-text, 1);
-$color-button-light-text-active: $color-text-link-hover;
+$color-button-border-hover: $color-border-normal;
 
 // Call to action button
 $color-button-cta-text: $color-text-inverse;
 $color-button-cta-text-hover: $color-text-inverse;
 $color-button-cta-text-disabled: rgba($color-text-inverse, .4);
 
-$color-button-cta-bg: $color-brand-dark;
-$color-button-cta-bg-hover: lighten($color-brand-dark, 6);
-$color-button-cta-bg-active: lighten($color-brand-dark, 6);
-$color-button-cta-bg-disabled: lighten($color-brand-dark, 10);
+$color-button-cta-bg: $color-main;
+$color-button-cta-bg-hover: $color-text-hover;
+$color-button-cta-bg-active: $color-text-hover;
+$color-button-cta-bg-disabled: rgba($color-main, .4);
 
-$color-button-cta-border: darken($color-brand-dark, 5); // $color-text-hover;
+$color-button-cta-border: darken($color-main, 5); // $color-text-hover;
 
-// Warning button
-$color-button-warn-text: $color-text-inverse;
-$color-button-warn-text-hover: $color-text-inverse;
-$color-button-warn-text-disabled: rgba($color-text-inverse, .4);
-
-$color-button-warn-bg: $color-cta;
-$color-button-warn-bg-hover: darken($color-cta, 5);
-$color-button-warn-bg-active: darken($color-cta, 5);
-$color-button-warn-bg-disabled: lighten($color-cta, 5);
-
-$color-button-warn-border: darken($color-cta, 7); // $color-text-hover;
-
-
-// ------------------------------------ //
-// #HEADER
-// ------------------------------------ //
-$header-height: 70px;
-$header-mobile-height: 50px;
-$header-logo-width: 118px;
-$header-logo-height: 37px;
-$header-logo-mobile-width: 100px;
-$header-logo-mobile-height: 31px;
-
-
-// ------------------------------------ //
-// #FOOTER
-// ------------------------------------ //
-$footer-background-color: $color-dark;
-$footer-bottom-background-color: $color-darker;
-$color-text-footer: rgba($color-text-inverse, .65);
+// Light button (no background or border, only text)
+$color-button-light-text: $color-text-link;
+$color-button-light-text-hover: $color-text-link-hover;
+$color-button-light-text-disabled: $color-text-light;
+$color-button-light-text-active: $color-text-link-hover;
 
 
 // ------------------------------------ //
@@ -195,8 +132,7 @@ $color-text-footer: rgba($color-text-inverse, .65);
 // ------------------------------------ //
 $form-input-height: 38px;
 $form-input-small-height: 26px;
-$form-mandatory-asterisk-color: $color-text-link;
-$form-border-radius: 3px;
+$form-border-radius: $border-radius;
 
 
 // ------------------------------------ //
@@ -206,45 +142,35 @@ $transition-durations: 0.2s;
 
 
 // ------------------------------------ //
-// Z-INDEX
-// ------------------------------------ //
-$z-index-base: 9999;
-
-$z-index-dashboard-sidebar:                 $z-index-base + 10;
-$z-index-search-results-responsive-buttons: $z-index-base + 20;
-$z-index-header:                            $z-index-base + 30;
-$z-index-mobile-nav:                        $z-index-base + 40;
-$z-index-datepicker:                        $z-index-base + 50;
-$z-index-modal-backdrop:                    $z-index-base + 60;
-$z-index-modal:                             $z-index-base + 70;
-$z-index-modal-login:                       $z-index-base + 80;
-$z-index-fancybox-backdrop:                 $z-index-base + 90;
-$z-index-fancybox:                          $z-index-base + 100;
-$z-index-fancybox-thumbs:                   $z-index-base + 110;
-$z-index-tooltip:                           $z-index-base + 120;
-
-
-// ------------------------------------ //
 // #LOADER
 // ------------------------------------ //
-$loader-color: $color-text-light;
-$loader-width: 60px;
-$loader-height: 60px;
-
-$loader-btn-color: #ffffff;
-$loader-btn-width: 25px;
-$loader-btn-height: 25px;
+$loader-size: 70px;
+$loader-thickness: 5px;
+$loader-color-front: $color-main;
+$loader-color-back: rgba($color-main, .3);
 
 
 // ------------------------------------ //
-// #MODAL
+// #TABLE
 // ------------------------------------ //
-$modal-backdrop-bg-color: rgba(#000000, .75);
-$modal-bg-color: $color-background-base;
-$modal-box-shadow: 0 0 4px rgba(#000000, .15);
+$table-border-color: $color-border-normal;
+$table-border-size: 2px;
+/* Header */
+$table-header-font-size: $font-size-m;
+$table-header-text-color: $color-text;
+$table-header-bg: $color-background-medium;
+/* Contents */
+$table-font-size: $font-size-s;
+$table-text-color: $color-text;
+$table-bg-odd: $color-background-base;
+$table-bg-even: $color-background-medium;
+/* Footer */
+$table-footer-font-size: $font-size-s;
+$table-footer-text-color: $color-text-light;
+$table-footer-bg: $color-background-medium;
 
 
-// ------------------------------------ //
-// #TABS
-// ------------------------------------ //
-$tabs-height: 38px;
+
+
+
+

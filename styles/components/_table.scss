@@ -1,0 +1,135 @@
+/**
+ * TABLE
+ *
+ * Table component used to display values in a table and to edit list of values in a table.
+ * Cell can contain values, HTML snippets and input fields.
+ */
+
+/* ------------------------------------ *\
+    TABLE
+\* ------------------------------------ */
+.n7-table {
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+        border: $table-border-size solid $table-border-color;
+    }
+
+    /* Header */
+    &__table-header-cell {
+        padding: $space;
+        border: $table-border-size solid $table-border-color;
+        background-color: $table-header-bg;
+        color: $table-header-text-color;
+        font-size: $table-header-font-size;
+        text-align: left;
+    }
+
+    /* Contents */
+    &__table-body-row:nth-child(even) {
+        background-color: $table-bg-even;
+    }
+
+    &__table-body-row:nth-child(odd) {
+        background-color: $table-bg-odd;
+    }
+
+    &__table-body-cell {
+        padding: $space;
+        border: $table-border-size solid $table-border-color;
+        color: $table-text-color;
+        font-size: $table-font-size;
+    }
+
+    /* Footer */
+    &__table-footer-cell {
+        padding: $space;
+        border: $table-border-size solid $table-border-color;
+        background-color: $table-footer-bg;
+        color: $table-footer-text-color;
+        font-size: $table-footer-font-size;
+    }
+
+    /* TODO Add a comment here to explain what is this! */
+    .hidden {
+        display: none;
+    }
+    
+    .showing {
+        display: table-row;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+
+    .n7-table {
+        &__table {
+            display: block;
+            width: 100%;
+            border: 0;
+        }
+        
+        &__table-footer {
+            display: none;
+        }
+
+        &__table-header {
+            display: block;
+            display: none;
+        }
+
+        &__table-body {
+            display: block;
+            width: 100%;
+        }
+
+        &__table-body-row {
+            display: block;
+            width: 100%;
+            border-bottom: $table-border-size solid $table-border-color;
+            display: block;
+            margin-bottom: .625em;
+        }
+
+        &__table-body-cell {
+            display: block;
+            border-top: $table-border-size solid $table-border-color;
+            border-left: $table-border-size solid $table-border-color;
+            border-right: $table-border-size solid $table-border-color;
+            border-bottom: 0;
+            display: block;
+            font-size: .8em;
+            text-align: right;
+
+            &:before {
+                /*
+                * aria-label has no advantage, it won't be read inside a table
+                content: attr(aria-label);
+                */
+                content: "TEST";
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+    }
+
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

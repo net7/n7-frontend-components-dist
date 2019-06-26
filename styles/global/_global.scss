@@ -9,21 +9,19 @@
 /* ------------------------------------ *\
    #TAGS
 \* ------------------------------------ */
-
 html, body {
-    // height: 100%;
-    // margin: 0;
-    // font-size: 16px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
 }
 
 body {
-    // box-sizing: border-box;
-    // background-color: $color-background-base;
-    // color: $color-text;
+    box-sizing: border-box;
+    background-color: $color-background-base;
+    color: $color-text;
     font-family: $font-family-main;
-    // font-size: 16px;
-    // letter-spacing: 0.02rem;
-    // -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
 }
 
 :focus {
@@ -32,59 +30,8 @@ body {
 
 
 /* ------------------------------------ *\
-   #GRID
-\* ------------------------------------ */
-.n7dash-row {
-    &:after {
-        content: " ";
-        display: block;
-        clear: both;
-    }
-}
-
-/* 2 columns */
-.n7dash-2column {
-    width: span(6 of 12);
-    margin-right: gutter(of 12);
-    float: left;
-
-    &:last-child {
-        margin-right: 0;
-    }
-}
-
-/* 3 columns */
-.n7dash-3column {
-    width: span(4 of 12);
-    margin-right: gutter(of 12);
-    float: left;
-
-    &:last-child {
-        margin-right: 0;
-    }
-}
-
-/* 4 columns */
-.n7dash-4column {
-    width: span(3 of 12);
-    margin-right: gutter(of 12);
-    float: left;
-
-    &:last-child {
-        margin-right: 0;
-    }
-}
-
-canvas{
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
-
-/* ------------------------------------ *\
    #MEDIA-QUERIES
 \* ------------------------------------ */
-
 @media all and (max-width: $breakpoint-laptop) {
 }
 
