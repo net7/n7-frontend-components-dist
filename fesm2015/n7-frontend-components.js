@@ -6,6 +6,41 @@ import { Component, Input, NgModule } from '@angular/core';
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * BreadcrumbsComponent <n7-breadcrumbs>
+ *
+ * \@example
+ * ```html
+ *
+ * <!-- TODO: add component example -->
+ * ```
+ */
+class BreadcrumbsComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+BreadcrumbsComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-breadcrumbs',
+                template: "<div *ngIf=\"data\" class=\"n7-breadcrumbs {{ data.classes || '' }}\">\n    <nav class=\"n7-breadcrumbs__nav\">\n        <ol class=\"n7-breadcrumbs__list\">\n            <li *ngFor=\"let item of data.items\" class=\"n7-breadcrumbs__item {{ item.classes || '' }}\">\n                <a class=\"n7-breadcrumbs__label\" (click)=\"onClick(item.payload)\">{{ item.label }}</a>\n            </li>\n        </ol>\n    </nav>\n</div>\n"
+            }] }
+];
+BreadcrumbsComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * LoaderComponent <n7-loader>
  *
  * \@example
@@ -127,6 +162,7 @@ TagComponent.propDecorators = {
  */
 /** @type {?} */
 const COMPONENTS = [
+    BreadcrumbsComponent,
     LoaderComponent,
     TableComponent,
     TagComponent
@@ -145,6 +181,36 @@ DvComponentsLibModule.decorators = [
                 ],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const BREADCRUMBS_MOCK = {
+    items: [
+        {
+            label: 'Home',
+            payload: '/'
+        },
+        {
+            label: 'Costumi',
+            payload: '/examples/loader-component'
+        },
+        {
+            label: 'Giacche',
+            payload: '/examples/list-component'
+        },
+        {
+            label: 'Maniche',
+            payload: '/examples/navbar-component'
+        },
+        {
+            label: 'Manica',
+            payload: '/examples/breadcrumbs-component'
+        }
+    ]
+};
 
 /**
  * @fileoverview added by tsickle
@@ -339,6 +405,6 @@ const TAG_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DvComponentsLibModule, LoaderComponent, TableComponent, TagComponent, LOADER_MOCK, TABLE_MOCK, TAG_MOCK };
+export { DvComponentsLibModule, BreadcrumbsComponent, LoaderComponent, TableComponent, TagComponent, BREADCRUMBS_MOCK, LOADER_MOCK, TABLE_MOCK, TAG_MOCK };
 
 //# sourceMappingURL=n7-frontend-components.js.map

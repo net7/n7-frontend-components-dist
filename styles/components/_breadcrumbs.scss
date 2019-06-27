@@ -1,0 +1,95 @@
+/**
+ * BREADCRUMBS
+ *
+ * Style for breadcrumbs for desktop and mobile
+ */
+ 
+/* ------------------------------------ *\
+    BREADCRUMBS
+\* ------------------------------------ */
+.n7-breadcrumbs {
+    padding: $space / 2;
+    background-color: $breadcrumbs-background;
+    @include consistent;
+
+    &__nav {
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        float: left;
+        margin: $space/2 0;
+        list-style: none;
+
+        &:after {
+            content: $breadcrumbs-arrow;
+            color: $breadcrumbs-arrow-color;
+            font-family: 'n7-icon' !important;
+            vertical-align: bottom;
+        }
+
+        &:last-child {
+            a {
+                color: $breadcrumbs-current-color;
+                cursor: default;
+            }
+            &:after {
+                content: ''
+            }
+        }
+    }
+
+    &__label {
+        padding: $space;
+        text-decoration: none;
+        cursor: pointer;
+    }
+}
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+    
+    .n7-breadcrumbs {
+        background: none;
+
+        &__item {
+            display: none;
+
+            &:nth-last-child(2){
+                display: block;
+
+                .n7-breadcrumbs__label {
+                    /* The back arrow is inserted within the A tag so it's clickable */
+                    &:before {
+                        content: $breadcrumbs-arrow-mobile;
+                        margin-right: $space/2;
+                        font-family: 'n7-icon' !important;
+                        color: $breadcrumbs-arrow-color;
+                        vertical-align: bottom;
+                    }
+                }
+                
+                &:after {
+                    content: ''
+                }
+            }
+        }
+    }
+    
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}
