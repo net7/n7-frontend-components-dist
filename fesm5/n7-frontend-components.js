@@ -78,6 +78,39 @@ var LoaderComponent = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var NavComponent = /** @class */ (function () {
+    function NavComponent() {
+    }
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    NavComponent.prototype.onClick = /**
+     * @param {?} payload
+     * @return {?}
+     */
+    function (payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    };
+    NavComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'n7-nav',
+                    template: "<nav class=\"n7-nav {{data.classes || ''}}\" *ngIf=\"data\">\n    <ul class=\"n7-nav__list\">\n        <li class=\"n7-nav__item {{X.classes || ''}}\" *ngFor=\"let X of data.items\">\n            <a class=\"n7-nav__link\" *ngIf=\"X.payload\" (click)=\"onClick(X.payload)\">\n                <span class=\"n7-nav__label\" *ngIf=\"X.text\">\n                    {{ X.text }}\n                </span>\n            </a>\n        </li>\n    </ul>\n</nav>"
+                }] }
+    ];
+    NavComponent.propDecorators = {
+        data: [{ type: Input }],
+        emit: [{ type: Input }]
+    };
+    return NavComponent;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * TableComponent <n7-table>
  */
@@ -197,6 +230,7 @@ var TagComponent = /** @class */ (function () {
 var COMPONENTS = [
     BreadcrumbsComponent,
     LoaderComponent,
+    NavComponent,
     TableComponent,
     TagComponent
 ];
@@ -255,6 +289,21 @@ var BREADCRUMBS_MOCK = {
 /** @type {?} */
 var LOADER_MOCK = {
     classes: 'loader-test'
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+var NAV_MOCK = {
+    items: [
+        { text: "Home", payload: "/" },
+        { text: "Single level", payload: "/no_dropdown" },
+        { text: "Stuff", payload: "/page1" },
+        { text: "Other stuff", payload: "/page1/page2" },
+        { text: "Cats", payload: "cats" }
+    ],
 };
 
 /**
@@ -441,6 +490,6 @@ var TAG_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DvComponentsLibModule, BreadcrumbsComponent, LoaderComponent, TableComponent, TagComponent, BREADCRUMBS_MOCK, LOADER_MOCK, TABLE_MOCK, TAG_MOCK };
+export { DvComponentsLibModule, BreadcrumbsComponent, LoaderComponent, NavComponent, TableComponent, TagComponent, BREADCRUMBS_MOCK, LOADER_MOCK, NAV_MOCK, TABLE_MOCK, TAG_MOCK };
 
 //# sourceMappingURL=n7-frontend-components.js.map
