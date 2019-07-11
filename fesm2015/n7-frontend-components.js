@@ -41,6 +41,67 @@ BreadcrumbsComponent.propDecorators = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * HeaderComponent <n7-header>
+ *
+ * \@structure
+ *  >>  cpm = it has Classes, Payload, Metadata  <<
+ *  >>  -p- = it has only Payload                <<
+ *  >>  +-- = sub-member                         <<
+ *  >>  +---> = array                            <<
+ *
+ *  data (cpm)
+ *    +-- actions
+ *          +---> action (cpm)
+ *                  +-- badge
+ *    +-- logo (cp-)
+ *    +-- menuToggle
+ *          +-- open (-p-)
+ *          +-- close (-p-)
+ *    +-- nav (cpm)
+ *          +---> items
+ *    +-- search (cpm)
+ *    +-- user (cpm)
+ *
+ */
+class HeaderComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        // console.log(type, payload);
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+    /**
+     * @param {?} payload
+     * @param {?} keyCode
+     * @param {?} value
+     * @return {?}
+     */
+    onKeyUp(payload, keyCode, value) {
+        if (!this.emit)
+            return;
+        this.emit('keyUp', { payload, keyCode, value });
+    }
+}
+HeaderComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-header',
+                template: "<header class=\"n7-header {{data.classes || ''}}\">\n    \n    <!-- Logo and title -->\n    <div class=\"n7-header__logo-title {{data.logo.classes || ''}}\">\n        <a class=\"n7-header__logo-link\" (click)=\"onClick(data.logo.payload)\">\n            <img class=\"n7-header__logo\"\n                *ngIf=\"data.logo.image\"\n                [src]=\"data.logo.image\"\n                alt=\"{{ data.logo.title }}\" />\n            <div class=\"n7-header__title-subtitle\">\n                <h1 class=\"n7-header__title\">\n                    {{ data.logo.title }}\n                </h1>\n                <h2 class=\"n7-header__subtitle\" *ngIf=\"data.logo.subtitle\">\n                    {{ data.logo.subtitle }}\n                </h2>\n            </div>\n        </a>\n    </div>\n    <!-- END // Logo and title -->\n\n    <!-- Main menu -->\n    <nav class=\"n7-header__nav {{data.nav.classes || ''}}\" *ngIf=\"data.nav\">\n        <div class=\"n7-header__nav-content\">\n            <ul class=\"n7-header__nav-list\">\n                <li class=\"n7-header__nav-item {{item.classes || ''}}\" *ngFor=\"let item of data.nav.items\">\n                    <a class=\"n7-header__nav-link\" *ngIf=\"item.payload\" (click)=\"onClick(item.payload)\">\n                        <span class=\"n7-header__nav-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\n                        <span class=\"n7-header__nav-label\" *ngIf=\"item.text\">\n                            {{ item.text }}\n                        </span>\n                    </a>\n\n                    <!-- Sublevel -->\n                    <ul class=\"n7-header__subnav-list\" *ngIf=\"item.subnav\">\n                        <li class=\"n7-header__subnav-item {{subitem.classes || ''}}\" *ngFor=\"let subitem of item.subnav\">\n                            <a class=\"n7-header__subnav-link\" (click)=\"onClick(subitem.payload)\">\n                                <span class=\"n7-header__subnav-icon {{subitem.icon}}\" *ngIf=\"subitem.icon\"></span>\n                                <span class=\"n7-header__subnav-label\" *ngIf=\"subitem.text\">\n                                    {{ subitem.text }}\n                                </span>\n                            </a>\n                        </li>\n                    </ul>\n                    <!-- END // Sublevel -->\n                </li>\n            </ul>\n        </div>\n    </nav>\n    <!-- END // Main menu -->\n\n    <!-- Mobile menu toggle -->\n    <div class=\"n7-header__mobile-menu-toggle\">\n        <span class=\"n7-header__mobile-menu-icon n7-icon-menu\" (click)=\"onClick(data.menuToggle.open.payload)\"></span>\n    </div>\n    <!-- END // Mobile menu toggle -->\n\n    <!-- Mobile menu close -->\n    <span class=\"n7-header__mobile-menu-close n7-icon-close\" (click)=\"onClick(data.menuToggle.close.payload)\"></span>\n    <!-- END // Mobile menu close -->\n\n    <!-- Tools: search, notifications, use profile or login/signup -->\n    <div class=\"n7-header__tools\">\n        \n        <div class=\"n7-header__search {{data.search.classes || ''}}\" *ngIf=\"data.search\">\n            <input class=\"n7-header__search-input\" type=\"search\" name=\"search\" placeholder=\"{{ data.search.hint || ''}}\" (keyup)=\"onKeyUp(data.search.payload, $event.keyCode, $event.target.value)\"/>\n            <button class=\"n7-header__search-btn\" type=\"submit\" (click)=\"onClick(data.search.payload)\">\n                <span class=\"n7-header__search-btn-label\">\n                    Search\n                </span>\n            </button>\n        </div>\n        \n        <div class=\"n7-header__actions\" *ngIf=\"data.actions\">\n            <div class=\"n7-header__action {{ action.classes || '' }}\" *ngFor=\"let action of data.actions\">\n                <span class=\"n7-header__action-icon {{ action.icon }}\" (click)=\"onClick(action.payload)\"></span>\n                <span class=\"n7-header__action-badge {{ action.badge.text ? 'has-text' : '' }}\" *ngIf=\"action.badge\">\n                    {{ action.badge.text }}\n                </span>\n            </div>\n        </div>\n\n        <div class=\"n7-header__user {{data.user.classes || ''}}\" *ngIf=\"data.user\" (click)=\"onClick(data.user.payload)\">\n            <img class=\"n7-header__user-img\" *ngIf=\"data.user.img\" [src]=\"data.user.img\" (click)=\"onClick(data.user.payload)\"/>\n            <p class=\"n7-header__user-name\" *ngIf=\"data.user.name\">\n                <span class=\"n7-header__user-name-label\">\n                    {{ data.user.name }}\n                </span>\n            </p>\n        </div>\n    </div>\n    <!-- END // Tools: search, notifications, use profile or login/signup -->\n\n</header>\n\n"
+            }] }
+];
+HeaderComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * LoaderComponent <n7-loader>
  *
  * \@example
@@ -189,6 +250,7 @@ TagComponent.propDecorators = {
 /** @type {?} */
 const COMPONENTS = [
     BreadcrumbsComponent,
+    HeaderComponent,
     LoaderComponent,
     NavComponent,
     TableComponent,
@@ -237,6 +299,58 @@ const BREADCRUMBS_MOCK = {
             payload: '/examples/breadcrumbs-component'
         }
     ]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const HEADER_MOCK = {
+    logo: {
+        image: './assets/images/dvLogo.png',
+        title: 'DataViz',
+        subtitle: 'Data visualization',
+        payload: 'https://www.netseven.it/'
+    },
+    nav: {
+        items: [
+            { text: 'Home', payload: '/', icon: 'n7-icon-home' },
+            { text: 'Stuff', payload: '/s', icon: 'n7-icon-home' },
+            { text: 'Other Stuff', payload: '/os', icon: 'n7-icon-home' },
+            { text: 'Dropdown', payload: '/', icon: 'n7-icon-home', subnav: [
+                    { text: 'Sublevel 1', payload: '/', icon: 'n7-icon-home' },
+                    { text: 'Sublevel 2 Lorem ipsum dolor sit amet', payload: '/s', icon: 'n7-icon-home' },
+                    { text: 'Sublevel 3', payload: '/os', icon: 'n7-icon-home' },
+                ]
+            },
+            { text: 'Shiny Stuff', payload: '/shs', icon: 'n7-icon-home' },
+            { text: 'Cats', payload: '/cats', icon: 'n7-icon-home' },
+        ]
+    },
+    search: {
+        hint: 'Search (hint)',
+        payload: 'search payload',
+    },
+    actions: [
+        { icon: 'n7-icon-bell', payload: '/', badge: {
+                text: "200",
+            },
+        },
+        { icon: 'n7-icon-facebook', payload: '/', badge: {}, },
+    ],
+    user: {
+        img: './assets/images/placeholder_75x75.png',
+        name: 'Massimiliano Spinosa'
+    },
+    menuToggle: {
+        open: {
+            payload: 'mobile-open'
+        },
+        close: {
+            payload: 'mobile-close'
+        }
+    }
 };
 
 /**
@@ -447,6 +561,6 @@ const TAG_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DvComponentsLibModule, BreadcrumbsComponent, LoaderComponent, NavComponent, TableComponent, TagComponent, BREADCRUMBS_MOCK, LOADER_MOCK, NAV_MOCK, TABLE_MOCK, TAG_MOCK };
+export { DvComponentsLibModule, BreadcrumbsComponent, HeaderComponent, LoaderComponent, NavComponent, TableComponent, TagComponent, BREADCRUMBS_MOCK, HEADER_MOCK, LOADER_MOCK, NAV_MOCK, TABLE_MOCK, TAG_MOCK };
 
 //# sourceMappingURL=n7-frontend-components.js.map

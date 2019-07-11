@@ -149,6 +149,21 @@ $transition-durations: 0.2s;
 
 
 // ------------------------------------ //
+// #HEADER
+// ------------------------------------ //
+$header-height: 80px;
+$header-height-mobile: 60px;
+$header-bg-color: $color-background-base;
+$header-logo-height: $header-height - ($space*2);
+$header-logo-height-mobile: $header-height-mobile - ($space*2);
+$header-user-thumb-size: 50px;
+$header-user-thumb-size-mobile: 38px;
+$header-search-input-height: 36px;
+$header-search-input-height-mobile: 28px;
+$header-breakpoint-mobile: 1180px;
+$header-breakpoint-mobile-small: 600px;
+
+// ------------------------------------ //
 // #LOADER
 // ------------------------------------ //
 $loader-size: 70px;
