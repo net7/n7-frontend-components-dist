@@ -303,8 +303,57 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * AlertComponent <n7-alert>
+     *
+     * \@example
+     * ```html
+     * <n7-alert [data]="{
+     *        text: 'This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.',
+     *        hasCloseButton: true,
+     *        icon: "n7-icon-bell",
+     *        payload: "close-the-alert request",
+     *        classes: "is-warning"
+     *    }">
+     * </n7-alert>
+     * ```
+     */
+    var AlertComponent = /** @class */ (function () {
+        function AlertComponent() {
+        }
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        AlertComponent.prototype.onClick = /**
+         * @param {?} payload
+         * @return {?}
+         */
+            function (payload) {
+                if (!this.emit)
+                    return;
+                this.emit('click', payload);
+            };
+        AlertComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-alert',
+                        template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" *ngIf=\"data.hasCloseButton\" (click)=\"onClick(data.payload)\"></span>\n</div>"
+                    }] }
+        ];
+        AlertComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return AlertComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [
+        AlertComponent,
         BreadcrumbsComponent,
         HeaderComponent,
         LoaderComponent,
@@ -329,6 +378,19 @@
         ];
         return DvComponentsLibModule;
     }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var ALERT_MOCK = {
+        text: "\n  This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.\n  This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.\n  ",
+        hasCloseButton: true,
+        payload: "close",
+        icon: "n7-icon-bell",
+        classes: "is-warning"
+    };
 
     /**
      * @fileoverview added by tsickle
@@ -621,12 +683,14 @@
      */
 
     exports.DvComponentsLibModule = DvComponentsLibModule;
+    exports.AlertComponent = AlertComponent;
     exports.BreadcrumbsComponent = BreadcrumbsComponent;
     exports.HeaderComponent = HeaderComponent;
     exports.LoaderComponent = LoaderComponent;
     exports.NavComponent = NavComponent;
     exports.TableComponent = TableComponent;
     exports.TagComponent = TagComponent;
+    exports.ALERT_MOCK = ALERT_MOCK;
     exports.BREADCRUMBS_MOCK = BREADCRUMBS_MOCK;
     exports.HEADER_MOCK = HEADER_MOCK;
     exports.LOADER_MOCK = LOADER_MOCK;

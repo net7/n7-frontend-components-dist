@@ -247,8 +247,50 @@ TagComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * AlertComponent <n7-alert>
+ *
+ * \@example
+ * ```html
+ * <n7-alert [data]="{
+ *        text: 'This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.',
+ *        hasCloseButton: true,
+ *        icon: "n7-icon-bell",
+ *        payload: "close-the-alert request",
+ *        classes: "is-warning"
+ *    }">
+ * </n7-alert>
+ * ```
+ */
+class AlertComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+AlertComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-alert',
+                template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" *ngIf=\"data.hasCloseButton\" (click)=\"onClick(data.payload)\"></span>\n</div>"
+            }] }
+];
+AlertComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 const COMPONENTS = [
+    AlertComponent,
     BreadcrumbsComponent,
     HeaderComponent,
     LoaderComponent,
@@ -270,6 +312,22 @@ DvComponentsLibModule.decorators = [
                 ],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const ALERT_MOCK = {
+    text: `
+  This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.
+  This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.
+  `,
+    hasCloseButton: true,
+    payload: "close",
+    icon: "n7-icon-bell",
+    classes: "is-warning"
+};
 
 /**
  * @fileoverview added by tsickle
@@ -561,6 +619,6 @@ const TAG_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DvComponentsLibModule, BreadcrumbsComponent, HeaderComponent, LoaderComponent, NavComponent, TableComponent, TagComponent, BREADCRUMBS_MOCK, HEADER_MOCK, LOADER_MOCK, NAV_MOCK, TABLE_MOCK, TAG_MOCK };
+export { DvComponentsLibModule, AlertComponent, BreadcrumbsComponent, HeaderComponent, LoaderComponent, NavComponent, TableComponent, TagComponent, ALERT_MOCK, BREADCRUMBS_MOCK, HEADER_MOCK, LOADER_MOCK, NAV_MOCK, TABLE_MOCK, TAG_MOCK };
 
 //# sourceMappingURL=n7-frontend-components.js.map

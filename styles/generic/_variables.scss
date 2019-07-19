@@ -200,3 +200,16 @@ $breadcrumbs-arrow-color: $color-text-light;
 $breadcrumbs-current-color: $color-text;
 $breadcrumbs-arrow: '\e909';
 $breadcrumbs-arrow-mobile: '\e908';
+
+
+// ------------------------------------ //
+// #ALERT
+// ------------------------------------ //
+$alert-background: $color-background-medium;
+$alert-background-success: $color-success;
+$alert-background-warning: $color-warning;
+$alert-background-error: $color-error;
+$alert-color-text: $color-text;
+$alert-color-text-success: $color-text-inverse;
+$alert-color-text-warning: $color-text-inverse;
+$alert-color-text-error: $color-text-inverse;
