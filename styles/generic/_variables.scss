@@ -203,6 +203,22 @@ $breadcrumbs-arrow-mobile: '\e908';
 
 
 // ------------------------------------ //
+// #PAGINATION
+// ------------------------------------ //
+$pagination-item-width: 40px;
+$pagination-item-height: 40px;
+$pagination-border: 1px solid $color-border-normal;
+$pagination-background: $color-background-base;
+$pagination-border-current: 0;
+$pagination-background-current: $color-background-dark;
+$pagination-radius: $border-radius;
+$pagination-color: $color-text;
+$pagination-color-hover: $color-text-link;
+$pagination-color-disabled: $color-text-light;
+$pagination-color-current: $color-text-inverse;
+
+
+// ------------------------------------ //
 // #ALERT
 // ------------------------------------ //
 $alert-background: $color-background-medium;

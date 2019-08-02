@@ -189,6 +189,61 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
+     * PaginationComponent <n7-pagination>
+     *
+     * \@example
+     * ```html
+     *
+     * <n7-pagination [data]="{
+     *  first: { payload: 'first', classes: 'is-disabled' },
+     *  prev: { payload: 'prev', classes: 'is-disabled' },
+     *  next: { payload: 'next' },
+     *  last: { payload: 'last' },
+     *  links: [
+     *    { text: '1', payload: 1, classes: 'is-active' },
+     *    { text: '2', payload: 2 },
+     *    { text: '3', payload: 3 },
+     *    { text: '4', payload: 4 },
+     *    { text: '5', payload: 5 },
+     *  ]
+     * }"}>
+     * </n7-pagination>
+     * ```
+     */
+    var PaginationComponent = /** @class */ (function () {
+        function PaginationComponent() {
+        }
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        PaginationComponent.prototype.onClick = /**
+         * @param {?} payload
+         * @return {?}
+         */
+            function (payload) {
+                if (!this.emit)
+                    return;
+                this.emit('click', payload);
+            };
+        PaginationComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-pagination',
+                        template: "<nav class=\"n7-pagination {{data.classes || ''}}\" *ngIf=\"data\">\n    <ul class=n7-pagination__items>\n\n        <li class=\"n7-pagination__first {{data.first.classes || ''}}\" *ngIf=\"data.first\">\n            <a class=\"n7-pagination__first-link {{ data.first.text ? 'has-text' : '' }}\" (click)=\"onClick(data.first.payload)\">\n                <span class=\"n7-pagination__first-icon n7-icon-angle-double-left\"></span>\n                <span class=\"n7-pagination__first-label\" *ngIf=\"data.first.text\">\n                    {{ data.first.text }}\n                </span>\n            </a>\n        </li>\n        <li class=\"n7-pagination__prev {{data.prev.classes || ''}}\" *ngIf=\"data.prev\">\n            <a class=\"n7-pagination__prev-link {{ data.prev.text ? 'has-text' : '' }}\" (click)=\"onClick(data.prev.payload)\">\n                <span class=\"n7-pagination__prev-icon n7-icon-angle-left\"></span>\n                <span class=\"n7-pagination__prev-label\" *ngIf=\"data.prev.text\">\n                    {{ data.prev.text }}\n                </span>\n            </a>\n        </li>\n\n        <li class=\"n7-pagination__page {{page.classes || ''}}\" *ngFor=\"let page of data.links\">\n            <a class=\"n7-pagination__page-link\" (click)=\"onClick(page.payload)\">{{ page.text }}</a>\n        </li>\n\n        <li class=\"n7-pagination__next {{data.next.classes || ''}}\" *ngIf=\"data.next\">\n            <a class=\"n7-pagination__next-link {{ data.next.text ? 'has-text' : '' }}\" (click)=\"onClick(data.next.payload)\">\n                <span class=\"n7-pagination__next-label\" *ngIf=\"data.next.text\">\n                    {{ data.next.text }}\n                </span>\n                <span class=\"n7-pagination__next-icon n7-icon-angle-right\"></span>\n            </a>\n        </li>\n        <li class=\"n7-pagination__last {{data.last.classes || ''}}\" *ngIf=\"data.last\">\n            <a class=\"n7-pagination__last-link {{ data.last.text ? 'has-text' : '' }}\" (click)=\"onClick(data.last.payload)\">\n                <span class=\"n7-pagination__last-label\" *ngIf=\"data.last.text\">\n                    {{ data.last.text }}\n                </span>\n                <span class=\"n7-pagination__last-icon  n7-icon-angle-double-right\"></span>\n            </a>\n        </li>\n\n    </ul> \n</nav>"
+                    }] }
+        ];
+        PaginationComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return PaginationComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
      * TableComponent <n7-table>
      */
     var TableComponent = /** @class */ (function () {
@@ -358,6 +413,7 @@
         HeaderComponent,
         LoaderComponent,
         NavComponent,
+        PaginationComponent,
         TableComponent,
         TagComponent
     ];
@@ -496,6 +552,25 @@
             { text: "Other stuff", payload: "/page1/page2" },
             { text: "Cats", payload: "cats" }
         ],
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var PAGINATION_MOCK = {
+        first: { payload: "first", classes: "is-disabled", text: "First" },
+        prev: { payload: "prev", classes: "is-disabled" },
+        next: { payload: "next", text: "Next" },
+        last: { payload: "last", text: "Last" },
+        links: [
+            { text: "1", payload: 1, classes: "is-active" },
+            { text: "2", payload: 2 },
+            { text: "3", payload: 3 },
+            { text: "4", payload: 4 },
+            { text: "5", payload: 5 },
+        ]
     };
 
     /**
@@ -688,6 +763,7 @@
     exports.HeaderComponent = HeaderComponent;
     exports.LoaderComponent = LoaderComponent;
     exports.NavComponent = NavComponent;
+    exports.PaginationComponent = PaginationComponent;
     exports.TableComponent = TableComponent;
     exports.TagComponent = TagComponent;
     exports.ALERT_MOCK = ALERT_MOCK;
@@ -695,6 +771,7 @@
     exports.HEADER_MOCK = HEADER_MOCK;
     exports.LOADER_MOCK = LOADER_MOCK;
     exports.NAV_MOCK = NAV_MOCK;
+    exports.PAGINATION_MOCK = PAGINATION_MOCK;
     exports.TABLE_MOCK = TABLE_MOCK;
     exports.TAG_MOCK = TAG_MOCK;
 
