@@ -229,3 +229,22 @@ $alert-color-text: $color-text;
 $alert-color-text-success: $color-text-inverse;
 $alert-color-text-warning: $color-text-inverse;
 $alert-color-text-error: $color-text-inverse;
+
+
+// ------------------------------------ //
+// #WIZARD
+// ------------------------------------ //
+$wizard-height: 40px;
+$wizard-number-circle-margin: 5px;
+$wizard-past-bg-color: $color-main;
+$wizard-past-number-bg-color: rgba($color-background-base, .2);
+$wizard-past-text-color: $color-text-inverse;
+$wizard-present-bg-color: $color-second;
+$wizard-present-number-bg-color: rgba($color-background-base, .2);
+$wizard-present-text-color: $color-text-inverse;
+$wizard-future-bg-color: $color-background-medium;
+$wizard-future-number-bg-color: rgba($color-background-dark, .4);
+$wizard-future-text-color: $color-text;
+$wizard-number-size: $font-size-s;
+$wizard-text-size: $font-size-s;
+
