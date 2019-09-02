@@ -1,0 +1,140 @@
+/**
+ * WIZARD
+ *
+ * Brief description of the component here.
+ */
+ 
+$wizard-height: 34px;
+$wizard-number-circle-margin: 5px;
+$wizard-past-bg-color: $color-main;
+$wizard-past-text-color: $color-text-inverse;
+$wizard-present-bg-color: $color-second;
+$wizard-present-text-color: $color-text-inverse;
+$wizard-future-bg-color: $color-background-medium;
+$wizard-future-text-color: $color-text;
+
+/* ------------------------------------ *\
+   #WIZARD
+\* ------------------------------------ */
+.n7-wizard {
+    height: $wizard-height;
+
+    &__list {
+        position: relative;
+        height: $wizard-height;
+    }
+
+    &__item {
+        position: relative;
+        display: inline-block;
+        height: $wizard-height;
+        line-height: $wizard-height;
+        padding: 0 $space*2 0 $wizard-number-circle-margin;
+
+        &:not(:first-child) {
+            padding-left: $wizard-height/2.5 + $wizard-number-circle-margin;
+        }
+
+        /* Past items */
+        background-color: $wizard-past-bg-color;
+        color: $wizard-past-text-color;
+        
+        /* Current item */
+        &.is-active {
+            background-color: $wizard-present-bg-color;
+            color: $wizard-present-text-color;
+        }
+
+        /* Future items */
+        &.is-active ~ * {
+            background-color: $wizard-future-bg-color;
+            color: $wizard-future-text-color;
+        }
+
+        &:first-child {
+            border-radius: $wizard-height/2 0 0 $wizard-height/2;
+        }
+
+        &:last-child {
+            border-radius: 0 $wizard-height/2 $wizard-height/2 0;
+        }
+
+        /* Arrows */
+        &:not(:last-child) {
+            &:after {
+                content: " ";
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: $wizard-height/2 0 $wizard-height/2 $wizard-height/3;
+                border-color: transparent transparent transparent $wizard-past-bg-color;
+                position: absolute;
+                top: 0;
+                right: -$wizard-height/3;
+                z-index: 10;
+            }
+
+            &:before {
+                content: " ";
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: $wizard-height/1.5 0 $wizard-height/1.5 $wizard-height/2.5;
+                border-color: transparent transparent transparent $color-background-base;
+                position: absolute;
+                top: - (( $wizard-height/1.5 * 2) - ( $wizard-height/2 * 2) )/2;
+                right: -$wizard-height/2.5;
+                z-index: 5;
+            }
+
+            &.is-active {
+                &:after {
+                    border-color: transparent transparent transparent $wizard-present-bg-color;
+                }
+            }
+
+            &.is-active ~ * {
+                &:after {
+                    border-color: transparent transparent transparent $wizard-future-bg-color;
+                }
+            }
+        }
+    }
+
+    &__number {
+        display: inline-block;
+        margin-top: $wizard-number-circle-margin;
+        margin-right: $wizard-number-circle-margin;
+        width: $wizard-height - ($wizard-number-circle-margin * 2);
+        height: $wizard-height - ($wizard-number-circle-margin * 2);
+        text-align: center;
+        line-height: $wizard-height - ($wizard-number-circle-margin * 2);
+        font-weight: $font-weight-bold;
+        font-size: $font-size-s;
+        border-radius: ($wizard-height - ($wizard-number-circle-margin * 2))/2;
+        background-color: rgba($color-background-base, .15);
+    }
+
+    &__text {
+        display: inline-block;
+        font-weight: $font-weight-normal;
+        font-size: $font-size-s;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

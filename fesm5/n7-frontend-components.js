@@ -6,6 +6,54 @@ import { Component, Input, NgModule } from '@angular/core';
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * AlertComponent <n7-alert>
+ *
+ * \@example
+ * ```html
+ * <n7-alert [data]="{
+ *        text: 'This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.',
+ *        hasCloseButton: true,
+ *        icon: "n7-icon-bell",
+ *        payload: "close-the-alert request",
+ *        classes: "is-warning"
+ *    }">
+ * </n7-alert>
+ * ```
+ */
+var AlertComponent = /** @class */ (function () {
+    function AlertComponent() {
+    }
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    AlertComponent.prototype.onClick = /**
+     * @param {?} payload
+     * @return {?}
+     */
+    function (payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    };
+    AlertComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'n7-alert',
+                    template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" *ngIf=\"data.hasCloseButton\" (click)=\"onClick(data.payload)\"></span>\n</div>"
+                }] }
+    ];
+    AlertComponent.propDecorators = {
+        data: [{ type: Input }],
+        emit: [{ type: Input }]
+    };
+    return AlertComponent;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * BreadcrumbsComponent <n7-breadcrumbs>
  *
  * \@example
@@ -356,28 +404,22 @@ var TagComponent = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * AlertComponent <n7-alert>
+ * WizardComponent <n7-wizard>
  *
  * \@example
  * ```html
- * <n7-alert [data]="{
- *        text: 'This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.',
- *        hasCloseButton: true,
- *        icon: "n7-icon-bell",
- *        payload: "close-the-alert request",
- *        classes: "is-warning"
- *    }">
- * </n7-alert>
+ *
+ * <!-- TODO: add component example -->
  * ```
  */
-var AlertComponent = /** @class */ (function () {
-    function AlertComponent() {
+var WizardComponent = /** @class */ (function () {
+    function WizardComponent() {
     }
     /**
      * @param {?} payload
      * @return {?}
      */
-    AlertComponent.prototype.onClick = /**
+    WizardComponent.prototype.onClick = /**
      * @param {?} payload
      * @return {?}
      */
@@ -386,17 +428,17 @@ var AlertComponent = /** @class */ (function () {
             return;
         this.emit('click', payload);
     };
-    AlertComponent.decorators = [
+    WizardComponent.decorators = [
         { type: Component, args: [{
-                    selector: 'n7-alert',
-                    template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" *ngIf=\"data.hasCloseButton\" (click)=\"onClick(data.payload)\"></span>\n</div>"
+                    selector: 'n7-wizard',
+                    template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\n  <ol class=\"n7-wizard__list\">\n      <li *ngFor=\"let item of data.items\" class=\"n7-wizard__item {{ item.classes || '' }}\"  (click)=\"onClick(item.payload)\">\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\n      </li>\n  </ol>\n</div>"
                 }] }
     ];
-    AlertComponent.propDecorators = {
+    WizardComponent.propDecorators = {
         data: [{ type: Input }],
         emit: [{ type: Input }]
     };
-    return AlertComponent;
+    return WizardComponent;
 }());
 
 /**
@@ -412,7 +454,8 @@ var COMPONENTS = [
     NavComponent,
     PaginationComponent,
     TableComponent,
-    TagComponent
+    TagComponent,
+    WizardComponent,
 ];
 var DvComponentsLibModule = /** @class */ (function () {
     function DvComponentsLibModule() {
@@ -754,12 +797,44 @@ var TAG_MOCK = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+var WIZARD_MOCK = {
+    items: [
+        {
+            number: 1,
+            text: 'First step',
+            payload: '/',
+            classes: ''
+        },
+        {
+            number: 2,
+            text: 'Second step',
+            payload: '/',
+            classes: 'is-active'
+        },
+        {
+            text: 'Third step',
+            payload: '/',
+            classes: ''
+        },
+        {
+            number: 4,
+            payload: '/',
+            classes: ''
+        },
+    ]
+};
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DvComponentsLibModule, AlertComponent, BreadcrumbsComponent, HeaderComponent, LoaderComponent, NavComponent, PaginationComponent, TableComponent, TagComponent, ALERT_MOCK, BREADCRUMBS_MOCK, HEADER_MOCK, LOADER_MOCK, NAV_MOCK, PAGINATION_MOCK, TABLE_MOCK, TAG_MOCK };
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+export { DvComponentsLibModule, AlertComponent, BreadcrumbsComponent, HeaderComponent, LoaderComponent, NavComponent, PaginationComponent, TableComponent, TagComponent, WizardComponent, ALERT_MOCK, BREADCRUMBS_MOCK, HEADER_MOCK, LOADER_MOCK, NAV_MOCK, PAGINATION_MOCK, TABLE_MOCK, TAG_MOCK, WIZARD_MOCK };
 
 //# sourceMappingURL=n7-frontend-components.js.map
