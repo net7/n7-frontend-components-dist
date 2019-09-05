@@ -1,0 +1,13 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export var SIDEBAR_HEADER_MOCK = {
+    iconLeft: 'n7-icon-tree-icon',
+    text: 'Albero di navigazione',
+    iconRight: 'n7-icon-angle-left',
+    classes: 'is-expanded',
+    payload: 'header',
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2lkZWJhci1oZWFkZXIubW9jay5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BuNy1mcm9udGVuZC9jb21wb25lbnRzLyIsInNvdXJjZXMiOlsibGliL2NvbXBvbmVudHMvc2lkZWJhci1oZWFkZXIvc2lkZWJhci1oZWFkZXIubW9jay50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUVBLE1BQU0sS0FBTyxtQkFBbUIsR0FBdUI7SUFDckQsUUFBUSxFQUFFLG1CQUFtQjtJQUM3QixJQUFJLEVBQUUsdUJBQXVCO0lBQzdCLFNBQVMsRUFBRSxvQkFBb0I7SUFDL0IsT0FBTyxFQUFFLGFBQWE7SUFDdEIsT0FBTyxFQUFFLFFBQVE7Q0FDbEIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJU2lkZWJhckhlYWRlckRhdGEgfSBmcm9tICcuL3NpZGViYXItaGVhZGVyJztcblxuZXhwb3J0IGNvbnN0IFNJREVCQVJfSEVBREVSX01PQ0s6IElTaWRlYmFySGVhZGVyRGF0YSA9IHtcbiAgaWNvbkxlZnQ6ICduNy1pY29uLXRyZWUtaWNvbicsXG4gIHRleHQ6ICdBbGJlcm8gZGkgbmF2aWdhemlvbmUnLFxuICBpY29uUmlnaHQ6ICduNy1pY29uLWFuZ2xlLWxlZnQnLFxuICBjbGFzc2VzOiAnaXMtZXhwYW5kZWQnLFxuICBwYXlsb2FkOiAnaGVhZGVyJyxcbn0iXX0=

@@ -84,6 +84,7 @@ $color-background-dark: $color-gray-03;
 $breakpoint-desktop-wide: 1180px;
 $breakpoint-laptop: 960px;
 $breakpoint-ipad-portrait: 768px;
+$breakpoint-mobile: 650px;
 $breakpoint-smartphone-landscape: 480px;
 $breakpoint-smartphone-portrait: 400px;
 
@@ -163,6 +164,7 @@ $header-search-input-height-mobile: 28px;
 $header-breakpoint-mobile: 1180px;
 $header-breakpoint-mobile-small: 600px;
 
+
 // ------------------------------------ //
 // #LOADER
 // ------------------------------------ //
@@ -232,6 +234,21 @@ $alert-color-text-error: $color-text-inverse;
 
 
 // ------------------------------------ //
+// #ITEM-PREVIEW
+// ------------------------------------ //
+$item-preview-image-width: 60px;
+$item-preview-image-height: $item-preview-image-width;
+$item-preview-height: 250px;
+
+
+// ------------------------------------ //
+// #HERO
+// ------------------------------------ //
+$hero-height: 500px;
+$hero-content-width: 1140px;
+
+
+// ------------------------------------ //
 // #WIZARD
 // ------------------------------------ //
 $wizard-height: 40px;
@@ -248,3 +265,31 @@ $wizard-future-text-color: $color-text;
 $wizard-number-size: $font-size-s;
 $wizard-text-size: $font-size-s;
 
+
+// ------------------------------------ //
+// #TREE
+// ------------------------------------ //
+$tree-image-size:28px;
+
+
+// ------------------------------------ //
+// #SIDEBAR-HEADER
+// ------------------------------------ //
+$sidebar-header-height: 44px;
+$sidebar-header-background-color: $color-text;
+$sidebar-header-text-color: $color-text-inverse;
+$sidebar-left-background-color: $sidebar-header-background-color;
+$sidebar-left-text-color: $sidebar-header-text-color;
+$sidebar-right-background-color: $color-text-link;
+$sidebar-right-text-color: $color-text-inverse;
+
+
+// ------------------------------------ //
+// #TOAST
+// ------------------------------------ //
+$toast-background-color: $color-background-medium;
+$toast-border-size: 1px;
+$toast-border-color: $color-border-normal;
+$toast-title-color: $color-text;
+$toast-text-color: $color-text;
+$toast-max-width: 300px;

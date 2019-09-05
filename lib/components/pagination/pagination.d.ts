@@ -70,28 +70,6 @@ export interface IPaginationData {
      */
     _meta?: any;
 }
-/**
- * PaginationComponent <n7-pagination>
- *
- * @example
- * ```html
- *
- * <n7-pagination [data]="{
- *  first: { payload: 'first', classes: 'is-disabled' },
- *  prev: { payload: 'prev', classes: 'is-disabled' },
- *  next: { payload: 'next' },
- *  last: { payload: 'last' },
- *  links: [
- *    { text: '1', payload: 1, classes: 'is-active' },
- *    { text: '2', payload: 2 },
- *    { text: '3', payload: 3 },
- *    { text: '4', payload: 4 },
- *    { text: '5', payload: 5 },
- *  ]
- * }"}>
- * </n7-pagination>
- * ```
- */
 export declare class PaginationComponent {
     data: IPaginationData;
     emit: any;

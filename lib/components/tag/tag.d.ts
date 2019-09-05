@@ -35,22 +35,6 @@ export interface ITagData {
      */
     _meta?: any;
 }
-/**
- * TagComponent <n7-tag>
- *
- * @example
- * ```html
- *
- * <n7-tag [data]="{
- *        label: 'label: ',
- *        text: 'text',
- *        icon: 'x',
- *        payload: 'tag-payload',
- *        classes: 'tag1-class'
- *    }">
- * </n7-tag>
- * ```
- */
 export declare class TagComponent {
     data: ITagData;
     emit: any;

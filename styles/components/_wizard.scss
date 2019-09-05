@@ -77,7 +77,7 @@
                 border-color: transparent transparent transparent $wizard-past-bg-color;
                 position: absolute;
                 top: 0;
-                right: -$wizard-height/3;
+                right: ceil(-($wizard-height/3)); // ceil is used to avoid showing fractions of pixel
                 z-index: 10;
             }
 
@@ -90,7 +90,7 @@
                 border-color: transparent transparent transparent $color-background-base;
                 position: absolute;
                 top: - (( $wizard-height/1.5 * 2) - ( $wizard-height/2 * 2) )/2;
-                right: -$wizard-height/2.5;
+                right: ceil(-$wizard-height/2.5); // ceil is used to avoid showing fractions of pixel
                 z-index: 5;
             }
 

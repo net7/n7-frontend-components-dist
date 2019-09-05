@@ -1,0 +1,62 @@
+/**
+ * SIDEBAR-HEADER
+ *
+ * Brief description of the component here.
+ */
+ 
+/* ------------------------------------ *\
+   #SIDEBAR-HEADER
+\* ------------------------------------ */
+.n7-sidebar-header {
+    display: flex;
+    width: 100%;
+    height: $sidebar-header-height;
+    background-color: $sidebar-header-background-color;
+
+    &__icon-left {
+        display: block;
+        width: $sidebar-header-height;
+        height: $sidebar-header-height;
+        line-height: $sidebar-header-height;
+        text-align: center;
+        font-size: $font-size-l;
+        color: $sidebar-left-text-color;
+        background-color: $sidebar-left-background-color;
+    }
+    
+    &__text {
+        flex-grow: 2;
+        line-height: $sidebar-header-height;
+        font-size: $font-size-m;
+        color: $sidebar-header-text-color;
+    }
+    
+    &__icon-right {
+        align-self: flex-end;
+        display: block;
+        width: $sidebar-header-height;
+        height: $sidebar-header-height;
+        color: $sidebar-right-text-color;
+        background-color: $sidebar-right-background-color;
+        line-height: $sidebar-header-height;
+        text-align: center;
+        font-size: $font-size-xl;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

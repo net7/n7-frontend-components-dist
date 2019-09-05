@@ -1,24 +1,10 @@
 import { CommonModule } from '@angular/common';
+import ApexCharts from 'apexcharts/dist/apexcharts.common.js';
 import { Component, Input, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * AlertComponent <n7-alert>
- *
- * \@example
- * ```html
- * <n7-alert [data]="{
- *        text: 'This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.',
- *        hasCloseButton: true,
- *        icon: "n7-icon-bell",
- *        payload: "close-the-alert request",
- *        classes: "is-warning"
- *    }">
- * </n7-alert>
- * ```
  */
 class AlertComponent {
     /**
@@ -34,7 +20,7 @@ class AlertComponent {
 AlertComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-alert',
-                template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" *ngIf=\"data.hasCloseButton\" (click)=\"onClick(data.payload)\"></span>\n</div>"
+                template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" \n          *ngIf=\"data.hasCloseButton\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
             }] }
 ];
 AlertComponent.propDecorators = {
@@ -45,15 +31,6 @@ AlertComponent.propDecorators = {
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * BreadcrumbsComponent <n7-breadcrumbs>
- *
- * \@example
- * ```html
- *
- * <!-- TODO: add component example -->
- * ```
  */
 class BreadcrumbsComponent {
     /**
@@ -73,6 +50,45 @@ BreadcrumbsComponent.decorators = [
             }] }
 ];
 BreadcrumbsComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ChartComponent {
+    constructor() {
+        this._loaded = false;
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterContentChecked() {
+        if (!this.data || this._loaded)
+            return;
+        this._loaded = true;
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
+            const { containerId, libOptions } = this.data;
+            /** @type {?} */
+            const chart = new ApexCharts(document.querySelector(`#${containerId}`), libOptions);
+            chart.render();
+            if (this.data.setChart)
+                this.data.setChart(chart);
+        }));
+    }
+}
+ChartComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-chart',
+                template: "<div *ngIf=\"data\" class=\"n7-chart {{ data.classes || '' }}\">\n    <div id=\"{{ data.containerId }}\"></div>\n</div>"
+            }] }
+];
+ChartComponent.propDecorators = {
     data: [{ type: Input }],
     emit: [{ type: Input }]
 };
@@ -130,7 +146,7 @@ class HeaderComponent {
 HeaderComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-header',
-                template: "<header *ngIf=\"data\" class=\"n7-header {{data.classes || ''}}\">\n    \n    <!-- Logo and title -->\n    <div class=\"n7-header__logo-title {{data.logo.classes || ''}}\">\n        <a class=\"n7-header__logo-link\" (click)=\"onClick(data.logo.payload)\">\n            <img class=\"n7-header__logo\"\n                *ngIf=\"data.logo.image\"\n                [src]=\"data.logo.image\"\n                alt=\"{{ data.logo.title }}\" />\n            <div class=\"n7-header__title-subtitle\">\n                <h1 class=\"n7-header__title\">\n                    {{ data.logo.title }}\n                </h1>\n                <h2 class=\"n7-header__subtitle\" *ngIf=\"data.logo.subtitle\">\n                    {{ data.logo.subtitle }}\n                </h2>\n            </div>\n        </a>\n    </div>\n    <!-- END // Logo and title -->\n\n    <!-- Main menu -->\n    <nav class=\"n7-header__nav {{data.nav.classes || ''}}\" *ngIf=\"data.nav\">\n        <div class=\"n7-header__nav-content\">\n            <ul class=\"n7-header__nav-list\">\n                <li class=\"n7-header__nav-item {{item.classes || ''}}\" *ngFor=\"let item of data.nav.items\">\n                    <a class=\"n7-header__nav-link\" *ngIf=\"item.payload\" (click)=\"onClick(item.payload)\">\n                        <span class=\"n7-header__nav-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\n                        <span class=\"n7-header__nav-label\" *ngIf=\"item.text\">\n                            {{ item.text }}\n                        </span>\n                    </a>\n\n                    <!-- Sublevel -->\n                    <ul class=\"n7-header__subnav-list\" *ngIf=\"item.subnav\">\n                        <li class=\"n7-header__subnav-item {{subitem.classes || ''}}\" *ngFor=\"let subitem of item.subnav\">\n                            <a class=\"n7-header__subnav-link\" (click)=\"onClick(subitem.payload)\">\n                                <span class=\"n7-header__subnav-icon {{subitem.icon}}\" *ngIf=\"subitem.icon\"></span>\n                                <span class=\"n7-header__subnav-label\" *ngIf=\"subitem.text\">\n                                    {{ subitem.text }}\n                                </span>\n                            </a>\n                        </li>\n                    </ul>\n                    <!-- END // Sublevel -->\n                </li>\n            </ul>\n        </div>\n    </nav>\n    <!-- END // Main menu -->\n\n    <!-- Mobile menu toggle -->\n    <div class=\"n7-header__mobile-menu-toggle\">\n        <span class=\"n7-header__mobile-menu-icon n7-icon-menu\" (click)=\"onClick(data.menuToggle.open.payload)\"></span>\n    </div>\n    <!-- END // Mobile menu toggle -->\n\n    <!-- Mobile menu close -->\n    <span class=\"n7-header__mobile-menu-close n7-icon-close\" (click)=\"onClick(data.menuToggle.close.payload)\"></span>\n    <!-- END // Mobile menu close -->\n\n    <!-- Tools: search, notifications, use profile or login/signup -->\n    <div class=\"n7-header__tools\">\n        \n        <div class=\"n7-header__search {{data.search.classes || ''}}\" *ngIf=\"data.search\">\n            <input class=\"n7-header__search-input\" type=\"search\" name=\"search\" placeholder=\"{{ data.search.hint || ''}}\" (keyup)=\"onKeyUp(data.search.payload, $event.keyCode, $event.target.value)\"/>\n            <button class=\"n7-header__search-btn\" type=\"submit\" (click)=\"onClick(data.search.payload)\">\n                <span class=\"n7-header__search-btn-label\">\n                    Search\n                </span>\n            </button>\n        </div>\n        \n        <div class=\"n7-header__actions\" *ngIf=\"data.actions\">\n            <div class=\"n7-header__action {{ action.classes || '' }}\" *ngFor=\"let action of data.actions\">\n                <span class=\"n7-header__action-icon {{ action.icon }}\" (click)=\"onClick(action.payload)\"></span>\n                <span class=\"n7-header__action-badge {{ action.badge.text ? 'has-text' : '' }}\" *ngIf=\"action.badge\">\n                    {{ action.badge.text }}\n                </span>\n            </div>\n        </div>\n\n        <div class=\"n7-header__user {{data.user.classes || ''}}\" *ngIf=\"data.user\">\n            <img class=\"n7-header__user-img\" *ngIf=\"data.user.img\" [src]=\"data.user.img\" (click)=\"onClick(data.user.payload)\"/>\n            <p class=\"n7-header__user-name\" *ngIf=\"data.user.name\">\n                <span class=\"n7-header__user-name-label\">\n                    {{ data.user.name }}\n                </span>\n            </p>\n        </div>\n    </div>\n    <!-- END // Tools: search, notifications, use profile or login/signup -->\n\n</header>\n\n"
+                template: "<header *ngIf=\"data\" class=\"n7-header {{data.classes || ''}}\">\n    \n    <!-- Logo and title -->\n    <div class=\"n7-header__logo-title {{data.logo.classes || ''}}\">\n        <a class=\"n7-header__logo-link\" (click)=\"onClick(data.logo.payload)\">\n            <img class=\"n7-header__logo\"\n                *ngIf=\"data.logo.image\"\n                [src]=\"data.logo.image\"\n                alt=\"{{ data.logo.title }}\" />\n            <div class=\"n7-header__title-subtitle\">\n                <h1 class=\"n7-header__title\">\n                    {{ data.logo.title }}\n                </h1>\n                <h2 class=\"n7-header__subtitle\" *ngIf=\"data.logo.subtitle\">\n                    {{ data.logo.subtitle }}\n                </h2>\n            </div>\n        </a>\n    </div>\n\n    <!-- Main menu -->\n    <nav class=\"n7-header__nav {{data.nav.classes || ''}}\" *ngIf=\"data.nav\">\n        <div class=\"n7-header__nav-content\">\n            <ul class=\"n7-header__nav-list\">\n                <li class=\"n7-header__nav-item {{item.classes || ''}}\" *ngFor=\"let item of data.nav.items\">\n                    <a class=\"n7-header__nav-link\" *ngIf=\"item.payload\" (click)=\"onClick(item.payload)\">\n                        <span class=\"n7-header__nav-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\n                        <span class=\"n7-header__nav-label\" *ngIf=\"item.text\">\n                            {{ item.text }}\n                        </span>\n                    </a>\n\n                    <!-- Sublevel -->\n                    <ul class=\"n7-header__subnav-list\" *ngIf=\"item.subnav\">\n                        <li class=\"n7-header__subnav-item {{subitem.classes || ''}}\" *ngFor=\"let subitem of item.subnav\">\n                            <a class=\"n7-header__subnav-link\" (click)=\"onClick(subitem.payload)\">\n                                <span class=\"n7-header__subnav-icon {{subitem.icon}}\" *ngIf=\"subitem.icon\"></span>\n                                <span class=\"n7-header__subnav-label\" *ngIf=\"subitem.text\">\n                                    {{ subitem.text }}\n                                </span>\n                            </a>\n                        </li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </nav>\n\n    <!-- Mobile menu toggle -->\n    <div class=\"n7-header__mobile-menu-toggle\">\n        <span class=\"n7-header__mobile-menu-icon n7-icon-menu\" \n              (click)=\"onClick(data.menuToggle.open.payload)\"></span>\n    </div>\n\n    <!-- Mobile menu close -->\n    <span class=\"n7-header__mobile-menu-close n7-icon-close\" \n          (click)=\"onClick(data.menuToggle.close.payload)\"></span>\n\n    <!-- Tools: search, notifications, use profile or login/signup -->\n    <div class=\"n7-header__tools\">\n        \n        <div class=\"n7-header__search {{data.search.classes || ''}}\" *ngIf=\"data.search\">\n            <input class=\"n7-header__search-input\" \n                   type=\"search\" \n                   name=\"search\" \n                   placeholder=\"{{ data.search.hint || ''}}\" \n                   (keyup)=\"onKeyUp(data.search.payload, $event.keyCode, $event.target.value)\"/>\n            <button class=\"n7-header__search-btn\" type=\"submit\" (click)=\"onClick(data.search.payload)\">\n                <span class=\"n7-header__search-btn-label\">\n                    Search\n                </span>\n            </button>\n        </div>\n        \n        <div class=\"n7-header__actions\" *ngIf=\"data.actions\">\n            <div class=\"n7-header__action {{ action.classes || '' }}\" *ngFor=\"let action of data.actions\">\n                <span class=\"n7-header__action-icon {{ action.icon }}\" (click)=\"onClick(action.payload)\"></span>\n                <span class=\"n7-header__action-badge {{ action.badge.text ? 'has-text' : '' }}\" *ngIf=\"action.badge\">\n                    {{ action.badge.text }}\n                </span>\n            </div>\n        </div>\n\n        <div class=\"n7-header__user {{data.user.classes || ''}}\" *ngIf=\"data.user\">\n            <img class=\"n7-header__user-img\" \n                 *ngIf=\"data.user.img\" \n                 [src]=\"data.user.img\" \n                 (click)=\"onClick(data.user.payload)\"/>\n            <p class=\"n7-header__user-name\" *ngIf=\"data.user.name\">\n                <span class=\"n7-header__user-name-label\">\n                    {{ data.user.name }}\n                </span>\n            </p>\n        </div>\n    </div>\n\n</header>\n\n"
             }] }
 ];
 HeaderComponent.propDecorators = {
@@ -142,17 +158,77 @@ HeaderComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class HeroComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+    /**
+     * @param {?} payload
+     * @param {?} value
+     * @return {?}
+     */
+    onInputChange(payload, value) {
+        if (!this.emit)
+            return;
+        this.emit('change', { inputPayload: payload, value });
+    }
+    /**
+     * @param {?} payload
+     * @param {?} value
+     * @return {?}
+     */
+    onInputEnter(payload, value) {
+        if (!this.emit)
+            return;
+        this.emit('enter', { inputPayload: payload, value });
+    }
+}
+HeroComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-hero',
+                template: "<section *ngIf=\"data\" class=\"n7-hero {{data.classes || ''}}\" \n        [ngClass]=\"{ 'has-image' : !!data.image, 'has-background-image': !!data.backgroundImage }\"\n        [ngStyle]=\"{'background-image': 'url(' + data.backgroundImage + ')'}\">\n    <div class=\"n7-hero__content\">\n        \n        <div class=\"n7-hero__text-wrapper\">\n            <h1 class=\"n7-hero__title\">\n                {{data.title}}\n            </h1>\n            <p class=\"n7-hero__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></p>\n            <div class=\"n7-hero__input-wrapper\" *ngIf=\"data.input || data.button\">\n                <input type=\"text\" \n                       class=\"n7-hero__input\" \n                       placeholder=\"{{data.input.placeholder || ''}}\" \n                       *ngIf=\"data.input\" \n                       (input)=\"onInputChange(data.input.payload, $event.target.value)\" \n                       (keyup.enter)=\"onInputEnter(data.input.payload, $event.target.value)\">\n                <span class=\"n7-hero__input-icon {{data.input.icon || ''}}\" \n                      *ngIf=\"data.input && data.input.icon\" \n                      (click)=\"onClick(data.input.payload)\"></span>\n                <button class=\"n7-hero__btn n7-btn n7-btn-cta n7-btn-l\" \n                        *ngIf=\"data.button\" \n                        (click)=\"onClick(data.button.payload)\">\n                    {{data.button.text}}\n                </button>\n            </div>\n        </div>\n        \n        <div class=\"n7-hero__image-wrapper\" *ngIf=\"data.image\">\n            <img class=\"n7-hero__image\" src=\"{{data.image}}\" alt=\"\">\n        </div>\n\n    </div>\n</section>"
+            }] }
+];
+HeroComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
 /**
- * LoaderComponent <n7-loader>
- *
- * \@example
- * ```html
- *
- * <n7-loader [data]="{
- *          classes: 'animated-loader'
- *      }">
- * </n7-loader>
- * ```
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ItemPreviewComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+ItemPreviewComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-item-preview',
+                template: "<div *ngIf=\"data\" \n     class=\"n7-item-preview {{data.classes || ''}}\" \n     [ngClass]=\"{ 'has-image' : !!data.image }\"\n     (click)=\"onClick(data.payload)\">\n\n    <!-- Image -->\n    <div class=\"n7-item-preview__image\"\n         *ngIf=\"data.image\"\n         [style.background-image] = \"'url(' + data.image + ')'\">       \n    </div>         \n    \n    <div class=\"n7-item-preview__content\">\n\n        <!-- Title and text -->\n        <div class=\"n7-item-preview__title-text\">\n            <h1 class=\"n7-item-preview__title\">\n                {{ data.title }}\n            </h1>\n            <p class=\"n7-item-preview__text\" *ngIf=\"data.text\">\n                {{ data.text }}\n            </p>\n        </div>\n\n        <!-- Metadata -->\n        <div class=\"n7-item-preview__metadata\" *ngIf=\"data.metadata\">       \n            <div class=\"n7-item-preview__metadata-group\" *ngFor=\"let meta of data.metadata\">\n                <h3 class=\"n7-item-preview__metadata-group-title\" *ngIf=\"meta.title\">\n                {{ meta.title }}\n                </h3>\n                <div class=\"n7-item-preview__metadata-item {{meta.classes}}\" *ngFor=\"let item of meta.items\">\n                    <span class=\"n7-item-preview__metadata-item-icon {{item.icon}}\">  </span>\n                    <span class=\"n7-item-preview__metadata-item-label\" *ngIf=\"item.label\">{{item.label}}: </span>\n                    <span class=\"n7-item-preview__metadata-item-value\" *ngIf=\"item.value\">{{item.value}}</span>\n                </div>\n            </div>\n        </div>   \n    </div>\n</div>\n"
+            }] }
+];
+ItemPreviewComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LoaderComponent {
 }
@@ -196,28 +272,6 @@ NavComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * PaginationComponent <n7-pagination>
- *
- * \@example
- * ```html
- *
- * <n7-pagination [data]="{
- *  first: { payload: 'first', classes: 'is-disabled' },
- *  prev: { payload: 'prev', classes: 'is-disabled' },
- *  next: { payload: 'next' },
- *  last: { payload: 'last' },
- *  links: [
- *    { text: '1', payload: 1, classes: 'is-active' },
- *    { text: '2', payload: 2 },
- *    { text: '3', payload: 3 },
- *    { text: '4', payload: 4 },
- *    { text: '5', payload: 5 },
- *  ]
- * }"}>
- * </n7-pagination>
- * ```
- */
 class PaginationComponent {
     /**
      * @param {?} payload
@@ -232,7 +286,7 @@ class PaginationComponent {
 PaginationComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-pagination',
-                template: "<nav class=\"n7-pagination {{data.classes || ''}}\" *ngIf=\"data\">\n    <ul class=n7-pagination__items>\n\n        <li class=\"n7-pagination__first {{data.first.classes || ''}}\" *ngIf=\"data.first\">\n            <a class=\"n7-pagination__first-link {{ data.first.text ? 'has-text' : '' }}\" (click)=\"onClick(data.first.payload)\">\n                <span class=\"n7-pagination__first-icon n7-icon-angle-double-left\"></span>\n                <span class=\"n7-pagination__first-label\" *ngIf=\"data.first.text\">\n                    {{ data.first.text }}\n                </span>\n            </a>\n        </li>\n        <li class=\"n7-pagination__prev {{data.prev.classes || ''}}\" *ngIf=\"data.prev\">\n            <a class=\"n7-pagination__prev-link {{ data.prev.text ? 'has-text' : '' }}\" (click)=\"onClick(data.prev.payload)\">\n                <span class=\"n7-pagination__prev-icon n7-icon-angle-left\"></span>\n                <span class=\"n7-pagination__prev-label\" *ngIf=\"data.prev.text\">\n                    {{ data.prev.text }}\n                </span>\n            </a>\n        </li>\n\n        <li class=\"n7-pagination__page {{page.classes || ''}}\" *ngFor=\"let page of data.links\">\n            <a class=\"n7-pagination__page-link\" (click)=\"onClick(page.payload)\">{{ page.text }}</a>\n        </li>\n\n        <li class=\"n7-pagination__next {{data.next.classes || ''}}\" *ngIf=\"data.next\">\n            <a class=\"n7-pagination__next-link {{ data.next.text ? 'has-text' : '' }}\" (click)=\"onClick(data.next.payload)\">\n                <span class=\"n7-pagination__next-label\" *ngIf=\"data.next.text\">\n                    {{ data.next.text }}\n                </span>\n                <span class=\"n7-pagination__next-icon n7-icon-angle-right\"></span>\n            </a>\n        </li>\n        <li class=\"n7-pagination__last {{data.last.classes || ''}}\" *ngIf=\"data.last\">\n            <a class=\"n7-pagination__last-link {{ data.last.text ? 'has-text' : '' }}\" (click)=\"onClick(data.last.payload)\">\n                <span class=\"n7-pagination__last-label\" *ngIf=\"data.last.text\">\n                    {{ data.last.text }}\n                </span>\n                <span class=\"n7-pagination__last-icon  n7-icon-angle-double-right\"></span>\n            </a>\n        </li>\n\n    </ul> \n</nav>"
+                template: "<nav class=\"n7-pagination {{data.classes || ''}}\" *ngIf=\"data\">\n    <ul class=n7-pagination__items>\n\n        <li class=\"n7-pagination__first {{data.first.classes || ''}}\" *ngIf=\"data.first\">\n            <a class=\"n7-pagination__first-link {{ data.first.text ? 'has-text' : '' }}\" \n               (click)=\"onClick(data.first.payload)\">\n                <span class=\"n7-pagination__first-icon n7-icon-angle-double-left\"></span>\n                <span class=\"n7-pagination__first-label\" *ngIf=\"data.first.text\">\n                    {{ data.first.text }}\n                </span>\n            </a>\n        </li>\n        <li class=\"n7-pagination__prev {{data.prev.classes || ''}}\" *ngIf=\"data.prev\">\n            <a class=\"n7-pagination__prev-link {{ data.prev.text ? 'has-text' : '' }}\" \n               (click)=\"onClick(data.prev.payload)\">\n                <span class=\"n7-pagination__prev-icon n7-icon-angle-left\"></span>\n                <span class=\"n7-pagination__prev-label\" *ngIf=\"data.prev.text\">\n                    {{ data.prev.text }}\n                </span>\n            </a>\n        </li>\n\n        <li class=\"n7-pagination__page {{page.classes || ''}}\" *ngFor=\"let page of data.links\">\n            <a class=\"n7-pagination__page-link\" (click)=\"onClick(page.payload)\">{{ page.text }}</a>\n        </li>\n\n        <li class=\"n7-pagination__next {{data.next.classes || ''}}\" *ngIf=\"data.next\">\n            <a class=\"n7-pagination__next-link {{ data.next.text ? 'has-text' : '' }}\" \n               (click)=\"onClick(data.next.payload)\">\n                <span class=\"n7-pagination__next-label\" *ngIf=\"data.next.text\">\n                    {{ data.next.text }}\n                </span>\n                <span class=\"n7-pagination__next-icon n7-icon-angle-right\"></span>\n            </a>\n        </li>\n        <li class=\"n7-pagination__last {{data.last.classes || ''}}\" *ngIf=\"data.last\">\n            <a class=\"n7-pagination__last-link {{ data.last.text ? 'has-text' : '' }}\" \n               (click)=\"onClick(data.last.payload)\">\n                <span class=\"n7-pagination__last-label\" *ngIf=\"data.last.text\">\n                    {{ data.last.text }}\n                </span>\n                <span class=\"n7-pagination__last-icon  n7-icon-angle-double-right\"></span>\n            </a>\n        </li>\n\n    </ul> \n</nav>"
             }] }
 ];
 PaginationComponent.propDecorators = {
@@ -244,8 +298,31 @@ PaginationComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class SidebarHeaderComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+SidebarHeaderComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-sidebar-header',
+                template: "<div *ngIf=\"data\" class=\"n7-sidebar-header\">\n    <span class=\"n7-sidebar-header__icon-left {{ data.iconLeft }}\"></span>\n    <span class=\"n7-sidebar-header__text\">{{ data.text }}</span>\n    <span *ngIf=\"data.iconRight\"\n            class=\"n7-sidebar-header__icon-right {{ data.iconRight }}\" \n            (click)=\"onClick(data.payload)\"></span>\n</div>"
+            }] }
+];
+SidebarHeaderComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
 /**
- * TableComponent <n7-table>
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TableComponent {
     /**
@@ -294,22 +371,6 @@ TableComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * TagComponent <n7-tag>
- *
- * \@example
- * ```html
- *
- * <n7-tag [data]="{
- *        label: 'label: ',
- *        text: 'text',
- *        icon: 'x',
- *        payload: 'tag-payload',
- *        classes: 'tag1-class'
- *    }">
- * </n7-tag>
- * ```
- */
 class TagComponent {
     /**
      * @param {?} payload
@@ -336,22 +397,57 @@ TagComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class ToastComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+ToastComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-toast',
+                template: "<div *ngIf=\"data\" class=\"n7-toast\">\n    <div class=\"n7-toast__column {{data.classes || ''}}\">\n\n        <!-- Toast boxes -->\n        <div class=\"n7-toast__box\" \n             *ngFor=\"let box of data.toasts\"\n             [ngClass]=\"{ 'has-actions' : !! (box.actions || box.closeIcon) }\">\n        \n            <!-- Toast text -->\n            <div class=\"n7-toast__content {{box.classes || ''}}\" *ngIf=\"box.title || box.text\">\n                <span class=\"n7-toast__title\" *ngIf=\"box.title\">{{ box.title }}</span>\n                <span class=\"n7-toast__text\" *ngIf=\"box.text\">{{ box.text }}</span>\n            </div>\n\n            <!-- Toast actions -->\n            <div class=\"n7-toast__actions\" *ngIf=\"box.actions || box.closeIcon\">\n                <span\n                class=\"n7-toast__closeIcon {{ box.closeIcon.icon }}\" \n                *ngIf=\"box.closeIcon\" \n                (click)=\"onClick(box.closeIcon.payload)\">\n                </span>\n                <span class=\"n7-toast__action-wrapper\" *ngIf=\"box.actions\">\n                    <span class=\"n7-toast__action-content\" *ngFor=\"let action of box.actions\">\n                        <button class=\"n7-toast__action-button n7-btn n7-btn-s {{action.classes || ''}}\"\n                                (click)=\"onClick(action.payload)\">\n                                {{action.text}}\n                        </button>\n                    </span>\n                </span>\n            </div>\n        </div>\n    </div>\n</div>"
+            }] }
+];
+ToastComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
 /**
- * WizardComponent <n7-wizard>
- *
- * \@example
- * ```html
- *
- * <n7-wizard [data]="{classes: 'wizard1-class'}">
- *     <n7-wizard__item [item]="{
- *             text: 'text',
- *             payload: 'item-payload',
- *             classes: 'item1-class',
- *             _meta: 'item1-meta',
- *         }">
- *     </n7-wizard__item>
- * </n7-wizard>
- * ```
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class TreeComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+TreeComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-tree',
+                template: "<div *ngIf=\"data\" class=\"n7-tree\">\n    <!-- Start recursive rendering -->\n    <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: data.items}\"></ng-container>\n\n    <!-- Template for recursive children rendering -->\n    <ng-template #recursiveTree let-node>\n        <div class=\"n7-tree__item {{ item.classes || '' }}\" *ngFor=\"let item of node\">\n            <div class=\"n7-tree__item-contents\">\n                <!-- Render expand/collapse arrow -->\n                <span *ngIf=\"item.toggle\" \n                      class=\"n7-tree__item-toggle {{ item.toggle.icon }}\"\n                      (click)=\"onClick(item.payload)\">\n                </span>\n                <!-- Render the node -->\n                <div class=\"n7-tree__item-details\"\n                     (click)=\"onClick(item.payload)\">\n                    <span *ngIf=\"item.icon\" class=\"n7-tree__item-icon {{ item.icon }}\"></span>\n                    <img class=\"n7-tree__item-img\" *ngIf=\"item.img\" src=\"{{ item.img }}\" alt=\"{{ item.text }}\"/>\n                    <span class=\"n7-tree__item-text\">{{ item.text }}</span>\n                </div>\n            </div>\n            <!-- Check for more child nodes and render them -->\n            <div class=\"n7-tree__children-wrapper\" *ngIf=\"item.items\">\n                <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: item.items}\"></ng-container>\n            </div>\n        </div>\n    </ng-template>\n</div>"
+            }] }
+];
+TreeComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WizardComponent {
     /**
@@ -367,7 +463,7 @@ class WizardComponent {
 WizardComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-wizard',
-                template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\n  <ol class=\"n7-wizard__list\">\n      <li *ngFor=\"let item of data.items\" class=\"n7-wizard__item {{ item.classes || '' }}\"  (click)=\"onClick(item.payload)\">\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\n      </li>\n  </ol>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\n  <ol class=\"n7-wizard__list\">\n      <li *ngFor=\"let item of data.items\" \n          class=\"n7-wizard__item {{ item.classes || '' }}\" \n          (click)=\"onClick(item.payload)\">\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\n      </li>\n  </ol>\n</div>"
             }] }
 ];
 WizardComponent.propDecorators = {
@@ -383,12 +479,18 @@ WizardComponent.propDecorators = {
 const COMPONENTS = [
     AlertComponent,
     BreadcrumbsComponent,
+    ChartComponent,
     HeaderComponent,
+    HeroComponent,
+    ItemPreviewComponent,
     LoaderComponent,
     NavComponent,
     PaginationComponent,
+    SidebarHeaderComponent,
     TableComponent,
     TagComponent,
+    ToastComponent,
+    TreeComponent,
     WizardComponent,
 ];
 class DvComponentsLibModule {
@@ -457,9 +559,99 @@ const BREADCRUMBS_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
+const CHART_MOCK = {
+    containerId: 'test-Chart',
+    libOptions: {
+        chart: {
+            "height": 550,
+            "width": 1500,
+            "type": "area",
+            "toolbar": { "show": true }
+        },
+        dataLabels: { "enabled": false },
+        colors: ["rgba(163,55,119, 1)", "rgba(146,93,255, 1)"],
+        fill: {
+            "colors": ["#a33777", "#925DFF"],
+            "gradient": { "opacityFrom": 0.5, "opacityTo": 0.1 }
+        },
+        stroke: { "curve": "straight", "width": [2, 1] },
+        series: [
+            {
+                "name": "Reddish value",
+                "data": [["2019-08-01", "770.17"], ["2019-08-02", "645.03"],
+                    ["2019-08-03", "709.32"], ["2019-08-04", "708.11"],
+                    ["2019-08-05", "706.59"], ["2019-08-06", "607.28"],
+                    ["2019-08-07", "494.59"], ["2019-08-08", "636.81"],
+                    ["2019-08-09", "709.04"], ["2019-08-10", "717.31"],
+                    ["2019-08-11", "805.61"], ["2019-08-12", "758.60"],
+                    ["2019-08-13", "612.82"], ["2019-08-14", "608.90"],
+                    ["2019-08-15", "734.68"], ["2019-08-16", "838.54"],
+                    ["2019-08-17", "692.88"]]
+            },
+            {
+                "name": "Purple value",
+                "data": [["2019-08-01", "927.04"], ["2019-08-02", "944.66"],
+                    ["2019-08-03", "860.84"], ["2019-08-04", "867.28"],
+                    ["2019-08-05", "947.55"], ["2019-08-06", "798.94"],
+                    ["2019-08-07", "757.66"], ["2019-08-08", "729.57"],
+                    ["2019-08-09", "679.58"], ["2019-08-10", "618.78"],
+                    ["2019-08-11", "805.61"], ["2019-08-12", "791.18"],
+                    ["2019-08-13", "913.78"], ["2019-08-14", "608.90"],
+                    ["2019-08-15", "611.88"], ["2019-08-16", "744.02"],
+                    ["2019-08-17", "600.46"]]
+            }
+        ],
+        grid: {
+            "borderColor": "#e7e7e7",
+            "strokeDashArray": 3,
+            "xaxis": { "lines": { "show": true } }
+        },
+        markers: { "size": 3, "hover": { "size": 6 } },
+        xaxis: {
+            "axisBorder": { "show": true, "color": "#f4f6fc" },
+            "labels": {},
+            "type": "datetime", "tickAmount": 6
+        },
+        yaxis: [
+            {
+                "show": true,
+                "showAlways": false,
+                "opposite": false,
+                "reversed": false,
+                "logarithmic": false,
+                "forceNiceScale": false,
+                "floating": false,
+                "labels": {
+                    "show": true,
+                    "minWidth": 0,
+                    "maxWidth": 160,
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "rotate": 0,
+                    "padding": 20,
+                    "style": { "colors": [], "fontSize": "11px", "cssClass": "" }
+                },
+                "axisBorder": { "show": true, "color": "#f4f6fc", "offsetX": 0, "offsetY": 0 },
+                "axisTicks": { "show": false, "color": "#78909C", "width": 6, "offsetX": 0, "offsetY": 0 },
+                "title": { "text": "P Totale °C", "rotate": 90, "offsetY": 0, "offsetX": 0, "style": { "fontSize": "11px", "cssClass": "" } },
+                "tooltip": { "enabled": false, "offsetX": 0 },
+                "crosshairs": { "show": true, "position": "front", "stroke": { "color": "#b6b6b6", "width": 1, "dashArray": 0 } }
+            }
+        ],
+        legend: { "show": true },
+        tooltip: {},
+        annotations: { "yaxis": [], "xaxis": [], "points": [] }
+    }
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const HEADER_MOCK = {
     logo: {
-        image: './assets/images/dvLogo.png',
+        image: 'https://placeimg.com/128/128/any/grayscale',
         title: 'DataViz',
         subtitle: 'Data visualization',
         payload: 'https://www.netseven.it/'
@@ -491,7 +683,7 @@ const HEADER_MOCK = {
         { icon: 'n7-icon-facebook', payload: '/', badge: {}, },
     ],
     user: {
-        img: './assets/images/placeholder_75x75.png',
+        img: 'https://placeimg.com/150/150/any/people',
         name: 'Massimiliano Spinosa'
     },
     menuToggle: {
@@ -502,6 +694,71 @@ const HEADER_MOCK = {
             payload: 'mobile-close'
         }
     }
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const HERO_MOCK = {
+    title: "Il più bell'archivio che tu abbia mai visto",
+    text: `
+  La <strong>Fondazione Cerratelli</strong> è uno spazio espositivo che raccoglie un'importante 
+  collezione di costumi <em>teatrali e cinematografici</em>. Sua sede si trova dal 3 dicembre 
+  2011 presso la villa Roncioni a Pugnano, frazione del comune di San Giuliano Terme.
+  `,
+    input: {
+        placeholder: "Cerca quello che vuoi",
+        icon: "n7-icon-search1",
+        payload: "input"
+    },
+    button: {
+        text: "Cerca",
+        payload: "button"
+    },
+    backgroundImage: "https://placeimg.com/1000/480/nature",
+    image: "https://placeimg.com/600/600/nature"
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const ITEM_PREVIEW_MOCK = {
+    image: 'https://placeimg.com/600/600/nature',
+    title: 'Dummy title text',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    metadata: [
+        {
+            title: 'Group 1',
+            classes: '',
+            items: [
+                { icon: 'n7-icon-home', label: 'name', value: 'value', classes: 'n7-category-place' },
+                { value: 'value' }
+            ]
+        },
+        {
+            title: 'Group 2',
+            classes: '',
+            items: [
+                { icon: 'n7-icon-home', value: '7', classes: 'n7-category-place' },
+                { icon: 'n7-icon-home', value: '2', classes: 'n7-category-family' },
+                { icon: 'n7-icon-home', value: '4' },
+                { icon: 'n7-icon-home' }
+            ]
+        },
+        {
+            items: [
+                { icon: 'n7-icon-home', value: '2', classes: 'n7-category-place' },
+                { icon: 'n7-icon-home', value: '1' },
+                { icon: 'n7-icon-home', value: '7' }
+            ]
+        }
+    ],
+    payload: 'https://www.netseven.it/',
+    classes: 'is-vertical' // leave it empty for default horizontal layout or 'is-overlay'
 };
 
 /**
@@ -552,6 +809,19 @@ If class
 is added to the root element (.n7-pagination)
 the icons for first, previous, next and last are hidden
 */ ;
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const SIDEBAR_HEADER_MOCK = {
+    iconLeft: 'n7-icon-tree-icon',
+    text: 'Albero di navigazione',
+    iconRight: 'n7-icon-angle-left',
+    classes: 'is-expanded',
+    payload: 'header',
+};
 
 /**
  * @fileoverview added by tsickle
@@ -732,6 +1002,293 @@ const TAG_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
+const TOAST_MOCK = {
+    toasts: [{
+            // array of toast boxes
+            classes: 'is-warning',
+            title: 'Title',
+            text: 'Questo messaggio ha soltanto un titolo e del testo, è di tipo is-warning ed ha un tempo di 15 secondi',
+            closeIcon: {
+                icon: 'n7-icon-close',
+                payload: 'closing'
+            }
+        }, {
+            // array of toast boxes
+            classes: 'is-warning',
+            title: 'Title',
+            text: 'Questo messaggio ha soltanto un titolo e del testo, è di tipo is-warning ed ha un tempo di 15 secondi',
+        }, {
+            classes: 'is-success',
+            title: 'Titolo e close-icon',
+            closeIcon: {
+                icon: 'n7-icon-close',
+                payload: 'closing'
+            }
+        }, {
+            classes: 'is-error',
+            text: 'Questo è un messaggio di tipo is-error con un pulsante che chiede all\'utente la conferma di presa visione.',
+            actions: [{
+                    text: 'HO CAPITO',
+                    payload: 'ho capito',
+                    classes: 'n7-btn-light'
+                }]
+        }, {
+            classes: 'is-warning',
+            text: 'Questo messaggio non ha titolo, è di tipo is-warning e seguono due pulsanti.',
+            actions: [{
+                    text: 'NO',
+                    payload: 'NO'
+                }, {
+                    text: 'SI',
+                    payload: 'SI',
+                    classes: 'n7-btn-cta'
+                }]
+        }, {
+            // array of toast boxes
+            classes: 'is-warning',
+            title: 'Title',
+            text: 'Questo messaggio ha soltanto un titolo e del testo, è di tipo is-warning ed ha un tempo di 15 secondi',
+        }
+    ]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const TREE_MOCK = {
+    items: [
+        {
+            text: 'Collezione d\'arte',
+            payload: 'collezione arte',
+            classes: 'is-collapsed',
+        },
+        {
+            text: 'Centro archivi',
+            payload: 'centro archivi',
+            classes: 'is-expanded',
+            items: [
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-right',
+                        payload: 'toggle'
+                    },
+                    text: '5+1AA Agenzia di Architettura',
+                    classes: 'is-collapsed',
+                    payload: ''
+                },
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-down',
+                        payload: 'toggle'
+                    },
+                    text: 'ABDR Architetti Associati',
+                    classes: 'is-expanded is-active',
+                    payload: '',
+                    items: [
+                        {
+                            toggle: {
+                                icon: 'n7-icon-angle-down',
+                                payload: 'toggle'
+                            },
+                            text: '5+1AA Agenzia di Architettura',
+                            classes: 'is-expanded',
+                            payload: '',
+                            items: [
+                                {
+                                    toggle: {
+                                        icon: 'n7-icon-angle-right',
+                                        payload: 'toggle'
+                                    },
+                                    text: '5+1AA Agenzia di Architettura',
+                                    classes: 'is-collapsed',
+                                    payload: ''
+                                },
+                                {
+                                    toggle: {
+                                        icon: 'n7-icon-angle-down',
+                                        payload: 'toggle'
+                                    },
+                                    text: 'ABDR Architetti Associati',
+                                    classes: 'is-expanded',
+                                    payload: '',
+                                    items: [
+                                        {
+                                            toggle: {
+                                                icon: 'n7-icon-angle-down',
+                                                payload: 'toggle'
+                                            },
+                                            text: '5+1AA Agenzia di Architettura',
+                                            classes: 'is-expanded',
+                                            payload: '',
+                                            items: [
+                                                {
+                                                    toggle: {
+                                                        icon: 'n7-icon-angle-right',
+                                                        payload: 'toggle'
+                                                    },
+                                                    text: '5+1AA Agenzia di Architettura',
+                                                    classes: 'is-collapsed',
+                                                    payload: ''
+                                                },
+                                                {
+                                                    toggle: {
+                                                        icon: 'n7-icon-angle-right',
+                                                        payload: 'toggle'
+                                                    },
+                                                    text: 'ABDR Architetti Associati',
+                                                    classes: 'is-collapsed',
+                                                    payload: ''
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            toggle: {
+                                                icon: 'n7-icon-angle-right',
+                                                payload: 'toggle'
+                                            },
+                                            text: 'ABDR Architetti Associati',
+                                            classes: 'is-collapsed',
+                                            payload: ''
+                                        },
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            toggle: {
+                                icon: 'n7-icon-angle-right',
+                                payload: 'toggle'
+                            },
+                            text: 'ABDR Architetti Associati',
+                            classes: 'is-collapsed',
+                            payload: ''
+                        },
+                    ]
+                },
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-right',
+                        payload: 'toggle'
+                    },
+                    text: 'AWP',
+                    classes: 'is-collapsed',
+                    payload: ''
+                },
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-right',
+                        payload: 'toggle'
+                    },
+                    text: 'BOERI Cini',
+                    classes: 'is-collapsed',
+                    payload: ''
+                },
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-right',
+                        payload: 'toggle'
+                    },
+                    text: 'CAMPO BAEZA Alberto',
+                    classes: 'is-collapsed',
+                    payload: ''
+                },
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-right',
+                        payload: 'toggle'
+                    },
+                    text: 'CASSANI Matilde',
+                    classes: 'is-collapsed',
+                    payload: ''
+                },
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-right',
+                        payload: 'toggle'
+                    },
+                    text: 'GUERRI Danilo',
+                    classes: 'is-collapsed',
+                    payload: ''
+                },
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-right',
+                        payload: 'toggle'
+                    },
+                    text: 'ISOLA Aimaro',
+                    classes: 'is-collapsed',
+                    payload: ''
+                },
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-down',
+                        payload: 'toggle'
+                    },
+                    text: 'NERVI Pier Luigi',
+                    classes: 'is-expanded',
+                    payload: ''
+                },
+                {
+                    toggle: {
+                        icon: 'n7-icon-angle-down',
+                        payload: 'toggle'
+                    },
+                    text: 'Attività Professionale',
+                    classes: 'is-expanded',
+                    payload: '',
+                    items: [
+                        {
+                            icon: 'n7-icon-file3',
+                            text: 'Cinema teatro Augusteo e stazione centrale della funicolare, Napoli ([1926] - [1927])',
+                            payload: '',
+                        },
+                        {
+                            classes: 'is-active',
+                            icon: 'n7-icon-file3',
+                            text: 'Stadio comunale G.Berta, Firenze ([1929] - [1932])',
+                            payload: '',
+                        },
+                        {
+                            icon: 'n7-icon-file3',
+                            text: 'Monumento alla Bandiera, Roma (1931)',
+                            payload: '',
+                        },
+                        {
+                            img: 'http://placeimg.com/25/25/arch/grayscale',
+                            text: 'Brevetto hangar circolare con piattaforma anulare rotante (1932)',
+                            payload: '',
+                        },
+                        {
+                            img: 'http://placeimg.com/25/25/arch/grayscale',
+                            text: 'Stadio da 120.000 posti, Roma ([1933])',
+                            payload: '',
+                            classes: 'is-active'
+                        },
+                        {
+                            icon: 'n7-icon-file3',
+                            text: 'Magazzino ([1934])',
+                            payload: '',
+                            classes: 'is-active',
+                        },
+                        {
+                            icon: 'n7-icon-file3',
+                            text: 'Aviorimesse, Orvieto (TR), Orbetello (GR), Torre del Lago (LU), Marsala (TP), Trapani ([1935] - 1941)',
+                            payload: '',
+                        },
+                    ]
+                },
+            ]
+        },
+    ]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const WIZARD_MOCK = {
     items: [
         {
@@ -771,6 +1328,6 @@ const WIZARD_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DvComponentsLibModule, AlertComponent, BreadcrumbsComponent, HeaderComponent, LoaderComponent, NavComponent, PaginationComponent, TableComponent, TagComponent, WizardComponent, ALERT_MOCK, BREADCRUMBS_MOCK, HEADER_MOCK, LOADER_MOCK, NAV_MOCK, PAGINATION_MOCK, TABLE_MOCK, TAG_MOCK, WIZARD_MOCK };
+export { DvComponentsLibModule, AlertComponent, BreadcrumbsComponent, ChartComponent, HeaderComponent, HeroComponent, ItemPreviewComponent, LoaderComponent, NavComponent, PaginationComponent, SidebarHeaderComponent, TableComponent, TagComponent, ToastComponent, TreeComponent, WizardComponent, ALERT_MOCK, BREADCRUMBS_MOCK, CHART_MOCK, HEADER_MOCK, HERO_MOCK, ITEM_PREVIEW_MOCK, LOADER_MOCK, NAV_MOCK, PAGINATION_MOCK, SIDEBAR_HEADER_MOCK, TABLE_MOCK, TAG_MOCK, TOAST_MOCK, TREE_MOCK, WIZARD_MOCK };
 
 //# sourceMappingURL=n7-frontend-components.js.map

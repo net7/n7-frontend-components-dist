@@ -1,22 +1,47 @@
+/**
+ * Interface for a single BreadcrumbsComponent's "Item"
+ *
+ * @property label (required)
+ * @property payload (required)
+ * @property classes (optional)
+ * @property _meta (optional)
+ *
+ */
 export interface IBreadcrumbsItem {
+    /**
+     * item's label
+     */
     label: string;
+    /**
+     * action click's payload
+     */
     payload: any;
+    /**
+     * additional html classes
+     */
     classes?: any;
+    /**
+     * additional info useful for the component's logic
+     */
     _meta?: any;
 }
+/**
+ * Interface for BreadcrumbsComponent's "Data"
+ *
+ * @property items (required)
+ * @property classes (optional)
+ *
+ */
 export interface IBreadcrumbsData {
+    /**
+     * each item renders a breadcrumb level
+     */
     items: IBreadcrumbsItem[];
+    /**
+     * additional html classes
+     */
     classes?: any;
 }
-/**
- * BreadcrumbsComponent <n7-breadcrumbs>
- *
- * @example
- * ```html
- *
- * <!-- TODO: add component example -->
- * ```
- */
 export declare class BreadcrumbsComponent {
     data: IBreadcrumbsData;
     emit: any;

@@ -36,21 +36,6 @@ export interface IAlertData {
      */
     hasCloseButton?: boolean;
 }
-/**
- * AlertComponent <n7-alert>
- *
- * @example
- * ```html
- * <n7-alert [data]="{
- *        text: 'This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.',
- *        hasCloseButton: true,
- *        icon: "n7-icon-bell",
- *        payload: "close-the-alert request",
- *        classes: "is-warning"
- *    }">
- * </n7-alert>
- * ```
- */
 export declare class AlertComponent {
     data: IAlertData;
     emit: any;

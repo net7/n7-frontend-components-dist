@@ -14,18 +14,6 @@ export interface ILoaderData {
      */
     _meta?: any;
 }
-/**
- * LoaderComponent <n7-loader>
- *
- * @example
- * ```html
- *
- * <n7-loader [data]="{
- *          classes: 'animated-loader'
- *      }">
- * </n7-loader>
- * ```
- */
 export declare class LoaderComponent {
     data: ILoaderData;
 }

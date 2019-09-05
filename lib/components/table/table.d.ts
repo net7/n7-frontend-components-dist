@@ -77,9 +77,6 @@ export interface ITableData {
      */
     _meta?: any;
 }
-/**
- * TableComponent <n7-table>
- */
 export declare class TableComponent {
     data: ITableData;
     emit: any;

@@ -1,0 +1,93 @@
+/**
+ * TOAST
+ *
+ * Brief description of the component here.
+ */
+ 
+/* ------------------------------------ *\
+   #TOAST
+\* ------------------------------------ */
+.n7-toast {
+  position: fixed;
+  bottom: $space*2;
+  left: $space*2;
+
+  &__box {
+      max-width: $toast-max-width;
+      padding: $space $space 0 $space;
+      margin-top: $space;
+      background-color: $toast-background-color;
+      border: $toast-border-size solid $toast-border-color;
+  }
+
+  &__title {
+      display: block;
+      padding-bottom: $space;
+      font-size: $font-size-m;
+      color: $toast-title-color;
+  }
+
+  &__text {
+      display: block;
+      padding-bottom: $space;
+      font-size: $font-size-s;
+      color: $toast-text-color;
+  }
+}
+
+
+/* ------------------------------------ *\
+   #WITH-ACTIONS
+\* ------------------------------------ */
+.n7-toast__box.has-actions {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(20px, auto);
+    grid-column-gap: $space;
+}
+
+.n7-toast__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.n7-toast__action-content {
+    .n7-toast__action-button {
+        margin-left: $space/2;
+    }
+    
+    &:first-child {
+        .n7-toast__action-button {
+            margin-left: 0;
+        }
+    }
+}
+
+.n7-toast__closeIcon {
+    position: absolute;
+    top: $space;
+    right: $space;
+    cursor: pointer;
+
+    &:hover {
+        color: $color-text-link;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

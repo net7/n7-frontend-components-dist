@@ -47,23 +47,6 @@ export interface IWizardData {
     */
     classes?: any;
 }
-/**
- * WizardComponent <n7-wizard>
- *
- * @example
- * ```html
- *
- * <n7-wizard [data]="{classes: 'wizard1-class'}">
- *     <n7-wizard__item [item]="{
- *             text: 'text',
- *             payload: 'item-payload',
- *             classes: 'item1-class',
- *             _meta: 'item1-meta',
- *         }">
- *     </n7-wizard__item>
- * </n7-wizard>
- * ```
- */
 export declare class WizardComponent {
     data: IWizardData;
     emit: any;
