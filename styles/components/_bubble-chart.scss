@@ -1,0 +1,34 @@
+/**
+ * BUBBLECHART
+ *
+ * Brief description of the component here.
+ */
+ 
+/* ------------------------------------ *\
+   #BUBBLECHART
+\* ------------------------------------ */
+//.n7-bubble-chart {
+  // TODO
+//}
+
+.monospace-text {
+    font-family: monospace;
+    user-select: none;
+    font-weight: bold;
+}
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

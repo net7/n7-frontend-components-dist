@@ -1,6 +1,7 @@
 export * from './lib/dv-components-lib.module';
 export * from './lib/components/alert/alert';
 export * from './lib/components/breadcrumbs/breadcrumbs';
+export * from './lib/components/bubble-chart/bubble-chart';
 export * from './lib/components/chart/chart';
 export * from './lib/components/header/header';
 export * from './lib/components/hero/hero';
@@ -16,6 +17,7 @@ export * from './lib/components/tree/tree';
 export * from './lib/components/wizard/wizard';
 export * from './lib/components/alert/alert.mock';
 export * from './lib/components/breadcrumbs/breadcrumbs.mock';
+export * from './lib/components/bubble-chart/bubble-chart.mock';
 export * from './lib/components/chart/chart.mock';
 export * from './lib/components/header/header.mock';
 export * from './lib/components/hero/hero.mock';

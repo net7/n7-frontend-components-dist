@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('apexcharts/dist/apexcharts.common.js'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@n7-frontend/components', ['exports', '@angular/common', 'apexcharts/dist/apexcharts.common.js', '@angular/core'], factory) :
-    (factory((global['n7-frontend'] = global['n7-frontend'] || {}, global['n7-frontend'].components = {}),global.ng.common,global.ApexCharts,global.ng.core));
-}(this, (function (exports,common,ApexCharts,core) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('d3-selection'), require('d3-force'), require('apexcharts/dist/apexcharts.common.js'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@n7-frontend/components', ['exports', '@angular/common', 'd3-selection', 'd3-force', 'apexcharts/dist/apexcharts.common.js', '@angular/core'], factory) :
+    (factory((global['n7-frontend'] = global['n7-frontend'] || {}, global['n7-frontend'].components = {}),global.ng.common,global['d3-selection'],global.d3_force,global.ApexCharts,global.ng.core));
+}(this, (function (exports,common,d3_selection,d3_force,ApexCharts,core) { 'use strict';
 
     ApexCharts = ApexCharts && ApexCharts.hasOwnProperty('default') ? ApexCharts['default'] : ApexCharts;
 
@@ -70,6 +70,304 @@
             emit: [{ type: core.Input }]
         };
         return BreadcrumbsComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var BubbleChartComponent = /** @class */ (function () {
+        function BubbleChartComponent() {
+            this._loaded = false;
+            this.bubbles = null;
+            this.genericBubble = null;
+            this.bubbleChart = null;
+        }
+        /**
+         * @return {?}
+         */
+        BubbleChartComponent.prototype.ngAfterContentChecked = /**
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                if (!this.data || this._loaded)
+                    return;
+                this._loaded = true;
+                setTimeout(( /**
+                 * @return {?}
+                 */function () { return _this._makeBubbleChart(); }));
+            };
+        /** Makes the whole bubble chart */
+        /**
+         * Makes the whole bubble chart
+         * @private
+         * @return {?}
+         */
+        BubbleChartComponent.prototype._makeBubbleChart = /**
+         * Makes the whole bubble chart
+         * @private
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                d3_selection.select("#" + this.data.containerId).selectAll("*").remove();
+                /** @type {?} */
+                var pot = document.getElementById("" + this.data.containerId);
+                pot.style.width = this.data.containerWidth + 'px';
+                pot.style.height = this.data.containerHeight + 'px';
+                this.bubbleChart = d3_selection.select("#" + this.data.containerId)
+                    .append('svg')
+                    .attr('width', this.data.containerWidth)
+                    .attr('height', this.data.containerHeight);
+                this.bubbles = this.data.bubblesData;
+                this.initBubbles();
+                if (this.data.isForceSimulationEnabled)
+                    this.setBubbleChartSimulation();
+                this.update();
+                if (this.data.setBubbleChart)
+                    this.data.setBubbleChart(this.bubbleChart);
+                if (this.bubbleChart)
+                    this.bubbleChart.selectAll("#" + this.data.containerId + " g circle, #" + this.data.containerId + " g text").on('click', ( /**
+                     * @param {?} d
+                     * @return {?}
+                     */function (d) {
+                        if (!_this.emit)
+                            return;
+                        _this.emit('click', { source: "bubble", bubblePayload: d.payload });
+                    }));
+                if (this.bubbleChart)
+                    this.bubbleChart.selectAll('circle[bubblesType="x_inner_circle"], text[bubblesType="x_inner_label"]').on('click', ( /**
+                     * @param {?} d
+                     * @return {?}
+                     */function (d) {
+                        if (!_this.emit)
+                            return;
+                        _this.emit('click', { source: "close", bubblePyload: d.payload });
+                    }));
+                if (this.data.setUpdateReference)
+                    this.data.setUpdateReference(this.update);
+            };
+        /** Visually updates the bubble chart */
+        /**
+         * Visually updates the bubble chart
+         * @return {?}
+         */
+        BubbleChartComponent.prototype.update = /**
+         * Visually updates the bubble chart
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                if (this.genericBubble && this.genericBubble.attr) {
+                    this.genericBubble.attr('cx', ( /**
+                     * @param {?} d
+                     * @return {?}
+                     */function (d) { return d.x = Math.max(d.radius, Math.min(_this.data.containerWidth - d.radius, d.x)); }))
+                        .attr('cy', ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.y = Math.max(d.radius, Math.min(_this.data.containerHeight - d.radius, d.y)); }));
+                }
+                if (this.data && this.data.bubblesData)
+                    this.data.bubblesData.forEach(( /**
+                     * @param {?} c
+                     * @return {?}
+                     */function (c) {
+                        c.texts.forEach(( /**
+                         * @param {?} tx
+                         * @return {?}
+                         */function (tx) {
+                            /** @type {?} */
+                            var txt = _this.bubbleChart.select("text[bubblesElId=" + tx.id + "]");
+                            txt.attr("dy", tx.y_function);
+                            txt.attr("dx", tx.x_function);
+                        }));
+                    }));
+                if (this.bubbleChart) {
+                    this.bubbleChart.selectAll('circle[bubblesType="x_inner_circle"]')
+                        .attr("cy", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.y + (d.radius / 2); }))
+                        .attr("cx", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.x; }))
+                        .attr("opacity", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return (d.hasCloseIcon ? 1 : 0); }));
+                }
+                if (this.bubbleChart) {
+                    this.bubbleChart.selectAll('text[bubblesType="x_inner_label"]')
+                        .attr("dy", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.y + (d.radius / 2) + 6; }))
+                        .attr("dx", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.x; }))
+                        .attr("opacity", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return (d.hasCloseIcon ? 1 : 0); }));
+                }
+            };
+        /** Initialized the chart's bubbles */
+        /**
+         * Initialized the chart's bubbles
+         * @private
+         * @return {?}
+         */
+        BubbleChartComponent.prototype.initBubbles = /**
+         * Initialized the chart's bubbles
+         * @private
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                if (this.bubbleChart)
+                    this.genericBubble = this.bubbleChart.selectAll("#" + this.data.containerId + " g")
+                        .data(this.bubbles)
+                        .enter()
+                        .append('g')
+                        .attr("bubblesElId", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.id; }))
+                        .append('circle')
+                        .attr('r', ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return Math.max(0, d.radius - 5.05); }))
+                        .attr("cx", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.x; }))
+                        .attr("cy", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.y; }))
+                        .attr('padding', ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return 50; }))
+                        .attr("class", ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.classes; }))
+                        .style('fill', ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.color; }));
+                if (this.data && this.data.bubblesData && this.bubbleChart)
+                    this.data.bubblesData.forEach(( /**
+                     * @param {?} c
+                     * @return {?}
+                     */function (c) {
+                        /** @type {?} */
+                        var group = _this.bubbleChart.select("g[bubblesElId=" + c.id + "]");
+                        c.texts.forEach(( /**
+                         * @param {?} tx
+                         * @return {?}
+                         */function (tx) {
+                            group.append("text")
+                                .style("text-anchor", "middle")
+                                .attr("dx", tx.x_function)
+                                .attr("dy", tx.y_function)
+                                .text(tx.label)
+                                .attr("font-size", tx.fontSize_function)
+                                .attr("fill", tx.color)
+                                .attr("bubblesElId", tx.id)
+                                .attr("class", tx.classes);
+                        }));
+                    }));
+                if (this.bubbleChart)
+                    this.bubbleChart.selectAll("#" + this.data.containerId + " g")
+                        .append('circle')
+                        .attr('r', ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return 10; }))
+                        .attr('padding', ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return 50; }))
+                        .style('fill', "white")
+                        .attr('cx', ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.x; }))
+                        .attr('cy', ( /**
+                 * @param {?} d
+                 * @return {?}
+                 */function (d) { return d.y; }))
+                        .attr("bubblesType", "x_inner_circle")
+                        .attr("class", "circle_x-inner-circle");
+                if (this.bubbleChart)
+                    this.bubbleChart.selectAll("#" + this.data.containerId + " g")
+                        .append("text")
+                        .style("user-select", "none")
+                        .style("text-anchor", "middle")
+                        .attr("fill", "black")
+                        .html("&#10005;")
+                        .attr("font-family", "sans-serif")
+                        .attr("font-size", 15)
+                        .attr("bubblesType", "x_inner_label")
+                        .attr("class", "circle_x-label");
+            };
+        /** Sets the bubble chart force simulation */
+        /**
+         * Sets the bubble chart force simulation
+         * @private
+         * @return {?}
+         */
+        BubbleChartComponent.prototype.setBubbleChartSimulation = /**
+         * Sets the bubble chart force simulation
+         * @private
+         * @return {?}
+         */
+            function () {
+                /** @type {?} */
+                var tmpSimulationData = (this.data && this.data.forceSimulationData ? this.data.forceSimulationData : {});
+                /** @type {?} */
+                var xPull = (tmpSimulationData['xPull'] ? tmpSimulationData['xPull'] : this.data.containerWidth / 2);
+                /** @type {?} */
+                var xPullStrength = (tmpSimulationData['xPullStrength'] ? tmpSimulationData['xPullStrength'] : -0.01);
+                /** @type {?} */
+                var yPull = (tmpSimulationData['yPull'] ? tmpSimulationData['yPull'] : this.data.containerHeight / 2);
+                /** @type {?} */
+                var yPullStrength = (tmpSimulationData['yPullStrength'] ? tmpSimulationData['yPullStrength'] : -0.01);
+                /** @type {?} */
+                var collisionStrength = (tmpSimulationData['collisionStrengh'] ? tmpSimulationData['collisionStrengh'] : 0.99);
+                /** @type {?} */
+                var collisionIterations = (tmpSimulationData['collisionIterations'] ? tmpSimulationData['collisionIterations'] : 1);
+                /** @type {?} */
+                var velocityDecay = (tmpSimulationData['velocityDecay'] ? tmpSimulationData['velocityDecay'] : 0.99);
+                d3_force.forceSimulation()
+                    .velocityDecay(velocityDecay)
+                    .force("x", d3_force.forceX(xPull).strength(xPullStrength))
+                    .force("y", d3_force.forceY(yPull).strength(yPullStrength))
+                    .force("collide", d3_force.forceCollide().radius(( /**
+             * @param {?} d
+             * @return {?}
+             */function (d) { return d.radius; })).strength(collisionStrength).iterations(collisionIterations))
+                    .nodes(this.bubbles)
+                    .on('tick', this.update.bind(this));
+            };
+        BubbleChartComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-bubble-chart',
+                        template: "<div *ngIf=\"data\" class=\"n7-bubble-chart {{ data.classes || '' }}\">\n    <div id=\"{{ data.containerId }}\"></div>\n</div>"
+                    }] }
+        ];
+        BubbleChartComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return BubbleChartComponent;
     }());
 
     /**
@@ -393,7 +691,7 @@
         SidebarHeaderComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-sidebar-header',
-                        template: "<div *ngIf=\"data\" class=\"n7-sidebar-header\">\n    <span class=\"n7-sidebar-header__icon-left {{ data.iconLeft }}\"></span>\n    <span class=\"n7-sidebar-header__text\">{{ data.text }}</span>\n    <span *ngIf=\"data.iconRight\"\n            class=\"n7-sidebar-header__icon-right {{ data.iconRight }}\" \n            (click)=\"onClick(data.payload)\"></span>\n</div>"
+                        template: "<div *ngIf=\"data\" class=\"n7-sidebar-header\">\n    <span class=\"n7-sidebar-header__icon-left {{ data.iconLeft }}\" *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-sidebar-header__text\">\n        {{data.text}}\n    </span>\n    <span class=\"n7-sidebar-header__additional-text\" *ngIf=\"data.additionalText\">\n        {{data.additionalText}}\n    </span>\n    <span *ngIf=\"data.iconRight\"\n          class=\"n7-sidebar-header__icon-right {{ data.iconRight }}\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
                     }] }
         ];
         SidebarHeaderComponent.propDecorators = {
@@ -606,6 +904,7 @@
     var COMPONENTS = [
         AlertComponent,
         BreadcrumbsComponent,
+        BubbleChartComponent,
         ChartComponent,
         HeaderComponent,
         HeroComponent,
@@ -680,6 +979,291 @@
             }
         ]
     };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var cWidth = 1000;
+    /** @type {?} */
+    var cHeight = 500;
+    var ɵ0 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ1 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y - (d.radius / 9); }, ɵ2 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 5; }, ɵ3 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ4 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y + (d.radius / 9); }, ɵ5 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 6; }, ɵ6 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ7 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y - (d.radius / 9); }, ɵ8 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 5; }, ɵ9 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ10 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y + (d.radius / 9); }, ɵ11 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 5; }, ɵ12 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ13 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y - (d.radius / 9); }, ɵ14 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 5; }, ɵ15 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ16 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y + (d.radius / 9); }, ɵ17 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 5; }, ɵ18 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ19 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y - (d.radius / 9); }, ɵ20 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 5; }, ɵ21 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ22 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y + (d.radius / 9); }, ɵ23 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 5; }, ɵ24 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ25 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y - (d.radius / 9); }, ɵ26 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 5; }, ɵ27 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.x; }, ɵ28 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.y + (d.radius / 9); }, ɵ29 = /**
+     * @param {?} d
+     * @return {?}
+     */ function (d) { return d.radius / 5; };
+    /** @type {?} */
+    var dataSource = {
+        containerId: "bubbleChartContainer",
+        containerWidth: cWidth,
+        containerHeight: cHeight,
+        isForceSimulationEnabled: true,
+        bubblesData: [
+            {
+                "id": "mlnBubble",
+                "texts": [
+                    {
+                        id: "mln",
+                        label: "Milano",
+                        x_function: (ɵ0),
+                        y_function: (ɵ1),
+                        "user_select": "none",
+                        fontSize_function: (ɵ2),
+                        color: "green",
+                        "classes": "monospace-text"
+                    },
+                    {
+                        id: "mlnValue",
+                        label: "9.746",
+                        x_function: (ɵ3),
+                        y_function: (ɵ4),
+                        "user_select": "none",
+                        fontSize_function: (ɵ5),
+                        color: "white",
+                        "classes": ""
+                    }
+                ],
+                x: cWidth / 2 + 50,
+                y: cHeight / 2 + 50,
+                "radius": 9746 / 75,
+                color: "#79ad87",
+                hasCloseIcon: true,
+                payload: {
+                    id: "mlnBubble"
+                }
+            },
+            {
+                "id": "naplBubble",
+                "texts": [
+                    {
+                        id: "nap",
+                        label: "Napoli",
+                        x_function: (ɵ6),
+                        y_function: (ɵ7),
+                        "user_select": "none",
+                        fontSize_function: (ɵ8),
+                        color: "white",
+                        "classes": ""
+                    },
+                    {
+                        id: "napValue",
+                        label: "3.981",
+                        x_function: (ɵ9),
+                        y_function: (ɵ10),
+                        "user_select": "none",
+                        fontSize_function: (ɵ11),
+                        color: "red",
+                        "classes": ""
+                    }
+                ],
+                x: cWidth - 120,
+                y: cHeight - 120,
+                "radius": 3981 / 45,
+                color: "#d19b13",
+                hasCloseIcon: false,
+                payload: {
+                    id: "naplBubble"
+                }
+            },
+            {
+                "id": "romBubble",
+                "texts": [
+                    {
+                        id: "rom",
+                        label: "Roma",
+                        x_function: (ɵ12),
+                        y_function: (ɵ13),
+                        "user_select": "none",
+                        fontSize_function: (ɵ14),
+                        color: "white",
+                        "classes": ""
+                    },
+                    {
+                        id: "romValue",
+                        label: "4.523",
+                        x_function: (ɵ15),
+                        y_function: (ɵ16),
+                        "user_select": "none",
+                        fontSize_function: (ɵ17),
+                        color: "red",
+                        "classes": ""
+                    }
+                ],
+                x: cWidth - (cWidth / 4.5),
+                y: (cHeight / 8),
+                "radius": 4523 / 30,
+                hasCloseIcon: true,
+                color: "#6184ed",
+                payload: {
+                    id: "romBubble"
+                }
+            },
+            {
+                "id": "spzBubble",
+                "texts": [
+                    {
+                        id: "spz",
+                        label: "Spazio",
+                        x_function: (ɵ18),
+                        y_function: (ɵ19),
+                        "user_select": "none",
+                        fontSize_function: (ɵ20),
+                        color: "white",
+                        "classes": ""
+                    },
+                    {
+                        id: "spzValue",
+                        label: "3.981",
+                        x_function: (ɵ21),
+                        y_function: (ɵ22),
+                        "user_select": "none",
+                        fontSize_function: (ɵ23),
+                        color: "green",
+                        "classes": ""
+                    }
+                ],
+                x: (cWidth / 3.5),
+                y: cHeight - (cHeight / 3.5),
+                "radius": 3981 / 65,
+                color: "#d19b13",
+                hasCloseIcon: true,
+                payload: {
+                    id: "spzBubble"
+                }
+            },
+            {
+                "id": "lucBubble",
+                "texts": [
+                    {
+                        id: "luc",
+                        label: "Luce",
+                        x_function: (ɵ24),
+                        y_function: (ɵ25),
+                        "user_select": "none",
+                        fontSize_function: (ɵ26),
+                        color: "white",
+                        "classes": ""
+                    },
+                    {
+                        id: "lucValue",
+                        label: "2.342",
+                        x_function: (ɵ27),
+                        y_function: (ɵ28),
+                        "user_select": "none",
+                        fontSize_function: (ɵ29),
+                        color: "red",
+                        "classes": ""
+                    }
+                ],
+                x: 200,
+                y: 200,
+                radius: 2342 / 25,
+                hasCloseIcon: false,
+                color: "#6184ed",
+                payload: {
+                    id: "lucBubble"
+                }
+            }
+        ],
+        forceSimulationData: {
+            xPull: cWidth / 2,
+            xPullStrength: -0.01,
+            yPull: cHeight / 2,
+            yPullStrength: -0.01,
+            collisionStrengh: 0.99,
+            collisionIterations: 1,
+            velocityDecay: 0.65
+        }
+    };
+    /** @type {?} */
+    var BUBBLECHART_MOCK = dataSource;
 
     /**
      * @fileoverview added by tsickle
@@ -935,6 +1519,7 @@
     var SIDEBAR_HEADER_MOCK = {
         iconLeft: 'n7-icon-tree-icon',
         text: 'Albero di navigazione',
+        additionalText: '10.324.592',
         iconRight: 'n7-icon-angle-left',
         classes: 'is-expanded',
         payload: 'header',
@@ -1448,6 +2033,7 @@
     exports.DvComponentsLibModule = DvComponentsLibModule;
     exports.AlertComponent = AlertComponent;
     exports.BreadcrumbsComponent = BreadcrumbsComponent;
+    exports.BubbleChartComponent = BubbleChartComponent;
     exports.ChartComponent = ChartComponent;
     exports.HeaderComponent = HeaderComponent;
     exports.HeroComponent = HeroComponent;
@@ -1463,6 +2049,7 @@
     exports.WizardComponent = WizardComponent;
     exports.ALERT_MOCK = ALERT_MOCK;
     exports.BREADCRUMBS_MOCK = BREADCRUMBS_MOCK;
+    exports.BUBBLECHART_MOCK = BUBBLECHART_MOCK;
     exports.CHART_MOCK = CHART_MOCK;
     exports.HEADER_MOCK = HEADER_MOCK;
     exports.HERO_MOCK = HERO_MOCK;

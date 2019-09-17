@@ -3,6 +3,7 @@
  *
  * @property iconLeft (optional)
  * @property text (required)
+ * @property additionalText (optional)
  * @property iconRight (optional)
  * @property classes (optional)
  * @property payload (optional)
@@ -16,6 +17,10 @@ export interface ISidebarHeaderData {
      * the title text
      */
     text: string;
+    /**
+     * additional text, displayed on the right of the text
+     */
+    additionalText?: string;
     /**
      * the headers rightmost icon
      */

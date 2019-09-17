@@ -25,14 +25,21 @@
     }
     
     &__text {
-        flex-grow: 2;
+        margin-right: $space;
+        margin-left: $space;
         line-height: $sidebar-header-height;
         font-size: $font-size-m;
         color: $sidebar-header-text-color;
     }
+
+    &__additional-text {
+        line-height: $sidebar-header-height;
+        font-size: $font-size-s;
+        color: $sidebar-header-text-color;
+    }
     
     &__icon-right {
-        align-self: flex-end;
+        margin-left: auto; // Flexbox stuff
         display: block;
         width: $sidebar-header-height;
         height: $sidebar-header-height;
