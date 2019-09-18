@@ -1,0 +1,57 @@
+/**
+ * FACET-HEADER
+ *
+ * Brief description of the component here.
+ */
+ 
+/* ------------------------------------ *\
+   #FACET-HEADER
+\* ------------------------------------ */
+.n7-facet-header {
+    display: flex;
+    align-items: baseline;
+    background: $facet-header-background;
+    color: $facet-header-text-color;
+
+    &__title {
+       margin-right: $space;
+       margin-left: $space*1.8;
+       font-size: $font-size-xl;
+       line-height: 1;
+    }
+
+    &__counter {
+        margin-right: $space*1.8;
+        opacity: 0.7;
+        font-size: $font-size-l;
+        line-height: 1;
+    }
+
+    &__icon-left,
+    &__icon-right {
+        padding: $space*1.8;
+        background: $facet-header-icon-background;
+        font-size: $font-size-xl;
+    }
+
+    &__icon-right {
+      margin-left: auto;
+  }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

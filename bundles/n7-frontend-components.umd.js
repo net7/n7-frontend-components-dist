@@ -417,6 +417,39 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var FacetHeaderComponent = /** @class */ (function () {
+        function FacetHeaderComponent() {
+        }
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        FacetHeaderComponent.prototype.onClick = /**
+         * @param {?} payload
+         * @return {?}
+         */
+            function (payload) {
+                if (!this.emit)
+                    return;
+                this.emit('click', payload);
+            };
+        FacetHeaderComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-facet-header',
+                        template: "<div *ngIf=\"data\" class=\"n7-facet-header\">\n    <span class=\"n7-facet-header__icon-left {{ data.iconLeft }}\" *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-facet-header__title\">\n        {{data.text}}\n    </span>\n    <span class=\"n7-facet-header__counter\" *ngIf=\"data.additionalText\">\n        {{data.additionalText}}\n    </span>\n    <span *ngIf=\"data.iconRight\" class=\"n7-facet-header__icon-right {{ data.iconRight }}\"\n        (click)=\"onClick(data.payload)\"></span>\n</div>"
+                    }] }
+        ];
+        FacetHeaderComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return FacetHeaderComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * HeaderComponent <n7-header>
      *
@@ -906,6 +939,7 @@
         BreadcrumbsComponent,
         BubbleChartComponent,
         ChartComponent,
+        FacetHeaderComponent,
         HeaderComponent,
         HeroComponent,
         ItemPreviewComponent,
@@ -1353,6 +1387,20 @@
             tooltip: {},
             annotations: { "yaxis": [], "xaxis": [], "points": [] }
         }
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var FACET_HEADER_MOCK = {
+        iconLeft: 'n7-icon-earth',
+        text: 'Persone',
+        additionalText: '24.319',
+        iconRight: 'n7-icon-angle-left',
+        classes: 'is-expanded',
+        payload: 'header',
     };
 
     /**
@@ -2035,6 +2083,7 @@
     exports.BreadcrumbsComponent = BreadcrumbsComponent;
     exports.BubbleChartComponent = BubbleChartComponent;
     exports.ChartComponent = ChartComponent;
+    exports.FacetHeaderComponent = FacetHeaderComponent;
     exports.HeaderComponent = HeaderComponent;
     exports.HeroComponent = HeroComponent;
     exports.ItemPreviewComponent = ItemPreviewComponent;
@@ -2051,6 +2100,7 @@
     exports.BREADCRUMBS_MOCK = BREADCRUMBS_MOCK;
     exports.BUBBLECHART_MOCK = BUBBLECHART_MOCK;
     exports.CHART_MOCK = CHART_MOCK;
+    exports.FACET_HEADER_MOCK = FACET_HEADER_MOCK;
     exports.HEADER_MOCK = HEADER_MOCK;
     exports.HERO_MOCK = HERO_MOCK;
     exports.ITEM_PREVIEW_MOCK = ITEM_PREVIEW_MOCK;
