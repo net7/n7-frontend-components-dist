@@ -91,6 +91,7 @@
          */
             function () {
                 var _this = this;
+                console.log('ngAfterContentChecked', { data: this.data, loaded: this._loaded });
                 if (!this.data || this._loaded)
                     return;
                 this._loaded = true;
