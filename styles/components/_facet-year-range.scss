@@ -1,0 +1,54 @@
+/**
+ * FACET-YEAR-RANGE
+ *
+ * Brief description of the component here.
+ */
+ 
+/* ------------------------------------ *\
+   #FACET-YEAR-RANGE
+\* ------------------------------------ */
+.n7-facet-year-range {
+    padding: $space*1.5;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: $space*1.5;
+
+    .n7-facet-year-range__in,
+    .n7-facet-year-range__out {
+        display: flex;
+        align-items: center;
+    }
+
+    .n7-facet-year-range__in-label,
+    .n7-facet-year-range__out-label {
+        margin-right: $space/2;
+        margin-bottom: 0;
+    }
+
+    .n7-facet-year-range__in-select,
+    .n7-facet-year-range__out-select {
+        flex-grow: 1;
+    }
+
+    .n7-facet-year-range__in-select-placeholder,
+    .n7-facet-year-range__out-select-placeholder {
+        color: $color-text-light;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

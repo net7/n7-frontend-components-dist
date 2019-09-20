@@ -42,6 +42,10 @@ export interface IBubbleChartData {
      */
     setBubbleChart?: any;
     /**
+   * callback for saving the reset function needed for visually resetting the chart
+   */
+    setResetReference?: any;
+    /**
      * callback for saving the update function needed for visually updating the chart
      */
     setUpdateReference?: any;
@@ -201,7 +205,7 @@ export declare class BubbleChartComponent implements AfterContentChecked {
     private genericBubble;
     private bubbleChart;
     /** Makes the whole bubble chart */
-    private _makeBubbleChart;
+    private makeBubbleChart;
     /** Visually updates the bubble chart */
     update(): void;
     /** Initialized the chart's bubbles */

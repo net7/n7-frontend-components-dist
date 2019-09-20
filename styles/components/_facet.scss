@@ -1,0 +1,161 @@
+/**
+ * FACET
+ *
+ * Brief description of the component here.
+ */
+ 
+/* ------------------------------------ *\
+   #FACET
+\* ------------------------------------ */
+.n7-facet {
+    background-color: $color-background-base;
+    padding-top: $space*1.5;
+}
+
+
+/* ------------------------------------ *\
+   #CHECKBOXES
+\* ------------------------------------ */
+.n7-facet {
+    &__check-wrapper {
+        padding-left: $space*1.5;
+        padding-right: $space*1.5;
+        padding-bottom: $space*1.5;
+        // margin-bottom: $space*2;
+    }
+
+    &__check {
+        display: inline-block;
+        margin-right: $space*2;
+        margin-bottom: $space/2;
+    }
+
+    &__check-input {
+        margin-right: $space/2;
+    }
+
+    &__check-label {
+        font-size: $font-size-s;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #SEARCH
+\* ------------------------------------ */
+.n7-facet {
+    &__search-wrapper {
+        // margin-bottom: $space*2;
+        padding-left: $space*1.5;
+        padding-right: $space*1.5;
+        padding-bottom: $space*1.5;
+    }
+
+    &__search-label {
+        display: block;
+        font-size: $font-size-s;
+    }
+
+    &__search-input-wrapper {
+        position: relative;
+    }
+
+    &__search-input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding-right: $space*4;
+    }
+
+    &__search-icon {
+        position: absolute;
+        bottom: 0;
+        right: $space;
+        line-height: $form-input-height;
+        color: $color-text-light;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #FILTERS
+\* ------------------------------------ */
+.n7-facet {
+    &__filter-wrapper {
+        max-height: 200px;
+        overflow-y: auto;
+        padding-left: $space*1.5;
+        padding-right: $space*1.5;
+        margin-bottom: $space*1.5;
+    }
+
+    &__filter {
+        display: flex;
+        align-items: center;
+        padding-bottom: $space;
+        margin-bottom: $space;
+        border-bottom: 1px solid $color-border-normal;
+        cursor: pointer;
+
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
+    }
+
+    &__filter-icon {
+        margin-right: $space;
+        font-size: $font-size-m;
+    }
+
+    &__filter-text {
+        padding-right: $space;
+        font-size: $font-size-m;
+    }
+
+    &__filter-counter {
+        margin-left: auto;
+        padding: $space/4 $space/2;
+        border-radius: $border-radius;
+        font-size: $font-size-xs;
+        color: $color-text-inverse;
+        background-color: $color-second;
+    }
+
+    /* Hover */
+    .n7-facet__filter:hover {
+        .n7-facet__filter-text {
+            color: $color-text-link;
+        }
+    }
+
+    /* Active */
+    .n7-facet__filter.is-active {
+        &:before {
+            content: "\e938";
+            font-family: 'n7-icon';
+            margin-right: $space;
+            color: $color-success;
+        }
+
+        .n7-facet__filter-text {
+            font-weight: $font-weight-bold;
+        }
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}
