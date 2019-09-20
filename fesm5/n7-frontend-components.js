@@ -94,24 +94,29 @@ var BubbleChartComponent = /** @class */ (function () {
         this._loaded = true;
         if (this.data.setResetReference)
             this.data.setResetReference(this.makeBubbleChart);
+        if (this.data.setUpdateReference)
+            this.data.setUpdateReference(this.update);
         setTimeout((/**
          * @return {?}
          */
-        function () { return _this.makeBubbleChart(); }));
+        function () { return _this.makeBubbleChart(_this.data); }));
     };
     /** Makes the whole bubble chart */
     /**
      * Makes the whole bubble chart
      * @private
+     * @param {?} data
      * @return {?}
      */
     BubbleChartComponent.prototype.makeBubbleChart = /**
      * Makes the whole bubble chart
      * @private
+     * @param {?} data
      * @return {?}
      */
-    function () {
+    function (data) {
         var _this = this;
+        this.data = data;
         select("#" + this.data.containerId).selectAll("*").remove();
         /** @type {?} */
         var pot = document.getElementById("" + this.data.containerId);
@@ -151,8 +156,6 @@ var BubbleChartComponent = /** @class */ (function () {
                 else
                     _this.emit('click', { source: "bubble", bubblePyload: d.payload });
             }));
-        if (this.data.setUpdateReference)
-            this.data.setUpdateReference(this.update);
     };
     /** Visually updates the bubble chart */
     /**
