@@ -104,13 +104,11 @@ var BubbleChartComponent = /** @class */ (function () {
     /** Makes the whole bubble chart */
     /**
      * Makes the whole bubble chart
-     * @private
      * @param {?} data
      * @return {?}
      */
     BubbleChartComponent.prototype.makeBubbleChart = /**
      * Makes the whole bubble chart
-     * @private
      * @param {?} data
      * @return {?}
      */

@@ -85,7 +85,6 @@ class BubbleChartComponent {
     }
     /**
      * Makes the whole bubble chart
-     * @private
      * @param {?} data
      * @return {?}
      */
