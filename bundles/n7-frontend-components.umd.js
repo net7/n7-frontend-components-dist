@@ -94,8 +94,10 @@
                 console.log({ data: this.data, loaded: this._loaded });
                 if (!this.data)
                     return;
-                if (this.data.reset == true)
+                if (this.data.reset === true) {
+                    this.data.reset = false;
                     this._loaded = false;
+                }
                 if (this._loaded)
                     return;
                 this._loaded = true;
