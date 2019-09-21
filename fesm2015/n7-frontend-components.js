@@ -71,6 +71,7 @@ class BubbleChartComponent {
      * @return {?}
      */
     ngAfterContentChecked() {
+        console.log({ data: this.data, loaded: this._loaded });
         if (!this.data || this._loaded)
             return;
         this._loaded = true;
@@ -133,7 +134,9 @@ class BubbleChartComponent {
      * @return {?}
      */
     resetBubbles() {
+        console.log('resetting bubbles');
         this._loaded = false;
+        this.makeBubbleChart();
     }
     /**
      * Visually updates the bubble chart
