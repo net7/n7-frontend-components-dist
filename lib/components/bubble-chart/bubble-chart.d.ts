@@ -53,6 +53,10 @@ export interface IBubbleChartData {
      * additional css classes
      */
     classes?: string;
+    /**
+     * specifies if the bubbles have to be reset from a previous instantiation
+     */
+    reset?: Boolean;
 }
 /**
  * Interface for BubbleChartComponent's simulation "data"

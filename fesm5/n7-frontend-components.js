@@ -90,7 +90,11 @@ var BubbleChartComponent = /** @class */ (function () {
     function () {
         var _this = this;
         console.log({ data: this.data, loaded: this._loaded });
-        if (!this.data || this._loaded)
+        if (!this.data)
+            return;
+        if (this.data.reset == true)
+            this._loaded = false;
+        if (this._loaded)
             return;
         this._loaded = true;
         if (this.data.setResetReference)
@@ -113,6 +117,9 @@ var BubbleChartComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
+        console.log('===============================');
+        console.log('making bubbles with ', this.data);
+        console.log('===============================');
         select("#" + this.data.containerId).selectAll("*").remove();
         /** @type {?} */
         var pot = document.getElementById("" + this.data.containerId);
@@ -177,6 +184,8 @@ var BubbleChartComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
+        if (!this.data)
+            return;
         if (this.genericBubble && this.genericBubble.attr) {
             this.genericBubble.attr('cx', (/**
              * @param {?} d
