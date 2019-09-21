@@ -143,7 +143,7 @@ class BubbleChartComponent {
                         this.update();
                         if (!this.emit)
                             return;
-                        this.emit('click', { source: "close", bubblePyload: d.payload });
+                        this.emit('click', { source: "close", bubblePayload: d.payload });
                     }
                 }
             }));

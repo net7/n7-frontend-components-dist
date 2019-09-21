@@ -165,7 +165,7 @@
                                 _this.update();
                                 if (!_this.emit)
                                     return;
-                                _this.emit('click', { source: "close", bubblePyload: d.payload });
+                                _this.emit('click', { source: "close", bubblePayload: d.payload });
                             }
                         }
                     }));
