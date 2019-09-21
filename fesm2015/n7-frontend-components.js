@@ -71,7 +71,6 @@ class BubbleChartComponent {
      * @return {?}
      */
     ngAfterContentChecked() {
-        console.log({ data: this.data, loaded: this._loaded });
         if (!this.data)
             return;
         if (this.data.reset === true) {
@@ -81,8 +80,6 @@ class BubbleChartComponent {
         if (this._loaded)
             return;
         this._loaded = true;
-        if (this.data.setResetReference)
-            this.data.setResetReference(this.resetBubbles);
         setTimeout((/**
          * @return {?}
          */
@@ -94,9 +91,6 @@ class BubbleChartComponent {
      * @return {?}
      */
     makeBubbleChart() {
-        console.log('===============================');
-        console.log('making bubbles with ', this.data);
-        console.log('===============================');
         select(`#${this.data.containerId}`).selectAll("*").remove();
         /** @type {?} */
         var pot = document.getElementById(`${this.data.containerId}`);
@@ -138,14 +132,6 @@ class BubbleChartComponent {
             }));
         if (this.data.setUpdateReference)
             this.data.setUpdateReference(this.update);
-    }
-    /**
-     * @return {?}
-     */
-    resetBubbles() {
-        console.log('resetting bubbles');
-        this._loaded = false;
-        this.makeBubbleChart();
     }
     /**
      * Visually updates the bubble chart
