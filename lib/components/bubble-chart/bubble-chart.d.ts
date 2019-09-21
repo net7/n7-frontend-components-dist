@@ -206,6 +206,7 @@ export declare class BubbleChartComponent implements AfterContentChecked {
     private bubbleChart;
     /** Makes the whole bubble chart */
     private makeBubbleChart;
+    resetBubbles(): void;
     /** Visually updates the bubble chart */
     update(): void;
     /** Initialized the chart's bubbles */

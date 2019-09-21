@@ -93,7 +93,7 @@ var BubbleChartComponent = /** @class */ (function () {
             return;
         this._loaded = true;
         if (this.data.setResetReference)
-            this.data.setResetReference(this.makeBubbleChart);
+            this.data.setResetReference(this.resetBubbles);
         setTimeout((/**
          * @return {?}
          */
@@ -153,6 +153,14 @@ var BubbleChartComponent = /** @class */ (function () {
             }));
         if (this.data.setUpdateReference)
             this.data.setUpdateReference(this.update);
+    };
+    /**
+     * @return {?}
+     */
+    BubbleChartComponent.prototype.resetBubbles = /**
+     * @return {?}
+     */
+    function () {
         this._loaded = false;
     };
     /** Visually updates the bubble chart */

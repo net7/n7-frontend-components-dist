@@ -75,7 +75,7 @@ class BubbleChartComponent {
             return;
         this._loaded = true;
         if (this.data.setResetReference)
-            this.data.setResetReference(this.makeBubbleChart);
+            this.data.setResetReference(this.resetBubbles);
         setTimeout((/**
          * @return {?}
          */
@@ -128,6 +128,11 @@ class BubbleChartComponent {
             }));
         if (this.data.setUpdateReference)
             this.data.setUpdateReference(this.update);
+    }
+    /**
+     * @return {?}
+     */
+    resetBubbles() {
         this._loaded = false;
     }
     /**
