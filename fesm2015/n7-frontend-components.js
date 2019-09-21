@@ -63,6 +63,7 @@ BreadcrumbsComponent.propDecorators = {
 class BubbleChartComponent {
     constructor() {
         this._loaded = false;
+        this.selectedBubbles = 0;
         this.bubbles = null;
         this.genericBubble = null;
         this.bubbleChart = null;
@@ -101,21 +102,34 @@ class BubbleChartComponent {
             .attr('width', this.data.containerWidth)
             .attr('height', this.data.containerHeight);
         this.bubbles = this.data.bubblesData;
+        this.selectedBubbles = 0;
+        this.data.bubblesData.forEach((/**
+         * @param {?} b
+         * @return {?}
+         */
+        (b) => {
+            if (b.selected)
+                this.selectedBubbles++;
+        }));
         this.initBubbles();
         if (this.data.isForceSimulationEnabled)
             this.setBubbleChartSimulation();
         this.update();
-        if (this.data.setBubbleChart)
-            this.data.setBubbleChart(this.bubbleChart);
         if (this.bubbleChart)
             this.bubbleChart.selectAll(`#${this.data.containerId} g circle, #${this.data.containerId} g text`).on('click', (/**
              * @param {?} d
              * @return {?}
              */
             (d) => {
-                if (!this.emit)
-                    return;
-                this.emit('click', { source: "bubble", bubblePayload: d.payload });
+                if (d.selectable) {
+                    if (!d.selected && this.selectedBubbles < this.data.maxBubblesSelected) {
+                        d.selected = true;
+                        this.update();
+                        if (!this.emit)
+                            return;
+                        this.emit('click', { source: "bubble", bubblePayload: d.payload });
+                    }
+                }
             }));
         if (this.bubbleChart)
             this.bubbleChart.selectAll('circle[bubblesType="x_inner_circle"], text[bubblesType="x_inner_label"]').on('click', (/**
@@ -123,15 +137,17 @@ class BubbleChartComponent {
              * @return {?}
              */
             (d) => {
-                if (!this.emit)
-                    return;
-                if (d.hasCloseIcon)
-                    this.emit('click', { source: "close", bubblePyload: d.payload });
-                else
-                    this.emit('click', { source: "bubble", bubblePyload: d.payload });
+                if (d.selectable) {
+                    d.selected = false;
+                    this.update();
+                    if (!this.emit)
+                        return;
+                    if (d.selected)
+                        this.emit('click', { source: "close", bubblePyload: d.payload });
+                    //else
+                    //  this.emit('click',{source:"bubble",bubblePyload: d.payload});
+                }
             }));
-        if (this.data.setUpdateReference)
-            this.data.setUpdateReference(this.update);
     }
     /**
      * Visually updates the bubble chart
@@ -185,7 +201,7 @@ class BubbleChartComponent {
              * @param {?} d
              * @return {?}
              */
-            (d) => (d.hasCloseIcon ? 1 : 0)));
+            (d) => (d.selected ? 1 : 0)));
         }
         if (this.bubbleChart) {
             this.bubbleChart.selectAll('text[bubblesType="x_inner_label"]')
@@ -203,7 +219,7 @@ class BubbleChartComponent {
              * @param {?} d
              * @return {?}
              */
-            (d) => (d.hasCloseIcon ? 1 : 0)));
+            (d) => (d.selected ? 1 : 0)));
         }
     }
     /**

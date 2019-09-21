@@ -79,6 +79,7 @@
     var BubbleChartComponent = /** @class */ (function () {
         function BubbleChartComponent() {
             this._loaded = false;
+            this.selectedBubbles = 0;
             this.bubbles = null;
             this.genericBubble = null;
             this.bubbleChart = null;
@@ -127,35 +128,49 @@
                     .attr('width', this.data.containerWidth)
                     .attr('height', this.data.containerHeight);
                 this.bubbles = this.data.bubblesData;
+                this.selectedBubbles = 0;
+                this.data.bubblesData.forEach(( /**
+                 * @param {?} b
+                 * @return {?}
+                 */function (b) {
+                    if (b.selected)
+                        _this.selectedBubbles++;
+                }));
                 this.initBubbles();
                 if (this.data.isForceSimulationEnabled)
                     this.setBubbleChartSimulation();
                 this.update();
-                if (this.data.setBubbleChart)
-                    this.data.setBubbleChart(this.bubbleChart);
                 if (this.bubbleChart)
                     this.bubbleChart.selectAll("#" + this.data.containerId + " g circle, #" + this.data.containerId + " g text").on('click', ( /**
                      * @param {?} d
                      * @return {?}
                      */function (d) {
-                        if (!_this.emit)
-                            return;
-                        _this.emit('click', { source: "bubble", bubblePayload: d.payload });
+                        if (d.selectable) {
+                            if (!d.selected && _this.selectedBubbles < _this.data.maxBubblesSelected) {
+                                d.selected = true;
+                                _this.update();
+                                if (!_this.emit)
+                                    return;
+                                _this.emit('click', { source: "bubble", bubblePayload: d.payload });
+                            }
+                        }
                     }));
                 if (this.bubbleChart)
                     this.bubbleChart.selectAll('circle[bubblesType="x_inner_circle"], text[bubblesType="x_inner_label"]').on('click', ( /**
                      * @param {?} d
                      * @return {?}
                      */function (d) {
-                        if (!_this.emit)
-                            return;
-                        if (d.hasCloseIcon)
-                            _this.emit('click', { source: "close", bubblePyload: d.payload });
-                        else
-                            _this.emit('click', { source: "bubble", bubblePyload: d.payload });
+                        if (d.selectable) {
+                            d.selected = false;
+                            _this.update();
+                            if (!_this.emit)
+                                return;
+                            if (d.selected)
+                                _this.emit('click', { source: "close", bubblePyload: d.payload });
+                            //else
+                            //  this.emit('click',{source:"bubble",bubblePyload: d.payload});
+                        }
                     }));
-                if (this.data.setUpdateReference)
-                    this.data.setUpdateReference(this.update);
             };
         /** Visually updates the bubble chart */
         /**
@@ -208,7 +223,7 @@
                         .attr("opacity", ( /**
                  * @param {?} d
                  * @return {?}
-                 */function (d) { return (d.hasCloseIcon ? 1 : 0); }));
+                 */function (d) { return (d.selected ? 1 : 0); }));
                 }
                 if (this.bubbleChart) {
                     this.bubbleChart.selectAll('text[bubblesType="x_inner_label"]')
@@ -223,7 +238,7 @@
                         .attr("opacity", ( /**
                  * @param {?} d
                  * @return {?}
-                 */function (d) { return (d.hasCloseIcon ? 1 : 0); }));
+                 */function (d) { return (d.selected ? 1 : 0); }));
                 }
             };
         /** Initialized the chart's bubbles */

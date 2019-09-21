@@ -6,10 +6,10 @@ import { AfterContentChecked } from '@angular/core';
  * @property containerWidth (required)
  * @property containerHeight (required)
  * @property bubblesData (required)
- * @property setBubbleChart (optional)
- * @property setUpdateReference (optional)
  * @property isForceSimulationEnabled (required)
  * @property classes (optional)
+ * @property reset (optional)
+ * @property maxBubblesSelected (optional)
 */
 export interface IBubbleChartData {
     /**
@@ -38,21 +38,17 @@ export interface IBubbleChartData {
      */
     forceSimulationData?: IBubbleChartForceSimulationData;
     /**
-     * callback for saving the created bubble-chart instance
-     */
-    setBubbleChart?: any;
-    /**
-     * callback for saving the update function needed for visually updating the chart
-     */
-    setUpdateReference?: any;
-    /**
      * additional css classes
      */
     classes?: string;
     /**
      * specifies if the bubbles have to be reset from a previous instantiation
      */
-    reset?: Boolean;
+    reset?: boolean;
+    /**
+     * specifies the maximum number of selected bubbles at the same time (default: infinity)
+    */
+    maxBubblesSelected?: number;
 }
 /**
  * Interface for BubbleChartComponent's simulation "data"
@@ -151,7 +147,8 @@ export interface IBubbleText {
  * @property y (optional)
  * @property radius (required)
  * @property color (required)
- * @property hasCloseIcon (optional)
+ * @property selectable (optional)
+ * @property selected (optional)
  * @property payload (optional)
  * @property texts (optional)
  * @property classes (optional)
@@ -179,10 +176,13 @@ export interface IBubbleData {
      */
     color: string;
     /**
-     * whether the bubble has a close button
-     * (considered false if not provided)
+     * specifies if the bubble can be selected or not (default:false)
      */
-    hasCloseIcon?: boolean;
+    selectable?: boolean;
+    /**
+     * specifies if the bubble is selected or not (default:false)
+     */
+    selected?: boolean;
     /**
      * action click's payload
      */
@@ -200,6 +200,7 @@ export declare class BubbleChartComponent implements AfterContentChecked {
     data: IBubbleChartData;
     emit: any;
     private _loaded;
+    private selectedBubbles;
     ngAfterContentChecked(): void;
     private bubbles;
     private genericBubble;
