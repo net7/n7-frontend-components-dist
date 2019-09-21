@@ -71,26 +71,22 @@ class BubbleChartComponent {
      * @return {?}
      */
     ngAfterContentChecked() {
-        console.log('ngAfterContentChecked', { data: this.data, loaded: this._loaded });
         if (!this.data || this._loaded)
             return;
         this._loaded = true;
         if (this.data.setResetReference)
             this.data.setResetReference(this.makeBubbleChart);
-        if (this.data.setUpdateReference)
-            this.data.setUpdateReference(this.update);
         setTimeout((/**
          * @return {?}
          */
-        () => this.makeBubbleChart(this.data)));
+        () => this.makeBubbleChart()));
     }
     /**
      * Makes the whole bubble chart
-     * @param {?} data
+     * @private
      * @return {?}
      */
-    makeBubbleChart(data) {
-        this.data = data;
+    makeBubbleChart() {
         select(`#${this.data.containerId}`).selectAll("*").remove();
         /** @type {?} */
         var pot = document.getElementById(`${this.data.containerId}`);
@@ -130,6 +126,9 @@ class BubbleChartComponent {
                 else
                     this.emit('click', { source: "bubble", bubblePyload: d.payload });
             }));
+        if (this.data.setUpdateReference)
+            this.data.setUpdateReference(this.update);
+        this._loaded = false;
     }
     /**
      * Visually updates the bubble chart
