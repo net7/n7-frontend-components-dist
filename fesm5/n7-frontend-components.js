@@ -81,6 +81,7 @@ var BubbleChartComponent = /** @class */ (function () {
         this.bubbles = null;
         this.genericBubble = null;
         this.bubbleChart = null;
+        this.maxBubblesSelected = -1;
     }
     /**
      * @return {?}
@@ -127,6 +128,8 @@ var BubbleChartComponent = /** @class */ (function () {
             .attr('width', this.data.containerWidth)
             .attr('height', this.data.containerHeight);
         this.bubbles = this.data.bubblesData;
+        if (this.data.maxBubblesSelected)
+            this.maxBubblesSelected = this.data.maxBubblesSelected;
         this.selectedBubbles = 0;
         this.data.bubblesData.forEach((/**
          * @param {?} b
@@ -147,13 +150,8 @@ var BubbleChartComponent = /** @class */ (function () {
              */
             function (d) {
                 if (d.selectable) {
-                    if (!d.selected && _this.selectedBubbles < _this.data.maxBubblesSelected) {
-                        d.selected = true;
-                        _this.update();
-                        if (!_this.emit)
-                            return;
-                        _this.emit('click', { source: "bubble", bubblePayload: d.payload });
-                    }
+                    if (!d.selected)
+                        _this.selectbubbleIfPossible(d);
                 }
             }));
         if (this.bubbleChart)
@@ -163,16 +161,41 @@ var BubbleChartComponent = /** @class */ (function () {
              */
             function (d) {
                 if (d.selectable) {
-                    d.selected = false;
-                    _this.update();
-                    if (!_this.emit)
-                        return;
-                    if (d.selected)
-                        _this.emit('click', { source: "close", bubblePyload: d.payload });
-                    //else
-                    //  this.emit('click',{source:"bubble",bubblePyload: d.payload});
+                    if (!d.selected)
+                        _this.selectbubbleIfPossible(d);
+                    else {
+                        d.selected = false;
+                        _this.selectedBubbles--;
+                        _this.update();
+                        if (!_this.emit)
+                            return;
+                        if (d.selected)
+                            _this.emit('click', { source: "close", bubblePyload: d.payload });
+                        //else
+                        //  this.emit('click',{source:"bubble",bubblePyload: d.payload});
+                    }
                 }
             }));
+    };
+    /**
+     * @private
+     * @param {?} bubble
+     * @return {?}
+     */
+    BubbleChartComponent.prototype.selectbubbleIfPossible = /**
+     * @private
+     * @param {?} bubble
+     * @return {?}
+     */
+    function (bubble) {
+        if (this.maxBubblesSelected < 0 || this.selectedBubbles < this.maxBubblesSelected) {
+            bubble.selected = true;
+            this.selectedBubbles++;
+            this.update();
+            if (!this.emit)
+                return;
+            this.emit('click', { source: "bubble", bubblePayload: bubble.payload });
+        }
     };
     /** Visually updates the bubble chart */
     /**
@@ -1389,7 +1412,8 @@ var dataSource = {
             y: cHeight / 2 + 50,
             "radius": 9746 / 75,
             color: "#79ad87",
-            hasCloseIcon: true,
+            selected: true,
+            selectable: true,
             payload: {
                 id: "mlnBubble"
             }
@@ -1422,7 +1446,8 @@ var dataSource = {
             y: cHeight - 120,
             "radius": 3981 / 45,
             color: "#d19b13",
-            hasCloseIcon: false,
+            selected: false,
+            selectable: true,
             payload: {
                 id: "naplBubble"
             }
@@ -1454,7 +1479,8 @@ var dataSource = {
             x: cWidth - (cWidth / 4.5),
             y: (cHeight / 8),
             "radius": 4523 / 30,
-            hasCloseIcon: true,
+            selected: true,
+            selectable: true,
             color: "#6184ed",
             payload: {
                 id: "romBubble"
@@ -1488,7 +1514,8 @@ var dataSource = {
             y: cHeight - (cHeight / 3.5),
             "radius": 3981 / 65,
             color: "#d19b13",
-            hasCloseIcon: true,
+            selected: true,
+            selectable: true,
             payload: {
                 id: "spzBubble"
             }
@@ -1520,7 +1547,7 @@ var dataSource = {
             x: 200,
             y: 200,
             radius: 2342 / 25,
-            hasCloseIcon: false,
+            selectable: true,
             color: "#6184ed",
             payload: {
                 id: "lucBubble"
@@ -1535,7 +1562,8 @@ var dataSource = {
         collisionStrengh: 0.99,
         collisionIterations: 1,
         velocityDecay: 0.65
-    }
+    },
+    maxBubblesSelected: 3
 };
 /** @type {?} */
 var BUBBLECHART_MOCK = dataSource;
