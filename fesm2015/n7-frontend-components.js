@@ -89,7 +89,6 @@ class BubbleChartComponent {
     }
     /**
      * Makes the whole bubble chart
-     * @private
      * @return {?}
      */
     makeBubbleChart() {
@@ -144,10 +143,7 @@ class BubbleChartComponent {
                         this.update();
                         if (!this.emit)
                             return;
-                        if (d.selected)
-                            this.emit('click', { source: "close", bubblePyload: d.payload });
-                        //else
-                        //  this.emit('click',{source:"bubble",bubblePyload: d.payload});
+                        this.emit('click', { source: "close", bubblePyload: d.payload });
                     }
                 }
             }));

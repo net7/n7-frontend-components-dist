@@ -207,7 +207,7 @@ export declare class BubbleChartComponent implements AfterContentChecked {
     private bubbleChart;
     private maxBubblesSelected;
     /** Makes the whole bubble chart */
-    private makeBubbleChart;
+    makeBubbleChart(): void;
     private selectbubbleIfPossible;
     /** Visually updates the bubble chart */
     update(): void;

@@ -108,12 +108,10 @@ var BubbleChartComponent = /** @class */ (function () {
     /** Makes the whole bubble chart */
     /**
      * Makes the whole bubble chart
-     * @private
      * @return {?}
      */
     BubbleChartComponent.prototype.makeBubbleChart = /**
      * Makes the whole bubble chart
-     * @private
      * @return {?}
      */
     function () {
@@ -169,10 +167,7 @@ var BubbleChartComponent = /** @class */ (function () {
                         _this.update();
                         if (!_this.emit)
                             return;
-                        if (d.selected)
-                            _this.emit('click', { source: "close", bubblePyload: d.payload });
-                        //else
-                        //  this.emit('click',{source:"bubble",bubblePyload: d.payload});
+                        _this.emit('click', { source: "close", bubblePyload: d.payload });
                     }
                 }
             }));
