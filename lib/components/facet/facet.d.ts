@@ -14,6 +14,7 @@ export interface IFacetData {
      * search bar to find a filter
      */
     input?: {
+        label?: string;
         placeholder: string;
         icon?: string;
         classes?: any;

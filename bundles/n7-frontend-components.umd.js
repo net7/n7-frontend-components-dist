@@ -79,11 +79,9 @@
     var BubbleChartComponent = /** @class */ (function () {
         function BubbleChartComponent() {
             this._loaded = false;
-            this.selectedBubbles = 0;
             this.bubbles = null;
             this.genericBubble = null;
             this.bubbleChart = null;
-            this.maxBubblesSelected = -1;
         }
         /**
          * @return {?}
@@ -105,6 +103,8 @@
                 setTimeout(( /**
                  * @return {?}
                  */function () { return _this.makeBubbleChart(); }));
+                if (this.data.setUpdateReference)
+                    this.data.setUpdateReference(this.update.bind(this));
             };
         /** Makes the whole bubble chart */
         /**
@@ -127,16 +127,6 @@
                     .attr('width', this.data.containerWidth)
                     .attr('height', this.data.containerHeight);
                 this.bubbles = this.data.bubblesData;
-                if (this.data.maxBubblesSelected)
-                    this.maxBubblesSelected = this.data.maxBubblesSelected;
-                this.selectedBubbles = 0;
-                this.data.bubblesData.forEach(( /**
-                 * @param {?} b
-                 * @return {?}
-                 */function (b) {
-                    if (b.selected)
-                        _this.selectedBubbles++;
-                }));
                 this.initBubbles();
                 if (this.data.isForceSimulationEnabled)
                     this.setBubbleChartSimulation();
@@ -146,49 +136,24 @@
                      * @param {?} d
                      * @return {?}
                      */function (d) {
-                        if (d.selectable) {
-                            if (!d.selected)
-                                _this.selectbubbleIfPossible(d);
-                        }
+                        if (!_this.emit)
+                            return;
+                        _this.emit('click', { source: "bubble", bubblePayload: d.payload, bubble: d });
                     }));
                 if (this.bubbleChart)
                     this.bubbleChart.selectAll('circle[bubblesType="x_inner_circle"], text[bubblesType="x_inner_label"]').on('click', ( /**
                      * @param {?} d
                      * @return {?}
                      */function (d) {
-                        if (d.selectable) {
-                            if (!d.selected)
-                                _this.selectbubbleIfPossible(d);
-                            else {
-                                d.selected = false;
-                                _this.selectedBubbles--;
-                                _this.update();
-                                if (!_this.emit)
-                                    return;
-                                _this.emit('click', { source: "close", bubblePayload: d.payload });
-                            }
+                        if (d.hasCloseIcon) {
+                            if (!_this.emit)
+                                return;
+                            _this.emit('click', { source: "close", bubblePayload: d.payload, bubble: d });
+                        }
+                        else {
+                            _this.emit('click', { source: "bubble", bubblePayload: d.payload, bubble: d });
                         }
                     }));
-            };
-        /**
-         * @private
-         * @param {?} bubble
-         * @return {?}
-         */
-        BubbleChartComponent.prototype.selectbubbleIfPossible = /**
-         * @private
-         * @param {?} bubble
-         * @return {?}
-         */
-            function (bubble) {
-                if (this.maxBubblesSelected < 0 || this.selectedBubbles < this.maxBubblesSelected) {
-                    bubble.selected = true;
-                    this.selectedBubbles++;
-                    this.update();
-                    if (!this.emit)
-                        return;
-                    this.emit('click', { source: "bubble", bubblePayload: bubble.payload });
-                }
             };
         /** Visually updates the bubble chart */
         /**
@@ -241,7 +206,7 @@
                         .attr("opacity", ( /**
                  * @param {?} d
                  * @return {?}
-                 */function (d) { return (d.selected ? 1 : 0); }));
+                 */function (d) { return (d.hasCloseIcon ? 1 : 0); }));
                 }
                 if (this.bubbleChart) {
                     this.bubbleChart.selectAll('text[bubblesType="x_inner_label"]')
@@ -256,7 +221,7 @@
                         .attr("opacity", ( /**
                  * @param {?} d
                  * @return {?}
-                 */function (d) { return (d.selected ? 1 : 0); }));
+                 */function (d) { return (d.hasCloseIcon ? 1 : 0); }));
                 }
             };
         /** Initialized the chart's bubbles */
@@ -529,7 +494,7 @@
         FacetComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-facet',
-                        template: "<div *ngIf=\"data\" class=\"n7-facet\">\n    <!-- Checkboxes -->\n    <div class=\"n7-facet__check-wrapper\"*ngIf=\"data.checks\">\n        <div *ngFor=\"let check of data.checks; let i = index\" class=\"n7-facet__check {{check.classes || ''}}\">\n            <input type=\"checkbox\" \n                   class=\"n7-facet__check-input\" \n                   id=\"n7-facet-check-{{i}}\"\n                   (change)=\"onCheck(check.payload, $event)\">\n            <label class=\"n7-facet__check-label\" for=\"n7-facet-check-{{i}}\">\n                {{ check.label }}\n            </label>\n        </div>\n    </div>\n\n    <!-- Search bar -->\n    <div class=\"n7-facet__search-wrapper\" *ngIf=\"data.input\">\n        <label class=\"n7-facet__search-label\" for=\"n7-facet-search-input\">\n            LABEL\n        </label>\n        <div class=\"n7-facet__search-input-wrapper\">\n            <input type=\"text\" \n                class=\"n7-facet__search-input {{data.input.classes || ''}}\" \n                id=\"n7-facet-search-input\"\n                placeholder=\"{{data.input.placeholder || ''}}\" \n                (input)=\"onInputChange(data.input.payload, $event)\"\n                (keyup.enter)=\"onInputEnter(data.input.payload, $event)\">\n            <span class=\"n7-facet__search-icon {{data.input.icon || ''}}\"   \n                *ngIf=\"data.input.icon\"\n                (click)=\"onClick(data.input.payload)\">\n            </span>\n        </div>\n    </div>\n\n    <!-- Filters -->\n    <div *ngIf=\"data.filters\" class=\"n7-facet__filter-wrapper\">\n        <div *ngFor=\"let filter of data.filters\" \n             class=\"n7-facet__filter {{filter.classes || ''}}\"\n             (click)=\"onClick(filter.payload)\">\n            <span *ngIf=\"filter.icon\" class=\"n7-facet__filter-icon {{filter.icon}}\"></span>\n            <span class=\"n7-facet__filter-text\">{{ filter.text }}</span>\n            <span class=\"n7-facet__filter-counter\">{{ filter.counter }}</span>\n        </div>\n    </div>\n</div>"
+                        template: "<div *ngIf=\"data\" class=\"n7-facet\">\n    <!-- Checkboxes -->\n    <div class=\"n7-facet__check-wrapper\"*ngIf=\"data.checks\">\n        <div *ngFor=\"let check of data.checks; let i = index\" class=\"n7-facet__check {{check.classes || ''}}\">\n            <input type=\"checkbox\" \n                   class=\"n7-facet__check-input\" \n                   id=\"n7-facet-check-{{i}}\"\n                   (change)=\"onCheck(check.payload, $event)\">\n            <label class=\"n7-facet__check-label\" for=\"n7-facet-check-{{i}}\">\n                {{ check.label }}\n            </label>\n        </div>\n    </div>\n\n    <!-- Search bar -->\n    <div class=\"n7-facet__search-wrapper\" *ngIf=\"data.input\">\n        <label class=\"n7-facet__search-label\" for=\"n7-facet-search-input\">\n            {{ data.input.label }}\n        </label>\n        <div class=\"n7-facet__search-input-wrapper\">\n            <input type=\"text\" \n                class=\"n7-facet__search-input {{data.input.classes || ''}}\" \n                id=\"n7-facet-search-input\"\n                placeholder=\"{{data.input.placeholder || ''}}\" \n                (input)=\"onInputChange(data.input.payload, $event)\"\n                (keyup.enter)=\"onInputEnter(data.input.payload, $event)\">\n            <span class=\"n7-facet__search-icon {{data.input.icon || ''}}\"   \n                *ngIf=\"data.input.icon\"\n                (click)=\"onClick(data.input.payload)\">\n            </span>\n        </div>\n    </div>\n\n    <!-- Filters -->\n    <div *ngIf=\"data.filters\" class=\"n7-facet__filter-wrapper\">\n        <div *ngFor=\"let filter of data.filters\" \n             class=\"n7-facet__filter {{filter.classes || ''}}\"\n             (click)=\"onClick(filter.payload)\">\n            <span *ngIf=\"filter.icon\" class=\"n7-facet__filter-icon {{filter.icon}}\"></span>\n            <span class=\"n7-facet__filter-text\">{{ filter.text }}</span>\n            <span class=\"n7-facet__filter-counter\">{{ filter.counter }}</span>\n        </div>\n    </div>\n</div>"
                     }] }
         ];
         FacetComponent.propDecorators = {
@@ -1608,6 +1573,7 @@
             { label: 'Check 5', payload: 'check5' },
         ],
         input: {
+            label: 'SEARCH LABEL',
             placeholder: 'Search',
             icon: 'n7-icon-search',
             payload: 'search',

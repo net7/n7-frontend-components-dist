@@ -9,7 +9,6 @@ import { AfterContentChecked } from '@angular/core';
  * @property isForceSimulationEnabled (required)
  * @property classes (optional)
  * @property reset (optional)
- * @property maxBubblesSelected (optional)
 */
 export interface IBubbleChartData {
     /**
@@ -46,9 +45,9 @@ export interface IBubbleChartData {
      */
     reset?: boolean;
     /**
-     * specifies the maximum number of selected bubbles at the same time (default: infinity)
-    */
-    maxBubblesSelected?: number;
+     * callback for saving the update function needed for visually updating the chart
+     */
+    setUpdateReference?: any;
 }
 /**
  * Interface for BubbleChartComponent's simulation "data"
@@ -147,8 +146,7 @@ export interface IBubbleText {
  * @property y (optional)
  * @property radius (required)
  * @property color (required)
- * @property selectable (optional)
- * @property selected (optional)
+ * @property hasCloseIcon (optional)
  * @property payload (optional)
  * @property texts (optional)
  * @property classes (optional)
@@ -176,13 +174,9 @@ export interface IBubbleData {
      */
     color: string;
     /**
-     * specifies if the bubble can be selected or not (default:false)
+     * specifies if the bubble has a close icon (default:false)
      */
-    selectable?: boolean;
-    /**
-     * specifies if the bubble is selected or not (default:false)
-     */
-    selected?: boolean;
+    hasCloseIcon?: boolean;
     /**
      * action click's payload
      */
@@ -200,15 +194,12 @@ export declare class BubbleChartComponent implements AfterContentChecked {
     data: IBubbleChartData;
     emit: any;
     private _loaded;
-    private selectedBubbles;
     ngAfterContentChecked(): void;
     private bubbles;
     private genericBubble;
     private bubbleChart;
-    private maxBubblesSelected;
     /** Makes the whole bubble chart */
     makeBubbleChart(): void;
-    private selectbubbleIfPossible;
     /** Visually updates the bubble chart */
     update(): void;
     /** Initialized the chart's bubbles */
