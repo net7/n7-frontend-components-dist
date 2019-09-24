@@ -48,6 +48,10 @@ export interface IBubbleChartData {
      * callback for saving the update function needed for visually updating the chart
      */
     setUpdateReference?: any;
+    /**
+     * callback for saving/gettin a reference of the bubbles chart instance
+     */
+    setBubbleChart?: any;
 }
 /**
  * Interface for BubbleChartComponent's simulation "data"
