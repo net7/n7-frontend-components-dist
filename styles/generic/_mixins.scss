@@ -40,3 +40,33 @@
         display: block;
     }
 }
+
+
+// ------------------------------------ //
+// #INPUT PLACEHOLDER STYLE
+// ------------------------------------ //
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+// ------------------------------------ //
+// #FLEX-ITEM-WIDTH
+// ------------------------------------ //
+@mixin flex-item-width($width) {
+    flex: 0 0 $width;
+    width: $width;
+}

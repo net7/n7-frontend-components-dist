@@ -86,6 +86,13 @@
             }
         }
     }
+
+    /* is-collapsed: all children are hidden */
+    &__item.is-collapsed {
+        .n7-tree__children-wrapper {
+            display: none;
+        }
+    }
 }
 
 

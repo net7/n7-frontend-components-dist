@@ -8,7 +8,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AlertComponent = /** @class */ (function () {
         function AlertComponent() {
@@ -41,7 +41,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var BreadcrumbsComponent = /** @class */ (function () {
         function BreadcrumbsComponent() {
@@ -74,7 +74,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var BubbleChartComponent = /** @class */ (function () {
         function BubbleChartComponent() {
@@ -381,7 +381,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ChartComponent = /** @class */ (function () {
         function ChartComponent() {
@@ -424,7 +424,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FacetComponent = /** @class */ (function () {
         function FacetComponent() {
@@ -506,7 +506,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FacetHeaderComponent = /** @class */ (function () {
         function FacetHeaderComponent() {
@@ -539,7 +539,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FacetYearRangeComponent = /** @class */ (function () {
         function FacetYearRangeComponent() {
@@ -607,7 +607,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * HeaderComponent <n7-header>
@@ -681,7 +681,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var HeroComponent = /** @class */ (function () {
         function HeroComponent() {
@@ -744,7 +744,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ItemPreviewComponent = /** @class */ (function () {
         function ItemPreviewComponent() {
@@ -777,7 +777,85 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var InnerTitleComponent = /** @class */ (function () {
+        function InnerTitleComponent() {
+        }
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        InnerTitleComponent.prototype.onClick = /**
+         * @param {?} payload
+         * @return {?}
+         */
+            function (payload) {
+                if (!this.emit)
+                    return;
+                this.emit('click', payload);
+            };
+        /**
+         * @param {?} payload
+         * @param {?} event
+         * @return {?}
+         */
+        InnerTitleComponent.prototype.onChange = /**
+         * @param {?} payload
+         * @param {?} event
+         * @return {?}
+         */
+            function (payload, event) {
+                if (!this.emit)
+                    return;
+                this.emit('changed ' + payload + ' to ' + event.target.value);
+            };
+        /**
+         * @param {?} payload
+         * @param {?} event
+         * @return {?}
+         */
+        InnerTitleComponent.prototype.onInputChange = /**
+         * @param {?} payload
+         * @param {?} event
+         * @return {?}
+         */
+            function (payload, event) {
+                if (!this.emit)
+                    return;
+                this.emit('changed ' + payload + ' to ' + event.target.value);
+            };
+        /**
+         * @param {?} payload
+         * @param {?} event
+         * @return {?}
+         */
+        InnerTitleComponent.prototype.onInputEnter = /**
+         * @param {?} payload
+         * @param {?} event
+         * @return {?}
+         */
+            function (payload, event) {
+                if (!this.emit)
+                    return;
+                this.emit(payload + ' entered search: ' + event.target.value);
+            };
+        InnerTitleComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-inner-title',
+                        template: "<div *ngIf=\"data\" class=\"n7-inner-title\">\n    <span *ngIf=\"data.icon\" class=\"n7-inner-title__icon-left {{data.icon || ''}}\"></span>\n\n    <div class=\"n7-inner-title__wrapper-texts\">\n        <div class=\"n7-inner-title__title {{data.title.main.classes || ''}}\">\n            {{data.title.main.text}}\n        </div>\n        <div *ngIf=\"data.title.secondary\" \n             class=\"n7-inner-title__subtitle {{data.title.secondary.classes || ''}}\">\n            {{data.title.secondary.text}}\n        </div>\n    </div>\n\n    <div class=\"n7-inner-title__tools\">\n        <!-- Toolbar label -->\n        <div *ngIf=\"data.tools\"\n            class=\"n7-inner-title__tools-label \">\n            {{data.tools}}\n        </div>\n        <!-- Actions -->\n        <ng-container *ngTemplateOutlet=\"actions; \n                    context:{$implicit: data.actions}\">\n        </ng-container>\n    </div>\n\n\n</div>\n\n<!-- Template actions -->\n<ng-template #actions let-action>\n    <ng-container *ngIf=\"action.select\">\n        <ng-container *ngTemplateOutlet=\"select;\n                      context:{$implicit: action.select}\">\n        </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"action.search\">\n        <ng-container *ngTemplateOutlet=\"search; \n                      context:{$implicit: action.search}\">\n        </ng-container>\n    </ng-container>\n    \n    <ng-container *ngIf=\"action.buttons\">\n        <ng-container *ngTemplateOutlet=\"buttons;\n                      context:{$implicit: action.buttons}\">\n        </ng-container>\n    </ng-container>\n</ng-template>\n    \n<!-- Template sorting -->\n<ng-template #select let-select>\n<div class=\"n7-inner-title__sorting\">\n    <span *ngIf=\"select.label\"\n          class=\"n7-inner-title__sorting-label \">\n        {{select.label}}\n    </span>\n    <select (change)=\"onChange(select.payload, $event)\"\n            class=\"n7-inner-title__sorting-select\">\n        <option *ngFor=\"let opt of select.options\"\n                class=\"n7-inner-title__sorting-option \">\n            {{opt.value}}\n        </option>\n    </select>\n</div>\n</ng-template>\n\n<!-- Template search -->\n<ng-template #search let-search>\n    <div class=\"n7-inner-title__search\">\n        <input type=\"text\" \n            class=\"n7-inner-title__search-bar \" \n            placeholder=\"{{search.placeholder}}\"\n            (input)=\"onInputChange(search.payload, $event)\"\n            (keyup.enter)=\"onInputEnter(search.payload, $event.target.value)\">\n     <button *ngIf=\"search.button\" \n             (click)=\"onClick(search.button.payload)\"\n             class=\"n7-btn n7-inner-title__search-button \">\n         {{search.button.text}}\n     </button>\n    </div>\n</ng-template>\n\n<!-- Template buttons -->\n<ng-template #buttons let-buttons>\n    <div class=\"n7-inner-title__buttons-wrapper\">\n        <div *ngFor=\"let btn of buttons\"\n            class=\"n7-inner-title__single-button-wrapper\">\n            <button (click)=\"onClick(btn.payload)\" \n                    class=\"n7-btn n7-inner-title__buttons-action {{btn.classes || ''}}\">\n                {{btn.text}}\n            </button>\n        </div>\n    </div>\n</ng-template>"
+                    }] }
+        ];
+        InnerTitleComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return InnerTitleComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LoaderComponent = /** @class */ (function () {
         function LoaderComponent() {
@@ -796,7 +874,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NavComponent = /** @class */ (function () {
         function NavComponent() {
@@ -829,7 +907,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var PaginationComponent = /** @class */ (function () {
         function PaginationComponent() {
@@ -862,7 +940,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SidebarHeaderComponent = /** @class */ (function () {
         function SidebarHeaderComponent() {
@@ -895,7 +973,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var TableComponent = /** @class */ (function () {
         function TableComponent() {
@@ -958,7 +1036,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var TagComponent = /** @class */ (function () {
         function TagComponent() {
@@ -991,7 +1069,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ToastComponent = /** @class */ (function () {
         function ToastComponent() {
@@ -1024,7 +1102,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var TreeComponent = /** @class */ (function () {
         function TreeComponent() {
@@ -1057,7 +1135,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var WizardComponent = /** @class */ (function () {
         function WizardComponent() {
@@ -1090,7 +1168,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [
@@ -1104,6 +1182,7 @@
         HeaderComponent,
         HeroComponent,
         ItemPreviewComponent,
+        InnerTitleComponent,
         LoaderComponent,
         NavComponent,
         PaginationComponent,
@@ -1134,7 +1213,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var ALERT_MOCK = {
@@ -1147,7 +1226,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var BREADCRUMBS_MOCK = {
@@ -1177,7 +1256,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var cWidth = 1000;
@@ -1467,7 +1546,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var CHART_MOCK = {
@@ -1557,7 +1636,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var FACET_MOCK = {
@@ -1645,7 +1724,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var FACET_HEADER_MOCK = {
@@ -1659,7 +1738,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var FACET_YEAR_RANGE_MOCK = {
@@ -1694,7 +1773,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var HEADER_MOCK = {
@@ -1746,7 +1825,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var HERO_MOCK = {
@@ -1767,7 +1846,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var ITEM_PREVIEW_MOCK = {
@@ -1807,7 +1886,49 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var INNER_TITLE_MOCK = {
+        icon: 'n7-icon-file3',
+        title: {
+            main: {
+                text: 'Main text',
+                classes: 'bold',
+            },
+            secondary: {
+                text: 'Secondary text',
+                classes: 'italic',
+            }
+        },
+        tools: 'Tools text',
+        actions: {
+            select: {
+                label: 'Sort',
+                options: [
+                    { value: 'Alphabetic', payload: 'alphabetic' },
+                    { value: 'By Date', payload: 'date' },
+                ],
+                payload: 'select-sorting'
+            },
+            search: {
+                placeholder: 'Search',
+                payload: 'search-input',
+                button: {
+                    text: 'SEARCH',
+                    payload: 'search-button',
+                }
+            },
+            buttons: [
+                { text: 'BUTTON 1', payload: 'btn1' },
+                { text: 'BUTTON 2', payload: 'btn2', classes: 'n7-btn-cta' },
+            ]
+        }
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var LOADER_MOCK = {
@@ -1816,7 +1937,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var NAV_MOCK = {
@@ -1831,7 +1952,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var PAGINATION_MOCK = {
@@ -1850,7 +1971,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var SIDEBAR_HEADER_MOCK = {
@@ -1864,7 +1985,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var TABLE_MOCK = {
@@ -2025,7 +2146,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var TAG_MOCK = {
@@ -2038,7 +2159,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var TOAST_MOCK = {
@@ -2093,7 +2214,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var TREE_MOCK = {
@@ -2256,9 +2377,49 @@
                             icon: 'n7-icon-angle-right',
                             payload: 'toggle'
                         },
-                        text: 'ISOLA Aimaro',
+                        text: 'Has childs, but is closed!',
                         classes: 'is-collapsed',
-                        payload: ''
+                        payload: '',
+                        items: [
+                            {
+                                icon: 'n7-icon-file3',
+                                text: 'Child: Cinema teatro Augusteo e stazione centrale della funicolare, Napoli ([1926] - [1927])',
+                                payload: '',
+                            },
+                            {
+                                classes: 'is-active',
+                                icon: 'n7-icon-file3',
+                                text: 'Child: Stadio comunale G.Berta, Firenze ([1929] - [1932])',
+                                payload: '',
+                            },
+                            {
+                                icon: 'n7-icon-file3',
+                                text: 'Child: Monumento alla Bandiera, Roma (1931)',
+                                payload: '',
+                            },
+                            {
+                                img: 'http://placeimg.com/25/25/arch/grayscale',
+                                text: 'Child: Brevetto hangar circolare con piattaforma anulare rotante (1932)',
+                                payload: '',
+                            },
+                            {
+                                img: 'http://placeimg.com/25/25/arch/grayscale',
+                                text: 'Child: Stadio da 120.000 posti, Roma ([1933])',
+                                payload: '',
+                                classes: 'is-active'
+                            },
+                            {
+                                icon: 'n7-icon-file3',
+                                text: 'Child: Magazzino ([1934])',
+                                payload: '',
+                                classes: 'is-active',
+                            },
+                            {
+                                icon: 'n7-icon-file3',
+                                text: 'Child: Aviorimesse, Orvieto (TR), Orbetello (GR), Torre del Lago (LU), Marsala (TP), Trapani ([1935] - 1941)',
+                                payload: '',
+                            },
+                        ]
                     },
                     {
                         toggle: {
@@ -2325,7 +2486,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var WIZARD_MOCK = {
@@ -2359,12 +2520,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.DvComponentsLibModule = DvComponentsLibModule;
@@ -2378,6 +2539,7 @@
     exports.HeaderComponent = HeaderComponent;
     exports.HeroComponent = HeroComponent;
     exports.ItemPreviewComponent = ItemPreviewComponent;
+    exports.InnerTitleComponent = InnerTitleComponent;
     exports.LoaderComponent = LoaderComponent;
     exports.NavComponent = NavComponent;
     exports.PaginationComponent = PaginationComponent;
@@ -2397,6 +2559,7 @@
     exports.HEADER_MOCK = HEADER_MOCK;
     exports.HERO_MOCK = HERO_MOCK;
     exports.ITEM_PREVIEW_MOCK = ITEM_PREVIEW_MOCK;
+    exports.INNER_TITLE_MOCK = INNER_TITLE_MOCK;
     exports.LOADER_MOCK = LOADER_MOCK;
     exports.NAV_MOCK = NAV_MOCK;
     exports.PAGINATION_MOCK = PAGINATION_MOCK;
