@@ -106,7 +106,7 @@ class BubbleChartComponent {
         if (this.data.isForceSimulationEnabled)
             this.setBubbleChartSimulation();
         this.update();
-        if (this.bubbleChart)
+        if (this.bubbleChart) {
             this.bubbleChart.selectAll(`#${this.data.containerId} g circle, #${this.data.containerId} g text`).on('click', (/**
              * @param {?} d
              * @return {?}
@@ -116,8 +116,7 @@ class BubbleChartComponent {
                     return;
                 this.emit('click', { source: "bubble", bubblePayload: d.payload, bubble: d });
             }));
-        if (this.bubbleChart)
-            this.bubbleChart.selectAll('circle[bubblesType="x_inner_circle"], text[bubblesType="x_inner_label"]').on('click', (/**
+            this.bubbleChart.selectAll('circle[b-type="x_inner_circle"], text[b-type="x_inner_label"]').on('click', (/**
              * @param {?} d
              * @return {?}
              */
@@ -131,6 +130,25 @@ class BubbleChartComponent {
                     this.emit('click', { source: "bubble", bubblePayload: d.payload, bubble: d });
                 }
             }));
+            this.bubbleChart.selectAll(`#${this.data.containerId} g`).on('mouseenter', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            (d) => {
+                if (!this.emit)
+                    return;
+                this.emit('mouse_enter', { bubblePayload: d.payload, bubble: d });
+            }));
+            this.bubbleChart.selectAll(`#${this.data.containerId} g`).on('mouseleave', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            (d) => {
+                if (!this.emit)
+                    return;
+                this.emit('mouse_leave', { bubblePayload: d.payload, bubble: d });
+            }));
+        }
         if (this.data.setBubbleChart)
             this.data.setBubbleChart(this.bubbleChart);
     }
@@ -165,13 +183,13 @@ class BubbleChartComponent {
                  */
                 tx => {
                     /** @type {?} */
-                    var txt = this.bubbleChart.select(`text[bubblesElId=${tx.id}]`);
+                    var txt = this.bubbleChart.select(`text[id=${tx.id}]`);
                     txt.attr("dy", tx.y_function);
                     txt.attr("dx", tx.x_function);
                 }));
             }));
         if (this.bubbleChart) {
-            this.bubbleChart.selectAll('circle[bubblesType="x_inner_circle"]')
+            this.bubbleChart.selectAll('circle[b-type="x_inner_circle"]')
                 .attr("cy", (/**
              * @param {?} d
              * @return {?}
@@ -189,7 +207,7 @@ class BubbleChartComponent {
             (d) => (d.hasCloseIcon ? 1 : 0)));
         }
         if (this.bubbleChart) {
-            this.bubbleChart.selectAll('text[bubblesType="x_inner_label"]')
+            this.bubbleChart.selectAll('text[b-type="x_inner_label"]')
                 .attr("dy", (/**
              * @param {?} d
              * @return {?}
@@ -218,7 +236,7 @@ class BubbleChartComponent {
                 .data(this.bubbles)
                 .enter()
                 .append('g')
-                .attr("bubblesElId", (/**
+                .attr("id", (/**
              * @param {?} d
              * @return {?}
              */
@@ -261,7 +279,7 @@ class BubbleChartComponent {
              */
             (c) => {
                 /** @type {?} */
-                let group = this.bubbleChart.select(`g[bubblesElId=${c.id}]`);
+                let group = this.bubbleChart.select(`g[id=${c.id}]`);
                 c.texts.forEach((/**
                  * @param {?} tx
                  * @return {?}
@@ -274,7 +292,7 @@ class BubbleChartComponent {
                         .text(tx.label)
                         .attr("font-size", tx.fontSize_function)
                         .attr("fill", tx.color)
-                        .attr("bubblesElId", tx.id)
+                        .attr("id", tx.id)
                         .attr("class", tx.classes);
                 }));
             }));
@@ -302,7 +320,7 @@ class BubbleChartComponent {
              * @return {?}
              */
             (d) => d.y))
-                .attr("bubblesType", "x_inner_circle")
+                .attr("b-type", "x_inner_circle")
                 .attr("class", "circle_x-inner-circle");
         if (this.bubbleChart)
             this.bubbleChart.selectAll(`#${this.data.containerId} g`)
@@ -313,7 +331,7 @@ class BubbleChartComponent {
                 .html("&#10005;")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", 15)
-                .attr("bubblesType", "x_inner_label")
+                .attr("b-type", "x_inner_label")
                 .attr("class", "circle_x-label");
     }
     /**
@@ -453,7 +471,7 @@ class FacetComponent {
 FacetComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-facet',
-                template: "<div *ngIf=\"data\" class=\"n7-facet\">\n    <!-- Checkboxes -->\n    <div class=\"n7-facet__check-wrapper\"*ngIf=\"data.checks\">\n        <div *ngFor=\"let check of data.checks; let i = index\" class=\"n7-facet__check {{check.classes || ''}}\">\n            <input type=\"checkbox\" \n                   class=\"n7-facet__check-input\" \n                   id=\"n7-facet-check-{{i}}\"\n                   (change)=\"onCheck(check.payload, $event)\">\n            <label class=\"n7-facet__check-label\" for=\"n7-facet-check-{{i}}\">\n                {{ check.label }}\n            </label>\n        </div>\n    </div>\n\n    <!-- Search bar -->\n    <div class=\"n7-facet__search-wrapper\" *ngIf=\"data.input\">\n        <label class=\"n7-facet__search-label\" for=\"n7-facet-search-input\">\n            {{ data.input.label }}\n        </label>\n        <div class=\"n7-facet__search-input-wrapper\">\n            <input type=\"text\" \n                class=\"n7-facet__search-input {{data.input.classes || ''}}\" \n                id=\"n7-facet-search-input\"\n                placeholder=\"{{data.input.placeholder || ''}}\" \n                (input)=\"onInputChange(data.input.payload, $event)\"\n                (keyup.enter)=\"onInputEnter(data.input.payload, $event)\">\n            <span class=\"n7-facet__search-icon {{data.input.icon || ''}}\"   \n                *ngIf=\"data.input.icon\"\n                (click)=\"onClick(data.input.payload)\">\n            </span>\n        </div>\n    </div>\n\n    <!-- Filters -->\n    <div *ngIf=\"data.filters\" class=\"n7-facet__filter-wrapper\">\n        <div *ngFor=\"let filter of data.filters\" \n             class=\"n7-facet__filter {{filter.classes || ''}}\"\n             (click)=\"onClick(filter.payload)\">\n            <span *ngIf=\"filter.icon\" class=\"n7-facet__filter-icon {{filter.icon}}\"></span>\n            <span class=\"n7-facet__filter-text\">{{ filter.text }}</span>\n            <span class=\"n7-facet__filter-counter\">{{ filter.counter }}</span>\n        </div>\n    </div>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-facet\">\n    <!-- Checkboxes -->\n    <div class=\"n7-facet__check-wrapper\"*ngIf=\"data.checks\">\n        <div *ngFor=\"let check of data.checks; let i = index\" class=\"n7-facet__check {{check.classes || ''}}\">\n            <input type=\"checkbox\" \n                   class=\"n7-facet__check-input\" \n                   id=\"n7-facet-check-{{i}}\"\n                   (change)=\"onCheck(check.payload, $event)\">\n            <label class=\"n7-facet__check-label\" for=\"n7-facet-check-{{i}}\">\n                {{ check.label }}\n            </label>\n        </div>\n    </div>\n\n    <!-- Search bar -->\n    <div class=\"n7-facet__search-wrapper\" *ngIf=\"data.input\">\n        <label class=\"n7-facet__search-label\" for=\"n7-facet-search-input\">\n            {{ data.input.label }}\n        </label>\n        <div class=\"n7-facet__search-input-wrapper\">\n            <input type=\"text\"\n                   [disabled] = \"data.input.disabled\"\n                   class=\"n7-facet__search-input {{data.input.classes || ''}}\" \n                   id=\"n7-facet-search-input\"\n                   placeholder=\"{{data.input.placeholder || ''}}\" \n                   (input)=\"onInputChange(data.input.payload, $event)\"\n                   (keyup.enter)=\"onInputEnter(data.input.payload, $event)\">\n            <span class=\"n7-facet__search-icon {{data.input.icon || ''}}\"   \n                *ngIf=\"data.input.icon\"\n                (click)=\"onClick(data.input.payload)\">\n            </span>\n        </div>\n    </div>\n\n    <!-- Filters -->\n    <div *ngIf=\"data.filters\" class=\"n7-facet__filter-wrapper\">\n        <div *ngFor=\"let filter of data.filters\" \n             class=\"n7-facet__filter {{filter.classes || ''}}\"\n             (click)=\"onClick(filter.payload)\">\n            <span *ngIf=\"filter.icon\" class=\"n7-facet__filter-icon {{filter.icon}}\"></span>\n            <span class=\"n7-facet__filter-text\">{{ filter.text }}</span>\n            <span class=\"n7-facet__filter-counter\">{{ filter.counter }}</span>\n        </div>\n    </div>\n</div>"
             }] }
 ];
 FacetComponent.propDecorators = {
@@ -479,7 +497,7 @@ class FacetHeaderComponent {
 FacetHeaderComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-facet-header',
-                template: "<div *ngIf=\"data\" class=\"n7-facet-header\">\n    <span class=\"n7-facet-header__icon-left {{ data.iconLeft }}\" *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-facet-header__title\">\n        {{data.text}}\n    </span>\n    <span class=\"n7-facet-header__counter\" *ngIf=\"data.additionalText\">\n        {{data.additionalText}}\n    </span>\n    <span *ngIf=\"data.iconRight\" class=\"n7-facet-header__icon-right {{ data.iconRight }}\"\n        (click)=\"onClick(data.payload)\"></span>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-facet-header\">\n    <span class=\"n7-facet-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-facet-header__text-wrapper {{ data.classes || '' }}\">\n        <span class=\"n7-facet-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-facet-header__secondary-text\" *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\" \n          class=\"n7-facet-header__icon-right {{ data.iconRight }}\"\n        (click)=\"onClick(data.payload)\">\n    </span>\n</div>"
             }] }
 ];
 FacetHeaderComponent.propDecorators = {
@@ -829,10 +847,36 @@ class SidebarHeaderComponent {
 SidebarHeaderComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-sidebar-header',
-                template: "<div *ngIf=\"data\" class=\"n7-sidebar-header\">\n    <span class=\"n7-sidebar-header__icon-left {{ data.iconLeft }}\" *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-sidebar-header__text\">\n        {{data.text}}\n    </span>\n    <span class=\"n7-sidebar-header__additional-text\" *ngIf=\"data.additionalText\">\n        {{data.additionalText}}\n    </span>\n    <span *ngIf=\"data.iconRight\"\n          class=\"n7-sidebar-header__icon-right {{ data.iconRight }}\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-sidebar-header\">\n    <span class=\"n7-sidebar-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-sidebar-header__text-wrapper {{data.classes || ''}}\">\n        <span class=\"n7-sidebar-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-sidebar-header__secondary-text\" \n              *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\"\n          class=\"n7-sidebar-header__icon-right {{ data.iconRight }}\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
             }] }
 ];
 SidebarHeaderComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SimpleAutocompleteComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+SimpleAutocompleteComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-simple-autocomplete',
+                template: "<div *ngIf=\"data\" class=\"n7-simple-autocomplete\">\n    <ul class=\"n7-simple-autocomplete__list {{data.classes || ''}}\">\n        <li *ngFor=\"let suggestion of data.append\" \n            class=\"n7-simple-autocomplete__item\"\n            (click)=\"onClick(suggestion.payload)\">\n            <span *ngIf=\"suggestion.prefix\" class=\"n7-simple-autocomplete__prefix\">{{suggestion.prefix}}</span>\n            <span class=\"n7-simple-autocomplete__typed\">{{data.typed}}</span>\n            <span *ngIf=\"suggestion.suffix\" class=\"n7-simple-autocomplete__suffix\">{{suggestion.suffix}}</span>\n        </li>\n    </ul> \n</div>"
+            }] }
+];
+SimpleAutocompleteComponent.propDecorators = {
     data: [{ type: Input }],
     emit: [{ type: Input }]
 };
@@ -1009,6 +1053,7 @@ const COMPONENTS = [
     NavComponent,
     PaginationComponent,
     SidebarHeaderComponent,
+    SimpleAutocompleteComponent,
     TableComponent,
     TagComponent,
     ToastComponent,
@@ -1505,6 +1550,7 @@ const FACET_MOCK = {
     ],
     input: {
         label: 'SEARCH LABEL',
+        // disabled: true,
         placeholder: 'Search',
         icon: 'n7-icon-search',
         payload: 'search',
@@ -1843,6 +1889,26 @@ const SIDEBAR_HEADER_MOCK = {
     iconRight: 'n7-icon-angle-left',
     classes: 'is-expanded',
     payload: 'header',
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const SIMPLE_AUTOCOMPLETE_MOCK = {
+    typed: 'surf',
+    append: [
+        { suffix: 'dome', payload: 'dome' },
+        { suffix: 'er joe', payload: 'er joe' },
+        { suffix: 'ace', payload: 'ace' },
+        { suffix: 'corner', payload: 'corner' },
+        { prefix: 'wind', payload: 'wind' },
+        { prefix: 'body', payload: 'body' },
+        { prefix: 'auto', payload: 'auto' },
+        { prefix: 'side', payload: 'side' },
+        { prefix: 'prefix', suffix: 'suffix', payload: 'prefixsuffix' },
+    ]
 };
 
 /**
@@ -2390,6 +2456,6 @@ const WIZARD_MOCK = {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DvComponentsLibModule, AlertComponent, BreadcrumbsComponent, BubbleChartComponent, ChartComponent, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, HeaderComponent, HeroComponent, ItemPreviewComponent, InnerTitleComponent, LoaderComponent, NavComponent, PaginationComponent, SidebarHeaderComponent, TableComponent, TagComponent, ToastComponent, TreeComponent, WizardComponent, ALERT_MOCK, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, CHART_MOCK, FACET_MOCK, FACET_HEADER_MOCK, FACET_YEAR_RANGE_MOCK, HEADER_MOCK, HERO_MOCK, ITEM_PREVIEW_MOCK, INNER_TITLE_MOCK, LOADER_MOCK, NAV_MOCK, PAGINATION_MOCK, SIDEBAR_HEADER_MOCK, TABLE_MOCK, TAG_MOCK, TOAST_MOCK, TREE_MOCK, WIZARD_MOCK };
+export { DvComponentsLibModule, AlertComponent, BreadcrumbsComponent, BubbleChartComponent, ChartComponent, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, HeaderComponent, HeroComponent, ItemPreviewComponent, InnerTitleComponent, LoaderComponent, NavComponent, PaginationComponent, SidebarHeaderComponent, SimpleAutocompleteComponent, TableComponent, TagComponent, ToastComponent, TreeComponent, WizardComponent, ALERT_MOCK, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, CHART_MOCK, FACET_MOCK, FACET_HEADER_MOCK, FACET_YEAR_RANGE_MOCK, HEADER_MOCK, HERO_MOCK, ITEM_PREVIEW_MOCK, INNER_TITLE_MOCK, LOADER_MOCK, NAV_MOCK, PAGINATION_MOCK, SIDEBAR_HEADER_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, TABLE_MOCK, TAG_MOCK, TOAST_MOCK, TREE_MOCK, WIZARD_MOCK };
 
 //# sourceMappingURL=n7-frontend-components.js.map

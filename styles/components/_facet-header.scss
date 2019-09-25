@@ -9,29 +9,30 @@
 \* ------------------------------------ */
 .n7-facet-header {
     display: flex;
-    align-items: baseline;
+    height: $facet-header-height;
     background: $facet-header-background;
     color: $facet-header-text-color;
 
-    &__title {
+    &__text {
        margin-right: $space;
-       margin-left: $space*1.8;
-       font-size: $font-size-xl;
-       line-height: 1;
+       margin-left: $space;
+       font-size: $font-size-m;
+       line-height: $facet-header-height;
     }
 
-    &__counter {
-        margin-right: $space*1.8;
-        opacity: 0.7;
-        font-size: $font-size-l;
-        line-height: 1;
+    &__secondary-text {
+        font-size: $font-size-s;
+        line-height: $facet-header-height;
     }
 
     &__icon-left,
     &__icon-right {
-        padding: $space*1.8;
+        width: $facet-header-height;
+        height: $facet-header-height;
+        text-align: center;
+        line-height: $facet-header-height;
         background: $facet-header-icon-background;
-        font-size: $font-size-xl;
+        font-size: $font-size-l;
     }
 
     &__icon-right {

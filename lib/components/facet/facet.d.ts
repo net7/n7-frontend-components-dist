@@ -2,7 +2,13 @@
  * Interface for FacetComponent's "data"
  *
  * @property checks (optional)
- * @property search (optional)
+ * @property input (optional)
+ * - label (optional)
+ * - disabled (optional)
+ * - placeholder (required)
+ * - icon (optional)
+ * - classes (optional)
+ * - payload (optional)
  * @property filters (optional)
  */
 export interface IFacetData {
@@ -15,6 +21,7 @@ export interface IFacetData {
      */
     input?: {
         label?: string;
+        disabled?: boolean;
         placeholder: string;
         icon?: string;
         classes?: any;
