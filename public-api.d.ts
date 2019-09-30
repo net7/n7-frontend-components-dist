@@ -1,4 +1,5 @@
 export * from './lib/dv-components-lib.module';
+export * from './lib/components/advanced-autocomplete/advanced-autocomplete';
 export * from './lib/components/alert/alert';
 export * from './lib/components/breadcrumbs/breadcrumbs';
 export * from './lib/components/bubble-chart/bubble-chart';
@@ -20,6 +21,7 @@ export * from './lib/components/tag/tag';
 export * from './lib/components/toast/toast';
 export * from './lib/components/tree/tree';
 export * from './lib/components/wizard/wizard';
+export * from './lib/components/advanced-autocomplete/advanced-autocomplete.mock';
 export * from './lib/components/alert/alert.mock';
 export * from './lib/components/breadcrumbs/breadcrumbs.mock';
 export * from './lib/components/bubble-chart/bubble-chart.mock';

@@ -135,6 +135,7 @@ $color-button-light-text-hover: $color-text-link-hover;
 $color-button-light-text-disabled: $color-text-light;
 $color-button-light-text-active: $color-text-link-hover;
 
+
 // ------------------------------------ //
 // #FORMS
 // ------------------------------------ //
@@ -293,6 +294,14 @@ $toast-border-color: $color-border-normal;
 $toast-title-color: $color-text;
 $toast-text-color: $color-text;
 $toast-max-width: 300px;
+
+
+// ------------------------------------ //
+// #ADVANCED-AUTOCOMPLETE
+// ------------------------------------ //
+$advanced-autocomplete-results-max-height: 300px;
+$advanced-autocomplete-empty-height: 180px;
+$advanced-autocomplete-action-bar-shadow: 0 -5px 15px -5px rgba(0, 0, 0, 0.3);
 
 
 // ------------------------------------ //
