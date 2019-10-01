@@ -1,0 +1,60 @@
+/**
+ * IMAGE-VIEWER
+ *
+ * Brief description of the component here.
+ */
+ 
+$image-viewer-height: 400px;
+$image-viewer-thumb-height: 80px;
+$image-viewer-thumb-width: 80px;
+
+/* ------------------------------------ *\
+   #IMAGE-VIEWER
+\* ------------------------------------ */
+.n7-image-viewer {
+    &__viewer {
+        height: $image-viewer-height;
+    }
+}
+
+/* ------------------------------------ *\
+   #REFERENCE-STRIP
+\* ------------------------------------ */
+/* Gallery's images thumbnails */
+.n7-image-viewer {
+    .openseadragon-canvas + div {
+        top: 50% !important;
+        transform: translateY(-50%);
+        right: 0;
+        left: auto !important;
+    }
+
+    .referencestrip {
+        display: block !important;
+        width: auto !important;
+        height: auto !important;
+        background-color: transparent !important;
+    }
+
+    [id^="referencestrip"] {
+        width: $image-viewer-thumb-width !important;
+        height: $image-viewer-thumb-height !important;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}
