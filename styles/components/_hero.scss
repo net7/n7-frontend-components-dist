@@ -1,7 +1,16 @@
 /**
  * HERO
  *
- * Brief description of the component here.
+ * Component displaying the following elements:
+ * - title
+ * - text
+ * - input (usually used for seacrh purposes)
+ * - button/call to action
+ * - image
+ * - background image
+ *
+ * This component is used for hero section at the top of the homepage or
+ *  for call to action sections (usually in homepage)
  */
  
 /* ------------------------------------ *\
@@ -151,11 +160,19 @@
     /* With image */
     .n7-hero.has-image {
         .n7-hero__content {
-            display: block;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Invert text and image order */
+        .n7-hero__text-wrapper {
+            order: 2;
         }
 
         .n7-hero__image-wrapper {
-            padding: $space*2 0 0 0;
+            order: 1;
+            padding: 0;
+            margin-bottom: $space*2;
         }
     }
 

@@ -1,21 +1,20 @@
 /**
  * BUBBLECHART
  *
- * Brief description of the component here.
+ * Component displaying a bubble graph. Based on 3djs.
  */
  
 /* ------------------------------------ *\
    #BUBBLECHART
 \* ------------------------------------ */
-//.n7-bubble-chart {
-  // TODO
-//}
-
-.monospace-text {
-    font-family: monospace;
-    user-select: none;
-    font-weight: bold;
+.n7-bubble-chart {
+    .monospace-text {
+        font-family: monospace;
+        user-select: none;
+        font-weight: bold;
+    }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
