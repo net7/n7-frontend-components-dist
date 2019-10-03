@@ -1,5 +1,5 @@
 /**
- * Interface for ImageViewerComponent's iamges "data"
+ * Interface for ImageViewerComponent's images "data"
  *
  * Here the main options available, for a complete guide of image settings
  * view the official openseadragon documentation https://openseadragon.github.io/
@@ -8,7 +8,7 @@
  * @property  type (required) Admitted values 'image' | 'zoomifytileservice' | 'openstreetmaps' | 'tiledmapservice' | 'legacy-image-pyramid'
  * @property  height (optional) image height
  * @property  width (optional) image width
- * @property  url (required) image width
+ * @property  url (required) image url
  * @property  buildPyramid (optional)
  * @property  crossOriginPolicy (optional) Admitted values 'Anonymous' | 'use-credentials' | false;
  */
@@ -19,6 +19,19 @@ export interface IImageData {
     url: string;
     buildPyramid: boolean;
     crossOriginPolicy?: 'Anonymous' | 'use-credentials' | false;
+}
+/**
+ * Interface for ImageViewerComponent's thumbs to preview available images
+ *
+ * @property  url (required) image url
+ */
+export interface IThumbsData {
+    url: string;
+    /**
+     * action click's payload
+     */
+    payload?: any;
+    classes?: string;
 }
 /**
  * Interface for ImageViewerComponent's "data"
@@ -37,6 +50,7 @@ export interface IImageViewerData {
     viewerWidth?: number;
     viewerHeight?: number;
     images: IImageData[] | string;
+    thumbs?: IThumbsData[] | string;
     viewerId: string;
     libOptions: any;
     _setViewer: any;
@@ -50,4 +64,5 @@ export declare class ImageViewerComponent {
     emit: any;
     private _loaded;
     ngAfterContentChecked(): void;
+    onClick(payload: any): void;
 }

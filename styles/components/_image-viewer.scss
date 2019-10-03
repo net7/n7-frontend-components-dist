@@ -6,41 +6,89 @@
  * native controls for zoomin zoomout home and fullscreen.
  */
  
-$image-viewer-height: 400px;
-$image-viewer-thumb-height: 80px;
-$image-viewer-thumb-width: 80px;
-
 /* ------------------------------------ *\
    #IMAGE-VIEWER
 \* ------------------------------------ */
 .n7-image-viewer {
+    position: relative;
+    background-color: $image-viewer-background-color;
+
     &__viewer {
         height: $image-viewer-height;
     }
 }
 
+
 /* ------------------------------------ *\
-   #REFERENCE-STRIP
+   #THUMBS
 \* ------------------------------------ */
-/* Gallery's images thumbnails */
 .n7-image-viewer {
-    .openseadragon-canvas + div {
-        top: 50% !important;
+    &__thumbs {
+        position: absolute;
+        top: 50%;
         transform: translateY(-50%);
-        right: 0;
-        left: auto !important;
+        right: $space*3;
     }
 
-    .referencestrip {
-        display: block !important;
-        width: auto !important;
-        height: auto !important;
-        background-color: transparent !important;
+    &__thumb-list {
+        list-style: none;
     }
 
-    [id^="referencestrip"] {
+    &__thumb-item {
         width: $image-viewer-thumb-width !important;
         height: $image-viewer-thumb-height !important;
+        margin-bottom: $space;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: none;
+        border: 2px solid transparent;
+        cursor: pointer;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &:hover:not(.is-active) {
+            border: 2px solid $image-viewer-thumb-hover-border-color;
+        }
+
+        &.is-active {
+            border: 2px solid $image-viewer-thumb-active-border-color;
+        }
+    }
+}
+
+
+/* ------------------------------------ *\
+   #CONTROLS
+\* ------------------------------------ */
+/* This is very delicate:
+we point the last DIV inside .openseadragon-container,
+so if the configuration is changed and the last DIV changes, the whole CONTROLS
+style will be broken */
+.n7-image-viewer__viewer {
+    .openseadragon-container {
+        > div:last-child {
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            left: $space*3 !important;
+
+            [title="Zoom in"],
+            [title="Zoom out"],
+            [title="Go home"],
+            [title="Toggle full page"] {
+                display: block !important;
+                margin-bottom: $space !important;
+                cursor: pointer;
+            }
+
+            img {
+                display: block;
+                width: $image-viewer-control-width;
+                height: $image-viewer-control-height;
+            }
+        }
     }
 }
 

@@ -29,6 +29,8 @@ export interface IAdvancedAutocompleteResponse {
     group?: {
         title: string;
         items: IAdvancedAutocompleteResponse[];
+        classes?: string;
+        icon?: string;
         payload?: any;
     };
     label?: string;

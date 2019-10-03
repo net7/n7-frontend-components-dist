@@ -24,11 +24,21 @@
         border-bottom: 1px solid $color-border-normal;
     }
 
+    &__group-title-wrapper {
+        color: $color-text-light;
+    }
+
     &__group-title {
         font-size: $font-size-l;
         font-family: $font-family-headings;
-        color: $color-text-light;
         line-height: 1.4;
+        vertical-align: middle;
+    }
+
+    &__group-icon {
+        margin-right: $space/2;
+        font-size: $font-size-l;
+        vertical-align: middle;
     }
 
     &__item {
