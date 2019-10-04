@@ -8,32 +8,25 @@
    #METADATA-VIEWER
 \* ------------------------------------ */
 .n7-metadata-viewer {
-  padding: $space*2;
-  
-    &__title {
+    &__group-wrapper {
+        .n7-metadata-viewer__group-wrapper {
+            padding-left: $space*2;
+        }
+    }
+    
+    &__group {
+        margin-bottom: $space*2;
+        break-inside: avoid;
+    }
+
+    &__group-title {
         margin-bottom: $space*2;
         font-size: $font-size-xl;
         font-weight: $font-weight-bold;
     }
 
-    &__group {
-        &-title {
-            margin-bottom: $space*2;
-            font-size: $font-size-xl;
-            font-weight: $font-weight-bold;
-        }
-    }
-
-    &__items-wrapper {
+    &__item {
         margin-bottom: $space*1.5;
-    }
-
-    &__group-wrapper {
-        padding-top: $space;
-
-        .n7-metadata-viewer__group-wrapper {
-            padding-left: $space*2;
-        }
     }
 
     &__item-label {

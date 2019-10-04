@@ -2,7 +2,7 @@
  * Interface for SidebarHeaderComponent's "data"
  *
  * @property iconLeft (optional)
- * @property text (required)
+ * @property text (optional)
  * @property additionalText (optional)
  * @property iconRight (optional)
  * @property classes (optional)
@@ -16,7 +16,7 @@ export interface ISidebarHeaderData {
     /**
      * the title text
      */
-    text: string;
+    text?: string;
     /**
      * additional text, displayed on the right of the text
      */
