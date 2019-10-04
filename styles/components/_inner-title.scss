@@ -11,8 +11,7 @@
     display: flex;
     align-items: center;
     padding: $space*2;
-    background-color: lightblue;
-
+    
     select,
     input[type="text"] {
         height: $inner-title-filters-height;
