@@ -1,4 +1,25 @@
 /**
+ * Interface for PaginationComponent's options (page size select options)
+ *
+ * @property text (required)
+ * @property classes (optional)
+ * @property _meta (optional)
+ */
+export interface IOption {
+    /**
+     * option text value
+     */
+    text: string;
+    /**
+     * additional html classes
+     */
+    classes?: string;
+    /**
+     * additional info
+     */
+    _meta?: any;
+}
+/**
  * Interface for PaginationComponent's links (pages and navigation buttons)
  *
  * @property text (required)
@@ -58,6 +79,14 @@ export interface IPaginationData {
      */
     links: IAnchor[];
     /**
+     * page size select
+     */
+    select?: {
+        label?: string;
+        options?: IOption[];
+        payload?: string;
+    };
+    /**
      * additional html classes
      */
     classes?: string;
@@ -74,4 +103,5 @@ export declare class PaginationComponent {
     data: IPaginationData;
     emit: any;
     onClick(payload: any): void;
+    onChange(payload: any, value: any): void;
 }
