@@ -4,12 +4,12 @@
  * @property inDate (required)
  * - text (optional)
  * - classes (optional)
- * - payload (optional)
+ * - payload (required)
  * - _meta (optional)
  * @property outDate (required)
  * - text (optional)
  * - classes (optional)
- * - payload (optional)
+ * - payload (required)
  * - _meta (optional)
  * @property options (required)
  */
@@ -33,7 +33,7 @@ export interface IFacetYearRangeData {
         /**
          * onChange payload
          */
-        payload?: any;
+        payload: any;
         /**
          * additional data useful for the component's logic
          */
@@ -59,7 +59,7 @@ export interface IFacetYearRangeData {
         /**
          * onChange payload
          */
-        payload?: any;
+        payload: any;
         /**
          * additional data useful for the component's logic
          */

@@ -47,7 +47,7 @@ export declare class InnerTitleComponent {
     data: IInnerTitleData;
     emit: any;
     onClick(payload: any): void;
-    onChange(payload: any, event: any): void;
-    onInputChange(payload: any, event: any): void;
-    onInputEnter(payload: any, event: any): void;
+    onChange(payload: any, value: any): void;
+    onInputChange(payload: any, value: any): void;
+    onInputEnter(payload: any, value: any): void;
 }

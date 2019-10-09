@@ -93,7 +93,7 @@ export declare class FacetComponent {
     data: IFacetData;
     emit: any;
     onClick(payload: any): void;
-    onCheck(payload: any, event: any): void;
-    onInputChange(payload: any, event: any): void;
+    onCheck(payload: any, isChecked: any): void;
+    onInputChange(payload: any, value: any): void;
     onInputEnter(payload: any, value: any): void;
 }
