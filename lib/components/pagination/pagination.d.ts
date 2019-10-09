@@ -18,6 +18,14 @@ export interface IOption {
      * additional info
      */
     _meta?: any;
+    /**
+     * render as disabled
+     */
+    disabled?: boolean;
+    /**
+     * force selection
+     */
+    selected?: boolean;
 }
 /**
  * Interface for PaginationComponent's links (pages and navigation buttons)
@@ -85,6 +93,7 @@ export interface IPaginationData {
         label?: string;
         options?: IOption[];
         payload?: string;
+        disabled?: boolean;
     };
     /**
      * additional html classes
