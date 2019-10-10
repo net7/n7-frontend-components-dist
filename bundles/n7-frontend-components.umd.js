@@ -407,7 +407,8 @@
                 var collisionIterations = (tmpSimulationData['collisionIterations'] ? tmpSimulationData['collisionIterations'] : 1);
                 /** @type {?} */
                 var velocityDecay = (tmpSimulationData['velocityDecay'] ? tmpSimulationData['velocityDecay'] : 0.99);
-                d3_force.forceSimulation()
+                /** @type {?} */
+                var simulation = d3_force.forceSimulation()
                     .velocityDecay(velocityDecay)
                     .force("x", d3_force.forceX(xPull).strength(xPullStrength))
                     .force("y", d3_force.forceY(yPull).strength(yPullStrength))
@@ -416,7 +417,11 @@
              * @return {?}
              */function (d) { return d.radius; })).strength(collisionStrength).iterations(collisionIterations))
                     .nodes(this.bubbles)
-                    .on('tick', this.update.bind(this));
+                    .on('tick', this.update.bind(this))
+                    .stop();
+                for (var i = 0; i < 300; i++) {
+                    simulation.tick();
+                }
             };
         BubbleChartComponent.decorators = [
             { type: core.Component, args: [{
@@ -1243,7 +1248,7 @@
                     /** @type {?} */
                     var prefixUrl = !_this.data.prefixUrl ? "//openseadragon.github.io/openseadragon/images/" : _this.data.prefixUrl;
                     /** @type {?} */
-                    var viewer = openseadragon(__assign({ id: _this.data.viewerId, prefixUrl: prefixUrl, tileSources: _this.data.images }, _this.data.libOptions));
+                    var viewer = openseadragon(__assign({ id: _this.data.viewerId, prefixUrl: prefixUrl, tileSources: _this.data.images, zoomInButton: "n7-image-viewer-zoom-in", zoomOutButton: "n7-image-viewer-zoom-out", homeButton: "n7-image-viewer-home", fullPageButton: "n7-image-viewer-full-screen" }, _this.data.libOptions));
                     _this.data._setViewer(viewer);
                 }));
             };
@@ -1263,7 +1268,7 @@
         ImageViewerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-image-viewer',
-                        template: "<div *ngIf=\"data\" class=\"n7-image-viewer {{data.classes || ''}}\">\r\n    <!-- OSD viewer -->\r\n    <div id=\"{{data.viewerId}}\" class=\"n7-image-viewer__viewer\">\r\n    </div>\r\n\r\n    <!-- Thumbs -->\r\n    <div class=\"n7-image-viewer__thumbs\" *ngIf=\"data.thumbs\">\r\n        <ul class=\"n7-image-viewer__thumb-list\">\r\n            <li *ngFor=\"let thumb of data.thumbs\" \r\n                class=\"n7-image-viewer__thumb-item {{thumb.classes || ''}}\"\r\n                [ngStyle]=\"{'background-image': 'url(' + thumb.url + ')'}\"\r\n                (click)=\"onClick(thumb.payload)\">\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>"
+                        template: "<div *ngIf=\"data\" class=\"n7-image-viewer {{data.classes || ''}}\">\r\n    <!-- OSD viewer -->\r\n    <div id=\"{{data.viewerId}}\" class=\"n7-image-viewer__viewer\">\r\n    </div>\r\n\r\n    <!-- Thumbs -->\r\n    <div class=\"n7-image-viewer__thumbs\" *ngIf=\"data.thumbs\">\r\n        <ul class=\"n7-image-viewer__thumb-list\">\r\n            <li *ngFor=\"let thumb of data.thumbs\" \r\n                class=\"n7-image-viewer__thumb-item {{thumb.classes || ''}}\"\r\n                [ngStyle]=\"{'background-image': 'url(' + thumb.url + ')'}\"\r\n                (click)=\"onClick(thumb.payload)\">\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <!-- Zoom controls -->\r\n    <div class=\"n7-image-viewer__controls\">\r\n        <ul class=\"n7-image-viewer__controls-list\">\r\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-in\">\r\n                <span class=\"n7-icon-search-plus\"></span>\r\n            </li>\r\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-out\">\r\n                <span class=\"n7-icon-search-minus\"></span>\r\n            </li>\r\n            <!--\r\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-home\">\r\n                <span class=\"n7-icon-home\"></span>\r\n            </li>\r\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-full-screen\">\r\n                <span class=\"n7-icon-expand-arrows\"></span>\r\n            </li>\r\n            -->\r\n        </ul>\r\n    </div>\r\n</div>"
                     }] }
         ];
         ImageViewerComponent.propDecorators = {
@@ -2095,7 +2100,6 @@
         images: [
             { type: 'image', url: "/assets/images/large-image.jpg", buildPyramid: false }
         ],
-        prefixUrl: "/assets/images/openseadragon/",
         thumbs: [
             { url: 'http://placekitten.com/200/130', classes: 'is-active' },
             { url: 'http://placekitten.com/90/180' },
@@ -2117,7 +2121,7 @@
             //allows having multiple images (as in array of images + zoomed image)
             showReferenceStrip: false,
             //shows the images array (default: horizontally)
-            navigationControlAnchor: 'TOP_RIGHT'
+            navigationControlAnchor: 'TOP_RIGHT',
         },
         _setViewer: ( /**
          * @param {?} viewer
