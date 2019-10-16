@@ -1,60 +1,107 @@
 /**
  * Interface for FacetComponent's "data"
  *
- * @property checks (optional)
- * @property input (optional)
- * - label (optional)
- * - disabled (optional)
- * - placeholder (required)
- * - icon (optional)
- * - classes (optional)
- * - payload (optional)
- * @property filters (optional)
- */
-export interface IFacetData {
-    /**
-     * list of checkboxes
-     */
-    checks?: IFacetCheck[];
-    /**
-     * search bar to find a filter
-     */
-    input?: {
-        label?: string;
-        disabled?: boolean;
-        placeholder: string;
-        icon?: string;
-        classes?: any;
-        payload?: any;
-    };
-    /**
-     * list of filters
-     */
-    filters?: IFacetFilter[];
-}
-/**
- * Interface for FacetComponent's "check"
- *
- * @property label (required)
- * @property payload (optional)
+ * @property sections (required)
  * @property classes (optional)
  */
-export interface IFacetCheck {
-    /**
-     * checkbox label
-     */
-    label: string;
-    /**
-     * payload for onClick events
-     */
-    payload?: any;
-    /**
-     * additional html classes
-     */
-    classes?: any;
+export interface IFacetData {
+    sections: IFacetSection[];
+    classes?: string;
 }
 /**
- * Interface for FacetComponent's "filter"
+ * Interface for FacetSection
+ *
+ * @property inputs (required)
+ * @property classes (optional)
+ * @property _meta (optional)
+ */
+export interface IFacetSection {
+    inputs: Array<IFacetInputCheckbox | IFacetInputLink | IFacetInputText | IFacetInputSelect>;
+    classes?: string;
+    _meta?: any;
+}
+/**
+ * Interface for FacetInputText
+ *
+ * @property type (required)
+ * @property id (required)
+ * @property placeholder (optional)
+ * @property value (optional)
+ * @property label (optional)
+ * @property disabled (optional)
+ * @property icon (optional)
+ * @property inputPayload (optional)
+ * @property enterPayload (optional)
+ * @property iconPayload (optional)
+ * @property classes (optional)
+ * @property _meta (optional)
+ */
+export interface IFacetInputText {
+    type: 'text';
+    id: string;
+    placeholder?: string;
+    value?: string | number | null;
+    label?: string;
+    disabled?: boolean;
+    icon?: string;
+    inputPayload?: any;
+    enterPayload?: any;
+    iconPayload?: any;
+    classes?: any;
+    _meta?: any;
+}
+/**
+ * Interface for FacetInputSelect
+ *
+ * @property type (required)
+ * @property id (required)
+ * @property options (required)
+ * @property label (optional)
+ * @property disabled (optional)
+ * @property icon (optional)
+ * @property payload (optional)
+ * @property classes (optional)
+ * @property _meta (optional)
+ */
+export interface IFacetInputSelect {
+    type: 'select';
+    id: string;
+    options: Array<{
+        label: string;
+        value: string | number;
+        selected?: boolean;
+        disabled?: boolean;
+    }>;
+    label?: string;
+    disabled?: boolean;
+    payload?: any;
+    classes?: any;
+    _meta?: any;
+}
+/**
+ * Interface for FacetInputCheckbox
+ *
+ * @property type (required)
+ * @property id (required)
+ * @property label (required)
+ * @property checked (optional)
+ * @property disabled (optional)
+ * @property payload (optional)
+ * @property classes (optional)
+ * @property _meta (optional)
+ */
+export interface IFacetInputCheckbox {
+    type: 'checkbox';
+    id: string;
+    label: string;
+    checked?: boolean;
+    disabled?: boolean;
+    payload?: any;
+    classes?: any;
+    _meta?: any;
+}
+/**
+ * Interface for FacetInputLink
  *
  * @property icon (optional)
  * @property text (required)
@@ -63,37 +110,17 @@ export interface IFacetCheck {
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IFacetFilter {
-    /**
-     * icon to render the checkmark
-     */
-    icon?: string;
-    /**
-     * the filter's rendered text
-     */
+export interface IFacetInputLink {
+    type: 'link';
     text: string;
-    /**
-     * the number of items for each filter
-     */
+    icon?: string;
     counter?: number;
-    /**
-     * payload for onClick events
-     */
     payload?: any;
-    /**
-     * additional html classes
-     */
     classes?: any;
-    /**
-     * additional data useful for the component's logic
-     */
     _meta?: any;
 }
 export declare class FacetComponent {
     data: IFacetData;
     emit: any;
-    onClick(payload: any): void;
-    onCheck(payload: any, isChecked: any): void;
-    onInputChange(payload: any, value: any): void;
-    onInputEnter(payload: any, value: any): void;
+    onChange(inputPayload: any, value?: any): void;
 }

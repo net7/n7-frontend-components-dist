@@ -487,67 +487,24 @@
         function FacetComponent() {
         }
         /**
-         * @param {?} payload
+         * @param {?} inputPayload
+         * @param {?=} value
          * @return {?}
          */
-        FacetComponent.prototype.onClick = /**
-         * @param {?} payload
+        FacetComponent.prototype.onChange = /**
+         * @param {?} inputPayload
+         * @param {?=} value
          * @return {?}
          */
-            function (payload) {
+            function (inputPayload, value) {
                 if (!this.emit)
                     return;
-                this.emit('click', payload);
-            };
-        /**
-         * @param {?} payload
-         * @param {?} isChecked
-         * @return {?}
-         */
-        FacetComponent.prototype.onCheck = /**
-         * @param {?} payload
-         * @param {?} isChecked
-         * @return {?}
-         */
-            function (payload, isChecked) {
-                if (!this.emit)
-                    return;
-                this.emit('change', { inputPayload: payload, isChecked: isChecked });
-            };
-        /**
-         * @param {?} payload
-         * @param {?} value
-         * @return {?}
-         */
-        FacetComponent.prototype.onInputChange = /**
-         * @param {?} payload
-         * @param {?} value
-         * @return {?}
-         */
-            function (payload, value) {
-                if (!this.emit)
-                    return;
-                this.emit('change', { inputPayload: payload, value: value });
-            };
-        /**
-         * @param {?} payload
-         * @param {?} value
-         * @return {?}
-         */
-        FacetComponent.prototype.onInputEnter = /**
-         * @param {?} payload
-         * @param {?} value
-         * @return {?}
-         */
-            function (payload, value) {
-                if (!this.emit)
-                    return;
-                this.emit('enter', { inputPayload: payload, value: value });
+                this.emit('change', { inputPayload: inputPayload, value: value });
             };
         FacetComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-facet',
-                        template: "<div *ngIf=\"data\" class=\"n7-facet\">\n    <!-- Checkboxes -->\n    <div class=\"n7-facet__check-wrapper\"*ngIf=\"data.checks\">\n        <div *ngFor=\"let check of data.checks; let i = index\" class=\"n7-facet__check {{check.classes || ''}}\">\n            <input type=\"checkbox\" \n                   class=\"n7-facet__check-input\" \n                   id=\"n7-facet-check-{{i}}\"\n                   (change)=\"onCheck(check.payload, $event.target.checked)\">\n            <label class=\"n7-facet__check-label\" for=\"n7-facet-check-{{i}}\">\n                {{ check.label }}\n            </label>\n        </div>\n    </div>\n\n    <!-- Search bar -->\n    <div class=\"n7-facet__search-wrapper\" *ngIf=\"data.input\">\n        <label class=\"n7-facet__search-label\" for=\"n7-facet-search-input\">\n            {{ data.input.label }}\n        </label>\n        <div class=\"n7-facet__search-input-wrapper\">\n            <input type=\"text\"\n                   [disabled] = \"data.input.disabled\"\n                   class=\"n7-facet__search-input {{data.input.classes || ''}}\" \n                   id=\"n7-facet-search-input\"\n                   placeholder=\"{{data.input.placeholder || ''}}\" \n                   (input)=\"onInputChange(data.input.payload, $event.target.value)\"\n                   (keyup.enter)=\"onInputEnter(data.input.payload, $event.target.value)\">\n            <span class=\"n7-facet__search-icon {{data.input.icon || ''}}\"   \n                *ngIf=\"data.input.icon\"\n                (click)=\"onClick(data.input.payload)\">\n            </span>\n        </div>\n    </div>\n\n    <!-- Filters -->\n    <div *ngIf=\"data.filters\" class=\"n7-facet__filter-wrapper\">\n        <div *ngFor=\"let filter of data.filters\" \n             class=\"n7-facet__filter {{filter.classes || ''}}\"\n             (click)=\"onClick(filter.payload)\">\n            <span *ngIf=\"filter.icon\" class=\"n7-facet__filter-icon {{filter.icon}}\"></span>\n            <span class=\"n7-facet__filter-text\">{{ filter.text }}</span>\n            <span class=\"n7-facet__filter-counter\">{{ filter.counter }}</span>\n        </div>\n    </div>\n</div>"
+                        template: "<div *ngIf=\"data\" class=\"n7-facet\">\n    <div *ngFor=\"let section of data.sections\" class=\"n7-facet__section {{ section.classes || '' }}\">\n        <div *ngFor=\"let input of section.inputs\"\n            class=\"n7-facet__section-input n7-facet__section-input-{{ input.type }} {{ input.classes || '' }}\">\n\n            <ng-container [ngSwitch]=\"input.type\">\n\n                <!-- Checkbox -->\n                <ng-container *ngSwitchCase=\"'checkbox'\">\n                    <input type=\"checkbox\" id=\"{{ input.id }}\" class=\"n7-facet__input-checkbox-input\"\n                        [checked]=\"input.checked\"\n                        [disabled]=\"input.disabled\"\n                        (change)=\"onChange(input.payload, $event.target.checked)\">\n                    <label *ngIf=\"input.label\" class=\"n7-facet__checkbox-label\" for=\"{{ input.id }}\">\n                        {{ input.label }}\n                    </label>\n                </ng-container>\n\n                <!-- Text -->\n                <ng-container *ngSwitchCase=\"'text'\">\n                    <label *ngIf=\"input.label\" class=\"n7-facet__input-text-label\" for=\"{{ input.id }}\">\n                        {{ input.label }}\n                    </label>\n                    <div class=\"n7-facet__input-text-wrapper\">\n                        <input type=\"text\" id=\"{{ input.id }}\" class=\"n7-facet__input-text {{input.classes || ''}}\"\n                            placeholder=\"{{input.placeholder || ''}}\"\n                            [value]=\"input.value || null\"\n                            [disabled]=\"input.disabled\"\n                            (input)=\"onChange(input.inputPayload, $event.target.value)\"\n                            (keyup.enter)=\"onChange(input.enterPayload, $event.target.value)\">\n                        <span *ngIf=\"input.icon\" class=\"n7-facet__input-text-icon {{input.icon || ''}}\" \n                            (click)=\"onChange(input.iconPayload)\">\n                        </span>\n                    </div>\n                </ng-container>\n\n                <!-- Link -->\n                <ng-container *ngSwitchCase=\"'link'\">\n                    <div class=\"n7-facet__input-link {{ input.classes || '' }}\"\n                        (click)=\"onChange(input.payload)\">\n                        <span *ngIf=\"input.icon\" class=\"n7-facet__input-link-icon {{ input.icon }}\"></span>\n                        <span class=\"n7-facet__input-link-text\">{{ input.text }}</span>\n                        <span *ngIf=\"input.counter\" class=\"n7-facet__input-link-counter\">{{ input.counter }}</span>\n                    </div>\n                </ng-container>\n\n                <!-- Select -->\n                <ng-container *ngSwitchCase=\"'select'\">\n                    <label *ngIf=\"input.label\" for=\"{{ input.id }}\">{{ input.label }}</label>\n                    <select (change)=\"onChange(input.payload, $event.target.value)\" \n                        id=\"{{ input.id }}\"\n                        class=\"n7-facet__input-select {{ input.classes || '' }}\"\n                        [disabled]=\"input.disabled\">\n                        <option *ngFor=\"let option of input.options\" \n                            [value]=\"option.value\" \n                            [disabled]=\"option.disabled\" \n                            [selected]=\"option.selected\">{{ option.label }}</option>\n                    </select>\n                </ng-container>\n            </ng-container>\n\n        </div>\n    </div>\n</div>"
                     }] }
         ];
         FacetComponent.propDecorators = {
@@ -580,7 +537,7 @@
         FacetHeaderComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-facet-header',
-                        template: "<div *ngIf=\"data\" class=\"n7-facet-header  {{ data.classes || '' }}\">\n    <span class=\"n7-facet-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-facet-header__text-wrapper\">\n        <span class=\"n7-facet-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-facet-header__secondary-text\" *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\" \n          class=\"n7-facet-header__icon-right {{ data.iconRight }}\"\n        (click)=\"onClick(data.payload)\">\n    </span>\n</div>"
+                        template: "<div *ngIf=\"data\" class=\"n7-facet-header {{ data.classes || '' }}\">\n    <span class=\"n7-facet-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-facet-header__text-wrapper\">\n        <span class=\"n7-facet-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-facet-header__secondary-text\" *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\" \n          class=\"n7-facet-header__icon-right {{ data.iconRight }}\"\n        (click)=\"onClick(data.payload)\">\n    </span>\n</div>"
                     }] }
         ];
         FacetHeaderComponent.propDecorators = {
@@ -1907,87 +1864,74 @@
      */
     /** @type {?} */
     var FACET_MOCK = {
-        checks: [
-            {
-                label: 'Email',
-                payload: 'email',
-                classes: 'is-active',
-            },
-            { label: 'Check 2', payload: 'check2' },
-            { label: 'Check 3', payload: 'check3' },
-            { label: 'Check 4', payload: 'check4' },
-            { label: 'Check 5', payload: 'check5' },
-        ],
-        input: {
-            label: 'SEARCH LABEL',
-            // disabled: true,
-            placeholder: 'Search',
-            icon: 'n7-icon-search',
-            payload: 'search',
-        },
-        filters: [
-            {
-                icon: 'n7-icon-archive',
-                text: 'First filter',
-                counter: 20,
-                payload: 'first filter',
-                classes: 'is-active'
-            },
-            {
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-                counter: 18,
-                payload: 'second filter',
-            },
-            {
-                icon: 'n7-icon-archive',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-                counter: 18,
-                payload: 'second filter',
-            },
-            {
-                text: 'third filter',
-                counter: 11,
-                payload: 'third filter',
-            },
-            {
-                text: 'lorem',
-                counter: 7,
-                payload: 'fourth filter',
-            },
-            {
-                text: 'last filter',
-                counter: 31,
-                payload: 'last filter',
-            },
-            {
-                icon: 'n7-icon-archive',
-                text: 'First filter',
-                counter: 1232143,
-                payload: 'first filter',
-                classes: 'is-active'
-            },
-            {
-                text: 'second filter',
-                counter: 18,
-                payload: 'second filter',
-            },
-            {
-                text: 'third filter',
-                counter: 11,
-                payload: 'third filter',
-                classes: 'is-active'
-            },
-            {
-                text: 'fourth filter',
-                counter: 7,
-                payload: 'fourth filter',
-            },
-            {
-                text: 'last filter',
-                counter: 3,
-                payload: 'last filter',
-            },
-        ]
+        classes: 'facet-wrapper',
+        sections: [{
+                classes: 'facet-section-1',
+                inputs: [
+                    { type: 'checkbox', id: 'checkbox-1', label: 'Email', payload: 'email', classes: 'is-active' },
+                    { type: 'checkbox', id: 'checkbox-2', label: 'Check 2', payload: 'check2' },
+                    { type: 'checkbox', id: 'checkbox-3', label: 'Check 3', payload: 'check3', checked: true },
+                    { type: 'checkbox', id: 'checkbox-4', label: 'Check 4', payload: 'check4' },
+                    { type: 'checkbox', id: 'checkbox-5', label: 'Check 5', payload: 'check5', disabled: true }
+                ]
+            }, {
+                classes: 'facet-section-2',
+                inputs: [{
+                        type: 'text',
+                        id: 'input-text-1',
+                        label: 'SEARCH LABEL',
+                        // disabled: true,
+                        placeholder: 'Search',
+                        icon: 'n7-icon-search',
+                        inputPayload: 'search-input',
+                        enterPayload: 'search-enter',
+                        iconPayload: 'search-icon',
+                    }]
+            }, {
+                // n7-facet__section-input-links viene usato per stilare il wrapper dei links
+                classes: 'facet-section-3 n7-facet__section-input-links',
+                inputs: [
+                    { type: 'link', icon: 'n7-icon-archive', text: 'First filter', counter: 20, payload: 'first filter', classes: 'is-active' },
+                    { type: 'link', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore', counter: 18, payload: 'second filter', },
+                    { type: 'link', icon: 'n7-icon-archive', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore', counter: 18, payload: 'second filter', },
+                    { type: 'link', text: 'third filter', counter: 11, payload: 'third filter', },
+                    { type: 'link', text: 'lorem', counter: 7, payload: 'fourth filter', },
+                    { type: 'link', text: 'last filter', counter: 31, payload: 'last filter', },
+                    { type: 'link', icon: 'n7-icon-archive', text: 'First filter', counter: 1232143, payload: 'first filter', classes: 'is-active' },
+                    { type: 'link', text: 'second filter', counter: 18, payload: 'second filter', },
+                    { type: 'link', text: 'third filter', counter: 11, payload: 'third filter', classes: 'is-active' },
+                    { type: 'link', text: 'fourth filter', counter: 7, payload: 'fourth filter', },
+                    { type: 'link', text: 'last filter', counter: 3, payload: 'last filter', }
+                ]
+            }, {
+                classes: 'facet-section-4',
+                inputs: [{
+                        type: 'select',
+                        id: 'input-select-1',
+                        // disabled: true,
+                        options: [
+                            { value: '', label: 'Select...' },
+                            { value: 1, label: 'Option 1' },
+                            { value: 2, label: 'Option 2', disabled: true },
+                            { value: 3, label: 'Option 3', selected: true },
+                            { value: 4, label: 'Option 4' },
+                        ],
+                        payload: 'select',
+                    },
+                    {
+                        type: 'select',
+                        id: 'input-select-1',
+                        // disabled: true,
+                        options: [
+                            { value: '', label: 'Select...' },
+                            { value: 1, label: 'Option 1' },
+                            { value: 2, label: 'Option 2' },
+                            { value: 3, label: 'Option 3', selected: true },
+                            { value: 4, label: 'Option 4' },
+                        ],
+                        payload: 'select',
+                    }]
+            }]
     };
 
     /**

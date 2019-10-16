@@ -11,6 +11,7 @@
     height: $wizard-height;
 
     &__list {
+        display: flex;
         position: relative;
         height: $wizard-height;
     }

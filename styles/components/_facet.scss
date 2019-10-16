@@ -11,64 +11,57 @@
    #FACET
 \* ------------------------------------ */
 .n7-facet {
-    padding-top: $space*1.5;
+    /* General section inside facet */
+    &__section {
+        margin-bottom: $facet-inner-padding*2;
+        margin-left: $facet-inner-padding;
+        margin-right: $facet-inner-padding;
+    }
 }
 
 
 /* ------------------------------------ *\
-   #CHECKBOXES
+   #INPUT CHECKBOX
 \* ------------------------------------ */
 .n7-facet {
-    &__check-wrapper {
-        padding-left: $space*1.5;
-        padding-right: $space*1.5;
-        padding-bottom: $space*1.5;
-        // margin-bottom: $space*2;
-    }
-
-    &__check {
+    &__section-input-checkbox {
         display: inline-block;
         margin-right: $space*2;
-        margin-bottom: $space/2;
     }
 
-    &__check-input {
+    &__input-checkbox-input {
         margin-right: $space/2;
     }
 
-    &__check-label {
+    &__input-checkbox-label {
         font-size: $font-size-s;
     }
 }
 
 
 /* ------------------------------------ *\
-   #SEARCH
+   #INPUT TEXT
 \* ------------------------------------ */
 .n7-facet {
-    &__search-wrapper {
-        // margin-bottom: $space*2;
-        padding-left: $space*1.5;
-        padding-right: $space*1.5;
-        padding-bottom: $space*1.5;
+    &__section-input-text {
     }
 
-    &__search-label {
+    &__input-text-label {
         display: block;
         font-size: $font-size-s;
     }
 
-    &__search-input-wrapper {
+    &__input-text-wrapper {
         position: relative;
     }
 
-    &__search-input[type="text"] {
+    &__input-text[type="text"] {
         width: 100%;
         box-sizing: border-box;
         padding-right: $space*4;
     }
 
-    &__search-icon {
+    &__input-text-icon {
         position: absolute;
         bottom: 0;
         right: $space;
@@ -79,18 +72,15 @@
 
 
 /* ------------------------------------ *\
-   #FILTERS
+   #LIST
 \* ------------------------------------ */
 .n7-facet {
-    &__filter-wrapper {
-        max-height: 200px;
+    &__section-input-links {
+        max-height: $facet-links-max-height;
         overflow-y: auto;
-        padding-left: $space*1.5;
-        padding-right: $space*1.5;
-        margin-bottom: $space*1.5;
     }
 
-    &__filter {
+    &__input-link {
         display: flex;
         align-items: center;
         padding-bottom: $space;
@@ -104,17 +94,17 @@
         }
     }
 
-    &__filter-icon {
+    &__input-link-icon {
         margin-right: $space;
         font-size: $font-size-m;
     }
 
-    &__filter-text {
+    &__input-link-text {
         padding-right: $space;
         font-size: $font-size-m;
     }
 
-    &__filter-counter {
+    &__input-link-counter {
         margin-left: auto;
         padding: $space/4 $space/2;
         border-radius: $border-radius;
@@ -124,14 +114,14 @@
     }
 
     /* Hover */
-    .n7-facet__filter:hover {
-        .n7-facet__filter-text {
+    .n7-facet__input-link:hover {
+        .n7-facet__input-link-text {
             color: $color-text-link;
         }
     }
 
     /* Active */
-    .n7-facet__filter.is-active {
+    .n7-facet__input-link.is-active {
         &:before {
             content: "\e938";
             font-family: 'n7-icon';
@@ -139,9 +129,21 @@
             color: $color-success;
         }
 
-        .n7-facet__filter-text {
+        .n7-facet__input-link-text {
             font-weight: $font-weight-bold;
         }
+    }
+}
+
+
+/* ------------------------------------ *\
+   #SELECT
+\* ------------------------------------ */
+.n7-facet {
+    &__section-input-select {
+        display: inline-block;
+        margin-bottom: $space/2;
+        margin-right: $space;
     }
 }
 

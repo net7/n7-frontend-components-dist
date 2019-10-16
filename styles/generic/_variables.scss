@@ -247,7 +247,7 @@ $item-preview-height: 250px;
 // ------------------------------------ //
 $hero-height: 500px;
 $hero-content-width: 1140px;
-
+$hero-background-color: $color-gray-05;
 
 // ------------------------------------ //
 // #WIZARD
@@ -311,6 +311,13 @@ $facet-header-text-color: $color-text-inverse;
 $facet-header-background: $color-gray-05;
 $facet-header-icon-background: $color-second;
 $facet-header-height: 30px;
+
+
+// ------------------------------------ //
+// #FACET
+// ------------------------------------ //
+$facet-inner-padding: $space;
+$facet-links-max-height: 200px;
 
 
 // ------------------------------------ //

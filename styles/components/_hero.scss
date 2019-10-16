@@ -19,8 +19,9 @@
 .n7-hero {
     position: relative;
     height: $hero-height;
-    background-repeat: none;
+    background-repeat: no-repeat;
     background-size: cover;
+    background-color: $hero-background-color;
 
     /* Overlay */
     &.has-background-image:after {
