@@ -101,6 +101,7 @@
 /* ------------------------------------ *\
    #INDENTATION
 \* ------------------------------------ */
+/* stylelint-disable */
 .n7-tree__children-wrapper .n7-tree__children-wrapper {
     /* 3rd level */
     .n7-tree__item-contents {
@@ -160,7 +161,7 @@
         }
     }
 }
-
+/* stylelint-enable */
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES

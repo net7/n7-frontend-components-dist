@@ -60,17 +60,17 @@
     }
 
     &__action-bar {
-       display: flex;
-       justify-content: center;
-       padding: $space;
+        display: flex;
+        justify-content: center;
+        padding: $space;
+        
+        .n7-btn {
+            margin-right: $space;
 
-       .n7-btn {
-           margin-right: $space;
-
-           &:last-child {
-               margin-right: 0;
-           }
-       }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
 }
 

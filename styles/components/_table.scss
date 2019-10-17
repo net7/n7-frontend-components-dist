@@ -94,7 +94,6 @@
             display: block;
             width: 100%;
             border-bottom: $table-border-size solid $table-border-color;
-            display: block;
             margin-bottom: .625em;
         }
 
@@ -104,7 +103,6 @@
             border-left: $table-border-size solid $table-border-color;
             border-right: $table-border-size solid $table-border-color;
             border-bottom: 0;
-            display: block;
             font-size: .8em;
             text-align: right;
 
@@ -115,7 +113,7 @@
                 */
                 content: "TEST";
                 float: left;
-                font-weight: bold;
+                font-weight: $font-weight-bold;
                 text-transform: uppercase;
             }
 

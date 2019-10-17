@@ -622,6 +622,39 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var FooterComponent = /** @class */ (function () {
+        function FooterComponent() {
+        }
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        FooterComponent.prototype.onClick = /**
+         * @param {?} payload
+         * @return {?}
+         */
+            function (payload) {
+                if (!this.emit)
+                    return;
+                this.emit('click', payload);
+            };
+        FooterComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-footer',
+                        template: "<div *ngIf=\"data\" class=\"n7-footer {{data.classes || ''}}\">\n    <div class=\"n7-footer__content\">\n        <!-- Loop footer content columns -->\n        <div class=\"n7-footer__column {{column.classes || ''}}\" *ngFor=\"let column of data.columns\">\n            <ng-container *ngTemplateOutlet=\"footerColumn; context:{$implicit: column}\"></ng-container>\n        </div>\n    </div>\n</div>\n\n<!-- Template: Columns -->\n<ng-template #footerColumn let-column>\n    <h2 *ngIf=\"column.title\" class=\"n7-footer__column-title\">\n        {{ column.title }}\n    </h2>\n    <p *ngIf=\"column.text\" class=\"n7-footer__column-text\">\n        {{ column.text }}\n    </p>\n    <div *ngIf=\"column.links\" class=\"n7-footer__column-nav\">\n        <ul class=\"n7-footer__column-nav-list\">\n            <li *ngFor=\"let link of column.links\"\n                class=\"n7-footer__column-nav-item {{link.classes || ''}}\">\n                <a class=\"n7-footer__column-nav-link\" \n                   (click)=\"onClick(link.payload)\">\n                    {{ link.text }}\n                </a>\n            </li>\n        </ul>\n    </div>\n\n    <div *ngIf=\"column.images\" class=\"n7-footer__column-images\">\n        <img *ngFor=\"let image of column.images\" \n             src=\"{{ image.url }}\" \n             [attr.alt]=\"image.alttext\"\n             (click)=\"onClick(image.payload)\"\n             class=\"{{image.classes || ''}}\">\n    </div>\n</ng-template>"
+                    }] }
+        ];
+        FooterComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return FooterComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * HeaderComponent <n7-header>
      *
@@ -1348,6 +1381,7 @@
         FacetComponent,
         FacetHeaderComponent,
         FacetYearRangeComponent,
+        FooterComponent,
         HeaderComponent,
         ImageViewerComponent,
         HeroComponent,
@@ -1981,6 +2015,92 @@
             classes: 'is-disabled',
             options: [],
         },
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var FOOTER_MOCK = {
+        columns: [
+            {
+                classes: 'col-class',
+                title: 'Colonna 1',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit elit nunc, at porta ex accumsan id. Fusce quis lobortis sem, non ornare tellus. Ut placerat auctor magna vel imperdiet. Nullam sit amet lobortis justo. Etiam non dapibus ligula. Cras venenatis sed turpis sed fermentum. Nunc mattis pretium risus, at luctus neque suscipit sed.',
+                images: [
+                    {
+                        url: 'https://placekitten.com/100/100',
+                        alttext: 'Gattino'
+                    },
+                    {
+                        url: 'https://placekitten.com/80/100',
+                        alttext: 'Gattone'
+                    },
+                    {
+                        url: 'https://placekitten.com/100/80'
+                    }
+                ]
+            },
+            {
+                title: 'Colonna 2',
+                text: 'Maecenas hendrerit urna enim, eget volutpat odio commodo quis. Mauris varius nisl sit amet odio volutpat lacinia. Quisque venenatis est at urna ullamcorper, id laoreet lacus pharetra. Ut semper risus vel mi mollis lobortis. Curabitur suscipit semper lectus quis fermentum. Nullam sit amet lacinia elit. Aliquam vehicula purus nec leo luctus iaculis.'
+            },
+            {
+                title: 'Colonna 3',
+                images: [
+                    {
+                        url: 'https://placekitten.com/100/100',
+                        alttext: 'Gattino',
+                        classes: 'img-class'
+                    }
+                ],
+                links: [
+                    {
+                        text: 'Link 1: Maecenas hendrerit urna enim, eget volutpat odio commodo quis.',
+                        payload: 'https://www.google.it',
+                        classes: 'link-class'
+                    },
+                    {
+                        text: 'Link 2: Mauris varius nisl sit amet odio volutpat lacinia',
+                        payload: 'https://www.google.it'
+                    },
+                    {
+                        text: 'Link 3',
+                        payload: 'https://www.google.it'
+                    }
+                ]
+            },
+            {
+                title: 'Colonna 4',
+                links: [
+                    {
+                        text: 'Link 1: Maecenas hendrerit urna enim, eget volutpat odio commodo quis.',
+                        payload: 'https://www.google.it'
+                    },
+                    {
+                        text: 'Link 2: Mauris varius nisl sit amet odio volutpat lacinia',
+                        payload: 'https://www.google.it'
+                    },
+                    {
+                        text: 'Link 3',
+                        payload: 'https://www.google.it'
+                    },
+                    {
+                        text: 'Link 1: Maecenas hendrerit urna enim, eget volutpat odio commodo quis.',
+                        payload: 'https://www.google.it'
+                    },
+                    {
+                        text: 'Link 2: Mauris varius nisl sit amet odio volutpat lacinia',
+                        payload: 'https://www.google.it'
+                    },
+                    {
+                        text: 'Link 3',
+                        payload: 'https://www.google.it'
+                    }
+                ]
+            }
+        ]
     };
 
     /**
@@ -2888,6 +3008,7 @@
     exports.FacetComponent = FacetComponent;
     exports.FacetHeaderComponent = FacetHeaderComponent;
     exports.FacetYearRangeComponent = FacetYearRangeComponent;
+    exports.FooterComponent = FooterComponent;
     exports.HeaderComponent = HeaderComponent;
     exports.ImageViewerComponent = ImageViewerComponent;
     exports.HeroComponent = HeroComponent;
@@ -2912,6 +3033,7 @@
     exports.FACET_MOCK = FACET_MOCK;
     exports.FACET_HEADER_MOCK = FACET_HEADER_MOCK;
     exports.FACET_YEAR_RANGE_MOCK = FACET_YEAR_RANGE_MOCK;
+    exports.FOOTER_MOCK = FOOTER_MOCK;
     exports.HEADER_MOCK = HEADER_MOCK;
     exports.IMAGE_VIEWER_MOCK = IMAGE_VIEWER_MOCK;
     exports.HERO_MOCK = HERO_MOCK;

@@ -24,6 +24,11 @@ $susy: (
 
 
 // ------------------------------------ //
+// #LAYOUT
+// ------------------------------------ //
+$page-max-width: 1350px;
+
+// ------------------------------------ //
 // #GRIDS
 // ------------------------------------ //
 $grid-gutter-h: $space*3;
@@ -337,3 +342,8 @@ $image-viewer-control-width: 60px;
 $image-viewer-background-color: $color-gray-05;
 $image-viewer-thumb-active-border-color: $color-main;
 $image-viewer-thumb-hover-border-color: $color-main;
+
+// ------------------------------------ //
+// #FOOTER
+// ------------------------------------ //
+$footer-image-height: 50px;

@@ -111,7 +111,7 @@
     &__subnav-list {
         display: none;
         position: absolute;
-        left:-50%;
+        left: -50%;
         margin: 0;
         padding: 0;
         background-color: $color-background-base;
@@ -262,7 +262,7 @@
     }
 
     &__user-name-label {
-        margin-right: $space;    
+        margin-right: $space;
     }
 
     /* Mobile menu toggle */
@@ -392,7 +392,7 @@
             &:last-child {
                 .n7-header__subnav-link {
                     padding-bottom: 0;
-                }        
+                }
             }
         }
 

@@ -14,10 +14,10 @@
     color: $facet-header-text-color;
 
     &__text {
-       margin-right: $space;
-       margin-left: $space;
-       font-size: $font-size-m;
-       line-height: $facet-header-height;
+        margin-right: $space;
+        margin-left: $space;
+        font-size: $font-size-m;
+        line-height: $facet-header-height;
     }
 
     &__secondary-text {
@@ -36,8 +36,8 @@
     }
 
     &__icon-right {
-      margin-left: auto;
-  }
+        margin-left: auto;
+    }
 }
 
 

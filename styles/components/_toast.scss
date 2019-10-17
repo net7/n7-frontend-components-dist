@@ -8,31 +8,31 @@
    #TOAST
 \* ------------------------------------ */
 .n7-toast {
-  position: fixed;
-  bottom: $space*2;
-  left: $space*2;
+    position: fixed;
+    bottom: $space*2;
+    left: $space*2;
 
-  &__box {
-      max-width: $toast-max-width;
-      padding: $space $space 0 $space;
-      margin-top: $space;
-      background-color: $toast-background-color;
-      border: $toast-border-size solid $toast-border-color;
-  }
+    &__box {
+        max-width: $toast-max-width;
+        padding: $space $space 0 $space;
+        margin-top: $space;
+        background-color: $toast-background-color;
+        border: $toast-border-size solid $toast-border-color;
+    }
 
-  &__title {
-      display: block;
-      padding-bottom: $space;
-      font-size: $font-size-m;
-      color: $toast-title-color;
-  }
+    &__title {
+        display: block;
+        padding-bottom: $space;
+        font-size: $font-size-m;
+        color: $toast-title-color;
+    }
 
-  &__text {
-      display: block;
-      padding-bottom: $space;
-      font-size: $font-size-s;
-      color: $toast-text-color;
-  }
+    &__text {
+        display: block;
+        padding-bottom: $space;
+        font-size: $font-size-s;
+        color: $toast-text-color;
+    }
 }
 
 

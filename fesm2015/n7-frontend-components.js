@@ -577,6 +577,32 @@ FacetYearRangeComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class FooterComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+FooterComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-footer',
+                template: "<div *ngIf=\"data\" class=\"n7-footer {{data.classes || ''}}\">\n    <div class=\"n7-footer__content\">\n        <!-- Loop footer content columns -->\n        <div class=\"n7-footer__column {{column.classes || ''}}\" *ngFor=\"let column of data.columns\">\n            <ng-container *ngTemplateOutlet=\"footerColumn; context:{$implicit: column}\"></ng-container>\n        </div>\n    </div>\n</div>\n\n<!-- Template: Columns -->\n<ng-template #footerColumn let-column>\n    <h2 *ngIf=\"column.title\" class=\"n7-footer__column-title\">\n        {{ column.title }}\n    </h2>\n    <p *ngIf=\"column.text\" class=\"n7-footer__column-text\">\n        {{ column.text }}\n    </p>\n    <div *ngIf=\"column.links\" class=\"n7-footer__column-nav\">\n        <ul class=\"n7-footer__column-nav-list\">\n            <li *ngFor=\"let link of column.links\"\n                class=\"n7-footer__column-nav-item {{link.classes || ''}}\">\n                <a class=\"n7-footer__column-nav-link\" \n                   (click)=\"onClick(link.payload)\">\n                    {{ link.text }}\n                </a>\n            </li>\n        </ul>\n    </div>\n\n    <div *ngIf=\"column.images\" class=\"n7-footer__column-images\">\n        <img *ngFor=\"let image of column.images\" \n             src=\"{{ image.url }}\" \n             [attr.alt]=\"image.alttext\"\n             (click)=\"onClick(image.payload)\"\n             class=\"{{image.classes || ''}}\">\n    </div>\n</ng-template>"
+            }] }
+];
+FooterComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * HeaderComponent <n7-header>
  *
@@ -1127,6 +1153,7 @@ const COMPONENTS = [
     FacetComponent,
     FacetHeaderComponent,
     FacetYearRangeComponent,
+    FooterComponent,
     HeaderComponent,
     ImageViewerComponent,
     HeroComponent,
@@ -1790,6 +1817,92 @@ const FACET_YEAR_RANGE_MOCK = {
         classes: 'is-disabled',
         options: [],
     },
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const FOOTER_MOCK = {
+    columns: [
+        {
+            classes: 'col-class',
+            title: 'Colonna 1',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit elit nunc, at porta ex accumsan id. Fusce quis lobortis sem, non ornare tellus. Ut placerat auctor magna vel imperdiet. Nullam sit amet lobortis justo. Etiam non dapibus ligula. Cras venenatis sed turpis sed fermentum. Nunc mattis pretium risus, at luctus neque suscipit sed.',
+            images: [
+                {
+                    url: 'https://placekitten.com/100/100',
+                    alttext: 'Gattino'
+                },
+                {
+                    url: 'https://placekitten.com/80/100',
+                    alttext: 'Gattone'
+                },
+                {
+                    url: 'https://placekitten.com/100/80'
+                }
+            ]
+        },
+        {
+            title: 'Colonna 2',
+            text: 'Maecenas hendrerit urna enim, eget volutpat odio commodo quis. Mauris varius nisl sit amet odio volutpat lacinia. Quisque venenatis est at urna ullamcorper, id laoreet lacus pharetra. Ut semper risus vel mi mollis lobortis. Curabitur suscipit semper lectus quis fermentum. Nullam sit amet lacinia elit. Aliquam vehicula purus nec leo luctus iaculis.'
+        },
+        {
+            title: 'Colonna 3',
+            images: [
+                {
+                    url: 'https://placekitten.com/100/100',
+                    alttext: 'Gattino',
+                    classes: 'img-class'
+                }
+            ],
+            links: [
+                {
+                    text: 'Link 1: Maecenas hendrerit urna enim, eget volutpat odio commodo quis.',
+                    payload: 'https://www.google.it',
+                    classes: 'link-class'
+                },
+                {
+                    text: 'Link 2: Mauris varius nisl sit amet odio volutpat lacinia',
+                    payload: 'https://www.google.it'
+                },
+                {
+                    text: 'Link 3',
+                    payload: 'https://www.google.it'
+                }
+            ]
+        },
+        {
+            title: 'Colonna 4',
+            links: [
+                {
+                    text: 'Link 1: Maecenas hendrerit urna enim, eget volutpat odio commodo quis.',
+                    payload: 'https://www.google.it'
+                },
+                {
+                    text: 'Link 2: Mauris varius nisl sit amet odio volutpat lacinia',
+                    payload: 'https://www.google.it'
+                },
+                {
+                    text: 'Link 3',
+                    payload: 'https://www.google.it'
+                },
+                {
+                    text: 'Link 1: Maecenas hendrerit urna enim, eget volutpat odio commodo quis.',
+                    payload: 'https://www.google.it'
+                },
+                {
+                    text: 'Link 2: Mauris varius nisl sit amet odio volutpat lacinia',
+                    payload: 'https://www.google.it'
+                },
+                {
+                    text: 'Link 3',
+                    payload: 'https://www.google.it'
+                }
+            ]
+        }
+    ]
 };
 
 /**
@@ -2708,6 +2821,6 @@ const WIZARD_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DvComponentsLibModule, AdvancedAutocompleteComponent, AlertComponent, BreadcrumbsComponent, BubbleChartComponent, ChartComponent, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, HeaderComponent, ImageViewerComponent, HeroComponent, ItemPreviewComponent, InnerTitleComponent, LoaderComponent, MetadataViewerComponent, NavComponent, PaginationComponent, SidebarHeaderComponent, SimpleAutocompleteComponent, TableComponent, TagComponent, ToastComponent, TreeComponent, WizardComponent, ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, CHART_MOCK, FACET_MOCK, FACET_HEADER_MOCK, FACET_YEAR_RANGE_MOCK, HEADER_MOCK, IMAGE_VIEWER_MOCK, HERO_MOCK, ITEM_PREVIEW_MOCK, INNER_TITLE_MOCK, LOADER_MOCK, METADATA_VIEWER_MOCK, NAV_MOCK, PAGINATION_MOCK, SIDEBAR_HEADER_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, TABLE_MOCK, TAG_MOCK, TOAST_MOCK, TREE_MOCK, WIZARD_MOCK };
+export { DvComponentsLibModule, AdvancedAutocompleteComponent, AlertComponent, BreadcrumbsComponent, BubbleChartComponent, ChartComponent, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HeaderComponent, ImageViewerComponent, HeroComponent, ItemPreviewComponent, InnerTitleComponent, LoaderComponent, MetadataViewerComponent, NavComponent, PaginationComponent, SidebarHeaderComponent, SimpleAutocompleteComponent, TableComponent, TagComponent, ToastComponent, TreeComponent, WizardComponent, ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, CHART_MOCK, FACET_MOCK, FACET_HEADER_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, HEADER_MOCK, IMAGE_VIEWER_MOCK, HERO_MOCK, ITEM_PREVIEW_MOCK, INNER_TITLE_MOCK, LOADER_MOCK, METADATA_VIEWER_MOCK, NAV_MOCK, PAGINATION_MOCK, SIDEBAR_HEADER_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, TABLE_MOCK, TAG_MOCK, TOAST_MOCK, TREE_MOCK, WIZARD_MOCK };
 
 //# sourceMappingURL=n7-frontend-components.js.map
