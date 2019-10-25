@@ -8,11 +8,14 @@
    #FOOTER
 \* ------------------------------------ */
 .n7-footer {
+    background-color: $footer-background-color;
+
     &__content {
         display: flex;
         max-width: $page-max-width;
         margin-right: auto;
         margin-left: auto;
+        padding: $space*3 0;
     }
 
     &__column {
