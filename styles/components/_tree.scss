@@ -73,6 +73,16 @@
         color: $color-text-light;
     }
 
+    /* Icon on the right */
+    &__item-right-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $tree-image-size;
+        margin-left: auto;
+        color: $color-text-light;
+    }
+
     &__item-img {
         margin-left: $space*1;
         width: $tree-image-size;

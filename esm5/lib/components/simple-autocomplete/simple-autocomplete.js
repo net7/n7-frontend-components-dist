@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 //---------------------------
 // SIMPLE-AUTOCOMPLETE.ts
@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core';
  * Interface for SimpleAutocompleteComponent's "data"
  *
  * \@property typed (required)
- * \@property append (required)
+ * \@property suggestion (required)
  * \@property payload (optional)
  * \@property classes (optional)
  * \@property _meta (optional)
@@ -19,15 +19,10 @@ import { Component, Input } from '@angular/core';
 export function ISimpleAutocompleteData() { }
 if (false) {
     /**
-     * Text inserted by the user
-     * @type {?}
-     */
-    ISimpleAutocompleteData.prototype.typed;
-    /**
      * Suggested word endings
      * @type {?}
      */
-    ISimpleAutocompleteData.prototype.append;
+    ISimpleAutocompleteData.prototype.suggestion;
     /**
      * Additional HTML classes
      * @type {?|undefined}
@@ -55,6 +50,8 @@ if (false) {
      */
     ISimpleAutocompleteSuggestion.prototype.prefix;
     /** @type {?|undefined} */
+    ISimpleAutocompleteSuggestion.prototype.match;
+    /** @type {?|undefined} */
     ISimpleAutocompleteSuggestion.prototype.suffix;
     /**
      * Suggestion event payload
@@ -81,7 +78,7 @@ var SimpleAutocompleteComponent = /** @class */ (function () {
     SimpleAutocompleteComponent.decorators = [
         { type: Component, args: [{
                     selector: 'n7-simple-autocomplete',
-                    template: "<div *ngIf=\"data\" class=\"n7-simple-autocomplete\">\n    <ul class=\"n7-simple-autocomplete__list {{data.classes || ''}}\">\n        <li *ngFor=\"let suggestion of data.append\" \n            class=\"n7-simple-autocomplete__item\"\n            (click)=\"onClick(suggestion.payload)\">\n            <span *ngIf=\"suggestion.prefix\" class=\"n7-simple-autocomplete__prefix\">{{suggestion.prefix}}</span>\n            <span class=\"n7-simple-autocomplete__typed\">{{data.typed}}</span>\n            <span *ngIf=\"suggestion.suffix\" class=\"n7-simple-autocomplete__suffix\">{{suggestion.suffix}}</span>\n        </li>\n    </ul> \n</div>"
+                    template: "<div *ngIf=\"data\" class=\"n7-simple-autocomplete\">\r\n    <ul class=\"n7-simple-autocomplete__list {{data.classes || ''}}\">\r\n        <li *ngFor=\"let suggestion of data.suggestion\" \r\n            class=\"n7-simple-autocomplete__item\"\r\n            (click)=\"onClick(suggestion.payload)\">\r\n            <span *ngIf=\"suggestion.prefix\" class=\"n7-simple-autocomplete__prefix\">{{suggestion.prefix}}</span>\r\n            <span class=\"n7-simple-autocomplete__typed\">{{suggestion.match}}</span>\r\n            <span *ngIf=\"suggestion.suffix\" class=\"n7-simple-autocomplete__suffix\">{{suggestion.suffix}}</span>\r\n        </li>\r\n    </ul> \r\n</div>"
                 }] }
     ];
     SimpleAutocompleteComponent.propDecorators = {
@@ -97,4 +94,4 @@ if (false) {
     /** @type {?} */
     SimpleAutocompleteComponent.prototype.emit;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2ltcGxlLWF1dG9jb21wbGV0ZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BuNy1mcm9udGVuZC9jb21wb25lbnRzLyIsInNvdXJjZXMiOlsibGliL2NvbXBvbmVudHMvc2ltcGxlLWF1dG9jb21wbGV0ZS9zaW1wbGUtYXV0b2NvbXBsZXRlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFJQSxPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQzs7Ozs7Ozs7Ozs7QUFXakQsNkNBaUJDOzs7Ozs7SUFiQyx3Q0FBYzs7Ozs7SUFJZCx5Q0FBd0M7Ozs7O0lBSXhDLDBDQUFjOzs7OztJQUlkLHdDQUFZOzs7Ozs7Ozs7O0FBVWQsbURBVUM7Ozs7OztJQU5DLCtDQUFnQjs7SUFDaEIsK0NBQWdCOzs7OztJQUloQixnREFBYzs7QUFHaEI7SUFBQTtJQWFBLENBQUM7Ozs7O0lBTEMsNkNBQU87Ozs7SUFBUCxVQUFRLE9BQU87UUFDYixJQUFHLENBQUMsSUFBSSxDQUFDLElBQUk7WUFBRSxPQUFPO1FBRXRCLElBQUksQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDO0lBQzlCLENBQUM7O2dCQVpGLFNBQVMsU0FBQztvQkFDVCxRQUFRLEVBQUUsd0JBQXdCO29CQUNsQyx3b0JBQXlDO2lCQUMxQzs7O3VCQUVFLEtBQUs7dUJBQ0wsS0FBSzs7SUFPUixrQ0FBQztDQUFBLEFBYkQsSUFhQztTQVRZLDJCQUEyQjs7O0lBQ3RDLDJDQUF1Qzs7SUFDdkMsMkNBQW1CIiwic291cmNlc0NvbnRlbnQiOlsiLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbi8vIFNJTVBMRS1BVVRPQ09NUExFVEUudHNcbi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5cbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIFNpbXBsZUF1dG9jb21wbGV0ZUNvbXBvbmVudCdzIFwiZGF0YVwiXG4gKlxuICogQHByb3BlcnR5IHR5cGVkIChyZXF1aXJlZClcbiAqIEBwcm9wZXJ0eSBhcHBlbmQgKHJlcXVpcmVkKVxuICogQHByb3BlcnR5IHBheWxvYWQgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IF9tZXRhIChvcHRpb25hbClcbiAqL1xuZXhwb3J0IGludGVyZmFjZSBJU2ltcGxlQXV0b2NvbXBsZXRlRGF0YSB7XG4gIC8qKlxuICAgKiBUZXh0IGluc2VydGVkIGJ5IHRoZSB1c2VyXG4gICAqL1xuICB0eXBlZDogc3RyaW5nLFxuICAvKipcbiAgICogU3VnZ2VzdGVkIHdvcmQgZW5kaW5nc1xuICAgKi9cbiAgYXBwZW5kOiBJU2ltcGxlQXV0b2NvbXBsZXRlU3VnZ2VzdGlvbltdLFxuICAvKipcbiAgICogQWRkaXRpb25hbCBIVE1MIGNsYXNzZXNcbiAgICovXG4gIGNsYXNzZXM/OiBhbnksXG4gIC8qKlxuICAgKiBBZGRpdGlvbmFsIGRhdGEgdXNlZnVsIGZvciB0aGUgY29tcG9uZW50J3MgbG9naWNcbiAgICovXG4gIF9tZXRhPzogYW55LFxufVxuXG4vKipcbiAqIEludGVyZmFjZSBmb3IgU2ltcGxlQXV0b2NvbXBsZXRlQ29tcG9uZW50J3MgXCJTdWdnZXN0aW9uXCJcbiAqXG4gKiBAcHJvcGVydHkgcHJlZml4IChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBzdWZmaXggKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IHBheWxvYWQgKG9wdGlvbmFsKVxuICovXG5leHBvcnQgaW50ZXJmYWNlIElTaW1wbGVBdXRvY29tcGxldGVTdWdnZXN0aW9uIHtcbiAgLyoqXG4gICAqIFJlbmRlciBzdWdnZXN0aW9uc1xuICAgKi9cbiAgcHJlZml4Pzogc3RyaW5nLFxuICBzdWZmaXg/OiBzdHJpbmcsXG4gIC8qKlxuICAgKiBTdWdnZXN0aW9uIGV2ZW50IHBheWxvYWRcbiAgICovXG4gIHBheWxvYWQ/OiBhbnksXG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LXNpbXBsZS1hdXRvY29tcGxldGUnLFxuICB0ZW1wbGF0ZVVybDogJy4vc2ltcGxlLWF1dG9jb21wbGV0ZS5odG1sJ1xufSlcbmV4cG9ydCBjbGFzcyBTaW1wbGVBdXRvY29tcGxldGVDb21wb25lbnQge1xuICBASW5wdXQoKSBkYXRhOiBJU2ltcGxlQXV0b2NvbXBsZXRlRGF0YTtcbiAgQElucHV0KCkgZW1pdDogYW55O1xuXG4gIG9uQ2xpY2socGF5bG9hZCl7XG4gICAgaWYoIXRoaXMuZW1pdCkgcmV0dXJuO1xuXG4gICAgdGhpcy5lbWl0KCdjbGljaycsIHBheWxvYWQpO1xuICB9XG59Il19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2ltcGxlLWF1dG9jb21wbGV0ZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BuNy1mcm9udGVuZC9jb21wb25lbnRzLyIsInNvdXJjZXMiOlsibGliL2NvbXBvbmVudHMvc2ltcGxlLWF1dG9jb21wbGV0ZS9zaW1wbGUtYXV0b2NvbXBsZXRlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFJQSxPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQzs7Ozs7Ozs7Ozs7QUFXakQsNkNBYUM7Ozs7OztJQVRDLDZDQUE0Qzs7Ozs7SUFJNUMsMENBQWM7Ozs7O0lBSWQsd0NBQVk7Ozs7Ozs7Ozs7QUFVZCxtREFXQzs7Ozs7O0lBUEMsK0NBQWdCOztJQUNoQiw4Q0FBZTs7SUFDZiwrQ0FBZ0I7Ozs7O0lBSWhCLGdEQUFjOztBQUdoQjtJQUFBO0lBYUEsQ0FBQzs7Ozs7SUFMQyw2Q0FBTzs7OztJQUFQLFVBQVEsT0FBTztRQUNiLElBQUcsQ0FBQyxJQUFJLENBQUMsSUFBSTtZQUFFLE9BQU87UUFFdEIsSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUM7SUFDOUIsQ0FBQzs7Z0JBWkYsU0FBUyxTQUFDO29CQUNULFFBQVEsRUFBRSx3QkFBd0I7b0JBQ2xDLHNxQkFBeUM7aUJBQzFDOzs7dUJBRUUsS0FBSzt1QkFDTCxLQUFLOztJQU9SLGtDQUFDO0NBQUEsQUFiRCxJQWFDO1NBVFksMkJBQTJCOzs7SUFDdEMsMkNBQXVDOztJQUN2QywyQ0FBbUIiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxyXG4vLyBTSU1QTEUtQVVUT0NPTVBMRVRFLnRzXHJcbi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcblxyXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XHJcblxyXG4vKipcclxuICogSW50ZXJmYWNlIGZvciBTaW1wbGVBdXRvY29tcGxldGVDb21wb25lbnQncyBcImRhdGFcIlxyXG4gKlxyXG4gKiBAcHJvcGVydHkgdHlwZWQgKHJlcXVpcmVkKVxyXG4gKiBAcHJvcGVydHkgc3VnZ2VzdGlvbiAocmVxdWlyZWQpXHJcbiAqIEBwcm9wZXJ0eSBwYXlsb2FkIChvcHRpb25hbClcclxuICogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxyXG4gKiBAcHJvcGVydHkgX21ldGEgKG9wdGlvbmFsKVxyXG4gKi9cclxuZXhwb3J0IGludGVyZmFjZSBJU2ltcGxlQXV0b2NvbXBsZXRlRGF0YSB7XHJcbiAgLyoqXHJcbiAgICogU3VnZ2VzdGVkIHdvcmQgZW5kaW5nc1xyXG4gICAqL1xyXG4gIHN1Z2dlc3Rpb246IElTaW1wbGVBdXRvY29tcGxldGVTdWdnZXN0aW9uW10sXHJcbiAgLyoqXHJcbiAgICogQWRkaXRpb25hbCBIVE1MIGNsYXNzZXNcclxuICAgKi9cclxuICBjbGFzc2VzPzogYW55LFxyXG4gIC8qKlxyXG4gICAqIEFkZGl0aW9uYWwgZGF0YSB1c2VmdWwgZm9yIHRoZSBjb21wb25lbnQncyBsb2dpY1xyXG4gICAqL1xyXG4gIF9tZXRhPzogYW55LFxyXG59XHJcblxyXG4vKipcclxuICogSW50ZXJmYWNlIGZvciBTaW1wbGVBdXRvY29tcGxldGVDb21wb25lbnQncyBcIlN1Z2dlc3Rpb25cIlxyXG4gKlxyXG4gKiBAcHJvcGVydHkgcHJlZml4IChvcHRpb25hbClcclxuICogQHByb3BlcnR5IHN1ZmZpeCAob3B0aW9uYWwpXHJcbiAqIEBwcm9wZXJ0eSBwYXlsb2FkIChvcHRpb25hbClcclxuICovXHJcbmV4cG9ydCBpbnRlcmZhY2UgSVNpbXBsZUF1dG9jb21wbGV0ZVN1Z2dlc3Rpb24ge1xyXG4gIC8qKlxyXG4gICAqIFJlbmRlciBzdWdnZXN0aW9uc1xyXG4gICAqL1xyXG4gIHByZWZpeD86IHN0cmluZyxcclxuICBtYXRjaD86IHN0cmluZyxcclxuICBzdWZmaXg/OiBzdHJpbmcsXHJcbiAgLyoqXHJcbiAgICogU3VnZ2VzdGlvbiBldmVudCBwYXlsb2FkXHJcbiAgICovXHJcbiAgcGF5bG9hZD86IGFueSxcclxufVxyXG5cclxuQENvbXBvbmVudCh7XHJcbiAgc2VsZWN0b3I6ICduNy1zaW1wbGUtYXV0b2NvbXBsZXRlJyxcclxuICB0ZW1wbGF0ZVVybDogJy4vc2ltcGxlLWF1dG9jb21wbGV0ZS5odG1sJ1xyXG59KVxyXG5leHBvcnQgY2xhc3MgU2ltcGxlQXV0b2NvbXBsZXRlQ29tcG9uZW50IHtcclxuICBASW5wdXQoKSBkYXRhOiBJU2ltcGxlQXV0b2NvbXBsZXRlRGF0YTtcclxuICBASW5wdXQoKSBlbWl0OiBhbnk7XHJcblxyXG4gIG9uQ2xpY2socGF5bG9hZCl7XHJcbiAgICBpZighdGhpcy5lbWl0KSByZXR1cm47XHJcblxyXG4gICAgdGhpcy5lbWl0KCdjbGljaycsIHBheWxvYWQpO1xyXG4gIH1cclxufSJdfQ==

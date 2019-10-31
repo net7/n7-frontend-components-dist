@@ -2,20 +2,16 @@
  * Interface for SimpleAutocompleteComponent's "data"
  *
  * @property typed (required)
- * @property append (required)
+ * @property suggestion (required)
  * @property payload (optional)
  * @property classes (optional)
  * @property _meta (optional)
  */
 export interface ISimpleAutocompleteData {
     /**
-     * Text inserted by the user
-     */
-    typed: string;
-    /**
      * Suggested word endings
      */
-    append: ISimpleAutocompleteSuggestion[];
+    suggestion: ISimpleAutocompleteSuggestion[];
     /**
      * Additional HTML classes
      */
@@ -37,6 +33,7 @@ export interface ISimpleAutocompleteSuggestion {
      * Render suggestions
      */
     prefix?: string;
+    match?: string;
     suffix?: string;
     /**
      * Suggestion event payload
