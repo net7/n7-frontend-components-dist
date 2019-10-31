@@ -78,7 +78,7 @@
         margin-bottom: $space !important;
         padding: $space*2;
         cursor: pointer;
-        background-color: rgba($color-gray-06, .5);
+        background-color: rgba($color-gray-05, .5);
         border-radius: $border-radius;
 
         span {
@@ -88,7 +88,7 @@
         }
 
         &:hover {
-            background-color: rgba($color-gray-06, .8);
+            background-color: rgba($color-gray-05, .8);
             span {
                 color: rgba($color-text-inverse, 1);
             }

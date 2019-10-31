@@ -71,13 +71,25 @@
 /* ------------------------------------ *\
    #MEDIA-QUERIES
 \* ------------------------------------ */
-@media all and (max-width: $breakpoint-laptop) {
+@media all and (max-width: $footer-breakpoint-desktop) {
+    .n7-footer {
+        &__column {
+            
+            &:first-of-type {
+                padding-left: $grid-gutter-h/2;
+            }
+
+            &:last-of-type {
+                padding-right: $grid-gutter-h/2;
+            }
+        }
+    }
 }
 
 @media all and (max-width: $breakpoint-ipad-portrait) {
 }
 
-@media all and (max-width: $breakpoint-smartphone-landscape) {
+@media all and (max-width: $footer-breakpoint-mobile) {
     .n7-footer {
         &__content {
             flex-flow: column nowrap;
@@ -85,11 +97,7 @@
 
         &__column {
             padding-bottom: $grid-gutter-h/2;
-            
-            &:first-of-type {
-                padding-left: $grid-gutter-h/2;
-            }
-
+        
             &:last-of-type {
                 padding-bottom: 0;
             }

@@ -81,6 +81,7 @@
         width: $tree-image-size;
         margin-left: auto;
         color: $color-text-light;
+        flex-shrink: 0;
     }
 
     &__item-img {
@@ -88,6 +89,7 @@
         width: $tree-image-size;
         height: $tree-image-size;
         object-fit: cover;
+        flex-shrink: 0;
     }
 
     /* is-active */

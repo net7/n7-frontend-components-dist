@@ -11,19 +11,6 @@ $space: 8px;
 
 
 // ------------------------------------ //
-// #SUSY
-// ------------------------------------ //
-/* stylelint-disable */
-$susy: (
-    'columns': susy-repeat(4),
-    'gutters': 0.25,
-    'spread': 'narrow',
-    'container-spread': 'narrow',
-);
-/* stylelint-enable */
-
-
-// ------------------------------------ //
 // #LAYOUT
 // ------------------------------------ //
 $page-max-width: 1350px;
@@ -64,7 +51,7 @@ $font-weight-bold: 700;
 // COLORS
 // ------------------------------------ //
 // Text Colors
-$color-text: $color-gray-06;
+$color-text: $color-gray-05;
 $color-text-inverse: $color-gray-00;
 $color-text-light: $color-gray-04;
 $color-text-link: $color-main;
@@ -78,7 +65,7 @@ $color-border-normal: $color-gray-03;
 
 // Backgrounds
 $color-background-base: $color-gray-00;
-$color-background-light: $color-gray-00;
+$color-background-light: $color-gray-01;
 $color-background-medium: $color-gray-02;
 $color-background-dark: $color-gray-03;
 
@@ -348,3 +335,5 @@ $image-viewer-thumb-hover-border-color: $color-main;
 // ------------------------------------ //
 $footer-image-height: 50px;
 $footer-background-color: $color-gray-03;
+$footer-breakpoint-desktop: $page-max-width + $grid-gutter-h;
+$footer-breakpoint-mobile: 700px;
