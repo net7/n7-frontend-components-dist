@@ -71,6 +71,7 @@
         width: $tree-image-size;
         margin-left: $space*1;
         color: $color-text-light;
+        flex-shrink: 0;
     }
 
     /* Icon on the right */

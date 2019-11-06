@@ -40,6 +40,10 @@ export interface ITreeItem {
      */
     icon?: string;
     /**
+    * the item's right icon, only used on tree items
+    */
+    iconright?: string;
+    /**
      * the item's image, only used on leaf items
      */
     img?: string;
