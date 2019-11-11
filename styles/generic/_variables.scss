@@ -134,6 +134,7 @@ $color-button-light-text-active: $color-text-link-hover;
 $form-input-height: 38px;
 $form-input-small-height: 26px;
 $form-border-radius: $border-radius;
+$form-border-size: 1px;
 
 
 // ------------------------------------ //
@@ -289,6 +290,13 @@ $toast-max-width: 300px;
 
 
 // ------------------------------------ //
+// #SIGNUP
+// ------------------------------------ //
+$signup-max-width: 400px;
+$signup-input-background: $color-gray-01;
+$signup-error-color: $color-error;
+
+
 // #ADVANCED-AUTOCOMPLETE
 // ------------------------------------ //
 $advanced-autocomplete-results-max-height: 300px;

@@ -9,6 +9,7 @@
 \* ------------------------------------ */
 .n7-btn {
     display: inline-block;
+    box-sizing: border-box;
     width: auto !important;
     height: $button-normal-height;
     padding: 0 $space;
