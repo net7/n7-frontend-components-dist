@@ -71,7 +71,7 @@ export interface ISignupData {
     login?: {
         email: ISignupField;
         password: ISignupPasswordField;
-        forgotPassword: {
+        forgotPassword?: {
             title: string;
             label: string;
             payload: any;
