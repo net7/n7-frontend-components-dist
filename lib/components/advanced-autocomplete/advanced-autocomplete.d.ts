@@ -34,7 +34,7 @@ export interface IAdvancedAutocompleteResponse {
         payload?: any;
     };
     label?: string;
-    value?: string;
+    value?: any;
     payload?: any;
 }
 export declare class AdvancedAutocompleteComponent {

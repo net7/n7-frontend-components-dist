@@ -99,6 +99,7 @@ export declare class SignupComponent {
     emit: any;
     onClick(payload: any): void;
     onChange(inputPayload: any, value: any): void;
+    onInputEnter(inputPayload: any, value: any): void;
     onFocus(payload: any): void;
     onFocusOut(payload: any): void;
 }

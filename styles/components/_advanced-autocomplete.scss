@@ -55,10 +55,29 @@
         }
     }
 
-    &__item-label {
+    /* Title */
+    &__item-title {
+        margin-right: $space;
         font-weight: $font-weight-bold;
     }
 
+    /* Metadata */
+    &__item-metadata {
+        font-size: $font-size-s;
+    }
+
+    &__item-label {
+        margin-right: $space/2;
+        color: $color-text-light;
+    }
+
+    &__item-value {
+        margin-right: $space/2;
+        color: $color-text-light;
+        font-weight: $font-weight-bold;
+    }
+
+    /* Action bar at the bottom */
     &__action-bar {
         display: flex;
         justify-content: center;
