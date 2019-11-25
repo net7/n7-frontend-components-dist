@@ -1,7 +1,5 @@
 /**
  * Interface for AdvancedAutocompleteComponent's "data"
- *
- * @property NAME (required|options) <--- TODO: update with interface properties
  */
 export interface IAdvancedAutocompleteData {
     results?: IAdvancedAutocompleteResponse[];
@@ -21,24 +19,23 @@ export interface IAdvancedAutocompleteData {
     classes?: any;
     _meta?: any;
 }
-export interface IAdvancedAutocompleteResponse {
-    /**
-     * group of results with a title
-     * NOTE: Nested groups WILL NOT BE RENDERED!
-     */
+interface IAdvancedAutocompleteItem {
+    label?: string;
+    value?: any;
+    payload?: any;
+}
+interface IAdvancedAutocompleteResponse {
+    items: IAdvancedAutocompleteItem[];
     group?: {
         title: string;
-        items: IAdvancedAutocompleteResponse[];
         classes?: string;
         icon?: string;
         payload?: any;
     };
-    label?: string;
-    value?: any;
-    payload?: any;
 }
 export declare class AdvancedAutocompleteComponent {
     data: IAdvancedAutocompleteData;
     emit: any;
     onClick(payload: any): void;
 }
+export {};
