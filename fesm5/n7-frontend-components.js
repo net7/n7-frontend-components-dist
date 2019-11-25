@@ -196,7 +196,7 @@ var BubbleChartComponent = /** @class */ (function () {
             function (d) {
                 if (!_this.emit)
                     return;
-                _this.emit('mouse_enter', { bubblePayload: d.payload, bubble: d });
+                _this.emit('mouseenter', { bubblePayload: d.payload, bubble: d });
             }));
             this.bubbleChart.selectAll("#" + this.data.containerId + " g").on('mouseleave', (/**
              * @param {?} d
@@ -205,7 +205,7 @@ var BubbleChartComponent = /** @class */ (function () {
             function (d) {
                 if (!_this.emit)
                     return;
-                _this.emit('mouse_leave', { bubblePayload: d.payload, bubble: d });
+                _this.emit('mouseleave', { bubblePayload: d.payload, bubble: d });
             }));
         }
         if (this.data.setBubbleChart)
@@ -745,7 +745,7 @@ var HeaderComponent = /** @class */ (function () {
     function (payload, keyCode, value) {
         if (!this.emit)
             return;
-        this.emit('keyUp', { payload: payload, keyCode: keyCode, value: value });
+        this.emit('keyup', { payload: payload, keyCode: keyCode, value: value });
     };
     HeaderComponent.decorators = [
         { type: Component, args: [{
@@ -1228,7 +1228,7 @@ var TableComponent = /** @class */ (function () {
     function (cell_payload) {
         if (!this.emit)
             return;
-        this.emit('cellClick', cell_payload);
+        this.emit('cellclick', cell_payload);
     };
     /**
      * @param {?} cell_payload
@@ -1241,7 +1241,7 @@ var TableComponent = /** @class */ (function () {
     function (cell_payload) {
         if (!this.emit)
             return;
-        this.emit('cellDblClick', cell_payload);
+        this.emit('celldblclick', cell_payload);
     };
     /**
      * @param {?} cell_payload
@@ -1258,7 +1258,7 @@ var TableComponent = /** @class */ (function () {
             return;
         /** @type {?} */
         var textChange_payload = { tc_payload: cell_payload, val: cell_value };
-        this.emit('inputTextChange', textChange_payload);
+        this.emit('inputtextchange', textChange_payload);
     };
     TableComponent.decorators = [
         { type: Component, args: [{

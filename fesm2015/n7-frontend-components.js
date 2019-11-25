@@ -164,7 +164,7 @@ class BubbleChartComponent {
             (d) => {
                 if (!this.emit)
                     return;
-                this.emit('mouse_enter', { bubblePayload: d.payload, bubble: d });
+                this.emit('mouseenter', { bubblePayload: d.payload, bubble: d });
             }));
             this.bubbleChart.selectAll(`#${this.data.containerId} g`).on('mouseleave', (/**
              * @param {?} d
@@ -173,7 +173,7 @@ class BubbleChartComponent {
             (d) => {
                 if (!this.emit)
                     return;
-                this.emit('mouse_leave', { bubblePayload: d.payload, bubble: d });
+                this.emit('mouseleave', { bubblePayload: d.payload, bubble: d });
             }));
         }
         if (this.data.setBubbleChart)
@@ -646,7 +646,7 @@ class HeaderComponent {
     onKeyUp(payload, keyCode, value) {
         if (!this.emit)
             return;
-        this.emit('keyUp', { payload, keyCode, value });
+        this.emit('keyup', { payload, keyCode, value });
     }
 }
 HeaderComponent.decorators = [
@@ -1013,7 +1013,7 @@ class TableComponent {
     onCellClick(cell_payload) {
         if (!this.emit)
             return;
-        this.emit('cellClick', cell_payload);
+        this.emit('cellclick', cell_payload);
     }
     /**
      * @param {?} cell_payload
@@ -1022,7 +1022,7 @@ class TableComponent {
     onCellDblClick(cell_payload) {
         if (!this.emit)
             return;
-        this.emit('cellDblClick', cell_payload);
+        this.emit('celldblclick', cell_payload);
     }
     /**
      * @param {?} cell_payload
@@ -1034,7 +1034,7 @@ class TableComponent {
             return;
         /** @type {?} */
         const textChange_payload = { tc_payload: cell_payload, val: cell_value };
-        this.emit('inputTextChange', textChange_payload);
+        this.emit('inputtextchange', textChange_payload);
     }
 }
 TableComponent.decorators = [
