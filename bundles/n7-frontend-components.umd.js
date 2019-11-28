@@ -483,6 +483,52 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var DataWidgetComponent = /** @class */ (function () {
+        function DataWidgetComponent() {
+        }
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        DataWidgetComponent.prototype.onMouseEnter = /**
+         * @param {?} payload
+         * @return {?}
+         */
+            function (payload) {
+                if (!this.emit)
+                    return;
+                this.emit('mouseenter', payload);
+            };
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        DataWidgetComponent.prototype.onMouseLeave = /**
+         * @param {?} payload
+         * @return {?}
+         */
+            function (payload) {
+                if (!this.emit)
+                    return;
+                this.emit('mouseleave', payload);
+            };
+        DataWidgetComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-data-widget',
+                        template: "<div *ngIf=\"data\" class=\"n7-data-widget {{ data.classes || '' }}\">\n    <div class=\"n7-data-widget__main\">\n        <span *ngIf=\"data.icon\" \n              class=\"n7-data-widget__main-icon {{data.icon}}\" \n              (mouseenter)=\"onMouseEnter(data.payload)\" \n              (mouseleave)=\"onMouseLeave(data.payload)\">            \n        </span>\n        <h2 class=\"n7-data-widget__main-title\">\n            {{data.text}}\n        </h2>\t\n    </div>\n    \n    <div *ngIf=\"data.subtitle && (data.subtitle.text || data.subtitle.icon || data.subtitle.value)\"\n         class=\"n7-data-widget__sub\">\n        <p *ngIf=\"data.subtitle.text\"\n           class=\"n7-data-widget__sub-title\">\n            {{data.subtitle.text}}\n        </p>\n        <span *ngIf=\"data.subtitle.icon || data.subtitle.value\" \n              class=\"n7-data-widget__sub-info\" \n              (mouseenter)=\"onMouseEnter(data.subtitle.payload)\" \n              (mouseleave)=\"onMouseLeave(data.subtitle.payload)\">\n                <span *ngIf=\"data.subtitle.icon\"\n                class=\"n7-data-widget__sub-info-icon {{data.subtitle.icon}}\">\n          </span>\n          <span *ngIf=\"data.subtitle.value\"\n                class=\"n7-data-widget__sub-info-label\">\n                {{data.subtitle.value}}\n          </span>\n        </span>\n    </div>\n</div>\n"
+                    }] }
+        ];
+        DataWidgetComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return DataWidgetComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var FacetComponent = /** @class */ (function () {
         function FacetComponent() {
         }
@@ -1467,6 +1513,7 @@
         BreadcrumbsComponent,
         BubbleChartComponent,
         ChartComponent,
+        DataWidgetComponent,
         FacetComponent,
         FacetHeaderComponent,
         FacetYearRangeComponent,
@@ -2002,6 +2049,24 @@
             tooltip: {},
             annotations: { "yaxis": [], "xaxis": [], "points": [] }
         }
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var DATA_WIDGET_MOCK = {
+        icon: "n7-icon-earth",
+        text: "497",
+        subtitle: {
+            text: "Dipendenti",
+            icon: "n7-icon-caret-up",
+            value: "9%",
+            payload: "view percent tooltip "
+        },
+        payload: "view earth tooltip",
+        classes: "is-positive"
     };
 
     /**
@@ -3187,6 +3252,7 @@
     exports.BreadcrumbsComponent = BreadcrumbsComponent;
     exports.BubbleChartComponent = BubbleChartComponent;
     exports.ChartComponent = ChartComponent;
+    exports.DataWidgetComponent = DataWidgetComponent;
     exports.FacetComponent = FacetComponent;
     exports.FacetHeaderComponent = FacetHeaderComponent;
     exports.FacetYearRangeComponent = FacetYearRangeComponent;
@@ -3213,6 +3279,7 @@
     exports.BREADCRUMBS_MOCK = BREADCRUMBS_MOCK;
     exports.BUBBLECHART_MOCK = BUBBLECHART_MOCK;
     exports.CHART_MOCK = CHART_MOCK;
+    exports.DATA_WIDGET_MOCK = DATA_WIDGET_MOCK;
     exports.FACET_MOCK = FACET_MOCK;
     exports.FACET_HEADER_MOCK = FACET_HEADER_MOCK;
     exports.FACET_YEAR_RANGE_MOCK = FACET_YEAR_RANGE_MOCK;

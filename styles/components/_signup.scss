@@ -25,11 +25,31 @@
     }
 
     &__form-item {
-            display: flex;
-            flex-flow: column nowrap;
-            padding: $space 0;
-            position: relative;
-            
+        display: flex;
+        flex-flow: column nowrap;
+        padding: $space 0;
+        position: relative;
+        
+        textarea,
+        input[type="date"],
+        input[type="datetime"],
+        input[type="datetime-local"],
+        input[type="email"], input[type="month"],
+        input[type="number"], input[type="password"],
+        input[type="search"], input[type="tel"],
+        input[type="text"], input[type="time"], input[type="url"], input[type="week"] {
+            background: $signup-input-background;
+
+            &:-webkit-autofill {
+                background: $signup-input-background !important;
+            }
+        }
+
+        input[type="password"] {
+            padding-right: 35px;
+        }
+
+        &.has-error {
             textarea,
             input[type="date"],
             input[type="datetime"],
@@ -38,29 +58,9 @@
             input[type="number"], input[type="password"],
             input[type="search"], input[type="tel"],
             input[type="text"], input[type="time"], input[type="url"], input[type="week"] {
-                    background: $signup-input-background;
-
-                    &:-webkit-autofill {
-                        background: $signup-input-background !important;
-                    }
+                border-color: $signup-error-color;
             }
-
-            input[type="password"] {
-                padding-right: 35px;
-            }
-
-            &.has-error {
-                textarea,
-                input[type="date"],
-                input[type="datetime"],
-                input[type="datetime-local"],
-                input[type="email"], input[type="month"],
-                input[type="number"], input[type="password"],
-                input[type="search"], input[type="tel"],
-                input[type="text"], input[type="time"], input[type="url"], input[type="week"] {
-                    border-color: $signup-error-color;
-                }
-            }
+        }
     }
 
     &__form-item-label {
