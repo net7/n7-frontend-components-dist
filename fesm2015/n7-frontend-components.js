@@ -23,7 +23,7 @@ class AdvancedAutocompleteComponent {
 AdvancedAutocompleteComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-advanced-autocomplete',
-                template: "<div *ngIf=\"data\"\n     class=\"n7-advanced-autocomplete\"\n     [ngClass]=\"{ 'is-empty' : (data.results && data.results.length == 0), 'is-loading': !data.results }\">\n    <!-- If there are some results -->\n    <ng-container *ngIf=\"data.results && data.results.length > 0\">\n        <ng-container *ngTemplateOutlet=\"hasLoaded\"></ng-container>\n    </ng-container>\n    <!-- If no results are found -->\n    <ng-container *ngIf=\"data.results && data.results.length == 0\">\n        <ng-container *ngTemplateOutlet=\"isEmpty\"></ng-container>\n    </ng-container>\n    <!-- If is loading -->\n    <ng-container *ngIf=\"!data.results\">\n        <ng-container *ngTemplateOutlet=\"isLoading\"></ng-container>\n    </ng-container>\n</div>\n\n<!-- Template: Is empty -->\n<ng-template #isEmpty>\n    <div class=\"n7-advanced-autocomplete__empty\" [innerHTML]=\"data.fallback\"></div>\n</ng-template>\n\n<!-- Template: Is loading -->\n<ng-template #isLoading>\n    <!-- Layout appends loader-component here -->\n    <span class=\"n7-advanced-autocomplete__loader\"\n          id=\"n7-advanced-autocomplete__loader\">\n    </span>\n</ng-template>\n\n<!-- Template: Has loaded -->\n<ng-template #hasLoaded>\n    <!-- Search results -->\n    <div class=\"n7-advanced-autocomplete__results\">\n        <!-- Render groups -->\n        <ng-container *ngFor=\"let res of data.results\">\n            <div *ngIf=\"res.group\" class=\"n7-advanced-autocomplete__group\">\n                <div class=\"n7-advanced-autocomplete__group-title-wrapper {{ res.group.classes || '' }}\"\n                     (click)=\"onClick(res.group.payload)\">\n                    <span *ngIf=\"res.group.icon\" class=\"n7-advanced-autocomplete__group-icon {{ res.group.icon }}\"></span>\n                    <span class=\"n7-advanced-autocomplete__group-title\">{{res.group.title}}</span>\n                </div>\n                <div class=\"n7-advanced-autocomplete__items\">\n                    <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\n                </div>\n            </div>\n            <div *ngIf=\"!res.group\" class=\"n7-advanced-autocomplete__nogroup\">\n                <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\n            </div>\n        </ng-container>\n        <!-- Render items -->\n    </div>\n    <!-- Actions -->\n    <div *ngIf=\"data.actions\"\n            class=\"n7-advanced-autocomplete__action-bar\">\n        <button *ngIf=\"data.actions.advanced\"\n                (click)=\"onClick(data.actions.advanced.payload)\"\n                class=\"n7-btn n7-advanced-autocomplete__advanced-search\">\n            {{data.actions.advanced.text}}\n        </button>\n        <button *ngIf=\"data.actions.showMore\"\n                (click)=\"onClick(data.actions.showMore.payload)\"\n                class=\"n7-btn n7-btn-cta n7-advanced-autocomplete__show-more\">\n            {{data.actions.showMore.text}}\n        </button>\n    </div>\n</ng-template>\n\n<!-- Template: Items -->\n<ng-template #items let-items>\n    <div *ngFor=\"let item of items\"\n         class=\"n7-advanced-autocomplete__item\"\n         (click)=\"onClick(item.payload)\">\n        <!-- Skip items that are groups -->\n        <ng-container *ngIf=\"item.label\">\n            <span class=\"n7-advanced-autocomplete__item-title\">\n                {{item.label}}\n            </span>\n            <span *ngIf=\"item.value\">\n                <span\n                *ngFor=\"let v of item.value\"\n                class=\"n7-advanced-autocomplete__item-metadata\">\n                    <ng-container *ngIf=\"v.key\">\n                        <span class=\"n7-advanced-autocomplete__item-label\">{{v.key}}</span>\n                    </ng-container>\n                    <ng-container *ngIf=\"v.value\">\n                        <span class=\"n7-advanced-autocomplete__item-value\">{{v.value}}</span>\n                    </ng-container>\n                    <ng-container *ngIf=\"!v.value && !v.key\">\n                        <span class=\"n7-advanced-autocomplete__item-value\">{{v}}</span>\n                    </ng-container>\n                </span>\n            </span>\n        </ng-container>\n    </div>\n</ng-template>"
+                template: "<div *ngIf=\"data\"\n     class=\"n7-advanced-autocomplete\"\n     [ngClass]=\"{ 'is-empty' : (data.results && data.results.length == 0), 'is-loading': !data.results }\">\n    <!-- If there are some results -->\n    <ng-container *ngIf=\"data.results && data.results.length > 0\">\n        <ng-container *ngTemplateOutlet=\"hasLoaded\"></ng-container>\n    </ng-container>\n    <!-- If no results are found -->\n    <ng-container *ngIf=\"data.results && data.results.length == 0\">\n        <ng-container *ngTemplateOutlet=\"isEmpty\"></ng-container>\n    </ng-container>\n    <!-- If is loading -->\n    <ng-container *ngIf=\"!data.results\">\n        <ng-container *ngTemplateOutlet=\"isLoading\"></ng-container>\n    </ng-container>\n</div>\n\n<!-- Template: Is empty -->\n<ng-template #isEmpty>\n    <div class=\"n7-advanced-autocomplete__empty\" [innerHTML]=\"data.fallback\"></div>\n</ng-template>\n\n<!-- Template: Is loading -->\n<ng-template #isLoading>\n    <!-- Layout appends loader-component here -->\n    <span class=\"n7-advanced-autocomplete__loader\"\n          id=\"n7-advanced-autocomplete__loader\">\n    </span>\n</ng-template>\n\n<!-- Template: Has loaded -->\n<ng-template #hasLoaded>\n    <!-- Search results -->\n    <div class=\"n7-advanced-autocomplete__results\">\n        <!-- Render groups -->\n        <ng-container *ngFor=\"let res of data.results\">\n            <div *ngIf=\"res.group\" class=\"n7-advanced-autocomplete__group\">\n                <div class=\"n7-advanced-autocomplete__group-title-wrapper {{ res.group.classes || '' }}\"\n                     (click)=\"onClick(res.group.payload)\">\n                    <span *ngIf=\"res.group.icon\" class=\"n7-advanced-autocomplete__group-icon {{ res.group.icon }}\"></span>\n                    <span class=\"n7-advanced-autocomplete__group-title\">{{res.group.title}}</span>\n                </div>\n                <div class=\"n7-advanced-autocomplete__items\">\n                    <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\n                </div>\n            </div>\n            <div *ngIf=\"!res.group\" class=\"n7-advanced-autocomplete__nogroup\">\n                <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\n            </div>\n        </ng-container>\n        <!-- Render items -->\n    </div>\n    <!-- Actions -->\n    <div *ngIf=\"data.actions\"\n            class=\"n7-advanced-autocomplete__action-bar\">\n        <button *ngIf=\"data.actions.advanced\"\n                (click)=\"onClick(data.actions.advanced.payload)\"\n                class=\"n7-btn n7-advanced-autocomplete__advanced-search\">\n            {{data.actions.advanced.text}}\n        </button>\n        <button *ngIf=\"data.actions.showMore\"\n                (click)=\"onClick(data.actions.showMore.payload)\"\n                class=\"n7-btn n7-btn-cta n7-advanced-autocomplete__show-more\">\n            {{data.actions.showMore.text}}\n        </button>\n    </div>\n</ng-template>\n\n<!-- Template: Items -->\n<ng-template #items let-items>\n    <div *ngFor=\"let item of items\"\n         class=\"n7-advanced-autocomplete__item\"\n         (click)=\"onClick(item.payload)\">\n        <span *ngIf=\"item.title\" class=\"n7-advanced-autocomplete__item-title\">{{ item.title }}</span>\n        <ng-container *ngIf=\"item.metadata\">\n            <span *ngFor=\"let meta of item.metadata\" class=\"n7-advanced-autocomplete__item-metadata\">\n                <span *ngIf=\"meta.key\" class=\"n7-advanced-autocomplete__item-metadata-key\">{{ meta.key }}</span>\n                <span *ngIf=\"meta.value\" class=\"n7-advanced-autocomplete__item-metadata-value\">{{ meta.value }}</span>\n            </span>\n        </ng-container>\n    </div>\n</ng-template>"
             }] }
 ];
 AdvancedAutocompleteComponent.propDecorators = {
@@ -1302,29 +1302,38 @@ const ADVANCED_AUTOCOMPLETE_MOCK = {
                 payload: 'books',
             },
             items: [
-                { label: 'Label risultato senza metadato', payload: 'res1' },
-                { label: 'Label risultato', value: ['Metadato aggiuntivo'], payload: 'res2' },
+                { title: 'Label risultato senza metadato', payload: 'res1' },
+                { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res2' },
                 {
-                    label: 'Label risultato',
-                    value: [
-                        { key: "metakey", value: "value" }
-                    ],
+                    title: 'Label risultato',
+                    metadata: [{
+                            key: 'metakey',
+                            value: 'value'
+                        }],
                     payload: 'res2'
                 },
-                { label: 'Label risultato',
-                    value: [
-                        { key: "metakey", value: "value" },
-                        { key: "metakey2", value: "value2" },
-                        { key: "metakey2", value: "value2" }
-                    ],
+                { title: 'Label risultato',
+                    metadata: [{
+                            key: 'metakey',
+                            value: 'value'
+                        }, {
+                            key: 'metakey2',
+                            value: 'value2'
+                        }, {
+                            key: 'metakey3',
+                            value: 'value3'
+                        }, {
+                            key: 'metakey4',
+                            value: 'value4'
+                        }],
                     payload: 'res3' },
-                { label: 'Label risultato',
-                    value: [
-                        { key: "only metakey" },
-                        { key: "only metakey" }
-                    ],
+                { title: 'Label risultato',
+                    metadata: [{
+                            key: 'only metakey',
+                            value: 'only metavalue'
+                        }],
                     payload: 'res4' },
-                { label: 'Label risultato', value: ['Metadato aggiuntivo'], payload: 'res5' },
+                { title: 'Label risultato', payload: 'res5' },
             ],
         },
         {
@@ -1333,18 +1342,18 @@ const ADVANCED_AUTOCOMPLETE_MOCK = {
                 payload: 'movies',
             },
             items: [
-                { label: 'Label risultato', value: ['Metadato aggiuntivo'], payload: 'res6' },
-                { label: 'Label risultato', value: ['Metadato aggiuntivo'], payload: 'res7' },
-                { label: 'Label risultato', value: ['Metadato aggiuntivo'], payload: 'res8' },
-                { label: 'Label risultato', value: ['Metadato aggiuntivo'], payload: 'res9' },
+                { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res6' },
+                { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res7' },
+                { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res8' },
+                { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res9' },
             ],
         },
         {
             items: [
-                { label: 'Label risultato', value: ['Metadato esterno'], payload: 'res10' },
-                { label: 'Label risultato', value: ['Metadato esterno'], payload: 'res11' },
-                { label: 'Label risultato', value: ['Metadato esterno'], payload: 'res12' },
-                { label: 'Label risultato', value: ['Metadato esterno'], payload: 'res13' },
+                { metadata: [{ value: 'Metadato esterno' }], payload: 'res10' },
+                { metadata: [{ value: 'Metadato esterno' }], payload: 'res11' },
+                { metadata: [{ value: 'Metadato esterno' }], payload: 'res12' },
+                { metadata: [{ value: 'Metadato esterno' }], payload: 'res13' },
             ]
         }
     ],

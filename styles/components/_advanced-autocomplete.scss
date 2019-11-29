@@ -66,12 +66,11 @@
         font-size: $font-size-s;
     }
 
-    &__item-label {
+    &__item-metadata-key {
         margin-right: $space/2;
         color: $color-text-light;
     }
-
-    &__item-value {
+    &__item-metadata-value {
         margin-right: $space/2;
         color: $color-text-light;
         font-weight: $font-weight-bold;
@@ -92,6 +91,7 @@
         }
     }
 }
+
 
 /* ------------------------------------ *\
    #EMPTY

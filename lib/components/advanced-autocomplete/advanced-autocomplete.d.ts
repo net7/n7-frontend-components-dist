@@ -20,8 +20,11 @@ export interface IAdvancedAutocompleteData {
     _meta?: any;
 }
 interface IAdvancedAutocompleteItem {
-    label?: string;
-    value?: any;
+    title?: string;
+    metadata?: Array<{
+        key?: string;
+        value?: string;
+    }>;
     payload?: any;
 }
 interface IAdvancedAutocompleteResponse {
