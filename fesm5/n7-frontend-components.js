@@ -164,7 +164,7 @@ var BubbleChartComponent = /** @class */ (function () {
              */
             function () {
                 if (typeof shuffle$$1 == 'undefined' || shuffle$$1) {
-                    return pack$$1(shuffle(data));
+                    return pack$$1(shuffle(data).slice(0, 20));
                 }
                 else { // if shuffle is set to false, skip the data shuffle
                     return pack$$1(data);
@@ -237,7 +237,7 @@ var BubbleChartComponent = /** @class */ (function () {
              * @return {?}
              */
             function (d) {
-                if (fontRendering.label && fontRendering.label.family) {
+                if (fontRendering && fontRendering.label && fontRendering.label.family) {
                     return fontRendering.label.family;
                 }
                 else {
@@ -249,7 +249,7 @@ var BubbleChartComponent = /** @class */ (function () {
              * @return {?}
              */
             function (d) {
-                if (fontRendering.label && fontRendering.label.weight) {
+                if (fontRendering && fontRendering.label && fontRendering.label.weight) {
                     return fontRendering.label.weight;
                 }
                 else {
@@ -311,7 +311,7 @@ var BubbleChartComponent = /** @class */ (function () {
              * @return {?}
              */
             function (d) {
-                if (fontRendering.counter && fontRendering.counter.family) {
+                if (fontRendering && fontRendering.counter && fontRendering.counter.family) {
                     return fontRendering.counter.family;
                 }
                 else {
@@ -323,7 +323,7 @@ var BubbleChartComponent = /** @class */ (function () {
              * @return {?}
              */
             function (d) {
-                if (fontRendering.counter && fontRendering.counter.weight) {
+                if (fontRendering && fontRendering.counter && fontRendering.counter.weight) {
                     return fontRendering.counter.weight;
                 }
                 else {
@@ -423,7 +423,7 @@ var BubbleChartComponent = /** @class */ (function () {
              * @return {?}
              */
             function (d) {
-                if (fontRendering.label && fontRendering.label.family) {
+                if (fontRendering && fontRendering.label && fontRendering.label.family) {
                     return fontRendering.label.family;
                 }
                 else {
@@ -435,7 +435,7 @@ var BubbleChartComponent = /** @class */ (function () {
              * @return {?}
              */
             function (d) {
-                if (fontRendering.label && fontRendering.label.weight) {
+                if (fontRendering && fontRendering && fontRendering.label && fontRendering.label.weight) {
                     return fontRendering.label.weight;
                 }
                 else {
@@ -497,7 +497,7 @@ var BubbleChartComponent = /** @class */ (function () {
              * @return {?}
              */
             function (d) {
-                if (fontRendering.counter && fontRendering.counter.family) {
+                if (fontRendering && fontRendering.counter && fontRendering.counter.family) {
                     return fontRendering.counter.family;
                 }
                 else {
@@ -509,7 +509,7 @@ var BubbleChartComponent = /** @class */ (function () {
              * @return {?}
              */
             function (d) {
-                if (fontRendering.counter && fontRendering.counter.weight) {
+                if (fontRendering && fontRendering.counter && fontRendering.counter.weight) {
                     return fontRendering.counter.weight;
                 }
                 else {
@@ -623,6 +623,7 @@ var BubbleChartComponent = /** @class */ (function () {
         if (!this.emit)
             return;
         this.emit('click', payload);
+        this.draw();
     };
     BubbleChartComponent.decorators = [
         { type: Component, args: [{

@@ -160,7 +160,7 @@
                  * @return {?}
                  */function () {
                     if (typeof shuffle == 'undefined' || shuffle) {
-                        return pack(d3.shuffle(data));
+                        return pack(d3.shuffle(data).slice(0, 20));
                     }
                     else { // if shuffle is set to false, skip the data shuffle
                         return pack(data);
@@ -226,7 +226,7 @@
              * @param {?} d
              * @return {?}
              */function (d) {
-                    if (fontRendering.label && fontRendering.label.family) {
+                    if (fontRendering && fontRendering.label && fontRendering.label.family) {
                         return fontRendering.label.family;
                     }
                     else {
@@ -237,7 +237,7 @@
              * @param {?} d
              * @return {?}
              */function (d) {
-                    if (fontRendering.label && fontRendering.label.weight) {
+                    if (fontRendering && fontRendering.label && fontRendering.label.weight) {
                         return fontRendering.label.weight;
                     }
                     else {
@@ -295,7 +295,7 @@
              * @param {?} d
              * @return {?}
              */function (d) {
-                    if (fontRendering.counter && fontRendering.counter.family) {
+                    if (fontRendering && fontRendering.counter && fontRendering.counter.family) {
                         return fontRendering.counter.family;
                     }
                     else {
@@ -306,7 +306,7 @@
              * @param {?} d
              * @return {?}
              */function (d) {
-                    if (fontRendering.counter && fontRendering.counter.weight) {
+                    if (fontRendering && fontRendering.counter && fontRendering.counter.weight) {
                         return fontRendering.counter.weight;
                     }
                     else {
@@ -395,7 +395,7 @@
              * @param {?} d
              * @return {?}
              */function (d) {
-                    if (fontRendering.label && fontRendering.label.family) {
+                    if (fontRendering && fontRendering.label && fontRendering.label.family) {
                         return fontRendering.label.family;
                     }
                     else {
@@ -406,7 +406,7 @@
              * @param {?} d
              * @return {?}
              */function (d) {
-                    if (fontRendering.label && fontRendering.label.weight) {
+                    if (fontRendering && fontRendering && fontRendering.label && fontRendering.label.weight) {
                         return fontRendering.label.weight;
                     }
                     else {
@@ -464,7 +464,7 @@
              * @param {?} d
              * @return {?}
              */function (d) {
-                    if (fontRendering.counter && fontRendering.counter.family) {
+                    if (fontRendering && fontRendering.counter && fontRendering.counter.family) {
                         return fontRendering.counter.family;
                     }
                     else {
@@ -475,7 +475,7 @@
              * @param {?} d
              * @return {?}
              */function (d) {
-                    if (fontRendering.counter && fontRendering.counter.weight) {
+                    if (fontRendering && fontRendering.counter && fontRendering.counter.weight) {
                         return fontRendering.counter.weight;
                     }
                     else {
@@ -583,6 +583,7 @@
                 if (!this.emit)
                     return;
                 this.emit('click', payload);
+                this.draw();
             };
         BubbleChartComponent.decorators = [
             { type: core.Component, args: [{
