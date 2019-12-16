@@ -59,6 +59,19 @@ export interface IBubbleChartData {
      */
     shuffle?: boolean;
     /**
+     * Defines the font-family and the font-weight for each text group
+     */
+    fontRendering?: {
+        label?: {
+            family?: string;
+            weight?: string;
+        };
+        counter?: {
+            family?: string;
+            weight?: string;
+        };
+    };
+    /**
      * expose the draw function outside of n7-frontend/components library
      * this is needed to redraw bubble-chart-component on command
      */

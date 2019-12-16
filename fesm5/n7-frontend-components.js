@@ -117,13 +117,13 @@ var BubbleChartComponent = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            var _a = _this.data, containerId = _a.containerId, data = _a.data, height = _a.height, width = _a.width, selected = _a.selected, transition$$1 = _a.transition, sizeRange = _a.sizeRange, colorMatch = _a.colorMatch, shuffle$$1 = _a.shuffle;
+            var _a = _this.data, containerId = _a.containerId, data = _a.data, height = _a.height, width = _a.width, selected = _a.selected, transition$$1 = _a.transition, sizeRange = _a.sizeRange, colorMatch = _a.colorMatch, shuffle$$1 = _a.shuffle, fontRendering = _a.fontRendering;
             /** @type {?} */
             var closeIconPath = 'M -50,40 L-40,50 0,10 40,50 50,40 10,0 50,-40 40,-50 0,-10 -40,-50 -50,-40 -10,0 -50,40';
             /** @type {?} */
             var t = transition()
                 .duration(0);
-            if (typeof transition$$1 != 'undefined') {
+            if (typeof transition$$1 == 'number') {
                 t = transition()
                     .duration(transition$$1)
                     .ease(easeCubicInOut);
@@ -200,26 +200,28 @@ var BubbleChartComponent = /** @class */ (function () {
                 return Math.round(size) + 'px';
             }));
             leaf.selectAll('.close-icon').remove(); // clear all existing close icons
-            leaf // render necessary close icons
-                .filter((/**
-             * @param {?} d
-             * @return {?}
-             */
-            function (d) { return selected.includes(d.data.entity.id); }))
-                .append('path')
-                .attr('class', 'close-icon')
-                .attr('d', closeIconPath)
-                .attr('fill', '#fff')
-                .attr('transform', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            function (d) {
-                if (d.r / 4 > 3) {
-                    return "scale(.08) translate(0, " + (d.r * 10 - 80) + ")";
-                }
-                return "scale(.08)";
-            }));
+            if (selected) {
+                leaf // render necessary close icons
+                    .filter((/**
+                 * @param {?} d
+                 * @return {?}
+                 */
+                function (d) { return selected.includes(d.data.entity.id); }))
+                    .append('path')
+                    .attr('class', 'close-icon')
+                    .attr('d', closeIconPath)
+                    .attr('fill', '#fff')
+                    .attr('transform', (/**
+                 * @param {?} d
+                 * @return {?}
+                 */
+                function (d) {
+                    if (d.r / 4 > 3) {
+                        return "scale(.08) translate(0, " + (d.r * 10 - 80) + ")";
+                    }
+                    return "scale(.08)";
+                }));
+            }
             leaf
                 .select('circle')
                 .transition(t)
@@ -230,6 +232,30 @@ var BubbleChartComponent = /** @class */ (function () {
             function (d) { return d.r; }));
             leaf
                 .select('text')
+                .attr('font-family', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (fontRendering.label && fontRendering.label.family) {
+                    return fontRendering.label.family;
+                }
+                else {
+                    return 'inherit';
+                }
+            }))
+                .attr('font-weight', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (fontRendering.label && fontRendering.label.weight) {
+                    return fontRendering.label.weight;
+                }
+                else {
+                    return 'inherit';
+                }
+            }))
                 .selectAll("tspan")
                 .data((/**
              * @param {?} d
@@ -245,7 +271,6 @@ var BubbleChartComponent = /** @class */ (function () {
                         label = label.slice(0, 3);
                         label[2] += '…';
                     }
-                    label.push(d.data.count);
                     return label;
                 }
                 else if (d.r / 4 > 2.5) {
@@ -269,13 +294,71 @@ var BubbleChartComponent = /** @class */ (function () {
              * @param {?} nodes
              * @return {?}
              */
-            function (d, i, nodes) { return i - nodes.length / 2 + .97 + "em"; }))
+            function (d, i, nodes) { return i - (nodes.length + 1) / 2 + .97 + "em"; }))
                 .attr('fill', 'white')
                 .text((/**
              * @param {?} d
              * @return {?}
              */
-            function (d) { return d; }));
+            function (d) { return d; }))
+                .attr('fill-opacity', 0)
+                .transition(t)
+                .attr('fill-opacity', 1);
+            leaf
+                .select('.label-count')
+                .attr('font-family', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (fontRendering.counter && fontRendering.counter.family) {
+                    return fontRendering.counter.family;
+                }
+                else {
+                    return 'inherit';
+                }
+            }))
+                .attr('font-weight', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (fontRendering.counter && fontRendering.counter.weight) {
+                    return fontRendering.counter.weight;
+                }
+                else {
+                    return 'inherit';
+                }
+            }))
+                .attr('fill', 'white')
+                .text((/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (d.r / 4 > 2.5) {
+                    // show text and number threshhold
+                    return d.data.count;
+                }
+                else {
+                    return '';
+                }
+            }))
+                .attr('y', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                /** @type {?} */
+                var labelLength = d.data.entity.label.split(/ +/g);
+                if (labelLength.length > 3) {
+                    labelLength = labelLength.slice(0, 3);
+                }
+                return labelLength.length - (labelLength.length + 1) / 2 + .97 + "em";
+            }))
+                .attr('fill-opacity', 0)
+                .transition(t)
+                .attr('fill-opacity', 1);
             /** @type {?} */
             var g = leaf.enter().append('g');
             g.attr('transform', (/**
@@ -335,6 +418,30 @@ var BubbleChartComponent = /** @class */ (function () {
              */
             function (d) { return d.leafUid.href; }));
             g.append('text')
+                .attr('font-family', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (fontRendering.label && fontRendering.label.family) {
+                    return fontRendering.label.family;
+                }
+                else {
+                    return 'inherit';
+                }
+            }))
+                .attr('font-weight', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (fontRendering.label && fontRendering.label.weight) {
+                    return fontRendering.label.weight;
+                }
+                else {
+                    return 'inherit';
+                }
+            }))
                 .selectAll("tspan")
                 .data((/**
              * @param {?} d
@@ -350,7 +457,6 @@ var BubbleChartComponent = /** @class */ (function () {
                         label = label.slice(0, 3);
                         label[2] += '…';
                     }
-                    label.push(d.data.count);
                     return label;
                 }
                 else if (d.r / 4 > 2.5) {
@@ -374,13 +480,68 @@ var BubbleChartComponent = /** @class */ (function () {
              * @param {?} nodes
              * @return {?}
              */
-            function (d, i, nodes) { return i - nodes.length / 2 + .97 + "em"; }))
+            function (d, i, nodes) { return i - (nodes.length + 1) / 2 + .97 + "em"; }))
                 .attr('fill', 'white')
                 .text((/**
              * @param {?} d
              * @return {?}
              */
             function (d) { return d; }))
+                .attr('fill-opacity', 0)
+                .transition(t)
+                .attr('fill-opacity', 1);
+            g.append('text') // Count label
+                .attr('class', 'label-count')
+                .attr('font-family', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (fontRendering.counter && fontRendering.counter.family) {
+                    return fontRendering.counter.family;
+                }
+                else {
+                    return 'inherit';
+                }
+            }))
+                .attr('font-weight', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (fontRendering.counter && fontRendering.counter.weight) {
+                    return fontRendering.counter.weight;
+                }
+                else {
+                    return 'inherit';
+                }
+            }))
+                .attr('fill', 'white')
+                .text((/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                if (d.r / 4 > 2.5) {
+                    // show text and number threshhold
+                    return d.data.count;
+                }
+                else {
+                    return '';
+                }
+            }))
+                .attr('y', (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) {
+                /** @type {?} */
+                var labelLength = d.data.entity.label.split(/ +/g);
+                if (labelLength.length > 3) {
+                    labelLength = labelLength.slice(0, 3);
+                }
+                return labelLength.length - (labelLength.length + 1) / 2 + .97 + "em";
+            }))
                 .attr('fill-opacity', 0)
                 .transition(t)
                 .attr('fill-opacity', 1);
@@ -428,8 +589,10 @@ var BubbleChartComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        // Wait for DOM to be loaded, so the container can be selected
-        // Does not work if changed to ngAfterContentChecked()
+        /*
+         Waits for the dom to be loaded, then fires the draw function
+         that renders the chart.
+        */
         if (!this.data) {
             return;
         }
@@ -1769,6 +1932,16 @@ var BUBBLECHART_MOCK = {
     colorMatch: {
         domain: ['persona', 'luogo', 'organizzazione', 'cosa notevole'],
         range: ['#4d8df3', '#f2d04c', '#c99245', '#6cb286']
+    },
+    fontRendering: {
+        label: {
+            family: "Verdana, Geneva, sans-serif",
+            weight: "light"
+        },
+        counter: {
+            family: "Consolas, monospace",
+            weight: "normal"
+        },
     },
     data: [
         {
