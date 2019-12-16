@@ -160,7 +160,7 @@
                  * @return {?}
                  */function () {
                     if (typeof shuffle == 'undefined' || shuffle) {
-                        return pack(d3.shuffle(data).slice(0, 20));
+                        return pack(d3.shuffle(data));
                     }
                     else { // if shuffle is set to false, skip the data shuffle
                         return pack(data);
@@ -583,7 +583,6 @@
                 if (!this.emit)
                     return;
                 this.emit('click', payload);
-                this.draw();
             };
         BubbleChartComponent.decorators = [
             { type: core.Component, args: [{

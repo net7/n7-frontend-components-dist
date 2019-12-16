@@ -139,7 +139,7 @@ class BubbleChartComponent {
              */
             () => {
                 if (typeof shuffle$$1 == 'undefined' || shuffle$$1) {
-                    return pack$$1(shuffle(data).slice(0, 20));
+                    return pack$$1(shuffle(data));
                 }
                 else { // if shuffle is set to false, skip the data shuffle
                     return pack$$1(data);
@@ -590,7 +590,6 @@ class BubbleChartComponent {
         if (!this.emit)
             return;
         this.emit('click', payload);
-        this.draw();
     }
 }
 BubbleChartComponent.decorators = [

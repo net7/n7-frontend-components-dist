@@ -164,7 +164,7 @@ var BubbleChartComponent = /** @class */ (function () {
              */
             function () {
                 if (typeof shuffle$$1 == 'undefined' || shuffle$$1) {
-                    return pack$$1(shuffle(data).slice(0, 20));
+                    return pack$$1(shuffle(data));
                 }
                 else { // if shuffle is set to false, skip the data shuffle
                     return pack$$1(data);
@@ -623,7 +623,6 @@ var BubbleChartComponent = /** @class */ (function () {
         if (!this.emit)
             return;
         this.emit('click', payload);
-        this.draw();
     };
     BubbleChartComponent.decorators = [
         { type: Component, args: [{
