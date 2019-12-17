@@ -285,10 +285,7 @@
                     .text(( /**
              * @param {?} d
              * @return {?}
-             */function (d) { return d; }))
-                    .attr('fill-opacity', 0)
-                    .transition(t)
-                    .attr('fill-opacity', 1);
+             */function (d) { return d; }));
                 leaf
                     .select('.label-count')
                     .attr('font-family', ( /**
@@ -336,10 +333,7 @@
                         labelLength = labelLength.slice(0, 3);
                     }
                     return labelLength.length - (labelLength.length + 1) / 2 + .97 + "em";
-                }))
-                    .attr('fill-opacity', 0)
-                    .transition(t)
-                    .attr('fill-opacity', 1);
+                }));
                 /** @type {?} */
                 var g = leaf.enter().append('g');
                 g.attr('transform', ( /**
