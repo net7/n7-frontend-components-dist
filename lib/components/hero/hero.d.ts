@@ -64,6 +64,7 @@ export interface IHeroData {
 export declare class HeroComponent {
     data: IHeroData;
     emit: any;
+    getBackgroundImageCssValue(backgroundImage: any): string;
     onClick(payload: any): void;
     onInputChange(payload: any, value: any): void;
     onInputEnter(payload: any, value: any): void;
