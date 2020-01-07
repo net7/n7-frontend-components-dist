@@ -185,7 +185,8 @@ var BubbleChartComponent = /** @class */ (function () {
              */
             function (d) { return d.data.entity.id; }));
             leaf
-                .transition(t)
+                .transition(t) // update transition on <g>
+                .attr('fill-opacity', 0.7)
                 .attr('transform', (/**
              * @param {?} d
              * @return {?}
@@ -227,7 +228,8 @@ var BubbleChartComponent = /** @class */ (function () {
             }
             leaf
                 .select('circle')
-                .transition(t)
+                .transition(t) // update transition on <circle>
+                .attr("fill-opacity", 0.7)
                 .attr('r', (/**
              * @param {?} d
              * @return {?}
@@ -390,7 +392,7 @@ var BubbleChartComponent = /** @class */ (function () {
              */
             function (d) { return (d.leafUid = d.data.entity.id); }))
                 .attr('r', 0)
-                .transition(t)
+                .transition(t) // enter() transition on <circle>
                 .attr("fill-opacity", 0.7)
                 .attr('fill', (/**
              * @param {?} d
@@ -485,7 +487,7 @@ var BubbleChartComponent = /** @class */ (function () {
              */
             function (d) { return d; }))
                 .attr('fill-opacity', 0)
-                .transition(t)
+                .transition(t) // enter() transition on <tspan>
                 .attr('fill-opacity', 1);
             g.append('text') // Count label
                 .attr('class', 'label-count')
@@ -540,7 +542,7 @@ var BubbleChartComponent = /** @class */ (function () {
                 return labelLength.length - (labelLength.length + 1) / 2 + .97 + "em";
             }))
                 .attr('fill-opacity', 0)
-                .transition(t)
+                .transition(t) // enter() transition on <text>
                 .attr('fill-opacity', 1);
             leaf
                 .exit() // EXIT CYCLE
