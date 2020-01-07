@@ -645,6 +645,22 @@ ChartComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class ContentPlaceholderComponent {
+}
+ContentPlaceholderComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-content-placeholder',
+                template: "<div *ngIf=\"data\" class=\"n7-content-placeholder\">\n  <ng-container *ngFor=\"let b of data.blocks\">\n    <div *ngIf=\"!b.url\" class=\"n7-content-placeholder__item {{b.class || ''}}\"></div>\n    <img *ngIf=\"b.url\" class=\"n7-content-placeholder__image\" src=\"{{b.url}}\">\n  </ng-container>\n</div>"
+            }] }
+];
+ContentPlaceholderComponent.propDecorators = {
+    data: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class DataWidgetComponent {
     /**
      * @param {?} payload
@@ -994,7 +1010,32 @@ HeroComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class ItemPreviewComponent {
+/**
+ * ImageViewerComponent <n7-image-viewer>
+ *
+ */
+class ImageViewerComponent {
+    constructor() {
+        this._loaded = false;
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterContentChecked() {
+        if (!this.data || this._loaded)
+            return;
+        this._loaded = true;
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
+            /** @type {?} */
+            let prefixUrl = !this.data.prefixUrl ? "//openseadragon.github.io/openseadragon/images/" : this.data.prefixUrl;
+            /** @type {?} */
+            const viewer = openseadragon(Object.assign({ id: this.data.viewerId, prefixUrl: prefixUrl, tileSources: this.data.images, zoomInButton: "n7-image-viewer-zoom-in", zoomOutButton: "n7-image-viewer-zoom-out", homeButton: "n7-image-viewer-home", fullPageButton: "n7-image-viewer-full-screen" }, this.data.libOptions));
+            this.data._setViewer(viewer);
+        }));
+    }
     /**
      * @param {?} payload
      * @return {?}
@@ -1002,16 +1043,16 @@ class ItemPreviewComponent {
     onClick(payload) {
         if (!this.emit)
             return;
-        this.emit('click', payload);
+        this.emit("thumbclick", payload);
     }
 }
-ItemPreviewComponent.decorators = [
+ImageViewerComponent.decorators = [
     { type: Component, args: [{
-                selector: 'n7-item-preview',
-                template: "<div *ngIf=\"data\" \n     class=\"n7-item-preview {{data.classes || ''}}\" \n     [ngClass]=\"{ 'has-image' : !!data.image }\"\n     (click)=\"onClick(data.payload)\">\n\n    <!-- Image -->\n    <div class=\"n7-item-preview__image\"\n         *ngIf=\"data.image\"\n         [style.background-image] = \"'url(' + data.image + ')'\">       \n    </div>         \n    \n    <div class=\"n7-item-preview__content\">\n\n        <!-- Title and text -->\n        <div class=\"n7-item-preview__title-text\">\n            <h1 class=\"n7-item-preview__title\">\n                {{ data.title }}\n            </h1>\n            <p class=\"n7-item-preview__text\" *ngIf=\"data.text\">\n                {{ data.text }}\n            </p>\n        </div>\n\n        <!-- Metadata -->\n        <div class=\"n7-item-preview__metadata\" *ngIf=\"data.metadata\">       \n            <div class=\"n7-item-preview__metadata-group {{ meta.classes || '' }}\" *ngFor=\"let meta of data.metadata\">\n                <h3 class=\"n7-item-preview__metadata-group-title\" *ngIf=\"meta.title\">\n                {{ meta.title }}\n                </h3>\n                <div class=\"n7-item-preview__metadata-item {{ item.classes || '' }}\" *ngFor=\"let item of meta.items\">\n                    <span class=\"n7-item-preview__metadata-item-icon {{item.icon}}\">  </span>\n                    <span class=\"n7-item-preview__metadata-item-label\" *ngIf=\"item.label\">{{item.label}}: </span>\n                    <span class=\"n7-item-preview__metadata-item-value\" *ngIf=\"item.value\">{{item.value}}</span>\n                </div>\n            </div>\n        </div>   \n    </div>\n</div>\n"
+                selector: 'n7-image-viewer',
+                template: "<div *ngIf=\"data\" class=\"n7-image-viewer {{data.classes || ''}}\">\n    <!-- OSD viewer -->\n    <div id=\"{{data.viewerId}}\" class=\"n7-image-viewer__viewer\">\n    </div>\n\n    <!-- Thumbs -->\n    <div class=\"n7-image-viewer__thumbs\" *ngIf=\"data.thumbs\">\n        <ul class=\"n7-image-viewer__thumb-list\">\n            <li *ngFor=\"let thumb of data.thumbs\" \n                class=\"n7-image-viewer__thumb-item {{thumb.classes || ''}}\"\n                [ngStyle]=\"{'background-image': 'url(' + thumb.url + ')'}\"\n                (click)=\"onClick(thumb.payload)\">\n            </li>\n        </ul>\n    </div>\n\n    <!-- Zoom controls -->\n    <div class=\"n7-image-viewer__controls\">\n        <ul class=\"n7-image-viewer__controls-list\">\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-in\">\n                <span class=\"n7-icon-search-plus\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-out\">\n                <span class=\"n7-icon-search-minus\"></span>\n            </li>\n            <!--\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-home\">\n                <span class=\"n7-icon-home\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-full-screen\">\n                <span class=\"n7-icon-expand-arrows\"></span>\n            </li>\n            -->\n        </ul>\n    </div>\n</div>"
             }] }
 ];
-ItemPreviewComponent.propDecorators = {
+ImageViewerComponent.propDecorators = {
     data: [{ type: Input }],
     emit: [{ type: Input }]
 };
@@ -1069,6 +1110,32 @@ InnerTitleComponent.decorators = [
             }] }
 ];
 InnerTitleComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ItemPreviewComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+ItemPreviewComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-item-preview',
+                template: "<div *ngIf=\"data\" \n     class=\"n7-item-preview {{data.classes || ''}}\" \n     [ngClass]=\"{ 'has-image' : !!data.image }\"\n     (click)=\"onClick(data.payload)\">\n\n    <!-- Image -->\n    <div class=\"n7-item-preview__image\"\n         *ngIf=\"data.image\"\n         [style.background-image] = \"'url(' + data.image + ')'\">       \n    </div>         \n    \n    <div class=\"n7-item-preview__content\">\n\n        <!-- Title and text -->\n        <div class=\"n7-item-preview__title-text\">\n            <h1 class=\"n7-item-preview__title\">\n                {{ data.title }}\n            </h1>\n            <p class=\"n7-item-preview__text\" *ngIf=\"data.text\">\n                {{ data.text }}\n            </p>\n        </div>\n\n        <!-- Metadata -->\n        <div class=\"n7-item-preview__metadata\" *ngIf=\"data.metadata\">       \n            <div class=\"n7-item-preview__metadata-group {{ meta.classes || '' }}\" *ngFor=\"let meta of data.metadata\">\n                <h3 class=\"n7-item-preview__metadata-group-title\" *ngIf=\"meta.title\">\n                {{ meta.title }}\n                </h3>\n                <div class=\"n7-item-preview__metadata-item {{ item.classes || '' }}\" *ngFor=\"let item of meta.items\">\n                    <span class=\"n7-item-preview__metadata-item-icon {{item.icon}}\">  </span>\n                    <span class=\"n7-item-preview__metadata-item-label\" *ngIf=\"item.label\">{{item.label}}: </span>\n                    <span class=\"n7-item-preview__metadata-item-value\" *ngIf=\"item.value\">{{item.value}}</span>\n                </div>\n            </div>\n        </div>   \n    </div>\n</div>\n"
+            }] }
+];
+ItemPreviewComponent.propDecorators = {
     data: [{ type: Input }],
     emit: [{ type: Input }]
 };
@@ -1362,57 +1429,6 @@ TagComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * ImageViewerComponent <n7-image-viewer>
- *
- */
-class ImageViewerComponent {
-    constructor() {
-        this._loaded = false;
-    }
-    /**
-     * @return {?}
-     */
-    ngAfterContentChecked() {
-        if (!this.data || this._loaded)
-            return;
-        this._loaded = true;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
-            /** @type {?} */
-            let prefixUrl = !this.data.prefixUrl ? "//openseadragon.github.io/openseadragon/images/" : this.data.prefixUrl;
-            /** @type {?} */
-            const viewer = openseadragon(Object.assign({ id: this.data.viewerId, prefixUrl: prefixUrl, tileSources: this.data.images, zoomInButton: "n7-image-viewer-zoom-in", zoomOutButton: "n7-image-viewer-zoom-out", homeButton: "n7-image-viewer-home", fullPageButton: "n7-image-viewer-full-screen" }, this.data.libOptions));
-            this.data._setViewer(viewer);
-        }));
-    }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
-    onClick(payload) {
-        if (!this.emit)
-            return;
-        this.emit("thumbclick", payload);
-    }
-}
-ImageViewerComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-image-viewer',
-                template: "<div *ngIf=\"data\" class=\"n7-image-viewer {{data.classes || ''}}\">\n    <!-- OSD viewer -->\n    <div id=\"{{data.viewerId}}\" class=\"n7-image-viewer__viewer\">\n    </div>\n\n    <!-- Thumbs -->\n    <div class=\"n7-image-viewer__thumbs\" *ngIf=\"data.thumbs\">\n        <ul class=\"n7-image-viewer__thumb-list\">\n            <li *ngFor=\"let thumb of data.thumbs\" \n                class=\"n7-image-viewer__thumb-item {{thumb.classes || ''}}\"\n                [ngStyle]=\"{'background-image': 'url(' + thumb.url + ')'}\"\n                (click)=\"onClick(thumb.payload)\">\n            </li>\n        </ul>\n    </div>\n\n    <!-- Zoom controls -->\n    <div class=\"n7-image-viewer__controls\">\n        <ul class=\"n7-image-viewer__controls-list\">\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-in\">\n                <span class=\"n7-icon-search-plus\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-out\">\n                <span class=\"n7-icon-search-minus\"></span>\n            </li>\n            <!--\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-home\">\n                <span class=\"n7-icon-home\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-full-screen\">\n                <span class=\"n7-icon-expand-arrows\"></span>\n            </li>\n            -->\n        </ul>\n    </div>\n</div>"
-            }] }
-];
-ImageViewerComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class ToastComponent {
     /**
      * @param {?} payload
@@ -1498,6 +1514,7 @@ const COMPONENTS = [
     BreadcrumbsComponent,
     BubbleChartComponent,
     ChartComponent,
+    ContentPlaceholderComponent,
     DataWidgetComponent,
     DatepickerComponent,
     FacetComponent,
@@ -1505,10 +1522,10 @@ const COMPONENTS = [
     FacetYearRangeComponent,
     FooterComponent,
     HeaderComponent,
-    ImageViewerComponent,
     HeroComponent,
-    ItemPreviewComponent,
+    ImageViewerComponent,
     InnerTitleComponent,
+    ItemPreviewComponent,
     LoaderComponent,
     MetadataViewerComponent,
     NavComponent,
@@ -5791,6 +5808,23 @@ const CHART_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
+const CONTENT_PLACEHOLDER_MOCK = {
+    blocks: [
+        { class: 'thumb-placeholder' },
+        { class: 'title-placeholder' },
+        { class: 'text-placeholder' },
+        { class: '' },
+        { class: '' },
+        { class: '' },
+        { url: 'https://i.imgur.com/xTiLRNe.png', alt: 'block-placehodler' }
+    ]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const DATA_WIDGET_MOCK = {
     icon: "n7-icon-earth",
     text: "497",
@@ -5814,6 +5848,55 @@ const DATEPICKER_MOCK = {
     libOptions: {
         dateFormat: 'Y-m-d',
         mode: 'range',
+    },
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const FACET_HEADER_MOCK = {
+    iconLeft: 'n7-icon-earth',
+    text: 'Persone',
+    additionalText: '24.319',
+    iconRight: 'n7-icon-angle-left',
+    classes: 'is-expanded',
+    payload: 'header',
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const FACET_YEAR_RANGE_MOCK = {
+    inDate: {
+        text: 'From',
+        payload: 'in-date',
+        placeholder: 'choose',
+        options: [
+            { value: '1900' },
+            { value: '1910' },
+            { value: '1920' },
+            { value: '1930' },
+            { value: '1940' },
+            { value: '1950' },
+            { value: '1960' },
+            { value: '1970' },
+            { value: '1980' },
+            { value: '1990' },
+            { value: '2000' },
+            { value: '2010' },
+            { value: '2019' },
+        ],
+    },
+    outDate: {
+        text: 'To',
+        payload: 'out-date',
+        placeholder: 'choose',
+        classes: 'is-disabled',
+        options: [],
     },
 };
 
@@ -5891,55 +5974,6 @@ const FACET_MOCK = {
                     payload: 'select',
                 }]
         }]
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const FACET_HEADER_MOCK = {
-    iconLeft: 'n7-icon-earth',
-    text: 'Persone',
-    additionalText: '24.319',
-    iconRight: 'n7-icon-angle-left',
-    classes: 'is-expanded',
-    payload: 'header',
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const FACET_YEAR_RANGE_MOCK = {
-    inDate: {
-        text: 'From',
-        payload: 'in-date',
-        placeholder: 'choose',
-        options: [
-            { value: '1900' },
-            { value: '1910' },
-            { value: '1920' },
-            { value: '1930' },
-            { value: '1940' },
-            { value: '1950' },
-            { value: '1960' },
-            { value: '1970' },
-            { value: '1980' },
-            { value: '1990' },
-            { value: '2000' },
-            { value: '2010' },
-            { value: '2019' },
-        ],
-    },
-    outDate: {
-        text: 'To',
-        payload: 'out-date',
-        placeholder: 'choose',
-        classes: 'is-disabled',
-        options: [],
-    },
 };
 
 /**
@@ -6050,6 +6084,32 @@ const HEADER_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
+const HERO_MOCK = {
+    title: "Il più bell'archivio che tu abbia mai visto",
+    text: `
+  La <strong>Fondazione Cerratelli</strong> è uno spazio espositivo che raccoglie un'importante 
+  collezione di costumi <em>teatrali e cinematografici</em>. Sua sede si trova dal 3 dicembre 
+  2011 presso la villa Roncioni a Pugnano, frazione del comune di San Giuliano Terme.
+  `,
+    input: {
+        placeholder: "Cerca quello che vuoi",
+        icon: "n7-icon-search1",
+        payload: "input"
+    },
+    button: {
+        text: "Cerca",
+        payload: "button"
+    },
+    backgroundImage: "https://placeimg.com/1000/480/nature",
+    // backgroundImage: null,
+    image: "https://placeimg.com/600/600/nature"
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const IMAGE_VIEWER_MOCK = {
     images: [
         { type: 'image', url: "/assets/images/large-image.jpg", buildPyramid: false }
@@ -6082,73 +6142,6 @@ const IMAGE_VIEWER_MOCK = {
      * @return {?}
      */
     (viewer) => console.log(viewer)),
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const HERO_MOCK = {
-    title: "Il più bell'archivio che tu abbia mai visto",
-    text: `
-  La <strong>Fondazione Cerratelli</strong> è uno spazio espositivo che raccoglie un'importante 
-  collezione di costumi <em>teatrali e cinematografici</em>. Sua sede si trova dal 3 dicembre 
-  2011 presso la villa Roncioni a Pugnano, frazione del comune di San Giuliano Terme.
-  `,
-    input: {
-        placeholder: "Cerca quello che vuoi",
-        icon: "n7-icon-search1",
-        payload: "input"
-    },
-    button: {
-        text: "Cerca",
-        payload: "button"
-    },
-    backgroundImage: "https://placeimg.com/1000/480/nature",
-    // backgroundImage: null,
-    image: "https://placeimg.com/600/600/nature"
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const ITEM_PREVIEW_MOCK = {
-    image: 'https://placeimg.com/600/600/nature',
-    title: 'Dummy title text',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
-    metadata: [
-        {
-            title: 'Group 1',
-            classes: 'group1-class',
-            items: [
-                { icon: 'n7-icon-home', label: 'name', value: 'value', classes: 'n7-category-place' },
-                { value: 'value' }
-            ]
-        },
-        {
-            title: 'Group 2',
-            classes: '',
-            items: [
-                { icon: 'n7-icon-home', value: '7', classes: 'n7-category-place' },
-                { icon: 'n7-icon-home', value: '2', classes: 'n7-category-family' },
-                { icon: 'n7-icon-home', value: '4' },
-                { icon: 'n7-icon-home' }
-            ]
-        },
-        {
-            classes: 'group3-class',
-            items: [
-                { icon: 'n7-icon-home', value: '2', classes: 'n7-category-place' },
-                { icon: 'n7-icon-home', value: '1' },
-                { icon: 'n7-icon-home', value: '7' }
-            ]
-        }
-    ],
-    payload: 'https://www.netseven.it/',
-    classes: 'is-vertical' // leave it empty for default horizontal layout or 'is-overlay'
 };
 
 /**
@@ -6191,6 +6184,47 @@ const INNER_TITLE_MOCK = {
             { text: 'BUTTON 2', payload: 'btn2', classes: 'n7-btn-cta' },
         ]
     }
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const ITEM_PREVIEW_MOCK = {
+    image: 'https://placeimg.com/600/600/nature',
+    title: 'Dummy title text',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    metadata: [
+        {
+            title: 'Group 1',
+            classes: 'group1-class',
+            items: [
+                { icon: 'n7-icon-home', label: 'name', value: 'value', classes: 'n7-category-place' },
+                { value: 'value' }
+            ]
+        },
+        {
+            title: 'Group 2',
+            classes: '',
+            items: [
+                { icon: 'n7-icon-home', value: '7', classes: 'n7-category-place' },
+                { icon: 'n7-icon-home', value: '2', classes: 'n7-category-family' },
+                { icon: 'n7-icon-home', value: '4' },
+                { icon: 'n7-icon-home' }
+            ]
+        },
+        {
+            classes: 'group3-class',
+            items: [
+                { icon: 'n7-icon-home', value: '2', classes: 'n7-category-place' },
+                { icon: 'n7-icon-home', value: '1' },
+                { icon: 'n7-icon-home', value: '7' }
+            ]
+        }
+    ],
+    payload: 'https://www.netseven.it/',
+    classes: 'is-vertical' // leave it empty for default horizontal layout or 'is-overlay'
 };
 
 /**
@@ -7015,6 +7049,6 @@ const WIZARD_MOCK = {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DvComponentsLibModule, AdvancedAutocompleteComponent, AlertComponent, BreadcrumbsComponent, BubbleChartComponent, ChartComponent, DataWidgetComponent, DatepickerComponent, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HeaderComponent, ImageViewerComponent, HeroComponent, ItemPreviewComponent, InnerTitleComponent, LoaderComponent, MetadataViewerComponent, NavComponent, PaginationComponent, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TableComponent, TagComponent, ToastComponent, TreeComponent, WizardComponent, ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, CHART_MOCK, DATA_WIDGET_MOCK, DATEPICKER_MOCK, FACET_MOCK, FACET_HEADER_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, HEADER_MOCK, IMAGE_VIEWER_MOCK, HERO_MOCK, ITEM_PREVIEW_MOCK, INNER_TITLE_MOCK, LOADER_MOCK, METADATA_VIEWER_MOCK, NAV_MOCK, PAGINATION_MOCK, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, TABLE_MOCK, TAG_MOCK, TOAST_MOCK, TREE_MOCK, WIZARD_MOCK };
+export { DvComponentsLibModule, AdvancedAutocompleteComponent, AlertComponent, BreadcrumbsComponent, BubbleChartComponent, ChartComponent, ContentPlaceholderComponent, DataWidgetComponent, DatepickerComponent, FacetHeaderComponent, FacetYearRangeComponent, FacetComponent, FooterComponent, HeaderComponent, HeroComponent, ImageViewerComponent, InnerTitleComponent, ItemPreviewComponent, LoaderComponent, MetadataViewerComponent, NavComponent, PaginationComponent, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TableComponent, TagComponent, ToastComponent, TreeComponent, WizardComponent, ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, DATA_WIDGET_MOCK, DATEPICKER_MOCK, FACET_HEADER_MOCK, FACET_YEAR_RANGE_MOCK, FACET_MOCK, FOOTER_MOCK, HEADER_MOCK, HERO_MOCK, IMAGE_VIEWER_MOCK, INNER_TITLE_MOCK, ITEM_PREVIEW_MOCK, LOADER_MOCK, METADATA_VIEWER_MOCK, NAV_MOCK, PAGINATION_MOCK, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, TABLE_MOCK, TAG_MOCK, TOAST_MOCK, TREE_MOCK, WIZARD_MOCK };
 
 //# sourceMappingURL=n7-frontend-components.js.map
