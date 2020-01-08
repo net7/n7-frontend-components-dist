@@ -15,8 +15,8 @@ export interface IContentPlaceholderData {
     _meta?: any;
 }
 interface IBlocksData {
-    class?: string;
-    url?: string;
+    classes?: string;
+    image?: string;
     alt?: string;
 }
 export declare class ContentPlaceholderComponent {

@@ -650,7 +650,7 @@ class ContentPlaceholderComponent {
 ContentPlaceholderComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-content-placeholder',
-                template: "<div *ngIf=\"data\" class=\"n7-content-placeholder\">\n  <ng-container *ngFor=\"let b of data.blocks\">\n    <div *ngIf=\"!b.url\" class=\"n7-content-placeholder__item {{b.class || ''}}\"></div>\n    <img *ngIf=\"b.url\" class=\"n7-content-placeholder__image\" src=\"{{b.url}}\">\n  </ng-container>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-content-placeholder\">\n  <ng-container *ngFor=\"let b of data.blocks\">\n    <div *ngIf=\"!b.image\" class=\"n7-content-placeholder__item {{b.classes || ''}}\"></div>\n    <img *ngIf=\"b.image\" class=\"n7-content-placeholder__image {{b.classes || ''}}\" src=\"{{b.image}}\" alt=\"{{ b.alt || '' }}\">\n  </ng-container>\n</div>"
             }] }
 ];
 ContentPlaceholderComponent.propDecorators = {
@@ -5810,13 +5810,14 @@ const CHART_MOCK = {
 /** @type {?} */
 const CONTENT_PLACEHOLDER_MOCK = {
     blocks: [
-        { class: 'thumb-placeholder' },
-        { class: 'title-placeholder' },
-        { class: 'text-placeholder' },
-        { class: '' },
-        { class: '' },
-        { class: '' },
-        { url: 'https://i.imgur.com/xTiLRNe.png', alt: 'block-placehodler' }
+        { classes: 'thumb-placeholder' },
+        { classes: 'title-placeholder' },
+        { classes: 'text-placeholder' },
+        { classes: '' },
+        { classes: '' },
+        { classes: '' },
+        { image: 'https://i.imgur.com/xTiLRNe.png', alt: 'block-placehodler' },
+        { image: 'https://i.imgur.com/xTiLRNe.png', classes: 'image-placeholder-test' }
     ]
 };
 
