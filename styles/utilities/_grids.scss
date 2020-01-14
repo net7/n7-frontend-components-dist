@@ -9,28 +9,67 @@
 /* ------------------------------------ *\
    #GRIDS
 \* ------------------------------------ */
+/* General grid setting */
+[class*="n7-grid-"],
+[class^="n7-grid-"] {
+    display: flex;
+    flex-wrap: wrap;
+
+    > * {
+        margin-bottom: $grid-gutter-v;
+        box-sizing: border-box;
+    }
+}
+
 /* 4 */
 .n7-grid-4 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: $grid-gutter-h;
-    grid-row-gap: $grid-gutter-v;
+    > * {
+        width: 24%;
+        margin-right: 1.33%; /* 4/3 */
+
+        &:nth-of-type(4n+4) {
+            margin-right: 0;
+        }
+    }
+
+    // display: grid;
+    // grid-template-columns: repeat(4, 1fr);
+    // grid-column-gap: $grid-gutter-h;
+    // grid-row-gap: $grid-gutter-v;
 }
 
 /* 3 */
 .n7-grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: $grid-gutter-h;
-    grid-row-gap: $grid-gutter-v;
+    > * {
+        width: calc(33.333% - 0.5%);
+        margin-right: 0.75%; /* 1.5/3 */
+
+        &:nth-of-type(3n+3) {
+            margin-right: 0;
+        }
+    }
+
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    // grid-column-gap: $grid-gutter-h;
+    // grid-row-gap: $grid-gutter-v;
 }
 
 /* 2 */
 .n7-grid-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: $grid-gutter-h;
-    grid-row-gap: $grid-gutter-v;
+    > * {
+        width: 49.5%;
+        margin-right: 1%;
+
+        &:nth-of-type(2n+2) {
+            margin-right: 0;
+        }
+    }
+
+    // display: grid;
+    // grid-template-columns: repeat(2, 1fr);
+    // grid-column-gap: $grid-gutter-h;
+    // grid-row-gap: $grid-gutter-v;
 }
 
 
@@ -44,12 +83,37 @@
 
     /* 4 */
     .n7-grid-4 {
-        grid-template-columns: repeat(3, 1fr);
+        > * {
+            width: calc(33.333% - 0.5%);
+            margin-right:  0.75%; /* 1.5/3 */
+    
+            &:nth-of-type(4n+4) {
+                margin-right:  0.75%; /* 1.5/3 */
+            }
+    
+            &:nth-of-type(3n+3) {
+                margin-right: 0;
+            }
+        }
+
+        // grid-template-columns: repeat(3, 1fr);
     }
 
     /* 3 */
     .n7-grid-3 {
-        grid-template-columns: repeat(2, 1fr);
+        > * {
+            width: 49.5%;
+            margin-right: 1%;
+
+            &:nth-of-type(3n+3) {
+                margin-right: 1%;
+            }
+
+            &:nth-of-type(2n+2) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(2, 1fr);
     }
 
 }
@@ -58,17 +122,47 @@
 
     /* 4 */
     .n7-grid-4 {
-        grid-template-columns: repeat(2, 1fr);
+        > * {
+            width: 49.5%;
+            margin-right: 1%;
+
+            &:nth-of-type(4n+4),
+            &:nth-of-type(3n+3) {
+                margin-right: 1%;
+            }
+
+            &:nth-of-type(2n+2) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(2, 1fr);
     }
 
     /* 3 */
     .n7-grid-3 {
-        grid-template-columns: repeat(1, 1fr);
+        > * {
+            width: 100%;
+            margin-right: 0;
+
+            &:nth-of-type(3n+3),
+            &:nth-of-type(2n+2) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(1, 1fr);
     }
 
     /* 2 */
     .n7-grid-2 {
-        grid-template-columns: repeat(1, 1fr);
+        > * {
+            width: 100%;
+            margin-right: 0;
+
+            &:nth-of-type(2n+2) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(1, 1fr);
     }
 
 }
@@ -77,7 +171,17 @@
 
     /* 4 */
     .n7-grid-4 {
-        grid-template-columns: repeat(1, 1fr);
+        > * {
+            width: 100%;
+            margin-right: 0;
+
+            &:nth-of-type(4n+4),
+            &:nth-of-type(3n+3),
+            &:nth-of-type(2n+2) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(1, 1fr);
     }
 
 }

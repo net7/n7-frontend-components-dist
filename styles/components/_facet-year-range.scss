@@ -8,15 +8,24 @@
    #FACET-YEAR-RANGE
 \* ------------------------------------ */
 .n7-facet-year-range {
-    padding: $space*1.5;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: $space*1.5;
+    padding: $space*1.5 0 $space*1.5 $space*1.5;
+    display: flex;
+    box-sizing: border-box;
+    // display: grid;
+    // grid-template-columns: repeat(2, 1fr);
+    // grid-column-gap: $space*1.5;
 
     .n7-facet-year-range__in,
     .n7-facet-year-range__out {
         display: flex;
+        box-sizing: border-box;
+        padding-right: $space*1.5;
+        flex: 0 0 50%;
+        max-width: 50%;
         align-items: center;
+    }
+
+    .n7-facet-year-range__in {
     }
 
     .n7-facet-year-range__in-label,

@@ -69,10 +69,11 @@
    #HAS-IMAGE
 \* ------------------------------------ */
 .n7-item-preview.has-image {
-    display: grid;
-    grid-template-columns: $item-preview-image-width 1fr;
-    grid-column-gap: $space*2;
-    
+    display: flex;
+    // display: grid;
+    // grid-template-columns: $item-preview-image-width 1fr;
+    // grid-column-gap: $space*2;
+
     .n7-item-preview__image {
         background-repeat: no-repeat;
         background-size: cover;
@@ -80,6 +81,19 @@
         width: $item-preview-image-width;
         height: $item-preview-image-height;
     }
+
+    &:not(.is-vertical) {
+        .n7-item-preview__image {
+            flex: 0 0 $item-preview-image-width;
+            width: $item-preview-image-width;
+            margin-right: $space*2;
+        }
+
+        .n7-item-preview__content {
+            flex: 1;
+        }
+    }
+    
 }
 
 

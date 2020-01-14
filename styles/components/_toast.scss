@@ -41,18 +41,24 @@
 \* ------------------------------------ */
 .n7-toast__box.has-actions {
     position: relative;
-    display: grid;
-    grid-template-columns: auto minmax(20px, auto);
-    grid-column-gap: $space;
+    display: flex;
+    // display: grid;
+    // grid-template-columns: auto minmax(20px, auto);
+    // grid-column-gap: $space;
 }
 
 .n7-toast__actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex: 1 0 auto;
+    min-width: 20px;
 }
 
 .n7-toast__action-content {
+    flex: 1;
+    margin-right: $space;
+
     .n7-toast__action-button {
         margin-left: $space/2;
     }

@@ -15,10 +15,11 @@
     }
 
     &__group {
-        display: grid;
-        grid-template-columns: 180px 2fr;
-        grid-template-rows: 1fr;
-        grid-column-gap: $space*2;
+        display: flex;
+        // display: grid;
+        // grid-template-columns: 180px 2fr;
+        // grid-template-rows: 1fr;
+        // grid-column-gap: $space*2;
         margin-bottom: $space*2;
         padding-bottom: $space*2;
         border-bottom: 1px solid $color-border-normal;
@@ -30,6 +31,9 @@
     }
 
     &__group-title-wrapper {
+        flex: 0 0 $advanced-autocomplete-group-title-width;
+        width: $advanced-autocomplete-group-title-width;
+        margin-right:$space*2;
         color: $color-text-light;
     }
 
@@ -44,6 +48,10 @@
         margin-right: $space/2;
         font-size: $font-size-l;
         vertical-align: middle;
+    }
+
+    &__items {
+        flex: 1;
     }
 
     &__item {

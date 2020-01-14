@@ -93,9 +93,22 @@
 \* ------------------------------------ */
 .n7-hero.has-image {
     .n7-hero__content {
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        grid-column-gap: $grid-gutter-h;
+        display: flex;
+        // display: grid;
+        // grid-template-columns: 1fr 300px;
+        // grid-column-gap: $grid-gutter-h;
+    }
+
+    /* Text */
+    .n7-hero__text-wrapper {
+        flex: 0 0 $hero-image-text-width;
+        width: $hero-image-text-width;
+        margin-right: $grid-gutter-h;
+    }
+
+    .n7-hero__title,
+    .n7-hero__text {
+        width: 100%; /* For IE bug, text overflowing container when contained in flex item */
     }
 
     /* Image */
@@ -103,6 +116,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex: 1;
         padding: $space*3 0;
     }
 
