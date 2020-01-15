@@ -35,8 +35,9 @@ export interface IInnerTitleData {
     };
 }
 export interface IInnerTitleOptions {
+    text: string;
     value: string;
-    payload: any;
+    disable: boolean;
 }
 export interface IInnerTitleButtons {
     text: string;
