@@ -101,8 +101,7 @@
 
     /* Text */
     .n7-hero__text-wrapper {
-        flex: 0 0 $hero-image-text-width;
-        width: $hero-image-text-width;
+        flex: 1;
         margin-right: $grid-gutter-h;
     }
 
@@ -116,7 +115,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex: 1;
+        @include flex-item-width($hero-image-text-width);
         padding: $space*3 0;
     }
 
