@@ -24,17 +24,14 @@ export interface ISimpleAutocompleteData {
 /**
  * Interface for SimpleAutocompleteComponent's "Suggestion"
  *
- * @property prefix (optional)
- * @property suffix (optional)
+ * @property text
  * @property payload (optional)
  */
 export interface ISimpleAutocompleteSuggestion {
     /**
      * Render suggestions
      */
-    prefix?: string;
-    match?: string;
-    suffix?: string;
+    text: string;
     /**
      * Suggestion event payload
      */
