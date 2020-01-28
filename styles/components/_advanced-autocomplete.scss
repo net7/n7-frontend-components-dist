@@ -52,16 +52,21 @@
 
     &__items {
         flex: 1;
+
+        > *:last-child {
+            .n7-advanced-autocomplete__item {
+                margin-bottom: 0;
+            }
+        }
     }
 
     &__item {
+        display: block;
         margin-bottom: $space;
         font-size: $font-size-m;
+        color: $color-text;
+        word-break: break-all;
         cursor: pointer;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
 
         &:hover {
             color: $color-text-link;
@@ -71,7 +76,6 @@
     /* Title */
     &__item-title {
         margin-right: $space;
-        font-weight: $font-weight-bold;
     }
 
     /* Metadata */
