@@ -1,9 +1,8 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for SimpleAutocompleteComponent's "data"
  *
- * @property typed (required)
  * @property suggestion (required)
- * @property payload (optional)
  * @property classes (optional)
  * @property _meta (optional)
  */
@@ -25,17 +24,11 @@ export interface ISimpleAutocompleteData {
  * Interface for SimpleAutocompleteComponent's "Suggestion"
  *
  * @property text
- * @property payload (optional)
+ * @property anchor (optional)
  */
 export interface ISimpleAutocompleteSuggestion {
-    /**
-     * Render suggestions
-     */
     text: string;
-    /**
-     * Suggestion event payload
-     */
-    payload?: any;
+    anchor?: IAnchor;
 }
 export declare class SimpleAutocompleteComponent {
     data: ISimpleAutocompleteData;

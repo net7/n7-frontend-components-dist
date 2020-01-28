@@ -1,9 +1,10 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for a single navbar item
  *
  * @property text (required)
  * @property classes (optional)
- * @property payload (required)
+ * @property link (optional)
  * @property _meta (optional)
  */
 export interface INavItem {
@@ -15,10 +16,7 @@ export interface INavItem {
      * additional html classes
      */
     classes?: string;
-    /**
-     * action click's payload
-     */
-    payload: any;
+    anchor?: IAnchor;
     /**
      * additional info
      */

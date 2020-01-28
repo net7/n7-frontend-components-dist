@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('d3'), require('apexcharts/dist/apexcharts.common.js'), require('flatpickr'), require('openseadragon'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@n7-frontend/components', ['exports', '@angular/common', 'd3', 'apexcharts/dist/apexcharts.common.js', 'flatpickr', 'openseadragon', '@angular/core'], factory) :
-    (factory((global['n7-frontend'] = global['n7-frontend'] || {}, global['n7-frontend'].components = {}),global.ng.common,global.d3,global.ApexCharts,global.flatpickr,global.openseadragon,global.ng.core));
-}(this, (function (exports,common,d3,ApexCharts,flatpickr,openseadragon,core) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/router'), require('d3'), require('apexcharts/dist/apexcharts.common.js'), require('flatpickr'), require('openseadragon'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@n7-frontend/components', ['exports', '@angular/common', '@angular/router', 'd3', 'apexcharts/dist/apexcharts.common.js', 'flatpickr', 'openseadragon', '@angular/core'], factory) :
+    (factory((global['n7-frontend'] = global['n7-frontend'] || {}, global['n7-frontend'].components = {}),global.ng.common,global.ng.router,global.d3,global.ApexCharts,global.flatpickr,global.openseadragon,global.ng.core));
+}(this, (function (exports,common,router,d3,ApexCharts,flatpickr,openseadragon,core) { 'use strict';
 
     ApexCharts = ApexCharts && ApexCharts.hasOwnProperty('default') ? ApexCharts['default'] : ApexCharts;
     flatpickr = flatpickr && flatpickr.hasOwnProperty('default') ? flatpickr['default'] : flatpickr;
@@ -32,7 +32,7 @@
         AdvancedAutocompleteComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-advanced-autocomplete',
-                        template: "<div *ngIf=\"data\"\r\n     class=\"n7-advanced-autocomplete\"\r\n     [ngClass]=\"{ 'is-empty' : (data.results && data.results.length == 0), 'is-loading': !data.results }\">\r\n    <!-- If there are some results -->\r\n    <ng-container *ngIf=\"data.results && data.results.length > 0\">\r\n        <ng-container *ngTemplateOutlet=\"hasLoaded\"></ng-container>\r\n    </ng-container>\r\n    <!-- If no results are found -->\r\n    <ng-container *ngIf=\"data.results && data.results.length == 0\">\r\n        <ng-container *ngTemplateOutlet=\"isEmpty\"></ng-container>\r\n    </ng-container>\r\n    <!-- If is loading -->\r\n    <ng-container *ngIf=\"!data.results\">\r\n        <ng-container *ngTemplateOutlet=\"isLoading\"></ng-container>\r\n    </ng-container>\r\n</div>\r\n\r\n<!-- Template: Is empty -->\r\n<ng-template #isEmpty>\r\n    <div class=\"n7-advanced-autocomplete__empty\" [innerHTML]=\"data.fallback\"></div>\r\n</ng-template>\r\n\r\n<!-- Template: Is loading -->\r\n<ng-template #isLoading>\r\n    <!-- Layout appends loader-component here -->\r\n    <span class=\"n7-advanced-autocomplete__loader\"\r\n          id=\"n7-advanced-autocomplete__loader\">\r\n    </span>\r\n</ng-template>\r\n\r\n<!-- Template: Has loaded -->\r\n<ng-template #hasLoaded>\r\n    <!-- Search results -->\r\n    <div class=\"n7-advanced-autocomplete__results\">\r\n        <!-- Render groups -->\r\n        <ng-container *ngFor=\"let res of data.results\">\r\n            <div *ngIf=\"res.group\" class=\"n7-advanced-autocomplete__group\">\r\n                <div class=\"n7-advanced-autocomplete__group-title-wrapper {{ res.group.classes || '' }}\"\r\n                     (click)=\"onClick(res.group.payload)\">\r\n                    <span *ngIf=\"res.group.icon\" class=\"n7-advanced-autocomplete__group-icon {{ res.group.icon }}\"></span>\r\n                    <span class=\"n7-advanced-autocomplete__group-title\">{{res.group.title}}</span>\r\n                </div>\r\n                <!-- Render items -->\r\n                <div class=\"n7-advanced-autocomplete__items\">\r\n                    <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\r\n                </div>\r\n            </div>\r\n            <div *ngIf=\"!res.group\" class=\"n7-advanced-autocomplete__nogroup\">\r\n                <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\r\n            </div>\r\n        </ng-container>\r\n    </div>\r\n    <!-- Actions -->\r\n    <div *ngIf=\"data.actions\"\r\n            class=\"n7-advanced-autocomplete__action-bar\">\r\n        <button *ngIf=\"data.actions.advanced\"\r\n                (click)=\"onClick(data.actions.advanced.payload)\"\r\n                class=\"n7-btn n7-advanced-autocomplete__advanced-search\">\r\n            {{data.actions.advanced.text}}\r\n        </button>\r\n        <button *ngIf=\"data.actions.showMore\"\r\n                (click)=\"onClick(data.actions.showMore.payload)\"\r\n                class=\"n7-btn n7-btn-cta n7-advanced-autocomplete__show-more\">\r\n            {{data.actions.showMore.text}}\r\n        </button>\r\n    </div>\r\n</ng-template>\r\n\r\n<!-- Template: Items -->\r\n<ng-template #items let-items>\r\n    <div *ngFor=\"let item of items\"\r\n         class=\"n7-advanced-autocomplete__item\"\r\n         (click)=\"onClick(item.payload)\">\r\n        <span *ngIf=\"item.title\" class=\"n7-advanced-autocomplete__item-title\" [innerHTML]=\"item.title\"></span>\r\n        <ng-container *ngIf=\"item.metadata\">\r\n            <span *ngFor=\"let meta of item.metadata\" class=\"n7-advanced-autocomplete__item-metadata\">\r\n                <span *ngIf=\"meta.key\" class=\"n7-advanced-autocomplete__item-metadata-key\">{{ meta.key }}</span>\r\n                <span *ngIf=\"meta.value\" class=\"n7-advanced-autocomplete__item-metadata-value\">{{ meta.value }}</span>\r\n            </span>\r\n        </ng-container>\r\n    </div>\r\n</ng-template>"
+                        template: "<div *ngIf=\"data\"\r\n     class=\"n7-advanced-autocomplete\"\r\n     [ngClass]=\"{ 'is-empty' : (data.results && data.results.length == 0), 'is-loading': !data.results }\">\r\n    <!-- If there are some results -->\r\n    <ng-container *ngIf=\"data.results && data.results.length > 0\">\r\n        <ng-container *ngTemplateOutlet=\"hasLoaded\"></ng-container>\r\n    </ng-container>\r\n    <!-- If no results are found -->\r\n    <ng-container *ngIf=\"data.results && data.results.length == 0\">\r\n        <ng-container *ngTemplateOutlet=\"isEmpty\"></ng-container>\r\n    </ng-container>\r\n    <!-- If is loading -->\r\n    <ng-container *ngIf=\"!data.results\">\r\n        <ng-container *ngTemplateOutlet=\"isLoading\"></ng-container>\r\n    </ng-container>\r\n</div>\r\n\r\n<!-- Template: Is empty -->\r\n<ng-template #isEmpty>\r\n    <div class=\"n7-advanced-autocomplete__empty\" [innerHTML]=\"data.fallback\"></div>\r\n</ng-template>\r\n\r\n<!-- Template: Is loading -->\r\n<ng-template #isLoading>\r\n    <!-- Layout appends loader-component here -->\r\n    <span class=\"n7-advanced-autocomplete__loader\"\r\n          id=\"n7-advanced-autocomplete__loader\">\r\n    </span>\r\n</ng-template>\r\n\r\n<!-- Template: Has loaded -->\r\n<ng-template #hasLoaded>\r\n    <!-- Search results -->\r\n    <div class=\"n7-advanced-autocomplete__results\">\r\n        <!-- Render groups -->\r\n        <ng-container *ngFor=\"let res of data.results\">\r\n            <div *ngIf=\"res.group\" class=\"n7-advanced-autocomplete__group\">\r\n                <div class=\"n7-advanced-autocomplete__group-title-wrapper {{ res.group.classes || '' }}\">\r\n                    <n7-anchor-wrapper\r\n                    [data]=\"res.group.anchor\"\r\n                    (clicked)=\"onClick($event)\">\r\n                        <span *ngIf=\"res.group.icon\" class=\"n7-advanced-autocomplete__group-icon {{ res.group.icon }}\"></span>\r\n                        <span class=\"n7-advanced-autocomplete__group-title\">{{res.group.title}}</span>\r\n                    </n7-anchor-wrapper>\r\n                </div>\r\n                <!-- Render items -->\r\n                <div class=\"n7-advanced-autocomplete__items\">\r\n                    <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\r\n                </div>\r\n            </div>\r\n            <div *ngIf=\"!res.group\" class=\"n7-advanced-autocomplete__nogroup\">\r\n                <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\r\n            </div>\r\n        </ng-container>\r\n    </div>\r\n    <!-- Actions -->\r\n    <div *ngIf=\"data.actions\"\r\n    class=\"n7-advanced-autocomplete__action-bar\">\r\n        <n7-anchor-wrapper\r\n        *ngIf=\"data.actions.advanced\"\r\n        [data]=\"data.actions.advanced.anchor\"\r\n        (clicked)=\"onClick($event)\"\r\n        [classes]=\"'n7-btn n7-advanced-autocomplete__advanced-search'\">\r\n            {{data.actions.advanced.text}}\r\n        </n7-anchor-wrapper>\r\n        \r\n        <n7-anchor-wrapper\r\n        *ngIf=\"data.actions.showMore\"\r\n        [data]=\"data.actions.showMore.anchor\"\r\n        (clicked)=\"onClick($event)\"\r\n        [classes]=\"'n7-btn n7-btn-cta n7-advanced-autocomplete__show-more'\">\r\n            {{data.actions.showMore.text}}\r\n        </n7-anchor-wrapper>\r\n    </div>\r\n</ng-template>\r\n\r\n<!-- Template: Items -->\r\n<ng-template #items let-items>\r\n    <n7-anchor-wrapper *ngFor=\"let item of items\"\r\n    [data]=\"item.anchor\"\r\n    (clicked)=\"onClick($event)\"\r\n    [classes]=\"'n7-advanced-autocomplete__item'\">\r\n    <span *ngIf=\"item.title\" class=\"n7-advanced-autocomplete__item-title\" [innerHTML]=\"item.title\"></span>\r\n    <ng-container *ngIf=\"item.metadata\">\r\n        <span *ngFor=\"let meta of item.metadata\" class=\"n7-advanced-autocomplete__item-metadata\">\r\n            <span *ngIf=\"meta.key\" class=\"n7-advanced-autocomplete__item-metadata-key\">{{ meta.key }}</span>\r\n            <span *ngIf=\"meta.value\" class=\"n7-advanced-autocomplete__item-metadata-value\">{{ meta.value }}</span>\r\n        </span>\r\n    </ng-container>\r\n    </n7-anchor-wrapper>\r\n</ng-template>"
                     }] }
         ];
         AdvancedAutocompleteComponent.propDecorators = {
@@ -100,7 +100,7 @@
         BreadcrumbsComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-breadcrumbs',
-                        template: "<div *ngIf=\"data\" class=\"n7-breadcrumbs {{ data.classes || '' }}\">\r\n    <nav class=\"n7-breadcrumbs__nav\">\r\n        <ol class=\"n7-breadcrumbs__list\">\r\n            <li *ngFor=\"let item of data.items\" class=\"n7-breadcrumbs__item {{ item.classes || '' }}\">\r\n                <a class=\"n7-breadcrumbs__label\" (click)=\"onClick(item.payload)\">{{ item.label }}</a>\r\n            </li>\r\n        </ol>\r\n    </nav>\r\n</div>\r\n"
+                        template: "<div *ngIf=\"data\" class=\"n7-breadcrumbs {{ data.classes || '' }}\">\r\n    <nav class=\"n7-breadcrumbs__nav\">\r\n        <ol class=\"n7-breadcrumbs__list\">\r\n            <li *ngFor=\"let item of data.items\" class=\"n7-breadcrumbs__item {{ item.classes || '' }}\">\r\n                <n7-anchor-wrapper [classes]=\"'n7-breadcrumbs__label'\"\r\n                [data]=\"item.anchor\"\r\n                (clicked)=\"onClick($event)\">\r\n                    {{ item.label }}\r\n                </n7-anchor-wrapper>\r\n            </li>\r\n        </ol>\r\n    </nav>\r\n</div>\r\n"
                     }] }
         ];
         BreadcrumbsComponent.propDecorators = {
@@ -961,7 +961,7 @@
         FooterComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-footer',
-                        template: "<div *ngIf=\"data\" class=\"n7-footer {{data.classes || ''}}\">\r\n    <div class=\"n7-footer__content\">\r\n        <!-- Loop footer content columns -->\r\n        <div class=\"n7-footer__column {{column.classes || ''}}\" *ngFor=\"let column of data.columns\">\r\n            <ng-container *ngTemplateOutlet=\"footerColumn; context:{$implicit: column}\"></ng-container>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<!-- Template: Columns -->\r\n<ng-template #footerColumn let-column>\r\n    <h2 *ngIf=\"column.title\" class=\"n7-footer__column-title\">\r\n        {{ column.title }}\r\n    </h2>\r\n    <p *ngIf=\"column.text\" \r\n       class=\"n7-footer__column-text\"\r\n       [innerHTML]=\"column.text\">\r\n    </p>\r\n    <div *ngIf=\"column.links\" class=\"n7-footer__column-nav\">\r\n        <ul class=\"n7-footer__column-nav-list\">\r\n            <li *ngFor=\"let link of column.links\"\r\n                class=\"n7-footer__column-nav-item {{link.classes || ''}}\">\r\n                <a class=\"n7-footer__column-nav-link\" \r\n                   (click)=\"onClick(link.payload)\">\r\n                    {{ link.text }}\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <div *ngIf=\"column.images\" class=\"n7-footer__column-images\">\r\n        <img *ngFor=\"let image of column.images\" \r\n             src=\"{{ image.url }}\" \r\n             [attr.alt]=\"image.alttext\"\r\n             (click)=\"onClick(image.payload)\"\r\n             class=\"{{image.classes || ''}}\">\r\n    </div>\r\n</ng-template>"
+                        template: "<div *ngIf=\"data\" class=\"n7-footer {{data.classes || ''}}\">\r\n    <div class=\"n7-footer__content\">\r\n        <!-- Loop footer content columns -->\r\n        <div class=\"n7-footer__column {{column.classes || ''}}\" *ngFor=\"let column of data.columns\">\r\n            <ng-container *ngTemplateOutlet=\"footerColumn; context:{$implicit: column}\"></ng-container>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<!-- Template: Columns -->\r\n<ng-template #footerColumn let-column>\r\n    <h2 *ngIf=\"column.title\" class=\"n7-footer__column-title\">\r\n        {{ column.title }}\r\n    </h2>\r\n    <p *ngIf=\"column.text\" \r\n       class=\"n7-footer__column-text\"\r\n       [innerHTML]=\"column.text\">\r\n    </p>\r\n    <div *ngIf=\"column.links\" class=\"n7-footer__column-nav\">\r\n        <ul class=\"n7-footer__column-nav-list\">\r\n            <li *ngFor=\"let link of column.links\"\r\n                class=\"n7-footer__column-nav-item {{link.classes || ''}}\">\r\n                <n7-anchor-wrapper [classes]=\"'n7-footer__column-nav-link'\"\r\n                [data]=\"link.anchor\"\r\n                (clicked)=\"onClick($event)\">\r\n                    {{ link.text }}\r\n                </n7-anchor-wrapper>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <div *ngIf=\"column.images\" class=\"n7-footer__column-images\">\r\n        <n7-anchor-wrapper  *ngFor=\"let image of column.images\"\r\n        [classes]=\"image.classes || ''\"\r\n        [data]=\"image.anchor\"\r\n        (clicked)=\"onClick($event)\">\r\n            <img \r\n            [src]=\"image.url\" \r\n            [attr.alt]=\"image.alttext\" />\r\n        </n7-anchor-wrapper>\r\n    </div>\r\n</ng-template>"
                     }] }
         ];
         FooterComponent.propDecorators = {
@@ -1036,7 +1036,7 @@
         HeaderComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-header',
-                        template: "<header *ngIf=\"data\" class=\"n7-header {{data.classes || ''}}\">\r\n    \r\n    <!-- Logo and title -->\r\n    <div class=\"n7-header__logo-title {{data.logo.classes || ''}}\">\r\n        <a class=\"n7-header__logo-link\" (click)=\"onClick(data.logo.payload)\">\r\n            <img class=\"n7-header__logo\"\r\n                *ngIf=\"data.logo.image\"\r\n                [src]=\"data.logo.image\"\r\n                alt=\"{{ data.logo.title }}\" />\r\n            <div class=\"n7-header__title-subtitle\">\r\n                <h1 class=\"n7-header__title\">\r\n                    {{ data.logo.title }}\r\n                </h1>\r\n                <h2 class=\"n7-header__subtitle\" *ngIf=\"data.logo.subtitle\">\r\n                    {{ data.logo.subtitle }}\r\n                </h2>\r\n            </div>\r\n        </a>\r\n    </div>\r\n\r\n    <!-- Main menu -->\r\n    <nav class=\"n7-header__nav {{data.nav.classes || ''}}\" *ngIf=\"data.nav\">\r\n        <div class=\"n7-header__nav-content\">\r\n            <ul class=\"n7-header__nav-list\">\r\n                <li class=\"n7-header__nav-item {{item.classes || ''}}\" *ngFor=\"let item of data.nav.items\">\r\n                    <a class=\"n7-header__nav-link\" *ngIf=\"item.payload\" (click)=\"onClick(item.payload)\">\r\n                        <span class=\"n7-header__nav-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\r\n                        <span class=\"n7-header__nav-label\" *ngIf=\"item.text\">\r\n                            {{ item.text }}\r\n                        </span>\r\n                    </a>\r\n\r\n                    <!-- Sublevel -->\r\n                    <ul class=\"n7-header__subnav-list\" *ngIf=\"item.subnav\">\r\n                        <li class=\"n7-header__subnav-item {{subitem.classes || ''}}\" *ngFor=\"let subitem of item.subnav\">\r\n                            <a class=\"n7-header__subnav-link\" (click)=\"onClick(subitem.payload)\">\r\n                                <span class=\"n7-header__subnav-icon {{subitem.icon}}\" *ngIf=\"subitem.icon\"></span>\r\n                                <span class=\"n7-header__subnav-label\" *ngIf=\"subitem.text\">\r\n                                    {{ subitem.text }}\r\n                                </span>\r\n                            </a>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </nav>\r\n\r\n    <!-- Mobile menu toggle -->\r\n    <div class=\"n7-header__mobile-menu-toggle\">\r\n        <span class=\"n7-header__mobile-menu-icon n7-icon-menu\" \r\n              (click)=\"onClick(data.menuToggle.open.payload)\"></span>\r\n    </div>\r\n\r\n    <!-- Mobile menu close -->\r\n    <span class=\"n7-header__mobile-menu-close n7-icon-close\" \r\n          (click)=\"onClick(data.menuToggle.close.payload)\"></span>\r\n\r\n    <!-- Tools: search, notifications, use profile or login/signup -->\r\n    <div class=\"n7-header__tools\">\r\n        \r\n        <div class=\"n7-header__search {{data.search.classes || ''}}\" *ngIf=\"data.search\">\r\n            <input class=\"n7-header__search-input\" \r\n                   type=\"search\" \r\n                   name=\"search\" \r\n                   placeholder=\"{{ data.search.hint || ''}}\" \r\n                   (keyup)=\"onKeyUp(data.search.payload, $event.keyCode, $event.target.value)\"/>\r\n            <button class=\"n7-header__search-btn\" type=\"submit\" (click)=\"onClick(data.search.payload)\">\r\n                <span class=\"n7-header__search-btn-label\">\r\n                    Search\r\n                </span>\r\n            </button>\r\n        </div>\r\n        \r\n        <div class=\"n7-header__actions\" *ngIf=\"data.actions\">\r\n            <div class=\"n7-header__action {{ action.classes || '' }}\" *ngFor=\"let action of data.actions\">\r\n                <span class=\"n7-header__action-icon {{ action.icon }}\" (click)=\"onClick(action.payload)\"></span>\r\n                <span class=\"n7-header__action-badge {{ action.badge.text ? 'has-text' : '' }}\" *ngIf=\"action.badge\">\r\n                    {{ action.badge.text }}\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"n7-header__user {{data.user.classes || ''}}\" *ngIf=\"data.user\">\r\n            <img class=\"n7-header__user-img\" \r\n                 *ngIf=\"data.user.img\" \r\n                 [src]=\"data.user.img\" \r\n                 (click)=\"onClick(data.user.payload)\"/>\r\n            <p class=\"n7-header__user-name\" *ngIf=\"data.user.name\">\r\n                <span class=\"n7-header__user-name-label\">\r\n                    {{ data.user.name }}\r\n                </span>\r\n            </p>\r\n        </div>\r\n    </div>\r\n\r\n</header>\r\n\r\n"
+                        template: "<header *ngIf=\"data\" class=\"n7-header {{data.classes || ''}}\">\r\n    \r\n    <!-- Logo and title -->\r\n    <div class=\"n7-header__logo-title {{data.logo.classes || ''}}\">\r\n        <n7-anchor-wrapper [classes]=\"'n7-header__logo-link'\"\r\n        [data]=\"data.logo.anchor\"\r\n        (clicked)=\"onClick($event)\">\r\n            <img class=\"n7-header__logo\"\r\n            *ngIf=\"data.logo.image\"\r\n            [src]=\"data.logo.image\"\r\n            alt=\"{{ data.logo.title }}\" />\r\n            <div class=\"n7-header__title-subtitle\">\r\n                <h1 class=\"n7-header__title\">\r\n                    {{ data.logo.title }}\r\n                </h1>\r\n                <h2 class=\"n7-header__subtitle\" *ngIf=\"data.logo.subtitle\">\r\n                    {{ data.logo.subtitle }}\r\n                </h2>\r\n            </div>\r\n        </n7-anchor-wrapper>\r\n    </div>\r\n\r\n    <!-- Main menu -->\r\n    <nav class=\"n7-header__nav {{data.nav.classes || ''}}\" *ngIf=\"data.nav\">\r\n        <div class=\"n7-header__nav-content\">\r\n            <ul class=\"n7-header__nav-list\">\r\n                <li class=\"n7-header__nav-item {{item.classes || ''}}\" *ngFor=\"let item of data.nav.items\">\r\n                    <n7-anchor-wrapper [classes]=\"'n7-header__nav-link'\"\r\n                    [data]=\"item.anchor\"\r\n                    (clicked)=\"onClick($event)\">\r\n                        <span class=\"n7-header__nav-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\r\n                        <span class=\"n7-header__nav-label\" *ngIf=\"item.text\">\r\n                            {{ item.text }}\r\n                        </span>\r\n                    </n7-anchor-wrapper>\r\n                    <!-- Sublevel -->\r\n                    <ul class=\"n7-header__subnav-list\" *ngIf=\"item.subnav\">\r\n                        <li class=\"n7-header__subnav-item {{subitem.classes || ''}}\" *ngFor=\"let subitem of item.subnav\">\r\n                            <n7-anchor-wrapper [classes]=\"'n7-header__subnav-link'\"\r\n                            [data]=\"subitem.anchor\"\r\n                            (clicked)=\"onClick($event)\">\r\n                                <span class=\"n7-header__subnav-icon {{subitem.icon}}\" *ngIf=\"subitem.icon\"></span>\r\n                                <span class=\"n7-header__subnav-label\" *ngIf=\"subitem.text\">\r\n                                    {{ subitem.text }}\r\n                                </span>\r\n                            </n7-anchor-wrapper>\r\n                        </li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </nav>\r\n\r\n    <!-- Mobile menu toggle -->\r\n    <div class=\"n7-header__mobile-menu-toggle\">\r\n        <span class=\"n7-header__mobile-menu-icon n7-icon-menu\" \r\n              (click)=\"onClick(data.menuToggle.open.payload)\"></span>\r\n    </div>\r\n\r\n    <!-- Mobile menu close -->\r\n    <span class=\"n7-header__mobile-menu-close n7-icon-close\" \r\n          (click)=\"onClick(data.menuToggle.close.payload)\"></span>\r\n\r\n    <!-- Tools: search, notifications, use profile or login/signup -->\r\n    <div class=\"n7-header__tools\">\r\n        \r\n        <div class=\"n7-header__search {{data.search.classes || ''}}\" *ngIf=\"data.search\">\r\n            <input class=\"n7-header__search-input\" \r\n                   type=\"search\" \r\n                   name=\"search\" \r\n                   placeholder=\"{{ data.search.hint || ''}}\" \r\n                   (keyup)=\"onKeyUp(data.search.payload, $event.keyCode, $event.target.value)\"/>\r\n            <button class=\"n7-header__search-btn\" type=\"submit\" (click)=\"onClick(data.search.payload)\">\r\n                <span class=\"n7-header__search-btn-label\">\r\n                    Search\r\n                </span>\r\n            </button>\r\n        </div>\r\n        \r\n        <div class=\"n7-header__actions\" *ngIf=\"data.actions\">\r\n            <n7-anchor-wrapper *ngFor=\"let action of data.actions\" \r\n            [classes]=\"'n7-header__action' + (action.classes || '')\"\r\n            [data]=\"action.anchor\"\r\n            (clicked)=\"onClick($event)\">\r\n                <span class=\"n7-header__action-icon {{ action.icon }}\"></span>\r\n                <span *ngIf=\"action.badge\" class=\"n7-header__action-badge {{ action.badge.text ? 'has-text' : '' }}\">\r\n                    {{ action.badge.text }}\r\n                </span>\r\n            </n7-anchor-wrapper>\r\n        </div>\r\n\r\n        <div class=\"n7-header__user {{data.user.classes || ''}}\" *ngIf=\"data.user\">\r\n            <n7-anchor-wrapper [classes]=\"'n7-header__user-wrapper'\"\r\n            [data]=\"data.user.anchor\"\r\n            (clicked)=\"onClick($event)\">\r\n                <img *ngIf=\"data.user.img\"\r\n                class=\"n7-header__user-img\"  \r\n                [src]=\"data.user.img\"/>\r\n                <p class=\"n7-header__user-name\" *ngIf=\"data.user.name\">\r\n                    <span class=\"n7-header__user-name-label\">\r\n                        {{ data.user.name }}\r\n                    </span>\r\n                </p>\r\n            </n7-anchor-wrapper>\r\n        </div>\r\n    </div>\r\n\r\n</header>\r\n\r\n"
                     }] }
         ];
         HeaderComponent.propDecorators = {
@@ -1114,7 +1114,7 @@
         HeroComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-hero',
-                        template: "<section *ngIf=\"data\" class=\"n7-hero {{data.classes || ''}}\" \r\n    [ngClass]=\"{ \r\n        'has-image' : !!data.image, \r\n        'has-background-image': !!data.backgroundImage \r\n    }\"\r\n    [ngStyle]=\"{ \r\n        'background-image': getBackgroundImageCssValue(data.backgroundImage)\r\n    }\">\r\n    <div class=\"n7-hero__content\">\r\n        \r\n        <div class=\"n7-hero__text-wrapper\">\r\n            <h1 class=\"n7-hero__title\">\r\n                {{data.title}}\r\n            </h1>\r\n            <p class=\"n7-hero__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></p>\r\n            <div class=\"n7-hero__input-wrapper\" *ngIf=\"data.input || data.button\">\r\n                <input type=\"text\" \r\n                       class=\"n7-hero__input\" \r\n                       placeholder=\"{{data.input.placeholder || ''}}\" \r\n                       *ngIf=\"data.input\" \r\n                       (input)=\"onInputChange(data.input.payload, $event.target.value)\" \r\n                       (keyup.enter)=\"onInputEnter(data.input.payload, $event.target.value)\">\r\n                <span class=\"n7-hero__input-icon {{data.input.icon || ''}}\" \r\n                      *ngIf=\"data.input && data.input.icon\" \r\n                      (click)=\"onClick(data.input.payload)\"></span>\r\n                <button class=\"n7-hero__btn n7-btn n7-btn-cta n7-btn-l\" \r\n                        *ngIf=\"data.button\" \r\n                        (click)=\"onClick(data.button.payload)\">\r\n                    {{data.button.text}}\r\n                </button>\r\n            </div>\r\n        </div>\r\n        \r\n        <div class=\"n7-hero__image-wrapper\" *ngIf=\"data.image\">\r\n            <img class=\"n7-hero__image\" src=\"{{data.image}}\" alt=\"\">\r\n        </div>\r\n\r\n    </div>\r\n</section>"
+                        template: "<section *ngIf=\"data\" class=\"n7-hero {{data.classes || ''}}\" \r\n    [ngClass]=\"{ \r\n        'has-image' : !!data.image, \r\n        'has-background-image': !!data.backgroundImage \r\n    }\"\r\n    [ngStyle]=\"{ \r\n        'background-image': getBackgroundImageCssValue(data.backgroundImage)\r\n    }\">\r\n    <div class=\"n7-hero__content\">\r\n        \r\n        <div class=\"n7-hero__text-wrapper\">\r\n            <h1 class=\"n7-hero__title\">\r\n                {{data.title}}\r\n            </h1>\r\n            <p class=\"n7-hero__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></p>\r\n            <div class=\"n7-hero__input-wrapper\" *ngIf=\"data.input || data.button\">\r\n                <input type=\"text\" \r\n                       class=\"n7-hero__input\" \r\n                       placeholder=\"{{data.input.placeholder || ''}}\" \r\n                       *ngIf=\"data.input\" \r\n                       (input)=\"onInputChange(data.input.payload, $event.target.value)\" \r\n                       (keyup.enter)=\"onInputEnter(data.input.payload, $event.target.value)\">\r\n                <span class=\"n7-hero__input-icon {{data.input.icon || ''}}\" \r\n                      *ngIf=\"data.input && data.input.icon\" \r\n                      (click)=\"onClick(data.input.payload)\"></span>\r\n                <ng-container *ngIf=\"data.button\">\r\n                    <n7-anchor-wrapper [classes]=\"'n7-hero__btn n7-btn n7-btn-cta n7-btn-l'\"\r\n                    [data]=\"data.button.anchor\"\r\n                    (clicked)=\"onClick($event)\">\r\n                        {{data.button.text}}\r\n                    </n7-anchor-wrapper>\r\n                </ng-container>\r\n            </div>\r\n        </div>\r\n        \r\n        <div class=\"n7-hero__image-wrapper\" *ngIf=\"data.image\">\r\n            <img class=\"n7-hero__image\" src=\"{{data.image}}\" alt=\"\">\r\n        </div>\r\n\r\n    </div>\r\n</section>"
                     }] }
         ];
         HeroComponent.propDecorators = {
@@ -1287,7 +1287,7 @@
         ItemPreviewComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-item-preview',
-                        template: "<div *ngIf=\"data\" \r\n     class=\"n7-item-preview {{data.classes || ''}}\" \r\n     [ngClass]=\"{ 'has-image' : !!data.image }\"\r\n     (click)=\"onClick(data.payload)\">\r\n\r\n    <!-- Image -->\r\n    <div class=\"n7-item-preview__image\"\r\n         *ngIf=\"data.image\"\r\n         [style.background-image] = \"'url(' + data.image + ')'\">       \r\n    </div>         \r\n    \r\n    <div class=\"n7-item-preview__content\">\r\n\r\n        <!-- Title and text -->\r\n        <div class=\"n7-item-preview__title-text\">\r\n            <h1 class=\"n7-item-preview__title\">\r\n                {{ data.title }}\r\n            </h1>\r\n            <p class=\"n7-item-preview__text\" *ngIf=\"data.text\">\r\n                {{ data.text }}\r\n            </p>\r\n        </div>\r\n\r\n        <!-- Metadata -->\r\n        <div class=\"n7-item-preview__metadata\" *ngIf=\"data.metadata\">       \r\n            <div class=\"n7-item-preview__metadata-group {{ meta.classes || '' }}\" *ngFor=\"let meta of data.metadata\">\r\n                <h3 class=\"n7-item-preview__metadata-group-title\" *ngIf=\"meta.title\">\r\n                {{ meta.title }}\r\n                </h3>\r\n                <div class=\"n7-item-preview__metadata-item {{ item.classes || '' }}\" *ngFor=\"let item of meta.items\">\r\n                    <span class=\"n7-item-preview__metadata-item-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\r\n                    <span class=\"n7-item-preview__metadata-item-label\" *ngIf=\"item.label\">{{item.label}}: </span>\r\n                    <span class=\"n7-item-preview__metadata-item-value\" *ngIf=\"item.value\">{{item.value}}</span>\r\n                </div>\r\n            </div>\r\n        </div>   \r\n    </div>\r\n</div>\r\n"
+                        template: "<div *ngIf=\"data\" class=\"n7-item-preview {{data.classes || ''}}\" [ngClass]=\"{ 'has-image' : !!data.image }\">\r\n    <n7-anchor-wrapper \r\n    [data]=\"data.anchor\"\r\n    (clicked)=\"onClick($event)\">\r\n        <!-- Image -->\r\n        <div class=\"n7-item-preview__image\"\r\n            *ngIf=\"data.image\"\r\n            [style.background-image] = \"'url(' + data.image + ')'\">       \r\n        </div>         \r\n        \r\n        <div class=\"n7-item-preview__content\">\r\n\r\n            <!-- Title and text -->\r\n            <div class=\"n7-item-preview__title-text\">\r\n                <h1 class=\"n7-item-preview__title\">\r\n                    {{ data.title }}\r\n                </h1>\r\n                <p class=\"n7-item-preview__text\" *ngIf=\"data.text\">\r\n                    {{ data.text }}\r\n                </p>\r\n            </div>\r\n\r\n            <!-- Metadata -->\r\n            <div class=\"n7-item-preview__metadata\" *ngIf=\"data.metadata\">       \r\n                <div class=\"n7-item-preview__metadata-group {{ meta.classes || '' }}\" *ngFor=\"let meta of data.metadata\">\r\n                    <h3 class=\"n7-item-preview__metadata-group-title\" *ngIf=\"meta.title\">\r\n                    {{ meta.title }}\r\n                    </h3>\r\n                    <div class=\"n7-item-preview__metadata-item {{ item.classes || '' }}\" *ngFor=\"let item of meta.items\">\r\n                        <span class=\"n7-item-preview__metadata-item-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\r\n                        <span class=\"n7-item-preview__metadata-item-label\" *ngIf=\"item.label\">{{item.label}}: </span>\r\n                        <span class=\"n7-item-preview__metadata-item-value\" *ngIf=\"item.value\">{{item.value}}</span>\r\n                    </div>\r\n                </div>\r\n            </div>   \r\n        </div>\r\n    </n7-anchor-wrapper>\r\n\r\n</div>\r\n"
                     }] }
         ];
         ItemPreviewComponent.propDecorators = {
@@ -1295,6 +1295,59 @@
             emit: [{ type: core.Input }]
         };
         return ItemPreviewComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lib/components/anchor-wrapper/anchor-wrapper.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var AnchorWrapperComponent = /** @class */ (function () {
+        function AnchorWrapperComponent() {
+            this.clicked = new core.EventEmitter();
+        }
+        /**
+         * @param {?} href
+         * @return {?}
+         */
+        AnchorWrapperComponent.prototype.isExternal = /**
+         * @param {?} href
+         * @return {?}
+         */
+            function (href) {
+                return /^http(?:s)?:\/{2}\S+$/.test(href);
+            };
+        /**
+         * Click event handler.
+         * Outputs the payload to it's parent component
+         */
+        /**
+         * Click event handler.
+         * Outputs the payload to it's parent component
+         * @param {?} payload
+         * @return {?}
+         */
+        AnchorWrapperComponent.prototype.onClick = /**
+         * Click event handler.
+         * Outputs the payload to it's parent component
+         * @param {?} payload
+         * @return {?}
+         */
+            function (payload) {
+                this.clicked.emit(payload);
+            };
+        AnchorWrapperComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-anchor-wrapper',
+                        template: "<ng-container *ngIf=\"data; else noData\">\r\n    <ng-container *ngIf=\"data.href && isExternal(data.href)\">\r\n      <ng-container *ngTemplateOutlet=\"externalUrl\"></ng-container>\r\n    </ng-container>\r\n    <ng-container *ngIf=\"data.href && !isExternal(data.href)\">\r\n      <ng-container *ngTemplateOutlet=\"internalUrl\"></ng-container>\r\n    </ng-container>\r\n    <ng-container *ngIf=\"!data.href\">\r\n      <ng-container *ngTemplateOutlet=\"noUrl\"></ng-container>\r\n    </ng-container>\r\n</ng-container>\r\n\r\n<!-- No data template -->\r\n<ng-template #noData>\r\n  <a class=\"{{ classes || '' }}\"><ng-container *ngTemplateOutlet=\"content\"></ng-container></a>\r\n</ng-template>\r\n\r\n<!-- Internal URL template -->\r\n<ng-template #internalUrl>\r\n  <a \r\n  [routerLink]=\"data.href\" \r\n  [target]=\"data.target || '_self'\" \r\n  class=\"{{ classes || '' }}\"\r\n  [queryParams]=\"data.queryParams || null\">\r\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\r\n  </a>\r\n</ng-template>\r\n\r\n<!-- External URL template -->\r\n<ng-template #externalUrl>\r\n  <a [href]=\"data.href\" [target]=\"data.target || '_self'\" class=\"{{ classes || '' }}\">\r\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\r\n  </a>\r\n</ng-template>\r\n\r\n<!-- No URL template -->\r\n<ng-template #noUrl>\r\n  <a (click)=\"onClick(data.payload)\" class=\"{{ classes || '' }}\">\r\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\r\n  </a>\r\n</ng-template>\r\n\r\n<ng-template #content>\r\n  <ng-content></ng-content>\r\n</ng-template>\r\n"
+                    }] }
+        ];
+        AnchorWrapperComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            classes: [{ type: core.Input }],
+            clicked: [{ type: core.Output }]
+        };
+        return AnchorWrapperComponent;
     }());
 
     /**
@@ -1362,7 +1415,7 @@
         NavComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-nav',
-                        template: "<nav class=\"n7-nav {{data.classes || ''}}\" *ngIf=\"data\">\r\n    <ul class=\"n7-nav__list\">\r\n        <li class=\"n7-nav__item {{X.classes || ''}}\" *ngFor=\"let X of data.items\">\r\n            <a class=\"n7-nav__link\" *ngIf=\"X.payload\" (click)=\"onClick(X.payload)\">\r\n                <span class=\"n7-nav__label\" *ngIf=\"X.text\">\r\n                    {{ X.text }}\r\n                </span>\r\n            </a>\r\n        </li>\r\n    </ul>\r\n</nav>"
+                        template: "<nav class=\"n7-nav {{data.classes || ''}}\" *ngIf=\"data\">\r\n    <ul class=\"n7-nav__list\">\r\n        <li class=\"n7-nav__item {{ item.classes || '' }}\" *ngFor=\"let item of data.items\">\r\n            <n7-anchor-wrapper [data]=\"item.anchor\" [classes]=\"'n7-nav__link'\" (clicked)=\"onClick($event)\">\r\n                <span class=\"n7-nav__label\">{{ item.text }}</span>\r\n            </n7-anchor-wrapper>\r\n        </li>\r\n    </ul>\r\n</nav>"
                     }] }
         ];
         NavComponent.propDecorators = {
@@ -1412,7 +1465,7 @@
         PaginationComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-pagination',
-                        template: "<nav class=\"n7-pagination {{data.classes || ''}}\" \r\n     *ngIf=\"data\"\r\n     [ngClass]=\"{ 'has-results-select' : data.select }\">\r\n    <ul class=n7-pagination__items>\r\n\r\n        <li class=\"n7-pagination__first {{data.first.classes || ''}}\" *ngIf=\"data.first\">\r\n            <a class=\"n7-pagination__first-link {{ data.first.text ? 'has-text' : '' }}\" \r\n               (click)=\"onClick(data.first.payload)\">\r\n                <span class=\"n7-pagination__first-icon n7-icon-angle-double-left\"></span>\r\n                <span class=\"n7-pagination__first-label\" *ngIf=\"data.first.text\">\r\n                    {{ data.first.text }}\r\n                </span>\r\n            </a>\r\n        </li>\r\n        <li class=\"n7-pagination__prev {{data.prev.classes || ''}}\" *ngIf=\"data.prev\">\r\n            <a class=\"n7-pagination__prev-link {{ data.prev.text ? 'has-text' : '' }}\" \r\n               (click)=\"onClick(data.prev.payload)\">\r\n                <span class=\"n7-pagination__prev-icon n7-icon-angle-left\"></span>\r\n                <span class=\"n7-pagination__prev-label\" *ngIf=\"data.prev.text\">\r\n                    {{ data.prev.text }}\r\n                </span>\r\n            </a>\r\n        </li>\r\n\r\n        <li class=\"n7-pagination__page {{page.classes || ''}}\" *ngFor=\"let page of data.links\">\r\n            <a class=\"n7-pagination__page-link\" (click)=\"onClick(page.payload)\">{{ page.text }}</a>\r\n        </li>\r\n\r\n        <li class=\"n7-pagination__next {{data.next.classes || ''}}\" *ngIf=\"data.next\">\r\n            <a class=\"n7-pagination__next-link {{ data.next.text ? 'has-text' : '' }}\" \r\n               (click)=\"onClick(data.next.payload)\">\r\n                <span class=\"n7-pagination__next-label\" *ngIf=\"data.next.text\">\r\n                    {{ data.next.text }}\r\n                </span>\r\n                <span class=\"n7-pagination__next-icon n7-icon-angle-right\"></span>\r\n            </a>\r\n        </li>\r\n        <li class=\"n7-pagination__last {{data.last.classes || ''}}\" *ngIf=\"data.last\">\r\n            <a class=\"n7-pagination__last-link {{ data.last.text ? 'has-text' : '' }}\" \r\n               (click)=\"onClick(data.last.payload)\">\r\n                <span class=\"n7-pagination__last-label\" *ngIf=\"data.last.text\">\r\n                    {{ data.last.text }}\r\n                </span>\r\n                <span class=\"n7-pagination__last-icon  n7-icon-angle-double-right\"></span>\r\n            </a>\r\n        </li>\r\n    </ul>\r\n    \r\n    <div class=\"n7-pagination__setting\"\r\n         *ngIf=\"data.select\">\r\n        <span class=\"n7-pagination__setting-label\"\r\n              *ngIf=\"data.select.label\">\r\n            {{data.select.label}}\r\n        </span>\r\n        <select *ngIf=\"data.select.options\" \r\n                name=\"n7-pagination__select-size\" \r\n                class=\"n7-pagination__setting-select\"\r\n                (change)=\"onChange(data.select.payload, $event.target.value)\"\r\n                [disabled]=\"data.select.disabled\">\r\n            <option *ngFor=\"let opt of data.select.options\"\r\n                    [disabled]=\"opt.disabled\"\r\n                    [selected]=\"opt.selected\">\r\n                {{opt.text}}\r\n            </option>\r\n        </select>\r\n    </div>\r\n</nav>"
+                        template: "<nav class=\"n7-pagination {{data.classes || ''}}\" \r\n     *ngIf=\"data\"\r\n     [ngClass]=\"{ 'has-results-select' : data.select }\">\r\n    <ul class=n7-pagination__items>\r\n\r\n        <li class=\"n7-pagination__first {{data.first.classes || ''}}\" *ngIf=\"data.first\">\r\n            <ng-container *ngTemplateOutlet=\"button; context: {\r\n                type: 'first',\r\n                data: data.first,\r\n                iconClass: 'n7-icon-angle-double-left'\r\n            }\"></ng-container>\r\n        </li>\r\n        <li class=\"n7-pagination__prev {{data.prev.classes || ''}}\" *ngIf=\"data.prev\">\r\n            <ng-container *ngTemplateOutlet=\"button; context: {\r\n                type: 'prev',\r\n                data: data.prev,\r\n                iconClass: 'n7-icon-angle-left'\r\n            }\"></ng-container>\r\n        </li>\r\n\r\n        <li class=\"n7-pagination__page {{page.classes || ''}}\" *ngFor=\"let page of data.links\">\r\n            <ng-container *ngTemplateOutlet=\"button; context: {\r\n                type: 'page',\r\n                data: page,\r\n                clicked: onClick\r\n            }\"></ng-container>\r\n        </li>\r\n\r\n        <li class=\"n7-pagination__next {{data.next.classes || ''}}\" *ngIf=\"data.next\">\r\n            <ng-container *ngTemplateOutlet=\"button; context: {\r\n                type: 'next',\r\n                data: data.next,\r\n                iconClass: 'n7-icon-angle-right'\r\n            }\"></ng-container>\r\n        </li>\r\n        <li class=\"n7-pagination__last {{data.last.classes || ''}}\" *ngIf=\"data.last\">\r\n            <ng-container *ngTemplateOutlet=\"button; context: {\r\n                type: 'last',\r\n                data: data.last,\r\n                iconClass: 'n7-icon-angle-double-right'\r\n            }\"></ng-container>\r\n        </li>\r\n    </ul>\r\n    \r\n    <div class=\"n7-pagination__setting\"\r\n         *ngIf=\"data.select\">\r\n        <span class=\"n7-pagination__setting-label\"\r\n              *ngIf=\"data.select.label\">\r\n            {{data.select.label}}\r\n        </span>\r\n        <select *ngIf=\"data.select.options\" \r\n                name=\"n7-pagination__select-size\" \r\n                class=\"n7-pagination__setting-select\"\r\n                (change)=\"onChange(data.select.payload, $event.target.value)\"\r\n                [disabled]=\"data.select.disabled\">\r\n            <option *ngFor=\"let opt of data.select.options\"\r\n                    [disabled]=\"opt.disabled\"\r\n                    [selected]=\"opt.selected\">\r\n                {{opt.text}}\r\n            </option>\r\n        </select>\r\n    </div>\r\n</nav>\r\n\r\n<ng-template #button let-type=\"type\" let-data=\"data\" let-clicked=\"clicked\" let-iconClass=\"iconClass\">\r\n    <n7-anchor-wrapper \r\n    [classes]=\"'n7-pagination__' + type + '-link' + (data.text ? ' has-text' : '')\" \r\n    [data]=\"data.anchor\" \r\n    (clicked)=\"onClick($event)\">\r\n        <span class=\"n7-pagination__{{ type }}-label\" *ngIf=\"data.text\">\r\n            {{ data.text }}\r\n        </span>\r\n        <span *ngIf=\"iconClass\" class=\"n7-pagination__{{ type }}-icon {{ iconClass }}\"></span>\r\n    </n7-anchor-wrapper>\r\n</ng-template>"
                     }] }
         ];
         PaginationComponent.propDecorators = {
@@ -1570,7 +1623,7 @@
         SimpleAutocompleteComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-simple-autocomplete',
-                        template: "<div *ngIf=\"data\" class=\"n7-simple-autocomplete\">\r\n    <ul class=\"n7-simple-autocomplete__list {{data.classes || ''}}\">\r\n        <li *ngFor=\"let suggestion of data.suggestion\" \r\n            class=\"n7-simple-autocomplete__item\"\r\n            (click)=\"onClick(suggestion.payload)\"\r\n            [innerHTML]=\"suggestion.text\">\r\n        </li>\r\n    </ul> \r\n</div>"
+                        template: "<div *ngIf=\"data\" class=\"n7-simple-autocomplete\">\r\n    <ul class=\"n7-simple-autocomplete__list {{data.classes || ''}}\">\r\n        <li *ngFor=\"let suggestion of data.suggestion\" \r\n            class=\"n7-simple-autocomplete__item\">\r\n            <n7-anchor-wrapper\r\n            [data]=\"suggestion.anchor\"\r\n            (clicked)=\"onClick($event)\">\r\n              <span class=\"n7-simple-autocomplete__item\" [innerHTML]=\"suggestion.text\"></span>\r\n            </n7-anchor-wrapper>\r\n        </li>\r\n    </ul> \r\n</div>"
                     }] }
         ];
         SimpleAutocompleteComponent.propDecorators = {
@@ -1736,7 +1789,7 @@
         TreeComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-tree',
-                        template: "<div *ngIf=\"data\" class=\"n7-tree\">\r\n    <!-- Start recursive rendering -->\r\n    <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: data.items}\"></ng-container>\r\n\r\n    <!-- Template for recursive children rendering -->\r\n    <ng-template #recursiveTree let-node>\r\n        <div class=\"n7-tree__item {{ item.classes || '' }}\" *ngFor=\"let item of node\">\r\n            <div class=\"n7-tree__item-contents\">\r\n                <!-- Render expand/collapse arrow -->\r\n                <span *ngIf=\"item.toggle\"\r\n                      class=\"n7-tree__item-toggle {{ item.toggle.icon }}\"\r\n                      (click)=\"onClick(item.toggle.payload)\">\r\n                </span>\r\n                <!-- Render the node -->\r\n                <div class=\"n7-tree__item-details\"\r\n                     (click)=\"onClick(item.payload)\">\r\n                    <span *ngIf=\"item.icon\" class=\"n7-tree__item-icon {{ item.icon }}\"></span>\r\n                    <img class=\"n7-tree__item-img\" *ngIf=\"item.img\" src=\"{{ item.img }}\" alt=\"{{ item.text }}\"/>\r\n                    <span class=\"n7-tree__item-text\">{{ item.text }}</span>\r\n                    <span class=\"n7-tree__item-right-icon {{ item.iconright }}\"></span>\r\n                </div>\r\n            </div>\r\n            <!-- Check for more child nodes and render them -->\r\n            <div class=\"n7-tree__children-wrapper\" *ngIf=\"item.items\">\r\n                <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: item.items}\"></ng-container>\r\n            </div>\r\n        </div>\r\n    </ng-template>\r\n</div>"
+                        template: "<div *ngIf=\"data\" class=\"n7-tree\">\r\n    <!-- Start recursive rendering -->\r\n    <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: data.items}\"></ng-container>\r\n\r\n    <!-- Template for recursive children rendering -->\r\n    <ng-template #recursiveTree let-node>\r\n        <div class=\"n7-tree__item {{ item.classes || '' }}\" *ngFor=\"let item of node\">\r\n            <div class=\"n7-tree__item-contents\">\r\n                <!-- Render expand/collapse arrow -->\r\n                <span *ngIf=\"item.toggle\"\r\n                      class=\"n7-tree__item-toggle {{ item.toggle.icon }}\"\r\n                      (click)=\"onClick(item.toggle.payload)\">\r\n                </span>\r\n                <!-- Render the node -->\r\n                <n7-anchor-wrapper \r\n                [classes]=\"'n7-tree__item-details'\"\r\n                [data]=\"item.anchor\"\r\n                (clicked)=\"onClick($event)\">\r\n                    <span *ngIf=\"item.icon\" class=\"n7-tree__item-icon {{ item.icon }}\"></span>\r\n                    <img class=\"n7-tree__item-img\" *ngIf=\"item.img\" src=\"{{ item.img }}\" alt=\"{{ item.text }}\"/>\r\n                    <span class=\"n7-tree__item-text\">{{ item.text }}</span>\r\n                    <span class=\"n7-tree__item-right-icon {{ item.iconright }}\"></span>\r\n                </n7-anchor-wrapper>\r\n            </div>\r\n            <!-- Check for more child nodes and render them -->\r\n            <div class=\"n7-tree__children-wrapper\" *ngIf=\"item.items\">\r\n                <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: item.items}\"></ng-container>\r\n            </div>\r\n        </div>\r\n    </ng-template>\r\n</div>"
                     }] }
         ];
         TreeComponent.propDecorators = {
@@ -1804,6 +1857,7 @@
         ImageViewerComponent,
         InnerTitleComponent,
         ItemPreviewComponent,
+        AnchorWrapperComponent,
         LoaderComponent,
         MetadataViewerComponent,
         NavComponent,
@@ -1826,7 +1880,7 @@
                             COMPONENTS,
                         ],
                         entryComponents: COMPONENTS,
-                        imports: [common.CommonModule],
+                        imports: [common.CommonModule, router.RouterModule],
                         exports: [
                             COMPONENTS,
                         ],
@@ -1848,20 +1902,26 @@
                     title: 'Books',
                     icon: 'n7-icon-file3',
                     classes: 'color-people',
-                    payload: 'books',
+                    anchor: {
+                        payload: 'books',
+                    }
                 },
                 items: [
-                    { title: 'Label risultato senza metadato', payload: 'res1' },
-                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res2' },
+                    { title: 'Label risultato con url', anchor: { href: '/examples', target: '_blank' } },
+                    { title: 'Label risultato senza metadato', anchor: { payload: 'res1' } },
+                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], anchor: { payload: 'res2' } },
                     {
                         title: 'Label risultato',
                         metadata: [{
                                 key: 'metakey',
                                 value: 'value'
                             }],
-                        payload: 'res2'
+                        anchor: {
+                            payload: 'res2'
+                        }
                     },
-                    { title: 'Label risultato',
+                    {
+                        title: 'Label risultato',
                         metadata: [{
                                 key: 'metakey',
                                 value: 'value'
@@ -1875,45 +1935,61 @@
                                 key: 'metakey4',
                                 value: 'value4'
                             }],
-                        payload: 'res3' },
-                    { title: 'Label risultato',
+                        anchor: {
+                            payload: 'res3'
+                        }
+                    },
+                    {
+                        title: 'Label risultato',
                         metadata: [{
                                 key: 'only metakey',
                                 value: 'only metavalue'
                             }],
-                        payload: 'res4' },
-                    { title: 'Label risultato', payload: 'res5' },
+                        anchor: {
+                            payload: 'res4'
+                        }
+                    },
+                    { title: 'Label risultato', anchor: { payload: 'res5' } },
                 ],
             },
             {
                 group: {
                     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-                    payload: 'movies',
+                    anchor: {
+                        payload: 'movies',
+                        href: '/examples'
+                    }
                 },
                 items: [
-                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res6' },
-                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res7' },
-                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res8' },
-                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], payload: 'res9' },
+                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], anchor: { payload: 'res6' } },
+                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], anchor: { payload: 'res7' } },
+                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], anchor: { payload: 'res8' } },
+                    { title: 'Label risultato', metadata: [{ value: 'Metadato aggiuntivo' }], anchor: { payload: 'res9' } },
                 ],
             },
             {
                 items: [
-                    { metadata: [{ value: 'Metadato esterno' }], payload: 'res10' },
-                    { metadata: [{ value: 'Metadato esterno' }], payload: 'res11' },
-                    { metadata: [{ value: 'Metadato esterno' }], payload: 'res12' },
-                    { metadata: [{ value: 'Metadato esterno' }], payload: 'res13' },
+                    { metadata: [{ value: 'Metadato esterno' }], anchor: { payload: 'res10' } },
+                    { metadata: [{ value: 'Metadato esterno' }], anchor: { payload: 'res11' } },
+                    { metadata: [{ value: 'Metadato esterno' }], anchor: { payload: 'res12' } },
+                    { metadata: [{ value: 'Metadato esterno' }], anchor: { payload: 'res13' } },
                 ]
             }
         ],
         actions: {
             advanced: {
                 text: 'Ricerca Avanzata',
-                payload: 'advanced-search',
+                anchor: {
+                    payload: 'advanced-search',
+                    href: 'https://google.it',
+                    target: '_blank'
+                }
             },
             showMore: {
                 text: 'Visualizza tutti i 98 risultati per "ang"',
-                payload: 'show-more',
+                anchor: {
+                    payload: 'show-more',
+                }
             }
         },
         fallback: 'Spiacenti, non è stato trovato nessun risultato. <br> Riprova con una nuova ricerca.'
@@ -1943,23 +2019,23 @@
         items: [
             {
                 label: 'Home',
-                payload: '/'
+                anchor: { payload: 'home' }
             },
             {
                 label: 'Costumi',
-                payload: '/examples/loader-component'
+                anchor: { href: '/examples' }
             },
             {
                 label: 'Giacche',
-                payload: '/examples/list-component'
+                anchor: { payload: 'giacche' }
             },
             {
                 label: 'Maniche',
-                payload: '/examples/navbar-component'
+                anchor: { href: '/examples', target: '_blank' }
             },
             {
                 label: 'Manica',
-                payload: '/examples/breadcrumbs-component'
+                anchor: { href: 'https://google.it' }
             }
         ]
     };
@@ -6281,11 +6357,13 @@
                 images: [
                     {
                         url: 'https://via.placeholder.com/80',
-                        alttext: 'Logo 1'
+                        alttext: 'Logo 1',
+                        anchor: { payload: 'logo 1' }
                     },
                     {
                         url: 'https://via.placeholder.com/80',
-                        alttext: 'Logo 2'
+                        alttext: 'Logo 2',
+                        anchor: { href: 'https://via.placeholder.com/80' }
                     }
                 ]
             },
@@ -6294,21 +6372,21 @@
                 links: [
                     {
                         text: 'Info su Arianna Web',
-                        payload: 'https://www.google.it',
+                        anchor: { href: 'https://www.google.it', target: '_blank' },
                         classes: 'link-class'
                     },
                     {
                         text: 'Privacy policy',
-                        payload: 'https://www.google.it',
+                        anchor: { payload: 'privacy' },
                         classes: 'link-class'
                     },
                     {
-                        text: 'Cooklie policy',
-                        payload: 'https://www.google.it'
+                        text: 'Cookie policy',
+                        anchor: { payload: 'cookie' }
                     },
                     {
                         text: 'Termini e condizioni',
-                        payload: 'https://www.google.it'
+                        anchor: { payload: 'terms' }
                     }
                 ]
             },
@@ -6329,37 +6407,55 @@
             image: 'https://placeimg.com/128/128/any/grayscale',
             title: 'DataViz',
             subtitle: 'Data visualization',
-            payload: 'https://www.netseven.it/'
+            anchor: {
+                payload: 'https://www.netseven.it/',
+                href: '/examples'
+            }
         },
         nav: {
             items: [
-                { text: 'Home', payload: '/', icon: 'n7-icon-home' },
-                { text: 'Stuff', payload: '/s', icon: 'n7-icon-home' },
-                { text: 'Other Stuff', payload: '/os', icon: 'n7-icon-home' },
-                { text: 'Dropdown', payload: '/', icon: 'n7-icon-home', subnav: [
-                        { text: 'Sublevel 1', payload: '/', icon: 'n7-icon-home' },
-                        { text: 'Sublevel 2 Lorem ipsum dolor sit amet', payload: '/s', icon: 'n7-icon-home' },
-                        { text: 'Sublevel 3', payload: '/os', icon: 'n7-icon-home' },
+                { text: 'Home', icon: 'n7-icon-home', anchor: { href: '/examples', target: '_blank' } },
+                { text: 'Stuff', icon: 'n7-icon-home', anchor: { payload: '/stuff' } },
+                { text: 'Other Stuff', icon: 'n7-icon-home', anchor: { payload: '/other-stuff' } },
+                {
+                    text: 'Dropdown',
+                    anchor: { payload: '/' },
+                    icon: 'n7-icon-home',
+                    subnav: [
+                        { text: 'Sublevel 1', icon: 'n7-icon-home', anchor: { href: '/examples' } },
+                        {
+                            text: 'Sublevel 2 Lorem ipsum dolor sit amet',
+                            anchor: { payload: '/sublevel-2' },
+                            icon: 'n7-icon-home'
+                        },
+                        { text: 'Sublevel 3', icon: 'n7-icon-home', anchor: { payload: '/sublevel-3' } }
                     ]
                 },
-                { text: 'Shiny Stuff', payload: '/shs', icon: 'n7-icon-home' },
-                { text: 'Cats', payload: '/cats', icon: 'n7-icon-home' },
+                { text: 'Shiny Stuff', icon: 'n7-icon-home', anchor: { payload: '/shiny-stuff' } },
+                { text: 'Cats', icon: 'n7-icon-home', anchor: { payload: '/cats' } }
             ]
         },
         search: {
             hint: 'Search (hint)',
-            payload: 'search payload',
+            payload: 'search payload'
         },
         actions: [
-            { icon: 'n7-icon-bell', payload: '/', badge: {
-                    text: "200",
+            {
+                icon: 'n7-icon-bell',
+                badge: {
+                    text: '200'
                 },
+                anchor: { href: '/examples' }
             },
-            { icon: 'n7-icon-facebook', payload: '/', badge: {}, },
+            {
+                icon: 'n7-icon-facebook',
+                anchor: { payload: '/facebook' }
+            }
         ],
         user: {
             img: 'https://placeimg.com/150/150/any/people',
-            name: 'Massimiliano Spinosa'
+            name: 'Massimiliano Spinosa',
+            anchor: { href: '/user', target: '_blank' }
         },
         menuToggle: {
             open: {
@@ -6387,7 +6483,11 @@
         },
         button: {
             text: "Cerca",
-            payload: "button"
+            anchor: {
+                payload: "button",
+                href: '/examples',
+                target: '_blank'
+            }
         },
         backgroundImage: "https://placeimg.com/1000/480/nature",
         // backgroundImage: null,
@@ -6514,7 +6614,11 @@
                 ]
             }
         ],
-        payload: 'https://www.netseven.it/',
+        anchor: {
+            payload: 'https://www.netseven.it/',
+            href: '/examples',
+            target: '_blank'
+        },
         classes: 'is-vertical' // leave it empty for default horizontal layout or 'is-overlay'
     };
 
@@ -6608,11 +6712,11 @@
     /** @type {?} */
     var NAV_MOCK = {
         items: [
-            { text: "Home", payload: "/" },
-            { text: "Single level", payload: "/no_dropdown" },
-            { text: "Stuff", payload: "/page1" },
-            { text: "Other stuff", payload: "/page1/page2" },
-            { text: "Cats", payload: "cats" }
+            { text: "Home", anchor: { href: 'https://google.com', target: '_blank', payload: 'clicked!' } },
+            { text: "Single level", anchor: { payload: 'clicked!' } },
+            { text: "Stuff", anchor: { href: '/examples', target: '_blank', payload: 'clicked!' } },
+            { text: "Other stuff", anchor: { payload: 'clicked!' } },
+            { text: "Cats", anchor: { href: '/examples', target: '_blank', payload: 'clicked!' } }
         ],
     };
 
@@ -6623,23 +6727,23 @@
      */
     /** @type {?} */
     var PAGINATION_MOCK = {
-        first: { payload: "first", classes: "is-disabled", text: "First" },
-        prev: { payload: "prev", classes: "is-disabled" },
-        next: { payload: "next", text: "Next" },
-        last: { payload: "last", text: "Last" },
+        first: { classes: 'is-disabled', text: 'First', anchor: { href: '/first' } },
+        prev: { classes: 'is-disabled', anchor: { payload: 'prev' } },
+        next: { text: 'Next', anchor: { href: '/next' } },
+        last: { text: 'Last', anchor: { payload: 'last' } },
         links: [
-            { text: "1", payload: 1, classes: "is-active" },
-            { text: "2", payload: 2 },
-            { text: "3", payload: 3 },
-            { text: "4", payload: 4 },
-            { text: "5", payload: 5 },
+            { text: '1', classes: 'is-active', anchor: { href: '/link-1', target: '_blank' } },
+            { text: '2', anchor: { payload: 'page 2' } },
+            { text: '3', anchor: { payload: 'page 3' } },
+            { text: '4', anchor: { payload: 'page 4' } },
+            { text: '5', anchor: { payload: 'page 5' } },
         ],
         select: {
             label: 'Numero di risultati',
             options: [
-                { text: "10" },
-                { text: "25", selected: true },
-                { text: "50", disabled: true },
+                { text: '10' },
+                { text: '25', selected: true },
+                { text: '50', disabled: true },
             ],
             payload: 'select',
         }
@@ -6773,15 +6877,15 @@
     /** @type {?} */
     var SIMPLE_AUTOCOMPLETE_MOCK = {
         suggestion: [
-            { text: 'surfdome', payload: 'dome' },
-            { text: 'surfer joe', payload: 'er joe' },
-            { text: 'surface', payload: 'ace' },
-            { text: 'surfcorner', payload: 'corner' },
-            { text: 'windsurf', payload: 'wind' },
-            { text: 'bodysurf', payload: 'body' },
-            { text: 'autosurf', payload: 'auto' },
-            { text: 'sidesurf', payload: 'side' },
-            { text: 'ffixsurf', payload: 'ffix' },
+            { text: 'surfdome', anchor: { payload: 'dome', href: '/examples' } },
+            { text: 'surfer joe', anchor: { payload: 'er joe', href: 'https://google.it', target: '_blank' } },
+            { text: 'surface', anchor: { payload: 'ace' } },
+            { text: 'surfcorner', anchor: { payload: 'corner' } },
+            { text: 'windsurf', anchor: { payload: 'wind' } },
+            { text: 'bodysurf', anchor: { payload: 'body' } },
+            { text: 'autosurf', anchor: { payload: 'auto' } },
+            { text: 'sidesurf', anchor: { payload: 'side' } },
+            { text: 'ffixsurf', anchor: { payload: 'prefixsuffix' } },
         ],
         classes: 'surfing-autocomplete'
     };
@@ -7028,12 +7132,18 @@
         items: [
             {
                 text: 'Collezione d\'arte',
-                payload: 'collezione arte',
                 classes: 'is-collapsed',
+                anchor: {
+                    href: 'https://google.it',
+                    target: '_blank'
+                },
             },
             {
                 text: 'Centro archivi',
-                payload: 'centro archivi',
+                anchor: {
+                    href: '/home',
+                    target: '_blank'
+                },
                 classes: 'is-expanded',
                 items: [
                     {
@@ -7043,7 +7153,7 @@
                         },
                         text: '5+1AA Agenzia di Architettura',
                         classes: 'is-collapsed',
-                        payload: '',
+                        anchor: { payload: '' },
                         iconright: 'n7-icon-images'
                     },
                     {
@@ -7053,7 +7163,7 @@
                         },
                         text: 'ABDR Architetti Associati',
                         classes: 'is-expanded is-active',
-                        payload: '',
+                        anchor: { payload: '' },
                         items: [
                             {
                                 toggle: {
@@ -7062,7 +7172,7 @@
                                 },
                                 text: '5+1AA Agenzia di Architettura',
                                 classes: 'is-expanded',
-                                payload: '',
+                                anchor: { payload: '' },
                                 items: [
                                     {
                                         toggle: {
@@ -7071,7 +7181,7 @@
                                         },
                                         text: '5+1AA Agenzia di Architettura',
                                         classes: 'is-collapsed',
-                                        payload: ''
+                                        anchor: { payload: '' }
                                     },
                                     {
                                         toggle: {
@@ -7080,7 +7190,7 @@
                                         },
                                         text: 'ABDR Architetti Associati',
                                         classes: 'is-expanded',
-                                        payload: '',
+                                        anchor: { payload: '' },
                                         items: [
                                             {
                                                 toggle: {
@@ -7089,7 +7199,7 @@
                                                 },
                                                 text: '5+1AA Agenzia di Architettura',
                                                 classes: 'is-expanded',
-                                                payload: '',
+                                                anchor: { payload: '' },
                                                 items: [
                                                     {
                                                         toggle: {
@@ -7098,7 +7208,7 @@
                                                         },
                                                         text: '5+1AA Agenzia di Architettura',
                                                         classes: 'is-collapsed',
-                                                        payload: ''
+                                                        anchor: { payload: '' }
                                                     },
                                                     {
                                                         toggle: {
@@ -7107,7 +7217,7 @@
                                                         },
                                                         text: 'ABDR Architetti Associati',
                                                         classes: 'is-collapsed',
-                                                        payload: ''
+                                                        anchor: { payload: '' }
                                                     },
                                                 ]
                                             },
@@ -7118,7 +7228,7 @@
                                                 },
                                                 text: 'ABDR Architetti Associati',
                                                 classes: 'is-collapsed',
-                                                payload: ''
+                                                anchor: { payload: '' }
                                             },
                                         ]
                                     },
@@ -7131,7 +7241,7 @@
                                 },
                                 text: 'ABDR Architetti Associati',
                                 classes: 'is-collapsed',
-                                payload: ''
+                                anchor: { payload: '' }
                             },
                         ]
                     },
@@ -7142,7 +7252,7 @@
                         },
                         text: 'AWP',
                         classes: 'is-collapsed',
-                        payload: ''
+                        anchor: { payload: '' }
                     },
                     {
                         toggle: {
@@ -7151,7 +7261,7 @@
                         },
                         text: 'BOERI Cini',
                         classes: 'is-collapsed',
-                        payload: ''
+                        anchor: { payload: '' }
                     },
                     {
                         toggle: {
@@ -7160,7 +7270,7 @@
                         },
                         text: 'CAMPO BAEZA Alberto',
                         classes: 'is-collapsed',
-                        payload: ''
+                        anchor: { payload: '' }
                     },
                     {
                         toggle: {
@@ -7169,7 +7279,7 @@
                         },
                         text: 'CASSANI Matilde',
                         classes: 'is-collapsed',
-                        payload: ''
+                        anchor: { payload: '' }
                     },
                     {
                         toggle: {
@@ -7178,7 +7288,7 @@
                         },
                         text: 'GUERRI Danilo',
                         classes: 'is-collapsed',
-                        payload: ''
+                        anchor: { payload: '' }
                     },
                     {
                         toggle: {
@@ -7187,45 +7297,45 @@
                         },
                         text: 'Has childs, but is closed!',
                         classes: 'is-collapsed',
-                        payload: '',
+                        anchor: { payload: '' },
                         items: [
                             {
                                 icon: 'n7-icon-file3',
                                 text: 'Child: Cinema teatro Augusteo e stazione centrale della funicolare, Napoli ([1926] - [1927])',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                             {
                                 classes: 'is-active',
                                 icon: 'n7-icon-file3',
                                 text: 'Child: Stadio comunale G.Berta, Firenze ([1929] - [1932])',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                             {
                                 icon: 'n7-icon-file3',
                                 text: 'Child: Monumento alla Bandiera, Roma (1931)',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                             {
                                 img: 'http://placeimg.com/25/25/arch/grayscale',
                                 text: 'Child: Brevetto hangar circolare con piattaforma anulare rotante (1932)',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                             {
                                 img: 'http://placeimg.com/25/25/arch/grayscale',
                                 text: 'Child: Stadio da 120.000 posti, Roma ([1933])',
-                                payload: '',
+                                anchor: { payload: '' },
                                 classes: 'is-active'
                             },
                             {
                                 icon: 'n7-icon-file3',
                                 text: 'Child: Magazzino ([1934])',
-                                payload: '',
+                                anchor: { payload: '' },
                                 classes: 'is-active',
                             },
                             {
                                 icon: 'n7-icon-file3',
                                 text: 'Child: Aviorimesse, Orvieto (TR), Orbetello (GR), Torre del Lago (LU), Marsala (TP), Trapani ([1935] - 1941)',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                         ]
                     },
@@ -7236,7 +7346,7 @@
                         },
                         text: 'NERVI Pier Luigi',
                         classes: 'is-expanded',
-                        payload: ''
+                        anchor: { payload: '' }
                     },
                     {
                         toggle: {
@@ -7245,45 +7355,45 @@
                         },
                         text: 'Attività Professionale',
                         classes: 'is-expanded',
-                        payload: '',
+                        anchor: { payload: '' },
                         items: [
                             {
                                 icon: 'n7-icon-file3',
                                 text: 'Cinema teatro Augusteo e stazione centrale della funicolare, Napoli ([1926] - [1927])',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                             {
                                 classes: 'is-active',
                                 icon: 'n7-icon-file3',
                                 text: 'Stadio comunale G.Berta, Firenze ([1929] - [1932])',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                             {
                                 icon: 'n7-icon-file3',
                                 text: 'Monumento alla Bandiera, Roma (1931)',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                             {
                                 img: 'http://placeimg.com/25/25/arch/grayscale',
                                 text: 'Brevetto hangar circolare con piattaforma anulare rotante (1932)',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                             {
                                 img: 'http://placeimg.com/25/25/arch/grayscale',
                                 text: 'Stadio da 120.000 posti, Roma ([1933])',
-                                payload: '',
+                                anchor: { payload: '' },
                                 classes: 'is-active'
                             },
                             {
                                 icon: 'n7-icon-file3',
                                 text: 'Magazzino ([1934])',
-                                payload: '',
+                                anchor: { payload: '' },
                                 classes: 'is-active',
                             },
                             {
                                 icon: 'n7-icon-file3',
                                 text: 'Aviorimesse, Orvieto (TR), Orbetello (GR), Torre del Lago (LU), Marsala (TP), Trapani ([1935] - 1941)',
-                                payload: '',
+                                anchor: { payload: '' },
                             },
                         ]
                     },
@@ -7357,6 +7467,7 @@
     exports.ImageViewerComponent = ImageViewerComponent;
     exports.InnerTitleComponent = InnerTitleComponent;
     exports.ItemPreviewComponent = ItemPreviewComponent;
+    exports.AnchorWrapperComponent = AnchorWrapperComponent;
     exports.LoaderComponent = LoaderComponent;
     exports.MetadataViewerComponent = MetadataViewerComponent;
     exports.NavComponent = NavComponent;

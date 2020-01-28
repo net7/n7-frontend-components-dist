@@ -1,9 +1,10 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for each link in footer menus
  *
- * @property text (mandatory)
+ * @property text (required)
  * @property classes (optional)
- * @property payload (mandatory)
+ * @property anchor (mandatory)
  * @property _meta (optional)
  * @property _meta (optional)
  *
@@ -17,10 +18,7 @@ export interface IFooterLink {
      * additional html classes
      */
     classes?: any;
-    /**
-     * image click's payload
-     */
-    payload?: any;
+    anchor: IAnchor;
     /**
      * additional info useful for the component's logic
      */
@@ -29,10 +27,10 @@ export interface IFooterLink {
 /**
  * Interface for each image in the footer (usually logos)
  *
- * @property url (mandatory)
+ * @property url (required)
  * @property alttext (optional)
  * @property classes (optional)
- * @property payload (optional)
+ * @property anchor (required)
  * @property _meta (optional)
  * @property _meta (optional)
  *
@@ -50,10 +48,7 @@ export interface IFooterImage {
      * additional html classes
      */
     classes?: any;
-    /**
-     * image click's payload
-     */
-    payload?: any;
+    anchor: IAnchor;
     /**
      * additional info useful for the component's logic
      */

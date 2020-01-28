@@ -1,3 +1,4 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for TreeComponent's "data"
  *
@@ -22,7 +23,7 @@ export interface ITreeData {
  * @property img (optional)
  * @property classes (optional)
  * @property text (required)
- * @property payload (optional)
+ * @property anchor (optional)
  * @property _meta (optional)
  * @property items (optional)
  */
@@ -56,9 +57,9 @@ export interface ITreeItem {
      */
     text: string;
     /**
-     * payload for onClick events
+     * anchor <a>
      */
-    payload?: any;
+    anchor?: IAnchor;
     /**
      * additional info useful for the component's logic
      */

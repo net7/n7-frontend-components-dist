@@ -1,3 +1,4 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for AdvancedAutocompleteComponent's "data"
  */
@@ -6,12 +7,12 @@ export interface IAdvancedAutocompleteData {
     actions?: {
         advanced?: {
             text: string;
-            payload: any;
+            anchor?: IAnchor;
             classes?: any;
         };
         showMore?: {
             text: string;
-            payload: any;
+            anchor?: IAnchor;
             classes?: any;
         };
     };
@@ -20,12 +21,21 @@ export interface IAdvancedAutocompleteData {
     _meta?: any;
 }
 interface IAdvancedAutocompleteItem {
+    /**
+     * anchor <a>
+     */
+    anchor?: IAnchor;
+    /**
+     * Rendered text for the result item
+     */
     title?: string;
+    /**
+     * Additional metadata for the result item
+     */
     metadata?: Array<{
         key?: string;
         value?: string;
     }>;
-    payload?: any;
 }
 interface IAdvancedAutocompleteResponse {
     items: IAdvancedAutocompleteItem[];
@@ -33,7 +43,7 @@ interface IAdvancedAutocompleteResponse {
         title: string;
         classes?: string;
         icon?: string;
-        payload?: any;
+        anchor?: IAnchor;
     };
 }
 export declare class AdvancedAutocompleteComponent {

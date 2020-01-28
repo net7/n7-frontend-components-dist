@@ -1,4 +1,5 @@
 export * from './lib/dv-components-lib.module';
+export * from './lib/shared-interfaces';
 export * from './lib/components/advanced-autocomplete/advanced-autocomplete';
 export * from './lib/components/alert/alert';
 export * from './lib/components/breadcrumbs/breadcrumbs';
@@ -16,6 +17,7 @@ export * from './lib/components/hero/hero';
 export * from './lib/components/image-viewer/image-viewer';
 export * from './lib/components/inner-title/inner-title';
 export * from './lib/components/item-preview/item-preview';
+export * from './lib/components/anchor-wrapper/anchor-wrapper';
 export * from './lib/components/loader/loader';
 export * from './lib/components/metadata-viewer/metadata-viewer';
 export * from './lib/components/nav/nav';

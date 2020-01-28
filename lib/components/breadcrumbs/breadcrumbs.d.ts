@@ -1,3 +1,4 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for a single BreadcrumbsComponent's "Item"
  *
@@ -12,10 +13,7 @@ export interface IBreadcrumbsItem {
      * item's label
      */
     label: string;
-    /**
-     * action click's payload
-     */
-    payload: any;
+    anchor: IAnchor;
     /**
      * additional html classes
      */

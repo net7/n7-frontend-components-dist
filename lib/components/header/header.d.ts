@@ -1,3 +1,4 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for a single action item
  *
@@ -5,7 +6,7 @@
  * @property badge (optional)
  * - text (optional)
  * @property classes (optional)
- * @property payload (required)
+ * @property anchor (required)
  * @property _meta (optional)
  */
 export interface IActionItem {
@@ -19,14 +20,11 @@ export interface IActionItem {
      * icon class
      */
     icon: string;
+    anchor: IAnchor;
     /**
      * additional html classes
      */
     classes?: string;
-    /**
-     * action click's payload
-     */
-    payload: any;
     /**
      * additional info
      */
@@ -35,13 +33,13 @@ export interface IActionItem {
 /**
  * Interface for a single navbar item
  *
- * note: a single nav's item can be a text (w/ link) OR a dropdown
+ * note: a single nav's item can be a text (w/ anchor) OR a dropdown
  *
  * @property icon (optional)
  * @property subnav (optional)
  * @property text (optional)
  * @property classes (optional)
- * @property payload (required)
+ * @property anchor (required)
  * @property _meta (optional)
  */
 export interface INavbarItem {
@@ -57,14 +55,11 @@ export interface INavbarItem {
      * second level navigation
      */
     subnav?: INavbarItem[];
+    anchor: IAnchor;
     /**
      * additional html classes
      */
     classes?: string;
-    /**
-     * action click's payload
-     */
-    payload: any;
     /**
      * additional info
      */
@@ -79,6 +74,7 @@ export interface INavbarItem {
  * - subtitle (optional)
  * - classes (optional)
  * - payload (optional)
+ * - anchor (optional)
  * @proprty menuToggle (required)
  * - open (required)
  * - - payload (required)
@@ -90,6 +86,7 @@ export interface INavbarItem {
  * - isBelow (optional)
  * - classes (optional)
  * - payload (optional)
+ * - anchor (optional)
  * - _meta (optional)
  * @property search (optional)
  * - hint (optional)
@@ -101,6 +98,7 @@ export interface INavbarItem {
  * - name (optional)
  * - classes (optional)
  * - payload (optional)
+ * - anchor (optional)
  * - _meta (optional)
  * @property classes (optional)
  * @property payload (optional)
@@ -116,6 +114,7 @@ export interface IHeaderData {
         subtitle?: string;
         classes?: string;
         payload?: any;
+        anchor: IAnchor;
     };
     /**
      * nav's parameters
@@ -183,10 +182,7 @@ export interface IHeaderData {
          * additional html classes
          */
         classes?: string;
-        /**
-         * action click's payload
-         */
-        payload?: any;
+        anchor: IAnchor;
         /**
          * additional info
          */

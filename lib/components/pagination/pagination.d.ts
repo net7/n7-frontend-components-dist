@@ -1,3 +1,4 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for PaginationComponent's options (page size select options)
  *
@@ -31,11 +32,11 @@ export interface IOption {
  * Interface for PaginationComponent's links (pages and navigation buttons)
  *
  * @property text (required)
- * @property payload (required)
+ * @property anchor (optional)
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IAnchor {
+export interface IButton {
     /**
      * innerHTML or plain text for the label
      */
@@ -44,10 +45,7 @@ export interface IAnchor {
      * additional html classes
      */
     classes?: string;
-    /**
-     * action click's payload
-     */
-    payload: any;
+    anchor?: IAnchor;
     /**
      * additional info
      */
@@ -69,23 +67,23 @@ export interface IPaginationData {
     /**
      * innerHtml for the "first" label
      */
-    first?: IAnchor;
+    first?: IButton;
     /**
      * innerHtml for the "prev" label
      */
-    prev?: IAnchor;
+    prev?: IButton;
     /**
      * innerHtml for the "next" label
      */
-    next?: IAnchor;
+    next?: IButton;
     /**
      * innerHtml for the "last" label
      */
-    last?: IAnchor;
+    last?: IButton;
     /**
      * array of "pages" label (as text)
      */
-    links: IAnchor[];
+    links: IButton[];
     /**
      * page size select
      */

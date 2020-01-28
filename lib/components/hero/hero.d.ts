@@ -1,3 +1,4 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for HeroComponent's "data"
  *
@@ -9,7 +10,7 @@
  * - payload (optional)
  * @property button (optional)
  * - text (optional)
- * - payload (optional)
+ * - anchor (optional)
  * @property image (optional)
  * @property backgroundImage (optional)
  * @property classes (optional)
@@ -38,7 +39,7 @@ export interface IHeroData {
     */
     button?: {
         text: string;
-        payload: any;
+        anchor?: IAnchor;
     };
     /**
      * image displayed inside the hero

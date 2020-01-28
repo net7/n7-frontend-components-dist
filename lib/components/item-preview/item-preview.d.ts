@@ -1,12 +1,13 @@
+import { IAnchor } from '../../shared-interfaces';
 /**
  * Interface for ItemPreviewComponent's "data"
  *
  * @property image (optional)
  * @property title (required)
  * @property text (optional)
+ * @property anchor (optional)
  * @property metadata (optional)
  * @property classes (optional)
- * @property payload (optional)
  */
 export interface IItemPreviewData {
     /**
@@ -21,6 +22,7 @@ export interface IItemPreviewData {
     * text of the item
     */
     text?: string;
+    anchor?: IAnchor;
     /**
     * list of the data in the metadata
     */
@@ -29,10 +31,6 @@ export interface IItemPreviewData {
      * additional html classes
      */
     classes?: string;
-    /**
-     * component payload
-     */
-    payload?: any;
 }
 /**
  * Interface for the element that wraps the metadata
