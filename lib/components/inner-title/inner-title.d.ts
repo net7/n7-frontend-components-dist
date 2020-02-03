@@ -5,6 +5,7 @@
  */
 export interface IInnerTitleData {
     icon?: string;
+    image?: string;
     title: {
         main: {
             text: string;
@@ -43,6 +44,7 @@ export interface IInnerTitleButtons {
     text: string;
     payload: any;
     classes?: any;
+    icon?: any;
 }
 export declare class InnerTitleComponent {
     data: IInnerTitleData;
