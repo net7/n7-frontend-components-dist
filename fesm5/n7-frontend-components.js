@@ -121,7 +121,7 @@ var BubbleChartComponent = /** @class */ (function () {
             var _a = _this.data, containerId = _a.containerId, data = _a.data, height = _a.height, width = _a.width, selected = _a.selected, transition$$1 = _a.transition, sizeRange = _a.sizeRange, colorMatch = _a.colorMatch, shuffle$$1 = _a.shuffle, fontRendering = _a.fontRendering;
             /** @type {?} */
             var closeIconPath = 'M -50,40 L-40,50 0,10 40,50 50,40 10,0 50,-40 40,-50 0,-10 -40,-50 -50,-40 -10,0 -50,40';
-            if (!data || data.length == 0 || !data.entity) {
+            if (!Array.isArray(data)) {
                 // Check if it is possible to draw with the current dataset
                 console.warn('(n7-bubble-chart) The data object is not in the expected format!');
                 return;

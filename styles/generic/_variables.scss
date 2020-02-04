@@ -81,6 +81,10 @@ $breakpoint-mobile: 650px;
 $breakpoint-smartphone-landscape: 480px;
 $breakpoint-smartphone-portrait: 400px;
 
+/* Inner title brealpoints */
+$breakpoint-inner-title-medium: $breakpoint-desktop-wide - 1;
+$breakpoint-inner-title-small: $breakpoint-ipad-portrait - 1;
+
 
 // ------------------------------------ //
 // #BORDER-RADIUS

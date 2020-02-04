@@ -98,7 +98,7 @@ class BubbleChartComponent {
             const { containerId, data, height, width, selected, transition: transition$$1, sizeRange, colorMatch, shuffle: shuffle$$1, fontRendering } = this.data;
             /** @type {?} */
             const closeIconPath = 'M -50,40 L-40,50 0,10 40,50 50,40 10,0 50,-40 40,-50 0,-10 -40,-50 -50,-40 -10,0 -50,40';
-            if (!data || data.length == 0 || !data.entity) {
+            if (!Array.isArray(data)) {
                 // Check if it is possible to draw with the current dataset
                 console.warn('(n7-bubble-chart) The data object is not in the expected format!');
                 return;

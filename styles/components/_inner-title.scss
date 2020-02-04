@@ -29,10 +29,13 @@
     }
 
     &__image-left {
+        flex-shrink: 0;
         padding: 0;
         margin-right: $space;
         width: $inner-title-image-size;
         height: $inner-title-image-size;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     &__title {
@@ -107,7 +110,7 @@
 /* ------------------------------------ *\
    #MEDIA-QUERIES
 \* ------------------------------------ */
-@media all and (max-width: $breakpoint-desktop-wide - 1) {
+@media all and (max-width: $breakpoint-inner-title-medium) {
 
     .n7-inner-title {
         flex-wrap: wrap;
@@ -121,7 +124,7 @@
 
 }
 
-@media all and (max-width: $breakpoint-ipad-portrait - 1) {
+@media all and (max-width: $breakpoint-inner-title-small) {
     
     .n7-inner-title {
      

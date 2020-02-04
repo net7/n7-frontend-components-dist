@@ -26,7 +26,7 @@ export interface IBubbleChartData {
     /**
      * data about the bubbles
      */
-    data: any;
+    data: IBubbleChartDataItem[];
     /**
      * additional css classes
      */
@@ -76,6 +76,23 @@ export interface IBubbleChartData {
      * this is needed to redraw bubble-chart-component on command
      */
     setDraw?: any;
+}
+/**
+ * Interface for D3Chart's "data"
+ *
+ * @property entity (required)
+ * - id (required)
+ * - label (optional)
+ * - typeOfEntity (optional)
+ * @property count (required)
+*/
+export interface IBubbleChartDataItem {
+    entity: {
+        id: string;
+        label?: string;
+        typeOfEntity?: string;
+    };
+    count: number;
 }
 export declare class BubbleChartComponent implements AfterContentChecked {
     data: IBubbleChartData;
