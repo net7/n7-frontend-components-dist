@@ -185,3 +185,50 @@
 /* Retina */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }
+
+
+/* ------------------------------------ *\
+   #PRINT
+\* ------------------------------------ */
+@media print {
+
+    [class*="n7-grid-"],
+    [class^="n7-grid-"] {
+        display: block;
+        float: none;
+        clear: both;
+        @include consistent;
+    }
+    
+    /* 4 */
+    .n7-grid-4 > * {
+        float: left;
+        width: calc( ( (100% - 1mm) - ( #{$grid-gutter-h} * 3) ) / 4 );
+        margin-right: $grid-gutter-h !important;
+        
+        &:nth-of-type(4n+4) {
+            margin-right: 0 !important;
+        }
+    }
+
+    .n7-grid-3 > * {
+        float: left;
+        width: calc( ( (100% - 1mm) - ( #{$grid-gutter-h} * 2) ) / 3 );
+        margin-right: $grid-gutter-h !important;
+        
+        &:nth-of-type(3n+3) {
+            margin-right: 0 !important;
+        }
+    }
+    
+    .n7-grid-2 > * {
+        float: left;
+        width: calc( ( (100% - 1mm) - ( #{$grid-gutter-h} * 1) ) / 2 );
+        margin-right: $grid-gutter-h !important;
+    
+        &:nth-of-type(2n+2) {
+            margin-right: 0 !important;
+        }
+    }
+
+}
