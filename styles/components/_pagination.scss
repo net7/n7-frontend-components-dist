@@ -23,7 +23,8 @@
         > li {
             margin-left: $space/2;
             margin-right: $space/2;
-
+            user-select: none;
+            
             &:first-child {
                 margin-left: 0;
             }

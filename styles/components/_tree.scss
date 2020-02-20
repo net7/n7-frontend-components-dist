@@ -124,7 +124,7 @@
 /* stylelint-disable */
 .n7-tree__children-wrapper {
     .n7-tree__item-contents {
-        padding-left: $space;
+        padding-left: $tree-indent;
     }
     .n7-tree__item-toggle {
         border-left: 1px solid $color-border-light;
@@ -132,7 +132,7 @@
     .n7-tree__children-wrapper {
         /* 3rd level */
         .n7-tree__item-contents {
-            padding-left: $space;
+            padding-left: $tree-indent*2;
         }
         .n7-tree__item-toggle {
             border-left: 1px solid $color-border-light;
@@ -140,45 +140,45 @@
         .n7-tree__children-wrapper {
             /* 4th level */
             .n7-tree__item-contents {
-                padding-left: $space*2;
+                padding-left: $tree-indent*3;
             }
     
             .n7-tree__children-wrapper {
                 /* 5th level */
                 .n7-tree__item-contents {
-                    padding-left: $space*3;
+                    padding-left: $tree-indent*4;
                 }
     
                 .n7-tree__children-wrapper {
                     /* 6th level */
                     .n7-tree__item-contents {
-                        padding-left: $space*4;
+                        padding-left: $tree-indent*5;
                     }
     
                     .n7-tree__children-wrapper {
                         /* 7th level */
                         .n7-tree__item-contents {
-                            padding-left: $space*5;
+                            padding-left: $tree-indent*6;
                         }
     
                         .n7-tree__children-wrapper {
                             /* 8th level */
                             .n7-tree__item-contents {
-                                padding-left: $space*6;
+                                padding-left: $tree-indent*7;
                             }
     
                             .n7-tree__children-wrapper {
                                 /* 9th level */
                                 .n7-tree__item-contents {
-                                    padding-left: $space*7;
+                                    padding-left: $tree-indent*8;
                                 }
     
                                 .n7-tree__children-wrapper {
                                     /* 10th level */
                                     .n7-tree__item-contents {
-                                        padding-left: $space*8;
+                                        padding-left: $tree-indent*9;
                                     }
-    
+
                                     /* All flats */
                                 }
                             }
