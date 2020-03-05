@@ -1,4 +1,4 @@
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for a single action item
  *
@@ -9,7 +9,7 @@ import { IAnchor } from '../../shared-interfaces';
  * @property anchor (required)
  * @property _meta (optional)
  */
-export interface IActionItem {
+export interface ActionItem {
     /**
      * optional badge with, optionally, its text
      */
@@ -20,7 +20,7 @@ export interface IActionItem {
      * icon class
      */
     icon: string;
-    anchor: IAnchor;
+    anchor: Anchor;
     /**
      * additional html classes
      */
@@ -42,7 +42,7 @@ export interface IActionItem {
  * @property anchor (required)
  * @property _meta (optional)
  */
-export interface INavbarItem {
+export interface NavbarItem {
     /**
      * text of a single item of the navbar (text and payload are connected)
      */
@@ -54,8 +54,8 @@ export interface INavbarItem {
     /**
      * second level navigation
      */
-    subnav?: INavbarItem[];
-    anchor: IAnchor;
+    subnav?: NavbarItem[];
+    anchor: Anchor;
     /**
      * additional html classes
      */
@@ -104,7 +104,7 @@ export interface INavbarItem {
  * @property payload (optional)
  * @property _meta (optional)
  */
-export interface IHeaderData {
+export interface HeaderData {
     /**
      * logo and title area parameters
      */
@@ -114,7 +114,7 @@ export interface IHeaderData {
         subtitle?: string;
         classes?: string;
         payload?: any;
-        anchor: IAnchor;
+        anchor: Anchor;
     };
     /**
      * nav's parameters
@@ -123,7 +123,7 @@ export interface IHeaderData {
         /**
          * list of the items in the navbar
          */
-        items: INavbarItem[];
+        items: NavbarItem[];
         /**
          * flag for display the navbar under the header (instead of IN the header)
          */
@@ -165,7 +165,7 @@ export interface IHeaderData {
     /**
      * action items
      */
-    actions?: IActionItem[];
+    actions?: ActionItem[];
     /**
      * user parameters
      */
@@ -182,7 +182,7 @@ export interface IHeaderData {
          * additional html classes
          */
         classes?: string;
-        anchor: IAnchor;
+        anchor: Anchor;
         /**
          * additional info
          */

@@ -8,7 +8,7 @@
  * @property classes (optional)
  * @property payload (optional)
  */
-export interface ISidebarHeaderData {
+export interface SidebarHeaderData {
     /**
      * the headers leftmost icon
      */
@@ -35,7 +35,7 @@ export interface ISidebarHeaderData {
     payload?: any;
 }
 export declare class SidebarHeaderComponent {
-    data: ISidebarHeaderData;
+    data: SidebarHeaderData;
     emit: any;
     onClick(payload: any): void;
 }

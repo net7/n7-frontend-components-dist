@@ -13,7 +13,7 @@
  * - _meta (optional)
  * @property options (required)
  */
-export interface IFacetYearRangeData {
+export interface FacetYearRangeData {
     /**
      * beginning year range selection
      */
@@ -38,7 +38,7 @@ export interface IFacetYearRangeData {
          * additional data useful for the component's logic
          */
         _meta?: any;
-        options: IFacetOptions[];
+        options: FacetOptions[];
     };
     /**
     * end year range selection
@@ -64,17 +64,17 @@ export interface IFacetYearRangeData {
          * additional data useful for the component's logic
          */
         _meta?: any;
-        options: IFacetOptions[];
+        options: FacetOptions[];
     };
 }
-export interface IFacetOptions {
+export interface FacetOptions {
     /**
      * value of each <option>
      */
     value: any;
 }
 export declare class FacetYearRangeComponent {
-    data: IFacetYearRangeData;
+    data: FacetYearRangeData;
     emit: any;
     onChange(payload: any, selected: any): void;
 }

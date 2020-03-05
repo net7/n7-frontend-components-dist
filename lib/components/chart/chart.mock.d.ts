@@ -1,2 +1,2 @@
-import { IChartData } from './chart';
-export declare const CHART_MOCK: IChartData;
+import { ChartData } from './chart';
+export declare const CHART_MOCK: ChartData;

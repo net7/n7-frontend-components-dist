@@ -8,7 +8,7 @@ import { AfterContentChecked } from '@angular/core';
  * @property payload (optional)
  * @property _meta (optional)
 */
-export interface IChartData {
+export interface ChartData {
     /**
      * unique identifier for the chart
      */
@@ -35,7 +35,7 @@ export interface IChartData {
     setChart?: any;
 }
 export declare class ChartComponent implements AfterContentChecked {
-    data: IChartData;
+    data: ChartData;
     emit: any;
     private _loaded;
     ngAfterContentChecked(): void;

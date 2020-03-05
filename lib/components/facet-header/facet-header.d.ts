@@ -8,7 +8,7 @@
  * @property classes (optional)
  * @property payload (optional)
  */
-export interface IFacetHeaderData {
+export interface FacetHeaderData {
     /**
      * the headers leftmost icon
      */
@@ -35,7 +35,7 @@ export interface IFacetHeaderData {
     payload?: any;
 }
 export declare class FacetHeaderComponent {
-    data: IFacetHeaderData;
+    data: FacetHeaderData;
     emit: any;
     onClick(payload: any): void;
 }

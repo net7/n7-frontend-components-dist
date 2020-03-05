@@ -1,2 +1,2 @@
-import { IAlertData } from './alert';
-export declare const ALERT_MOCK: IAlertData;
+import { AlertData } from './alert';
+export declare const ALERT_MOCK: AlertData;

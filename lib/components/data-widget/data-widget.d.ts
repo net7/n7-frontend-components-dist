@@ -8,7 +8,7 @@
  * - icon (optional)
  * - grow (required)
  */
-export interface IDataWidgetData {
+export interface DataWidgetData {
     /**
      * item icon
      */
@@ -40,7 +40,7 @@ export interface IDataWidgetData {
     _meta?: any;
 }
 export declare class DataWidgetComponent {
-    data: IDataWidgetData;
+    data: DataWidgetData;
     emit: any;
     onMouseEnter(payload: any): void;
     onMouseLeave(payload: any): void;

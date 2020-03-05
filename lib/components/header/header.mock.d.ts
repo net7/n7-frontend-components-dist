@@ -1,2 +1,2 @@
-import { IHeaderData } from './header';
-export declare const HEADER_MOCK: IHeaderData;
+import { HeaderData } from './header';
+export declare const HEADER_MOCK: HeaderData;

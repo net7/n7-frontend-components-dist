@@ -18,33 +18,33 @@ import { Component, Input } from '@angular/core';
  *
  * @record
  */
-export function IWizardItem() { }
+export function WizardItem() { }
 if (false) {
     /**
      *  text rendered on the step
      * @type {?|undefined}
      */
-    IWizardItem.prototype.text;
+    WizardItem.prototype.text;
     /**
      * number rendered on the step
      * @type {?|undefined}
      */
-    IWizardItem.prototype.number;
+    WizardItem.prototype.number;
     /**
      * action click's payload
      * @type {?}
      */
-    IWizardItem.prototype.payload;
+    WizardItem.prototype.payload;
     /**
      * additional html classes
      * @type {?|undefined}
      */
-    IWizardItem.prototype.classes;
+    WizardItem.prototype.classes;
     /**
      * additional info useful for the component's logic
      * @type {?|undefined}
      */
-    IWizardItem.prototype._meta;
+    WizardItem.prototype._meta;
 }
 /**
  * Interface for WizardComponent's "data"
@@ -54,18 +54,18 @@ if (false) {
  *
  * @record
  */
-export function IWizardData() { }
+export function WizardData() { }
 if (false) {
     /**
      * each item represents a step
      * @type {?}
      */
-    IWizardData.prototype.items;
+    WizardData.prototype.items;
     /**
      * additional html classes
      * @type {?|undefined}
      */
-    IWizardData.prototype.classes;
+    WizardData.prototype.classes;
 }
 export class WizardComponent {
     /**
@@ -81,7 +81,7 @@ export class WizardComponent {
 WizardComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-wizard',
-                template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\n  <ol class=\"n7-wizard__list\">\n      <li *ngFor=\"let item of data.items\" \n          class=\"n7-wizard__item {{ item.classes || '' }}\" \n          (click)=\"onClick(item.payload)\">\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\n      </li>\n  </ol>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\r\n  <ol class=\"n7-wizard__list\">\r\n      <li *ngFor=\"let item of data.items\" \r\n          class=\"n7-wizard__item {{ item.classes || '' }}\" \r\n          (click)=\"onClick(item.payload)\">\r\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\r\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\r\n      </li>\r\n  </ol>\r\n</div>"
             }] }
 ];
 WizardComponent.propDecorators = {
@@ -94,4 +94,4 @@ if (false) {
     /** @type {?} */
     WizardComponent.prototype.emit;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2l6YXJkLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy93aXphcmQvd2l6YXJkLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7Ozs7OztBQVlqRCxpQ0FxQkM7Ozs7OztJQWpCQywyQkFBYzs7Ozs7SUFJZCw2QkFBZ0I7Ozs7O0lBSWhCLDhCQUFhOzs7OztJQUliLDhCQUFjOzs7OztJQUlkLDRCQUFZOzs7Ozs7Ozs7O0FBVWQsaUNBU0M7Ozs7OztJQUxDLDRCQUFxQjs7Ozs7SUFJckIsOEJBQWM7O0FBT2hCLE1BQU0sT0FBTyxlQUFlOzs7OztJQUkxQixPQUFPLENBQUMsT0FBTztRQUNiLElBQUcsQ0FBQyxJQUFJLENBQUMsSUFBSTtZQUFFLE9BQU87UUFDdEIsSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUM7SUFDOUIsQ0FBQzs7O1lBWEYsU0FBUyxTQUFDO2dCQUNULFFBQVEsRUFBRSxXQUFXO2dCQUNyQiw4ZEFBNEI7YUFDN0I7OzttQkFFRSxLQUFLO21CQUNMLEtBQUs7Ozs7SUFETiwrQkFBMkI7O0lBQzNCLCtCQUFtQiIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4vLyBXSVpBUkQudHNcbi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5cbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuLyoqXG4qIEludGVyZmFjZSBmb3IgYSBzaW5nbGUgV2l6YXJkQ29tcG9uZW50J3MgXCJpdGVtXCJcbipcbiogQHByb3BlcnR5IHRleHQgKG9wdGlvbmFsKVxuKiBAcHJvcGVydHkgbnVtYmVyIChvcHRpb25hbClcbiogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxuKiBAcHJvcGVydHkgcGF5bG9hZCAocmVxdWlyZWQpXG4qIEBwcm9wZXJ0eSBfbWV0YSAob3B0aW9uYWwpXG4qXG4qL1xuZXhwb3J0IGludGVyZmFjZSBJV2l6YXJkSXRlbSB7XG4gIC8qKiBcbiAgKiAgdGV4dCByZW5kZXJlZCBvbiB0aGUgc3RlcFxuICAqL1xuICB0ZXh0Pzogc3RyaW5nO1xuICAvKiogXG4gICogbnVtYmVyIHJlbmRlcmVkIG9uIHRoZSBzdGVwXG4gICovXG4gIG51bWJlcj86IG51bWJlcjtcbiAgLyoqXG4gICogYWN0aW9uIGNsaWNrJ3MgcGF5bG9hZFxuICAqL1xuICBwYXlsb2FkOiBhbnk7XG4gIC8qKiBcbiAgKiBhZGRpdGlvbmFsIGh0bWwgY2xhc3Nlc1xuICAqL1xuICBjbGFzc2VzPzogYW55O1xuICAvKipcbiAgKiBhZGRpdGlvbmFsIGluZm8gdXNlZnVsIGZvciB0aGUgY29tcG9uZW50J3MgbG9naWNcbiAgKi9cbiAgX21ldGE/OiBhbnk7XG59XG5cbi8qKlxuKiBJbnRlcmZhY2UgZm9yIFdpemFyZENvbXBvbmVudCdzIFwiZGF0YVwiXG4qXG4qIEBwcm9wZXJ0eSBpdGVtcyAocmVxdWlyZWQpXG4qIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbipcbiovXG5leHBvcnQgaW50ZXJmYWNlIElXaXphcmREYXRhIHtcbiAgLyoqIFxuICAqIGVhY2ggaXRlbSByZXByZXNlbnRzIGEgc3RlcFxuICAqL1xuICBpdGVtczogSVdpemFyZEl0ZW1bXTtcbiAgLyoqIFxuICAqIGFkZGl0aW9uYWwgaHRtbCBjbGFzc2VzXG4gICovXG4gIGNsYXNzZXM/OiBhbnk7XG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LXdpemFyZCcsXG4gIHRlbXBsYXRlVXJsOiAnLi93aXphcmQuaHRtbCdcbn0pXG5leHBvcnQgY2xhc3MgV2l6YXJkQ29tcG9uZW50IHtcbiAgQElucHV0KCkgZGF0YTogSVdpemFyZERhdGE7XG4gIEBJbnB1dCgpIGVtaXQ6IGFueTtcblxuICBvbkNsaWNrKHBheWxvYWQpe1xuICAgIGlmKCF0aGlzLmVtaXQpIHJldHVybjtcbiAgICB0aGlzLmVtaXQoJ2NsaWNrJywgcGF5bG9hZCk7XG4gIH0gXG59Il19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2l6YXJkLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy93aXphcmQvd2l6YXJkLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7Ozs7OztBQVlqRCxnQ0FxQkM7Ozs7OztJQWpCQywwQkFBYzs7Ozs7SUFJZCw0QkFBZ0I7Ozs7O0lBSWhCLDZCQUFhOzs7OztJQUliLDZCQUFjOzs7OztJQUlkLDJCQUFZOzs7Ozs7Ozs7O0FBVWQsZ0NBU0M7Ozs7OztJQUxDLDJCQUFvQjs7Ozs7SUFJcEIsNkJBQWM7O0FBT2hCLE1BQU0sT0FBTyxlQUFlOzs7OztJQUsxQixPQUFPLENBQUMsT0FBTztRQUNiLElBQUksQ0FBQyxJQUFJLENBQUMsSUFBSTtZQUFFLE9BQU87UUFDdkIsSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUM7SUFDOUIsQ0FBQzs7O1lBWkYsU0FBUyxTQUFDO2dCQUNULFFBQVEsRUFBRSxXQUFXO2dCQUNyQixnZkFBNEI7YUFDN0I7OzttQkFFRSxLQUFLO21CQUVMLEtBQUs7Ozs7SUFGTiwrQkFBMEI7O0lBRTFCLCtCQUFtQiIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcbi8vIFdJWkFSRC50c1xyXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxyXG5cclxuaW1wb3J0IHsgQ29tcG9uZW50LCBJbnB1dCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xyXG5cclxuLyoqXHJcbiogSW50ZXJmYWNlIGZvciBhIHNpbmdsZSBXaXphcmRDb21wb25lbnQncyBcIml0ZW1cIlxyXG4qXHJcbiogQHByb3BlcnR5IHRleHQgKG9wdGlvbmFsKVxyXG4qIEBwcm9wZXJ0eSBudW1iZXIgKG9wdGlvbmFsKVxyXG4qIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcclxuKiBAcHJvcGVydHkgcGF5bG9hZCAocmVxdWlyZWQpXHJcbiogQHByb3BlcnR5IF9tZXRhIChvcHRpb25hbClcclxuKlxyXG4qL1xyXG5leHBvcnQgaW50ZXJmYWNlIFdpemFyZEl0ZW0ge1xyXG4gIC8qKlxyXG4gICogIHRleHQgcmVuZGVyZWQgb24gdGhlIHN0ZXBcclxuICAqL1xyXG4gIHRleHQ/OiBzdHJpbmc7XHJcbiAgLyoqXHJcbiAgKiBudW1iZXIgcmVuZGVyZWQgb24gdGhlIHN0ZXBcclxuICAqL1xyXG4gIG51bWJlcj86IG51bWJlcjtcclxuICAvKipcclxuICAqIGFjdGlvbiBjbGljaydzIHBheWxvYWRcclxuICAqL1xyXG4gIHBheWxvYWQ6IGFueTtcclxuICAvKipcclxuICAqIGFkZGl0aW9uYWwgaHRtbCBjbGFzc2VzXHJcbiAgKi9cclxuICBjbGFzc2VzPzogYW55O1xyXG4gIC8qKlxyXG4gICogYWRkaXRpb25hbCBpbmZvIHVzZWZ1bCBmb3IgdGhlIGNvbXBvbmVudCdzIGxvZ2ljXHJcbiAgKi9cclxuICBfbWV0YT86IGFueTtcclxufVxyXG5cclxuLyoqXHJcbiogSW50ZXJmYWNlIGZvciBXaXphcmRDb21wb25lbnQncyBcImRhdGFcIlxyXG4qXHJcbiogQHByb3BlcnR5IGl0ZW1zIChyZXF1aXJlZClcclxuKiBAcHJvcGVydHkgY2xhc3NlcyAob3B0aW9uYWwpXHJcbipcclxuKi9cclxuZXhwb3J0IGludGVyZmFjZSBXaXphcmREYXRhIHtcclxuICAvKipcclxuICAqIGVhY2ggaXRlbSByZXByZXNlbnRzIGEgc3RlcFxyXG4gICovXHJcbiAgaXRlbXM6IFdpemFyZEl0ZW1bXTtcclxuICAvKipcclxuICAqIGFkZGl0aW9uYWwgaHRtbCBjbGFzc2VzXHJcbiAgKi9cclxuICBjbGFzc2VzPzogYW55O1xyXG59XHJcblxyXG5AQ29tcG9uZW50KHtcclxuICBzZWxlY3RvcjogJ243LXdpemFyZCcsXHJcbiAgdGVtcGxhdGVVcmw6ICcuL3dpemFyZC5odG1sJ1xyXG59KVxyXG5leHBvcnQgY2xhc3MgV2l6YXJkQ29tcG9uZW50IHtcclxuICBASW5wdXQoKSBkYXRhOiBXaXphcmREYXRhO1xyXG5cclxuICBASW5wdXQoKSBlbWl0OiBhbnk7XHJcblxyXG4gIG9uQ2xpY2socGF5bG9hZCkge1xyXG4gICAgaWYgKCF0aGlzLmVtaXQpIHJldHVybjtcclxuICAgIHRoaXMuZW1pdCgnY2xpY2snLCBwYXlsb2FkKTtcclxuICB9XHJcbn1cclxuIl19

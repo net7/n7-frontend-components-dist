@@ -9,7 +9,7 @@
  * @property hint (O)
  * @property classes (O)
  */
-interface ISignupField {
+interface SignupField {
     id: string;
     label: string;
     inputType: 'password' | 'text' | 'email';
@@ -19,11 +19,11 @@ interface ISignupField {
     classes?: string;
 }
 /**
- * Interface for Signup password field (extends ISignupField)
+ * Interface for Signup password field (extends SignupField)
  *
  * @property show (O)
  */
-interface ISignupPasswordField extends ISignupField {
+interface SignupPasswordField extends SignupField {
     show?: {
         icon: string;
         label: string;
@@ -38,7 +38,7 @@ interface ISignupPasswordField extends ISignupField {
  * @property error (O)
  * @property classes (O)
  */
-interface ISignupSubmit {
+interface SignupSubmit {
     label: string;
     payload: any;
     error?: string;
@@ -51,7 +51,7 @@ interface ISignupSubmit {
  * @property action (M)
  * @property classes (O)
  */
-interface ISignupFooter {
+interface SignupFooter {
     label: string;
     action: {
         label: string;
@@ -67,35 +67,35 @@ interface ISignupFooter {
  * @property signup (O)
  * @property forgotPassword (O)
  */
-export interface ISignupData {
+export interface SignupData {
     login?: {
-        email: ISignupField;
-        password: ISignupPasswordField;
+        email: SignupField;
+        password: SignupPasswordField;
         forgotPassword?: {
             title: string;
             label: string;
             payload: any;
         };
-        submit: ISignupSubmit;
-        footer?: ISignupFooter;
+        submit: SignupSubmit;
+        footer?: SignupFooter;
     };
     signup?: {
-        name: ISignupField;
-        email: ISignupField;
-        password: ISignupPasswordField;
-        rePassword: ISignupPasswordField;
-        submit: ISignupSubmit;
-        footer?: ISignupFooter;
+        name: SignupField;
+        email: SignupField;
+        password: SignupPasswordField;
+        rePassword: SignupPasswordField;
+        submit: SignupSubmit;
+        footer?: SignupFooter;
     };
     forgotPassword?: {
         description: string;
-        email: ISignupField;
-        submit: ISignupSubmit;
-        footer?: ISignupFooter;
+        email: SignupField;
+        submit: SignupSubmit;
+        footer?: SignupFooter;
     };
 }
 export declare class SignupComponent {
-    data: ISignupData;
+    data: SignupData;
     emit: any;
     onClick(payload: any): void;
     onChange(inputPayload: any, value: any): void;

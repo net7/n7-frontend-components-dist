@@ -10,7 +10,7 @@ import { AfterContentChecked } from '@angular/core';
  * @property classes (optional)
  * @property reset (optional)
 */
-export interface IBubbleChartData {
+export interface BubbleChartData {
     /**
      * unique identifier for the bubble-chart
      */
@@ -26,7 +26,7 @@ export interface IBubbleChartData {
     /**
      * data about the bubbles
      */
-    data: IBubbleChartDataItem[];
+    data: BubbleChartDataItem[];
     /**
      * additional css classes
      */
@@ -86,7 +86,7 @@ export interface IBubbleChartData {
  * - typeOfEntity (optional)
  * @property count (required)
 */
-export interface IBubbleChartDataItem {
+export interface BubbleChartDataItem {
     entity: {
         id: string;
         label?: string;
@@ -95,7 +95,7 @@ export interface IBubbleChartDataItem {
     count: number;
 }
 export declare class BubbleChartComponent implements AfterContentChecked {
-    data: IBubbleChartData;
+    data: BubbleChartData;
     emit: any;
     private _loaded;
     ngAfterContentChecked(): void;

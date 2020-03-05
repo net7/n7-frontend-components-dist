@@ -1,2 +1,2 @@
-import { IBreadcrumbsData } from './breadcrumbs';
-export declare const BREADCRUMBS_MOCK: IBreadcrumbsData;
+import { BreadcrumbsData } from './breadcrumbs';
+export declare const BREADCRUMBS_MOCK: BreadcrumbsData;

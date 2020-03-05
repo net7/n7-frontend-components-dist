@@ -1,4 +1,4 @@
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for TreeComponent's "data"
  *
@@ -10,11 +10,11 @@ import { IAnchor } from '../../shared-interfaces';
  * - payload (optional)
  * @property items (required)
  */
-export interface ITreeData {
+export interface TreeData {
     /**
      * tree of items
      */
-    items: ITreeItem[];
+    items: TreeItem[];
 }
 /**
  * Interface for the single TreeComponent's "Item"
@@ -27,7 +27,7 @@ export interface ITreeData {
  * @property _meta (optional)
  * @property items (optional)
  */
-export interface ITreeItem {
+export interface TreeItem {
     /**
      * the node's toggle arrow, to expand and
      * collapse it's child nodes.
@@ -59,7 +59,7 @@ export interface ITreeItem {
     /**
      * anchor <a>
      */
-    anchor?: IAnchor;
+    anchor?: Anchor;
     /**
      * additional info useful for the component's logic
      */
@@ -67,10 +67,10 @@ export interface ITreeItem {
     /**
      * item recursion
      */
-    items?: ITreeItem[];
+    items?: TreeItem[];
 }
 export declare class TreeComponent {
-    data: ITreeData;
+    data: TreeData;
     emit: any;
     onClick(payload: any): void;
 }

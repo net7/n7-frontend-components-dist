@@ -8,7 +8,7 @@
 * @property _meta (optional)
 *
 */
-export interface IWizardItem {
+export interface WizardItem {
     /**
     *  text rendered on the step
     */
@@ -37,18 +37,18 @@ export interface IWizardItem {
 * @property classes (optional)
 *
 */
-export interface IWizardData {
+export interface WizardData {
     /**
     * each item represents a step
     */
-    items: IWizardItem[];
+    items: WizardItem[];
     /**
     * additional html classes
     */
     classes?: any;
 }
 export declare class WizardComponent {
-    data: IWizardData;
+    data: WizardData;
     emit: any;
     onClick(payload: any): void;
 }

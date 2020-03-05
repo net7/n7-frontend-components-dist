@@ -1,2 +1,2 @@
-import { INavData } from './nav';
-export declare const NAV_MOCK: INavData;
+import { NavData } from './nav';
+export declare const NAV_MOCK: NavData;

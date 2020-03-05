@@ -9,7 +9,7 @@
  * @property _meta (optional)
  *
  */
-export interface ITagData {
+export interface TagData {
     /**
      * tag's label
      */
@@ -36,7 +36,7 @@ export interface ITagData {
     _meta?: any;
 }
 export declare class TagComponent {
-    data: ITagData;
+    data: TagData;
     emit: any;
     onClick(payload: any): void;
 }

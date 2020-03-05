@@ -1,2 +1,2 @@
-import { IItemPreviewData } from './item-preview';
-export declare const ITEM_PREVIEW_MOCK: IItemPreviewData;
+import { ItemPreviewData } from './item-preview';
+export declare const ITEM_PREVIEW_MOCK: ItemPreviewData;

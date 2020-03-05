@@ -4,11 +4,11 @@
  * @property group (required)
  * @property classes (optional)
  */
-export interface IMetadataViewerData {
+export interface MetadataViewerData {
     /**
      * the CHILD metadata groups
      */
-    group: IMetadataViewerChildGroups[];
+    group: MetadataViewerChildGroups[];
     /**
      * additional html classes
      */
@@ -22,7 +22,7 @@ export interface IMetadataViewerData {
  * @property group (optional)
  * @property classes (optional)
  */
-export interface IMetadataViewerChildGroups {
+export interface MetadataViewerChildGroups {
     /**
      * component header (if root)
      * or group title
@@ -31,11 +31,11 @@ export interface IMetadataViewerChildGroups {
     /**
      * the metadata items
      */
-    items?: IMetadataViewerItems[];
+    items?: MetadataViewerItems[];
     /**
      * the CHILD metadata groups
      */
-    group?: IMetadataViewerChildGroups[];
+    group?: MetadataViewerChildGroups[];
     /**
      * additional html classes
      */
@@ -46,7 +46,7 @@ export interface IMetadataViewerChildGroups {
  * @property label (required)
  * @property value (required)
  */
-export interface IMetadataViewerItems {
+export interface MetadataViewerItems {
     /**
      * the item's label
      */
@@ -57,6 +57,6 @@ export interface IMetadataViewerItems {
     value: string;
 }
 export declare class MetadataViewerComponent {
-    data: IMetadataViewerData;
+    data: MetadataViewerData;
     emit: any;
 }

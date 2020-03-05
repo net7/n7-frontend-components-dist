@@ -1,2 +1,2 @@
-import { ITableData } from './table';
-export declare const TABLE_MOCK: ITableData;
+import { TableData } from './table';
+export declare const TABLE_MOCK: TableData;

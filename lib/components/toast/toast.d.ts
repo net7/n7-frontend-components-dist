@@ -4,8 +4,8 @@
  * @property toasts (required)
  * @property classes (optional)
  */
-export interface IToastData {
-    toasts: IToastBox[];
+export interface ToastData {
+    toasts: ToastBox[];
     classes?: string;
 }
 /**
@@ -20,7 +20,7 @@ export interface IToastData {
  * @property text (optional)
  * @property actions (optional)
  */
-export interface IToastBox {
+export interface ToastBox {
     /**
      * requires: [is-success, is-warning, is-error] + optional additional html classes
      */
@@ -47,7 +47,7 @@ export interface IToastBox {
      * the toast's optional buttons
      * suggestion: don't use more than 2 actions
      */
-    actions?: IToastAction[];
+    actions?: ToastAction[];
     /**
      * additional info
      */
@@ -60,7 +60,7 @@ export interface IToastBox {
  * @property payload (required)
  * @property classes (optional)
  */
-export interface IToastAction {
+export interface ToastAction {
     /**
      * the button's rendered text
      */
@@ -75,7 +75,7 @@ export interface IToastAction {
     classes?: string;
 }
 export declare class ToastComponent {
-    data: IToastData;
+    data: ToastData;
     emit: any;
     onClick(payload: any): void;
 }

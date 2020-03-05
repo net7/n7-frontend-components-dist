@@ -14,18 +14,18 @@ import { Component, Input } from '@angular/core';
  * \@property classes (optional)
  * @record
  */
-export function IMetadataViewerData() { }
+export function MetadataViewerData() { }
 if (false) {
     /**
      * the CHILD metadata groups
      * @type {?}
      */
-    IMetadataViewerData.prototype.group;
+    MetadataViewerData.prototype.group;
     /**
      * additional html classes
      * @type {?|undefined}
      */
-    IMetadataViewerData.prototype.classes;
+    MetadataViewerData.prototype.classes;
 }
 /**
  * Interface for MetadataViewerComponent's "data"
@@ -36,29 +36,29 @@ if (false) {
  * \@property classes (optional)
  * @record
  */
-export function IMetadataViewerChildGroups() { }
+export function MetadataViewerChildGroups() { }
 if (false) {
     /**
      * component header (if root)
      * or group title
      * @type {?|undefined}
      */
-    IMetadataViewerChildGroups.prototype.title;
+    MetadataViewerChildGroups.prototype.title;
     /**
      * the metadata items
      * @type {?|undefined}
      */
-    IMetadataViewerChildGroups.prototype.items;
+    MetadataViewerChildGroups.prototype.items;
     /**
      * the CHILD metadata groups
      * @type {?|undefined}
      */
-    IMetadataViewerChildGroups.prototype.group;
+    MetadataViewerChildGroups.prototype.group;
     /**
      * additional html classes
      * @type {?|undefined}
      */
-    IMetadataViewerChildGroups.prototype.classes;
+    MetadataViewerChildGroups.prototype.classes;
 }
 /**
  * Interface for MetadataViewerComponent's "items"
@@ -66,25 +66,25 @@ if (false) {
  * \@property value (required)
  * @record
  */
-export function IMetadataViewerItems() { }
+export function MetadataViewerItems() { }
 if (false) {
     /**
      * the item's label
      * @type {?}
      */
-    IMetadataViewerItems.prototype.label;
+    MetadataViewerItems.prototype.label;
     /**
      * the value for \@property label
      * @type {?}
      */
-    IMetadataViewerItems.prototype.value;
+    MetadataViewerItems.prototype.value;
 }
 export class MetadataViewerComponent {
 }
 MetadataViewerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-metadata-viewer',
-                template: "<div *ngIf=\"data\" class=\"n7-metadata-viewer\">\n    <!-- Metadata groups wrapper -->\n    <div class=\"n7-metadata-viewer__wrapper {{ data.classes  || ''}}\"\n          *ngFor=\"let grp of data.group\">\n        <!-- For each data group, render it -->\n        <ng-container *ngTemplateOutlet=\"group; context:{$implicit: grp}\"></ng-container>\n    </div>\n</div>\n\n<!-- Template for Metadata.group -->\n<ng-template #group let-grp>\n    <div *ngIf=\"grp.title || grp.items\" class=\"n7-metadata-viewer__group {{ grp.classes || '' }}\">\n        <div class=\"n7-metadata-viewer__group-title\" *ngIf=\"grp.title\">{{grp.title}}</div>\n        <div class=\"n7-metadata-viewer__group-content\" *ngIf=\"grp.items\">\n            <div class=\"n7-metadata-viewer__item\" *ngFor=\"let i of grp.items\">\n                <span class=\"n7-metadata-viewer__item-label\">{{i.label}} </span>\n                <span class=\"n7-metadata-viewer__item-value\" [innerHTML]=\"i.value\"></span>\n            </div>\n        </div>\n    </div>\n    <!-- Render all child groups -->\n    <div *ngIf=\"grp.group\">\n        <div class=\"n7-metadata-viewer__group-wrapper\"\n              *ngFor=\"let grp of grp.group\">\n            <ng-container *ngTemplateOutlet=\"group; context:{$implicit: grp}\"></ng-container>\n        </div>\n    </div>\n</ng-template>"
+                template: "<div *ngIf=\"data\" class=\"n7-metadata-viewer\">\r\n    <!-- Metadata groups wrapper -->\r\n    <div class=\"n7-metadata-viewer__wrapper {{ data.classes  || ''}}\"\r\n          *ngFor=\"let grp of data.group\">\r\n        <!-- For each data group, render it -->\r\n        <ng-container *ngTemplateOutlet=\"group; context:{$implicit: grp}\"></ng-container>\r\n    </div>\r\n</div>\r\n\r\n<!-- Template for Metadata.group -->\r\n<ng-template #group let-grp>\r\n    <div *ngIf=\"grp.title || grp.items\" class=\"n7-metadata-viewer__group {{ grp.classes || '' }}\">\r\n        <div class=\"n7-metadata-viewer__group-title\" *ngIf=\"grp.title\">{{grp.title}}</div>\r\n        <div class=\"n7-metadata-viewer__group-content\" *ngIf=\"grp.items\">\r\n            <div class=\"n7-metadata-viewer__item\" *ngFor=\"let i of grp.items\">\r\n                <span class=\"n7-metadata-viewer__item-label\">{{i.label}} </span>\r\n                <span class=\"n7-metadata-viewer__item-value\" [innerHTML]=\"i.value\"></span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <!-- Render all child groups -->\r\n    <div *ngIf=\"grp.group\">\r\n        <div class=\"n7-metadata-viewer__group-wrapper\"\r\n              *ngFor=\"let grp of grp.group\">\r\n            <ng-container *ngTemplateOutlet=\"group; context:{$implicit: grp}\"></ng-container>\r\n        </div>\r\n    </div>\r\n</ng-template>"
             }] }
 ];
 MetadataViewerComponent.propDecorators = {
@@ -97,4 +97,4 @@ if (false) {
     /** @type {?} */
     MetadataViewerComponent.prototype.emit;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWV0YWRhdGEtdmlld2VyLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9tZXRhZGF0YS12aWV3ZXIvbWV0YWRhdGEtdmlld2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7O0FBUWpELHlDQVNDOzs7Ozs7SUFMQyxvQ0FBb0M7Ozs7O0lBSXBDLHNDQUFjOzs7Ozs7Ozs7OztBQVdoQixnREFrQkM7Ozs7Ozs7SUFiQywyQ0FBZTs7Ozs7SUFJZiwyQ0FBK0I7Ozs7O0lBSS9CLDJDQUFxQzs7Ozs7SUFJckMsNkNBQWM7Ozs7Ozs7O0FBUWhCLDBDQVNDOzs7Ozs7SUFMQyxxQ0FBYzs7Ozs7SUFJZCxxQ0FBYzs7QUFPaEIsTUFBTSxPQUFPLHVCQUF1Qjs7O1lBSm5DLFNBQVMsU0FBQztnQkFDVCxRQUFRLEVBQUUsb0JBQW9CO2dCQUM5Qiw0MENBQXFDO2FBQ3RDOzs7bUJBRUUsS0FBSzttQkFDTCxLQUFLOzs7O0lBRE4sdUNBQW1DOztJQUNuQyx1Q0FBbUIiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuLy8gTUVUQURBVEEtVklFV0VSLnRzXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciBNZXRhZGF0YVZpZXdlckNvbXBvbmVudCdzIFwiZGF0YVwiXG4gKlxuICogQHByb3BlcnR5IGdyb3VwIChyZXF1aXJlZClcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbiAqL1xuZXhwb3J0IGludGVyZmFjZSBJTWV0YWRhdGFWaWV3ZXJEYXRhIHtcbiAgLyoqXG4gICAqIHRoZSBDSElMRCBtZXRhZGF0YSBncm91cHNcbiAgICovXG4gIGdyb3VwOiBJTWV0YWRhdGFWaWV3ZXJDaGlsZEdyb3Vwc1tdO1xuICAvKipcbiAgICogYWRkaXRpb25hbCBodG1sIGNsYXNzZXNcbiAgICovXG4gIGNsYXNzZXM/OiBhbnk7XG59XG4vKipcbiAqIEludGVyZmFjZSBmb3IgTWV0YWRhdGFWaWV3ZXJDb21wb25lbnQncyBcImRhdGFcIlxuICpcbiAqIEBwcm9wZXJ0eSB0aXRsZSAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgaXRlbXMgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IGdyb3VwIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbiAqL1xuXG5leHBvcnQgaW50ZXJmYWNlIElNZXRhZGF0YVZpZXdlckNoaWxkR3JvdXBzIHtcbiAgLyoqXG4gICAqIGNvbXBvbmVudCBoZWFkZXIgKGlmIHJvb3QpXG4gICAqIG9yIGdyb3VwIHRpdGxlXG4gICAqL1xuICB0aXRsZT86IHN0cmluZztcbiAgLyoqXG4gICAqIHRoZSBtZXRhZGF0YSBpdGVtc1xuICAgKi9cbiAgaXRlbXM/OiBJTWV0YWRhdGFWaWV3ZXJJdGVtc1tdO1xuICAvKipcbiAgICogdGhlIENISUxEIG1ldGFkYXRhIGdyb3Vwc1xuICAgKi9cbiAgZ3JvdXA/OiBJTWV0YWRhdGFWaWV3ZXJDaGlsZEdyb3Vwc1tdO1xuICAvKipcbiAgICogYWRkaXRpb25hbCBodG1sIGNsYXNzZXNcbiAgICovXG4gIGNsYXNzZXM/OiBhbnk7XG59XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciBNZXRhZGF0YVZpZXdlckNvbXBvbmVudCdzIFwiaXRlbXNcIlxuICogQHByb3BlcnR5IGxhYmVsIChyZXF1aXJlZClcbiAqIEBwcm9wZXJ0eSB2YWx1ZSAocmVxdWlyZWQpXG4gKi9cbmV4cG9ydCBpbnRlcmZhY2UgSU1ldGFkYXRhVmlld2VySXRlbXMge1xuICAvKipcbiAgICogdGhlIGl0ZW0ncyBsYWJlbFxuICAgKi9cbiAgbGFiZWw6IHN0cmluZztcbiAgLyoqXG4gICAqIHRoZSB2YWx1ZSBmb3IgQHByb3BlcnR5IGxhYmVsXG4gICAqL1xuICB2YWx1ZTogc3RyaW5nO1xufVxuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICduNy1tZXRhZGF0YS12aWV3ZXInLFxuICB0ZW1wbGF0ZVVybDogJy4vbWV0YWRhdGEtdmlld2VyLmh0bWwnXG59KVxuZXhwb3J0IGNsYXNzIE1ldGFkYXRhVmlld2VyQ29tcG9uZW50IHtcbiAgQElucHV0KCkgZGF0YTogSU1ldGFkYXRhVmlld2VyRGF0YTtcbiAgQElucHV0KCkgZW1pdDogYW55O1xufSJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWV0YWRhdGEtdmlld2VyLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9tZXRhZGF0YS12aWV3ZXIvbWV0YWRhdGEtdmlld2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7O0FBUWpELHdDQVNDOzs7Ozs7SUFMQyxtQ0FBbUM7Ozs7O0lBSW5DLHFDQUFjOzs7Ozs7Ozs7OztBQVdoQiwrQ0FrQkM7Ozs7Ozs7SUFiQywwQ0FBZTs7Ozs7SUFJZiwwQ0FBOEI7Ozs7O0lBSTlCLDBDQUFvQzs7Ozs7SUFJcEMsNENBQWM7Ozs7Ozs7O0FBUWhCLHlDQVNDOzs7Ozs7SUFMQyxvQ0FBYzs7Ozs7SUFJZCxvQ0FBYzs7QUFPaEIsTUFBTSxPQUFPLHVCQUF1Qjs7O1lBSm5DLFNBQVMsU0FBQztnQkFDVCxRQUFRLEVBQUUsb0JBQW9CO2dCQUM5QixrNENBQXFDO2FBQ3RDOzs7bUJBRUUsS0FBSzttQkFFTCxLQUFLOzs7O0lBRk4sdUNBQWtDOztJQUVsQyx1Q0FBbUIiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxyXG4vLyBNRVRBREFUQS1WSUVXRVIudHNcclxuLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuXHJcbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuXHJcbi8qKlxyXG4gKiBJbnRlcmZhY2UgZm9yIE1ldGFkYXRhVmlld2VyQ29tcG9uZW50J3MgXCJkYXRhXCJcclxuICpcclxuICogQHByb3BlcnR5IGdyb3VwIChyZXF1aXJlZClcclxuICogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxyXG4gKi9cclxuZXhwb3J0IGludGVyZmFjZSBNZXRhZGF0YVZpZXdlckRhdGEge1xyXG4gIC8qKlxyXG4gICAqIHRoZSBDSElMRCBtZXRhZGF0YSBncm91cHNcclxuICAgKi9cclxuICBncm91cDogTWV0YWRhdGFWaWV3ZXJDaGlsZEdyb3Vwc1tdO1xyXG4gIC8qKlxyXG4gICAqIGFkZGl0aW9uYWwgaHRtbCBjbGFzc2VzXHJcbiAgICovXHJcbiAgY2xhc3Nlcz86IGFueTtcclxufVxyXG4vKipcclxuICogSW50ZXJmYWNlIGZvciBNZXRhZGF0YVZpZXdlckNvbXBvbmVudCdzIFwiZGF0YVwiXHJcbiAqXHJcbiAqIEBwcm9wZXJ0eSB0aXRsZSAob3B0aW9uYWwpXHJcbiAqIEBwcm9wZXJ0eSBpdGVtcyAob3B0aW9uYWwpXHJcbiAqIEBwcm9wZXJ0eSBncm91cCAob3B0aW9uYWwpXHJcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcclxuICovXHJcblxyXG5leHBvcnQgaW50ZXJmYWNlIE1ldGFkYXRhVmlld2VyQ2hpbGRHcm91cHMge1xyXG4gIC8qKlxyXG4gICAqIGNvbXBvbmVudCBoZWFkZXIgKGlmIHJvb3QpXHJcbiAgICogb3IgZ3JvdXAgdGl0bGVcclxuICAgKi9cclxuICB0aXRsZT86IHN0cmluZztcclxuICAvKipcclxuICAgKiB0aGUgbWV0YWRhdGEgaXRlbXNcclxuICAgKi9cclxuICBpdGVtcz86IE1ldGFkYXRhVmlld2VySXRlbXNbXTtcclxuICAvKipcclxuICAgKiB0aGUgQ0hJTEQgbWV0YWRhdGEgZ3JvdXBzXHJcbiAgICovXHJcbiAgZ3JvdXA/OiBNZXRhZGF0YVZpZXdlckNoaWxkR3JvdXBzW107XHJcbiAgLyoqXHJcbiAgICogYWRkaXRpb25hbCBodG1sIGNsYXNzZXNcclxuICAgKi9cclxuICBjbGFzc2VzPzogYW55O1xyXG59XHJcblxyXG4vKipcclxuICogSW50ZXJmYWNlIGZvciBNZXRhZGF0YVZpZXdlckNvbXBvbmVudCdzIFwiaXRlbXNcIlxyXG4gKiBAcHJvcGVydHkgbGFiZWwgKHJlcXVpcmVkKVxyXG4gKiBAcHJvcGVydHkgdmFsdWUgKHJlcXVpcmVkKVxyXG4gKi9cclxuZXhwb3J0IGludGVyZmFjZSBNZXRhZGF0YVZpZXdlckl0ZW1zIHtcclxuICAvKipcclxuICAgKiB0aGUgaXRlbSdzIGxhYmVsXHJcbiAgICovXHJcbiAgbGFiZWw6IHN0cmluZztcclxuICAvKipcclxuICAgKiB0aGUgdmFsdWUgZm9yIEBwcm9wZXJ0eSBsYWJlbFxyXG4gICAqL1xyXG4gIHZhbHVlOiBzdHJpbmc7XHJcbn1cclxuXHJcbkBDb21wb25lbnQoe1xyXG4gIHNlbGVjdG9yOiAnbjctbWV0YWRhdGEtdmlld2VyJyxcclxuICB0ZW1wbGF0ZVVybDogJy4vbWV0YWRhdGEtdmlld2VyLmh0bWwnXHJcbn0pXHJcbmV4cG9ydCBjbGFzcyBNZXRhZGF0YVZpZXdlckNvbXBvbmVudCB7XHJcbiAgQElucHV0KCkgZGF0YTogTWV0YWRhdGFWaWV3ZXJEYXRhO1xyXG5cclxuICBASW5wdXQoKSBlbWl0OiBhbnk7XHJcbn1cclxuIl19

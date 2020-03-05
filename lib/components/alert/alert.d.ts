@@ -1,15 +1,15 @@
 /**
-* Interface for TagComponent's "data"
-*
-* @property body (required)
-* @property icon (optional)
-* @property classes (optional)
-* @property payload (optional)
-* @property _meta (optional)
-* @property hasCloseButton (optional)
-*
-*/
-export interface IAlertData {
+ * Interface for TagComponent's "data"
+ *
+ * @property body (required)
+ * @property icon (optional)
+ * @property classes (optional)
+ * @property payload (optional)
+ * @property _meta (optional)
+ * @property hasCloseButton (optional)
+ *
+ */
+export interface AlertData {
     /**
      * the alert's body/message which can include html tags
     */
@@ -37,7 +37,7 @@ export interface IAlertData {
     hasCloseButton?: boolean;
 }
 export declare class AlertComponent {
-    data: IAlertData;
+    data: AlertData;
     emit: any;
     onClick(payload: any): void;
 }

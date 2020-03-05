@@ -1,4 +1,4 @@
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for a single BreadcrumbsComponent's "Item"
  *
@@ -8,12 +8,12 @@ import { IAnchor } from '../../shared-interfaces';
  * @property _meta (optional)
  *
  */
-export interface IBreadcrumbsItem {
+export interface BreadcrumbsItem {
     /**
      * item's label
      */
     label: string;
-    anchor: IAnchor;
+    anchor: Anchor;
     /**
      * additional html classes
      */
@@ -30,18 +30,18 @@ export interface IBreadcrumbsItem {
  * @property classes (optional)
  *
  */
-export interface IBreadcrumbsData {
+export interface BreadcrumbsData {
     /**
      * each item renders a breadcrumb level
      */
-    items: IBreadcrumbsItem[];
+    items: BreadcrumbsItem[];
     /**
      * additional html classes
      */
     classes?: any;
 }
 export declare class BreadcrumbsComponent {
-    data: IBreadcrumbsData;
+    data: BreadcrumbsData;
     emit: any;
     onClick(payload: any): void;
 }

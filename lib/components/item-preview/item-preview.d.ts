@@ -1,4 +1,4 @@
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for ItemPreviewComponent's "data"
  *
@@ -9,7 +9,7 @@ import { IAnchor } from '../../shared-interfaces';
  * @property metadata (optional)
  * @property classes (optional)
  */
-export interface IItemPreviewData {
+export interface ItemPreviewData {
     /**
     * image of the preview
     */
@@ -22,11 +22,11 @@ export interface IItemPreviewData {
     * text of the item
     */
     text?: string;
-    anchor?: IAnchor;
+    anchor?: Anchor;
     /**
     * list of the data in the metadata
     */
-    metadata?: IMetadataGroup[];
+    metadata?: MetadataGroup[];
     /**
      * additional html classes
      */
@@ -39,7 +39,7 @@ export interface IItemPreviewData {
  * @property classes (optional)
  * @property items (optional)
  */
-export interface IMetadataGroup {
+export interface MetadataGroup {
     /**
      * title of metadata group
      */
@@ -51,7 +51,7 @@ export interface IMetadataGroup {
     /**
      * array of metadata items
      */
-    items?: IMetadataData[];
+    items?: MetadataData[];
 }
 /**
  * Interface for a list of metadata
@@ -61,7 +61,7 @@ export interface IMetadataGroup {
  * @property classes (optional)
  * @property icon (optional)
  */
-export interface IMetadataData {
+export interface MetadataData {
     /**
      * label of a single property of the metadata
      */
@@ -80,7 +80,7 @@ export interface IMetadataData {
     icon?: string;
 }
 export declare class ItemPreviewComponent {
-    data: IItemPreviewData;
+    data: ItemPreviewData;
     emit: any;
     onClick(payload: any): void;
 }

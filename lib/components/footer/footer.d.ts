@@ -1,4 +1,4 @@
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for each link in footer menus
  *
@@ -9,7 +9,7 @@ import { IAnchor } from '../../shared-interfaces';
  * @property _meta (optional)
  *
  */
-export interface IFooterLink {
+export interface FooterLink {
     /**
      * image url
      */
@@ -18,7 +18,7 @@ export interface IFooterLink {
      * additional html classes
      */
     classes?: any;
-    anchor: IAnchor;
+    anchor: Anchor;
     /**
      * additional info useful for the component's logic
      */
@@ -35,7 +35,7 @@ export interface IFooterLink {
  * @property _meta (optional)
  *
  */
-export interface IFooterImage {
+export interface FooterImage {
     /**
      * image url
      */
@@ -48,7 +48,7 @@ export interface IFooterImage {
      * additional html classes
      */
     classes?: any;
-    anchor: IAnchor;
+    anchor: Anchor;
     /**
      * additional info useful for the component's logic
      */
@@ -65,7 +65,7 @@ export interface IFooterImage {
  * @property _meta (optional)
  *
  */
-export interface IFooterColumn {
+export interface FooterColumn {
     /**
      * column's title
      */
@@ -73,7 +73,7 @@ export interface IFooterColumn {
     /**
      * column's images
      */
-    images?: IFooterImage[];
+    images?: FooterImage[];
     /**
      * column's text
      */
@@ -81,7 +81,7 @@ export interface IFooterColumn {
     /**
      * column's nav
      */
-    links?: IFooterLink[];
+    links?: FooterLink[];
     /**
      * additional html classes
      */
@@ -98,18 +98,18 @@ export interface IFooterColumn {
  * @property classes (optional)
  *
  */
-export interface IFooterData {
+export interface FooterData {
     /**
      * each item renders a column of the footer
      */
-    columns: IFooterColumn[];
+    columns: FooterColumn[];
     /**
      * additional html classes
      */
     classes?: any;
 }
 export declare class FooterComponent {
-    data: IFooterData;
+    data: FooterData;
     emit: any;
     onClick(payload: any): void;
 }

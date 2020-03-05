@@ -6,7 +6,7 @@
  * @property payload (optional)
  * @property _meta (optional)
  */
-export interface IDatePickerData {
+export interface DatePickerData {
     /**
      * datepicker id
      */
@@ -33,7 +33,7 @@ export interface IDatePickerData {
     getInstance?: any;
 }
 export declare class DatepickerComponent {
-    data: IDatePickerData;
+    data: DatePickerData;
     emit: any;
     private _loaded;
     ngAfterContentChecked(): void;

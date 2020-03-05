@@ -7,7 +7,7 @@
  * @property payload (optional)
  * @property _meta (optional)
  */
-export interface ICell {
+export interface Cell {
     content: any;
     /**
      * content type
@@ -34,8 +34,8 @@ export interface ICell {
  * @property payload (optional)
  * @property _meta (optional)
  */
-export interface IRow {
-    cells: ICell[];
+export interface Row {
+    cells: Cell[];
     /**
      * additional html classes
      */
@@ -55,19 +55,19 @@ export interface IRow {
  * @property payload (optional)
  * @property _meta (optional)
  */
-export interface ITableData {
+export interface TableData {
     /**
      * table's head
      */
-    head?: IRow[];
+    head?: Row[];
     /**
      * table's body (the table its self)
      */
-    body: IRow[];
+    body: Row[];
     /**
      * table's foot
      */
-    foot?: IRow[];
+    foot?: Row[];
     /**
      * additional html classes
      */
@@ -78,9 +78,9 @@ export interface ITableData {
     _meta?: any;
 }
 export declare class TableComponent {
-    data: ITableData;
+    data: TableData;
     emit: any;
-    onCellClick(cell_payload: any): void;
-    onCellDblClick(cell_payload: any): void;
-    onInputTextChange(cell_payload: any, cell_value: string): void;
+    onCellClick(cellPayload: any): void;
+    onCellDblClick(cellPayload: any): void;
+    onInputTextChange(cellPayload: any, cellValue: string): void;
 }

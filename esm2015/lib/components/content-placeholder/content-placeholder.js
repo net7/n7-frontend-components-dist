@@ -14,37 +14,37 @@ import { Component, Input } from '@angular/core';
  * \@property _meta (optional)
  * @record
  */
-export function IContentPlaceholderData() { }
+export function ContentPlaceholderData() { }
 if (false) {
     /**
      * array of html classes
      * @type {?}
      */
-    IContentPlaceholderData.prototype.blocks;
+    ContentPlaceholderData.prototype.blocks;
     /**
      * additional info
      * @type {?|undefined}
      */
-    IContentPlaceholderData.prototype._meta;
+    ContentPlaceholderData.prototype._meta;
 }
 /**
  * @record
  */
-function IBlocksData() { }
+function BlocksData() { }
 if (false) {
     /** @type {?|undefined} */
-    IBlocksData.prototype.classes;
+    BlocksData.prototype.classes;
     /** @type {?|undefined} */
-    IBlocksData.prototype.image;
+    BlocksData.prototype.image;
     /** @type {?|undefined} */
-    IBlocksData.prototype.alt;
+    BlocksData.prototype.alt;
 }
 export class ContentPlaceholderComponent {
 }
 ContentPlaceholderComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-content-placeholder',
-                template: "<div *ngIf=\"data\" class=\"n7-content-placeholder\">\n  <ng-container *ngFor=\"let b of data.blocks\">\n    <div *ngIf=\"!b.image\" class=\"n7-content-placeholder__item {{b.classes || ''}}\"></div>\n    <img *ngIf=\"b.image\" class=\"n7-content-placeholder__image {{b.classes || ''}}\" src=\"{{b.image}}\" alt=\"{{ b.alt || '' }}\">\n  </ng-container>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-content-placeholder\">\r\n  <ng-container *ngFor=\"let b of data.blocks\">\r\n    <div *ngIf=\"!b.image\" class=\"n7-content-placeholder__item {{b.classes || ''}}\"></div>\r\n    <img *ngIf=\"b.image\" class=\"n7-content-placeholder__image {{b.classes || ''}}\" src=\"{{b.image}}\" alt=\"{{ b.alt || '' }}\">\r\n  </ng-container>\r\n</div>"
             }] }
 ];
 ContentPlaceholderComponent.propDecorators = {
@@ -54,4 +54,4 @@ if (false) {
     /** @type {?} */
     ContentPlaceholderComponent.prototype.data;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29udGVudC1wbGFjZWhvbGRlci5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BuNy1mcm9udGVuZC9jb21wb25lbnRzLyIsInNvdXJjZXMiOlsibGliL2NvbXBvbmVudHMvY29udGVudC1wbGFjZWhvbGRlci9jb250ZW50LXBsYWNlaG9sZGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7O0FBUWpELDZDQVNDOzs7Ozs7SUFMQyx5Q0FBcUI7Ozs7O0lBSXJCLHdDQUFZOzs7OztBQUdkLDBCQUlDOzs7SUFIQyw4QkFBaUI7O0lBQ2pCLDRCQUFlOztJQUNmLDBCQUFhOztBQU9mLE1BQU0sT0FBTywyQkFBMkI7OztZQUp2QyxTQUFTLFNBQUM7Z0JBQ1QsUUFBUSxFQUFFLHdCQUF3QjtnQkFDbEMsb1hBQXlDO2FBQzFDOzs7bUJBRUUsS0FBSzs7OztJQUFOLDJDQUF1QyIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4vLyBDT05URU5ULVBMQUNFSE9MREVSLnRzXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciBDb250ZW50UGxhY2Vob2xkZXJDb21wb25lbnQncyBcImRhdGFcIlxuICpcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBfbWV0YSAob3B0aW9uYWwpXG4gKi9cbmV4cG9ydCBpbnRlcmZhY2UgSUNvbnRlbnRQbGFjZWhvbGRlckRhdGEge1xuICAvKipcbiAgICogYXJyYXkgb2YgaHRtbCBjbGFzc2VzXG4gICAqL1xuICBibG9ja3M6IElCbG9ja3NEYXRhW11cbiAgLyoqXG4gICAqIGFkZGl0aW9uYWwgaW5mb1xuICAgKi9cbiAgX21ldGE/OiBhbnk7XG59XG5cbmludGVyZmFjZSBJQmxvY2tzRGF0YSB7XG4gIGNsYXNzZXM/OiBzdHJpbmc7XG4gIGltYWdlPzogc3RyaW5nO1xuICBhbHQ/OiBzdHJpbmc7XG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LWNvbnRlbnQtcGxhY2Vob2xkZXInLFxuICB0ZW1wbGF0ZVVybDogJy4vY29udGVudC1wbGFjZWhvbGRlci5odG1sJ1xufSlcbmV4cG9ydCBjbGFzcyBDb250ZW50UGxhY2Vob2xkZXJDb21wb25lbnQge1xuICBASW5wdXQoKSBkYXRhOiBJQ29udGVudFBsYWNlaG9sZGVyRGF0YTtcbn0iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29udGVudC1wbGFjZWhvbGRlci5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BuNy1mcm9udGVuZC9jb21wb25lbnRzLyIsInNvdXJjZXMiOlsibGliL2NvbXBvbmVudHMvY29udGVudC1wbGFjZWhvbGRlci9jb250ZW50LXBsYWNlaG9sZGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7O0FBUWpELDRDQVNDOzs7Ozs7SUFMQyx3Q0FBcUI7Ozs7O0lBSXJCLHVDQUFZOzs7OztBQUdkLHlCQUlDOzs7SUFIQyw2QkFBaUI7O0lBQ2pCLDJCQUFlOztJQUNmLHlCQUFhOztBQU9mLE1BQU0sT0FBTywyQkFBMkI7OztZQUp2QyxTQUFTLFNBQUM7Z0JBQ1QsUUFBUSxFQUFFLHdCQUF3QjtnQkFDbEMsOFhBQXlDO2FBQzFDOzs7bUJBRUUsS0FBSzs7OztJQUFOLDJDQUFzQyIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcbi8vIENPTlRFTlQtUExBQ0VIT0xERVIudHNcclxuLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuXHJcbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuXHJcbi8qKlxyXG4gKiBJbnRlcmZhY2UgZm9yIENvbnRlbnRQbGFjZWhvbGRlckNvbXBvbmVudCdzIFwiZGF0YVwiXHJcbiAqXHJcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcclxuICogQHByb3BlcnR5IF9tZXRhIChvcHRpb25hbClcclxuICovXHJcbmV4cG9ydCBpbnRlcmZhY2UgQ29udGVudFBsYWNlaG9sZGVyRGF0YSB7XHJcbiAgLyoqXHJcbiAgICogYXJyYXkgb2YgaHRtbCBjbGFzc2VzXHJcbiAgICovXHJcbiAgYmxvY2tzOiBCbG9ja3NEYXRhW107XHJcbiAgLyoqXHJcbiAgICogYWRkaXRpb25hbCBpbmZvXHJcbiAgICovXHJcbiAgX21ldGE/OiBhbnk7XHJcbn1cclxuXHJcbmludGVyZmFjZSBCbG9ja3NEYXRhIHtcclxuICBjbGFzc2VzPzogc3RyaW5nO1xyXG4gIGltYWdlPzogc3RyaW5nO1xyXG4gIGFsdD86IHN0cmluZztcclxufVxyXG5cclxuQENvbXBvbmVudCh7XHJcbiAgc2VsZWN0b3I6ICduNy1jb250ZW50LXBsYWNlaG9sZGVyJyxcclxuICB0ZW1wbGF0ZVVybDogJy4vY29udGVudC1wbGFjZWhvbGRlci5odG1sJ1xyXG59KVxyXG5leHBvcnQgY2xhc3MgQ29udGVudFBsYWNlaG9sZGVyQ29tcG9uZW50IHtcclxuICBASW5wdXQoKSBkYXRhOiBDb250ZW50UGxhY2Vob2xkZXJEYXRhO1xyXG59XHJcbiJdfQ==

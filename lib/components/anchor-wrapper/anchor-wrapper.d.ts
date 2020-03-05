@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 export declare class AnchorWrapperComponent {
-    data: IAnchor;
+    data: Anchor;
     classes: string;
     clicked: EventEmitter<any>;
     isExternal(href: any): boolean;

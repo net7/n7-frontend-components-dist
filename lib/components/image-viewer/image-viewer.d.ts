@@ -5,14 +5,16 @@
  * view the official openseadragon documentation https://openseadragon.github.io/
  * All available options here: https://openseadragon.github.io/docs/OpenSeadragon.html
  *
- * @property  type (required) Admitted values 'image' | 'zoomifytileservice' | 'openstreetmaps' | 'tiledmapservice' | 'legacy-image-pyramid'
+ * @property  type (required)
+ * Admitted values:
+ * 'image' | 'zoomifytileservice' | 'openstreetmaps' | 'tiledmapservice' | 'legacy-image-pyramid'
  * @property  height (optional) image height
  * @property  width (optional) image width
  * @property  url (required) image url
  * @property  buildPyramid (optional)
  * @property  crossOriginPolicy (optional) Admitted values 'Anonymous' | 'use-credentials' | false;
  */
-export interface IImageData {
+export interface ImageData {
     type: 'image' | 'zoomifytileservice' | 'openstreetmaps' | 'tiledmapservice' | 'legacy-image-pyramid';
     height?: number;
     width?: number;
@@ -25,7 +27,7 @@ export interface IImageData {
  *
  * @property  url (required) image url
  */
-export interface IThumbsData {
+export interface ThumbsData {
     url: string;
     /**
      * action click's payload
@@ -36,7 +38,8 @@ export interface IThumbsData {
 /**
  * Interface for ImageViewerComponent's "data"
  *
- * @property prefixUrl (optional) Prepends the prefixUrl to navImages paths. Default is //openseadragon.github.io/openseadragon/images/
+ * @property prefixUrl (optional) Prepends the prefixUrl to navImages paths.
+ * Default is //openseadragon.github.io/openseadragon/images/
  * @property classes (optional)
  * @property viewerWidth (optional)
  * @property viewerHeight (optional)
@@ -44,13 +47,13 @@ export interface IThumbsData {
  * @property viewerId (required) The id to assign to the imageviewer container
  * @property libOptions (required)
  */
-export interface IImageViewerData {
+export interface ImageViewerData {
     prefixUrl?: string;
     classes?: string;
     viewerWidth?: number;
     viewerHeight?: number;
-    images: IImageData[] | string;
-    thumbs?: IThumbsData[] | string;
+    images: ImageData[] | string;
+    thumbs?: ThumbsData[] | string;
     viewerId: string;
     libOptions: any;
     _setViewer: any;
@@ -60,7 +63,7 @@ export interface IImageViewerData {
  *
  */
 export declare class ImageViewerComponent {
-    data: IImageViewerData;
+    data: ImageViewerData;
     emit: any;
     private _loaded;
     ngAfterContentChecked(): void;

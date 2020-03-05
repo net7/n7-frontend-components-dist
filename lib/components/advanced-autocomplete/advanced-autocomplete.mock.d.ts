@@ -1,2 +1,2 @@
-import { IAdvancedAutocompleteData } from './advanced-autocomplete';
-export declare const ADVANCED_AUTOCOMPLETE_MOCK: IAdvancedAutocompleteData;
+import { AdvancedAutocompleteData } from './advanced-autocomplete';
+export declare const ADVANCED_AUTOCOMPLETE_MOCK: AdvancedAutocompleteData;

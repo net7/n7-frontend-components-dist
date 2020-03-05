@@ -1,4 +1,4 @@
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for a single navbar item
  *
@@ -7,7 +7,7 @@ import { IAnchor } from '../../shared-interfaces';
  * @property link (optional)
  * @property _meta (optional)
  */
-export interface INavItem {
+export interface NavItem {
     /**
      * text of a single item of the navbar (text and payload are connected)
      */
@@ -16,7 +16,7 @@ export interface INavItem {
      * additional html classes
      */
     classes?: string;
-    anchor?: IAnchor;
+    anchor?: Anchor;
     /**
      * additional info
      */
@@ -30,11 +30,11 @@ export interface INavItem {
  * @property payload (optional)
  * @property _meta (optional)
  */
-export interface INavData {
+export interface NavData {
     /**
      * list of the items in the navbar
      */
-    items: INavItem[];
+    items: NavItem[];
     /**
      * additional html classes
      */
@@ -49,7 +49,7 @@ export interface INavData {
     _meta?: any;
 }
 export declare class NavComponent {
-    data: INavData;
+    data: NavData;
     emit: any;
     onClick(payload: any): void;
 }

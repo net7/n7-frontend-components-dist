@@ -3,7 +3,7 @@
  *
  * @property NAME (required|options) <--- TODO: update with interface properties
  */
-export interface IInnerTitleData {
+export interface InnerTitleData {
     icon?: string;
     image?: string;
     title: {
@@ -20,7 +20,7 @@ export interface IInnerTitleData {
     actions?: {
         select?: {
             label?: string;
-            options: IInnerTitleOptions[];
+            options: InnerTitleOptions[];
             payload?: any;
         };
         search?: {
@@ -32,22 +32,22 @@ export interface IInnerTitleData {
             };
             _meta?: any;
         };
-        buttons?: IInnerTitleButtons[];
+        buttons?: InnerTitleButtons[];
     };
 }
-export interface IInnerTitleOptions {
+export interface InnerTitleOptions {
     text: string;
     value: string;
     disable: boolean;
 }
-export interface IInnerTitleButtons {
+export interface InnerTitleButtons {
     text: string;
     payload: any;
     classes?: any;
     icon?: any;
 }
 export declare class InnerTitleComponent {
-    data: IInnerTitleData;
+    data: InnerTitleData;
     emit: any;
     onClick(payload: any): void;
     onChange(payload: any, value: any): void;

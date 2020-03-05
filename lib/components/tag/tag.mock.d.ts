@@ -1,2 +1,2 @@
-import { ITagData } from './tag';
-export declare const TAG_MOCK: ITagData;
+import { TagData } from './tag';
+export declare const TAG_MOCK: TagData;

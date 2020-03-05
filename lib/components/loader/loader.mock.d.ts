@@ -1,2 +1,2 @@
-import { ILoaderData } from './loader';
-export declare const LOADER_MOCK: ILoaderData;
+import { LoaderData } from './loader';
+export declare const LOADER_MOCK: LoaderData;

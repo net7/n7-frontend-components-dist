@@ -4,7 +4,7 @@
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface ILoaderData {
+export interface LoaderData {
     /**
      * additional html classes
      */
@@ -15,5 +15,5 @@ export interface ILoaderData {
     _meta?: any;
 }
 export declare class LoaderComponent {
-    data: ILoaderData;
+    data: LoaderData;
 }

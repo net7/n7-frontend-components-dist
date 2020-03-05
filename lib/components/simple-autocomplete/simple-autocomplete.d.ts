@@ -1,4 +1,4 @@
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for SimpleAutocompleteComponent's "data"
  *
@@ -6,11 +6,11 @@ import { IAnchor } from '../../shared-interfaces';
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface ISimpleAutocompleteData {
+export interface SimpleAutocompleteData {
     /**
      * Suggested word endings
      */
-    suggestion: ISimpleAutocompleteSuggestion[];
+    suggestion: SimpleAutocompleteSuggestion[];
     /**
      * Additional HTML classes
      */
@@ -26,12 +26,12 @@ export interface ISimpleAutocompleteData {
  * @property text
  * @property anchor (optional)
  */
-export interface ISimpleAutocompleteSuggestion {
+export interface SimpleAutocompleteSuggestion {
     text: string;
-    anchor?: IAnchor;
+    anchor?: Anchor;
 }
 export declare class SimpleAutocompleteComponent {
-    data: ISimpleAutocompleteData;
+    data: SimpleAutocompleteData;
     emit: any;
     onClick(payload: any): void;
 }

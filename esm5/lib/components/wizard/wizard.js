@@ -18,33 +18,33 @@ import { Component, Input } from '@angular/core';
  *
  * @record
  */
-export function IWizardItem() { }
+export function WizardItem() { }
 if (false) {
     /**
      *  text rendered on the step
      * @type {?|undefined}
      */
-    IWizardItem.prototype.text;
+    WizardItem.prototype.text;
     /**
      * number rendered on the step
      * @type {?|undefined}
      */
-    IWizardItem.prototype.number;
+    WizardItem.prototype.number;
     /**
      * action click's payload
      * @type {?}
      */
-    IWizardItem.prototype.payload;
+    WizardItem.prototype.payload;
     /**
      * additional html classes
      * @type {?|undefined}
      */
-    IWizardItem.prototype.classes;
+    WizardItem.prototype.classes;
     /**
      * additional info useful for the component's logic
      * @type {?|undefined}
      */
-    IWizardItem.prototype._meta;
+    WizardItem.prototype._meta;
 }
 /**
  * Interface for WizardComponent's "data"
@@ -54,18 +54,18 @@ if (false) {
  *
  * @record
  */
-export function IWizardData() { }
+export function WizardData() { }
 if (false) {
     /**
      * each item represents a step
      * @type {?}
      */
-    IWizardData.prototype.items;
+    WizardData.prototype.items;
     /**
      * additional html classes
      * @type {?|undefined}
      */
-    IWizardData.prototype.classes;
+    WizardData.prototype.classes;
 }
 var WizardComponent = /** @class */ (function () {
     function WizardComponent() {
@@ -86,7 +86,7 @@ var WizardComponent = /** @class */ (function () {
     WizardComponent.decorators = [
         { type: Component, args: [{
                     selector: 'n7-wizard',
-                    template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\n  <ol class=\"n7-wizard__list\">\n      <li *ngFor=\"let item of data.items\" \n          class=\"n7-wizard__item {{ item.classes || '' }}\" \n          (click)=\"onClick(item.payload)\">\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\n      </li>\n  </ol>\n</div>"
+                    template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\r\n  <ol class=\"n7-wizard__list\">\r\n      <li *ngFor=\"let item of data.items\" \r\n          class=\"n7-wizard__item {{ item.classes || '' }}\" \r\n          (click)=\"onClick(item.payload)\">\r\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\r\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\r\n      </li>\r\n  </ol>\r\n</div>"
                 }] }
     ];
     WizardComponent.propDecorators = {
@@ -102,4 +102,4 @@ if (false) {
     /** @type {?} */
     WizardComponent.prototype.emit;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2l6YXJkLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy93aXphcmQvd2l6YXJkLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7Ozs7OztBQVlqRCxpQ0FxQkM7Ozs7OztJQWpCQywyQkFBYzs7Ozs7SUFJZCw2QkFBZ0I7Ozs7O0lBSWhCLDhCQUFhOzs7OztJQUliLDhCQUFjOzs7OztJQUlkLDRCQUFZOzs7Ozs7Ozs7O0FBVWQsaUNBU0M7Ozs7OztJQUxDLDRCQUFxQjs7Ozs7SUFJckIsOEJBQWM7O0FBR2hCO0lBQUE7SUFZQSxDQUFDOzs7OztJQUpDLGlDQUFPOzs7O0lBQVAsVUFBUSxPQUFPO1FBQ2IsSUFBRyxDQUFDLElBQUksQ0FBQyxJQUFJO1lBQUUsT0FBTztRQUN0QixJQUFJLENBQUMsSUFBSSxDQUFDLE9BQU8sRUFBRSxPQUFPLENBQUMsQ0FBQztJQUM5QixDQUFDOztnQkFYRixTQUFTLFNBQUM7b0JBQ1QsUUFBUSxFQUFFLFdBQVc7b0JBQ3JCLDhkQUE0QjtpQkFDN0I7Ozt1QkFFRSxLQUFLO3VCQUNMLEtBQUs7O0lBTVIsc0JBQUM7Q0FBQSxBQVpELElBWUM7U0FSWSxlQUFlOzs7SUFDMUIsK0JBQTJCOztJQUMzQiwrQkFBbUIiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuLy8gV0laQVJELnRzXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbi8qKlxuKiBJbnRlcmZhY2UgZm9yIGEgc2luZ2xlIFdpemFyZENvbXBvbmVudCdzIFwiaXRlbVwiXG4qXG4qIEBwcm9wZXJ0eSB0ZXh0IChvcHRpb25hbClcbiogQHByb3BlcnR5IG51bWJlciAob3B0aW9uYWwpXG4qIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbiogQHByb3BlcnR5IHBheWxvYWQgKHJlcXVpcmVkKVxuKiBAcHJvcGVydHkgX21ldGEgKG9wdGlvbmFsKVxuKlxuKi9cbmV4cG9ydCBpbnRlcmZhY2UgSVdpemFyZEl0ZW0ge1xuICAvKiogXG4gICogIHRleHQgcmVuZGVyZWQgb24gdGhlIHN0ZXBcbiAgKi9cbiAgdGV4dD86IHN0cmluZztcbiAgLyoqIFxuICAqIG51bWJlciByZW5kZXJlZCBvbiB0aGUgc3RlcFxuICAqL1xuICBudW1iZXI/OiBudW1iZXI7XG4gIC8qKlxuICAqIGFjdGlvbiBjbGljaydzIHBheWxvYWRcbiAgKi9cbiAgcGF5bG9hZDogYW55O1xuICAvKiogXG4gICogYWRkaXRpb25hbCBodG1sIGNsYXNzZXNcbiAgKi9cbiAgY2xhc3Nlcz86IGFueTtcbiAgLyoqXG4gICogYWRkaXRpb25hbCBpbmZvIHVzZWZ1bCBmb3IgdGhlIGNvbXBvbmVudCdzIGxvZ2ljXG4gICovXG4gIF9tZXRhPzogYW55O1xufVxuXG4vKipcbiogSW50ZXJmYWNlIGZvciBXaXphcmRDb21wb25lbnQncyBcImRhdGFcIlxuKlxuKiBAcHJvcGVydHkgaXRlbXMgKHJlcXVpcmVkKVxuKiBAcHJvcGVydHkgY2xhc3NlcyAob3B0aW9uYWwpXG4qXG4qL1xuZXhwb3J0IGludGVyZmFjZSBJV2l6YXJkRGF0YSB7XG4gIC8qKiBcbiAgKiBlYWNoIGl0ZW0gcmVwcmVzZW50cyBhIHN0ZXBcbiAgKi9cbiAgaXRlbXM6IElXaXphcmRJdGVtW107XG4gIC8qKiBcbiAgKiBhZGRpdGlvbmFsIGh0bWwgY2xhc3Nlc1xuICAqL1xuICBjbGFzc2VzPzogYW55O1xufVxuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICduNy13aXphcmQnLFxuICB0ZW1wbGF0ZVVybDogJy4vd2l6YXJkLmh0bWwnXG59KVxuZXhwb3J0IGNsYXNzIFdpemFyZENvbXBvbmVudCB7XG4gIEBJbnB1dCgpIGRhdGE6IElXaXphcmREYXRhO1xuICBASW5wdXQoKSBlbWl0OiBhbnk7XG5cbiAgb25DbGljayhwYXlsb2FkKXtcbiAgICBpZighdGhpcy5lbWl0KSByZXR1cm47XG4gICAgdGhpcy5lbWl0KCdjbGljaycsIHBheWxvYWQpO1xuICB9IFxufSJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2l6YXJkLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy93aXphcmQvd2l6YXJkLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7Ozs7OztBQVlqRCxnQ0FxQkM7Ozs7OztJQWpCQywwQkFBYzs7Ozs7SUFJZCw0QkFBZ0I7Ozs7O0lBSWhCLDZCQUFhOzs7OztJQUliLDZCQUFjOzs7OztJQUlkLDJCQUFZOzs7Ozs7Ozs7O0FBVWQsZ0NBU0M7Ozs7OztJQUxDLDJCQUFvQjs7Ozs7SUFJcEIsNkJBQWM7O0FBR2hCO0lBQUE7SUFhQSxDQUFDOzs7OztJQUpDLGlDQUFPOzs7O0lBQVAsVUFBUSxPQUFPO1FBQ2IsSUFBSSxDQUFDLElBQUksQ0FBQyxJQUFJO1lBQUUsT0FBTztRQUN2QixJQUFJLENBQUMsSUFBSSxDQUFDLE9BQU8sRUFBRSxPQUFPLENBQUMsQ0FBQztJQUM5QixDQUFDOztnQkFaRixTQUFTLFNBQUM7b0JBQ1QsUUFBUSxFQUFFLFdBQVc7b0JBQ3JCLGdmQUE0QjtpQkFDN0I7Ozt1QkFFRSxLQUFLO3VCQUVMLEtBQUs7O0lBTVIsc0JBQUM7Q0FBQSxBQWJELElBYUM7U0FUWSxlQUFlOzs7SUFDMUIsK0JBQTBCOztJQUUxQiwrQkFBbUIiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxyXG4vLyBXSVpBUkQudHNcclxuLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuXHJcbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuXHJcbi8qKlxyXG4qIEludGVyZmFjZSBmb3IgYSBzaW5nbGUgV2l6YXJkQ29tcG9uZW50J3MgXCJpdGVtXCJcclxuKlxyXG4qIEBwcm9wZXJ0eSB0ZXh0IChvcHRpb25hbClcclxuKiBAcHJvcGVydHkgbnVtYmVyIChvcHRpb25hbClcclxuKiBAcHJvcGVydHkgY2xhc3NlcyAob3B0aW9uYWwpXHJcbiogQHByb3BlcnR5IHBheWxvYWQgKHJlcXVpcmVkKVxyXG4qIEBwcm9wZXJ0eSBfbWV0YSAob3B0aW9uYWwpXHJcbipcclxuKi9cclxuZXhwb3J0IGludGVyZmFjZSBXaXphcmRJdGVtIHtcclxuICAvKipcclxuICAqICB0ZXh0IHJlbmRlcmVkIG9uIHRoZSBzdGVwXHJcbiAgKi9cclxuICB0ZXh0Pzogc3RyaW5nO1xyXG4gIC8qKlxyXG4gICogbnVtYmVyIHJlbmRlcmVkIG9uIHRoZSBzdGVwXHJcbiAgKi9cclxuICBudW1iZXI/OiBudW1iZXI7XHJcbiAgLyoqXHJcbiAgKiBhY3Rpb24gY2xpY2sncyBwYXlsb2FkXHJcbiAgKi9cclxuICBwYXlsb2FkOiBhbnk7XHJcbiAgLyoqXHJcbiAgKiBhZGRpdGlvbmFsIGh0bWwgY2xhc3Nlc1xyXG4gICovXHJcbiAgY2xhc3Nlcz86IGFueTtcclxuICAvKipcclxuICAqIGFkZGl0aW9uYWwgaW5mbyB1c2VmdWwgZm9yIHRoZSBjb21wb25lbnQncyBsb2dpY1xyXG4gICovXHJcbiAgX21ldGE/OiBhbnk7XHJcbn1cclxuXHJcbi8qKlxyXG4qIEludGVyZmFjZSBmb3IgV2l6YXJkQ29tcG9uZW50J3MgXCJkYXRhXCJcclxuKlxyXG4qIEBwcm9wZXJ0eSBpdGVtcyAocmVxdWlyZWQpXHJcbiogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxyXG4qXHJcbiovXHJcbmV4cG9ydCBpbnRlcmZhY2UgV2l6YXJkRGF0YSB7XHJcbiAgLyoqXHJcbiAgKiBlYWNoIGl0ZW0gcmVwcmVzZW50cyBhIHN0ZXBcclxuICAqL1xyXG4gIGl0ZW1zOiBXaXphcmRJdGVtW107XHJcbiAgLyoqXHJcbiAgKiBhZGRpdGlvbmFsIGh0bWwgY2xhc3Nlc1xyXG4gICovXHJcbiAgY2xhc3Nlcz86IGFueTtcclxufVxyXG5cclxuQENvbXBvbmVudCh7XHJcbiAgc2VsZWN0b3I6ICduNy13aXphcmQnLFxyXG4gIHRlbXBsYXRlVXJsOiAnLi93aXphcmQuaHRtbCdcclxufSlcclxuZXhwb3J0IGNsYXNzIFdpemFyZENvbXBvbmVudCB7XHJcbiAgQElucHV0KCkgZGF0YTogV2l6YXJkRGF0YTtcclxuXHJcbiAgQElucHV0KCkgZW1pdDogYW55O1xyXG5cclxuICBvbkNsaWNrKHBheWxvYWQpIHtcclxuICAgIGlmICghdGhpcy5lbWl0KSByZXR1cm47XHJcbiAgICB0aGlzLmVtaXQoJ2NsaWNrJywgcGF5bG9hZCk7XHJcbiAgfVxyXG59XHJcbiJdfQ==

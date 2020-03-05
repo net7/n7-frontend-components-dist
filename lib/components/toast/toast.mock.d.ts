@@ -1,2 +1,2 @@
-import { IToastData } from './toast';
-export declare const TOAST_MOCK: IToastData;
+import { ToastData } from './toast';
+export declare const TOAST_MOCK: ToastData;

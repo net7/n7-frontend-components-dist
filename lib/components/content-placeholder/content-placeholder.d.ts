@@ -4,22 +4,22 @@
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IContentPlaceholderData {
+export interface ContentPlaceholderData {
     /**
      * array of html classes
      */
-    blocks: IBlocksData[];
+    blocks: BlocksData[];
     /**
      * additional info
      */
     _meta?: any;
 }
-interface IBlocksData {
+interface BlocksData {
     classes?: string;
     image?: string;
     alt?: string;
 }
 export declare class ContentPlaceholderComponent {
-    data: IContentPlaceholderData;
+    data: ContentPlaceholderData;
 }
 export {};

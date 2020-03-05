@@ -1,2 +1,2 @@
-import { IBubbleChartData } from './bubble-chart';
-export declare const BUBBLECHART_MOCK: IBubbleChartData;
+import { BubbleChartData } from './bubble-chart';
+export declare const BUBBLECHART_MOCK: BubbleChartData;

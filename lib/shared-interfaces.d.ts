@@ -5,7 +5,7 @@
  * @property target (optional)
  * @property payload (optional)
  */
-export interface IAnchor {
+export interface Anchor {
     /**
      * href for link <a>
      */

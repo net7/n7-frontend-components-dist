@@ -1,4 +1,4 @@
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for PaginationComponent's options (page size select options)
  *
@@ -6,7 +6,7 @@ import { IAnchor } from '../../shared-interfaces';
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IOption {
+export interface Option {
     /**
      * option text value
      */
@@ -36,7 +36,7 @@ export interface IOption {
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IButton {
+export interface Button {
     /**
      * innerHTML or plain text for the label
      */
@@ -45,7 +45,7 @@ export interface IButton {
      * additional html classes
      */
     classes?: string;
-    anchor?: IAnchor;
+    anchor?: Anchor;
     /**
      * additional info
      */
@@ -63,33 +63,33 @@ export interface IButton {
  * @property payload (optional)
  * @property _meta (optional)
  */
-export interface IPaginationData {
+export interface PaginationData {
     /**
      * innerHtml for the "first" label
      */
-    first?: IButton;
+    first?: Button;
     /**
      * innerHtml for the "prev" label
      */
-    prev?: IButton;
+    prev?: Button;
     /**
      * innerHtml for the "next" label
      */
-    next?: IButton;
+    next?: Button;
     /**
      * innerHtml for the "last" label
      */
-    last?: IButton;
+    last?: Button;
     /**
      * array of "pages" label (as text)
      */
-    links: IButton[];
+    links: Button[];
     /**
      * page size select
      */
     select?: {
         label?: string;
-        options?: IOption[];
+        options?: Option[];
         payload?: string;
         disabled?: boolean;
     };
@@ -107,7 +107,7 @@ export interface IPaginationData {
     _meta?: any;
 }
 export declare class PaginationComponent {
-    data: IPaginationData;
+    data: PaginationData;
     emit: any;
     onClick(payload: any): void;
     onChange(payload: any, value: any): void;

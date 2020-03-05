@@ -4,8 +4,8 @@
  * @property sections (required)
  * @property classes (optional)
  */
-export interface IFacetData {
-    sections: IFacetSection[];
+export interface FacetData {
+    sections: FacetSection[];
     classes?: string;
 }
 /**
@@ -15,8 +15,8 @@ export interface IFacetData {
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IFacetSection {
-    inputs: Array<IFacetInputCheckbox | IFacetInputLink | IFacetInputText | IFacetInputSelect>;
+export interface FacetSection {
+    inputs: Array<FacetInputCheckbox | FacetInputLink | FacetInputText | FacetInputSelect>;
     classes?: string;
     _meta?: any;
 }
@@ -36,7 +36,7 @@ export interface IFacetSection {
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IFacetInputText {
+export interface FacetInputText {
     type: 'text';
     id: string;
     placeholder?: string;
@@ -63,7 +63,7 @@ export interface IFacetInputText {
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IFacetInputSelect {
+export interface FacetInputSelect {
     type: 'select';
     id: string;
     options: Array<{
@@ -90,7 +90,7 @@ export interface IFacetInputSelect {
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IFacetInputCheckbox {
+export interface FacetInputCheckbox {
     type: 'checkbox';
     id: string;
     label: string;
@@ -110,7 +110,7 @@ export interface IFacetInputCheckbox {
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface IFacetInputLink {
+export interface FacetInputLink {
     type: 'link';
     text: string;
     icon?: string;
@@ -120,7 +120,7 @@ export interface IFacetInputLink {
     _meta?: any;
 }
 export declare class FacetComponent {
-    data: IFacetData;
+    data: FacetData;
     emit: any;
     onChange(inputPayload: any, value?: any): void;
 }

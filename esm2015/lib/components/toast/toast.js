@@ -14,12 +14,12 @@ import { Component, Input } from '@angular/core';
  * \@property classes (optional)
  * @record
  */
-export function IToastData() { }
+export function ToastData() { }
 if (false) {
     /** @type {?} */
-    IToastData.prototype.toasts;
+    ToastData.prototype.toasts;
     /** @type {?|undefined} */
-    IToastData.prototype.classes;
+    ToastData.prototype.classes;
 }
 /**
  * Interface for the single ToastComponent's "Box"
@@ -34,23 +34,23 @@ if (false) {
  * \@property actions (optional)
  * @record
  */
-export function IToastBox() { }
+export function ToastBox() { }
 if (false) {
     /**
      * requires: [is-success, is-warning, is-error] + optional additional html classes
      * @type {?}
      */
-    IToastBox.prototype.classes;
+    ToastBox.prototype.classes;
     /**
      * larger, title text
      * @type {?|undefined}
      */
-    IToastBox.prototype.title;
+    ToastBox.prototype.title;
     /**
      * the toast's body text
      * @type {?|undefined}
      */
-    IToastBox.prototype.text;
+    ToastBox.prototype.text;
     /**
      * 'X' icon, to dismiss/close the toast
      * ( n7-icon-cross )
@@ -58,18 +58,18 @@ if (false) {
      *  Each icon requires it's onClick payload
      * @type {?|undefined}
      */
-    IToastBox.prototype.closeIcon;
+    ToastBox.prototype.closeIcon;
     /**
      * the toast's optional buttons
      * suggestion: don't use more than 2 actions
      * @type {?|undefined}
      */
-    IToastBox.prototype.actions;
+    ToastBox.prototype.actions;
     /**
      * additional info
      * @type {?|undefined}
      */
-    IToastBox.prototype._meta;
+    ToastBox.prototype._meta;
 }
 /**
  * Interface for the single ToastComponent's "Action"
@@ -79,23 +79,23 @@ if (false) {
  * \@property classes (optional)
  * @record
  */
-export function IToastAction() { }
+export function ToastAction() { }
 if (false) {
     /**
      * the button's rendered text
      * @type {?}
      */
-    IToastAction.prototype.text;
+    ToastAction.prototype.text;
     /**
      * the button's onClick payload
      * @type {?}
      */
-    IToastAction.prototype.payload;
+    ToastAction.prototype.payload;
     /**
      * additional html classes
      * @type {?|undefined}
      */
-    IToastAction.prototype.classes;
+    ToastAction.prototype.classes;
 }
 export class ToastComponent {
     /**
@@ -111,7 +111,7 @@ export class ToastComponent {
 ToastComponent.decorators = [
     { type: Component, args: [{
                 selector: 'n7-toast',
-                template: "<div *ngIf=\"data\" class=\"n7-toast\">\n    <div class=\"n7-toast__column {{data.classes || ''}}\">\n\n        <!-- Toast boxes -->\n        <div class=\"n7-toast__box\" \n             *ngFor=\"let box of data.toasts\"\n             [ngClass]=\"{ 'has-actions' : !! (box.actions || box.closeIcon) }\">\n        \n            <!-- Toast text -->\n            <div class=\"n7-toast__content {{box.classes || ''}}\" *ngIf=\"box.title || box.text\">\n                <span class=\"n7-toast__title\" *ngIf=\"box.title\">{{ box.title }}</span>\n                <span class=\"n7-toast__text\" *ngIf=\"box.text\">{{ box.text }}</span>\n            </div>\n\n            <!-- Toast actions -->\n            <div class=\"n7-toast__actions\" *ngIf=\"box.actions || box.closeIcon\">\n                <span\n                class=\"n7-toast__closeIcon {{ box.closeIcon.icon }}\" \n                *ngIf=\"box.closeIcon\" \n                (click)=\"onClick(box.closeIcon.payload)\">\n                </span>\n                <span class=\"n7-toast__action-wrapper\" *ngIf=\"box.actions\">\n                    <span class=\"n7-toast__action-content\" *ngFor=\"let action of box.actions\">\n                        <button class=\"n7-toast__action-button n7-btn n7-btn-s {{action.classes || ''}}\"\n                                (click)=\"onClick(action.payload)\">\n                                {{action.text}}\n                        </button>\n                    </span>\n                </span>\n            </div>\n        </div>\n    </div>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-toast\">\r\n    <div class=\"n7-toast__column {{data.classes || ''}}\">\r\n\r\n        <!-- Toast boxes -->\r\n        <div class=\"n7-toast__box\" \r\n             *ngFor=\"let box of data.toasts\"\r\n             [ngClass]=\"{ 'has-actions' : !! (box.actions || box.closeIcon) }\">\r\n        \r\n            <!-- Toast text -->\r\n            <div class=\"n7-toast__content {{box.classes || ''}}\" *ngIf=\"box.title || box.text\">\r\n                <span class=\"n7-toast__title\" *ngIf=\"box.title\">{{ box.title }}</span>\r\n                <span class=\"n7-toast__text\" *ngIf=\"box.text\">{{ box.text }}</span>\r\n            </div>\r\n\r\n            <!-- Toast actions -->\r\n            <div class=\"n7-toast__actions\" *ngIf=\"box.actions || box.closeIcon\">\r\n                <span\r\n                class=\"n7-toast__closeIcon {{ box.closeIcon.icon }}\" \r\n                *ngIf=\"box.closeIcon\" \r\n                (click)=\"onClick(box.closeIcon.payload)\">\r\n                </span>\r\n                <span class=\"n7-toast__action-wrapper\" *ngIf=\"box.actions\">\r\n                    <span class=\"n7-toast__action-content\" *ngFor=\"let action of box.actions\">\r\n                        <button class=\"n7-toast__action-button n7-btn n7-btn-s {{action.classes || ''}}\"\r\n                                (click)=\"onClick(action.payload)\">\r\n                                {{action.text}}\r\n                        </button>\r\n                    </span>\r\n                </span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
             }] }
 ];
 ToastComponent.propDecorators = {
@@ -124,4 +124,4 @@ if (false) {
     /** @type {?} */
     ToastComponent.prototype.emit;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidG9hc3QuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AbjctZnJvbnRlbmQvY29tcG9uZW50cy8iLCJzb3VyY2VzIjpbImxpYi9jb21wb25lbnRzL3RvYXN0L3RvYXN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7O0FBU2pELGdDQUdDOzs7SUFGQyw0QkFBb0I7O0lBQ3BCLDZCQUFpQjs7Ozs7Ozs7Ozs7Ozs7O0FBZ0JuQiwrQkFnQ0M7Ozs7OztJQTVCQyw0QkFBZ0I7Ozs7O0lBSWhCLDBCQUFlOzs7OztJQUlmLHlCQUFjOzs7Ozs7OztJQU9kLDhCQUdFOzs7Ozs7SUFLRiw0QkFBeUI7Ozs7O0lBSXpCLDBCQUFZOzs7Ozs7Ozs7O0FBV2Qsa0NBYUM7Ozs7OztJQVRDLDRCQUFhOzs7OztJQUliLCtCQUFhOzs7OztJQUliLCtCQUFpQjs7QUFPbkIsTUFBTSxPQUFPLGNBQWM7Ozs7O0lBSXpCLE9BQU8sQ0FBQyxPQUFPO1FBQ2IsSUFBRyxDQUFDLElBQUksQ0FBQyxJQUFJO1lBQUUsT0FBTztRQUV0QixJQUFJLENBQUMsSUFBSSxDQUFDLE9BQU8sRUFBRSxPQUFPLENBQUMsQ0FBQztJQUM5QixDQUFDOzs7WUFaRixTQUFTLFNBQUM7Z0JBQ1QsUUFBUSxFQUFFLFVBQVU7Z0JBQ3BCLHdoREFBMkI7YUFDNUI7OzttQkFFRSxLQUFLO21CQUNMLEtBQUs7Ozs7SUFETiw4QkFBMEI7O0lBQzFCLDhCQUFtQiIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4vLyBUT0FTVC50c1xuLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cblxuaW1wb3J0IHsgQ29tcG9uZW50LCBJbnB1dCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG4vKipcbiAqIEludGVyZmFjZSBmb3IgVG9hc3RDb21wb25lbnQncyBcImRhdGFcIlxuICpcbiAqIEBwcm9wZXJ0eSB0b2FzdHMgKHJlcXVpcmVkKVxuICogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxuICovXG5cbmV4cG9ydCBpbnRlcmZhY2UgSVRvYXN0RGF0YSB7IC8vIHRvYXN0IGNvbHVtbiB3cmFwcGVyXG4gIHRvYXN0czogSVRvYXN0Qm94W107XG4gIGNsYXNzZXM/OiBzdHJpbmc7XG59XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciB0aGUgc2luZ2xlIFRvYXN0Q29tcG9uZW50J3MgXCJCb3hcIlxuICpcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChyZXF1aXJlZClcbiAqIEBwcm9wZXJ0eSB0aW1lciAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgY2xvc2VJY29uIChvcHRpb25hbClcbiAqIC0gaWNvbiAocmVxdWlyZWQpXG4gKiAtIHBheWxvYWQgKHJlcXVpcmVkKVxuICogQHByb3BlcnR5IHRpdGxlIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSB0ZXh0IChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBhY3Rpb25zIChvcHRpb25hbClcbiAqL1xuXG5leHBvcnQgaW50ZXJmYWNlIElUb2FzdEJveCB7XG4gIC8qKlxuICAgKiByZXF1aXJlczogW2lzLXN1Y2Nlc3MsIGlzLXdhcm5pbmcsIGlzLWVycm9yXSArIG9wdGlvbmFsIGFkZGl0aW9uYWwgaHRtbCBjbGFzc2VzXG4gICAqL1xuICBjbGFzc2VzOiBzdHJpbmc7XG4gIC8qKlxuICAgKiBsYXJnZXIsIHRpdGxlIHRleHRcbiAgICovXG4gIHRpdGxlPzogc3RyaW5nO1xuICAvKipcbiAgICogdGhlIHRvYXN0J3MgYm9keSB0ZXh0XG4gICAqL1xuICB0ZXh0Pzogc3RyaW5nO1xuICAvKipcbiAgICogJ1gnIGljb24sIHRvIGRpc21pc3MvY2xvc2UgdGhlIHRvYXN0XG4gICAqICggbjctaWNvbi1jcm9zcyApXG4gICAqIFxuICAgKiAgRWFjaCBpY29uIHJlcXVpcmVzIGl0J3Mgb25DbGljayBwYXlsb2FkXG4gICAqL1xuICBjbG9zZUljb24/OiB7XG4gICAgaWNvbjogc3RyaW5nO1xuICAgIHBheWxvYWQ6IHN0cmluZztcbiAgfTtcbiAgLyoqXG4gICAqIHRoZSB0b2FzdCdzIG9wdGlvbmFsIGJ1dHRvbnNcbiAgICogc3VnZ2VzdGlvbjogZG9uJ3QgdXNlIG1vcmUgdGhhbiAyIGFjdGlvbnNcbiAgICovXG4gIGFjdGlvbnM/OiBJVG9hc3RBY3Rpb25bXTtcbiAgLyoqXG4gICAqIGFkZGl0aW9uYWwgaW5mb1xuICAgKi9cbiAgX21ldGE/OiBhbnk7XG59XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciB0aGUgc2luZ2xlIFRvYXN0Q29tcG9uZW50J3MgXCJBY3Rpb25cIlxuICpcbiAqIEBwcm9wZXJ0eSB0ZXh0IChyZXF1aXJlZClcbiAqIEBwcm9wZXJ0eSBwYXlsb2FkIChyZXF1aXJlZClcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbiAqL1xuXG5leHBvcnQgaW50ZXJmYWNlIElUb2FzdEFjdGlvbiB7XG4gIC8qKlxuICAgKiB0aGUgYnV0dG9uJ3MgcmVuZGVyZWQgdGV4dFxuICAgKi9cbiAgdGV4dDogc3RyaW5nO1xuICAvKipcbiAgICogdGhlIGJ1dHRvbidzIG9uQ2xpY2sgcGF5bG9hZFxuICAgKi9cbiAgcGF5bG9hZDogYW55O1xuICAvKipcbiAgICogYWRkaXRpb25hbCBodG1sIGNsYXNzZXNcbiAgICovXG4gIGNsYXNzZXM/OiBzdHJpbmc7XG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LXRvYXN0JyxcbiAgdGVtcGxhdGVVcmw6ICcuL3RvYXN0Lmh0bWwnXG59KVxuZXhwb3J0IGNsYXNzIFRvYXN0Q29tcG9uZW50IHtcbiAgQElucHV0KCkgZGF0YTogSVRvYXN0RGF0YTtcbiAgQElucHV0KCkgZW1pdDogYW55O1xuXG4gIG9uQ2xpY2socGF5bG9hZCl7XG4gICAgaWYoIXRoaXMuZW1pdCkgcmV0dXJuO1xuXG4gICAgdGhpcy5lbWl0KCdjbGljaycsIHBheWxvYWQpO1xuICB9XG59Il19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidG9hc3QuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AbjctZnJvbnRlbmQvY29tcG9uZW50cy8iLCJzb3VyY2VzIjpbImxpYi9jb21wb25lbnRzL3RvYXN0L3RvYXN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7O0FBU2pELCtCQUdDOzs7SUFGQywyQkFBbUI7O0lBQ25CLDRCQUFpQjs7Ozs7Ozs7Ozs7Ozs7O0FBZ0JuQiw4QkFnQ0M7Ozs7OztJQTVCQywyQkFBZ0I7Ozs7O0lBSWhCLHlCQUFlOzs7OztJQUlmLHdCQUFjOzs7Ozs7OztJQU9kLDZCQUdFOzs7Ozs7SUFLRiwyQkFBd0I7Ozs7O0lBSXhCLHlCQUFZOzs7Ozs7Ozs7O0FBV2QsaUNBYUM7Ozs7OztJQVRDLDJCQUFhOzs7OztJQUliLDhCQUFhOzs7OztJQUliLDhCQUFpQjs7QUFPbkIsTUFBTSxPQUFPLGNBQWM7Ozs7O0lBS3pCLE9BQU8sQ0FBQyxPQUFPO1FBQ2IsSUFBSSxDQUFDLElBQUksQ0FBQyxJQUFJO1lBQUUsT0FBTztRQUV2QixJQUFJLENBQUMsSUFBSSxDQUFDLE9BQU8sRUFBRSxPQUFPLENBQUMsQ0FBQztJQUM5QixDQUFDOzs7WUFiRixTQUFTLFNBQUM7Z0JBQ1QsUUFBUSxFQUFFLFVBQVU7Z0JBQ3BCLHdsREFBMkI7YUFDNUI7OzttQkFFRSxLQUFLO21CQUVMLEtBQUs7Ozs7SUFGTiw4QkFBeUI7O0lBRXpCLDhCQUFtQiIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcbi8vIFRPQVNULnRzXHJcbi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcblxyXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XHJcblxyXG4vKipcclxuICogSW50ZXJmYWNlIGZvciBUb2FzdENvbXBvbmVudCdzIFwiZGF0YVwiXHJcbiAqXHJcbiAqIEBwcm9wZXJ0eSB0b2FzdHMgKHJlcXVpcmVkKVxyXG4gKiBAcHJvcGVydHkgY2xhc3NlcyAob3B0aW9uYWwpXHJcbiAqL1xyXG5cclxuZXhwb3J0IGludGVyZmFjZSBUb2FzdERhdGEgeyAvLyB0b2FzdCBjb2x1bW4gd3JhcHBlclxyXG4gIHRvYXN0czogVG9hc3RCb3hbXTtcclxuICBjbGFzc2VzPzogc3RyaW5nO1xyXG59XHJcblxyXG4vKipcclxuICogSW50ZXJmYWNlIGZvciB0aGUgc2luZ2xlIFRvYXN0Q29tcG9uZW50J3MgXCJCb3hcIlxyXG4gKlxyXG4gKiBAcHJvcGVydHkgY2xhc3NlcyAocmVxdWlyZWQpXHJcbiAqIEBwcm9wZXJ0eSB0aW1lciAob3B0aW9uYWwpXHJcbiAqIEBwcm9wZXJ0eSBjbG9zZUljb24gKG9wdGlvbmFsKVxyXG4gKiAtIGljb24gKHJlcXVpcmVkKVxyXG4gKiAtIHBheWxvYWQgKHJlcXVpcmVkKVxyXG4gKiBAcHJvcGVydHkgdGl0bGUgKG9wdGlvbmFsKVxyXG4gKiBAcHJvcGVydHkgdGV4dCAob3B0aW9uYWwpXHJcbiAqIEBwcm9wZXJ0eSBhY3Rpb25zIChvcHRpb25hbClcclxuICovXHJcblxyXG5leHBvcnQgaW50ZXJmYWNlIFRvYXN0Qm94IHtcclxuICAvKipcclxuICAgKiByZXF1aXJlczogW2lzLXN1Y2Nlc3MsIGlzLXdhcm5pbmcsIGlzLWVycm9yXSArIG9wdGlvbmFsIGFkZGl0aW9uYWwgaHRtbCBjbGFzc2VzXHJcbiAgICovXHJcbiAgY2xhc3Nlczogc3RyaW5nO1xyXG4gIC8qKlxyXG4gICAqIGxhcmdlciwgdGl0bGUgdGV4dFxyXG4gICAqL1xyXG4gIHRpdGxlPzogc3RyaW5nO1xyXG4gIC8qKlxyXG4gICAqIHRoZSB0b2FzdCdzIGJvZHkgdGV4dFxyXG4gICAqL1xyXG4gIHRleHQ/OiBzdHJpbmc7XHJcbiAgLyoqXHJcbiAgICogJ1gnIGljb24sIHRvIGRpc21pc3MvY2xvc2UgdGhlIHRvYXN0XHJcbiAgICogKCBuNy1pY29uLWNyb3NzIClcclxuICAgKlxyXG4gICAqICBFYWNoIGljb24gcmVxdWlyZXMgaXQncyBvbkNsaWNrIHBheWxvYWRcclxuICAgKi9cclxuICBjbG9zZUljb24/OiB7XHJcbiAgICBpY29uOiBzdHJpbmc7XHJcbiAgICBwYXlsb2FkOiBzdHJpbmc7XHJcbiAgfTtcclxuICAvKipcclxuICAgKiB0aGUgdG9hc3QncyBvcHRpb25hbCBidXR0b25zXHJcbiAgICogc3VnZ2VzdGlvbjogZG9uJ3QgdXNlIG1vcmUgdGhhbiAyIGFjdGlvbnNcclxuICAgKi9cclxuICBhY3Rpb25zPzogVG9hc3RBY3Rpb25bXTtcclxuICAvKipcclxuICAgKiBhZGRpdGlvbmFsIGluZm9cclxuICAgKi9cclxuICBfbWV0YT86IGFueTtcclxufVxyXG5cclxuLyoqXHJcbiAqIEludGVyZmFjZSBmb3IgdGhlIHNpbmdsZSBUb2FzdENvbXBvbmVudCdzIFwiQWN0aW9uXCJcclxuICpcclxuICogQHByb3BlcnR5IHRleHQgKHJlcXVpcmVkKVxyXG4gKiBAcHJvcGVydHkgcGF5bG9hZCAocmVxdWlyZWQpXHJcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcclxuICovXHJcblxyXG5leHBvcnQgaW50ZXJmYWNlIFRvYXN0QWN0aW9uIHtcclxuICAvKipcclxuICAgKiB0aGUgYnV0dG9uJ3MgcmVuZGVyZWQgdGV4dFxyXG4gICAqL1xyXG4gIHRleHQ6IHN0cmluZztcclxuICAvKipcclxuICAgKiB0aGUgYnV0dG9uJ3Mgb25DbGljayBwYXlsb2FkXHJcbiAgICovXHJcbiAgcGF5bG9hZDogYW55O1xyXG4gIC8qKlxyXG4gICAqIGFkZGl0aW9uYWwgaHRtbCBjbGFzc2VzXHJcbiAgICovXHJcbiAgY2xhc3Nlcz86IHN0cmluZztcclxufVxyXG5cclxuQENvbXBvbmVudCh7XHJcbiAgc2VsZWN0b3I6ICduNy10b2FzdCcsXHJcbiAgdGVtcGxhdGVVcmw6ICcuL3RvYXN0Lmh0bWwnXHJcbn0pXHJcbmV4cG9ydCBjbGFzcyBUb2FzdENvbXBvbmVudCB7XHJcbiAgQElucHV0KCkgZGF0YTogVG9hc3REYXRhO1xyXG5cclxuICBASW5wdXQoKSBlbWl0OiBhbnk7XHJcblxyXG4gIG9uQ2xpY2socGF5bG9hZCkge1xyXG4gICAgaWYgKCF0aGlzLmVtaXQpIHJldHVybjtcclxuXHJcbiAgICB0aGlzLmVtaXQoJ2NsaWNrJywgcGF5bG9hZCk7XHJcbiAgfVxyXG59XHJcbiJdfQ==

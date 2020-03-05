@@ -1,18 +1,18 @@
-import { IAnchor } from '../../shared-interfaces';
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for AdvancedAutocompleteComponent's "data"
  */
-export interface IAdvancedAutocompleteData {
-    results?: IAdvancedAutocompleteResponse[];
+export interface AdvancedAutocompleteData {
+    results?: AdvancedAutocompleteResponse[];
     actions?: {
         advanced?: {
             text: string;
-            anchor?: IAnchor;
+            anchor?: Anchor;
             classes?: any;
         };
         showMore?: {
             text: string;
-            anchor?: IAnchor;
+            anchor?: Anchor;
             classes?: any;
         };
     };
@@ -20,11 +20,11 @@ export interface IAdvancedAutocompleteData {
     classes?: any;
     _meta?: any;
 }
-interface IAdvancedAutocompleteItem {
+interface AdvancedAutocompleteItem {
     /**
      * anchor <a>
      */
-    anchor?: IAnchor;
+    anchor?: Anchor;
     /**
      * Rendered text for the result item
      */
@@ -37,17 +37,17 @@ interface IAdvancedAutocompleteItem {
         value?: string;
     }>;
 }
-interface IAdvancedAutocompleteResponse {
-    items: IAdvancedAutocompleteItem[];
+interface AdvancedAutocompleteResponse {
+    items: AdvancedAutocompleteItem[];
     group?: {
         title: string;
         classes?: string;
         icon?: string;
-        anchor?: IAnchor;
+        anchor?: Anchor;
     };
 }
 export declare class AdvancedAutocompleteComponent {
-    data: IAdvancedAutocompleteData;
+    data: AdvancedAutocompleteData;
     emit: any;
     onClick(payload: any): void;
 }
