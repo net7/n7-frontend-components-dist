@@ -97,6 +97,7 @@ export interface BubbleChartDataItem {
 export declare class BubbleChartComponent implements AfterContentChecked {
     data: BubbleChartData;
     emit: any;
+    private d3;
     private _loaded;
     ngAfterContentChecked(): void;
     onClick(payload: any): void;
