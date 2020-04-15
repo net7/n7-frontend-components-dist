@@ -1,0 +1,77 @@
+/* ------------------------------------ *\
+   #LINKS
+\* ------------------------------------ */
+.n7-input-link {
+    max-height: $facet-links-max-height;
+    overflow-y: auto;
+
+    &__link {
+        display: flex;
+        align-items: center;
+        padding-bottom: $space;
+        margin-bottom: $space;
+        border-bottom: 1px solid $color-border-normal;
+        cursor: pointer;
+
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
+    }
+
+    &__icon {
+        margin-right: $space;
+        font-size: $font-size-m;
+    }
+
+    &__text {
+        padding-right: $space;
+        font-size: $font-size-m;
+    }
+
+    &__counter {
+        margin-left: auto;
+        padding: $space/4 $space/2;
+        border-radius: $border-radius;
+        font-size: $font-size-xs;
+        color: $color-text-inverse;
+        background-color: $color-second;
+    }
+
+    /* Hover */
+    .n7-input-link__link:hover {
+        .n7-input-link__text {
+            color: $color-text-link;
+        }
+    }
+
+    /* Active */
+    .n7-input-link__link.is-active {
+        &:before {
+            content: "\e938";
+            font-family: 'n7-icon';
+            margin-right: $space;
+            color: $color-success;
+        }
+
+        .n7-input-link__text {
+            font-weight: $font-weight-bold;
+        }
+    }
+}
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

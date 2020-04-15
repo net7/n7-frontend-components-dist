@@ -394,6 +394,67 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lib/components/anchor-wrapper/anchor-wrapper.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var AnchorWrapperComponent = /** @class */ (function () {
+        function AnchorWrapperComponent() {
+            this.clicked = new core.EventEmitter();
+        }
+        /**
+         * @param {?} href
+         * @return {?}
+         */
+        AnchorWrapperComponent.prototype.isExternal = /**
+         * @param {?} href
+         * @return {?}
+         */
+        function (href) {
+            return /^http(?:s)?:\/{2}\S+$/.test(href);
+        };
+        /**
+         * Click event handler.
+         * Outputs the payload to it's parent component
+         */
+        /**
+         * Click event handler.
+         * Outputs the payload to it's parent component
+         * @param {?} payload
+         * @return {?}
+         */
+        AnchorWrapperComponent.prototype.onClick = /**
+         * Click event handler.
+         * Outputs the payload to it's parent component
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) {
+            this.clicked.emit(payload);
+        };
+        AnchorWrapperComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-anchor-wrapper',
+                        template: "<ng-container *ngIf=\"data; else noData\">\n    <ng-container *ngIf=\"data.href && isExternal(data.href)\">\n      <ng-container *ngTemplateOutlet=\"externalUrl\"></ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"data.href && !isExternal(data.href)\">\n      <ng-container *ngTemplateOutlet=\"internalUrl\"></ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"!data.href\">\n      <ng-container *ngTemplateOutlet=\"noUrl\"></ng-container>\n    </ng-container>\n</ng-container>\n\n<!-- No data template -->\n<ng-template #noData>\n  <a class=\"{{ classes || '' }}\"><ng-container *ngTemplateOutlet=\"content\"></ng-container></a>\n</ng-template>\n\n<!-- Internal URL template -->\n<ng-template #internalUrl>\n  <a \n  [routerLink]=\"data.href\" \n  [target]=\"data.target || '_self'\" \n  class=\"{{ classes || '' }}\"\n  [queryParams]=\"data.queryParams || null\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<!-- External URL template -->\n<ng-template #externalUrl>\n  <a [href]=\"data.href\" [target]=\"data.target || '_self'\" class=\"{{ classes || '' }}\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<!-- No URL template -->\n<ng-template #noUrl>\n  <a (click)=\"onClick(data.payload)\" class=\"{{ classes || '' }}\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<ng-template #content>\n  <ng-content></ng-content>\n</ng-template>\n"
+                    }] }
+        ];
+        AnchorWrapperComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            classes: [{ type: core.Input }],
+            clicked: [{ type: core.Output }]
+        };
+        return AnchorWrapperComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        AnchorWrapperComponent.prototype.data;
+        /** @type {?} */
+        AnchorWrapperComponent.prototype.classes;
+        /** @type {?} */
+        AnchorWrapperComponent.prototype.clicked;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: lib/components/breadcrumbs/breadcrumbs.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -2767,6 +2828,419 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lib/components/input-checkbox/input-checkbox.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * Interface for InputCheckbox
+     *
+     * \@property id (required)
+     * \@property label (required)
+     * \@property checked (optional)
+     * \@property disabled (optional)
+     * \@property payload (optional)
+     * \@property classes (optional)
+     * \@property _meta (optional)
+     * @record
+     */
+    function InputCheckbox() { }
+    if (false) {
+        /**
+         * Unique ID for the checkbox
+         * @type {?}
+         */
+        InputCheckbox.prototype.id;
+        /**
+         * Label for the checkbox
+         * @type {?}
+         */
+        InputCheckbox.prototype.label;
+        /**
+         * Defaults the checkbox to be checked
+         * @type {?|undefined}
+         */
+        InputCheckbox.prototype.checked;
+        /**
+         * Sets the disabled HTML attribute
+         * @type {?|undefined}
+         */
+        InputCheckbox.prototype.disabled;
+        /**
+         * Payload for the change event
+         * @type {?|undefined}
+         */
+        InputCheckbox.prototype.payload;
+        /**
+         * Additional HTML Classes
+         * @type {?|undefined}
+         */
+        InputCheckbox.prototype.classes;
+        /**
+         * Additional data for the component's logic
+         * @type {?|undefined}
+         */
+        InputCheckbox.prototype._meta;
+    }
+    /**
+     * Interface for InputCheckboxData
+     * \@property checkboxes (required)
+     * @record
+     */
+    function InputCheckboxData() { }
+    if (false) {
+        /**
+         * An array of input checkboxes
+         * @type {?}
+         */
+        InputCheckboxData.prototype.checkboxes;
+    }
+    var InputCheckboxComponent = /** @class */ (function () {
+        function InputCheckboxComponent() {
+        }
+        /**
+         * @param {?} inputPayload
+         * @param {?=} value
+         * @return {?}
+         */
+        InputCheckboxComponent.prototype.onChange = /**
+         * @param {?} inputPayload
+         * @param {?=} value
+         * @return {?}
+         */
+        function (inputPayload, value) {
+            if (!this.emit)
+                return;
+            this.emit('change', { inputPayload: inputPayload, value: value });
+        };
+        InputCheckboxComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-input-checkbox',
+                        template: "<div *ngIf=\"data\"\n     class=\"n7-input-checkbox\">\n  <ng-container *ngFor=\"let input of data.checkboxes\">\n    <input type=\"checkbox\"\n           id=\"{{ input.id }}\"\n           class=\"n7-input-checkbox__input\"\n           [checked]=\"input.checked\"\n           [disabled]=\"input.disabled\"\n           (change)=\"onChange(input.payload, $event.target.checked)\">\n    <label *ngIf=\"input.label\"\n           class=\"n7-input-checkbox__label\"\n           for=\"{{ input.id }}\">\n      {{ input.label }}\n    </label>\n  </ng-container>\n</div>\n"
+                    }] }
+        ];
+        InputCheckboxComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return InputCheckboxComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        InputCheckboxComponent.prototype.data;
+        /** @type {?} */
+        InputCheckboxComponent.prototype.emit;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lib/components/input-link/input-link.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * Interface for an InputLink
+     *
+     * \@property icon (optional)
+     * \@property text (required)
+     * \@property counter (optional)
+     * \@property payload (optional)
+     * \@property classes (optional)
+     * \@property _meta (optional)
+     * @record
+     */
+    function InputLink() { }
+    if (false) {
+        /**
+         * The rendered text of the link
+         * @type {?}
+         */
+        InputLink.prototype.text;
+        /**
+         * An icon to be added next to the text
+         * @type {?|undefined}
+         */
+        InputLink.prototype.icon;
+        /**
+         * A colorful counter with a number
+         * @type {?|undefined}
+         */
+        InputLink.prototype.counter;
+        /**
+         * The payload for the click event
+         * @type {?|undefined}
+         */
+        InputLink.prototype.payload;
+        /**
+         * Additional HTML Classes
+         * @type {?|undefined}
+         */
+        InputLink.prototype.classes;
+        /**
+         * Additional data for the component's logic
+         * @type {?|undefined}
+         */
+        InputLink.prototype._meta;
+    }
+    /**
+     * Interface for InputLinkData
+     * \@property links (required)
+     * @record
+     */
+    function InputLinkData() { }
+    if (false) {
+        /**
+         * A list of input links
+         * @type {?}
+         */
+        InputLinkData.prototype.links;
+    }
+    var InputLinkComponent = /** @class */ (function () {
+        function InputLinkComponent() {
+        }
+        /**
+         * @param {?} inputPayload
+         * @param {?=} value
+         * @return {?}
+         */
+        InputLinkComponent.prototype.onChange = /**
+         * @param {?} inputPayload
+         * @param {?=} value
+         * @return {?}
+         */
+        function (inputPayload, value) {
+            if (!this.emit)
+                return;
+            this.emit('change', { inputPayload: inputPayload, value: value });
+        };
+        InputLinkComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-input-link',
+                        template: "<div *ngIf=\"data\"\n     class=\"n7-input-link\">\n  <ng-container *ngFor=\"let input of data.links\">\n    <div class=\"n7-input-link__link {{ input.classes || '' }}\"\n         (click)=\"onChange(input.payload)\">\n      <span *ngIf=\"input.icon\"\n            class=\"n7-input-link__icon {{ input.icon }}\"></span>\n      <span class=\"n7-input-link__text\">{{ input.text }}</span>\n      <span *ngIf=\"input.counter || input.counter === 0\"\n            class=\"n7-input-link__counter\">{{ input.counter }}</span>\n    </div>\n  </ng-container>\n</div>\n"
+                    }] }
+        ];
+        InputLinkComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return InputLinkComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        InputLinkComponent.prototype.data;
+        /** @type {?} */
+        InputLinkComponent.prototype.emit;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lib/components/input-select/input-select.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * Interface for InputSelect
+     *
+     * \@property id (required)
+     * \@property options (required)
+     * \@property label (optional)
+     * \@property disabled (optional)
+     * \@property icon (optional)
+     * \@property payload (optional)
+     * \@property classes (optional)
+     * \@property _meta (optional)
+     * @record
+     */
+    function InputSelectData() { }
+    if (false) {
+        /**
+         * A unique ID for the select item
+         * @type {?}
+         */
+        InputSelectData.prototype.id;
+        /**
+         * The array of <option> elements
+         * @type {?}
+         */
+        InputSelectData.prototype.options;
+        /**
+         * Label for the <select> element
+         * @type {?|undefined}
+         */
+        InputSelectData.prototype.label;
+        /**
+         * Prevents the user from changing any option
+         * @type {?|undefined}
+         */
+        InputSelectData.prototype.disabled;
+        /**
+         * Payload for the select's change event
+         * @type {?|undefined}
+         */
+        InputSelectData.prototype.payload;
+        /**
+         * Additional HTML Classes
+         * @type {?|undefined}
+         */
+        InputSelectData.prototype.classes;
+        /**
+         * Additional data for the component's logic
+         * @type {?|undefined}
+         */
+        InputSelectData.prototype._meta;
+    }
+    var InputSelectComponent = /** @class */ (function () {
+        function InputSelectComponent() {
+        }
+        /**
+         * @param {?} inputPayload
+         * @param {?=} value
+         * @return {?}
+         */
+        InputSelectComponent.prototype.onChange = /**
+         * @param {?} inputPayload
+         * @param {?=} value
+         * @return {?}
+         */
+        function (inputPayload, value) {
+            if (!this.emit)
+                return;
+            this.emit('change', { inputPayload: inputPayload, value: value });
+        };
+        InputSelectComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-input-select',
+                        template: "<div *ngIf=\"data as input\"\n     class=\"n7-input-select\">\n  <label *ngIf=\"input.label\"\n         for=\"{{ input.id }}\">{{ input.label }}</label>\n  <select (change)=\"onChange(input.payload, $event.target.value)\"\n          id=\"{{ input.id }}\"\n          class=\"n7-facet__input-select {{ input.classes || '' }}\"\n          [disabled]=\"input.disabled\">\n    <option *ngFor=\"let option of input.options\"\n            [value]=\"option.value\"\n            [disabled]=\"option.disabled\"\n            [selected]=\"option.selected\">{{ option.label }}</option>\n  </select>\n</div>\n"
+                    }] }
+        ];
+        InputSelectComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return InputSelectComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        InputSelectComponent.prototype.data;
+        /** @type {?} */
+        InputSelectComponent.prototype.emit;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lib/components/input-text/input-text.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * Interface for InputTextData
+     *
+     * \@property id (required)
+     * \@property placeholder (optional)
+     * \@property value (optional)
+     * \@property label (optional)
+     * \@property disabled (optional)
+     * \@property icon (optional)
+     * \@property inputPayload (optional)
+     * \@property enterPayload (optional)
+     * \@property iconPayload (optional)
+     * \@property classes (optional)
+     * \@property _meta (optional)
+     * @record
+     */
+    function InputTextData() { }
+    if (false) {
+        /**
+         * Unique ID for the text input element
+         * @type {?}
+         */
+        InputTextData.prototype.id;
+        /**
+         * Placeholder text inside the input box
+         * @type {?|undefined}
+         */
+        InputTextData.prototype.placeholder;
+        /**
+         * Default value of the input box
+         * @type {?|undefined}
+         */
+        InputTextData.prototype.value;
+        /**
+         * Label for the input box
+         * @type {?|undefined}
+         */
+        InputTextData.prototype.label;
+        /**
+         * Prevents the user from changing the input's value
+         * @type {?|undefined}
+         */
+        InputTextData.prototype.disabled;
+        /**
+         * Optional icon to render inside the input box (eg. n7-icon-search)
+         * @type {?|undefined}
+         */
+        InputTextData.prototype.icon;
+        /**
+         * Payload that is sent when the user changes the value
+         * @type {?|undefined}
+         */
+        InputTextData.prototype.inputPayload;
+        /**
+         * Payload that is sent when the user presses the "Enter" key
+         * @type {?|undefined}
+         */
+        InputTextData.prototype.enterPayload;
+        /**
+         * Payload that is sent when the user clicks on the icon
+         * @type {?|undefined}
+         */
+        InputTextData.prototype.iconPayload;
+        /**
+         * Additional HTML Classes
+         * @type {?|undefined}
+         */
+        InputTextData.prototype.classes;
+        /**
+         * Additional data for the component's logic
+         * @type {?|undefined}
+         */
+        InputTextData.prototype._meta;
+    }
+    var InputTextComponent = /** @class */ (function () {
+        function InputTextComponent() {
+        }
+        /**
+         * @param {?} inputPayload
+         * @param {?=} value
+         * @return {?}
+         */
+        InputTextComponent.prototype.onChange = /**
+         * @param {?} inputPayload
+         * @param {?=} value
+         * @return {?}
+         */
+        function (inputPayload, value) {
+            if (!this.emit)
+                return;
+            this.emit('change', { inputPayload: inputPayload, value: value });
+        };
+        InputTextComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-input-text',
+                        template: "<div *ngIf=\"data as input\"\n     class=\"n7-input-text\">\n    <label *ngIf=\"input.label\"\n           class=\"n7-input-text__label\"\n           for=\"{{ input.id }}\">\n      {{ input.label }}\n    </label>\n    <div class=\"n7-input-text__wrapper\">\n      <input type=\"text\"\n             id=\"{{ input.id }}\"\n             class=\"n7-input-text__text {{input.classes || ''}}\"\n             placeholder=\"{{input.placeholder || ''}}\"\n             [value]=\"input.value || null\"\n             [disabled]=\"input.disabled\"\n             (input)=\"onChange(input.inputPayload, $event.target.value)\"\n             (keyup.enter)=\"onChange(input.enterPayload, $event.target.value)\">\n      <span *ngIf=\"input.icon\"\n            class=\"n7-input-text__icon {{input.icon || ''}}\"\n            (click)=\"onChange(input.iconPayload)\">\n      </span>\n    </div>\n</div>\n"
+                    }] }
+        ];
+        InputTextComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return InputTextComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        InputTextComponent.prototype.data;
+        /** @type {?} */
+        InputTextComponent.prototype.emit;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: lib/components/item-preview/item-preview.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -2902,67 +3376,6 @@
         ItemPreviewComponent.prototype.data;
         /** @type {?} */
         ItemPreviewComponent.prototype.emit;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: lib/components/anchor-wrapper/anchor-wrapper.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var AnchorWrapperComponent = /** @class */ (function () {
-        function AnchorWrapperComponent() {
-            this.clicked = new core.EventEmitter();
-        }
-        /**
-         * @param {?} href
-         * @return {?}
-         */
-        AnchorWrapperComponent.prototype.isExternal = /**
-         * @param {?} href
-         * @return {?}
-         */
-        function (href) {
-            return /^http(?:s)?:\/{2}\S+$/.test(href);
-        };
-        /**
-         * Click event handler.
-         * Outputs the payload to it's parent component
-         */
-        /**
-         * Click event handler.
-         * Outputs the payload to it's parent component
-         * @param {?} payload
-         * @return {?}
-         */
-        AnchorWrapperComponent.prototype.onClick = /**
-         * Click event handler.
-         * Outputs the payload to it's parent component
-         * @param {?} payload
-         * @return {?}
-         */
-        function (payload) {
-            this.clicked.emit(payload);
-        };
-        AnchorWrapperComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'n7-anchor-wrapper',
-                        template: "<ng-container *ngIf=\"data; else noData\">\n    <ng-container *ngIf=\"data.href && isExternal(data.href)\">\n      <ng-container *ngTemplateOutlet=\"externalUrl\"></ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"data.href && !isExternal(data.href)\">\n      <ng-container *ngTemplateOutlet=\"internalUrl\"></ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"!data.href\">\n      <ng-container *ngTemplateOutlet=\"noUrl\"></ng-container>\n    </ng-container>\n</ng-container>\n\n<!-- No data template -->\n<ng-template #noData>\n  <a class=\"{{ classes || '' }}\"><ng-container *ngTemplateOutlet=\"content\"></ng-container></a>\n</ng-template>\n\n<!-- Internal URL template -->\n<ng-template #internalUrl>\n  <a \n  [routerLink]=\"data.href\" \n  [target]=\"data.target || '_self'\" \n  class=\"{{ classes || '' }}\"\n  [queryParams]=\"data.queryParams || null\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<!-- External URL template -->\n<ng-template #externalUrl>\n  <a [href]=\"data.href\" [target]=\"data.target || '_self'\" class=\"{{ classes || '' }}\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<!-- No URL template -->\n<ng-template #noUrl>\n  <a (click)=\"onClick(data.payload)\" class=\"{{ classes || '' }}\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<ng-template #content>\n  <ng-content></ng-content>\n</ng-template>\n"
-                    }] }
-        ];
-        AnchorWrapperComponent.propDecorators = {
-            data: [{ type: core.Input }],
-            classes: [{ type: core.Input }],
-            clicked: [{ type: core.Output }]
-        };
-        return AnchorWrapperComponent;
-    }());
-    if (false) {
-        /** @type {?} */
-        AnchorWrapperComponent.prototype.data;
-        /** @type {?} */
-        AnchorWrapperComponent.prototype.classes;
-        /** @type {?} */
-        AnchorWrapperComponent.prototype.clicked;
     }
 
     /**
@@ -4359,6 +4772,7 @@
     var COMPONENTS = [
         AdvancedAutocompleteComponent,
         AlertComponent,
+        AnchorWrapperComponent,
         BreadcrumbsComponent,
         BubbleChartComponent,
         ChartComponent,
@@ -4373,8 +4787,11 @@
         HeroComponent,
         ImageViewerComponent,
         InnerTitleComponent,
+        InputCheckboxComponent,
+        InputLinkComponent,
+        InputSelectComponent,
+        InputTextComponent,
         ItemPreviewComponent,
-        AnchorWrapperComponent,
         LoaderComponent,
         MetadataViewerComponent,
         NavComponent,
@@ -9176,6 +9593,113 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lib/components/input-checkbox/input-checkbox.mock.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var INPUT_CHECKBOX_MOCK = {
+        checkboxes: [{
+                id: 'check-00',
+                label: 'Email',
+            }, {
+                id: 'check-01',
+                label: 'A normal check'
+            }, {
+                id: 'check-02',
+                label: 'A disabled check',
+                disabled: true,
+            }, {
+                id: 'check-03',
+                label: 'A checked check',
+                checked: true,
+            }, {
+                id: 'check-04',
+                label: 'A forced "ON" check',
+                checked: true,
+                disabled: true,
+            }]
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lib/components/input-link/input-link.mock.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var INPUT_LINK_MOCK = {
+        links: [
+            {
+                icon: 'n7-icon-archive', text: 'First filter', counter: 0, payload: 'first filter', classes: 'is-active'
+            },
+            {
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore', counter: 18, payload: 'second filter',
+            },
+            {
+                icon: 'n7-icon-archive', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore', counter: 18, payload: 'second filter',
+            },
+            {
+                text: 'third filter', counter: 11, payload: 'third filter',
+            },
+            {
+                text: 'lorem', counter: 7, payload: 'fourth filter',
+            },
+            {
+                text: 'last filter', counter: 31, payload: 'last filter',
+            },
+            {
+                icon: 'n7-icon-archive', text: 'First filter', counter: 1232143, payload: 'first filter', classes: 'is-active'
+            },
+            {
+                text: 'second filter', counter: 18, payload: 'second filter',
+            },
+            {
+                text: 'third filter', counter: 11, payload: 'third filter', classes: 'is-active'
+            },
+            {
+                text: 'fourth filter', counter: 7, payload: 'fourth filter',
+            },
+            {
+                text: 'last filter', counter: 3, payload: 'last filter',
+            }
+        ]
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lib/components/input-select/input-select.mock.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var INPUT_SELECT_MOCK = {
+        id: 'input-select-1',
+        options: [
+            { value: '', label: 'Select...' },
+            { value: 1, label: 'Option 1' },
+            { value: 2, label: 'Option 2' },
+            { value: 3, label: 'Option 3', selected: true },
+            { value: 4, label: 'Option 4' },
+        ],
+        payload: 'select',
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lib/components/input-text/input-text.mock.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var INPUT_TEXT_MOCK = {
+        id: 'input-text-1',
+        label: 'SEARCH LABEL',
+        placeholder: 'Search',
+        icon: 'n7-icon-search',
+        inputPayload: 'search-input',
+        enterPayload: 'search-enter',
+        iconPayload: 'search-icon',
+    };
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: lib/components/item-preview/item-preview.mock.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -10069,9 +10593,17 @@
     exports.HeroComponent = HeroComponent;
     exports.IMAGE_VIEWER_MOCK = IMAGE_VIEWER_MOCK;
     exports.INNER_TITLE_MOCK = INNER_TITLE_MOCK;
+    exports.INPUT_CHECKBOX_MOCK = INPUT_CHECKBOX_MOCK;
+    exports.INPUT_LINK_MOCK = INPUT_LINK_MOCK;
+    exports.INPUT_SELECT_MOCK = INPUT_SELECT_MOCK;
+    exports.INPUT_TEXT_MOCK = INPUT_TEXT_MOCK;
     exports.ITEM_PREVIEW_MOCK = ITEM_PREVIEW_MOCK;
     exports.ImageViewerComponent = ImageViewerComponent;
     exports.InnerTitleComponent = InnerTitleComponent;
+    exports.InputCheckboxComponent = InputCheckboxComponent;
+    exports.InputLinkComponent = InputLinkComponent;
+    exports.InputSelectComponent = InputSelectComponent;
+    exports.InputTextComponent = InputTextComponent;
     exports.ItemPreviewComponent = ItemPreviewComponent;
     exports.LOADER_MOCK = LOADER_MOCK;
     exports.LoaderComponent = LoaderComponent;
