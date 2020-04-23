@@ -2782,19 +2782,17 @@ var InputLinkComponent = /** @class */ (function () {
     function InputLinkComponent() {
     }
     /**
-     * @param {?} inputPayload
-     * @param {?=} value
+     * @param {?} payload
      * @return {?}
      */
     InputLinkComponent.prototype.onChange = /**
-     * @param {?} inputPayload
-     * @param {?=} value
+     * @param {?} payload
      * @return {?}
      */
-    function (inputPayload, value) {
+    function (payload) {
         if (!this.emit)
             return;
-        this.emit('change', { inputPayload: inputPayload, value: value });
+        this.emit('change', payload);
     };
     InputLinkComponent.decorators = [
         { type: Component, args: [{

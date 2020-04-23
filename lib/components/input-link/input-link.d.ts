@@ -47,5 +47,5 @@ export interface InputLinkData {
 export declare class InputLinkComponent {
     data: InputLinkData;
     emit: any;
-    onChange(inputPayload: any, value?: any): void;
+    onChange(payload: any): void;
 }

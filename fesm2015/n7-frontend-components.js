@@ -2606,14 +2606,13 @@ if (false) {
 }
 class InputLinkComponent {
     /**
-     * @param {?} inputPayload
-     * @param {?=} value
+     * @param {?} payload
      * @return {?}
      */
-    onChange(inputPayload, value) {
+    onChange(payload) {
         if (!this.emit)
             return;
-        this.emit('change', { inputPayload, value });
+        this.emit('change', payload);
     }
 }
 InputLinkComponent.decorators = [
