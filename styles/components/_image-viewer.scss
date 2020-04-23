@@ -64,10 +64,9 @@
 \* ------------------------------------ */
 .n7-image-viewer__controls {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: $space*2;
-
+    top: $space*2;
+    right: $space*2;
+    
     .n7-image-viewer__controls-list {
         margin: 0;
         padding: 0;
@@ -76,19 +75,19 @@
     .n7-image-viewer__controls-item {
         display: block !important;
         margin-bottom: $space !important;
-        padding: $space*2;
+        padding: $space;
         cursor: pointer;
-        background-color: rgba($color-gray-05, .5);
+        background-color: rgba(#000000, .7);
         border-radius: $border-radius;
 
         span {
             color: rgba($color-text-inverse, .5);
-            font-size: $font-size-xxl;
+            font-size: $font-size-l;
             transform: all $transition-durations;
         }
 
         &:hover {
-            background-color: rgba($color-gray-05, .8);
+            background-color: rgba(#000000, 1);
             span {
                 color: rgba($color-text-inverse, 1);
             }
@@ -99,6 +98,59 @@
         }
     }
 }
+
+
+/* ------------------------------------ *\
+   #PREV-NEXT
+\* ------------------------------------ */
+.n7-image-viewer__prev, .n7-image-viewer__next {
+    position: absolute !important;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    span {
+        color: rgba($color-text-inverse, .8);
+        font-size: $font-size-xxl*2;
+        transform: all $transition-durations;
+        cursor: pointer !important;
+        text-shadow: 0 2px 4px rgba(#000000, .5);
+
+        &:hover {
+            color: rgba($color-text-inverse, 1);
+        }
+    }
+}
+
+.n7-image-viewer__prev {
+    left: 0;
+}
+
+.n7-image-viewer__next {
+    right: 0;
+}
+
+
+/* ------------------------------------ *\
+   #REFERENCE-STRIP
+\* ------------------------------------ */
+.openseadragon-container {
+    &:hover {
+        .referencestrip {
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
+.referencestrip {
+    margin-bottom: -100px !important;
+    transition: all $transition-durations*2;
+
+    > *, .openseadragon-container, .openseadragon-canvas, canvas, .displayregion {
+        cursor: pointer !important;
+    }
+}
+
+
 
 
 /* ------------------------------------ *\
