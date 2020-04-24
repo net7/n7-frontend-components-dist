@@ -22,6 +22,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-color: $hero-background-color;
+    background-position: center center;
 
     /* Overlay */
     &.has-background-image:after {
