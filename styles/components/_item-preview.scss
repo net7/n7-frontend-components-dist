@@ -8,8 +8,11 @@
    #ITEM-PREVIEW
 \* ------------------------------------ */
 .n7-item-preview {
-    cursor: pointer;
-    position: relative;
+    /* anchor-wrapper wrapper af all contents */
+    &__inner {
+        cursor: pointer;
+        position: relative;
+    }
     
     &__title {
         margin-bottom: $space;
@@ -71,31 +74,22 @@
    #HAS-IMAGE
 \* ------------------------------------ */
 .n7-item-preview.has-image {
-    display: flex;
-    // display: grid;
-    // grid-template-columns: $item-preview-image-width 1fr;
-    // grid-column-gap: $space*2;
+    .n7-item-preview__inner {
+        display: flex;
+    }
 
     .n7-item-preview__image {
+        width: $item-preview-image-width;
+        height: $item-preview-image-height;
+        margin-right: $space*1.5;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
-        width: $item-preview-image-width;
-        height: $item-preview-image-height;
     }
 
-    &:not(.is-vertical) {
-        .n7-item-preview__image {
-            flex: 0 0 $item-preview-image-width;
-            width: $item-preview-image-width;
-            margin-right: $space*2;
-        }
-
-        .n7-item-preview__content {
-            flex: 1;
-        }
+    .n7-item-preview__content {
+        flex: 1;
     }
-    
 }
 
 
@@ -103,12 +97,15 @@
    #IS-VERTICAL
 \* ------------------------------------ */
 .n7-item-preview.is-vertical.has-image {
-    display: block;
+    .n7-item-preview__inner {
+        display: block;
+    }
     
     .n7-item-preview__image {
-        margin-bottom: $space;
         width: 100%;
         height: $item-preview-vertical-image-height;
+        margin-bottom: $space;
+        margin-right: 0;
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -119,8 +116,10 @@
    #IS-OVERLAY
 \* ------------------------------------ */
 .n7-item-preview.is-overlay.has-image {
-    display: block;
-    height: $item-preview-height;
+    .n7-item-preview__inner {
+        display: block;
+        height: $item-preview-height;
+    }
     
     .n7-item-preview__image {
         position: absolute;
@@ -130,6 +129,7 @@
         right: 0;
         width: auto;
         height: auto;
+        margin-right: 0;
         z-index: 1;
 
         &:after {
@@ -155,6 +155,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding: $space*2;
     }
     
     .n7-item-preview__title,
