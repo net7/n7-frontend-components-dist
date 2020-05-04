@@ -5,6 +5,7 @@ export * from './lib/components/alert/alert';
 export * from './lib/components/anchor-wrapper/anchor-wrapper';
 export * from './lib/components/breadcrumbs/breadcrumbs';
 export * from './lib/components/bubble-chart/bubble-chart';
+export * from './lib/components/carousel/carousel';
 export * from './lib/components/chart/chart';
 export * from './lib/components/content-placeholder/content-placeholder';
 export * from './lib/components/data-widget/data-widget';
@@ -38,6 +39,7 @@ export * from './lib/components/advanced-autocomplete/advanced-autocomplete.mock
 export * from './lib/components/alert/alert.mock';
 export * from './lib/components/breadcrumbs/breadcrumbs.mock';
 export * from './lib/components/bubble-chart/bubble-chart.mock';
+export * from './lib/components/carousel/carousel.mock';
 export * from './lib/components/chart/chart.mock';
 export * from './lib/components/content-placeholder/content-placeholder.mock';
 export * from './lib/components/data-widget/data-widget.mock';

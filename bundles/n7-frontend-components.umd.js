@@ -1162,6 +1162,293 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lib/components/carousel/carousel.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * Interface for PaginationComponent's links (pages and navigation buttons)
+     *
+     * \@property text (required)
+     * \@property anchor (optional)
+     * \@property classes (optional)
+     * \@property _meta (optional)
+     * @record
+     */
+    function CarouselButton() { }
+    if (false) {
+        /**
+         * innerHTML or plain text for the label
+         * @type {?|undefined}
+         */
+        CarouselButton.prototype.text;
+        /**
+         * additional html classes
+         * @type {?|undefined}
+         */
+        CarouselButton.prototype.classes;
+        /** @type {?|undefined} */
+        CarouselButton.prototype.anchor;
+        /**
+         * additional info
+         * @type {?|undefined}
+         */
+        CarouselButton.prototype._meta;
+    }
+    /**
+     * Interface for PaginationComponent's Metadata tuples (pages and navigation buttons)
+     *
+     * \@property key (optional)
+     * \@property value (optional)
+     * @record
+     */
+    function CarouselMetadata() { }
+    if (false) {
+        /**
+         * First element
+         * @type {?|undefined}
+         */
+        CarouselMetadata.prototype.key;
+        /**
+         * Second element
+         * @type {?|undefined}
+         */
+        CarouselMetadata.prototype.value;
+    }
+    /**
+     * @record
+     */
+    function CarouselBackgroundItem() { }
+    if (false) {
+        /**
+         * Background image for the carousel
+         * @type {?|undefined}
+         */
+        CarouselBackgroundItem.prototype.image;
+        /**
+         * Background video for the carousel
+         * @type {?|undefined}
+         */
+        CarouselBackgroundItem.prototype.video;
+        /**
+         * Background color for the carousel
+         * @type {?|undefined}
+         */
+        CarouselBackgroundItem.prototype.color;
+    }
+    /**
+     * Interface for CarouselComponent's "Item"
+     *
+     * \@property title (optional)
+     * \@property text (optional)
+     * \@property metadata (optional)
+     * \@property action (optional)
+     * \@property classes (optional)
+     * \@property _meta (optional)
+     * @record
+     */
+    function CarouselForegroundItem() { }
+    if (false) {
+        /**
+         * Header
+         * @type {?|undefined}
+         */
+        CarouselForegroundItem.prototype.title;
+        /**
+         * Text paragraph / subtitle / pretitle
+         * @type {?|undefined}
+         */
+        CarouselForegroundItem.prototype.text;
+        /**
+         * Metadata
+         * @type {?|undefined}
+         */
+        CarouselForegroundItem.prototype.metadata;
+        /**
+         * Button
+         * @type {?|undefined}
+         */
+        CarouselForegroundItem.prototype.action;
+    }
+    /**
+     * Interface for CarouselComponent's "data"
+     *
+     * \@property items (required)
+     * \@property image (optional)
+     * \@property video (optional)
+     * \@property classes (optional)
+     * \@property _meta (optional)
+     * @record
+     */
+    function CarouselData() { }
+    if (false) {
+        /**
+         * ID Of the carousel container
+         * @type {?}
+         */
+        CarouselData.prototype.containerId;
+        /**
+         * Options for the carousel library ( docs here : https://lattecarousel.dev/ )
+         * @type {?|undefined}
+         */
+        CarouselData.prototype.libOptions;
+        /**
+         * Array of carousel slides
+         * @type {?}
+         */
+        CarouselData.prototype.slides;
+        /**
+         * Callback for getting the carousel instance
+         * @type {?|undefined}
+         */
+        CarouselData.prototype.setInstance;
+        /**
+         * Classes for the carousel component
+         * @type {?|undefined}
+         */
+        CarouselData.prototype.classes;
+        /**
+         * Additional data useful for the component's logic
+         * @type {?|undefined}
+         */
+        CarouselData.prototype._meta;
+    }
+    var CarouselComponent = /** @class */ (function () {
+        function CarouselComponent() {
+            this.loaded = false;
+        }
+        /**
+         * @return {?}
+         */
+        CarouselComponent.prototype.ngAfterContentChecked = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            if (!this.data || this.loaded)
+                return;
+            this.loaded = true;
+            setTimeout((/**
+             * @return {?}
+             */
+            function () {
+                var _a = _this.data, containerId = _a.containerId, libOptions = _a.libOptions;
+                import('latte-carousel').then((/**
+                 * @param {?} module
+                 * @return {?}
+                 */
+                function (module) {
+                    var Carousel = module.Carousel;
+                    /** @type {?} */
+                    var chart = new Carousel("#" + containerId, libOptions);
+                    // eslint-disable-next-line no-param-reassign, @typescript-eslint/no-unused-vars
+                    if (_this.data.setInstance)
+                        _this.data.setInstance((/**
+                         * @param {?} d
+                         * @return {?}
+                         */
+                        function (d) { d = chart; }));
+                    _this.addButtonEvents(_this.data);
+                }));
+            }));
+        };
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        CarouselComponent.prototype.onClick = /**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) {
+            if (!this.emit)
+                return;
+            this.emit('click', payload);
+        };
+        /**
+         * Function that adds the event listeners to each button.
+         * This is needed because when "new Carousel()" is called the event listeners are lost.
+         */
+        /**
+         * Function that adds the event listeners to each button.
+         * This is needed because when "new Carousel()" is called the event listeners are lost.
+         * @param {?} __0
+         * @return {?}
+         */
+        CarouselComponent.prototype.addButtonEvents = /**
+         * Function that adds the event listeners to each button.
+         * This is needed because when "new Carousel()" is called the event listeners are lost.
+         * @param {?} __0
+         * @return {?}
+         */
+        function (_a) {
+            var _this = this;
+            var slides = _a.slides, containerId = _a.containerId;
+            // Build array of button-id's & payloads.
+            /** @type {?} */
+            var buttons = slides
+                .map((/**
+             * @param {?} slide
+             * @param {?} slideID
+             * @return {?}
+             */
+            function (slide, slideID) { return ({
+                // id = container id - index of the slide - index of the button
+                id: containerId + "-" + slideID + "-" + slide.items.findIndex((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) { return i.action; })),
+                payload: (slide.items.find((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) { return i.action; }))
+                    || { action: { anchor: { payload: undefined } } })
+                    .action.anchor.payload
+            }); }))
+                .filter((/**
+             * @param {?} btn
+             * @return {?}
+             */
+            function (btn) { return btn.payload; }));
+            // find each button's anchor-wrapper and attach the event to it.
+            buttons.forEach((/**
+             * @param {?} btn
+             * @return {?}
+             */
+            function (btn) {
+                document.querySelector("#" + btn.id).parentElement.addEventListener('click', (/**
+                 * @return {?}
+                 */
+                function () { return _this.onClick(btn.payload); }));
+            }));
+        };
+        CarouselComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-carousel',
+                        template: "<div *ngIf=\"data\" class=\"n7-carousel {{ data.classes || '' }}\">\n  <!-- Warning: Do not style div.latte-carousel -->\n  <div id=\"{{data.containerId}}\" class=\"latte-carousel\">\n    <ng-container *ngFor=\"let slide of data.slides; let index = index;\">\n      <ng-container *ngTemplateOutlet=\"carouselSlide; context:{slide: slide, index: index}\"></ng-container>\n    </ng-container>\n  </div>\n</div>\n\n<!-- ===== SLIDE WRAPPER ===== -->\n<ng-template #carouselSlide let-slide=\"slide\" let-slideID=\"index\">\n  <!-- Warning: Do not style div.latte-item -->\n  <div class=\"latte-item\">\n    <div\n        class=\"n7-carousel__slide {{ slide.classes || ''}}\"\n        [style.background-color]=\"slide.background.color ? slide.background.color : ''\"\n        [style.background-image]=\"slide.background.image ? 'url('+slide.background.image+')' : ''\">\n      <ng-container *ngTemplateOutlet=\"slideForeground; context:{items: slide.items, slideID: slideID}\">\n      </ng-container>\n      <ng-container *ngIf=\"slide.background\">\n        <ng-container *ngTemplateOutlet=\"slideBackground; context:{$implicit: slide.background}\">\n        </ng-container>\n      </ng-container>\n    </div>\n  </div>\n</ng-template>\n\n<!-- ===== SLIDE FOREGROUND ===== -->\n<ng-template #slideForeground let-items=\"items\" let-slideID=\"slideID\">\n  <ng-container *ngFor=\"let el of items; let itemID = index\">\n    <h1 *ngIf=\"el.title\">{{el.title}}</h1>\n    <span *ngIf=\"el.text\">{{el.text}}</span>\n    <div *ngIf=\"el.metadata\">\n      <ng-container *ngFor=\"let m of el.metadata\">\n        <span *ngIf=\"m.key\">{{m.key}}</span>\n        <span *ngIf=\"m.value\">{{m.value}}</span>\n      </ng-container>\n    </div>\n    <n7-anchor-wrapper\n      *ngIf=\"el.action\"\n      [data]=\"el.action.anchor\"\n      (clicked)=\"onClick($event)\">\n        <button\n          id=\"{{data.containerId}}-{{slideID}}-{{itemID}}\"\n          class=\"n7-hero__btn n7-btn n7-btn-cta n7-btn-l\">\n          {{el.action.text}}\n        </button>\n    </n7-anchor-wrapper>\n  </ng-container>\n</ng-template>\n\n<!-- ===== VIDEO BACKGROUND ===== -->\n<ng-template #slideBackground let-bg>\n  <ng-container *ngIf=\"bg.video\">\n    <!-- src=\"{{bg.video}}\"  -->\n    <video \n      [loop]=\"true\"\n      [muted]=\"true\" \n      [autoplay]=\"true\">\n        <source src=\"{{bg.video}}\">\n    </video>\n  </ng-container>\n</ng-template>\n"
+                    }] }
+        ];
+        CarouselComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return CarouselComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        CarouselComponent.prototype.data;
+        /** @type {?} */
+        CarouselComponent.prototype.emit;
+        /**
+         * @type {?}
+         * @private
+         */
+        CarouselComponent.prototype.loaded;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: lib/components/chart/chart.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -4756,6 +5043,7 @@
         AnchorWrapperComponent,
         BreadcrumbsComponent,
         BubbleChartComponent,
+        CarouselComponent,
         ChartComponent,
         ContentPlaceholderComponent,
         DataWidgetComponent,
@@ -9026,6 +9314,106 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lib/components/carousel/carousel.mock.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var CAROUSEL_MOCK = {
+        containerId: 'carousel-root',
+        libOptions: {
+            count: 1,
+            move: 1,
+            // touch: true,
+            // mode: 'align',
+            buttons: true,
+            dots: true,
+            rewind: true,
+            autoplay: 0,
+            animation: 500,
+        },
+        slides: [
+            {
+                classes: 'example-class',
+                items: [
+                    { text: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.' },
+                    { title: 'Lorem Donec sed odio dui.' },
+                    { text: 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.' },
+                    {
+                        metadata: [
+                            { key: 'Metadato 1', value: 'Valore 1' },
+                            { key: 'Metadato 2', value: 'Valore 2' },
+                        ]
+                    },
+                    {
+                        action: {
+                            text: 'Action',
+                            anchor: {
+                                payload: 'first-button',
+                            }
+                        }
+                    }
+                ],
+                background: {
+                    video: 'http://www.giulioandreini.it/galassia-ariosto/galassia-ariosto-home-carousel.mp4'
+                }
+            }, {
+                items: [
+                    { title: 'La regina della notte' },
+                    { text: 'Il flauto magico' },
+                    {
+                        metadata: [
+                            { key: 'Regia di ', value: 'Roberto di Simone' },
+                            { value: '1955' }
+                        ]
+                    },
+                    {
+                        action: {
+                            text: 'IL COSTUME >',
+                            anchor: {
+                                payload: 'second-button'
+                            }
+                        }
+                    }
+                ],
+                background: {
+                    image: 'https://placeimg.com/800/400/nature/grayscale'
+                }
+            }, {
+                items: [
+                    { text: '"La vendetta dell\'inferno ribolle nel mio cuore, Morte e disperazione m\'infiamman tutt\'intorno!"' },
+                    { title: 'La regina della notte' },
+                    { text: 'Il flauto magico' },
+                    {
+                        metadata: [
+                            { key: 'Regia di ', value: 'Roberto di Simone' },
+                            { value: '1955' }
+                        ]
+                    },
+                    {
+                        action: {
+                            text: 'IL COSTUME >',
+                            anchor: {
+                                payload: 'third-button'
+                            }
+                        }
+                    }
+                ],
+                background: {
+                    image: 'https://placeimg.com/800/400/nature/grayscale'
+                }
+            }, {
+                items: [
+                    { title: 'UNA COLLEZIONE UNICA. OLTRE 30MILA COSTUMI CREATI AD ARTE DAI MAESTRI FIORENTINI PER LE SCENE PIU PRESTIGIOSE' }
+                ],
+                background: {
+                    color: 'tomato'
+                }
+            }
+        ],
+    };
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: lib/components/chart/chart.mock.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -10553,8 +10941,10 @@
     exports.BUBBLECHART_MOCK = BUBBLECHART_MOCK;
     exports.BreadcrumbsComponent = BreadcrumbsComponent;
     exports.BubbleChartComponent = BubbleChartComponent;
+    exports.CAROUSEL_MOCK = CAROUSEL_MOCK;
     exports.CHART_MOCK = CHART_MOCK;
     exports.CONTENT_PLACEHOLDER_MOCK = CONTENT_PLACEHOLDER_MOCK;
+    exports.CarouselComponent = CarouselComponent;
     exports.ChartComponent = ChartComponent;
     exports.ContentPlaceholderComponent = ContentPlaceholderComponent;
     exports.DATA_WIDGET_MOCK = DATA_WIDGET_MOCK;
