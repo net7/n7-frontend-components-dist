@@ -38,7 +38,8 @@ export interface InnerTitleData {
 export interface InnerTitleOptions {
     text: string;
     value: string;
-    disable: boolean;
+    disabled?: boolean;
+    selected?: boolean;
 }
 export interface InnerTitleButtons {
     text: string;
