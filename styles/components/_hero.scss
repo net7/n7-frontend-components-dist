@@ -61,6 +61,12 @@
         font-weight: $font-weight-normal;
         line-height: 1.3;
         color: $color-text-inverse;
+
+        p {
+            margin-bottom: 0;
+            font-size: $font-size-l;
+            color: $color-text-inverse;
+        }
     }
 
     &__input-wrapper {

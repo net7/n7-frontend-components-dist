@@ -72,11 +72,10 @@
     }
 
     function __awaiter(thisArg, _arguments, P, generator) {
-        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
             function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
@@ -114,15 +113,14 @@
     }
 
     function __values(o) {
-        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
         if (m) return m.call(o);
-        if (o && typeof o.length === "number") return {
+        return {
             next: function () {
                 if (o && i >= o.length) o = void 0;
                 return { value: o && o[i++], done: !o };
             }
         };
-        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
 
     function __read(o, n) {
@@ -201,21 +199,6 @@
 
     function __importDefault(mod) {
         return (mod && mod.__esModule) ? mod : { default: mod };
-    }
-
-    function __classPrivateFieldGet(receiver, privateMap) {
-        if (!privateMap.has(receiver)) {
-            throw new TypeError("attempted to get private field on non-instance");
-        }
-        return privateMap.get(receiver);
-    }
-
-    function __classPrivateFieldSet(receiver, privateMap, value) {
-        if (!privateMap.has(receiver)) {
-            throw new TypeError("attempted to set private field on non-instance");
-        }
-        privateMap.set(receiver, value);
-        return value;
     }
 
     /**
@@ -1280,11 +1263,6 @@
          * @type {?|undefined}
          */
         CarouselForegroundItem.prototype.metadata;
-        /**
-         * Button
-         * @type {?|undefined}
-         */
-        CarouselForegroundItem.prototype.action;
     }
     /**
      * Interface for CarouselComponent's "data"
@@ -1319,6 +1297,12 @@
          */
         CarouselData.prototype.setInstance;
         /**
+         * Callback to access the carousel API
+         *
+         * @type {?|undefined}
+         */
+        CarouselData.prototype.setComponentAPI;
+        /**
          * Classes for the carousel component
          * @type {?|undefined}
          */
@@ -1331,7 +1315,43 @@
     }
     var CarouselComponent = /** @class */ (function () {
         function CarouselComponent() {
+            var _this = this;
             this.loaded = false;
+            /**
+             * API of the carousel component
+             */
+            this.api = {
+                /**
+                 * Used to lazy-load video resources.
+                 * Call api.load.videos on DOMContentReady event
+                 */
+                load: {
+                    /**
+                     * Changes all data-src attributes to src and calls <video>.load()
+                     */
+                    videos: (/**
+                     * @return {?}
+                     */
+                    function () {
+                        /** @type {?} */
+                        var sources = Array.from(// gets all <source.lazy> tags
+                        document.getElementById(_this.data.containerId)
+                            .getElementsByClassName('lazy'));
+                        sources.forEach((/**
+                         * @param {?} source
+                         * @return {?}
+                         */
+                        function (source) {
+                            /** @type {?} */
+                            var url = source.getAttribute('data-src');
+                            source.classList.remove('lazy'); // removes the lazy class
+                            source.setAttribute('src', url); // sets the url to src attribute
+                            source.removeAttribute('data-src'); // removes the data-src attribute
+                            ((/** @type {?} */ (source.parentElement))).load(); // loads the video
+                        }));
+                    })
+                }
+            };
         }
         /**
          * @return {?}
@@ -1364,6 +1384,13 @@
                          * @return {?}
                          */
                         function (d) { d = chart; }));
+                    // eslint-disable-next-line no-param-reassign, @typescript-eslint/no-unused-vars
+                    if (_this.data.setComponentAPI)
+                        _this.data.setComponentAPI((/**
+                         * @param {?} d
+                         * @return {?}
+                         */
+                        function (d) { d = _this.api; }));
                     _this.addButtonEvents(_this.data);
                 }));
             }));
@@ -1409,19 +1436,9 @@
              * @return {?}
              */
             function (slide, slideID) { return ({
-                // id = container id - index of the slide - index of the button
-                id: containerId + "-" + slideID + "-" + slide.items.findIndex((/**
-                 * @param {?} i
-                 * @return {?}
-                 */
-                function (i) { return i.action; })),
-                payload: (slide.items.find((/**
-                 * @param {?} i
-                 * @return {?}
-                 */
-                function (i) { return i.action; }))
-                    || { action: { anchor: { payload: undefined } } })
-                    .action.anchor.payload
+                // id = container id - index of the slide
+                id: containerId + "-" + slideID,
+                payload: (((slide.action || {}).anchor || {}).payload) || undefined
             }); }))
                 .filter((/**
              * @param {?} btn
@@ -1443,7 +1460,7 @@
         CarouselComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-carousel',
-                        template: "<div *ngIf=\"data\" class=\"n7-carousel {{ data.classes || '' }}\">\n  <!-- Warning: Do not style div.latte-carousel -->\n  <div id=\"{{data.containerId}}\" class=\"latte-carousel\">\n    <ng-container *ngFor=\"let slide of data.slides; let index = index;\">\n      <ng-container *ngTemplateOutlet=\"carouselSlide; context:{slide: slide, index: index}\"></ng-container>\n    </ng-container>\n  </div>\n</div>\n\n<!-- ===== SLIDE WRAPPER ===== -->\n<ng-template #carouselSlide let-slide=\"slide\" let-slideID=\"index\">\n  <!-- Warning: Do not style div.latte-item -->\n  <div class=\"latte-item\">\n    <div\n        class=\"n7-carousel__slide {{ slide.classes || ''}}\"\n        [style.background-color]=\"slide.background.color ? slide.background.color : ''\"\n        [style.background-image]=\"slide.background.image ? 'url('+slide.background.image+')' : ''\">\n      <ng-container *ngTemplateOutlet=\"slideForeground; context:{items: slide.items, slideID: slideID}\">\n      </ng-container>\n      <ng-container *ngIf=\"slide.background\">\n        <ng-container *ngTemplateOutlet=\"slideBackground; context:{$implicit: slide.background}\">\n        </ng-container>\n      </ng-container>\n    </div>\n  </div>\n</ng-template>\n\n<!-- ===== SLIDE FOREGROUND ===== -->\n<ng-template #slideForeground let-items=\"items\" let-slideID=\"slideID\">\n  <ng-container *ngFor=\"let el of items; let itemID = index\">\n    <h1 *ngIf=\"el.title\">{{el.title}}</h1>\n    <span *ngIf=\"el.text\">{{el.text}}</span>\n    <div *ngIf=\"el.metadata\">\n      <ng-container *ngFor=\"let m of el.metadata\">\n        <span *ngIf=\"m.key\">{{m.key}}</span>\n        <span *ngIf=\"m.value\">{{m.value}}</span>\n      </ng-container>\n    </div>\n    <n7-anchor-wrapper\n      *ngIf=\"el.action\"\n      [data]=\"el.action.anchor\"\n      (clicked)=\"onClick($event)\">\n        <button\n          id=\"{{data.containerId}}-{{slideID}}-{{itemID}}\"\n          class=\"n7-hero__btn n7-btn n7-btn-cta n7-btn-l\">\n          {{el.action.text}}\n        </button>\n    </n7-anchor-wrapper>\n  </ng-container>\n</ng-template>\n\n<!-- ===== VIDEO BACKGROUND ===== -->\n<ng-template #slideBackground let-bg>\n  <ng-container *ngIf=\"bg.video\">\n    <!-- src=\"{{bg.video}}\"  -->\n    <video \n      [loop]=\"true\"\n      [muted]=\"true\" \n      [autoplay]=\"true\">\n        <source src=\"{{bg.video}}\">\n    </video>\n  </ng-container>\n</ng-template>\n"
+                        template: "<button *ngIf=\"data.classes === 'demo'\"\n        class=\"n7-btn\"\n        (click)=\"api.load.videos()\">api.load.videos()</button>\n\n<div *ngIf=\"data\"\n     class=\"n7-carousel {{ data.classes || '' }}\">\n  <!-- Warning: Do not style div.latte-carousel -->\n  <div id=\"{{data.containerId}}\"\n       class=\"latte-carousel\">\n    <ng-container *ngFor=\"let slide of data.slides; let index = index;\">\n      <ng-container *ngTemplateOutlet=\"carouselSlide; context:{slide: slide, index: index}\"></ng-container>\n    </ng-container>\n  </div>\n</div>\n\n<!-- ===== SLIDE WRAPPER ===== -->\n<ng-template #carouselSlide\n             let-slide=\"slide\"\n             let-slideID=\"index\">\n  <!-- Warning: Do not style div.latte-item -->\n  <div class=\"latte-item\">\n    <div class=\"n7-carousel__slide {{ slide.classes || ''}}\"\n         [ngClass]=\"{ 'has-image' : slide.background.image, 'has-video': slide.background.video }\"\n         [style.background-color]=\"slide.background.color ? slide.background.color : ''\"\n         [style.background-image]=\"slide.background.image ? 'url('+slide.background.image+')' : ''\">\n      <div class=\"n7-carousel__slide-content-wrapper\">\n        <div class=\"n7-carousel__slide-content\">\n          <div class=\"n7-carousel__slide-content-left\">\n            <ng-container *ngTemplateOutlet=\"slideForeground; context:{items: slide.items, slideID: slideID}\">\n            </ng-container>\n          </div>\n          <div class=\"n7-carousel__slide-content-right\"\n               *ngIf=\"slide.action\">\n            <n7-anchor-wrapper [data]=\"slide.action.anchor\"\n                               (clicked)=\"onClick($event)\">\n              <!-- Button ID's are used to dynamically reattach events after loading the carousel -->\n              <button id=\"{{data.containerId}}-{{slideID}}\"\n                      class=\"n7-hero__btn n7-btn n7-btn-cta n7-btn-l\">\n                {{slide.action.text}}\n              </button>\n            </n7-anchor-wrapper>\n          </div>\n        </div>\n      </div>\n      <ng-container *ngIf=\"slide.background\">\n        <ng-container *ngTemplateOutlet=\"slideBackground; context:{$implicit: slide.background}\">\n        </ng-container>\n      </ng-container>\n    </div>\n  </div>\n</ng-template>\n\n<!-- ===== SLIDE FOREGROUND ===== -->\n<ng-template #slideForeground\n             let-items=\"items\"\n             let-slideID=\"slideID\">\n  <ng-container *ngFor=\"let el of items; let itemID = index\">\n    <h1 class=\"n7-carousel__slide-title\"\n        *ngIf=\"el.title\">{{el.title}}</h1>\n    <span class=\"n7-carousel__slide-text\"\n          *ngIf=\"el.text\">{{el.text}}</span>\n    <div class=\"n7-carousel__slide-metadata-wrapper\"\n         *ngIf=\"el.metadata\">\n      <ng-container *ngFor=\"let m of el.metadata\">\n        <div class=\"n7-carousel__slide-metadata\">\n            <span class=\"n7-carousel__slide-metadata-label\"\n              *ngIf=\"m.key\">{{m.key}}</span>\n            <span class=\"n7-carousel__slide-metadata-value\"\n              *ngIf=\"m.value\">{{m.value}}</span>\n        </div>\n      </ng-container>\n    </div>\n  </ng-container>\n</ng-template>\n\n<!-- ===== VIDEO BACKGROUND ===== -->\n<ng-template #slideBackground\n             let-bg>\n  <ng-container *ngIf=\"bg.video as v\">\n    <video #video\n           class=\"n7-carousel__slide-video\"\n           [poster]=\"v.poster\"\n           [height]=\"v.height\"\n           [width]=\"v.width\"\n           loop\n           muted\n           autoplay\n           playsinline>\n      <source #source\n              class=\"lazy\"\n              [attr.data-src]=\"v.url\"\n              type=\"video/mp4\">\n    </video>\n    <div class=\"n7-carousel__slide-video-overlay\">\n\n    </div>\n  </ng-container>\n</ng-template>\n"
                     }] }
         ];
         CarouselComponent.propDecorators = {
@@ -1462,6 +1479,11 @@
          * @private
          */
         CarouselComponent.prototype.loaded;
+        /**
+         * API of the carousel component
+         * @type {?}
+         */
+        CarouselComponent.prototype.api;
     }
 
     /**
@@ -2804,7 +2826,7 @@
         HeroComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'n7-hero',
-                        template: "<section *ngIf=\"data\" class=\"n7-hero {{data.classes || ''}}\" \n    [ngClass]=\"{ \n        'has-image' : !!data.image, \n        'has-background-image': !!data.backgroundImage \n    }\"\n    [ngStyle]=\"{ \n        'background-image': getBackgroundImageCssValue(data.backgroundImage)\n    }\">\n    <div class=\"n7-hero__content\">\n        \n        <div class=\"n7-hero__text-wrapper\">\n            <h1 class=\"n7-hero__title\">\n                {{data.title}}\n            </h1>\n            <p class=\"n7-hero__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></p>\n            <div class=\"n7-hero__input-wrapper\" *ngIf=\"data.input || data.button\">\n                <input type=\"text\" \n                       class=\"n7-hero__input\" \n                       placeholder=\"{{data.input.placeholder || ''}}\" \n                       *ngIf=\"data.input\" \n                       (input)=\"onInputChange(data.input.payload, $event.target.value)\" \n                       (keyup.enter)=\"onInputEnter(data.input.payload, $event.target.value)\">\n                <span class=\"n7-hero__input-icon {{data.input.icon || ''}}\" \n                      *ngIf=\"data.input && data.input.icon\" \n                      (click)=\"onClick(data.input.payload)\"></span>\n                <ng-container *ngIf=\"data.button\">\n                    <n7-anchor-wrapper [classes]=\"'n7-hero__btn n7-btn n7-btn-cta n7-btn-l'\"\n                    [data]=\"data.button.anchor\"\n                    (clicked)=\"onClick($event)\">\n                        {{data.button.text}}\n                    </n7-anchor-wrapper>\n                </ng-container>\n            </div>\n        </div>\n        \n        <div class=\"n7-hero__image-wrapper\" *ngIf=\"data.image\">\n            <img class=\"n7-hero__image\" src=\"{{data.image}}\" alt=\"\">\n        </div>\n\n    </div>\n</section>"
+                        template: "<section *ngIf=\"data\" class=\"n7-hero {{data.classes || ''}}\" \n    [ngClass]=\"{ \n        'has-image' : !!data.image, \n        'has-background-image': !!data.backgroundImage \n    }\"\n    [ngStyle]=\"{ \n        'background-image': getBackgroundImageCssValue(data.backgroundImage)\n    }\">\n    <div class=\"n7-hero__content\">\n        \n        <div class=\"n7-hero__text-wrapper\">\n            <h1 class=\"n7-hero__title\">\n                {{data.title}}\n            </h1>\n            <div class=\"n7-hero__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></div>\n            <div class=\"n7-hero__input-wrapper\" *ngIf=\"data.input || data.button\">\n                <input type=\"text\" \n                       class=\"n7-hero__input\" \n                       placeholder=\"{{data.input.placeholder || ''}}\" \n                       *ngIf=\"data.input\" \n                       (input)=\"onInputChange(data.input.payload, $event.target.value)\" \n                       (keyup.enter)=\"onInputEnter(data.input.payload, $event.target.value)\">\n                <span class=\"n7-hero__input-icon {{data.input.icon || ''}}\" \n                      *ngIf=\"data.input && data.input.icon\" \n                      (click)=\"onClick(data.input.payload)\"></span>\n                <ng-container *ngIf=\"data.button\">\n                    <n7-anchor-wrapper [classes]=\"'n7-hero__btn n7-btn n7-btn-cta n7-btn-l'\"\n                    [data]=\"data.button.anchor\"\n                    (clicked)=\"onClick($event)\">\n                        {{data.button.text}}\n                    </n7-anchor-wrapper>\n                </ng-container>\n            </div>\n        </div>\n        \n        <div class=\"n7-hero__image-wrapper\" *ngIf=\"data.image\">\n            <img class=\"n7-hero__image\" src=\"{{data.image}}\" alt=\"\">\n        </div>\n\n    </div>\n</section>"
                     }] }
         ];
         HeroComponent.propDecorators = {
@@ -9339,6 +9361,7 @@
     /** @type {?} */
     var CAROUSEL_MOCK = {
         containerId: 'carousel-root',
+        classes: 'demo',
         libOptions: {
             count: 1,
             move: 1,
@@ -9363,17 +9386,49 @@
                             { key: 'Metadato 2', value: 'Valore 2' },
                         ]
                     },
-                    {
-                        action: {
-                            text: 'Action',
-                            anchor: {
-                                payload: 'first-button',
-                            }
-                        }
-                    }
+                    {}
                 ],
+                action: {
+                    text: 'Action',
+                    anchor: {
+                        payload: 'first-button',
+                    }
+                },
                 background: {
-                    video: 'http://www.giulioandreini.it/galassia-ariosto/galassia-ariosto-home-carousel.mp4'
+                    video: {
+                        url: 'http://www.giulioandreini.it/galassia-ariosto/galassia-ariosto-home-carousel.mp4',
+                        poster: 'https://placeimg.com/640/480/arch/grayscale',
+                        height: 334,
+                        width: 640,
+                    }
+                }
+            }, {
+                classes: 'example-class',
+                items: [
+                    { text: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.' },
+                    { title: 'Lorem Donec sed odio dui.' },
+                    { text: 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.' },
+                    {
+                        metadata: [
+                            { key: 'Metadato 1', value: 'Valore 1' },
+                            { key: 'Metadato 2', value: 'Valore 2' },
+                        ]
+                    },
+                    {}
+                ],
+                action: {
+                    text: 'Action',
+                    anchor: {
+                        payload: 'second-button',
+                    }
+                },
+                background: {
+                    video: {
+                        url: 'http://www.giulioandreini.it/galassia-ariosto/galassia-ariosto-home-carousel.mp4',
+                        poster: 'https://placeimg.com/640/480/arch/grayscale',
+                        height: 334,
+                        width: 640,
+                    }
                 }
             }, {
                 items: [
@@ -9385,15 +9440,14 @@
                             { value: '1955' }
                         ]
                     },
-                    {
-                        action: {
-                            text: 'IL COSTUME >',
-                            anchor: {
-                                payload: 'second-button'
-                            }
-                        }
-                    }
+                    {}
                 ],
+                action: {
+                    text: 'IL COSTUME >',
+                    anchor: {
+                        payload: 'third-button'
+                    }
+                },
                 background: {
                     image: 'https://placeimg.com/800/400/nature/grayscale'
                 }
@@ -9408,15 +9462,14 @@
                             { value: '1955' }
                         ]
                     },
-                    {
-                        action: {
-                            text: 'IL COSTUME >',
-                            anchor: {
-                                payload: 'third-button'
-                            }
-                        }
-                    }
+                    {}
                 ],
+                action: {
+                    text: 'IL COSTUME >',
+                    anchor: {
+                        payload: 'fourth-button'
+                    }
+                },
                 background: {
                     image: 'https://placeimg.com/800/400/nature/grayscale'
                 }
@@ -9875,7 +9928,7 @@
     /** @type {?} */
     var HERO_MOCK = {
         title: "Il più bell'archivio che tu abbia mai visto",
-        text: "\n  La <strong>Fondazione Cerratelli</strong> \u00E8 uno spazio espositivo che raccoglie un'importante \n  collezione di costumi <em>teatrali e cinematografici</em>. Sua sede si trova dal 3 dicembre \n  2011 presso la villa Roncioni a Pugnano, frazione del comune di San Giuliano Terme.\n  ",
+        text: "\n  <p>La <strong>Fondazione Cerratelli</strong> \u00E8 uno spazio espositivo che raccoglie un'importante \n  collezione di costumi <em>teatrali e cinematografici</em>. Sua sede si trova dal 3 dicembre \n  2011 presso la villa Roncioni a Pugnano, frazione del comune di San Giuliano Terme.</p>\n  ",
         input: {
             placeholder: 'Cerca quello che vuoi',
             icon: 'n7-icon-search1',

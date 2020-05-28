@@ -47,7 +47,16 @@ export interface CarouselBackgroundItem {
     /**
      * Background video for the carousel
      */
-    video?: string;
+    video?: {
+        /** Media URL */
+        url: string;
+        /** Placeholder image while loading */
+        poster?: string;
+        /** Video width in pixels */
+        width: number;
+        /** Video height in pixels */
+        height: number;
+    };
     /**
      * Background color for the carousel
      */
@@ -76,10 +85,6 @@ export interface CarouselForegroundItem {
      * Metadata
      */
     metadata?: CarouselMetadata[];
-    /**
-     * Button
-     */
-    action?: CarouselButton;
 }
 /**
  * Interface for CarouselComponent's "data"
@@ -104,6 +109,10 @@ export interface CarouselData {
      */
     slides: {
         items: CarouselForegroundItem[];
+        /**
+         * Button
+         */
+        action?: CarouselButton;
         background?: CarouselBackgroundItem;
         classes?: string;
     }[];
@@ -111,6 +120,10 @@ export interface CarouselData {
      * Callback for getting the carousel instance
      */
     setInstance?: any;
+    /**
+     * Callback to access the carousel API
+     * */
+    setComponentAPI?: any;
     /**
      * Classes for the carousel component
      */
@@ -124,6 +137,19 @@ export declare class CarouselComponent implements AfterContentChecked {
     data: CarouselData;
     emit: any;
     private loaded;
+    /**
+     * API of the carousel component
+     */
+    api: {
+        /**
+         * Used to lazy-load video resources.
+         * Call api.load.videos on DOMContentReady event
+         */
+        load: {
+            /** Changes all data-src attributes to src and calls <video>.load() */
+            videos: () => void;
+        };
+    };
     ngAfterContentChecked(): void;
     onClick(payload: any): void;
     /**
