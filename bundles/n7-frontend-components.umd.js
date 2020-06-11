@@ -3973,35 +3973,6 @@
         Option.prototype.selected;
     }
     /**
-     * Interface for PaginationComponent's links (pages and navigation buttons)
-     *
-     * \@property text (required)
-     * \@property anchor (optional)
-     * \@property classes (optional)
-     * \@property _meta (optional)
-     * @record
-     */
-    function Button() { }
-    if (false) {
-        /**
-         * innerHTML or plain text for the label
-         * @type {?|undefined}
-         */
-        Button.prototype.text;
-        /**
-         * additional html classes
-         * @type {?|undefined}
-         */
-        Button.prototype.classes;
-        /** @type {?|undefined} */
-        Button.prototype.anchor;
-        /**
-         * additional info
-         * @type {?|undefined}
-         */
-        Button.prototype._meta;
-    }
-    /**
      * Interface for PaginationComponent's "data"
      *
      * \@property links (required)
@@ -4723,6 +4694,147 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lib/components/timeline/timeline.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function LibOptions() { }
+    if (false) {
+        /**
+         * Specifies how strong the zooming for each scroll tick.
+         * Higher zooming friction will slow zooming speed
+         * @type {?|undefined}
+         */
+        LibOptions.prototype.zoomFriction;
+    }
+    /**
+     * @record
+     */
+    function TimelineData() { }
+    if (false) {
+        /**
+         * ID for the HTML container element
+         * @type {?}
+         */
+        TimelineData.prototype.containerID;
+        /**
+         * Options for vis-timeline, full reference: https://visjs.github.io/vis-timeline/docs/timeline/#Configuration_Options
+         * @type {?}
+         */
+        TimelineData.prototype.libOptions;
+        /**
+         * Sets the timeline instance to the given parameter
+         * @type {?|undefined}
+         */
+        TimelineData.prototype._setInstance;
+        /**
+         * Dadaset in vis-js format, full ref: https://visjs.github.io/vis-timeline/docs/timeline/#Data_Format
+         * @type {?}
+         */
+        TimelineData.prototype.dataSet;
+    }
+    var TimelineComponent = /** @class */ (function () {
+        function TimelineComponent() {
+            var _this = this;
+            /**
+             * Knows if the component is loaded
+             */
+            this._loaded = false;
+            /**
+             * Dynamically load required node modules
+             */
+            this.loadModules = (/**
+             * @return {?}
+             */
+            function () { return __awaiter(_this, void 0, void 0, function () {
+                var _a;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            _a = [{}];
+                            return [4 /*yield*/, import('vis-timeline/peer')];
+                        case 1: return [2 /*return*/, (__assign.apply(void 0, _a.concat([_b.sent()])))];
+                    }
+                });
+            }); });
+        }
+        /**
+         * @return {?}
+         */
+        TimelineComponent.prototype.ngAfterContentChecked = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            if (!this.data || this._loaded)
+                return;
+            this._loaded = true;
+            setTimeout((/**
+             * @return {?}
+             */
+            function () {
+                _this.loadModules().then((/**
+                 * @param {?} modules
+                 * @return {?}
+                 */
+                function (modules) {
+                    // To enable two-way data binding, import { DataSet } from 'vis-data'
+                    var Timeline = modules.Timeline;
+                    /** @type {?} */
+                    var t = new Timeline(document.getElementById(_this.data.containerID), // container
+                    _this.data.dataSet, _this.data.libOptions);
+                    _this.data._setInstance(t);
+                }));
+            }));
+        };
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        TimelineComponent.prototype.onClick = /**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) {
+            if (!this.emit)
+                return;
+            this.emit('click', payload);
+        };
+        TimelineComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-timeline',
+                        template: "<div *ngIf=\"data\" class=\"n7-timeline\">\n  <div [id]=\"data.containerID\" style=\"border: 1px solid #ddd\"></div> \n</div>\n"
+                    }] }
+        ];
+        TimelineComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return TimelineComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        TimelineComponent.prototype.data;
+        /** @type {?} */
+        TimelineComponent.prototype.emit;
+        /**
+         * Knows if the component is loaded
+         * @type {?}
+         * @private
+         */
+        TimelineComponent.prototype._loaded;
+        /**
+         * Dynamically load required node modules
+         * @type {?}
+         * @private
+         */
+        TimelineComponent.prototype.loadModules;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: lib/components/toast/toast.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -4849,6 +4961,75 @@
         ToastComponent.prototype.data;
         /** @type {?} */
         ToastComponent.prototype.emit;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lib/components/tooltip-content/tooltip-content.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * Interface for TooltipContentComponent's "data"
+     *
+     * \@property NAME (required|options) <--- TODO: update with interface properties
+     * @record
+     */
+    function TooltipContentData() { }
+    if (false) {
+        /**
+         * Title of the tooltip
+         * @type {?|undefined}
+         */
+        TooltipContentData.prototype.title;
+        /**
+         * Subtitle or text
+         * @type {?|undefined}
+         */
+        TooltipContentData.prototype.text;
+        /**
+         * Image for the tooltip
+         * @type {?|undefined}
+         */
+        TooltipContentData.prototype.image;
+        /**
+         * Action or list of actions
+         * @type {?|undefined}
+         */
+        TooltipContentData.prototype.actions;
+    }
+    var TooltipContentComponent = /** @class */ (function () {
+        function TooltipContentComponent() {
+        }
+        /**
+         * @param {?} payload
+         * @return {?}
+         */
+        TooltipContentComponent.prototype.onClick = /**
+         * @param {?} payload
+         * @return {?}
+         */
+        function (payload) {
+            if (!this.emit)
+                return;
+            this.emit('click', payload);
+        };
+        TooltipContentComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'n7-tooltip-content',
+                        template: "<div *ngIf=\"data\"\n     class=\"n7-tooltip-content\">\n\n  <div *ngIf=\"data.title\">\n    {{data.title}}\n  </div>\n\n  <div *ngIf=\"data.text\"\n       [innerHTML]=\"data.text\">\n  </div>\n\n  <img *ngIf=\"data.image\"\n       [src]=\"data.image\">\n\n  <ng-container *ngFor=\"let btn of data.actions\">\n    <n7-anchor-wrapper [classes]=\"\"\n                       [data]=\"btn\"\n                       (clicked)=\"onClick(btn.anchor.payload)\">\n      <span *ngIf=\"data.text\" class=\"n7-btn\">\n        {{ btn.text }}\n      </span>\n    </n7-anchor-wrapper>\n  </ng-container>\n\n</div>\n"
+                    }] }
+        ];
+        TooltipContentComponent.propDecorators = {
+            data: [{ type: core.Input }],
+            emit: [{ type: core.Input }]
+        };
+        return TooltipContentComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        TooltipContentComponent.prototype.data;
+        /** @type {?} */
+        TooltipContentComponent.prototype.emit;
     }
 
     /**
@@ -5111,7 +5292,9 @@
         SimpleAutocompleteComponent,
         TableComponent,
         TagComponent,
+        TimelineComponent,
         ToastComponent,
+        TooltipContentComponent,
         TreeComponent,
         WizardComponent,
     ];
@@ -5168,6 +5351,35 @@
          * @type {?|undefined}
          */
         Anchor.prototype.queryParams;
+    }
+    /**
+     * Interface for a simple Button
+     *
+     * \@property text (required)
+     * \@property anchor (optional)
+     * \@property classes (optional)
+     * \@property _meta (optional)
+     * @record
+     */
+    function Button() { }
+    if (false) {
+        /**
+         * innerHTML or plain text for the label
+         * @type {?|undefined}
+         */
+        Button.prototype.text;
+        /**
+         * additional html classes
+         * @type {?|undefined}
+         */
+        Button.prototype.classes;
+        /** @type {?|undefined} */
+        Button.prototype.anchor;
+        /**
+         * additional info
+         * @type {?|undefined}
+         */
+        Button.prototype._meta;
     }
 
     /**
@@ -10636,6 +10848,85 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lib/components/timeline/timeline.mock.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ɵ0$3 = /**
+     * @param {?} f
+     * @param {?} s
+     * @return {?}
+     */
+    function (f, s) { return f.content.charAt(0) === s.content.charAt(0); }, ɵ1$1 = /**
+     * @param {?} data
+     * @param {?} element
+     * @return {?}
+     */
+    function (data, element) { return "<div class=\"tooltip\">" + element.title + "</div>"; }, ɵ2 = /**
+     * @param {?} timeline
+     * @return {?}
+     */
+    function (timeline) { return timeline; };
+    /** @type {?} */
+    var TIMELINE_MOCK = {
+        containerID: 'demo-timeline',
+        libOptions: {
+            height: '500px',
+            locale: 'it_IT',
+            cluster: {
+                // titleTemplate: '{count}',
+                // fitOnDoubleClick: true,
+                clusterCriteria: (ɵ0$3)
+            },
+            showTooltips: false,
+            tooltip: {
+                followMouse: false,
+                template: (ɵ1$1)
+            },
+            width: '100%',
+            minHeight: '350px',
+            maxHeight: '800px',
+            // zoomMax: 31557600000, // one year
+            zoomFriction: 8
+        },
+        dataSet: [
+            {
+                id: 1,
+                content: 'item 1',
+                start: '2014-04-20'
+            },
+            {
+                id: 2,
+                content: 'item 2',
+                start: '2014-04-14'
+            },
+            {
+                id: 3,
+                content: 'item 3',
+                start: '2014-04-18'
+            },
+            {
+                id: 4,
+                content: 'item 4',
+                start: '2014-04-16',
+                end: '2014-04-19'
+            },
+            {
+                id: 5,
+                content: 'item 5',
+                start: '2014-04-25'
+            },
+            {
+                id: 6,
+                content: 'item 6',
+                start: '2014-04-27',
+                type: 'point'
+            }
+        ],
+        _setInstance: (ɵ2)
+    };
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: lib/components/toast/toast.mock.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -10686,6 +10977,31 @@
                 classes: 'is-warning',
                 title: 'Title',
                 text: 'Questo messaggio ha soltanto un titolo e del testo, è di tipo is-warning ed ha un tempo di 15 secondi',
+            }
+        ]
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lib/components/tooltip-content/tooltip-content.mock.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var TOOLTIP_CONTENT_MOCK = {
+        title: 'Title',
+        text: '<span>subtitle or text for the <strong>tooltip content</strong> component</span>',
+        image: 'https://placeimg.com/150/150/tech/grayscale',
+        actions: [
+            {
+                text: 'ClickMe',
+                anchor: {
+                    payload: 'ClickMe'
+                }
+            }, {
+                text: 'DontClickHim',
+                anchor: {
+                    payload: 'DontClickHim'
+                }
             }
         ]
     };
@@ -11067,11 +11383,15 @@
     exports.SimpleAutocompleteComponent = SimpleAutocompleteComponent;
     exports.TABLE_MOCK = TABLE_MOCK;
     exports.TAG_MOCK = TAG_MOCK;
+    exports.TIMELINE_MOCK = TIMELINE_MOCK;
     exports.TOAST_MOCK = TOAST_MOCK;
+    exports.TOOLTIP_CONTENT_MOCK = TOOLTIP_CONTENT_MOCK;
     exports.TREE_MOCK = TREE_MOCK;
     exports.TableComponent = TableComponent;
     exports.TagComponent = TagComponent;
+    exports.TimelineComponent = TimelineComponent;
     exports.ToastComponent = ToastComponent;
+    exports.TooltipContentComponent = TooltipContentComponent;
     exports.TreeComponent = TreeComponent;
     exports.WIZARD_MOCK = WIZARD_MOCK;
     exports.WizardComponent = WizardComponent;

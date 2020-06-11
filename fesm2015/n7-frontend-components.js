@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { __awaiter } from 'tslib';
 
 /**
  * @fileoverview added by tsickle
@@ -3536,35 +3537,6 @@ if (false) {
     Option.prototype.selected;
 }
 /**
- * Interface for PaginationComponent's links (pages and navigation buttons)
- *
- * \@property text (required)
- * \@property anchor (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function Button() { }
-if (false) {
-    /**
-     * innerHTML or plain text for the label
-     * @type {?|undefined}
-     */
-    Button.prototype.text;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    Button.prototype.classes;
-    /** @type {?|undefined} */
-    Button.prototype.anchor;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    Button.prototype._meta;
-}
-/**
  * Interface for PaginationComponent's "data"
  *
  * \@property links (required)
@@ -4212,6 +4184,129 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: lib/components/timeline/timeline.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function LibOptions() { }
+if (false) {
+    /**
+     * Specifies how strong the zooming for each scroll tick.
+     * Higher zooming friction will slow zooming speed
+     * @type {?|undefined}
+     */
+    LibOptions.prototype.zoomFriction;
+}
+/**
+ * @record
+ */
+function TimelineData() { }
+if (false) {
+    /**
+     * ID for the HTML container element
+     * @type {?}
+     */
+    TimelineData.prototype.containerID;
+    /**
+     * Options for vis-timeline, full reference: https://visjs.github.io/vis-timeline/docs/timeline/#Configuration_Options
+     * @type {?}
+     */
+    TimelineData.prototype.libOptions;
+    /**
+     * Sets the timeline instance to the given parameter
+     * @type {?|undefined}
+     */
+    TimelineData.prototype._setInstance;
+    /**
+     * Dadaset in vis-js format, full ref: https://visjs.github.io/vis-timeline/docs/timeline/#Data_Format
+     * @type {?}
+     */
+    TimelineData.prototype.dataSet;
+}
+class TimelineComponent {
+    constructor() {
+        /**
+         * Knows if the component is loaded
+         */
+        this._loaded = false;
+        /**
+         * Dynamically load required node modules
+         */
+        this.loadModules = (/**
+         * @return {?}
+         */
+        () => __awaiter(this, void 0, void 0, function* () {
+            return (Object.assign({}, yield import('vis-timeline/peer')));
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterContentChecked() {
+        if (!this.data || this._loaded)
+            return;
+        this._loaded = true;
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
+            this.loadModules().then((/**
+             * @param {?} modules
+             * @return {?}
+             */
+            (modules) => {
+                // To enable two-way data binding, import { DataSet } from 'vis-data'
+                const { Timeline } = modules;
+                /** @type {?} */
+                const t = new Timeline(document.getElementById(this.data.containerID), // container
+                this.data.dataSet, this.data.libOptions);
+                this.data._setInstance(t);
+            }));
+        }));
+    }
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+TimelineComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-timeline',
+                template: "<div *ngIf=\"data\" class=\"n7-timeline\">\n  <div [id]=\"data.containerID\" style=\"border: 1px solid #ddd\"></div> \n</div>\n"
+            }] }
+];
+TimelineComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    TimelineComponent.prototype.data;
+    /** @type {?} */
+    TimelineComponent.prototype.emit;
+    /**
+     * Knows if the component is loaded
+     * @type {?}
+     * @private
+     */
+    TimelineComponent.prototype._loaded;
+    /**
+     * Dynamically load required node modules
+     * @type {?}
+     * @private
+     */
+    TimelineComponent.prototype.loadModules;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: lib/components/toast/toast.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -4331,6 +4426,68 @@ if (false) {
     ToastComponent.prototype.data;
     /** @type {?} */
     ToastComponent.prototype.emit;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: lib/components/tooltip-content/tooltip-content.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Interface for TooltipContentComponent's "data"
+ *
+ * \@property NAME (required|options) <--- TODO: update with interface properties
+ * @record
+ */
+function TooltipContentData() { }
+if (false) {
+    /**
+     * Title of the tooltip
+     * @type {?|undefined}
+     */
+    TooltipContentData.prototype.title;
+    /**
+     * Subtitle or text
+     * @type {?|undefined}
+     */
+    TooltipContentData.prototype.text;
+    /**
+     * Image for the tooltip
+     * @type {?|undefined}
+     */
+    TooltipContentData.prototype.image;
+    /**
+     * Action or list of actions
+     * @type {?|undefined}
+     */
+    TooltipContentData.prototype.actions;
+}
+class TooltipContentComponent {
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+TooltipContentComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'n7-tooltip-content',
+                template: "<div *ngIf=\"data\"\n     class=\"n7-tooltip-content\">\n\n  <div *ngIf=\"data.title\">\n    {{data.title}}\n  </div>\n\n  <div *ngIf=\"data.text\"\n       [innerHTML]=\"data.text\">\n  </div>\n\n  <img *ngIf=\"data.image\"\n       [src]=\"data.image\">\n\n  <ng-container *ngFor=\"let btn of data.actions\">\n    <n7-anchor-wrapper [classes]=\"\"\n                       [data]=\"btn\"\n                       (clicked)=\"onClick(btn.anchor.payload)\">\n      <span *ngIf=\"data.text\" class=\"n7-btn\">\n        {{ btn.text }}\n      </span>\n    </n7-anchor-wrapper>\n  </ng-container>\n\n</div>\n"
+            }] }
+];
+TooltipContentComponent.propDecorators = {
+    data: [{ type: Input }],
+    emit: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    TooltipContentComponent.prototype.data;
+    /** @type {?} */
+    TooltipContentComponent.prototype.emit;
 }
 
 /**
@@ -4579,7 +4736,9 @@ const COMPONENTS = [
     SimpleAutocompleteComponent,
     TableComponent,
     TagComponent,
+    TimelineComponent,
     ToastComponent,
+    TooltipContentComponent,
     TreeComponent,
     WizardComponent,
 ];
@@ -4633,6 +4792,35 @@ if (false) {
      * @type {?|undefined}
      */
     Anchor.prototype.queryParams;
+}
+/**
+ * Interface for a simple Button
+ *
+ * \@property text (required)
+ * \@property anchor (optional)
+ * \@property classes (optional)
+ * \@property _meta (optional)
+ * @record
+ */
+function Button() { }
+if (false) {
+    /**
+     * innerHTML or plain text for the label
+     * @type {?|undefined}
+     */
+    Button.prototype.text;
+    /**
+     * additional html classes
+     * @type {?|undefined}
+     */
+    Button.prototype.classes;
+    /** @type {?|undefined} */
+    Button.prototype.anchor;
+    /**
+     * additional info
+     * @type {?|undefined}
+     */
+    Button.prototype._meta;
 }
 
 /**
@@ -10108,6 +10296,85 @@ const TAG_MOCK = {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: lib/components/timeline/timeline.mock.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+const ɵ0$3 = /**
+ * @param {?} f
+ * @param {?} s
+ * @return {?}
+ */
+(f, s) => f.content.charAt(0) === s.content.charAt(0), ɵ1$1 = /**
+ * @param {?} data
+ * @param {?} element
+ * @return {?}
+ */
+(data, element) => `<div class="tooltip">${element.title}</div>`, ɵ2 = /**
+ * @param {?} timeline
+ * @return {?}
+ */
+(timeline) => timeline;
+/** @type {?} */
+const TIMELINE_MOCK = {
+    containerID: 'demo-timeline',
+    libOptions: {
+        height: '500px',
+        locale: 'it_IT',
+        cluster: {
+            // titleTemplate: '{count}',
+            // fitOnDoubleClick: true,
+            clusterCriteria: (ɵ0$3)
+        },
+        showTooltips: false,
+        tooltip: {
+            followMouse: false,
+            template: (ɵ1$1)
+        },
+        width: '100%',
+        minHeight: '350px',
+        maxHeight: '800px',
+        // zoomMax: 31557600000, // one year
+        zoomFriction: 8
+    },
+    dataSet: [
+        {
+            id: 1,
+            content: 'item 1',
+            start: '2014-04-20'
+        },
+        {
+            id: 2,
+            content: 'item 2',
+            start: '2014-04-14'
+        },
+        {
+            id: 3,
+            content: 'item 3',
+            start: '2014-04-18'
+        },
+        {
+            id: 4,
+            content: 'item 4',
+            start: '2014-04-16',
+            end: '2014-04-19'
+        },
+        {
+            id: 5,
+            content: 'item 5',
+            start: '2014-04-25'
+        },
+        {
+            id: 6,
+            content: 'item 6',
+            start: '2014-04-27',
+            type: 'point'
+        }
+    ],
+    _setInstance: (ɵ2)
+};
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: lib/components/toast/toast.mock.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -10158,6 +10425,31 @@ const TOAST_MOCK = {
             classes: 'is-warning',
             title: 'Title',
             text: 'Questo messaggio ha soltanto un titolo e del testo, è di tipo is-warning ed ha un tempo di 15 secondi',
+        }
+    ]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: lib/components/tooltip-content/tooltip-content.mock.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const TOOLTIP_CONTENT_MOCK = {
+    title: 'Title',
+    text: '<span>subtitle or text for the <strong>tooltip content</strong> component</span>',
+    image: 'https://placeimg.com/150/150/tech/grayscale',
+    actions: [
+        {
+            text: 'ClickMe',
+            anchor: {
+                payload: 'ClickMe'
+            }
+        }, {
+            text: 'DontClickHim',
+            anchor: {
+                payload: 'DontClickHim'
+            }
         }
     ]
 };
@@ -10489,5 +10781,5 @@ const WIZARD_MOCK = {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HeaderComponent, HeroComponent, IMAGE_VIEWER_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, METADATA_VIEWER_MOCK, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PaginationComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TOAST_MOCK, TREE_MOCK, TableComponent, TagComponent, ToastComponent, TreeComponent, WIZARD_MOCK, WizardComponent };
+export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HeaderComponent, HeroComponent, IMAGE_VIEWER_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, METADATA_VIEWER_MOCK, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PaginationComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent };
 //# sourceMappingURL=n7-frontend-components.js.map

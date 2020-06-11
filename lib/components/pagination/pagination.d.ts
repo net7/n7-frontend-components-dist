@@ -1,4 +1,4 @@
-import { Anchor } from '../../shared-interfaces';
+import { Button } from '../../shared-interfaces';
 /**
  * Interface for PaginationComponent's options (page size select options)
  *
@@ -27,29 +27,6 @@ export interface Option {
      * force selection
      */
     selected?: boolean;
-}
-/**
- * Interface for PaginationComponent's links (pages and navigation buttons)
- *
- * @property text (required)
- * @property anchor (optional)
- * @property classes (optional)
- * @property _meta (optional)
- */
-export interface Button {
-    /**
-     * innerHTML or plain text for the label
-     */
-    text?: string;
-    /**
-     * additional html classes
-     */
-    classes?: string;
-    anchor?: Anchor;
-    /**
-     * additional info
-     */
-    _meta?: any;
 }
 /**
  * Interface for PaginationComponent's "data"
