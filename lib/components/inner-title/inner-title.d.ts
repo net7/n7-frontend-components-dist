@@ -1,3 +1,4 @@
+import { Anchor } from '../../shared-interfaces';
 /**
  * Interface for InnerTitleComponent's "data"
  *
@@ -42,8 +43,8 @@ export interface InnerTitleOptions {
     selected?: boolean;
 }
 export interface InnerTitleButtons {
+    anchor: Anchor;
     text: string;
-    payload: any;
     classes?: any;
     icon?: any;
 }
