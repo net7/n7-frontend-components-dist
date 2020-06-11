@@ -1,158 +1,48 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/image-viewer/image-viewer.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 //---------------------------
 // IMAGE-VIEWER.ts
 //---------------------------
+import { __decorate, __metadata } from "tslib";
 import { Component, Input } from '@angular/core';
-/**
- * Interface for ImageViewerComponent's images "data"
- *
- * Here the main options available, for a complete guide of image settings
- * view the official openseadragon documentation https://openseadragon.github.io/
- * All available options here: https://openseadragon.github.io/docs/OpenSeadragon.html
- *
- * \@property type (required)
- * Admitted values:
- * 'image' | 'zoomifytileservice' | 'openstreetmaps' | 'tiledmapservice' | 'legacy-image-pyramid'
- * \@property height (optional) image height
- * \@property width (optional) image width
- * \@property url (required) image url
- * \@property buildPyramid (optional)
- * \@property crossOriginPolicy (optional) Admitted values 'Anonymous' | 'use-credentials' | false;
- * @record
- */
-export function ImageData() { }
-if (false) {
-    /** @type {?} */
-    ImageData.prototype.type;
-    /** @type {?|undefined} */
-    ImageData.prototype.height;
-    /** @type {?|undefined} */
-    ImageData.prototype.width;
-    /** @type {?} */
-    ImageData.prototype.url;
-    /** @type {?} */
-    ImageData.prototype.buildPyramid;
-    /** @type {?|undefined} */
-    ImageData.prototype.crossOriginPolicy;
-}
-/**
- * Interface for ImageViewerComponent's thumbs to preview available images
- *
- * \@property url (required) image url
- * @record
- */
-export function ThumbsData() { }
-if (false) {
-    /** @type {?} */
-    ThumbsData.prototype.url;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    ThumbsData.prototype.payload;
-    /** @type {?|undefined} */
-    ThumbsData.prototype.classes;
-}
-/**
- * Interface for ImageViewerComponent's "data"
- *
- * \@property prefixUrl (optional) Prepends the prefixUrl to navImages paths.
- * Default is //openseadragon.github.io/openseadragon/images/
- * \@property classes (optional)
- * \@property viewerWidth (optional)
- * \@property viewerHeight (optional)
- * \@property images (required)
- * \@property viewerId (required) The id to assign to the imageviewer container
- * \@property libOptions (required)
- * @record
- */
-export function ImageViewerData() { }
-if (false) {
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.prefixUrl;
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.classes;
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.viewerWidth;
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.viewerHeight;
-    /** @type {?} */
-    ImageViewerData.prototype.images;
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.thumbs;
-    /** @type {?} */
-    ImageViewerData.prototype.viewerId;
-    /** @type {?} */
-    ImageViewerData.prototype.libOptions;
-    /** @type {?} */
-    ImageViewerData.prototype._setViewer;
-}
 /**
  * ImageViewerComponent <n7-image-viewer>
  *
  */
-export class ImageViewerComponent {
+let ImageViewerComponent = class ImageViewerComponent {
     constructor() {
         this._loaded = false;
     }
-    /**
-     * @return {?}
-     */
     ngAfterContentChecked() {
         if (!this.data || this._loaded)
             return;
         this._loaded = true;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
-            /** @type {?} */
+        setTimeout(() => {
             const prefixUrl = !this.data.prefixUrl ? '//openseadragon.github.io/openseadragon/images/' : this.data.prefixUrl;
-            import('openseadragon').then((/**
-             * @param {?} module
-             * @return {?}
-             */
-            (module) => {
+            import('openseadragon').then((module) => {
                 const { default: openseadragon } = module;
-                /** @type {?} */
                 const viewer = openseadragon(Object.assign({ id: this.data.viewerId, prefixUrl, tileSources: this.data.images, zoomInButton: 'n7-image-viewer-zoom-in', zoomOutButton: 'n7-image-viewer-zoom-out', homeButton: 'n7-image-viewer-home', fullPageButton: 'n7-image-viewer-full-screen', nextButton: 'n7-image-viewer-nav-next', previousButton: 'n7-image-viewer-nav-prev' }, this.data.libOptions));
                 this.data._setViewer(viewer);
-            }));
-        }));
+            });
+        });
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('thumbclick', payload);
     }
-}
-ImageViewerComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-image-viewer',
-                template: "<div *ngIf=\"data\" class=\"n7-image-viewer {{data.classes || ''}}\">\n    <!-- OSD viewer -->\n    <div id=\"{{data.viewerId}}\" class=\"n7-image-viewer__viewer\">\n    </div>\n\n    <!-- Thumbs -->\n    <div class=\"n7-image-viewer__thumbs\" *ngIf=\"data.thumbs\">\n        <ul class=\"n7-image-viewer__thumb-list\">\n            <li *ngFor=\"let thumb of data.thumbs\" \n                class=\"n7-image-viewer__thumb-item {{thumb.classes || ''}}\"\n                [ngStyle]=\"{'background-image': 'url(' + thumb.url + ')'}\"\n                (click)=\"onClick(thumb.payload)\">\n            </li>\n        </ul>\n    </div>\n\n    <!-- Zoom controls -->\n    <div class=\"n7-image-viewer__controls\">\n        <ul class=\"n7-image-viewer__controls-list\">\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-in\">\n                <span class=\"n7-icon-search-plus\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-out\">\n                <span class=\"n7-icon-search-minus\"></span>\n            </li>\n            <!--\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-home\">\n                <span class=\"n7-icon-home\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-full-screen\">\n                <span class=\"n7-icon-expand-arrows\"></span>\n            </li>\n            -->\n        </ul>\n    </div>\n\n    <!-- Navigation -->\n    <div class=\"n7-image-viewer__prev\" id=\"n7-image-viewer-nav-prev\">\n        <span class=\"n7-icon-angle-left\"></span>\n    </div>\n\n    <div class=\"n7-image-viewer__next\" id=\"n7-image-viewer-nav-next\">\n        <span class=\"n7-icon-angle-right\"></span>\n    </div>\n</div>"
-            }] }
-];
-ImageViewerComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    ImageViewerComponent.prototype.data;
-    /** @type {?} */
-    ImageViewerComponent.prototype.emit;
-    /**
-     * @type {?}
-     * @private
-     */
-    ImageViewerComponent.prototype._loaded;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW1hZ2Utdmlld2VyLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9pbWFnZS12aWV3ZXIvaW1hZ2Utdmlld2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQWtCakQsK0JBT0M7OztJQU5DLHlCQUFxRzs7SUFDckcsMkJBQWdCOztJQUNoQiwwQkFBZTs7SUFDZix3QkFBWTs7SUFDWixpQ0FBc0I7O0lBQ3RCLHNDQUE0RDs7Ozs7Ozs7QUFROUQsZ0NBT0M7OztJQU5DLHlCQUFZOzs7OztJQUlaLDZCQUFjOztJQUNkLDZCQUFpQjs7Ozs7Ozs7Ozs7Ozs7O0FBZW5CLHFDQWFDOzs7SUFYQyxvQ0FBbUI7O0lBQ25CLGtDQUFpQjs7SUFDakIsc0NBQXFCOztJQUNyQix1Q0FBc0I7O0lBQ3RCLGlDQUE2Qjs7SUFDN0IsaUNBQStCOztJQUMvQixtQ0FBaUI7O0lBRWpCLHFDQUFnQjs7SUFFaEIscUNBQWdCOzs7Ozs7QUFXbEIsTUFBTSxPQUFPLG9CQUFvQjtJQUpqQztRQVNVLFlBQU8sR0FBRyxLQUFLLENBQUM7SUFnQzFCLENBQUM7Ozs7SUE5QkMscUJBQXFCO1FBQ25CLElBQUksQ0FBQyxJQUFJLENBQUMsSUFBSSxJQUFJLElBQUksQ0FBQyxPQUFPO1lBQUUsT0FBTztRQUN2QyxJQUFJLENBQUMsT0FBTyxHQUFHLElBQUksQ0FBQztRQUVwQixVQUFVOzs7UUFBQyxHQUFHLEVBQUU7O2tCQUNSLFNBQVMsR0FBRyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLENBQUMsQ0FBQyxpREFBaUQsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxTQUFTO1lBQ2hILE1BQU0sQ0FBQyxlQUFlLENBQUMsQ0FBQyxJQUFJOzs7O1lBQUMsQ0FBQyxNQUFNLEVBQUUsRUFBRTtzQkFDaEMsRUFBRSxPQUFPLEVBQUUsYUFBYSxFQUFFLEdBQUcsTUFBTTs7c0JBQ25DLE1BQU0sR0FBRyxhQUFhLGlCQUMxQixFQUFFLEVBQUUsSUFBSSxDQUFDLElBQUksQ0FBQyxRQUFRLEVBQ3RCLFNBQVMsRUFDVCxXQUFXLEVBQUssSUFBSSxDQUFDLElBQUksQ0FBQyxNQUFNLEVBQ2hDLFlBQVksRUFBSSx5QkFBeUIsRUFDekMsYUFBYSxFQUFHLDBCQUEwQixFQUMxQyxVQUFVLEVBQU0sc0JBQXNCLEVBQ3RDLGNBQWMsRUFBRSw2QkFBNkIsRUFDN0MsVUFBVSxFQUFNLDBCQUEwQixFQUMxQyxjQUFjLEVBQUUsMEJBQTBCLElBQ3ZDLElBQUksQ0FBQyxJQUFJLENBQUMsVUFBVSxFQUN2QjtnQkFFRixJQUFJLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxNQUFNLENBQUMsQ0FBQztZQUMvQixDQUFDLEVBQUMsQ0FBQztRQUNMLENBQUMsRUFBQyxDQUFDO0lBQ0wsQ0FBQzs7Ozs7SUFFRCxPQUFPLENBQUMsT0FBTztRQUNiLElBQUksQ0FBQyxJQUFJLENBQUMsSUFBSTtZQUFFLE9BQU87UUFDdkIsSUFBSSxDQUFDLElBQUksQ0FBQyxZQUFZLEVBQUUsT0FBTyxDQUFDLENBQUM7SUFDbkMsQ0FBQzs7O1lBeENGLFNBQVMsU0FBQztnQkFDVCxRQUFRLEVBQUUsaUJBQWlCO2dCQUMzQixveURBQWtDO2FBQ25DOzs7bUJBRUUsS0FBSzttQkFFTCxLQUFLOzs7O0lBRk4sb0NBQStCOztJQUUvQixvQ0FBbUI7Ozs7O0lBRW5CLHVDQUF3QiIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4vLyBJTUFHRS1WSUVXRVIudHNcbi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5cbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIEltYWdlVmlld2VyQ29tcG9uZW50J3MgaW1hZ2VzIFwiZGF0YVwiXG4gKlxuICogSGVyZSB0aGUgbWFpbiBvcHRpb25zIGF2YWlsYWJsZSwgZm9yIGEgY29tcGxldGUgZ3VpZGUgb2YgaW1hZ2Ugc2V0dGluZ3NcbiAqIHZpZXcgdGhlIG9mZmljaWFsIG9wZW5zZWFkcmFnb24gZG9jdW1lbnRhdGlvbiBodHRwczovL29wZW5zZWFkcmFnb24uZ2l0aHViLmlvL1xuICogQWxsIGF2YWlsYWJsZSBvcHRpb25zIGhlcmU6IGh0dHBzOi8vb3BlbnNlYWRyYWdvbi5naXRodWIuaW8vZG9jcy9PcGVuU2VhZHJhZ29uLmh0bWxcbiAqXG4gKiBAcHJvcGVydHkgIHR5cGUgKHJlcXVpcmVkKVxuICogQWRtaXR0ZWQgdmFsdWVzOlxuICogJ2ltYWdlJyB8ICd6b29taWZ5dGlsZXNlcnZpY2UnIHwgJ29wZW5zdHJlZXRtYXBzJyB8ICd0aWxlZG1hcHNlcnZpY2UnIHwgJ2xlZ2FjeS1pbWFnZS1weXJhbWlkJ1xuICogQHByb3BlcnR5ICBoZWlnaHQgKG9wdGlvbmFsKSBpbWFnZSBoZWlnaHRcbiAqIEBwcm9wZXJ0eSAgd2lkdGggKG9wdGlvbmFsKSBpbWFnZSB3aWR0aFxuICogQHByb3BlcnR5ICB1cmwgKHJlcXVpcmVkKSBpbWFnZSB1cmxcbiAqIEBwcm9wZXJ0eSAgYnVpbGRQeXJhbWlkIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSAgY3Jvc3NPcmlnaW5Qb2xpY3kgKG9wdGlvbmFsKSBBZG1pdHRlZCB2YWx1ZXMgJ0Fub255bW91cycgfCAndXNlLWNyZWRlbnRpYWxzJyB8IGZhbHNlO1xuICovXG5leHBvcnQgaW50ZXJmYWNlIEltYWdlRGF0YSB7XG4gIHR5cGU6ICdpbWFnZScgfCAnem9vbWlmeXRpbGVzZXJ2aWNlJyB8ICdvcGVuc3RyZWV0bWFwcycgfCAndGlsZWRtYXBzZXJ2aWNlJyB8ICdsZWdhY3ktaW1hZ2UtcHlyYW1pZCc7XG4gIGhlaWdodD86IG51bWJlcjtcbiAgd2lkdGg/OiBudW1iZXI7XG4gIHVybDogc3RyaW5nO1xuICBidWlsZFB5cmFtaWQ6IGJvb2xlYW47XG4gIGNyb3NzT3JpZ2luUG9saWN5PzogJ0Fub255bW91cycgfCAndXNlLWNyZWRlbnRpYWxzJyB8IGZhbHNlO1xufVxuXG4vKipcbiAqIEludGVyZmFjZSBmb3IgSW1hZ2VWaWV3ZXJDb21wb25lbnQncyB0aHVtYnMgdG8gcHJldmlldyBhdmFpbGFibGUgaW1hZ2VzXG4gKlxuICogQHByb3BlcnR5ICB1cmwgKHJlcXVpcmVkKSBpbWFnZSB1cmxcbiAqL1xuZXhwb3J0IGludGVyZmFjZSBUaHVtYnNEYXRhIHtcbiAgdXJsOiBzdHJpbmc7XG4gIC8qKlxuICAgKiBhY3Rpb24gY2xpY2sncyBwYXlsb2FkXG4gICAqL1xuICBwYXlsb2FkPzogYW55O1xuICBjbGFzc2VzPzogc3RyaW5nO1xufVxuXG4vKipcbiAqIEludGVyZmFjZSBmb3IgSW1hZ2VWaWV3ZXJDb21wb25lbnQncyBcImRhdGFcIlxuICpcbiAqIEBwcm9wZXJ0eSBwcmVmaXhVcmwgKG9wdGlvbmFsKSBQcmVwZW5kcyB0aGUgcHJlZml4VXJsIHRvIG5hdkltYWdlcyBwYXRocy5cbiAqIERlZmF1bHQgaXMgLy9vcGVuc2VhZHJhZ29uLmdpdGh1Yi5pby9vcGVuc2VhZHJhZ29uL2ltYWdlcy9cbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSB2aWV3ZXJXaWR0aCAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgdmlld2VySGVpZ2h0IChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBpbWFnZXMgKHJlcXVpcmVkKVxuICogQHByb3BlcnR5IHZpZXdlcklkIChyZXF1aXJlZCkgVGhlIGlkIHRvIGFzc2lnbiB0byB0aGUgaW1hZ2V2aWV3ZXIgY29udGFpbmVyXG4gKiBAcHJvcGVydHkgbGliT3B0aW9ucyAocmVxdWlyZWQpXG4gKi9cbmV4cG9ydCBpbnRlcmZhY2UgSW1hZ2VWaWV3ZXJEYXRhIHtcbiAgLyogdmlld2VyIGljb24ncyBkaXJlY3RvcnkgcGF0aCAqL1xuICBwcmVmaXhVcmw/OiBzdHJpbmc7XG4gIGNsYXNzZXM/OiBzdHJpbmc7XG4gIHZpZXdlcldpZHRoPzogbnVtYmVyO1xuICB2aWV3ZXJIZWlnaHQ/OiBudW1iZXI7XG4gIGltYWdlczogSW1hZ2VEYXRhW10gfCBzdHJpbmc7XG4gIHRodW1icz86IFRodW1ic0RhdGFbXSB8IHN0cmluZztcbiAgdmlld2VySWQ6IHN0cmluZztcbiAgLyogZm9yIGEgbGlzdCBvZiBvcHRpb25zIHZpZXcgdGhlIG9mZmljaWFsIG9wZW5zZWFkcmFnb24gZG9jdW1lbnRhdGlvbiBodHRwOi8vb3BlbnNlYWRyYWdvbi5naXRodWIuaW8vZG9jcy9PcGVuU2VhZHJhZ29uLmh0bWwjLk9wdGlvbnMgKi9cbiAgbGliT3B0aW9uczogYW55O1xuICAvKiBBIG1ldGhvZCByZXR1cm5pbmcgdGhlIGxpYnJhcnkgaW5zdGFuY2UgKi9cbiAgX3NldFZpZXdlcjogYW55O1xufVxuXG4vKipcbiAqIEltYWdlVmlld2VyQ29tcG9uZW50IDxuNy1pbWFnZS12aWV3ZXI+XG4gKlxuICovXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICduNy1pbWFnZS12aWV3ZXInLFxuICB0ZW1wbGF0ZVVybDogJy4vaW1hZ2Utdmlld2VyLmh0bWwnXG59KVxuZXhwb3J0IGNsYXNzIEltYWdlVmlld2VyQ29tcG9uZW50IHtcbiAgQElucHV0KCkgZGF0YTogSW1hZ2VWaWV3ZXJEYXRhO1xuXG4gIEBJbnB1dCgpIGVtaXQ6IGFueTtcblxuICBwcml2YXRlIF9sb2FkZWQgPSBmYWxzZTtcblxuICBuZ0FmdGVyQ29udGVudENoZWNrZWQoKSB7XG4gICAgaWYgKCF0aGlzLmRhdGEgfHwgdGhpcy5fbG9hZGVkKSByZXR1cm47XG4gICAgdGhpcy5fbG9hZGVkID0gdHJ1ZTtcblxuICAgIHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgY29uc3QgcHJlZml4VXJsID0gIXRoaXMuZGF0YS5wcmVmaXhVcmwgPyAnLy9vcGVuc2VhZHJhZ29uLmdpdGh1Yi5pby9vcGVuc2VhZHJhZ29uL2ltYWdlcy8nIDogdGhpcy5kYXRhLnByZWZpeFVybDtcbiAgICAgIGltcG9ydCgnb3BlbnNlYWRyYWdvbicpLnRoZW4oKG1vZHVsZSkgPT4ge1xuICAgICAgICBjb25zdCB7IGRlZmF1bHQ6IG9wZW5zZWFkcmFnb24gfSA9IG1vZHVsZTtcbiAgICAgICAgY29uc3Qgdmlld2VyID0gb3BlbnNlYWRyYWdvbih7XG4gICAgICAgICAgaWQ6IHRoaXMuZGF0YS52aWV3ZXJJZCxcbiAgICAgICAgICBwcmVmaXhVcmwsXG4gICAgICAgICAgdGlsZVNvdXJjZXM6ICAgIHRoaXMuZGF0YS5pbWFnZXMsXG4gICAgICAgICAgem9vbUluQnV0dG9uOiAgICduNy1pbWFnZS12aWV3ZXItem9vbS1pbicsXG4gICAgICAgICAgem9vbU91dEJ1dHRvbjogICduNy1pbWFnZS12aWV3ZXItem9vbS1vdXQnLFxuICAgICAgICAgIGhvbWVCdXR0b246ICAgICAnbjctaW1hZ2Utdmlld2VyLWhvbWUnLFxuICAgICAgICAgIGZ1bGxQYWdlQnV0dG9uOiAnbjctaW1hZ2Utdmlld2VyLWZ1bGwtc2NyZWVuJyxcbiAgICAgICAgICBuZXh0QnV0dG9uOiAgICAgJ243LWltYWdlLXZpZXdlci1uYXYtbmV4dCcsXG4gICAgICAgICAgcHJldmlvdXNCdXR0b246ICduNy1pbWFnZS12aWV3ZXItbmF2LXByZXYnLFxuICAgICAgICAgIC4uLnRoaXMuZGF0YS5saWJPcHRpb25zXG4gICAgICAgIH0pO1xuXG4gICAgICAgIHRoaXMuZGF0YS5fc2V0Vmlld2VyKHZpZXdlcik7XG4gICAgICB9KTtcbiAgICB9KTtcbiAgfVxuXG4gIG9uQ2xpY2socGF5bG9hZCkge1xuICAgIGlmICghdGhpcy5lbWl0KSByZXR1cm47XG4gICAgdGhpcy5lbWl0KCd0aHVtYmNsaWNrJywgcGF5bG9hZCk7XG4gIH1cbn1cbiJdfQ==
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ImageViewerComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ImageViewerComponent.prototype, "emit", void 0);
+ImageViewerComponent = __decorate([
+    Component({
+        selector: 'n7-image-viewer',
+        template: "<div *ngIf=\"data\" class=\"n7-image-viewer {{data.classes || ''}}\">\n    <!-- OSD viewer -->\n    <div id=\"{{data.viewerId}}\" class=\"n7-image-viewer__viewer\">\n    </div>\n\n    <!-- Thumbs -->\n    <div class=\"n7-image-viewer__thumbs\" *ngIf=\"data.thumbs\">\n        <ul class=\"n7-image-viewer__thumb-list\">\n            <li *ngFor=\"let thumb of data.thumbs\" \n                class=\"n7-image-viewer__thumb-item {{thumb.classes || ''}}\"\n                [ngStyle]=\"{'background-image': 'url(' + thumb.url + ')'}\"\n                (click)=\"onClick(thumb.payload)\">\n            </li>\n        </ul>\n    </div>\n\n    <!-- Zoom controls -->\n    <div class=\"n7-image-viewer__controls\">\n        <ul class=\"n7-image-viewer__controls-list\">\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-in\">\n                <span class=\"n7-icon-search-plus\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-out\">\n                <span class=\"n7-icon-search-minus\"></span>\n            </li>\n            <!--\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-home\">\n                <span class=\"n7-icon-home\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-full-screen\">\n                <span class=\"n7-icon-expand-arrows\"></span>\n            </li>\n            -->\n        </ul>\n    </div>\n\n    <!-- Navigation -->\n    <div class=\"n7-image-viewer__prev\" id=\"n7-image-viewer-nav-prev\">\n        <span class=\"n7-icon-angle-left\"></span>\n    </div>\n\n    <div class=\"n7-image-viewer__next\" id=\"n7-image-viewer-nav-next\">\n        <span class=\"n7-icon-angle-right\"></span>\n    </div>\n</div>"
+    })
+], ImageViewerComponent);
+export { ImageViewerComponent };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW1hZ2Utdmlld2VyLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9pbWFnZS12aWV3ZXIvaW1hZ2Utdmlld2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDZCQUE2QjtBQUM3QixrQkFBa0I7QUFDbEIsNkJBQTZCOztBQUU3QixPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQztBQW9FakQ7OztHQUdHO0FBS0gsSUFBYSxvQkFBb0IsR0FBakMsTUFBYSxvQkFBb0I7SUFBakM7UUFLVSxZQUFPLEdBQUcsS0FBSyxDQUFDO0lBZ0MxQixDQUFDO0lBOUJDLHFCQUFxQjtRQUNuQixJQUFJLENBQUMsSUFBSSxDQUFDLElBQUksSUFBSSxJQUFJLENBQUMsT0FBTztZQUFFLE9BQU87UUFDdkMsSUFBSSxDQUFDLE9BQU8sR0FBRyxJQUFJLENBQUM7UUFFcEIsVUFBVSxDQUFDLEdBQUcsRUFBRTtZQUNkLE1BQU0sU0FBUyxHQUFHLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQyxDQUFDLGlEQUFpRCxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQztZQUNqSCxNQUFNLENBQUMsZUFBZSxDQUFDLENBQUMsSUFBSSxDQUFDLENBQUMsTUFBTSxFQUFFLEVBQUU7Z0JBQ3RDLE1BQU0sRUFBRSxPQUFPLEVBQUUsYUFBYSxFQUFFLEdBQUcsTUFBTSxDQUFDO2dCQUMxQyxNQUFNLE1BQU0sR0FBRyxhQUFhLGlCQUMxQixFQUFFLEVBQUUsSUFBSSxDQUFDLElBQUksQ0FBQyxRQUFRLEVBQ3RCLFNBQVMsRUFDVCxXQUFXLEVBQUssSUFBSSxDQUFDLElBQUksQ0FBQyxNQUFNLEVBQ2hDLFlBQVksRUFBSSx5QkFBeUIsRUFDekMsYUFBYSxFQUFHLDBCQUEwQixFQUMxQyxVQUFVLEVBQU0sc0JBQXNCLEVBQ3RDLGNBQWMsRUFBRSw2QkFBNkIsRUFDN0MsVUFBVSxFQUFNLDBCQUEwQixFQUMxQyxjQUFjLEVBQUUsMEJBQTBCLElBQ3ZDLElBQUksQ0FBQyxJQUFJLENBQUMsVUFBVSxFQUN2QixDQUFDO2dCQUVILElBQUksQ0FBQyxJQUFJLENBQUMsVUFBVSxDQUFDLE1BQU0sQ0FBQyxDQUFDO1lBQy9CLENBQUMsQ0FBQyxDQUFDO1FBQ0wsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRUQsT0FBTyxDQUFDLE9BQU87UUFDYixJQUFJLENBQUMsSUFBSSxDQUFDLElBQUk7WUFBRSxPQUFPO1FBQ3ZCLElBQUksQ0FBQyxJQUFJLENBQUMsWUFBWSxFQUFFLE9BQU8sQ0FBQyxDQUFDO0lBQ25DLENBQUM7Q0FDRixDQUFBO0FBcENVO0lBQVIsS0FBSyxFQUFFOztrREFBdUI7QUFFdEI7SUFBUixLQUFLLEVBQUU7O2tEQUFXO0FBSFIsb0JBQW9CO0lBSmhDLFNBQVMsQ0FBQztRQUNULFFBQVEsRUFBRSxpQkFBaUI7UUFDM0Isb3lEQUFrQztLQUNuQyxDQUFDO0dBQ1csb0JBQW9CLENBcUNoQztTQXJDWSxvQkFBb0IiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuLy8gSU1BR0UtVklFV0VSLnRzXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciBJbWFnZVZpZXdlckNvbXBvbmVudCdzIGltYWdlcyBcImRhdGFcIlxuICpcbiAqIEhlcmUgdGhlIG1haW4gb3B0aW9ucyBhdmFpbGFibGUsIGZvciBhIGNvbXBsZXRlIGd1aWRlIG9mIGltYWdlIHNldHRpbmdzXG4gKiB2aWV3IHRoZSBvZmZpY2lhbCBvcGVuc2VhZHJhZ29uIGRvY3VtZW50YXRpb24gaHR0cHM6Ly9vcGVuc2VhZHJhZ29uLmdpdGh1Yi5pby9cbiAqIEFsbCBhdmFpbGFibGUgb3B0aW9ucyBoZXJlOiBodHRwczovL29wZW5zZWFkcmFnb24uZ2l0aHViLmlvL2RvY3MvT3BlblNlYWRyYWdvbi5odG1sXG4gKlxuICogQHByb3BlcnR5ICB0eXBlIChyZXF1aXJlZClcbiAqIEFkbWl0dGVkIHZhbHVlczpcbiAqICdpbWFnZScgfCAnem9vbWlmeXRpbGVzZXJ2aWNlJyB8ICdvcGVuc3RyZWV0bWFwcycgfCAndGlsZWRtYXBzZXJ2aWNlJyB8ICdsZWdhY3ktaW1hZ2UtcHlyYW1pZCdcbiAqIEBwcm9wZXJ0eSAgaGVpZ2h0IChvcHRpb25hbCkgaW1hZ2UgaGVpZ2h0XG4gKiBAcHJvcGVydHkgIHdpZHRoIChvcHRpb25hbCkgaW1hZ2Ugd2lkdGhcbiAqIEBwcm9wZXJ0eSAgdXJsIChyZXF1aXJlZCkgaW1hZ2UgdXJsXG4gKiBAcHJvcGVydHkgIGJ1aWxkUHlyYW1pZCAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgIGNyb3NzT3JpZ2luUG9saWN5IChvcHRpb25hbCkgQWRtaXR0ZWQgdmFsdWVzICdBbm9ueW1vdXMnIHwgJ3VzZS1jcmVkZW50aWFscycgfCBmYWxzZTtcbiAqL1xuZXhwb3J0IGludGVyZmFjZSBJbWFnZURhdGEge1xuICB0eXBlOiAnaW1hZ2UnIHwgJ3pvb21pZnl0aWxlc2VydmljZScgfCAnb3BlbnN0cmVldG1hcHMnIHwgJ3RpbGVkbWFwc2VydmljZScgfCAnbGVnYWN5LWltYWdlLXB5cmFtaWQnO1xuICBoZWlnaHQ/OiBudW1iZXI7XG4gIHdpZHRoPzogbnVtYmVyO1xuICB1cmw6IHN0cmluZztcbiAgYnVpbGRQeXJhbWlkOiBib29sZWFuO1xuICBjcm9zc09yaWdpblBvbGljeT86ICdBbm9ueW1vdXMnIHwgJ3VzZS1jcmVkZW50aWFscycgfCBmYWxzZTtcbn1cblxuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIEltYWdlVmlld2VyQ29tcG9uZW50J3MgdGh1bWJzIHRvIHByZXZpZXcgYXZhaWxhYmxlIGltYWdlc1xuICpcbiAqIEBwcm9wZXJ0eSAgdXJsIChyZXF1aXJlZCkgaW1hZ2UgdXJsXG4gKi9cbmV4cG9ydCBpbnRlcmZhY2UgVGh1bWJzRGF0YSB7XG4gIHVybDogc3RyaW5nO1xuICAvKipcbiAgICogYWN0aW9uIGNsaWNrJ3MgcGF5bG9hZFxuICAgKi9cbiAgcGF5bG9hZD86IGFueTtcbiAgY2xhc3Nlcz86IHN0cmluZztcbn1cblxuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIEltYWdlVmlld2VyQ29tcG9uZW50J3MgXCJkYXRhXCJcbiAqXG4gKiBAcHJvcGVydHkgcHJlZml4VXJsIChvcHRpb25hbCkgUHJlcGVuZHMgdGhlIHByZWZpeFVybCB0byBuYXZJbWFnZXMgcGF0aHMuXG4gKiBEZWZhdWx0IGlzIC8vb3BlbnNlYWRyYWdvbi5naXRodWIuaW8vb3BlbnNlYWRyYWdvbi9pbWFnZXMvXG4gKiBAcHJvcGVydHkgY2xhc3NlcyAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgdmlld2VyV2lkdGggKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IHZpZXdlckhlaWdodCAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgaW1hZ2VzIChyZXF1aXJlZClcbiAqIEBwcm9wZXJ0eSB2aWV3ZXJJZCAocmVxdWlyZWQpIFRoZSBpZCB0byBhc3NpZ24gdG8gdGhlIGltYWdldmlld2VyIGNvbnRhaW5lclxuICogQHByb3BlcnR5IGxpYk9wdGlvbnMgKHJlcXVpcmVkKVxuICovXG5leHBvcnQgaW50ZXJmYWNlIEltYWdlVmlld2VyRGF0YSB7XG4gIC8qIHZpZXdlciBpY29uJ3MgZGlyZWN0b3J5IHBhdGggKi9cbiAgcHJlZml4VXJsPzogc3RyaW5nO1xuICBjbGFzc2VzPzogc3RyaW5nO1xuICB2aWV3ZXJXaWR0aD86IG51bWJlcjtcbiAgdmlld2VySGVpZ2h0PzogbnVtYmVyO1xuICBpbWFnZXM6IEltYWdlRGF0YVtdIHwgc3RyaW5nO1xuICB0aHVtYnM/OiBUaHVtYnNEYXRhW10gfCBzdHJpbmc7XG4gIHZpZXdlcklkOiBzdHJpbmc7XG4gIC8qIGZvciBhIGxpc3Qgb2Ygb3B0aW9ucyB2aWV3IHRoZSBvZmZpY2lhbCBvcGVuc2VhZHJhZ29uIGRvY3VtZW50YXRpb24gaHR0cDovL29wZW5zZWFkcmFnb24uZ2l0aHViLmlvL2RvY3MvT3BlblNlYWRyYWdvbi5odG1sIy5PcHRpb25zICovXG4gIGxpYk9wdGlvbnM6IGFueTtcbiAgLyogQSBtZXRob2QgcmV0dXJuaW5nIHRoZSBsaWJyYXJ5IGluc3RhbmNlICovXG4gIF9zZXRWaWV3ZXI6IGFueTtcbn1cblxuLyoqXG4gKiBJbWFnZVZpZXdlckNvbXBvbmVudCA8bjctaW1hZ2Utdmlld2VyPlxuICpcbiAqL1xuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnbjctaW1hZ2Utdmlld2VyJyxcbiAgdGVtcGxhdGVVcmw6ICcuL2ltYWdlLXZpZXdlci5odG1sJ1xufSlcbmV4cG9ydCBjbGFzcyBJbWFnZVZpZXdlckNvbXBvbmVudCB7XG4gIEBJbnB1dCgpIGRhdGE6IEltYWdlVmlld2VyRGF0YTtcblxuICBASW5wdXQoKSBlbWl0OiBhbnk7XG5cbiAgcHJpdmF0ZSBfbG9hZGVkID0gZmFsc2U7XG5cbiAgbmdBZnRlckNvbnRlbnRDaGVja2VkKCkge1xuICAgIGlmICghdGhpcy5kYXRhIHx8IHRoaXMuX2xvYWRlZCkgcmV0dXJuO1xuICAgIHRoaXMuX2xvYWRlZCA9IHRydWU7XG5cbiAgICBzZXRUaW1lb3V0KCgpID0+IHtcbiAgICAgIGNvbnN0IHByZWZpeFVybCA9ICF0aGlzLmRhdGEucHJlZml4VXJsID8gJy8vb3BlbnNlYWRyYWdvbi5naXRodWIuaW8vb3BlbnNlYWRyYWdvbi9pbWFnZXMvJyA6IHRoaXMuZGF0YS5wcmVmaXhVcmw7XG4gICAgICBpbXBvcnQoJ29wZW5zZWFkcmFnb24nKS50aGVuKChtb2R1bGUpID0+IHtcbiAgICAgICAgY29uc3QgeyBkZWZhdWx0OiBvcGVuc2VhZHJhZ29uIH0gPSBtb2R1bGU7XG4gICAgICAgIGNvbnN0IHZpZXdlciA9IG9wZW5zZWFkcmFnb24oe1xuICAgICAgICAgIGlkOiB0aGlzLmRhdGEudmlld2VySWQsXG4gICAgICAgICAgcHJlZml4VXJsLFxuICAgICAgICAgIHRpbGVTb3VyY2VzOiAgICB0aGlzLmRhdGEuaW1hZ2VzLFxuICAgICAgICAgIHpvb21JbkJ1dHRvbjogICAnbjctaW1hZ2Utdmlld2VyLXpvb20taW4nLFxuICAgICAgICAgIHpvb21PdXRCdXR0b246ICAnbjctaW1hZ2Utdmlld2VyLXpvb20tb3V0JyxcbiAgICAgICAgICBob21lQnV0dG9uOiAgICAgJ243LWltYWdlLXZpZXdlci1ob21lJyxcbiAgICAgICAgICBmdWxsUGFnZUJ1dHRvbjogJ243LWltYWdlLXZpZXdlci1mdWxsLXNjcmVlbicsXG4gICAgICAgICAgbmV4dEJ1dHRvbjogICAgICduNy1pbWFnZS12aWV3ZXItbmF2LW5leHQnLFxuICAgICAgICAgIHByZXZpb3VzQnV0dG9uOiAnbjctaW1hZ2Utdmlld2VyLW5hdi1wcmV2JyxcbiAgICAgICAgICAuLi50aGlzLmRhdGEubGliT3B0aW9uc1xuICAgICAgICB9KTtcblxuICAgICAgICB0aGlzLmRhdGEuX3NldFZpZXdlcih2aWV3ZXIpO1xuICAgICAgfSk7XG4gICAgfSk7XG4gIH1cblxuICBvbkNsaWNrKHBheWxvYWQpIHtcbiAgICBpZiAoIXRoaXMuZW1pdCkgcmV0dXJuO1xuICAgIHRoaXMuZW1pdCgndGh1bWJjbGljaycsIHBheWxvYWQpO1xuICB9XG59XG4iXX0=

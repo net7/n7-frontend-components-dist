@@ -1,74 +1,31 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/tooltip-content/tooltip-content.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 //---------------------------
 // TOOLTIP-CONTENT.ts
 //---------------------------
+import { __decorate, __metadata } from "tslib";
 import { Component, Input } from '@angular/core';
-/**
- * Interface for TooltipContentComponent's "data"
- *
- * \@property NAME (required|options) <--- TODO: update with interface properties
- * @record
- */
-export function TooltipContentData() { }
-if (false) {
-    /**
-     * Title of the tooltip
-     * @type {?|undefined}
-     */
-    TooltipContentData.prototype.title;
-    /**
-     * Subtitle or text
-     * @type {?|undefined}
-     */
-    TooltipContentData.prototype.text;
-    /**
-     * Image for the tooltip
-     * @type {?|undefined}
-     */
-    TooltipContentData.prototype.image;
-    /**
-     * Action or list of actions
-     * @type {?|undefined}
-     */
-    TooltipContentData.prototype.actions;
-}
 var TooltipContentComponent = /** @class */ (function () {
     function TooltipContentComponent() {
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
-    TooltipContentComponent.prototype.onClick = /**
-     * @param {?} payload
-     * @return {?}
-     */
-    function (payload) {
+    TooltipContentComponent.prototype.onClick = function (payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     };
-    TooltipContentComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'n7-tooltip-content',
-                    template: "<div *ngIf=\"data\"\n     class=\"n7-tooltip-content\">\n\n  <div *ngIf=\"data.title\">\n    {{data.title}}\n  </div>\n\n  <div *ngIf=\"data.text\"\n       [innerHTML]=\"data.text\">\n  </div>\n\n  <img *ngIf=\"data.image\"\n       [src]=\"data.image\">\n\n  <ng-container *ngFor=\"let btn of data.actions\">\n    <n7-anchor-wrapper [classes]=\"\"\n                       [data]=\"btn\"\n                       (clicked)=\"onClick(btn.anchor.payload)\">\n      <span *ngIf=\"data.text\" class=\"n7-btn\">\n        {{ btn.text }}\n      </span>\n    </n7-anchor-wrapper>\n  </ng-container>\n\n</div>\n"
-                }] }
-    ];
-    TooltipContentComponent.propDecorators = {
-        data: [{ type: Input }],
-        emit: [{ type: Input }]
-    };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], TooltipContentComponent.prototype, "data", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], TooltipContentComponent.prototype, "emit", void 0);
+    TooltipContentComponent = __decorate([
+        Component({
+            selector: 'n7-tooltip-content',
+            template: "<div *ngIf=\"data\"\n     class=\"n7-tooltip-content\">\n\n  <div *ngIf=\"data.title\">\n    {{data.title}}\n  </div>\n\n  <div *ngIf=\"data.text\"\n       [innerHTML]=\"data.text\">\n  </div>\n\n  <img *ngIf=\"data.image\"\n       [src]=\"data.image\">\n\n  <ng-container *ngFor=\"let btn of data.actions\">\n    <n7-anchor-wrapper [classes]=\"\"\n                       [data]=\"btn\"\n                       (clicked)=\"onClick(btn.anchor.payload)\">\n      <span *ngIf=\"data.text\" class=\"n7-btn\">\n        {{ btn.text }}\n      </span>\n    </n7-anchor-wrapper>\n  </ng-container>\n\n</div>\n"
+        })
+    ], TooltipContentComponent);
     return TooltipContentComponent;
 }());
 export { TooltipContentComponent };
-if (false) {
-    /** @type {?} */
-    TooltipContentComponent.prototype.data;
-    /** @type {?} */
-    TooltipContentComponent.prototype.emit;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidG9vbHRpcC1jb250ZW50LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy90b29sdGlwLWNvbnRlbnQvdG9vbHRpcC1jb250ZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7QUFRakQsd0NBU0M7Ozs7OztJQVBDLG1DQUFlOzs7OztJQUVmLGtDQUFjOzs7OztJQUVkLG1DQUFlOzs7OztJQUVmLHFDQUFtQjs7QUFHckI7SUFBQTtJQWNBLENBQUM7Ozs7O0lBTEMseUNBQU87Ozs7SUFBUCxVQUFRLE9BQU87UUFDYixJQUFJLENBQUMsSUFBSSxDQUFDLElBQUk7WUFBRSxPQUFPO1FBRXZCLElBQUksQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDO0lBQzlCLENBQUM7O2dCQWJGLFNBQVMsU0FBQztvQkFDVCxRQUFRLEVBQUUsb0JBQW9CO29CQUM5QixvbUJBQXFDO2lCQUN0Qzs7O3VCQUVFLEtBQUs7dUJBRUwsS0FBSzs7SUFPUiw4QkFBQztDQUFBLEFBZEQsSUFjQztTQVZZLHVCQUF1Qjs7O0lBQ2xDLHVDQUFrQzs7SUFFbEMsdUNBQW1CIiwic291cmNlc0NvbnRlbnQiOlsiLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbi8vIFRPT0xUSVAtQ09OVEVOVC50c1xuLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cblxuaW1wb3J0IHsgQ29tcG9uZW50LCBJbnB1dCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgQnV0dG9uIH0gZnJvbSAnLi4vLi4vc2hhcmVkLWludGVyZmFjZXMnO1xuXG4vKipcbiAqIEludGVyZmFjZSBmb3IgVG9vbHRpcENvbnRlbnRDb21wb25lbnQncyBcImRhdGFcIlxuICpcbiAqIEBwcm9wZXJ0eSBOQU1FIChyZXF1aXJlZHxvcHRpb25zKSA8LS0tIFRPRE86IHVwZGF0ZSB3aXRoIGludGVyZmFjZSBwcm9wZXJ0aWVzXG4gKi9cbmV4cG9ydCBpbnRlcmZhY2UgVG9vbHRpcENvbnRlbnREYXRhIHtcbiAgLyoqIFRpdGxlIG9mIHRoZSB0b29sdGlwICovXG4gIHRpdGxlPzogc3RyaW5nO1xuICAvKiogU3VidGl0bGUgb3IgdGV4dCAqL1xuICB0ZXh0Pzogc3RyaW5nO1xuICAvKiogSW1hZ2UgZm9yIHRoZSB0b29sdGlwICovXG4gIGltYWdlPzogc3RyaW5nO1xuICAvKiogQWN0aW9uIG9yIGxpc3Qgb2YgYWN0aW9ucyAqL1xuICBhY3Rpb25zPzogQnV0dG9uW107XG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LXRvb2x0aXAtY29udGVudCcsXG4gIHRlbXBsYXRlVXJsOiAnLi90b29sdGlwLWNvbnRlbnQuaHRtbCdcbn0pXG5leHBvcnQgY2xhc3MgVG9vbHRpcENvbnRlbnRDb21wb25lbnQge1xuICBASW5wdXQoKSBkYXRhOiBUb29sdGlwQ29udGVudERhdGE7XG5cbiAgQElucHV0KCkgZW1pdDogYW55O1xuXG4gIG9uQ2xpY2socGF5bG9hZCkge1xuICAgIGlmICghdGhpcy5lbWl0KSByZXR1cm47XG5cbiAgICB0aGlzLmVtaXQoJ2NsaWNrJywgcGF5bG9hZCk7XG4gIH1cbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidG9vbHRpcC1jb250ZW50LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy90b29sdGlwLWNvbnRlbnQvdG9vbHRpcC1jb250ZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDZCQUE2QjtBQUM3QixxQkFBcUI7QUFDckIsNkJBQTZCOztBQUU3QixPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQztBQXVCakQ7SUFBQTtJQVVBLENBQUM7SUFMQyx5Q0FBTyxHQUFQLFVBQVEsT0FBTztRQUNiLElBQUksQ0FBQyxJQUFJLENBQUMsSUFBSTtZQUFFLE9BQU87UUFFdkIsSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUM7SUFDOUIsQ0FBQztJQVJRO1FBQVIsS0FBSyxFQUFFOzt5REFBMEI7SUFFekI7UUFBUixLQUFLLEVBQUU7O3lEQUFXO0lBSFIsdUJBQXVCO1FBSm5DLFNBQVMsQ0FBQztZQUNULFFBQVEsRUFBRSxvQkFBb0I7WUFDOUIsb21CQUFxQztTQUN0QyxDQUFDO09BQ1csdUJBQXVCLENBVW5DO0lBQUQsOEJBQUM7Q0FBQSxBQVZELElBVUM7U0FWWSx1QkFBdUIiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuLy8gVE9PTFRJUC1DT05URU5ULnRzXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBCdXR0b24gfSBmcm9tICcuLi8uLi9zaGFyZWQtaW50ZXJmYWNlcyc7XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciBUb29sdGlwQ29udGVudENvbXBvbmVudCdzIFwiZGF0YVwiXG4gKlxuICogQHByb3BlcnR5IE5BTUUgKHJlcXVpcmVkfG9wdGlvbnMpIDwtLS0gVE9ETzogdXBkYXRlIHdpdGggaW50ZXJmYWNlIHByb3BlcnRpZXNcbiAqL1xuZXhwb3J0IGludGVyZmFjZSBUb29sdGlwQ29udGVudERhdGEge1xuICAvKiogVGl0bGUgb2YgdGhlIHRvb2x0aXAgKi9cbiAgdGl0bGU/OiBzdHJpbmc7XG4gIC8qKiBTdWJ0aXRsZSBvciB0ZXh0ICovXG4gIHRleHQ/OiBzdHJpbmc7XG4gIC8qKiBJbWFnZSBmb3IgdGhlIHRvb2x0aXAgKi9cbiAgaW1hZ2U/OiBzdHJpbmc7XG4gIC8qKiBBY3Rpb24gb3IgbGlzdCBvZiBhY3Rpb25zICovXG4gIGFjdGlvbnM/OiBCdXR0b25bXTtcbn1cblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnbjctdG9vbHRpcC1jb250ZW50JyxcbiAgdGVtcGxhdGVVcmw6ICcuL3Rvb2x0aXAtY29udGVudC5odG1sJ1xufSlcbmV4cG9ydCBjbGFzcyBUb29sdGlwQ29udGVudENvbXBvbmVudCB7XG4gIEBJbnB1dCgpIGRhdGE6IFRvb2x0aXBDb250ZW50RGF0YTtcblxuICBASW5wdXQoKSBlbWl0OiBhbnk7XG5cbiAgb25DbGljayhwYXlsb2FkKSB7XG4gICAgaWYgKCF0aGlzLmVtaXQpIHJldHVybjtcblxuICAgIHRoaXMuZW1pdCgnY2xpY2snLCBwYXlsb2FkKTtcbiAgfVxufVxuIl19

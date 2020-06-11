@@ -1,116 +1,45 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/datepicker/datepicker.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 //---------------------------
 // DATEPICKER.ts
 //---------------------------
+import { __decorate, __metadata } from "tslib";
 import { Component, Input } from '@angular/core';
-/**
- * Interface for datapicker component
- * \@property id (required)
- * \@property libOptions (required)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-export function DatePickerData() { }
-if (false) {
-    /**
-     * datepicker id
-     * @type {?}
-     */
-    DatePickerData.prototype.id;
-    /**
-     * datepicker library options
-     * view LINK: https://flatpickr.js.org/
-     * @type {?}
-     */
-    DatePickerData.prototype.libOptions;
-    /**
-     * for datepicker range min and max range value
-     * @type {?|undefined}
-     */
-    DatePickerData.prototype.minRange;
-    /** @type {?|undefined} */
-    DatePickerData.prototype.maxRange;
-    /** @type {?|undefined} */
-    DatePickerData.prototype.classes;
-    /**
-     * datepicker event payload
-     * @type {?|undefined}
-     */
-    DatePickerData.prototype.payload;
-    /** @type {?|undefined} */
-    DatePickerData.prototype._meta;
-    /**
-     * callback for saving the created datepicker instance
-     * @type {?|undefined}
-     */
-    DatePickerData.prototype.getInstance;
-}
-export class DatepickerComponent {
+let DatepickerComponent = class DatepickerComponent {
     constructor() {
         this._loaded = false;
     }
-    /**
-     * @return {?}
-     */
     ngAfterContentChecked() {
         if (!this.data || this._loaded)
             return;
         this._loaded = true;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
+        setTimeout(() => {
             const { id, libOptions } = this.data;
-            import('flatpickr').then((/**
-             * @param {?} module
-             * @return {?}
-             */
-            (module) => {
+            import('flatpickr').then((module) => {
                 const { default: flatpickr } = module;
-                /** @type {?} */
-                const datepicker = flatpickr(`#${id}`, Object.assign({}, libOptions, { onChange: (/**
-                     * @param {?} selectedDates
-                     * @param {?} dateStr
-                     * @param {?} instance
-                     * @return {?}
-                     */
-                    (selectedDates, dateStr, instance) => {
+                const datepicker = flatpickr(`#${id}`, Object.assign(Object.assign({}, libOptions), { onChange: (selectedDates, dateStr, instance) => {
                         if (this.emit) {
                             this.emit('change', { selectedDates, dateStr, instance });
                         }
-                    }) }));
+                    } }));
                 // setting datepicker
                 if (this.data.getInstance)
                     this.data.getInstance(datepicker);
-            }));
-        }));
+            });
+        });
     }
-}
-DatepickerComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-datepicker',
-                template: "<div *ngIf=\"data\" class=\"n7-datepicker {{ data.classes || '' }}\">\n  <input type=\"text\" id=\"{{this.data.id}}\"/>\n</div>"
-            }] }
-];
-DatepickerComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    DatepickerComponent.prototype.data;
-    /** @type {?} */
-    DatepickerComponent.prototype.emit;
-    /**
-     * @type {?}
-     * @private
-     */
-    DatepickerComponent.prototype._loaded;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGF0ZXBpY2tlci5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BuNy1mcm9udGVuZC9jb21wb25lbnRzLyIsInNvdXJjZXMiOlsibGliL2NvbXBvbmVudHMvZGF0ZXBpY2tlci9kYXRlcGlja2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7Ozs7QUFVakQsb0NBeUJDOzs7Ozs7SUFyQkMsNEJBQVc7Ozs7OztJQUtYLG9DQUFnQjs7Ozs7SUFJaEIsa0NBQWtCOztJQUNsQixrQ0FBa0I7O0lBQ2xCLGlDQUFpQjs7Ozs7SUFJakIsaUNBQWM7O0lBQ2QsK0JBQVk7Ozs7O0lBSVoscUNBQWtCOztBQU9wQixNQUFNLE9BQU8sbUJBQW1CO0lBSmhDO1FBU1UsWUFBTyxHQUFHLEtBQUssQ0FBQztJQXlCMUIsQ0FBQzs7OztJQXZCQyxxQkFBcUI7UUFDbkIsSUFBSSxDQUFDLElBQUksQ0FBQyxJQUFJLElBQUksSUFBSSxDQUFDLE9BQU87WUFBRSxPQUFPO1FBRXZDLElBQUksQ0FBQyxPQUFPLEdBQUcsSUFBSSxDQUFDO1FBRXBCLFVBQVU7OztRQUFDLEdBQUcsRUFBRTtrQkFDUixFQUFFLEVBQUUsRUFBRSxVQUFVLEVBQUUsR0FBRyxJQUFJLENBQUMsSUFBSTtZQUNwQyxNQUFNLENBQUMsV0FBVyxDQUFDLENBQUMsSUFBSTs7OztZQUFDLENBQUMsTUFBTSxFQUFFLEVBQUU7c0JBQzVCLEVBQUUsT0FBTyxFQUFFLFNBQVMsRUFBRSxHQUFHLE1BQU07O3NCQUMvQixVQUFVLEdBQUcsU0FBUyxDQUFDLElBQUksRUFBRSxFQUFFLG9CQUU5QixVQUFVLElBQ2IsUUFBUTs7Ozs7O29CQUFFLENBQUMsYUFBYSxFQUFFLE9BQU8sRUFBRSxRQUFRLEVBQUUsRUFBRTt3QkFDN0MsSUFBSSxJQUFJLENBQUMsSUFBSSxFQUFFOzRCQUNiLElBQUksQ0FBQyxJQUFJLENBQUMsUUFBUSxFQUFFLEVBQUUsYUFBYSxFQUFFLE9BQU8sRUFBRSxRQUFRLEVBQUUsQ0FBQyxDQUFDO3lCQUMzRDtvQkFDSCxDQUFDLEtBQ0Q7Z0JBQ0oscUJBQXFCO2dCQUNyQixJQUFJLElBQUksQ0FBQyxJQUFJLENBQUMsV0FBVztvQkFBRSxJQUFJLENBQUMsSUFBSSxDQUFDLFdBQVcsQ0FBQyxVQUFVLENBQUMsQ0FBQztZQUMvRCxDQUFDLEVBQUMsQ0FBQztRQUNMLENBQUMsRUFBQyxDQUFDO0lBQ0wsQ0FBQzs7O1lBakNGLFNBQVMsU0FBQztnQkFDVCxRQUFRLEVBQUUsZUFBZTtnQkFDekIsMklBQWdDO2FBQ2pDOzs7bUJBRUUsS0FBSzttQkFFTCxLQUFLOzs7O0lBRk4sbUNBQThCOztJQUU5QixtQ0FBbUI7Ozs7O0lBRW5CLHNDQUF3QiIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4vLyBEQVRFUElDS0VSLnRzXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG4vKipcbiAqIEludGVyZmFjZSBmb3IgZGF0YXBpY2tlciBjb21wb25lbnRcbiAqIEBwcm9wZXJ0eSBpZCAocmVxdWlyZWQpXG4gKiBAcHJvcGVydHkgbGliT3B0aW9ucyAocmVxdWlyZWQpXG4gKiBAcHJvcGVydHkgY2xhc3NlcyAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgcGF5bG9hZCAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgX21ldGEgKG9wdGlvbmFsKVxuICovXG5cbmV4cG9ydCBpbnRlcmZhY2UgRGF0ZVBpY2tlckRhdGEge1xuICAvKipcbiAgICogZGF0ZXBpY2tlciBpZFxuICAgKi9cbiAgaWQ6IHN0cmluZztcbiAgIC8qKlxuICAgKiBkYXRlcGlja2VyIGxpYnJhcnkgb3B0aW9uc1xuICAgKiB2aWV3IExJTks6IGh0dHBzOi8vZmxhdHBpY2tyLmpzLm9yZy9cbiAgICovXG4gIGxpYk9wdGlvbnM6IGFueTtcbiAgLyoqXG4gICAqIGZvciBkYXRlcGlja2VyIHJhbmdlIG1pbiBhbmQgbWF4IHJhbmdlIHZhbHVlXG4gICAqL1xuICBtaW5SYW5nZT86IG51bWJlcjtcbiAgbWF4UmFuZ2U/OiBudW1iZXI7XG4gIGNsYXNzZXM/OiBzdHJpbmc7XG4gIC8qKlxuICAgKiBkYXRlcGlja2VyIGV2ZW50IHBheWxvYWRcbiAgICovXG4gIHBheWxvYWQ/OiBhbnk7XG4gIF9tZXRhPzogYW55O1xuICAvKipcbiAgICogY2FsbGJhY2sgZm9yIHNhdmluZyB0aGUgY3JlYXRlZCBkYXRlcGlja2VyIGluc3RhbmNlXG4gICAqL1xuICBnZXRJbnN0YW5jZT86IGFueTtcbn1cblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnbjctZGF0ZXBpY2tlcicsXG4gIHRlbXBsYXRlVXJsOiAnLi9kYXRlcGlja2VyLmh0bWwnXG59KVxuZXhwb3J0IGNsYXNzIERhdGVwaWNrZXJDb21wb25lbnQge1xuICBASW5wdXQoKSBkYXRhOiBEYXRlUGlja2VyRGF0YTtcblxuICBASW5wdXQoKSBlbWl0OiBhbnk7XG5cbiAgcHJpdmF0ZSBfbG9hZGVkID0gZmFsc2U7XG5cbiAgbmdBZnRlckNvbnRlbnRDaGVja2VkKCkge1xuICAgIGlmICghdGhpcy5kYXRhIHx8IHRoaXMuX2xvYWRlZCkgcmV0dXJuO1xuXG4gICAgdGhpcy5fbG9hZGVkID0gdHJ1ZTtcblxuICAgIHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgY29uc3QgeyBpZCwgbGliT3B0aW9ucyB9ID0gdGhpcy5kYXRhO1xuICAgICAgaW1wb3J0KCdmbGF0cGlja3InKS50aGVuKChtb2R1bGUpID0+IHtcbiAgICAgICAgY29uc3QgeyBkZWZhdWx0OiBmbGF0cGlja3IgfSA9IG1vZHVsZTtcbiAgICAgICAgY29uc3QgZGF0ZXBpY2tlciA9IGZsYXRwaWNrcihgIyR7aWR9YCxcbiAgICAgICAgICB7XG4gICAgICAgICAgICAuLi5saWJPcHRpb25zLFxuICAgICAgICAgICAgb25DaGFuZ2U6IChzZWxlY3RlZERhdGVzLCBkYXRlU3RyLCBpbnN0YW5jZSkgPT4ge1xuICAgICAgICAgICAgICBpZiAodGhpcy5lbWl0KSB7XG4gICAgICAgICAgICAgICAgdGhpcy5lbWl0KCdjaGFuZ2UnLCB7IHNlbGVjdGVkRGF0ZXMsIGRhdGVTdHIsIGluc3RhbmNlIH0pO1xuICAgICAgICAgICAgICB9XG4gICAgICAgICAgICB9XG4gICAgICAgICAgfSk7XG4gICAgICAgIC8vIHNldHRpbmcgZGF0ZXBpY2tlclxuICAgICAgICBpZiAodGhpcy5kYXRhLmdldEluc3RhbmNlKSB0aGlzLmRhdGEuZ2V0SW5zdGFuY2UoZGF0ZXBpY2tlcik7XG4gICAgICB9KTtcbiAgICB9KTtcbiAgfVxufVxuIl19
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], DatepickerComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], DatepickerComponent.prototype, "emit", void 0);
+DatepickerComponent = __decorate([
+    Component({
+        selector: 'n7-datepicker',
+        template: "<div *ngIf=\"data\" class=\"n7-datepicker {{ data.classes || '' }}\">\n  <input type=\"text\" id=\"{{this.data.id}}\"/>\n</div>"
+    })
+], DatepickerComponent);
+export { DatepickerComponent };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGF0ZXBpY2tlci5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BuNy1mcm9udGVuZC9jb21wb25lbnRzLyIsInNvdXJjZXMiOlsibGliL2NvbXBvbmVudHMvZGF0ZXBpY2tlci9kYXRlcGlja2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDZCQUE2QjtBQUM3QixnQkFBZ0I7QUFDaEIsNkJBQTZCOztBQUU3QixPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQztBQXlDakQsSUFBYSxtQkFBbUIsR0FBaEMsTUFBYSxtQkFBbUI7SUFBaEM7UUFLVSxZQUFPLEdBQUcsS0FBSyxDQUFDO0lBeUIxQixDQUFDO0lBdkJDLHFCQUFxQjtRQUNuQixJQUFJLENBQUMsSUFBSSxDQUFDLElBQUksSUFBSSxJQUFJLENBQUMsT0FBTztZQUFFLE9BQU87UUFFdkMsSUFBSSxDQUFDLE9BQU8sR0FBRyxJQUFJLENBQUM7UUFFcEIsVUFBVSxDQUFDLEdBQUcsRUFBRTtZQUNkLE1BQU0sRUFBRSxFQUFFLEVBQUUsVUFBVSxFQUFFLEdBQUcsSUFBSSxDQUFDLElBQUksQ0FBQztZQUNyQyxNQUFNLENBQUMsV0FBVyxDQUFDLENBQUMsSUFBSSxDQUFDLENBQUMsTUFBTSxFQUFFLEVBQUU7Z0JBQ2xDLE1BQU0sRUFBRSxPQUFPLEVBQUUsU0FBUyxFQUFFLEdBQUcsTUFBTSxDQUFDO2dCQUN0QyxNQUFNLFVBQVUsR0FBRyxTQUFTLENBQUMsSUFBSSxFQUFFLEVBQUUsa0NBRTlCLFVBQVUsS0FDYixRQUFRLEVBQUUsQ0FBQyxhQUFhLEVBQUUsT0FBTyxFQUFFLFFBQVEsRUFBRSxFQUFFO3dCQUM3QyxJQUFJLElBQUksQ0FBQyxJQUFJLEVBQUU7NEJBQ2IsSUFBSSxDQUFDLElBQUksQ0FBQyxRQUFRLEVBQUUsRUFBRSxhQUFhLEVBQUUsT0FBTyxFQUFFLFFBQVEsRUFBRSxDQUFDLENBQUM7eUJBQzNEO29CQUNILENBQUMsSUFDRCxDQUFDO2dCQUNMLHFCQUFxQjtnQkFDckIsSUFBSSxJQUFJLENBQUMsSUFBSSxDQUFDLFdBQVc7b0JBQUUsSUFBSSxDQUFDLElBQUksQ0FBQyxXQUFXLENBQUMsVUFBVSxDQUFDLENBQUM7WUFDL0QsQ0FBQyxDQUFDLENBQUM7UUFDTCxDQUFDLENBQUMsQ0FBQztJQUNMLENBQUM7Q0FDRixDQUFBO0FBN0JVO0lBQVIsS0FBSyxFQUFFOztpREFBc0I7QUFFckI7SUFBUixLQUFLLEVBQUU7O2lEQUFXO0FBSFIsbUJBQW1CO0lBSi9CLFNBQVMsQ0FBQztRQUNULFFBQVEsRUFBRSxlQUFlO1FBQ3pCLDJJQUFnQztLQUNqQyxDQUFDO0dBQ1csbUJBQW1CLENBOEIvQjtTQTlCWSxtQkFBbUIiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuLy8gREFURVBJQ0tFUi50c1xuLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cblxuaW1wb3J0IHsgQ29tcG9uZW50LCBJbnB1dCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIGRhdGFwaWNrZXIgY29tcG9uZW50XG4gKiBAcHJvcGVydHkgaWQgKHJlcXVpcmVkKVxuICogQHByb3BlcnR5IGxpYk9wdGlvbnMgKHJlcXVpcmVkKVxuICogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IHBheWxvYWQgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IF9tZXRhIChvcHRpb25hbClcbiAqL1xuXG5leHBvcnQgaW50ZXJmYWNlIERhdGVQaWNrZXJEYXRhIHtcbiAgLyoqXG4gICAqIGRhdGVwaWNrZXIgaWRcbiAgICovXG4gIGlkOiBzdHJpbmc7XG4gICAvKipcbiAgICogZGF0ZXBpY2tlciBsaWJyYXJ5IG9wdGlvbnNcbiAgICogdmlldyBMSU5LOiBodHRwczovL2ZsYXRwaWNrci5qcy5vcmcvXG4gICAqL1xuICBsaWJPcHRpb25zOiBhbnk7XG4gIC8qKlxuICAgKiBmb3IgZGF0ZXBpY2tlciByYW5nZSBtaW4gYW5kIG1heCByYW5nZSB2YWx1ZVxuICAgKi9cbiAgbWluUmFuZ2U/OiBudW1iZXI7XG4gIG1heFJhbmdlPzogbnVtYmVyO1xuICBjbGFzc2VzPzogc3RyaW5nO1xuICAvKipcbiAgICogZGF0ZXBpY2tlciBldmVudCBwYXlsb2FkXG4gICAqL1xuICBwYXlsb2FkPzogYW55O1xuICBfbWV0YT86IGFueTtcbiAgLyoqXG4gICAqIGNhbGxiYWNrIGZvciBzYXZpbmcgdGhlIGNyZWF0ZWQgZGF0ZXBpY2tlciBpbnN0YW5jZVxuICAgKi9cbiAgZ2V0SW5zdGFuY2U/OiBhbnk7XG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LWRhdGVwaWNrZXInLFxuICB0ZW1wbGF0ZVVybDogJy4vZGF0ZXBpY2tlci5odG1sJ1xufSlcbmV4cG9ydCBjbGFzcyBEYXRlcGlja2VyQ29tcG9uZW50IHtcbiAgQElucHV0KCkgZGF0YTogRGF0ZVBpY2tlckRhdGE7XG5cbiAgQElucHV0KCkgZW1pdDogYW55O1xuXG4gIHByaXZhdGUgX2xvYWRlZCA9IGZhbHNlO1xuXG4gIG5nQWZ0ZXJDb250ZW50Q2hlY2tlZCgpIHtcbiAgICBpZiAoIXRoaXMuZGF0YSB8fCB0aGlzLl9sb2FkZWQpIHJldHVybjtcblxuICAgIHRoaXMuX2xvYWRlZCA9IHRydWU7XG5cbiAgICBzZXRUaW1lb3V0KCgpID0+IHtcbiAgICAgIGNvbnN0IHsgaWQsIGxpYk9wdGlvbnMgfSA9IHRoaXMuZGF0YTtcbiAgICAgIGltcG9ydCgnZmxhdHBpY2tyJykudGhlbigobW9kdWxlKSA9PiB7XG4gICAgICAgIGNvbnN0IHsgZGVmYXVsdDogZmxhdHBpY2tyIH0gPSBtb2R1bGU7XG4gICAgICAgIGNvbnN0IGRhdGVwaWNrZXIgPSBmbGF0cGlja3IoYCMke2lkfWAsXG4gICAgICAgICAge1xuICAgICAgICAgICAgLi4ubGliT3B0aW9ucyxcbiAgICAgICAgICAgIG9uQ2hhbmdlOiAoc2VsZWN0ZWREYXRlcywgZGF0ZVN0ciwgaW5zdGFuY2UpID0+IHtcbiAgICAgICAgICAgICAgaWYgKHRoaXMuZW1pdCkge1xuICAgICAgICAgICAgICAgIHRoaXMuZW1pdCgnY2hhbmdlJywgeyBzZWxlY3RlZERhdGVzLCBkYXRlU3RyLCBpbnN0YW5jZSB9KTtcbiAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICAgIH0pO1xuICAgICAgICAvLyBzZXR0aW5nIGRhdGVwaWNrZXJcbiAgICAgICAgaWYgKHRoaXMuZGF0YS5nZXRJbnN0YW5jZSkgdGhpcy5kYXRhLmdldEluc3RhbmNlKGRhdGVwaWNrZXIpO1xuICAgICAgfSk7XG4gICAgfSk7XG4gIH1cbn1cbiJdfQ==

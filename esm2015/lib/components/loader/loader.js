@@ -1,45 +1,19 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/loader/loader.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 //---------------------------
 // LOADER.ts
 //---------------------------
+import { __decorate, __metadata } from "tslib";
 import { Component, Input } from '@angular/core';
-/**
- * Interface for LoaderComponent's "data"
- *
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-export function LoaderData() { }
-if (false) {
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    LoaderData.prototype.classes;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    LoaderData.prototype._meta;
-}
-export class LoaderComponent {
-}
-LoaderComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-loader',
-                template: "<div class=\"n7-loader {{ data && data.classes ? data.classes : '' }}\">\n    Loading\n</div>"
-            }] }
-];
-LoaderComponent.propDecorators = {
-    data: [{ type: Input }]
+let LoaderComponent = class LoaderComponent {
 };
-if (false) {
-    /** @type {?} */
-    LoaderComponent.prototype.data;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9hZGVyLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9sb2FkZXIvbG9hZGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7O0FBUWpELGdDQVNDOzs7Ozs7SUFMRyw2QkFBaUI7Ozs7O0lBSWpCLDJCQUFZOztBQU9oQixNQUFNLE9BQU8sZUFBZTs7O1lBSjNCLFNBQVMsU0FBQztnQkFDVCxRQUFRLEVBQUUsV0FBVztnQkFDckIseUdBQTRCO2FBQzdCOzs7bUJBRUksS0FBSzs7OztJQUFOLCtCQUFpQyIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4vLyBMT0FERVIudHNcbi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5cbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIExvYWRlckNvbXBvbmVudCdzIFwiZGF0YVwiXG4gKlxuICogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IF9tZXRhIChvcHRpb25hbClcbiAqL1xuZXhwb3J0IGludGVyZmFjZSBMb2FkZXJEYXRhIHtcbiAgICAvKipcbiAgICAgKiBhZGRpdGlvbmFsIGh0bWwgY2xhc3Nlc1xuICAgICAqL1xuICAgIGNsYXNzZXM/OiBzdHJpbmc7XG4gICAgLyoqXG4gICAgICogYWRkaXRpb25hbCBpbmZvXG4gICAgICovXG4gICAgX21ldGE/OiBhbnk7XG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LWxvYWRlcicsXG4gIHRlbXBsYXRlVXJsOiAnLi9sb2FkZXIuaHRtbCdcbn0pXG5leHBvcnQgY2xhc3MgTG9hZGVyQ29tcG9uZW50IHtcbiAgICBASW5wdXQoKSBwdWJsaWMgZGF0YTogTG9hZGVyRGF0YTtcbn1cbiJdfQ==
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], LoaderComponent.prototype, "data", void 0);
+LoaderComponent = __decorate([
+    Component({
+        selector: 'n7-loader',
+        template: "<div class=\"n7-loader {{ data && data.classes ? data.classes : '' }}\">\n    Loading\n</div>"
+    })
+], LoaderComponent);
+export { LoaderComponent };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9hZGVyLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9sb2FkZXIvbG9hZGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDZCQUE2QjtBQUM3QixZQUFZO0FBQ1osNkJBQTZCOztBQUU3QixPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQztBQXVCakQsSUFBYSxlQUFlLEdBQTVCLE1BQWEsZUFBZTtDQUUzQixDQUFBO0FBRFk7SUFBUixLQUFLLEVBQUU7OzZDQUF5QjtBQUR4QixlQUFlO0lBSjNCLFNBQVMsQ0FBQztRQUNULFFBQVEsRUFBRSxXQUFXO1FBQ3JCLHlHQUE0QjtLQUM3QixDQUFDO0dBQ1csZUFBZSxDQUUzQjtTQUZZLGVBQWUiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuLy8gTE9BREVSLnRzXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciBMb2FkZXJDb21wb25lbnQncyBcImRhdGFcIlxuICpcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBfbWV0YSAob3B0aW9uYWwpXG4gKi9cbmV4cG9ydCBpbnRlcmZhY2UgTG9hZGVyRGF0YSB7XG4gICAgLyoqXG4gICAgICogYWRkaXRpb25hbCBodG1sIGNsYXNzZXNcbiAgICAgKi9cbiAgICBjbGFzc2VzPzogc3RyaW5nO1xuICAgIC8qKlxuICAgICAqIGFkZGl0aW9uYWwgaW5mb1xuICAgICAqL1xuICAgIF9tZXRhPzogYW55O1xufVxuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICduNy1sb2FkZXInLFxuICB0ZW1wbGF0ZVVybDogJy4vbG9hZGVyLmh0bWwnXG59KVxuZXhwb3J0IGNsYXNzIExvYWRlckNvbXBvbmVudCB7XG4gICAgQElucHV0KCkgcHVibGljIGRhdGE6IExvYWRlckRhdGE7XG59XG4iXX0=

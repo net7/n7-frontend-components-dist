@@ -1,98 +1,31 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/input-select/input-select.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 //---------------------------
 // INPUT-SELECT.ts
 //---------------------------
+import { __decorate, __metadata } from "tslib";
 import { Component, Input } from '@angular/core';
-/**
- * Interface for InputSelect
- *
- * \@property id (required)
- * \@property options (required)
- * \@property label (optional)
- * \@property disabled (optional)
- * \@property icon (optional)
- * \@property payload (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-export function InputSelectData() { }
-if (false) {
-    /**
-     * A unique ID for the select item
-     * @type {?}
-     */
-    InputSelectData.prototype.id;
-    /**
-     * The array of <option> elements
-     * @type {?}
-     */
-    InputSelectData.prototype.options;
-    /**
-     * Label for the <select> element
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype.label;
-    /**
-     * Prevents the user from changing any option
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype.disabled;
-    /**
-     * Payload for the select's change event
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype.payload;
-    /**
-     * Additional HTML Classes
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype.classes;
-    /**
-     * Additional data for the component's logic
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype._meta;
-}
 var InputSelectComponent = /** @class */ (function () {
     function InputSelectComponent() {
     }
-    /**
-     * @param {?} inputPayload
-     * @param {?=} value
-     * @return {?}
-     */
-    InputSelectComponent.prototype.onChange = /**
-     * @param {?} inputPayload
-     * @param {?=} value
-     * @return {?}
-     */
-    function (inputPayload, value) {
+    InputSelectComponent.prototype.onChange = function (inputPayload, value) {
         if (!this.emit)
             return;
         this.emit('change', { inputPayload: inputPayload, value: value });
     };
-    InputSelectComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'n7-input-select',
-                    template: "<div *ngIf=\"data as input\"\n     class=\"n7-input-select\">\n  <label *ngIf=\"input.label\"\n         for=\"{{ input.id }}\">{{ input.label }}</label>\n  <select (change)=\"onChange(input.payload, $event.target.value)\"\n          id=\"{{ input.id }}\"\n          class=\"n7-facet__input-select {{ input.classes || '' }}\"\n          [disabled]=\"input.disabled\">\n    <option *ngFor=\"let option of input.options\"\n            [value]=\"option.value\"\n            [disabled]=\"option.disabled\"\n            [selected]=\"option.selected\">{{ option.label }}</option>\n  </select>\n</div>\n"
-                }] }
-    ];
-    InputSelectComponent.propDecorators = {
-        data: [{ type: Input }],
-        emit: [{ type: Input }]
-    };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], InputSelectComponent.prototype, "data", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], InputSelectComponent.prototype, "emit", void 0);
+    InputSelectComponent = __decorate([
+        Component({
+            selector: 'n7-input-select',
+            template: "<div *ngIf=\"data as input\"\n     class=\"n7-input-select\">\n  <label *ngIf=\"input.label\"\n         for=\"{{ input.id }}\">{{ input.label }}</label>\n  <select (change)=\"onChange(input.payload, $event.target.value)\"\n          id=\"{{ input.id }}\"\n          class=\"n7-facet__input-select {{ input.classes || '' }}\"\n          [disabled]=\"input.disabled\">\n    <option *ngFor=\"let option of input.options\"\n            [value]=\"option.value\"\n            [disabled]=\"option.disabled\"\n            [selected]=\"option.selected\">{{ option.label }}</option>\n  </select>\n</div>\n"
+        })
+    ], InputSelectComponent);
     return InputSelectComponent;
 }());
 export { InputSelectComponent };
-if (false) {
-    /** @type {?} */
-    InputSelectComponent.prototype.data;
-    /** @type {?} */
-    InputSelectComponent.prototype.emit;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5wdXQtc2VsZWN0LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9pbnB1dC1zZWxlY3QvaW5wdXQtc2VsZWN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7Ozs7Ozs7O0FBY2pELHFDQThDQzs7Ozs7O0lBMUNDLDZCQUFXOzs7OztJQUlYLGtDQWlCRzs7Ozs7SUFJSCxnQ0FBZTs7Ozs7SUFJZixtQ0FBbUI7Ozs7O0lBSW5CLGtDQUFjOzs7OztJQUlkLGtDQUFjOzs7OztJQUlkLGdDQUFZOztBQUdkO0lBQUE7SUFhQSxDQUFDOzs7Ozs7SUFKQyx1Q0FBUTs7Ozs7SUFBUixVQUFTLFlBQVksRUFBRSxLQUFNO1FBQzNCLElBQUksQ0FBQyxJQUFJLENBQUMsSUFBSTtZQUFFLE9BQU87UUFDdkIsSUFBSSxDQUFDLElBQUksQ0FBQyxRQUFRLEVBQUUsRUFBRSxZQUFZLGNBQUEsRUFBRSxLQUFLLE9BQUEsRUFBRSxDQUFDLENBQUM7SUFDL0MsQ0FBQzs7Z0JBWkYsU0FBUyxTQUFDO29CQUNULFFBQVEsRUFBRSxpQkFBaUI7b0JBQzNCLCtsQkFBa0M7aUJBQ25DOzs7dUJBRUUsS0FBSzt1QkFFTCxLQUFLOztJQU1SLDJCQUFDO0NBQUEsQUFiRCxJQWFDO1NBVFksb0JBQW9COzs7SUFDL0Isb0NBQStCOztJQUUvQixvQ0FBbUIiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuLy8gSU5QVVQtU0VMRUNULnRzXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciBJbnB1dFNlbGVjdFxuICpcbiAqIEBwcm9wZXJ0eSBpZCAocmVxdWlyZWQpXG4gKiBAcHJvcGVydHkgb3B0aW9ucyAocmVxdWlyZWQpXG4gKiBAcHJvcGVydHkgbGFiZWwgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IGRpc2FibGVkIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBpY29uIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBwYXlsb2FkIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBfbWV0YSAob3B0aW9uYWwpXG4gKi9cbmV4cG9ydCBpbnRlcmZhY2UgSW5wdXRTZWxlY3REYXRhIHtcbiAgLyoqXG4gICAqIEEgdW5pcXVlIElEIGZvciB0aGUgc2VsZWN0IGl0ZW1cbiAgICovXG4gIGlkOiBzdHJpbmc7XG4gIC8qKlxuICAgKiBUaGUgYXJyYXkgb2YgPG9wdGlvbj4gZWxlbWVudHNcbiAgICovXG4gIG9wdGlvbnM6IEFycmF5PHtcbiAgICAvKipcbiAgICAgKiBUaGUgcmVuZGVyZWQgdGV4dCBmb3IgdGhlIDxvcHRpb24+IGVsZW1lbnRcbiAgICAgKi9cbiAgICBsYWJlbDogc3RyaW5nO1xuICAgIC8qKlxuICAgICAqIFRoZSBldmVudCB2YWx1ZSBmb3IgdGhlIDxvcHRpb24+IGVsZW1lbnRcbiAgICAgKi9cbiAgICB2YWx1ZTogc3RyaW5nIHwgbnVtYmVyO1xuICAgIC8qKlxuICAgICAqIFNldHMgdGhlIG9wdGlvbiBhcyBkZWZhdWx0IChzZWxlY3RlZClcbiAgICAgKi9cbiAgICBzZWxlY3RlZD86IGJvb2xlYW47XG4gICAgLyoqXG4gICAgICogUHJldmVudHMgdGhlIHVzZXIgZnJvbSBzZWxlY3RpbmcgdGhpcyBvcHRpb25cbiAgICAgKi9cbiAgICBkaXNhYmxlZD86IGJvb2xlYW47XG4gIH0+O1xuICAvKipcbiAgICogTGFiZWwgZm9yIHRoZSA8c2VsZWN0PiBlbGVtZW50XG4gICAqL1xuICBsYWJlbD86IHN0cmluZztcbiAgLyoqXG4gICAqIFByZXZlbnRzIHRoZSB1c2VyIGZyb20gY2hhbmdpbmcgYW55IG9wdGlvblxuICAgKi9cbiAgZGlzYWJsZWQ/OiBib29sZWFuO1xuICAvKipcbiAgICogUGF5bG9hZCBmb3IgdGhlIHNlbGVjdCdzIGNoYW5nZSBldmVudFxuICAgKi9cbiAgcGF5bG9hZD86IGFueTtcbiAgLyoqXG4gICAqIEFkZGl0aW9uYWwgSFRNTCBDbGFzc2VzXG4gICAqL1xuICBjbGFzc2VzPzogYW55O1xuICAvKipcbiAgICogQWRkaXRpb25hbCBkYXRhIGZvciB0aGUgY29tcG9uZW50J3MgbG9naWNcbiAgICovXG4gIF9tZXRhPzogYW55O1xufVxuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICduNy1pbnB1dC1zZWxlY3QnLFxuICB0ZW1wbGF0ZVVybDogJy4vaW5wdXQtc2VsZWN0Lmh0bWwnXG59KVxuZXhwb3J0IGNsYXNzIElucHV0U2VsZWN0Q29tcG9uZW50IHtcbiAgQElucHV0KCkgZGF0YTogSW5wdXRTZWxlY3REYXRhO1xuXG4gIEBJbnB1dCgpIGVtaXQ6IGFueTtcblxuICBvbkNoYW5nZShpbnB1dFBheWxvYWQsIHZhbHVlPykge1xuICAgIGlmICghdGhpcy5lbWl0KSByZXR1cm47XG4gICAgdGhpcy5lbWl0KCdjaGFuZ2UnLCB7IGlucHV0UGF5bG9hZCwgdmFsdWUgfSk7XG4gIH1cbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5wdXQtc2VsZWN0LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9pbnB1dC1zZWxlY3QvaW5wdXQtc2VsZWN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDZCQUE2QjtBQUM3QixrQkFBa0I7QUFDbEIsNkJBQTZCOztBQUU3QixPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQztBQWtFakQ7SUFBQTtJQVNBLENBQUM7SUFKQyx1Q0FBUSxHQUFSLFVBQVMsWUFBWSxFQUFFLEtBQU07UUFDM0IsSUFBSSxDQUFDLElBQUksQ0FBQyxJQUFJO1lBQUUsT0FBTztRQUN2QixJQUFJLENBQUMsSUFBSSxDQUFDLFFBQVEsRUFBRSxFQUFFLFlBQVksY0FBQSxFQUFFLEtBQUssT0FBQSxFQUFFLENBQUMsQ0FBQztJQUMvQyxDQUFDO0lBUFE7UUFBUixLQUFLLEVBQUU7O3NEQUF1QjtJQUV0QjtRQUFSLEtBQUssRUFBRTs7c0RBQVc7SUFIUixvQkFBb0I7UUFKaEMsU0FBUyxDQUFDO1lBQ1QsUUFBUSxFQUFFLGlCQUFpQjtZQUMzQiwrbEJBQWtDO1NBQ25DLENBQUM7T0FDVyxvQkFBb0IsQ0FTaEM7SUFBRCwyQkFBQztDQUFBLEFBVEQsSUFTQztTQVRZLG9CQUFvQiIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4vLyBJTlBVVC1TRUxFQ1QudHNcbi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5cbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIElucHV0U2VsZWN0XG4gKlxuICogQHByb3BlcnR5IGlkIChyZXF1aXJlZClcbiAqIEBwcm9wZXJ0eSBvcHRpb25zIChyZXF1aXJlZClcbiAqIEBwcm9wZXJ0eSBsYWJlbCAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgZGlzYWJsZWQgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IGljb24gKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IHBheWxvYWQgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IF9tZXRhIChvcHRpb25hbClcbiAqL1xuZXhwb3J0IGludGVyZmFjZSBJbnB1dFNlbGVjdERhdGEge1xuICAvKipcbiAgICogQSB1bmlxdWUgSUQgZm9yIHRoZSBzZWxlY3QgaXRlbVxuICAgKi9cbiAgaWQ6IHN0cmluZztcbiAgLyoqXG4gICAqIFRoZSBhcnJheSBvZiA8b3B0aW9uPiBlbGVtZW50c1xuICAgKi9cbiAgb3B0aW9uczogQXJyYXk8e1xuICAgIC8qKlxuICAgICAqIFRoZSByZW5kZXJlZCB0ZXh0IGZvciB0aGUgPG9wdGlvbj4gZWxlbWVudFxuICAgICAqL1xuICAgIGxhYmVsOiBzdHJpbmc7XG4gICAgLyoqXG4gICAgICogVGhlIGV2ZW50IHZhbHVlIGZvciB0aGUgPG9wdGlvbj4gZWxlbWVudFxuICAgICAqL1xuICAgIHZhbHVlOiBzdHJpbmcgfCBudW1iZXI7XG4gICAgLyoqXG4gICAgICogU2V0cyB0aGUgb3B0aW9uIGFzIGRlZmF1bHQgKHNlbGVjdGVkKVxuICAgICAqL1xuICAgIHNlbGVjdGVkPzogYm9vbGVhbjtcbiAgICAvKipcbiAgICAgKiBQcmV2ZW50cyB0aGUgdXNlciBmcm9tIHNlbGVjdGluZyB0aGlzIG9wdGlvblxuICAgICAqL1xuICAgIGRpc2FibGVkPzogYm9vbGVhbjtcbiAgfT47XG4gIC8qKlxuICAgKiBMYWJlbCBmb3IgdGhlIDxzZWxlY3Q+IGVsZW1lbnRcbiAgICovXG4gIGxhYmVsPzogc3RyaW5nO1xuICAvKipcbiAgICogUHJldmVudHMgdGhlIHVzZXIgZnJvbSBjaGFuZ2luZyBhbnkgb3B0aW9uXG4gICAqL1xuICBkaXNhYmxlZD86IGJvb2xlYW47XG4gIC8qKlxuICAgKiBQYXlsb2FkIGZvciB0aGUgc2VsZWN0J3MgY2hhbmdlIGV2ZW50XG4gICAqL1xuICBwYXlsb2FkPzogYW55O1xuICAvKipcbiAgICogQWRkaXRpb25hbCBIVE1MIENsYXNzZXNcbiAgICovXG4gIGNsYXNzZXM/OiBhbnk7XG4gIC8qKlxuICAgKiBBZGRpdGlvbmFsIGRhdGEgZm9yIHRoZSBjb21wb25lbnQncyBsb2dpY1xuICAgKi9cbiAgX21ldGE/OiBhbnk7XG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LWlucHV0LXNlbGVjdCcsXG4gIHRlbXBsYXRlVXJsOiAnLi9pbnB1dC1zZWxlY3QuaHRtbCdcbn0pXG5leHBvcnQgY2xhc3MgSW5wdXRTZWxlY3RDb21wb25lbnQge1xuICBASW5wdXQoKSBkYXRhOiBJbnB1dFNlbGVjdERhdGE7XG5cbiAgQElucHV0KCkgZW1pdDogYW55O1xuXG4gIG9uQ2hhbmdlKGlucHV0UGF5bG9hZCwgdmFsdWU/KSB7XG4gICAgaWYgKCF0aGlzLmVtaXQpIHJldHVybjtcbiAgICB0aGlzLmVtaXQoJ2NoYW5nZScsIHsgaW5wdXRQYXlsb2FkLCB2YWx1ZSB9KTtcbiAgfVxufVxuIl19

@@ -1,417 +1,124 @@
-import { Component, Input, EventEmitter, Output, NgModule } from '@angular/core';
+import { __decorate, __metadata, __awaiter } from 'tslib';
+import { Input, Component, EventEmitter, Output, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { __awaiter } from 'tslib';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/advanced-autocomplete/advanced-autocomplete.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for AdvancedAutocompleteComponent's "data"
- * @record
- */
-function AdvancedAutocompleteData() { }
-if (false) {
-    /** @type {?|undefined} */
-    AdvancedAutocompleteData.prototype.results;
-    /** @type {?|undefined} */
-    AdvancedAutocompleteData.prototype.actions;
-    /** @type {?} */
-    AdvancedAutocompleteData.prototype.fallback;
-    /** @type {?|undefined} */
-    AdvancedAutocompleteData.prototype.classes;
-    /** @type {?|undefined} */
-    AdvancedAutocompleteData.prototype._meta;
-}
-/**
- * @record
- */
-function AdvancedAutocompleteItem() { }
-if (false) {
-    /**
-     * anchor <a>
-     * @type {?|undefined}
-     */
-    AdvancedAutocompleteItem.prototype.anchor;
-    /**
-     * Rendered text for the result item
-     * @type {?|undefined}
-     */
-    AdvancedAutocompleteItem.prototype.title;
-    /**
-     * Additional metadata for the result item
-     * @type {?|undefined}
-     */
-    AdvancedAutocompleteItem.prototype.metadata;
-}
-/**
- * @record
- */
-function AdvancedAutocompleteResponse() { }
-if (false) {
-    /** @type {?} */
-    AdvancedAutocompleteResponse.prototype.items;
-    /** @type {?|undefined} */
-    AdvancedAutocompleteResponse.prototype.group;
-}
-class AdvancedAutocompleteComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let AdvancedAutocompleteComponent = class AdvancedAutocompleteComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-AdvancedAutocompleteComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-advanced-autocomplete',
-                template: "<div *ngIf=\"data\" class=\"n7-advanced-autocomplete\"\n    [ngClass]=\"{ 'is-empty' : (data.results && data.results.length === 0), 'is-loading': !data.results }\">\n    <!-- If there are some results -->\n    <ng-container *ngIf=\"data.results && data.results.length > 0\">\n        <ng-container *ngTemplateOutlet=\"hasLoaded\"></ng-container>\n    </ng-container>\n    <!-- If no results are found -->\n    <ng-container *ngIf=\"data.results && data.results.length === 0\">\n        <ng-container *ngTemplateOutlet=\"isEmpty\"></ng-container>\n    </ng-container>\n    <!-- If is loading -->\n    <ng-container *ngIf=\"!data.results\">\n        <ng-container *ngTemplateOutlet=\"isLoading\"></ng-container>\n    </ng-container>\n</div>\n\n<!-- Template: Is empty -->\n<ng-template #isEmpty>\n    <div class=\"n7-advanced-autocomplete__empty\" [innerHTML]=\"data.fallback\"></div>\n    <!-- Render actions -->\n    <ng-container *ngTemplateOutlet=\"actions; context:{$implicit: data.actions}\"></ng-container>\n</ng-template>\n\n<!-- Template: Is loading -->\n<ng-template #isLoading>\n    <!-- Layout appends loader-component here -->\n    <span class=\"n7-advanced-autocomplete__loader\" id=\"n7-advanced-autocomplete__loader\"></span>\n</ng-template>\n\n<!-- Template: Has loaded -->\n<ng-template #hasLoaded>\n    <!-- Search results -->\n    <div class=\"n7-advanced-autocomplete__results\">\n        <!-- Render groups -->\n        <ng-container *ngFor=\"let res of data.results\">\n            <div *ngIf=\"res.group\" class=\"n7-advanced-autocomplete__group\">\n                <div class=\"n7-advanced-autocomplete__group-title-wrapper {{ res.group.classes || '' }}\">\n                    <n7-anchor-wrapper\n                        [data]=\"res.group.anchor\"\n                        (clicked)=\"onClick($event)\">\n                        <span *ngIf=\"res.group.icon\" class=\"n7-advanced-autocomplete__group-icon {{ res.group.icon }}\"></span>\n                        <span class=\"n7-advanced-autocomplete__group-title\">{{res.group.title}}</span>\n                    </n7-anchor-wrapper>\n                </div>\n                <!-- Render items -->\n                <div class=\"n7-advanced-autocomplete__items\">\n                    <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\n                </div>\n            </div>\n            <div *ngIf=\"!res.group\" class=\"n7-advanced-autocomplete__nogroup\">\n                <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\n            </div>\n        </ng-container>\n    </div>\n    <!-- Actions -->\n    <ng-container *ngTemplateOutlet=\"actions; context:{$implicit: data.actions}\"></ng-container>\n</ng-template>\n\n<!-- Template: Items -->\n<ng-template #items let-items>\n    <n7-anchor-wrapper *ngFor=\"let item of items\"\n    [data]=\"item.anchor\"\n    (clicked)=\"onClick($event)\"\n    [classes]=\"'n7-advanced-autocomplete__item'\">\n    <span *ngIf=\"item.title\" class=\"n7-advanced-autocomplete__item-title\" [innerHTML]=\"item.title\"></span>\n    <ng-container *ngIf=\"item.metadata\">\n        <span *ngFor=\"let meta of item.metadata\" class=\"n7-advanced-autocomplete__item-metadata\">\n            <span *ngIf=\"meta.key\" class=\"n7-advanced-autocomplete__item-metadata-key\">{{ meta.key }}</span>\n            <span *ngIf=\"meta.value\" class=\"n7-advanced-autocomplete__item-metadata-value\">{{ meta.value }}</span>\n        </span>\n    </ng-container>\n    </n7-anchor-wrapper>\n</ng-template>\n\n<!-- Template: Actions -->\n<ng-template #actions let-actions>\n    <div *ngIf=\"actions\" class=\"n7-advanced-autocomplete__action-bar\">\n        <n7-anchor-wrapper *ngIf=\"actions.advanced\" [data]=\"actions.advanced.anchor\"\n            (clicked)=\"onClick($event)\" [classes]=\"'n7-btn n7-advanced-autocomplete__advanced-search'\">\n            {{actions.advanced.text}}\n        </n7-anchor-wrapper>\n\n        <n7-anchor-wrapper *ngIf=\"actions.showMore\" [data]=\"actions.showMore.anchor\"\n            (clicked)=\"onClick($event)\" [classes]=\"'n7-btn n7-btn-cta n7-advanced-autocomplete__show-more'\">\n            {{actions.showMore.text}}\n        </n7-anchor-wrapper>\n    </div>\n</ng-template>\n"
-            }] }
-];
-AdvancedAutocompleteComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    AdvancedAutocompleteComponent.prototype.data;
-    /** @type {?} */
-    AdvancedAutocompleteComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], AdvancedAutocompleteComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], AdvancedAutocompleteComponent.prototype, "emit", void 0);
+AdvancedAutocompleteComponent = __decorate([
+    Component({
+        selector: 'n7-advanced-autocomplete',
+        template: "<div *ngIf=\"data\" class=\"n7-advanced-autocomplete\"\n    [ngClass]=\"{ 'is-empty' : (data.results && data.results.length === 0), 'is-loading': !data.results }\">\n    <!-- If there are some results -->\n    <ng-container *ngIf=\"data.results && data.results.length > 0\">\n        <ng-container *ngTemplateOutlet=\"hasLoaded\"></ng-container>\n    </ng-container>\n    <!-- If no results are found -->\n    <ng-container *ngIf=\"data.results && data.results.length === 0\">\n        <ng-container *ngTemplateOutlet=\"isEmpty\"></ng-container>\n    </ng-container>\n    <!-- If is loading -->\n    <ng-container *ngIf=\"!data.results\">\n        <ng-container *ngTemplateOutlet=\"isLoading\"></ng-container>\n    </ng-container>\n</div>\n\n<!-- Template: Is empty -->\n<ng-template #isEmpty>\n    <div class=\"n7-advanced-autocomplete__empty\" [innerHTML]=\"data.fallback\"></div>\n    <!-- Render actions -->\n    <ng-container *ngTemplateOutlet=\"actions; context:{$implicit: data.actions}\"></ng-container>\n</ng-template>\n\n<!-- Template: Is loading -->\n<ng-template #isLoading>\n    <!-- Layout appends loader-component here -->\n    <span class=\"n7-advanced-autocomplete__loader\" id=\"n7-advanced-autocomplete__loader\"></span>\n</ng-template>\n\n<!-- Template: Has loaded -->\n<ng-template #hasLoaded>\n    <!-- Search results -->\n    <div class=\"n7-advanced-autocomplete__results\">\n        <!-- Render groups -->\n        <ng-container *ngFor=\"let res of data.results\">\n            <div *ngIf=\"res.group\" class=\"n7-advanced-autocomplete__group\">\n                <div class=\"n7-advanced-autocomplete__group-title-wrapper {{ res.group.classes || '' }}\">\n                    <n7-anchor-wrapper\n                        [data]=\"res.group.anchor\"\n                        (clicked)=\"onClick($event)\">\n                        <span *ngIf=\"res.group.icon\" class=\"n7-advanced-autocomplete__group-icon {{ res.group.icon }}\"></span>\n                        <span class=\"n7-advanced-autocomplete__group-title\">{{res.group.title}}</span>\n                    </n7-anchor-wrapper>\n                </div>\n                <!-- Render items -->\n                <div class=\"n7-advanced-autocomplete__items\">\n                    <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\n                </div>\n            </div>\n            <div *ngIf=\"!res.group\" class=\"n7-advanced-autocomplete__nogroup\">\n                <ng-container *ngTemplateOutlet=\"items; context:{$implicit: res.items}\"></ng-container>\n            </div>\n        </ng-container>\n    </div>\n    <!-- Actions -->\n    <ng-container *ngTemplateOutlet=\"actions; context:{$implicit: data.actions}\"></ng-container>\n</ng-template>\n\n<!-- Template: Items -->\n<ng-template #items let-items>\n    <n7-anchor-wrapper *ngFor=\"let item of items\"\n    [data]=\"item.anchor\"\n    (clicked)=\"onClick($event)\"\n    [classes]=\"'n7-advanced-autocomplete__item'\">\n    <span *ngIf=\"item.title\" class=\"n7-advanced-autocomplete__item-title\" [innerHTML]=\"item.title\"></span>\n    <ng-container *ngIf=\"item.metadata\">\n        <span *ngFor=\"let meta of item.metadata\" class=\"n7-advanced-autocomplete__item-metadata\">\n            <span *ngIf=\"meta.key\" class=\"n7-advanced-autocomplete__item-metadata-key\">{{ meta.key }}</span>\n            <span *ngIf=\"meta.value\" class=\"n7-advanced-autocomplete__item-metadata-value\">{{ meta.value }}</span>\n        </span>\n    </ng-container>\n    </n7-anchor-wrapper>\n</ng-template>\n\n<!-- Template: Actions -->\n<ng-template #actions let-actions>\n    <div *ngIf=\"actions\" class=\"n7-advanced-autocomplete__action-bar\">\n        <n7-anchor-wrapper *ngIf=\"actions.advanced\" [data]=\"actions.advanced.anchor\"\n            (clicked)=\"onClick($event)\" [classes]=\"'n7-btn n7-advanced-autocomplete__advanced-search'\">\n            {{actions.advanced.text}}\n        </n7-anchor-wrapper>\n\n        <n7-anchor-wrapper *ngIf=\"actions.showMore\" [data]=\"actions.showMore.anchor\"\n            (clicked)=\"onClick($event)\" [classes]=\"'n7-btn n7-btn-cta n7-advanced-autocomplete__show-more'\">\n            {{actions.showMore.text}}\n        </n7-anchor-wrapper>\n    </div>\n</ng-template>\n"
+    })
+], AdvancedAutocompleteComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/alert/alert.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for TagComponent's "data"
- *
- * \@property body (required)
- * \@property icon (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * \@property hasCloseButton (optional)
- *
- * @record
- */
-function AlertData() { }
-if (false) {
-    /**
-     * the alert's body/message which can include html tags
-     * @type {?}
-     */
-    AlertData.prototype.text;
-    /**
-     * alert icon (on left side)
-     * @type {?|undefined}
-     */
-    AlertData.prototype.icon;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    AlertData.prototype.classes;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    AlertData.prototype.payload;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    AlertData.prototype._meta;
-    /**
-     * indicates whether the alert includes a close button (on top-right corner)
-     * or not (if not provided assumed as false)
-     * @type {?|undefined}
-     */
-    AlertData.prototype.hasCloseButton;
-}
-class AlertComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let AlertComponent = class AlertComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-AlertComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-alert',
-                template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" \n          *ngIf=\"data.hasCloseButton\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
-            }] }
-];
-AlertComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    AlertComponent.prototype.data;
-    /** @type {?} */
-    AlertComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], AlertComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], AlertComponent.prototype, "emit", void 0);
+AlertComponent = __decorate([
+    Component({
+        selector: 'n7-alert',
+        template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" \n          *ngIf=\"data.hasCloseButton\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
+    })
+], AlertComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/anchor-wrapper/anchor-wrapper.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class AnchorWrapperComponent {
+//---------------------------
+let AnchorWrapperComponent = class AnchorWrapperComponent {
     constructor() {
         this.clicked = new EventEmitter();
     }
-    /**
-     * @param {?} href
-     * @return {?}
-     */
     isExternal(href) {
         return /^http(?:s)?:\/{2}\S+$/.test(href);
     }
     /**
      * Click event handler.
      * Outputs the payload to it's parent component
-     * @param {?} payload
-     * @return {?}
      */
     onClick(payload) {
         this.clicked.emit(payload);
     }
-}
-AnchorWrapperComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-anchor-wrapper',
-                template: "<ng-container *ngIf=\"data; else noData\">\n    <ng-container *ngIf=\"data.href && isExternal(data.href)\">\n      <ng-container *ngTemplateOutlet=\"externalUrl\"></ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"data.href && !isExternal(data.href)\">\n      <ng-container *ngTemplateOutlet=\"internalUrl\"></ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"!data.href\">\n      <ng-container *ngTemplateOutlet=\"noUrl\"></ng-container>\n    </ng-container>\n</ng-container>\n\n<!-- No data template -->\n<ng-template #noData>\n  <a class=\"{{ classes || '' }}\"><ng-container *ngTemplateOutlet=\"content\"></ng-container></a>\n</ng-template>\n\n<!-- Internal URL template -->\n<ng-template #internalUrl>\n  <a \n  [routerLink]=\"data.href\" \n  [target]=\"data.target || '_self'\" \n  class=\"{{ classes || '' }}\"\n  [queryParams]=\"data.queryParams || null\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<!-- External URL template -->\n<ng-template #externalUrl>\n  <a [href]=\"data.href\" [target]=\"data.target || '_self'\" class=\"{{ classes || '' }}\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<!-- No URL template -->\n<ng-template #noUrl>\n  <a (click)=\"onClick(data.payload)\" class=\"{{ classes || '' }}\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<ng-template #content>\n  <ng-content></ng-content>\n</ng-template>\n"
-            }] }
-];
-AnchorWrapperComponent.propDecorators = {
-    data: [{ type: Input }],
-    classes: [{ type: Input }],
-    clicked: [{ type: Output }]
 };
-if (false) {
-    /** @type {?} */
-    AnchorWrapperComponent.prototype.data;
-    /** @type {?} */
-    AnchorWrapperComponent.prototype.classes;
-    /** @type {?} */
-    AnchorWrapperComponent.prototype.clicked;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], AnchorWrapperComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", String)
+], AnchorWrapperComponent.prototype, "classes", void 0);
+__decorate([
+    Output(),
+    __metadata("design:type", Object)
+], AnchorWrapperComponent.prototype, "clicked", void 0);
+AnchorWrapperComponent = __decorate([
+    Component({
+        selector: 'n7-anchor-wrapper',
+        template: "<ng-container *ngIf=\"data; else noData\">\n    <ng-container *ngIf=\"data.href && isExternal(data.href)\">\n      <ng-container *ngTemplateOutlet=\"externalUrl\"></ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"data.href && !isExternal(data.href)\">\n      <ng-container *ngTemplateOutlet=\"internalUrl\"></ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"!data.href\">\n      <ng-container *ngTemplateOutlet=\"noUrl\"></ng-container>\n    </ng-container>\n</ng-container>\n\n<!-- No data template -->\n<ng-template #noData>\n  <a class=\"{{ classes || '' }}\"><ng-container *ngTemplateOutlet=\"content\"></ng-container></a>\n</ng-template>\n\n<!-- Internal URL template -->\n<ng-template #internalUrl>\n  <a \n  [routerLink]=\"data.href\" \n  [target]=\"data.target || '_self'\" \n  class=\"{{ classes || '' }}\"\n  [queryParams]=\"data.queryParams || null\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<!-- External URL template -->\n<ng-template #externalUrl>\n  <a [href]=\"data.href\" [target]=\"data.target || '_self'\" class=\"{{ classes || '' }}\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<!-- No URL template -->\n<ng-template #noUrl>\n  <a (click)=\"onClick(data.payload)\" class=\"{{ classes || '' }}\">\n    <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n  </a>\n</ng-template>\n\n<ng-template #content>\n  <ng-content></ng-content>\n</ng-template>\n"
+    })
+], AnchorWrapperComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/breadcrumbs/breadcrumbs.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for a single BreadcrumbsComponent's "Item"
- *
- * \@property label (required)
- * \@property payload (required)
- * \@property classes (optional)
- * \@property _meta (optional)
- *
- * @record
- */
-function BreadcrumbsItem() { }
-if (false) {
-    /**
-     * item's label
-     * @type {?}
-     */
-    BreadcrumbsItem.prototype.label;
-    /** @type {?} */
-    BreadcrumbsItem.prototype.anchor;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    BreadcrumbsItem.prototype.classes;
-    /**
-     * additional info useful for the component's logic
-     * @type {?|undefined}
-     */
-    BreadcrumbsItem.prototype._meta;
-}
-/**
- * Interface for BreadcrumbsComponent's "Data"
- *
- * \@property items (required)
- * \@property classes (optional)
- *
- * @record
- */
-function BreadcrumbsData() { }
-if (false) {
-    /**
-     * each item renders a breadcrumb level
-     * @type {?}
-     */
-    BreadcrumbsData.prototype.items;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    BreadcrumbsData.prototype.classes;
-}
-class BreadcrumbsComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let BreadcrumbsComponent = class BreadcrumbsComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-BreadcrumbsComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-breadcrumbs',
-                template: "<div *ngIf=\"data\" class=\"n7-breadcrumbs {{ data.classes || '' }}\">\n    <nav class=\"n7-breadcrumbs__nav\">\n        <ol class=\"n7-breadcrumbs__list\">\n            <li *ngFor=\"let item of data.items\" class=\"n7-breadcrumbs__item {{ item.classes || '' }}\">\n                <n7-anchor-wrapper [classes]=\"'n7-breadcrumbs__label'\"\n                [data]=\"item.anchor\"\n                (clicked)=\"onClick($event)\">\n                    {{ item.label }}\n                </n7-anchor-wrapper>\n            </li>\n        </ol>\n    </nav>\n</div>\n"
-            }] }
-];
-BreadcrumbsComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    BreadcrumbsComponent.prototype.data;
-    /** @type {?} */
-    BreadcrumbsComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], BreadcrumbsComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], BreadcrumbsComponent.prototype, "emit", void 0);
+BreadcrumbsComponent = __decorate([
+    Component({
+        selector: 'n7-breadcrumbs',
+        template: "<div *ngIf=\"data\" class=\"n7-breadcrumbs {{ data.classes || '' }}\">\n    <nav class=\"n7-breadcrumbs__nav\">\n        <ol class=\"n7-breadcrumbs__list\">\n            <li *ngFor=\"let item of data.items\" class=\"n7-breadcrumbs__item {{ item.classes || '' }}\">\n                <n7-anchor-wrapper [classes]=\"'n7-breadcrumbs__label'\"\n                [data]=\"item.anchor\"\n                (clicked)=\"onClick($event)\">\n                    {{ item.label }}\n                </n7-anchor-wrapper>\n            </li>\n        </ol>\n    </nav>\n</div>\n"
+    })
+], BreadcrumbsComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/bubble-chart/bubble-chart.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for BubbleChartComponent's "data"
- *
- * \@property containerId (required)
- * \@property containerWidth (required)
- * \@property containerHeight (required)
- * \@property bubblesData (required)
- * \@property isForceSimulationEnabled (required)
- * \@property classes (optional)
- * \@property reset (optional)
- * @record
- */
-function BubbleChartData() { }
-if (false) {
-    /**
-     * unique identifier for the bubble-chart
-     * @type {?}
-     */
-    BubbleChartData.prototype.containerId;
-    /**
-     * total width for the bubble-chart
-     * @type {?}
-     */
-    BubbleChartData.prototype.width;
-    /**
-     * total height for the bubble-chart
-     * @type {?}
-     */
-    BubbleChartData.prototype.height;
-    /**
-     * data about the bubbles
-     * @type {?}
-     */
-    BubbleChartData.prototype.data;
-    /**
-     * additional css classes
-     * @type {?|undefined}
-     */
-    BubbleChartData.prototype.classes;
-    /**
-     * list of ID's of selected items
-     * (selected items will render with a 'X' icon)
-     * @type {?|undefined}
-     */
-    BubbleChartData.prototype.selected;
-    /**
-     * Specify a list of typeOfEntity types (domain),
-     * and a list of colors (range), which will be mapped together.
-     * @type {?|undefined}
-     */
-    BubbleChartData.prototype.colorMatch;
-    /**
-     * Define a max and min size for the bubbles
-     * @type {?}
-     */
-    BubbleChartData.prototype.sizeRange;
-    /**
-     * If defined, transition will be activated
-     * and the value will be used as duration
-     * @type {?|undefined}
-     */
-    BubbleChartData.prototype.transition;
-    /**
-     * If set to false, stops the shuffling of the data
-     * before rendering.
-     * @type {?|undefined}
-     */
-    BubbleChartData.prototype.shuffle;
-    /**
-     * Defines the font-family and the font-weight for each text group
-     * @type {?|undefined}
-     */
-    BubbleChartData.prototype.fontRendering;
-    /**
-     * expose the draw function outside of n7-frontend/components library
-     * this is needed to redraw bubble-chart-component on command
-     * @type {?|undefined}
-     */
-    BubbleChartData.prototype.setDraw;
-}
-/**
- * Interface for D3Chart's "data"
- *
- * \@property entity (required)
- * - id (required)
- * - label (optional)
- * - typeOfEntity (optional)
- * \@property count (required)
- * @record
- */
-function BubbleChartDataItem() { }
-if (false) {
-    /** @type {?} */
-    BubbleChartDataItem.prototype.entity;
-    /** @type {?} */
-    BubbleChartDataItem.prototype.count;
-}
-class BubbleChartComponent {
+let BubbleChartComponent = class BubbleChartComponent {
     constructor() {
         this._loaded = false;
-        this.draw = (/**
-         * @return {?}
-         */
-        () => {
+        this.draw = () => {
             const { d3 } = this;
             const { containerId, data, height, width, selected, transition, colorMatch, shuffle, fontRendering } = this.data;
-            /** @type {?} */
             const closeIconPath = 'M -50,40 L-40,50 0,10 40,50 50,40 10,0 50,-40 40,-50 0,-10 -40,-50 -50,-40 -10,0 -50,40';
             if (!Array.isArray(data)) {
                 // Check if it is possible to draw with the current dataset
                 console.warn('(n7-bubble-chart) The data object is not in the expected format!');
                 return;
             }
-            /** @type {?} */
             let t = d3
                 .transition()
                 .duration(0);
@@ -421,140 +128,78 @@ class BubbleChartComponent {
                     .duration(transition)
                     .ease(d3.easeCubicInOut);
             }
-            /** @type {?} */
             const colorMap = d3.scaleOrdinal()
                 .domain(colorMatch ? colorMatch.domain : ['persona', 'luogo', 'organizzazione', 'cosa notevole'])
                 .range(colorMatch ? colorMatch.range : d3.schemeTableau10);
-            /** @type {?} */
             const sizeScale = d3 // map entity count to bubble size
                 .scaleLinear()
-                .domain([0, d3.max(data, (/**
-                 * @param {?} d
-                 * @return {?}
-                 */
-                (d) => +d.count))])
-                .range([3, d3.max(data, (/**
-                 * @param {?} d
-                 * @return {?}
-                 */
-                (d) => +d.count))]);
-            /** @type {?} */
-            const pack = (/**
-             * @param {?} children
-             * @return {?}
-             */
-            (children) => d3
+                .domain([0, d3.max(data, (d) => +d.count)])
+                .range([3, d3.max(data, (d) => +d.count)]);
+            const pack = (children) => d3
                 .pack()
                 .size([width - 2, height - 2])
-                .padding(1.5)(d3.hierarchy({ children }).sum((/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => sizeScale(d.count)))));
-            /** @type {?} */
-            const root = (/**
-             * @return {?}
-             */
-            () => {
+                .padding(1.5)(d3.hierarchy({ children }).sum((d) => sizeScale(d.count)));
+            const root = () => {
                 if (typeof shuffle === 'undefined' || shuffle) {
-                    /** @type {?} */
-                    const shuffData = data.slice();
+                    const shuffData = data.slice(); // do not modify the source data!
                     return pack(d3.shuffle(shuffData));
                 } // if shuffle is set to false, skip the data shuffle
                 return pack(data);
-            });
-            /** @type {?} */
+            };
             const svg = d3
                 .select(`#${containerId}`)
                 .attr('viewBox', [0, 0, width, height])
                 .attr('font-family', 'Verdana, Geneva, sans-serif')
                 .attr('text-anchor', 'middle');
-            /** @type {?} */
-            const leaf = svg.selectAll('g').data(root().leaves(), (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => d.data.entity.id));
+            const leaf = svg.selectAll('g').data(root().leaves(), (d) => d.data.entity.id);
             leaf
                 .transition(t) // update transition on <g>
                 .attr('fill-opacity', 1)
-                .attr('transform', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => `translate(${d.x + 1},${d.y + 1})`))
-                .attr('font-size', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => {
-                /** @type {?} */
+                .attr('transform', (d) => `translate(${d.x + 1},${d.y + 1})`)
+                .attr('font-size', (d) => {
                 let size = d.r / 5.5;
                 size *= 1;
                 size += 1;
                 return `${Math.round(size)}px`;
-            }));
+            });
             leaf.selectAll('.close-icon').remove(); // clear all existing close icons
             if (selected) {
                 leaf // render necessary close icons
-                    .filter((/**
-                 * @param {?} d
-                 * @return {?}
-                 */
-                (d) => selected.includes(d.data.entity.id)))
+                    .filter((d) => selected.includes(d.data.entity.id))
                     .append('path')
                     .attr('class', 'close-icon')
                     .attr('d', closeIconPath)
                     .attr('fill', '#fff')
-                    .attr('transform', (/**
-                 * @param {?} d
-                 * @return {?}
-                 */
-                (d) => {
+                    .attr('transform', (d) => {
                     if (d.r / 4 > 3) {
                         return `scale(.08) translate(0, ${d.r * 10 - 80})`;
                     }
                     return 'scale(.08)';
-                }));
+                });
             }
             leaf
                 .select('circle')
                 .transition(t) // update transition on <circle>
                 .attr('fill-opacity', 1)
-                .attr('r', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => d.r));
+                .attr('r', (d) => d.r);
             leaf
                 .select('text')
-                .attr('font-family', (/**
-             * @return {?}
-             */
-            () => {
+                .attr('font-family', () => {
                 if (fontRendering && fontRendering.label && fontRendering.label.family) {
                     return fontRendering.label.family;
                 }
                 return 'inherit';
-            }))
-                .attr('font-weight', (/**
-             * @return {?}
-             */
-            () => {
+            })
+                .attr('font-weight', () => {
                 if (fontRendering && fontRendering.label && fontRendering.label.weight) {
                     return fontRendering.label.weight;
                 }
                 return 'inherit';
-            }))
+            })
                 .selectAll('tspan')
-                .data((/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => {
+                .data((d) => {
                 if (d.r / 4 > 4.5) {
                     // show text and number threshhold
-                    /** @type {?} */
                     let label = (d.data.entity.label.charAt(0).toUpperCase()
                         + d.data.entity.label.slice(1)).split(/ +/g);
                     if (label.length > 3) {
@@ -565,7 +210,6 @@ class BubbleChartComponent {
                 }
                 if (d.r / 4 > 2.5) {
                     // show text threshhold
-                    /** @type {?} */
                     let label = (d.data.entity.label.charAt(0).toUpperCase()
                         + d.data.entity.label.slice(1)).split(/ +/g);
                     if (label.length > 3) {
@@ -575,156 +219,82 @@ class BubbleChartComponent {
                     return label;
                 }
                 return '';
-            }))
+            })
                 .join('tspan')
                 .attr('x', 0)
-                .attr('y', (/**
-             * @param {?} d
-             * @param {?} i
-             * @param {?} nodes
-             * @return {?}
-             */
-            (d, i, nodes) => `${i - (nodes.length + 1) / 2 + 0.97}em`))
+                .attr('y', (d, i, nodes) => `${i - (nodes.length + 1) / 2 + 0.97}em`)
                 .attr('fill', 'white')
-                .text((/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => d));
+                .text((d) => d);
             leaf
                 .select('.label-count')
-                .attr('font-family', (/**
-             * @return {?}
-             */
-            () => {
+                .attr('font-family', () => {
                 if (fontRendering && fontRendering.counter && fontRendering.counter.family) {
                     return fontRendering.counter.family;
                 }
                 return 'inherit';
-            }))
-                .attr('font-weight', (/**
-             * @return {?}
-             */
-            () => {
+            })
+                .attr('font-weight', () => {
                 if (fontRendering && fontRendering.counter && fontRendering.counter.weight) {
                     return fontRendering.counter.weight;
                 }
                 return 'inherit';
-            }))
+            })
                 .attr('fill', 'white')
-                .text((/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => {
+                .text((d) => {
                 if (d.r / 4 > 2.5) {
                     // show text and number threshhold
                     return d.data.count;
                 }
                 return '';
-            }))
-                .attr('y', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => {
-                /** @type {?} */
+            })
+                .attr('y', (d) => {
                 let labelLength = d.data.entity.label.split(/ +/g);
                 if (labelLength.length > 3) {
                     labelLength = labelLength.slice(0, 3);
                 }
                 return `${labelLength.length - (labelLength.length + 1) / 2 + 0.97}em`;
-            }));
-            /** @type {?} */
+            });
             const g = leaf.enter().append('g');
-            g.attr('transform', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => `translate(${d.x + 1},${d.y + 1})`))
-                .attr('font-size', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => {
-                /** @type {?} */
+            g.attr('transform', (d) => `translate(${d.x + 1},${d.y + 1})`)
+                .attr('font-size', (d) => {
                 let size = d.r / 5.5;
                 size *= 1;
                 size += 1;
                 return `${Math.round(size)}px`;
-            }))
+            })
                 .attr('cursor', 'pointer')
-                .on('click', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => {
+                .on('click', (d) => {
                 this.onClick(d.data.entity.id);
-            }))
-                .attr('id', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => `g_${d.data.entity.id}`))
+            })
+                .attr('id', (d) => `g_${d.data.entity.id}`)
                 .append('circle')
-                .attr('id', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => { d.leafUid = d.data.entity.id; }))
+                .attr('id', (d) => { d.leafUid = d.data.entity.id; })
                 .attr('r', 0)
                 .transition(t) // enter() transition on <circle>
                 .attr('fill-opacity', 1)
-                .attr('fill', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => colorMap(d.data.entity.typeOfEntity)))
-                .attr('r', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => d.r));
+                .attr('fill', (d) => colorMap(d.data.entity.typeOfEntity))
+                .attr('r', (d) => d.r);
             g.append('clipPath')
-                .attr('id', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => { d.clipUid = `Clip-${d.data.entity.id}`; }))
+                .attr('id', (d) => { d.clipUid = `Clip-${d.data.entity.id}`; })
                 .append('use')
-                .attr('xlink:href', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => d.leafUid.href));
+                .attr('xlink:href', (d) => d.leafUid.href);
             g.append('text')
-                .attr('font-family', (/**
-             * @return {?}
-             */
-            () => {
+                .attr('font-family', () => {
                 if (fontRendering && fontRendering.label && fontRendering.label.family) {
                     return fontRendering.label.family;
                 }
                 return 'inherit';
-            }))
-                .attr('font-weight', (/**
-             * @return {?}
-             */
-            () => {
+            })
+                .attr('font-weight', () => {
                 if (fontRendering && fontRendering && fontRendering.label && fontRendering.label.weight) {
                     return fontRendering.label.weight;
                 }
                 return 'inherit';
-            }))
+            })
                 .selectAll('tspan')
-                .data((/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => {
+                .data((d) => {
                 if (d.r / 4 > 4.5) {
                     // show text and number threshhold
-                    /** @type {?} */
                     let label = (d.data.entity.label.charAt(0).toUpperCase()
                         + d.data.entity.label.slice(1)).split(/ +/g);
                     if (label.length > 3) {
@@ -735,7 +305,6 @@ class BubbleChartComponent {
                 }
                 if (d.r / 4 > 2.5) {
                     // show text threshhold
-                    /** @type {?} */
                     let label = (d.data.entity.label.charAt(0).toUpperCase()
                         + d.data.entity.label.slice(1)).split(/ +/g);
                     if (label.length > 3) {
@@ -745,69 +314,44 @@ class BubbleChartComponent {
                     return label;
                 }
                 return '';
-            }))
+            })
                 .join('tspan')
                 .attr('x', 0)
-                .attr('y', (/**
-             * @param {?} d
-             * @param {?} i
-             * @param {?} nodes
-             * @return {?}
-             */
-            (d, i, nodes) => `${i - (nodes.length + 1) / 2 + 0.97}em`))
+                .attr('y', (d, i, nodes) => `${i - (nodes.length + 1) / 2 + 0.97}em`)
                 .attr('fill', 'white')
-                .text((/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => d))
+                .text((d) => d)
                 .attr('fill-opacity', 0)
                 .transition(t) // enter() transition on <tspan>
                 .attr('fill-opacity', 1);
             g.append('text') // Count label
                 .attr('class', 'label-count')
-                .attr('font-family', (/**
-             * @return {?}
-             */
-            () => {
+                .attr('font-family', () => {
                 if (fontRendering && fontRendering.counter && fontRendering.counter.family) {
                     return fontRendering.counter.family;
                 }
                 return 'inherit';
-            }))
-                .attr('font-weight', (/**
-             * @return {?}
-             */
-            () => {
+            })
+                .attr('font-weight', () => {
                 if (fontRendering && fontRendering.counter && fontRendering.counter.weight) {
                     return fontRendering.counter.weight;
                 }
                 return 'inherit';
-            }))
+            })
                 .attr('fill', 'white')
-                .text((/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => {
+                .text((d) => {
                 if (d.r / 4 > 2.5) {
                     // show text and number threshhold
                     return d.data.count;
                 }
                 return '';
-            }))
-                .attr('y', (/**
-             * @param {?} d
-             * @return {?}
-             */
-            (d) => {
-                /** @type {?} */
+            })
+                .attr('y', (d) => {
                 let labelLength = d.data.entity.label.split(/ +/g);
                 if (labelLength.length > 3) {
                     labelLength = labelLength.slice(0, 3);
                 }
                 return `${labelLength.length - (labelLength.length + 1) / 2 + 0.97}em`;
-            }))
+            })
                 .attr('fill-opacity', 0)
                 .transition(t) // enter() transition on <text>
                 .attr('fill-opacity', 1);
@@ -815,41 +359,26 @@ class BubbleChartComponent {
                 .exit() // EXIT CYCLE
                 .remove();
             if (selected) {
-                g.filter((/**
-                 * @param {?} d
-                 * @return {?}
-                 */
-                (d) => selected.includes(d.leafUid))) // append 'X' icon // only for selected bubbles
+                g.filter((d) => selected.includes(d.leafUid)) // append 'X' icon // only for selected bubbles
                     .append('path')
                     .attr('d', closeIconPath)
                     .attr('class', 'close-icon')
-                    .attr('fill', (/**
-                 * @param {?} d
-                 * @return {?}
-                 */
-                (d) => {
+                    .attr('fill', (d) => {
                     if (d.r / 4 > 2.5) {
                         return '#fff';
                     }
                     return 'transparent';
-                }))
-                    .attr('transform', (/**
-                 * @param {?} d
-                 * @return {?}
-                 */
-                (d) => {
+                })
+                    .attr('transform', (d) => {
                     if (d.r / 4 > 3) {
                         return `scale(.08) translate(0, ${d.r * 10 - 80})`;
                     }
                     return 'scale(.08)';
-                }));
+                });
             }
             this.emit('d3end', data); // communicate end of draw
-        });
+        };
     }
-    /**
-     * @return {?}
-     */
     ngAfterContentChecked() {
         /*
          Waits for the dom to be loaded, then fires the draw function
@@ -859,217 +388,40 @@ class BubbleChartComponent {
             if (this._loaded)
                 return;
             this._loaded = true;
-            setTimeout((/**
-             * @return {?}
-             */
-            () => {
-                import('d3').then((/**
-                 * @param {?} module
-                 * @return {?}
-                 */
-                (module) => {
+            setTimeout(() => {
+                import('d3').then((module) => {
                     this.d3 = module;
                     this.draw();
                     if (this.data && this.data.setDraw) {
                         this.data.setDraw(this.draw);
                     }
-                }));
-            }));
+                });
+            });
         }
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-BubbleChartComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-bubble-chart',
-                template: "<div *ngIf=\"data\" class=\"n7-bubble-chart {{ data.classes || '' }}\">\n    <svg #bubbleChart id=\"{{data.containerId}}\"></svg>\n</div>"
-            }] }
-];
-BubbleChartComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    BubbleChartComponent.prototype.data;
-    /** @type {?} */
-    BubbleChartComponent.prototype.emit;
-    /**
-     * @type {?}
-     * @private
-     */
-    BubbleChartComponent.prototype.d3;
-    /**
-     * @type {?}
-     * @private
-     */
-    BubbleChartComponent.prototype._loaded;
-    /** @type {?} */
-    BubbleChartComponent.prototype.draw;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], BubbleChartComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], BubbleChartComponent.prototype, "emit", void 0);
+BubbleChartComponent = __decorate([
+    Component({
+        selector: 'n7-bubble-chart',
+        template: "<div *ngIf=\"data\" class=\"n7-bubble-chart {{ data.classes || '' }}\">\n    <svg #bubbleChart id=\"{{data.containerId}}\"></svg>\n</div>"
+    })
+], BubbleChartComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/carousel/carousel.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for PaginationComponent's links (pages and navigation buttons)
- *
- * \@property text (required)
- * \@property anchor (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function CarouselButton() { }
-if (false) {
-    /**
-     * innerHTML or plain text for the label
-     * @type {?|undefined}
-     */
-    CarouselButton.prototype.text;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    CarouselButton.prototype.classes;
-    /** @type {?|undefined} */
-    CarouselButton.prototype.anchor;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    CarouselButton.prototype._meta;
-}
-/**
- * Interface for PaginationComponent's Metadata tuples (pages and navigation buttons)
- *
- * \@property key (optional)
- * \@property value (optional)
- * @record
- */
-function CarouselMetadata() { }
-if (false) {
-    /**
-     * First element
-     * @type {?|undefined}
-     */
-    CarouselMetadata.prototype.key;
-    /**
-     * Second element
-     * @type {?|undefined}
-     */
-    CarouselMetadata.prototype.value;
-}
-/**
- * @record
- */
-function CarouselBackgroundItem() { }
-if (false) {
-    /**
-     * Background image for the carousel
-     * @type {?|undefined}
-     */
-    CarouselBackgroundItem.prototype.image;
-    /**
-     * Background video for the carousel
-     * @type {?|undefined}
-     */
-    CarouselBackgroundItem.prototype.video;
-    /**
-     * Background color for the carousel
-     * @type {?|undefined}
-     */
-    CarouselBackgroundItem.prototype.color;
-}
-/**
- * Interface for CarouselComponent's "Item"
- *
- * \@property title (optional)
- * \@property text (optional)
- * \@property metadata (optional)
- * \@property action (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function CarouselForegroundItem() { }
-if (false) {
-    /**
-     * Header
-     * @type {?|undefined}
-     */
-    CarouselForegroundItem.prototype.title;
-    /**
-     * Text paragraph / subtitle / pretitle
-     * @type {?|undefined}
-     */
-    CarouselForegroundItem.prototype.text;
-    /**
-     * Metadata
-     * @type {?|undefined}
-     */
-    CarouselForegroundItem.prototype.metadata;
-}
-/**
- * Interface for CarouselComponent's "data"
- *
- * \@property items (required)
- * \@property image (optional)
- * \@property video (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function CarouselData() { }
-if (false) {
-    /**
-     * ID Of the carousel container
-     * @type {?}
-     */
-    CarouselData.prototype.containerId;
-    /**
-     * Options for the carousel library ( docs here : https://lattecarousel.dev/ )
-     * @type {?|undefined}
-     */
-    CarouselData.prototype.libOptions;
-    /**
-     * Array of carousel slides
-     * @type {?}
-     */
-    CarouselData.prototype.slides;
-    /**
-     * Callback for getting the carousel instance
-     * @type {?|undefined}
-     */
-    CarouselData.prototype.setInstance;
-    /**
-     * Callback to access the carousel API
-     *
-     * @type {?|undefined}
-     */
-    CarouselData.prototype.setComponentAPI;
-    /**
-     * Classes for the carousel component
-     * @type {?|undefined}
-     */
-    CarouselData.prototype.classes;
-    /**
-     * Additional data useful for the component's logic
-     * @type {?|undefined}
-     */
-    CarouselData.prototype._meta;
-}
-class CarouselComponent {
+//---------------------------
+let CarouselComponent = class CarouselComponent {
     constructor() {
         this.loaded = false;
         /**
@@ -1081,75 +433,41 @@ class CarouselComponent {
              * Call api.load.videos on DOMContentReady event
              */
             load: {
-                /**
-                 * Changes all data-src attributes to src and calls <video>.load()
-                 */
-                videos: (/**
-                 * @return {?}
-                 */
-                () => {
-                    /** @type {?} */
+                /** Changes all data-src attributes to src and calls <video>.load() */
+                videos: () => {
                     const sources = Array.from(// gets all <source.lazy> tags
                     document.getElementById(this.data.containerId)
                         .getElementsByClassName('lazy'));
-                    sources.forEach((/**
-                     * @param {?} source
-                     * @return {?}
-                     */
-                    (source) => {
-                        /** @type {?} */
-                        const url = source.getAttribute('data-src');
+                    sources.forEach((source) => {
+                        const url = source.getAttribute('data-src'); // gets the video url
                         source.classList.remove('lazy'); // removes the lazy class
                         source.setAttribute('src', url); // sets the url to src attribute
                         source.removeAttribute('data-src'); // removes the data-src attribute
-                        ((/** @type {?} */ (source.parentElement))).load(); // loads the video
-                    }));
-                })
+                        source.parentElement.load(); // loads the video
+                    });
+                }
             }
         };
     }
-    /**
-     * @return {?}
-     */
     ngAfterContentChecked() {
         if (!this.data || this.loaded)
             return;
         this.loaded = true;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
+        setTimeout(() => {
             const { containerId, libOptions } = this.data;
-            import('latte-carousel').then((/**
-             * @param {?} module
-             * @return {?}
-             */
-            (module) => {
+            import('latte-carousel').then((module) => {
                 const { Carousel } = module;
-                /** @type {?} */
                 const chart = new Carousel(`#${containerId}`, libOptions);
                 // eslint-disable-next-line no-param-reassign, @typescript-eslint/no-unused-vars
                 if (this.data.setInstance)
-                    this.data.setInstance((/**
-                     * @param {?} d
-                     * @return {?}
-                     */
-                    (d) => { d = chart; }));
+                    this.data.setInstance((d) => { d = chart; });
                 // eslint-disable-next-line no-param-reassign, @typescript-eslint/no-unused-vars
                 if (this.data.setComponentAPI)
-                    this.data.setComponentAPI((/**
-                     * @param {?} d
-                     * @return {?}
-                     */
-                    (d) => { d = this.api; }));
+                    this.data.setComponentAPI((d) => { d = this.api; });
                 this.addButtonEvents(this.data);
-            }));
-        }));
+            });
+        });
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
     onClick(payload) {
         if (!this.emit)
             return;
@@ -1158,761 +476,211 @@ class CarouselComponent {
     /**
      * Function that adds the event listeners to each button.
      * This is needed because when "new Carousel()" is called the event listeners are lost.
-     * @param {?} __0
-     * @return {?}
      */
     addButtonEvents({ slides, containerId }) {
         // Build array of button-id's & payloads.
-        /** @type {?} */
         const buttons = slides
-            .map((/**
-         * @param {?} slide
-         * @param {?} slideID
-         * @return {?}
-         */
-        (slide, slideID) => ({
+            .map((slide, slideID) => ({
             // id = container id - index of the slide
             id: `${containerId}-${slideID}`,
             payload: (((slide.action || {}).anchor || {}).payload) || undefined
-        })))
-            .filter((/**
-         * @param {?} btn
-         * @return {?}
-         */
-        (btn) => btn.payload));
+        }))
+            .filter((btn) => btn.payload);
         // find each button's anchor-wrapper and attach the event to it.
-        buttons.forEach((/**
-         * @param {?} btn
-         * @return {?}
-         */
-        (btn) => {
-            document.querySelector(`#${btn.id}`).parentElement.addEventListener('click', (/**
-             * @return {?}
-             */
-            () => this.onClick(btn.payload)));
-        }));
+        buttons.forEach((btn) => {
+            document.querySelector(`#${btn.id}`).parentElement.addEventListener('click', () => this.onClick(btn.payload));
+        });
     }
-}
-CarouselComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-carousel',
-                template: "<button *ngIf=\"data.classes === 'demo'\"\n        class=\"n7-btn\"\n        (click)=\"api.load.videos()\">api.load.videos()</button>\n\n<div *ngIf=\"data\"\n     class=\"n7-carousel {{ data.classes || '' }}\">\n  <!-- Warning: Do not style div.latte-carousel -->\n  <div id=\"{{data.containerId}}\"\n       class=\"latte-carousel\">\n    <ng-container *ngFor=\"let slide of data.slides; let index = index;\">\n      <ng-container *ngTemplateOutlet=\"carouselSlide; context:{slide: slide, index: index}\"></ng-container>\n    </ng-container>\n  </div>\n</div>\n\n<!-- ===== SLIDE WRAPPER ===== -->\n<ng-template #carouselSlide\n             let-slide=\"slide\"\n             let-slideID=\"index\">\n  <!-- Warning: Do not style div.latte-item -->\n  <div class=\"latte-item\">\n    <div class=\"n7-carousel__slide {{ slide.classes || ''}}\"\n         [ngClass]=\"{ 'has-image' : slide.background.image, 'has-video': slide.background.video }\"\n         [style.background-color]=\"slide.background.color ? slide.background.color : ''\"\n         [style.background-image]=\"slide.background.image ? 'url('+slide.background.image+')' : ''\">\n      <div class=\"n7-carousel__slide-content-wrapper\">\n        <div class=\"n7-carousel__slide-content\">\n          <div class=\"n7-carousel__slide-content-left\">\n            <ng-container *ngTemplateOutlet=\"slideForeground; context:{items: slide.items, slideID: slideID}\">\n            </ng-container>\n          </div>\n          <div class=\"n7-carousel__slide-content-right\"\n               *ngIf=\"slide.action\">\n            <n7-anchor-wrapper [data]=\"slide.action.anchor\"\n                               (clicked)=\"onClick($event)\">\n              <!-- Button ID's are used to dynamically reattach events after loading the carousel -->\n              <button id=\"{{data.containerId}}-{{slideID}}\"\n                      class=\"n7-hero__btn n7-btn n7-btn-cta n7-btn-l\">\n                {{slide.action.text}}\n              </button>\n            </n7-anchor-wrapper>\n          </div>\n        </div>\n      </div>\n      <ng-container *ngIf=\"slide.background\">\n        <ng-container *ngTemplateOutlet=\"slideBackground; context:{$implicit: slide.background}\">\n        </ng-container>\n      </ng-container>\n    </div>\n  </div>\n</ng-template>\n\n<!-- ===== SLIDE FOREGROUND ===== -->\n<ng-template #slideForeground\n             let-items=\"items\"\n             let-slideID=\"slideID\">\n  <ng-container *ngFor=\"let el of items; let itemID = index\">\n    <h1 class=\"n7-carousel__slide-title\"\n        *ngIf=\"el.title\">{{el.title}}</h1>\n    <span class=\"n7-carousel__slide-text\"\n          *ngIf=\"el.text\">{{el.text}}</span>\n    <div class=\"n7-carousel__slide-metadata-wrapper\"\n         *ngIf=\"el.metadata\">\n      <ng-container *ngFor=\"let m of el.metadata\">\n        <div class=\"n7-carousel__slide-metadata\">\n            <span class=\"n7-carousel__slide-metadata-label\"\n              *ngIf=\"m.key\">{{m.key}}</span>\n            <span class=\"n7-carousel__slide-metadata-value\"\n              *ngIf=\"m.value\">{{m.value}}</span>\n        </div>\n      </ng-container>\n    </div>\n  </ng-container>\n</ng-template>\n\n<!-- ===== VIDEO BACKGROUND ===== -->\n<ng-template #slideBackground\n             let-bg>\n  <ng-container *ngIf=\"bg.video as v\">\n    <video #video\n           class=\"n7-carousel__slide-video\"\n           [poster]=\"v.poster\"\n           [height]=\"v.height\"\n           [width]=\"v.width\"\n           loop\n           muted\n           autoplay\n           playsinline>\n      <source #source\n              class=\"lazy\"\n              [attr.data-src]=\"v.url\"\n              type=\"video/mp4\">\n    </video>\n    <div class=\"n7-carousel__slide-video-overlay\">\n\n    </div>\n  </ng-container>\n</ng-template>\n"
-            }] }
-];
-CarouselComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    CarouselComponent.prototype.data;
-    /** @type {?} */
-    CarouselComponent.prototype.emit;
-    /**
-     * @type {?}
-     * @private
-     */
-    CarouselComponent.prototype.loaded;
-    /**
-     * API of the carousel component
-     * @type {?}
-     */
-    CarouselComponent.prototype.api;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], CarouselComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], CarouselComponent.prototype, "emit", void 0);
+CarouselComponent = __decorate([
+    Component({
+        selector: 'n7-carousel',
+        template: "<button *ngIf=\"data.classes === 'demo'\"\n        class=\"n7-btn\"\n        (click)=\"api.load.videos()\">api.load.videos()</button>\n\n<div *ngIf=\"data\"\n     class=\"n7-carousel {{ data.classes || '' }}\">\n  <!-- Warning: Do not style div.latte-carousel -->\n  <div id=\"{{data.containerId}}\"\n       class=\"latte-carousel\">\n    <ng-container *ngFor=\"let slide of data.slides; let index = index;\">\n      <ng-container *ngTemplateOutlet=\"carouselSlide; context:{slide: slide, index: index}\"></ng-container>\n    </ng-container>\n  </div>\n</div>\n\n<!-- ===== SLIDE WRAPPER ===== -->\n<ng-template #carouselSlide\n             let-slide=\"slide\"\n             let-slideID=\"index\">\n  <!-- Warning: Do not style div.latte-item -->\n  <div class=\"latte-item\">\n    <div class=\"n7-carousel__slide {{ slide.classes || ''}}\"\n         [ngClass]=\"{ 'has-image' : slide.background.image, 'has-video': slide.background.video }\"\n         [style.background-color]=\"slide.background.color ? slide.background.color : ''\"\n         [style.background-image]=\"slide.background.image ? 'url('+slide.background.image+')' : ''\">\n      <div class=\"n7-carousel__slide-content-wrapper\">\n        <div class=\"n7-carousel__slide-content\">\n          <div class=\"n7-carousel__slide-content-left\">\n            <ng-container *ngTemplateOutlet=\"slideForeground; context:{items: slide.items, slideID: slideID}\">\n            </ng-container>\n          </div>\n          <div class=\"n7-carousel__slide-content-right\"\n               *ngIf=\"slide.action\">\n            <n7-anchor-wrapper [data]=\"slide.action.anchor\"\n                               (clicked)=\"onClick($event)\">\n              <!-- Button ID's are used to dynamically reattach events after loading the carousel -->\n              <button id=\"{{data.containerId}}-{{slideID}}\"\n                      class=\"n7-hero__btn n7-btn n7-btn-cta n7-btn-l\">\n                {{slide.action.text}}\n              </button>\n            </n7-anchor-wrapper>\n          </div>\n        </div>\n      </div>\n      <ng-container *ngIf=\"slide.background\">\n        <ng-container *ngTemplateOutlet=\"slideBackground; context:{$implicit: slide.background}\">\n        </ng-container>\n      </ng-container>\n    </div>\n  </div>\n</ng-template>\n\n<!-- ===== SLIDE FOREGROUND ===== -->\n<ng-template #slideForeground\n             let-items=\"items\"\n             let-slideID=\"slideID\">\n  <ng-container *ngFor=\"let el of items; let itemID = index\">\n    <h1 class=\"n7-carousel__slide-title\"\n        *ngIf=\"el.title\">{{el.title}}</h1>\n    <span class=\"n7-carousel__slide-text\"\n          *ngIf=\"el.text\">{{el.text}}</span>\n    <div class=\"n7-carousel__slide-metadata-wrapper\"\n         *ngIf=\"el.metadata\">\n      <ng-container *ngFor=\"let m of el.metadata\">\n        <div class=\"n7-carousel__slide-metadata\">\n            <span class=\"n7-carousel__slide-metadata-label\"\n              *ngIf=\"m.key\">{{m.key}}</span>\n            <span class=\"n7-carousel__slide-metadata-value\"\n              *ngIf=\"m.value\">{{m.value}}</span>\n        </div>\n      </ng-container>\n    </div>\n  </ng-container>\n</ng-template>\n\n<!-- ===== VIDEO BACKGROUND ===== -->\n<ng-template #slideBackground\n             let-bg>\n  <ng-container *ngIf=\"bg.video as v\">\n    <video #video\n           class=\"n7-carousel__slide-video\"\n           [poster]=\"v.poster\"\n           [height]=\"v.height\"\n           [width]=\"v.width\"\n           loop\n           muted\n           autoplay\n           playsinline>\n      <source #source\n              class=\"lazy\"\n              [attr.data-src]=\"v.url\"\n              type=\"video/mp4\">\n    </video>\n    <div class=\"n7-carousel__slide-video-overlay\">\n\n    </div>\n  </ng-container>\n</ng-template>\n"
+    })
+], CarouselComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/chart/chart.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for ChartComponent's "data"
- *
- * \@property _chartId (required)
- * \@property options (required)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-function ChartData() { }
-if (false) {
-    /**
-     * unique identifier for the chart
-     * @type {?}
-     */
-    ChartData.prototype.containerId;
-    /**
-     * libOptions for the chart ( docs here : https://apexcharts.com/docs/options/ )
-     * @type {?}
-     */
-    ChartData.prototype.libOptions;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    ChartData.prototype.classes;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    ChartData.prototype.payload;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    ChartData.prototype._meta;
-    /**
-     * callback for saving the created chart instance
-     * @type {?|undefined}
-     */
-    ChartData.prototype.setChart;
-}
-class ChartComponent {
+let ChartComponent = class ChartComponent {
     constructor() {
         this._loaded = false;
     }
-    /**
-     * @return {?}
-     */
     ngAfterContentChecked() {
         if (!this.data || this._loaded)
             return;
         this._loaded = true;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
+        setTimeout(() => {
             const { containerId, libOptions } = this.data;
-            import('apexcharts/dist/apexcharts.common.js').then((/**
-             * @param {?} module
-             * @return {?}
-             */
-            (module) => {
+            import('apexcharts/dist/apexcharts.common.js').then((module) => {
                 const { default: ApexCharts } = module;
-                /** @type {?} */
                 const chart = new ApexCharts(document.querySelector(`#${containerId}`), libOptions);
                 chart.render();
                 if (this.data.setChart)
                     this.data.setChart(chart);
-            }));
-        }));
+            });
+        });
     }
-}
-ChartComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-chart',
-                template: "<div *ngIf=\"data\" class=\"n7-chart {{ data.classes || '' }}\">\n    <div id=\"{{ data.containerId }}\"></div>\n</div>"
-            }] }
-];
-ChartComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    ChartComponent.prototype.data;
-    /** @type {?} */
-    ChartComponent.prototype.emit;
-    /**
-     * @type {?}
-     * @private
-     */
-    ChartComponent.prototype._loaded;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ChartComponent.prototype, "emit", void 0);
+ChartComponent = __decorate([
+    Component({
+        selector: 'n7-chart',
+        template: "<div *ngIf=\"data\" class=\"n7-chart {{ data.classes || '' }}\">\n    <div id=\"{{ data.containerId }}\"></div>\n</div>"
+    })
+], ChartComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/content-placeholder/content-placeholder.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for ContentPlaceholderComponent's "data"
- *
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function ContentPlaceholderData() { }
-if (false) {
-    /**
-     * array of html classes
-     * @type {?}
-     */
-    ContentPlaceholderData.prototype.blocks;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    ContentPlaceholderData.prototype._meta;
-}
-/**
- * @record
- */
-function BlocksData() { }
-if (false) {
-    /** @type {?|undefined} */
-    BlocksData.prototype.classes;
-    /** @type {?|undefined} */
-    BlocksData.prototype.image;
-    /** @type {?|undefined} */
-    BlocksData.prototype.alt;
-}
-class ContentPlaceholderComponent {
-}
-ContentPlaceholderComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-content-placeholder',
-                template: "<div *ngIf=\"data\" class=\"n7-content-placeholder\">\n  <ng-container *ngFor=\"let b of data.blocks\">\n    <div *ngIf=\"!b.image\" class=\"n7-content-placeholder__item {{b.classes || ''}}\"></div>\n    <img *ngIf=\"b.image\" class=\"n7-content-placeholder__image {{b.classes || ''}}\" src=\"{{b.image}}\" alt=\"{{ b.alt || '' }}\">\n  </ng-container>\n</div>"
-            }] }
-];
-ContentPlaceholderComponent.propDecorators = {
-    data: [{ type: Input }]
+//---------------------------
+let ContentPlaceholderComponent = class ContentPlaceholderComponent {
 };
-if (false) {
-    /** @type {?} */
-    ContentPlaceholderComponent.prototype.data;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ContentPlaceholderComponent.prototype, "data", void 0);
+ContentPlaceholderComponent = __decorate([
+    Component({
+        selector: 'n7-content-placeholder',
+        template: "<div *ngIf=\"data\" class=\"n7-content-placeholder\">\n  <ng-container *ngFor=\"let b of data.blocks\">\n    <div *ngIf=\"!b.image\" class=\"n7-content-placeholder__item {{b.classes || ''}}\"></div>\n    <img *ngIf=\"b.image\" class=\"n7-content-placeholder__image {{b.classes || ''}}\" src=\"{{b.image}}\" alt=\"{{ b.alt || '' }}\">\n  </ng-container>\n</div>"
+    })
+], ContentPlaceholderComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/data-widget/data-widget.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for an index component Item
- *
- * \@property icon (optional)
- * \@property text (required)
- * \@property subtitle (required)
- * - text (required)
- * - icon (optional)
- * - grow (required)
- * @record
- */
-function DataWidgetData() { }
-if (false) {
-    /**
-     * item icon
-     * @type {?|undefined}
-     */
-    DataWidgetData.prototype.icon;
-    /**
-     * item text
-     * @type {?|undefined}
-     */
-    DataWidgetData.prototype.text;
-    /** @type {?|undefined} */
-    DataWidgetData.prototype.subtitle;
-    /** @type {?|undefined} */
-    DataWidgetData.prototype.classes;
-    /**
-     * mouse event payload
-     * @type {?}
-     */
-    DataWidgetData.prototype.payload;
-    /** @type {?|undefined} */
-    DataWidgetData.prototype._meta;
-}
-class DataWidgetComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let DataWidgetComponent = class DataWidgetComponent {
     onMouseEnter(payload) {
         if (!this.emit)
             return;
         this.emit('mouseenter', payload);
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
     onMouseLeave(payload) {
         if (!this.emit)
             return;
         this.emit('mouseleave', payload);
     }
-}
-DataWidgetComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-data-widget',
-                template: "<div *ngIf=\"data\" class=\"n7-data-widget {{ data.classes || '' }}\">\n    <div class=\"n7-data-widget__main\">\n        <span *ngIf=\"data.icon\"\n              class=\"n7-data-widget__main-icon {{data.icon}}\"\n              (mouseenter)=\"onMouseEnter(data.payload)\"\n              (mouseleave)=\"onMouseLeave(data.payload)\">\n        </span>\n        <h2 class=\"n7-data-widget__main-title\"\n            [innerHTML]=\"data.text\">\n        </h2>\n    </div>\n    \n    <div *ngIf=\"data.subtitle && (data.subtitle.text || data.subtitle.icon || data.subtitle.value)\"\n         class=\"n7-data-widget__sub\">\n        <p *ngIf=\"data.subtitle.text\"\n           class=\"n7-data-widget__sub-title\"\n           [innerHTML]=\"data.subtitle.text\">\n        </p>\n        <span *ngIf=\"data.subtitle.icon || data.subtitle.value\"\n              class=\"n7-data-widget__sub-info\"\n              (mouseenter)=\"onMouseEnter(data.subtitle.payload)\"\n              (mouseleave)=\"onMouseLeave(data.subtitle.payload)\">\n                <span *ngIf=\"data.subtitle.icon\"\n                class=\"n7-data-widget__sub-info-icon {{data.subtitle.icon}}\">\n          </span>\n          <span *ngIf=\"data.subtitle.value\"\n                class=\"n7-data-widget__sub-info-label\"\n                [innerHTML]=\"data.subtitle.value\">\n          </span>\n        </span>\n    </div>\n</div>\n"
-            }] }
-];
-DataWidgetComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    DataWidgetComponent.prototype.data;
-    /** @type {?} */
-    DataWidgetComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], DataWidgetComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], DataWidgetComponent.prototype, "emit", void 0);
+DataWidgetComponent = __decorate([
+    Component({
+        selector: 'n7-data-widget',
+        template: "<div *ngIf=\"data\" class=\"n7-data-widget {{ data.classes || '' }}\">\n    <div class=\"n7-data-widget__main\">\n        <span *ngIf=\"data.icon\"\n              class=\"n7-data-widget__main-icon {{data.icon}}\"\n              (mouseenter)=\"onMouseEnter(data.payload)\"\n              (mouseleave)=\"onMouseLeave(data.payload)\">\n        </span>\n        <h2 class=\"n7-data-widget__main-title\"\n            [innerHTML]=\"data.text\">\n        </h2>\n    </div>\n    \n    <div *ngIf=\"data.subtitle && (data.subtitle.text || data.subtitle.icon || data.subtitle.value)\"\n         class=\"n7-data-widget__sub\">\n        <p *ngIf=\"data.subtitle.text\"\n           class=\"n7-data-widget__sub-title\"\n           [innerHTML]=\"data.subtitle.text\">\n        </p>\n        <span *ngIf=\"data.subtitle.icon || data.subtitle.value\"\n              class=\"n7-data-widget__sub-info\"\n              (mouseenter)=\"onMouseEnter(data.subtitle.payload)\"\n              (mouseleave)=\"onMouseLeave(data.subtitle.payload)\">\n                <span *ngIf=\"data.subtitle.icon\"\n                class=\"n7-data-widget__sub-info-icon {{data.subtitle.icon}}\">\n          </span>\n          <span *ngIf=\"data.subtitle.value\"\n                class=\"n7-data-widget__sub-info-label\"\n                [innerHTML]=\"data.subtitle.value\">\n          </span>\n        </span>\n    </div>\n</div>\n"
+    })
+], DataWidgetComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/datepicker/datepicker.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for datapicker component
- * \@property id (required)
- * \@property libOptions (required)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-function DatePickerData() { }
-if (false) {
-    /**
-     * datepicker id
-     * @type {?}
-     */
-    DatePickerData.prototype.id;
-    /**
-     * datepicker library options
-     * view LINK: https://flatpickr.js.org/
-     * @type {?}
-     */
-    DatePickerData.prototype.libOptions;
-    /**
-     * for datepicker range min and max range value
-     * @type {?|undefined}
-     */
-    DatePickerData.prototype.minRange;
-    /** @type {?|undefined} */
-    DatePickerData.prototype.maxRange;
-    /** @type {?|undefined} */
-    DatePickerData.prototype.classes;
-    /**
-     * datepicker event payload
-     * @type {?|undefined}
-     */
-    DatePickerData.prototype.payload;
-    /** @type {?|undefined} */
-    DatePickerData.prototype._meta;
-    /**
-     * callback for saving the created datepicker instance
-     * @type {?|undefined}
-     */
-    DatePickerData.prototype.getInstance;
-}
-class DatepickerComponent {
+//---------------------------
+let DatepickerComponent = class DatepickerComponent {
     constructor() {
         this._loaded = false;
     }
-    /**
-     * @return {?}
-     */
     ngAfterContentChecked() {
         if (!this.data || this._loaded)
             return;
         this._loaded = true;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
+        setTimeout(() => {
             const { id, libOptions } = this.data;
-            import('flatpickr').then((/**
-             * @param {?} module
-             * @return {?}
-             */
-            (module) => {
+            import('flatpickr').then((module) => {
                 const { default: flatpickr } = module;
-                /** @type {?} */
-                const datepicker = flatpickr(`#${id}`, Object.assign({}, libOptions, { onChange: (/**
-                     * @param {?} selectedDates
-                     * @param {?} dateStr
-                     * @param {?} instance
-                     * @return {?}
-                     */
-                    (selectedDates, dateStr, instance) => {
+                const datepicker = flatpickr(`#${id}`, Object.assign(Object.assign({}, libOptions), { onChange: (selectedDates, dateStr, instance) => {
                         if (this.emit) {
                             this.emit('change', { selectedDates, dateStr, instance });
                         }
-                    }) }));
+                    } }));
                 // setting datepicker
                 if (this.data.getInstance)
                     this.data.getInstance(datepicker);
-            }));
-        }));
+            });
+        });
     }
-}
-DatepickerComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-datepicker',
-                template: "<div *ngIf=\"data\" class=\"n7-datepicker {{ data.classes || '' }}\">\n  <input type=\"text\" id=\"{{this.data.id}}\"/>\n</div>"
-            }] }
-];
-DatepickerComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    DatepickerComponent.prototype.data;
-    /** @type {?} */
-    DatepickerComponent.prototype.emit;
-    /**
-     * @type {?}
-     * @private
-     */
-    DatepickerComponent.prototype._loaded;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], DatepickerComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], DatepickerComponent.prototype, "emit", void 0);
+DatepickerComponent = __decorate([
+    Component({
+        selector: 'n7-datepicker',
+        template: "<div *ngIf=\"data\" class=\"n7-datepicker {{ data.classes || '' }}\">\n  <input type=\"text\" id=\"{{this.data.id}}\"/>\n</div>"
+    })
+], DatepickerComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/facet/facet.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for FacetComponent's "data"
- *
- * \@property sections (required)
- * \@property classes (optional)
- * @record
- */
-function FacetData() { }
-if (false) {
-    /** @type {?} */
-    FacetData.prototype.sections;
-    /** @type {?|undefined} */
-    FacetData.prototype.classes;
-}
-/**
- * Interface for FacetSection
- *
- * \@property inputs (required)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function FacetSection() { }
-if (false) {
-    /** @type {?} */
-    FacetSection.prototype.inputs;
-    /** @type {?|undefined} */
-    FacetSection.prototype.classes;
-    /** @type {?|undefined} */
-    FacetSection.prototype._meta;
-}
-/**
- * Interface for FacetInputText
- *
- * \@property type (required)
- * \@property id (required)
- * \@property placeholder (optional)
- * \@property value (optional)
- * \@property label (optional)
- * \@property disabled (optional)
- * \@property icon (optional)
- * \@property inputPayload (optional)
- * \@property enterPayload (optional)
- * \@property iconPayload (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function FacetInputText() { }
-if (false) {
-    /** @type {?} */
-    FacetInputText.prototype.type;
-    /** @type {?} */
-    FacetInputText.prototype.id;
-    /** @type {?|undefined} */
-    FacetInputText.prototype.placeholder;
-    /** @type {?|undefined} */
-    FacetInputText.prototype.value;
-    /** @type {?|undefined} */
-    FacetInputText.prototype.label;
-    /** @type {?|undefined} */
-    FacetInputText.prototype.disabled;
-    /** @type {?|undefined} */
-    FacetInputText.prototype.icon;
-    /** @type {?|undefined} */
-    FacetInputText.prototype.inputPayload;
-    /** @type {?|undefined} */
-    FacetInputText.prototype.enterPayload;
-    /** @type {?|undefined} */
-    FacetInputText.prototype.iconPayload;
-    /** @type {?|undefined} */
-    FacetInputText.prototype.classes;
-    /** @type {?|undefined} */
-    FacetInputText.prototype._meta;
-}
-/**
- * Interface for FacetInputSelect
- *
- * \@property type (required)
- * \@property id (required)
- * \@property options (required)
- * \@property label (optional)
- * \@property disabled (optional)
- * \@property icon (optional)
- * \@property payload (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function FacetInputSelect() { }
-if (false) {
-    /** @type {?} */
-    FacetInputSelect.prototype.type;
-    /** @type {?} */
-    FacetInputSelect.prototype.id;
-    /** @type {?} */
-    FacetInputSelect.prototype.options;
-    /** @type {?|undefined} */
-    FacetInputSelect.prototype.label;
-    /** @type {?|undefined} */
-    FacetInputSelect.prototype.disabled;
-    /** @type {?|undefined} */
-    FacetInputSelect.prototype.payload;
-    /** @type {?|undefined} */
-    FacetInputSelect.prototype.classes;
-    /** @type {?|undefined} */
-    FacetInputSelect.prototype._meta;
-}
-/**
- * Interface for FacetInputCheckbox
- *
- * \@property type (required)
- * \@property id (required)
- * \@property label (required)
- * \@property checked (optional)
- * \@property disabled (optional)
- * \@property payload (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function FacetInputCheckbox() { }
-if (false) {
-    /** @type {?} */
-    FacetInputCheckbox.prototype.type;
-    /** @type {?} */
-    FacetInputCheckbox.prototype.id;
-    /** @type {?} */
-    FacetInputCheckbox.prototype.label;
-    /** @type {?|undefined} */
-    FacetInputCheckbox.prototype.checked;
-    /** @type {?|undefined} */
-    FacetInputCheckbox.prototype.disabled;
-    /** @type {?|undefined} */
-    FacetInputCheckbox.prototype.payload;
-    /** @type {?|undefined} */
-    FacetInputCheckbox.prototype.classes;
-    /** @type {?|undefined} */
-    FacetInputCheckbox.prototype._meta;
-}
-/**
- * Interface for FacetInputLink
- *
- * \@property icon (optional)
- * \@property text (required)
- * \@property counter (optional)
- * \@property payload (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function FacetInputLink() { }
-if (false) {
-    /** @type {?} */
-    FacetInputLink.prototype.type;
-    /** @type {?} */
-    FacetInputLink.prototype.text;
-    /** @type {?|undefined} */
-    FacetInputLink.prototype.icon;
-    /** @type {?|undefined} */
-    FacetInputLink.prototype.counter;
-    /** @type {?|undefined} */
-    FacetInputLink.prototype.payload;
-    /** @type {?|undefined} */
-    FacetInputLink.prototype.classes;
-    /** @type {?|undefined} */
-    FacetInputLink.prototype._meta;
-}
-class FacetComponent {
-    /**
-     * @param {?} inputPayload
-     * @param {?=} value
-     * @return {?}
-     */
+//---------------------------
+let FacetComponent = class FacetComponent {
     onChange(inputPayload, value) {
         if (!this.emit)
             return;
         this.emit('change', { inputPayload, value });
     }
-}
-FacetComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-facet',
-                template: "<div *ngIf=\"data\" class=\"n7-facet\">\n    <div *ngFor=\"let section of data.sections\" class=\"n7-facet__section {{ section.classes || '' }}\">\n        <div *ngFor=\"let input of section.inputs\"\n            class=\"n7-facet__section-input n7-facet__section-input-{{ input.type }} {{ input.classes || '' }}\">\n\n            <ng-container [ngSwitch]=\"input.type\">\n\n                <!-- Checkbox -->\n                <ng-container *ngSwitchCase=\"'checkbox'\">\n                    <input type=\"checkbox\" id=\"{{ input.id }}\" class=\"n7-facet__input-checkbox-input\"\n                        [checked]=\"input.checked\"\n                        [disabled]=\"input.disabled\"\n                        (change)=\"onChange(input.payload, $event.target.checked)\">\n                    <label *ngIf=\"input.label\" class=\"n7-facet__checkbox-label\" for=\"{{ input.id }}\">\n                        {{ input.label }}\n                    </label>\n                </ng-container>\n\n                <!-- Text -->\n                <ng-container *ngSwitchCase=\"'text'\">\n                    <label *ngIf=\"input.label\" class=\"n7-facet__input-text-label\" for=\"{{ input.id }}\">\n                        {{ input.label }}\n                    </label>\n                    <div class=\"n7-facet__input-text-wrapper\">\n                        <input type=\"text\" id=\"{{ input.id }}\" class=\"n7-facet__input-text {{input.classes || ''}}\"\n                            placeholder=\"{{input.placeholder || ''}}\"\n                            [value]=\"input.value || null\"\n                            [disabled]=\"input.disabled\"\n                            (input)=\"onChange(input.inputPayload, $event.target.value)\"\n                            (keyup.enter)=\"onChange(input.enterPayload, $event.target.value)\">\n                        <span *ngIf=\"input.icon\" class=\"n7-facet__input-text-icon {{input.icon || ''}}\" \n                            (click)=\"onChange(input.iconPayload)\">\n                        </span>\n                    </div>\n                </ng-container>\n\n                <!-- Link -->\n                <ng-container *ngSwitchCase=\"'link'\">\n                    <div class=\"n7-facet__input-link {{ input.classes || '' }}\"\n                        (click)=\"onChange(input.payload)\">\n                        <span *ngIf=\"input.icon\" class=\"n7-facet__input-link-icon {{ input.icon }}\"></span>\n                        <span class=\"n7-facet__input-link-text\">{{ input.text }}</span>\n                        <span *ngIf=\"input.counter || input.counter === 0\" class=\"n7-facet__input-link-counter\">{{ input.counter }}</span>\n                    </div>\n                </ng-container>\n\n                <!-- Select -->\n                <ng-container *ngSwitchCase=\"'select'\">\n                    <label *ngIf=\"input.label\" for=\"{{ input.id }}\">{{ input.label }}</label>\n                    <select (change)=\"onChange(input.payload, $event.target.value)\" \n                        id=\"{{ input.id }}\"\n                        class=\"n7-facet__input-select {{ input.classes || '' }}\"\n                        [disabled]=\"input.disabled\">\n                        <option *ngFor=\"let option of input.options\" \n                            [value]=\"option.value\" \n                            [disabled]=\"option.disabled\" \n                            [selected]=\"option.selected\">{{ option.label }}</option>\n                    </select>\n                </ng-container>\n            </ng-container>\n\n        </div>\n    </div>\n</div>"
-            }] }
-];
-FacetComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    FacetComponent.prototype.data;
-    /** @type {?} */
-    FacetComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], FacetComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], FacetComponent.prototype, "emit", void 0);
+FacetComponent = __decorate([
+    Component({
+        selector: 'n7-facet',
+        template: "<div *ngIf=\"data\" class=\"n7-facet\">\n    <div *ngFor=\"let section of data.sections\" class=\"n7-facet__section {{ section.classes || '' }}\">\n        <div *ngFor=\"let input of section.inputs\"\n            class=\"n7-facet__section-input n7-facet__section-input-{{ input.type }} {{ input.classes || '' }}\">\n\n            <ng-container [ngSwitch]=\"input.type\">\n\n                <!-- Checkbox -->\n                <ng-container *ngSwitchCase=\"'checkbox'\">\n                    <input type=\"checkbox\" id=\"{{ input.id }}\" class=\"n7-facet__input-checkbox-input\"\n                        [checked]=\"input.checked\"\n                        [disabled]=\"input.disabled\"\n                        (change)=\"onChange(input.payload, $event.target.checked)\">\n                    <label *ngIf=\"input.label\" class=\"n7-facet__checkbox-label\" for=\"{{ input.id }}\">\n                        {{ input.label }}\n                    </label>\n                </ng-container>\n\n                <!-- Text -->\n                <ng-container *ngSwitchCase=\"'text'\">\n                    <label *ngIf=\"input.label\" class=\"n7-facet__input-text-label\" for=\"{{ input.id }}\">\n                        {{ input.label }}\n                    </label>\n                    <div class=\"n7-facet__input-text-wrapper\">\n                        <input type=\"text\" id=\"{{ input.id }}\" class=\"n7-facet__input-text {{input.classes || ''}}\"\n                            placeholder=\"{{input.placeholder || ''}}\"\n                            [value]=\"input.value || null\"\n                            [disabled]=\"input.disabled\"\n                            (input)=\"onChange(input.inputPayload, $event.target.value)\"\n                            (keyup.enter)=\"onChange(input.enterPayload, $event.target.value)\">\n                        <span *ngIf=\"input.icon\" class=\"n7-facet__input-text-icon {{input.icon || ''}}\" \n                            (click)=\"onChange(input.iconPayload)\">\n                        </span>\n                    </div>\n                </ng-container>\n\n                <!-- Link -->\n                <ng-container *ngSwitchCase=\"'link'\">\n                    <div class=\"n7-facet__input-link {{ input.classes || '' }}\"\n                        (click)=\"onChange(input.payload)\">\n                        <span *ngIf=\"input.icon\" class=\"n7-facet__input-link-icon {{ input.icon }}\"></span>\n                        <span class=\"n7-facet__input-link-text\">{{ input.text }}</span>\n                        <span *ngIf=\"input.counter || input.counter === 0\" class=\"n7-facet__input-link-counter\">{{ input.counter }}</span>\n                    </div>\n                </ng-container>\n\n                <!-- Select -->\n                <ng-container *ngSwitchCase=\"'select'\">\n                    <label *ngIf=\"input.label\" for=\"{{ input.id }}\">{{ input.label }}</label>\n                    <select (change)=\"onChange(input.payload, $event.target.value)\" \n                        id=\"{{ input.id }}\"\n                        class=\"n7-facet__input-select {{ input.classes || '' }}\"\n                        [disabled]=\"input.disabled\">\n                        <option *ngFor=\"let option of input.options\" \n                            [value]=\"option.value\" \n                            [disabled]=\"option.disabled\" \n                            [selected]=\"option.selected\">{{ option.label }}</option>\n                    </select>\n                </ng-container>\n            </ng-container>\n\n        </div>\n    </div>\n</div>"
+    })
+], FacetComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/facet-header/facet-header.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for FacetHeaderComponent's "data"
- *
- * \@property iconLeft (optional)
- * \@property text (required)
- * \@property additionalText (optional)
- * \@property iconRight (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * @record
- */
-function FacetHeaderData() { }
-if (false) {
-    /**
-     * the headers leftmost icon
-     * @type {?|undefined}
-     */
-    FacetHeaderData.prototype.iconLeft;
-    /**
-     * the title text
-     * @type {?}
-     */
-    FacetHeaderData.prototype.text;
-    /**
-     * additional text, displayed on the right of the text
-     * @type {?|undefined}
-     */
-    FacetHeaderData.prototype.additionalText;
-    /**
-     * the headers rightmost icon
-     * @type {?|undefined}
-     */
-    FacetHeaderData.prototype.iconRight;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    FacetHeaderData.prototype.classes;
-    /**
-     * payload for onClick events
-     * @type {?|undefined}
-     */
-    FacetHeaderData.prototype.payload;
-}
-class FacetHeaderComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let FacetHeaderComponent = class FacetHeaderComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-FacetHeaderComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-facet-header',
-                template: "<div *ngIf=\"data\" class=\"n7-facet-header {{ data.classes || '' }}\">\n    <span class=\"n7-facet-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-facet-header__text-wrapper\">\n        <span class=\"n7-facet-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-facet-header__secondary-text\" *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\" \n          class=\"n7-facet-header__icon-right {{ data.iconRight }}\"\n        (click)=\"onClick(data.payload)\">\n    </span>\n</div>"
-            }] }
-];
-FacetHeaderComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    FacetHeaderComponent.prototype.data;
-    /** @type {?} */
-    FacetHeaderComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], FacetHeaderComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], FacetHeaderComponent.prototype, "emit", void 0);
+FacetHeaderComponent = __decorate([
+    Component({
+        selector: 'n7-facet-header',
+        template: "<div *ngIf=\"data\" class=\"n7-facet-header {{ data.classes || '' }}\">\n    <span class=\"n7-facet-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-facet-header__text-wrapper\">\n        <span class=\"n7-facet-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-facet-header__secondary-text\" *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\" \n          class=\"n7-facet-header__icon-right {{ data.iconRight }}\"\n        (click)=\"onClick(data.payload)\">\n    </span>\n</div>"
+    })
+], FacetHeaderComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/facet-year-range/facet-year-range.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for FacetYearRangeComponent's "data"
- *
- * \@property inDate (required)
- * - text (optional)
- * - classes (optional)
- * - payload (required)
- * - _meta (optional)
- * \@property outDate (required)
- * - text (optional)
- * - classes (optional)
- * - payload (required)
- * - _meta (optional)
- * \@property options (required)
- * @record
- */
-function FacetYearRangeData() { }
-if (false) {
-    /**
-     * beginning year range selection
-     * @type {?}
-     */
-    FacetYearRangeData.prototype.inDate;
-    /**
-     * end year range selection
-     * @type {?}
-     */
-    FacetYearRangeData.prototype.outDate;
-}
-/**
- * @record
- */
-function FacetOptions() { }
-if (false) {
-    /**
-     * value of each <option>
-     * @type {?}
-     */
-    FacetOptions.prototype.value;
-}
-class FacetYearRangeComponent {
-    /**
-     * @param {?} payload
-     * @param {?} selected
-     * @return {?}
-     */
+//---------------------------
+let FacetYearRangeComponent = class FacetYearRangeComponent {
     onChange(payload, selected) {
         switch (payload) {
             case 'in-date':
                 {
                     // find index of selected option
-                    /** @type {?} */
                     const opts = this.data.inDate.options;
-                    this.data.inDate._meta = opts.find((/**
-                     * @param {?} o
-                     * @return {?}
-                     */
-                    (o) => o.value === selected)).value;
-                    /** @type {?} */
-                    const sliceIndex = opts.findIndex((/**
-                     * @param {?} o
-                     * @return {?}
-                     */
-                    (o) => o.value === selected));
+                    this.data.inDate._meta = opts.find((o) => o.value === selected).value;
+                    const sliceIndex = opts.findIndex((o) => o.value === selected);
                     // make new array of possible years
-                    /** @type {?} */
                     const newOptions = opts.slice(sliceIndex, opts.length);
                     // give new array to second <select>
                     this.data.outDate.options = newOptions;
@@ -1938,367 +706,49 @@ class FacetYearRangeComponent {
                 break;
         }
     }
-}
-FacetYearRangeComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-facet-year-range',
-                template: "<div *ngIf=\"data\" class=\"n7-facet-year-range\">\n\n    <!-- Select starting year -->\n    <div class=\"n7-facet-year-range__in\">\n        <label class=\"n7-facet-year-range__in-label\">\n            {{ data.inDate.text }}\n        </label>\n        <select (change)=\"onChange(data.inDate.payload, $event.target.value)\"\n            class=\"n7-facet-year-range__in-select {{ data.inDate.classes || '' }}\">\n            <!-- Placeholder option -->\n            <option *ngIf=\"data.inDate.placeholder.length > 0\" value=\"{{ data.inDate.placeholder }}\" disabled selected>\n                {{ data.inDate.placeholder }}\n            </option>\n            <option *ngFor=\"let opt of data.inDate.options\" value=\"{{ opt.value }}\">\n                {{ opt.value }}\n            </option>\n        </select>\n    </div>\n\n    <!-- Select final year -->\n    <div class=\"n7-facet-year-range__out\">\n        <label class=\"n7-facet-year-range__out-label\">\n            {{ data.outDate.text }}\n        </label>\n        <select (change)=\"onChange(data.outDate.payload, $event.target.value)\"\n                class=\"n7-facet-year-range__out-select {{ data.outDate.classes || '' }}\"\n                formControlName=\"outDate\">\n            <!-- Placeholder option -->\n            <option *ngIf=\"data.outDate.placeholder.length > 0\" value=\"{{ data.outDate.placeholder }}\" disabled selected>\n                {{ data.outDate.placeholder }}\n            </option>\n            <option *ngFor=\"let opt of data.outDate.options\" value=\"{{ opt.value }}\">\n                {{ opt.value }}\n            </option>\n        </select>\n    </div>\n</div>"
-            }] }
-];
-FacetYearRangeComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    FacetYearRangeComponent.prototype.data;
-    /** @type {?} */
-    FacetYearRangeComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], FacetYearRangeComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], FacetYearRangeComponent.prototype, "emit", void 0);
+FacetYearRangeComponent = __decorate([
+    Component({
+        selector: 'n7-facet-year-range',
+        template: "<div *ngIf=\"data\" class=\"n7-facet-year-range\">\n\n    <!-- Select starting year -->\n    <div class=\"n7-facet-year-range__in\">\n        <label class=\"n7-facet-year-range__in-label\">\n            {{ data.inDate.text }}\n        </label>\n        <select (change)=\"onChange(data.inDate.payload, $event.target.value)\"\n            class=\"n7-facet-year-range__in-select {{ data.inDate.classes || '' }}\">\n            <!-- Placeholder option -->\n            <option *ngIf=\"data.inDate.placeholder.length > 0\" value=\"{{ data.inDate.placeholder }}\" disabled selected>\n                {{ data.inDate.placeholder }}\n            </option>\n            <option *ngFor=\"let opt of data.inDate.options\" value=\"{{ opt.value }}\">\n                {{ opt.value }}\n            </option>\n        </select>\n    </div>\n\n    <!-- Select final year -->\n    <div class=\"n7-facet-year-range__out\">\n        <label class=\"n7-facet-year-range__out-label\">\n            {{ data.outDate.text }}\n        </label>\n        <select (change)=\"onChange(data.outDate.payload, $event.target.value)\"\n                class=\"n7-facet-year-range__out-select {{ data.outDate.classes || '' }}\"\n                formControlName=\"outDate\">\n            <!-- Placeholder option -->\n            <option *ngIf=\"data.outDate.placeholder.length > 0\" value=\"{{ data.outDate.placeholder }}\" disabled selected>\n                {{ data.outDate.placeholder }}\n            </option>\n            <option *ngFor=\"let opt of data.outDate.options\" value=\"{{ opt.value }}\">\n                {{ opt.value }}\n            </option>\n        </select>\n    </div>\n</div>"
+    })
+], FacetYearRangeComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/footer/footer.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for each link in footer menus
- *
- * \@property text (required)
- * \@property classes (optional)
- * \@property anchor (mandatory)
- * \@property _meta (optional)
- * \@property _meta (optional)
- *
- * @record
- */
-function FooterLink() { }
-if (false) {
-    /**
-     * image url
-     * @type {?}
-     */
-    FooterLink.prototype.text;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    FooterLink.prototype.classes;
-    /** @type {?} */
-    FooterLink.prototype.anchor;
-    /**
-     * additional info useful for the component's logic
-     * @type {?|undefined}
-     */
-    FooterLink.prototype._meta;
-}
-/**
- * Interface for each image in the footer (usually logos)
- *
- * \@property url (required)
- * \@property alttext (optional)
- * \@property classes (optional)
- * \@property anchor (required)
- * \@property _meta (optional)
- * \@property _meta (optional)
- *
- * @record
- */
-function FooterImage() { }
-if (false) {
-    /**
-     * image url
-     * @type {?}
-     */
-    FooterImage.prototype.url;
-    /**
-     * image alt text
-     * @type {?|undefined}
-     */
-    FooterImage.prototype.alttext;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    FooterImage.prototype.classes;
-    /** @type {?} */
-    FooterImage.prototype.anchor;
-    /**
-     * additional info useful for the component's logic
-     * @type {?|undefined}
-     */
-    FooterImage.prototype._meta;
-}
-/**
- * Interface for a single Footer column that can display title, images, text and a nav list
- *
- * \@property title (optional)
- * \@property images (optional)
- * \@property text (optional)
- * \@property links (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- *
- * @record
- */
-function FooterColumn() { }
-if (false) {
-    /**
-     * column's title
-     * @type {?|undefined}
-     */
-    FooterColumn.prototype.title;
-    /**
-     * column's images
-     * @type {?|undefined}
-     */
-    FooterColumn.prototype.images;
-    /**
-     * column's text
-     * @type {?|undefined}
-     */
-    FooterColumn.prototype.text;
-    /**
-     * column's nav
-     * @type {?|undefined}
-     */
-    FooterColumn.prototype.links;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    FooterColumn.prototype.classes;
-    /**
-     * additional info useful for the component's logic
-     * @type {?|undefined}
-     */
-    FooterColumn.prototype._meta;
-}
-/**
- * Interface for FooterComponents's "Data"
- *
- * \@property columns (required)
- * \@property classes (optional)
- *
- * @record
- */
-function FooterData() { }
-if (false) {
-    /**
-     * each item renders a column of the footer
-     * @type {?}
-     */
-    FooterData.prototype.columns;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    FooterData.prototype.classes;
-}
-class FooterComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let FooterComponent = class FooterComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-FooterComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-footer',
-                template: "<div *ngIf=\"data\" class=\"n7-footer {{data.classes || ''}}\">\n    <div class=\"n7-footer__content\">\n        <!-- Loop footer content columns -->\n        <div class=\"n7-footer__column {{column.classes || ''}}\" *ngFor=\"let column of data.columns\">\n            <ng-container *ngTemplateOutlet=\"footerColumn; context:{$implicit: column}\"></ng-container>\n        </div>\n    </div>\n</div>\n\n<!-- Template: Columns -->\n<ng-template #footerColumn let-column>\n    <h2 *ngIf=\"column.title\" class=\"n7-footer__column-title\">\n        {{ column.title }}\n    </h2>\n    <p *ngIf=\"column.text\" \n       class=\"n7-footer__column-text\"\n       [innerHTML]=\"column.text\">\n    </p>\n    <div *ngIf=\"column.links\" class=\"n7-footer__column-nav\">\n        <ul class=\"n7-footer__column-nav-list\">\n            <li *ngFor=\"let link of column.links\"\n                class=\"n7-footer__column-nav-item {{link.classes || ''}}\">\n                <n7-anchor-wrapper [classes]=\"'n7-footer__column-nav-link'\"\n                [data]=\"link.anchor\"\n                (clicked)=\"onClick($event)\">\n                    {{ link.text }}\n                </n7-anchor-wrapper>\n            </li>\n        </ul>\n    </div>\n\n    <div *ngIf=\"column.images\" class=\"n7-footer__column-images\">\n        <n7-anchor-wrapper  *ngFor=\"let image of column.images\"\n        [classes]=\"image.classes || ''\"\n        [data]=\"image.anchor\"\n        (clicked)=\"onClick($event)\">\n            <img \n            [src]=\"image.url\" \n            [attr.alt]=\"image.alttext\" />\n        </n7-anchor-wrapper>\n    </div>\n</ng-template>"
-            }] }
-];
-FooterComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    FooterComponent.prototype.data;
-    /** @type {?} */
-    FooterComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], FooterComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], FooterComponent.prototype, "emit", void 0);
+FooterComponent = __decorate([
+    Component({
+        selector: 'n7-footer',
+        template: "<div *ngIf=\"data\" class=\"n7-footer {{data.classes || ''}}\">\n    <div class=\"n7-footer__content\">\n        <!-- Loop footer content columns -->\n        <div class=\"n7-footer__column {{column.classes || ''}}\" *ngFor=\"let column of data.columns\">\n            <ng-container *ngTemplateOutlet=\"footerColumn; context:{$implicit: column}\"></ng-container>\n        </div>\n    </div>\n</div>\n\n<!-- Template: Columns -->\n<ng-template #footerColumn let-column>\n    <h2 *ngIf=\"column.title\" class=\"n7-footer__column-title\">\n        {{ column.title }}\n    </h2>\n    <p *ngIf=\"column.text\" \n       class=\"n7-footer__column-text\"\n       [innerHTML]=\"column.text\">\n    </p>\n    <div *ngIf=\"column.links\" class=\"n7-footer__column-nav\">\n        <ul class=\"n7-footer__column-nav-list\">\n            <li *ngFor=\"let link of column.links\"\n                class=\"n7-footer__column-nav-item {{link.classes || ''}}\">\n                <n7-anchor-wrapper [classes]=\"'n7-footer__column-nav-link'\"\n                [data]=\"link.anchor\"\n                (clicked)=\"onClick($event)\">\n                    {{ link.text }}\n                </n7-anchor-wrapper>\n            </li>\n        </ul>\n    </div>\n\n    <div *ngIf=\"column.images\" class=\"n7-footer__column-images\">\n        <n7-anchor-wrapper  *ngFor=\"let image of column.images\"\n        [classes]=\"image.classes || ''\"\n        [data]=\"image.anchor\"\n        (clicked)=\"onClick($event)\">\n            <img \n            [src]=\"image.url\" \n            [attr.alt]=\"image.alttext\" />\n        </n7-anchor-wrapper>\n    </div>\n</ng-template>"
+    })
+], FooterComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/header/header.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for a single action item
- *
- * \@property icon (required)
- * \@property badge (optional)
- * - text (optional)
- * \@property classes (optional)
- * \@property anchor (required)
- * \@property _meta (optional)
- * @record
- */
-function ActionItem() { }
-if (false) {
-    /**
-     * optional badge with, optionally, its text
-     * @type {?|undefined}
-     */
-    ActionItem.prototype.badge;
-    /**
-     * icon class
-     * @type {?}
-     */
-    ActionItem.prototype.icon;
-    /** @type {?} */
-    ActionItem.prototype.anchor;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    ActionItem.prototype.classes;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    ActionItem.prototype._meta;
-}
-/**
- * Interface for a single navbar item
- *
- * note: a single nav's item can be a text (w/ anchor) OR a dropdown
- *
- * \@property icon (optional)
- * \@property subnav (optional)
- * \@property text (optional)
- * \@property classes (optional)
- * \@property anchor (required)
- * \@property _meta (optional)
- * @record
- */
-function NavbarItem() { }
-if (false) {
-    /**
-     * text of a single item of the navbar (text and payload are connected)
-     * @type {?|undefined}
-     */
-    NavbarItem.prototype.text;
-    /**
-     * icon for a single item of the navbar (associated to "text")
-     * @type {?|undefined}
-     */
-    NavbarItem.prototype.icon;
-    /**
-     * second level navigation
-     * @type {?|undefined}
-     */
-    NavbarItem.prototype.subnav;
-    /** @type {?} */
-    NavbarItem.prototype.anchor;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    NavbarItem.prototype.classes;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    NavbarItem.prototype._meta;
-}
-/**
- * Interface for HeaderComponent's "data"
- *
- * \@property logo (required)
- * - title (required)
- * - image (optional)
- * - subtitle (optional)
- * - classes (optional)
- * - payload (optional)
- * - anchor (optional)
- * \@proprty menuToggle (required)
- * - open (required)
- * - - payload (required)
- * - closen (required)
- * - - payload (required)
- * \@property actions (optional)
- * \@property nav (optional)
- * - items (required)
- * - isBelow (optional)
- * - classes (optional)
- * - payload (optional)
- * - anchor (optional)
- * - _meta (optional)
- * \@property search (optional)
- * - hint (optional)
- * - classes (optional)
- * - payload (optional)
- * - _meta (optional)
- * \@property user (optional)
- * - image (optional)
- * - name (optional)
- * - classes (optional)
- * - payload (optional)
- * - anchor (optional)
- * - _meta (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-function HeaderData() { }
-if (false) {
-    /**
-     * logo and title area parameters
-     * @type {?}
-     */
-    HeaderData.prototype.logo;
-    /**
-     * nav's parameters
-     * @type {?|undefined}
-     */
-    HeaderData.prototype.nav;
-    /**
-     * search parameters
-     * @type {?|undefined}
-     */
-    HeaderData.prototype.search;
-    /**
-     * action items
-     * @type {?|undefined}
-     */
-    HeaderData.prototype.actions;
-    /**
-     * user parameters
-     * @type {?|undefined}
-     */
-    HeaderData.prototype.user;
-    /**
-     * menu toggle for mobile
-     * @type {?}
-     */
-    HeaderData.prototype.menuToggle;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    HeaderData.prototype.classes;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    HeaderData.prototype.payload;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    HeaderData.prototype._meta;
-}
 /**
  * HeaderComponent <n7-header>
  *
- * \@structure
+ * @structure
  *  >>  cpm = it has Classes, Payload, Metadata  <<
  *  >>  -p- = it has only Payload                <<
  *  >>  +-- = sub-member                         <<
@@ -2318,2391 +768,635 @@ if (false) {
  *    +-- user (cpm)
  *
  */
-class HeaderComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+let HeaderComponent = class HeaderComponent {
     onClick(payload) {
         // console.log(type, payload);
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-    /**
-     * @param {?} payload
-     * @param {?} keyCode
-     * @param {?} value
-     * @return {?}
-     */
     onKeyUp(payload, keyCode, value) {
         if (!this.emit)
             return;
         this.emit('keyup', { payload, keyCode, value });
     }
-}
-HeaderComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-header',
-                template: "<header *ngIf=\"data\" class=\"n7-header {{data.classes || ''}}\">\n    \n    <!-- Logo and title -->\n    <div class=\"n7-header__logo-title {{data.logo.classes || ''}}\">\n        <n7-anchor-wrapper [classes]=\"'n7-header__logo-link'\"\n        [data]=\"data.logo.anchor\"\n        (clicked)=\"onClick($event)\">\n            <img class=\"n7-header__logo\"\n            *ngIf=\"data.logo.image\"\n            [src]=\"data.logo.image\"\n            alt=\"{{ data.logo.title }}\" />\n            <div class=\"n7-header__title-subtitle\">\n                <h1 class=\"n7-header__title\">\n                    {{ data.logo.title }}\n                </h1>\n                <h2 class=\"n7-header__subtitle\" *ngIf=\"data.logo.subtitle\">\n                    {{ data.logo.subtitle }}\n                </h2>\n            </div>\n        </n7-anchor-wrapper>\n    </div>\n\n    <!-- Main menu -->\n    <nav class=\"n7-header__nav {{data.nav.classes || ''}}\" *ngIf=\"data.nav\">\n        <div class=\"n7-header__nav-content\">\n            <ul class=\"n7-header__nav-list\">\n                <li class=\"n7-header__nav-item {{item.classes || ''}}\" *ngFor=\"let item of data.nav.items\">\n                    <n7-anchor-wrapper [classes]=\"'n7-header__nav-link'\"\n                    [data]=\"item.anchor\"\n                    (clicked)=\"onClick($event)\">\n                        <span class=\"n7-header__nav-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\n                        <span class=\"n7-header__nav-label\" *ngIf=\"item.text\">\n                            {{ item.text }}\n                        </span>\n                    </n7-anchor-wrapper>\n                    <!-- Sublevel -->\n                    <ul class=\"n7-header__subnav-list\" *ngIf=\"item.subnav\">\n                        <li class=\"n7-header__subnav-item {{subitem.classes || ''}}\" *ngFor=\"let subitem of item.subnav\">\n                            <n7-anchor-wrapper [classes]=\"'n7-header__subnav-link'\"\n                            [data]=\"subitem.anchor\"\n                            (clicked)=\"onClick($event)\">\n                                <span class=\"n7-header__subnav-icon {{subitem.icon}}\" *ngIf=\"subitem.icon\"></span>\n                                <span class=\"n7-header__subnav-label\" *ngIf=\"subitem.text\">\n                                    {{ subitem.text }}\n                                </span>\n                            </n7-anchor-wrapper>\n                        </li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </nav>\n\n    <!-- Mobile menu toggle -->\n    <div class=\"n7-header__mobile-menu-toggle\">\n        <span class=\"n7-header__mobile-menu-icon n7-icon-menu\" \n              (click)=\"onClick(data.menuToggle.open.payload)\"></span>\n    </div>\n\n    <!-- Mobile menu close -->\n    <span class=\"n7-header__mobile-menu-close n7-icon-close\" \n          (click)=\"onClick(data.menuToggle.close.payload)\"></span>\n\n    <!-- Tools: search, notifications, use profile or login/signup -->\n    <div class=\"n7-header__tools\">\n        \n        <div class=\"n7-header__search {{data.search.classes || ''}}\" *ngIf=\"data.search\">\n            <input class=\"n7-header__search-input\" \n                   type=\"search\" \n                   name=\"search\" \n                   placeholder=\"{{ data.search.hint || ''}}\" \n                   (keyup)=\"onKeyUp(data.search.payload, $event.keyCode, $event.target.value)\"/>\n            <button class=\"n7-header__search-btn\" type=\"submit\" (click)=\"onClick(data.search.payload)\">\n                <span class=\"n7-header__search-btn-label\">\n                    Search\n                </span>\n            </button>\n        </div>\n        \n        <div class=\"n7-header__actions\" *ngIf=\"data.actions\">\n            <n7-anchor-wrapper *ngFor=\"let action of data.actions\" \n            [classes]=\"'n7-header__action' + (action.classes || '')\"\n            [data]=\"action.anchor\"\n            (clicked)=\"onClick($event)\">\n                <span class=\"n7-header__action-icon {{ action.icon }}\"></span>\n                <span *ngIf=\"action.badge\" class=\"n7-header__action-badge {{ action.badge.text ? 'has-text' : '' }}\">\n                    {{ action.badge.text }}\n                </span>\n            </n7-anchor-wrapper>\n        </div>\n\n        <div class=\"n7-header__user {{data.user.classes || ''}}\" *ngIf=\"data.user\">\n            <n7-anchor-wrapper [classes]=\"'n7-header__user-wrapper'\"\n            [data]=\"data.user.anchor\"\n            (clicked)=\"onClick($event)\">\n                <img *ngIf=\"data.user.img\"\n                class=\"n7-header__user-img\"  \n                [src]=\"data.user.img\"/>\n                <p class=\"n7-header__user-name\" *ngIf=\"data.user.name\">\n                    <span class=\"n7-header__user-name-label\">\n                        {{ data.user.name }}\n                    </span>\n                </p>\n            </n7-anchor-wrapper>\n        </div>\n    </div>\n\n</header>\n\n"
-            }] }
-];
-HeaderComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    HeaderComponent.prototype.data;
-    /** @type {?} */
-    HeaderComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HeaderComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HeaderComponent.prototype, "emit", void 0);
+HeaderComponent = __decorate([
+    Component({
+        selector: 'n7-header',
+        template: "<header *ngIf=\"data\" class=\"n7-header {{data.classes || ''}}\">\n    \n    <!-- Logo and title -->\n    <div class=\"n7-header__logo-title {{data.logo.classes || ''}}\">\n        <n7-anchor-wrapper [classes]=\"'n7-header__logo-link'\"\n        [data]=\"data.logo.anchor\"\n        (clicked)=\"onClick($event)\">\n            <img class=\"n7-header__logo\"\n            *ngIf=\"data.logo.image\"\n            [src]=\"data.logo.image\"\n            alt=\"{{ data.logo.title }}\" />\n            <div class=\"n7-header__title-subtitle\">\n                <h1 class=\"n7-header__title\">\n                    {{ data.logo.title }}\n                </h1>\n                <h2 class=\"n7-header__subtitle\" *ngIf=\"data.logo.subtitle\">\n                    {{ data.logo.subtitle }}\n                </h2>\n            </div>\n        </n7-anchor-wrapper>\n    </div>\n\n    <!-- Main menu -->\n    <nav class=\"n7-header__nav {{data.nav.classes || ''}}\" *ngIf=\"data.nav\">\n        <div class=\"n7-header__nav-content\">\n            <ul class=\"n7-header__nav-list\">\n                <li class=\"n7-header__nav-item {{item.classes || ''}}\" *ngFor=\"let item of data.nav.items\">\n                    <n7-anchor-wrapper [classes]=\"'n7-header__nav-link'\"\n                    [data]=\"item.anchor\"\n                    (clicked)=\"onClick($event)\">\n                        <span class=\"n7-header__nav-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\n                        <span class=\"n7-header__nav-label\" *ngIf=\"item.text\">\n                            {{ item.text }}\n                        </span>\n                    </n7-anchor-wrapper>\n                    <!-- Sublevel -->\n                    <ul class=\"n7-header__subnav-list\" *ngIf=\"item.subnav\">\n                        <li class=\"n7-header__subnav-item {{subitem.classes || ''}}\" *ngFor=\"let subitem of item.subnav\">\n                            <n7-anchor-wrapper [classes]=\"'n7-header__subnav-link'\"\n                            [data]=\"subitem.anchor\"\n                            (clicked)=\"onClick($event)\">\n                                <span class=\"n7-header__subnav-icon {{subitem.icon}}\" *ngIf=\"subitem.icon\"></span>\n                                <span class=\"n7-header__subnav-label\" *ngIf=\"subitem.text\">\n                                    {{ subitem.text }}\n                                </span>\n                            </n7-anchor-wrapper>\n                        </li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </nav>\n\n    <!-- Mobile menu toggle -->\n    <div class=\"n7-header__mobile-menu-toggle\">\n        <span class=\"n7-header__mobile-menu-icon n7-icon-menu\" \n              (click)=\"onClick(data.menuToggle.open.payload)\"></span>\n    </div>\n\n    <!-- Mobile menu close -->\n    <span class=\"n7-header__mobile-menu-close n7-icon-close\" \n          (click)=\"onClick(data.menuToggle.close.payload)\"></span>\n\n    <!-- Tools: search, notifications, use profile or login/signup -->\n    <div class=\"n7-header__tools\">\n        \n        <div class=\"n7-header__search {{data.search.classes || ''}}\" *ngIf=\"data.search\">\n            <input class=\"n7-header__search-input\" \n                   type=\"search\" \n                   name=\"search\" \n                   placeholder=\"{{ data.search.hint || ''}}\" \n                   (keyup)=\"onKeyUp(data.search.payload, $event.keyCode, $event.target.value)\"/>\n            <button class=\"n7-header__search-btn\" type=\"submit\" (click)=\"onClick(data.search.payload)\">\n                <span class=\"n7-header__search-btn-label\">\n                    Search\n                </span>\n            </button>\n        </div>\n        \n        <div class=\"n7-header__actions\" *ngIf=\"data.actions\">\n            <n7-anchor-wrapper *ngFor=\"let action of data.actions\" \n            [classes]=\"'n7-header__action' + (action.classes || '')\"\n            [data]=\"action.anchor\"\n            (clicked)=\"onClick($event)\">\n                <span class=\"n7-header__action-icon {{ action.icon }}\"></span>\n                <span *ngIf=\"action.badge\" class=\"n7-header__action-badge {{ action.badge.text ? 'has-text' : '' }}\">\n                    {{ action.badge.text }}\n                </span>\n            </n7-anchor-wrapper>\n        </div>\n\n        <div class=\"n7-header__user {{data.user.classes || ''}}\" *ngIf=\"data.user\">\n            <n7-anchor-wrapper [classes]=\"'n7-header__user-wrapper'\"\n            [data]=\"data.user.anchor\"\n            (clicked)=\"onClick($event)\">\n                <img *ngIf=\"data.user.img\"\n                class=\"n7-header__user-img\"  \n                [src]=\"data.user.img\"/>\n                <p class=\"n7-header__user-name\" *ngIf=\"data.user.name\">\n                    <span class=\"n7-header__user-name-label\">\n                        {{ data.user.name }}\n                    </span>\n                </p>\n            </n7-anchor-wrapper>\n        </div>\n    </div>\n\n</header>\n\n"
+    })
+], HeaderComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/hero/hero.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for HeroComponent's "data"
- *
- * \@property title (required)
- * \@property text (optional)
- * \@property input (optional)
- * - placeholder (optional)
- * - icon (optional)
- * - payload (optional)
- * \@property button (optional)
- * - text (optional)
- * - anchor (optional)
- * \@property image (optional)
- * \@property backgroundImage (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-function HeroData() { }
-if (false) {
-    /**
-     * main text displayed in the hero section
-     * @type {?}
-     */
-    HeroData.prototype.title;
-    /**
-     * additional text under the title
-     * @type {?|undefined}
-     */
-    HeroData.prototype.text;
-    /**
-     * input field (usually for search) and it's parameters
-     * @type {?|undefined}
-     */
-    HeroData.prototype.input;
-    /**
-     * call to action button and it's parameters
-     * @type {?|undefined}
-     */
-    HeroData.prototype.button;
-    /**
-     * image displayed inside the hero
-     * @type {?|undefined}
-     */
-    HeroData.prototype.image;
-    /**
-     * background image that covers the full background area of the hero
-     * @type {?|undefined}
-     */
-    HeroData.prototype.backgroundImage;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    HeroData.prototype.classes;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    HeroData.prototype.payload;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    HeroData.prototype._meta;
-}
-class HeroComponent {
-    /**
-     * @param {?} backgroundImage
-     * @return {?}
-     */
+//---------------------------
+let HeroComponent = class HeroComponent {
     getBackgroundImageCssValue(backgroundImage) {
         if (backgroundImage) {
             return `url(${backgroundImage})`;
         }
         return 'none';
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-    /**
-     * @param {?} payload
-     * @param {?} value
-     * @return {?}
-     */
     onInputChange(payload, value) {
         if (!this.emit)
             return;
         this.emit('change', { inputPayload: payload, value });
     }
-    /**
-     * @param {?} payload
-     * @param {?} value
-     * @return {?}
-     */
     onInputEnter(payload, value) {
         if (!this.emit)
             return;
         this.emit('enter', { inputPayload: payload, value });
     }
-}
-HeroComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-hero',
-                template: "<section *ngIf=\"data\" class=\"n7-hero {{data.classes || ''}}\" \n    [ngClass]=\"{ \n        'has-image' : !!data.image, \n        'has-background-image': !!data.backgroundImage \n    }\"\n    [ngStyle]=\"{ \n        'background-image': getBackgroundImageCssValue(data.backgroundImage)\n    }\">\n    <div class=\"n7-hero__content\">\n        \n        <div class=\"n7-hero__text-wrapper\">\n            <h1 class=\"n7-hero__title\">\n                {{data.title}}\n            </h1>\n            <div class=\"n7-hero__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></div>\n            <div class=\"n7-hero__input-wrapper\" *ngIf=\"data.input || data.button\">\n                <input type=\"text\" \n                       class=\"n7-hero__input\" \n                       placeholder=\"{{data.input.placeholder || ''}}\" \n                       *ngIf=\"data.input\" \n                       (input)=\"onInputChange(data.input.payload, $event.target.value)\" \n                       (keyup.enter)=\"onInputEnter(data.input.payload, $event.target.value)\">\n                <span class=\"n7-hero__input-icon {{data.input.icon || ''}}\" \n                      *ngIf=\"data.input && data.input.icon\" \n                      (click)=\"onClick(data.input.payload)\"></span>\n                <ng-container *ngIf=\"data.button\">\n                    <n7-anchor-wrapper [classes]=\"'n7-hero__btn n7-btn n7-btn-cta n7-btn-l'\"\n                    [data]=\"data.button.anchor\"\n                    (clicked)=\"onClick($event)\">\n                        {{data.button.text}}\n                    </n7-anchor-wrapper>\n                </ng-container>\n            </div>\n        </div>\n        \n        <div class=\"n7-hero__image-wrapper\" *ngIf=\"data.image\">\n            <img class=\"n7-hero__image\" src=\"{{data.image}}\" alt=\"\">\n        </div>\n\n    </div>\n</section>"
-            }] }
-];
-HeroComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    HeroComponent.prototype.data;
-    /** @type {?} */
-    HeroComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HeroComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HeroComponent.prototype, "emit", void 0);
+HeroComponent = __decorate([
+    Component({
+        selector: 'n7-hero',
+        template: "<section *ngIf=\"data\" class=\"n7-hero {{data.classes || ''}}\" \n    [ngClass]=\"{ \n        'has-image' : !!data.image, \n        'has-background-image': !!data.backgroundImage \n    }\"\n    [ngStyle]=\"{ \n        'background-image': getBackgroundImageCssValue(data.backgroundImage)\n    }\">\n    <div class=\"n7-hero__content\">\n        \n        <div class=\"n7-hero__text-wrapper\">\n            <h1 class=\"n7-hero__title\">\n                {{data.title}}\n            </h1>\n            <div class=\"n7-hero__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></div>\n            <div class=\"n7-hero__input-wrapper\" *ngIf=\"data.input || data.button\">\n                <input type=\"text\" \n                       class=\"n7-hero__input\" \n                       placeholder=\"{{data.input.placeholder || ''}}\" \n                       *ngIf=\"data.input\" \n                       (input)=\"onInputChange(data.input.payload, $event.target.value)\" \n                       (keyup.enter)=\"onInputEnter(data.input.payload, $event.target.value)\">\n                <span class=\"n7-hero__input-icon {{data.input.icon || ''}}\" \n                      *ngIf=\"data.input && data.input.icon\" \n                      (click)=\"onClick(data.input.payload)\"></span>\n                <ng-container *ngIf=\"data.button\">\n                    <n7-anchor-wrapper [classes]=\"'n7-hero__btn n7-btn n7-btn-cta n7-btn-l'\"\n                    [data]=\"data.button.anchor\"\n                    (clicked)=\"onClick($event)\">\n                        {{data.button.text}}\n                    </n7-anchor-wrapper>\n                </ng-container>\n            </div>\n        </div>\n        \n        <div class=\"n7-hero__image-wrapper\" *ngIf=\"data.image\">\n            <img class=\"n7-hero__image\" src=\"{{data.image}}\" alt=\"\">\n        </div>\n\n    </div>\n</section>"
+    })
+], HeroComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/image-viewer/image-viewer.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for ImageViewerComponent's images "data"
- *
- * Here the main options available, for a complete guide of image settings
- * view the official openseadragon documentation https://openseadragon.github.io/
- * All available options here: https://openseadragon.github.io/docs/OpenSeadragon.html
- *
- * \@property type (required)
- * Admitted values:
- * 'image' | 'zoomifytileservice' | 'openstreetmaps' | 'tiledmapservice' | 'legacy-image-pyramid'
- * \@property height (optional) image height
- * \@property width (optional) image width
- * \@property url (required) image url
- * \@property buildPyramid (optional)
- * \@property crossOriginPolicy (optional) Admitted values 'Anonymous' | 'use-credentials' | false;
- * @record
- */
-function ImageData() { }
-if (false) {
-    /** @type {?} */
-    ImageData.prototype.type;
-    /** @type {?|undefined} */
-    ImageData.prototype.height;
-    /** @type {?|undefined} */
-    ImageData.prototype.width;
-    /** @type {?} */
-    ImageData.prototype.url;
-    /** @type {?} */
-    ImageData.prototype.buildPyramid;
-    /** @type {?|undefined} */
-    ImageData.prototype.crossOriginPolicy;
-}
-/**
- * Interface for ImageViewerComponent's thumbs to preview available images
- *
- * \@property url (required) image url
- * @record
- */
-function ThumbsData() { }
-if (false) {
-    /** @type {?} */
-    ThumbsData.prototype.url;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    ThumbsData.prototype.payload;
-    /** @type {?|undefined} */
-    ThumbsData.prototype.classes;
-}
-/**
- * Interface for ImageViewerComponent's "data"
- *
- * \@property prefixUrl (optional) Prepends the prefixUrl to navImages paths.
- * Default is //openseadragon.github.io/openseadragon/images/
- * \@property classes (optional)
- * \@property viewerWidth (optional)
- * \@property viewerHeight (optional)
- * \@property images (required)
- * \@property viewerId (required) The id to assign to the imageviewer container
- * \@property libOptions (required)
- * @record
- */
-function ImageViewerData() { }
-if (false) {
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.prefixUrl;
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.classes;
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.viewerWidth;
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.viewerHeight;
-    /** @type {?} */
-    ImageViewerData.prototype.images;
-    /** @type {?|undefined} */
-    ImageViewerData.prototype.thumbs;
-    /** @type {?} */
-    ImageViewerData.prototype.viewerId;
-    /** @type {?} */
-    ImageViewerData.prototype.libOptions;
-    /** @type {?} */
-    ImageViewerData.prototype._setViewer;
-}
+//---------------------------
 /**
  * ImageViewerComponent <n7-image-viewer>
  *
  */
-class ImageViewerComponent {
+let ImageViewerComponent = class ImageViewerComponent {
     constructor() {
         this._loaded = false;
     }
-    /**
-     * @return {?}
-     */
     ngAfterContentChecked() {
         if (!this.data || this._loaded)
             return;
         this._loaded = true;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
-            /** @type {?} */
+        setTimeout(() => {
             const prefixUrl = !this.data.prefixUrl ? '//openseadragon.github.io/openseadragon/images/' : this.data.prefixUrl;
-            import('openseadragon').then((/**
-             * @param {?} module
-             * @return {?}
-             */
-            (module) => {
+            import('openseadragon').then((module) => {
                 const { default: openseadragon } = module;
-                /** @type {?} */
                 const viewer = openseadragon(Object.assign({ id: this.data.viewerId, prefixUrl, tileSources: this.data.images, zoomInButton: 'n7-image-viewer-zoom-in', zoomOutButton: 'n7-image-viewer-zoom-out', homeButton: 'n7-image-viewer-home', fullPageButton: 'n7-image-viewer-full-screen', nextButton: 'n7-image-viewer-nav-next', previousButton: 'n7-image-viewer-nav-prev' }, this.data.libOptions));
                 this.data._setViewer(viewer);
-            }));
-        }));
+            });
+        });
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('thumbclick', payload);
     }
-}
-ImageViewerComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-image-viewer',
-                template: "<div *ngIf=\"data\" class=\"n7-image-viewer {{data.classes || ''}}\">\n    <!-- OSD viewer -->\n    <div id=\"{{data.viewerId}}\" class=\"n7-image-viewer__viewer\">\n    </div>\n\n    <!-- Thumbs -->\n    <div class=\"n7-image-viewer__thumbs\" *ngIf=\"data.thumbs\">\n        <ul class=\"n7-image-viewer__thumb-list\">\n            <li *ngFor=\"let thumb of data.thumbs\" \n                class=\"n7-image-viewer__thumb-item {{thumb.classes || ''}}\"\n                [ngStyle]=\"{'background-image': 'url(' + thumb.url + ')'}\"\n                (click)=\"onClick(thumb.payload)\">\n            </li>\n        </ul>\n    </div>\n\n    <!-- Zoom controls -->\n    <div class=\"n7-image-viewer__controls\">\n        <ul class=\"n7-image-viewer__controls-list\">\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-in\">\n                <span class=\"n7-icon-search-plus\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-out\">\n                <span class=\"n7-icon-search-minus\"></span>\n            </li>\n            <!--\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-home\">\n                <span class=\"n7-icon-home\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-full-screen\">\n                <span class=\"n7-icon-expand-arrows\"></span>\n            </li>\n            -->\n        </ul>\n    </div>\n\n    <!-- Navigation -->\n    <div class=\"n7-image-viewer__prev\" id=\"n7-image-viewer-nav-prev\">\n        <span class=\"n7-icon-angle-left\"></span>\n    </div>\n\n    <div class=\"n7-image-viewer__next\" id=\"n7-image-viewer-nav-next\">\n        <span class=\"n7-icon-angle-right\"></span>\n    </div>\n</div>"
-            }] }
-];
-ImageViewerComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    ImageViewerComponent.prototype.data;
-    /** @type {?} */
-    ImageViewerComponent.prototype.emit;
-    /**
-     * @type {?}
-     * @private
-     */
-    ImageViewerComponent.prototype._loaded;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ImageViewerComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ImageViewerComponent.prototype, "emit", void 0);
+ImageViewerComponent = __decorate([
+    Component({
+        selector: 'n7-image-viewer',
+        template: "<div *ngIf=\"data\" class=\"n7-image-viewer {{data.classes || ''}}\">\n    <!-- OSD viewer -->\n    <div id=\"{{data.viewerId}}\" class=\"n7-image-viewer__viewer\">\n    </div>\n\n    <!-- Thumbs -->\n    <div class=\"n7-image-viewer__thumbs\" *ngIf=\"data.thumbs\">\n        <ul class=\"n7-image-viewer__thumb-list\">\n            <li *ngFor=\"let thumb of data.thumbs\" \n                class=\"n7-image-viewer__thumb-item {{thumb.classes || ''}}\"\n                [ngStyle]=\"{'background-image': 'url(' + thumb.url + ')'}\"\n                (click)=\"onClick(thumb.payload)\">\n            </li>\n        </ul>\n    </div>\n\n    <!-- Zoom controls -->\n    <div class=\"n7-image-viewer__controls\">\n        <ul class=\"n7-image-viewer__controls-list\">\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-in\">\n                <span class=\"n7-icon-search-plus\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-zoom-out\">\n                <span class=\"n7-icon-search-minus\"></span>\n            </li>\n            <!--\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-home\">\n                <span class=\"n7-icon-home\"></span>\n            </li>\n            <li class=\"n7-image-viewer__controls-item\" id=\"n7-image-viewer-full-screen\">\n                <span class=\"n7-icon-expand-arrows\"></span>\n            </li>\n            -->\n        </ul>\n    </div>\n\n    <!-- Navigation -->\n    <div class=\"n7-image-viewer__prev\" id=\"n7-image-viewer-nav-prev\">\n        <span class=\"n7-icon-angle-left\"></span>\n    </div>\n\n    <div class=\"n7-image-viewer__next\" id=\"n7-image-viewer-nav-next\">\n        <span class=\"n7-icon-angle-right\"></span>\n    </div>\n</div>"
+    })
+], ImageViewerComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/inner-title/inner-title.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for InnerTitleComponent's "data"
- *
- * \@property NAME (required|options) <--- TODO: update with interface properties
- * @record
- */
-function InnerTitleData() { }
-if (false) {
-    /** @type {?|undefined} */
-    InnerTitleData.prototype.icon;
-    /** @type {?|undefined} */
-    InnerTitleData.prototype.image;
-    /** @type {?} */
-    InnerTitleData.prototype.title;
-    /** @type {?|undefined} */
-    InnerTitleData.prototype.tools;
-    /** @type {?|undefined} */
-    InnerTitleData.prototype.actions;
-}
-/**
- * @record
- */
-function InnerTitleOptions() { }
-if (false) {
-    /** @type {?} */
-    InnerTitleOptions.prototype.text;
-    /** @type {?} */
-    InnerTitleOptions.prototype.value;
-    /** @type {?|undefined} */
-    InnerTitleOptions.prototype.disabled;
-    /** @type {?|undefined} */
-    InnerTitleOptions.prototype.selected;
-}
-/**
- * @record
- */
-function InnerTitleButtons() { }
-if (false) {
-    /** @type {?} */
-    InnerTitleButtons.prototype.text;
-    /** @type {?} */
-    InnerTitleButtons.prototype.payload;
-    /** @type {?|undefined} */
-    InnerTitleButtons.prototype.classes;
-    /** @type {?|undefined} */
-    InnerTitleButtons.prototype.icon;
-}
-class InnerTitleComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let InnerTitleComponent = class InnerTitleComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-    /**
-     * @param {?} payload
-     * @param {?} value
-     * @return {?}
-     */
     onChange(payload, value) {
         if (!this.emit)
             return;
         this.emit('change', { inputPayload: payload, value });
     }
-    /**
-     * @param {?} payload
-     * @param {?} value
-     * @return {?}
-     */
     onInputChange(payload, value) {
         if (!this.emit)
             return;
         this.emit('change', { inputPayload: payload, value });
     }
-    /**
-     * @param {?} payload
-     * @param {?} value
-     * @return {?}
-     */
     onInputEnter(payload, value) {
         if (!this.emit)
             return;
         this.emit('search', { inputPayload: payload, value });
     }
-}
-InnerTitleComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-inner-title',
-                template: "<div *ngIf=\"data\" class=\"n7-inner-title\">\n    <div class=\"n7-inner-title__left-wrapper\">\n        <span *ngIf=\"data.icon\" class=\"n7-inner-title__icon-left {{data.icon || ''}}\"></span>\n        <div *ngIf=\"data.image\" \n             class=\"n7-inner-title__image-left\" \n             [ngStyle]=\"{'background-image': 'url(' + data.image + ')'}\"></div>\n\n        <div class=\"n7-inner-title__wrapper-texts\">\n            <div class=\"n7-inner-title__title {{data.title.main.classes || ''}}\">\n                {{data.title.main.text}}\n            </div>\n            <div *ngIf=\"data.title.secondary\" \n                class=\"n7-inner-title__subtitle {{data.title.secondary.classes || ''}}\">\n                {{data.title.secondary.text}}\n            </div>\n        </div>\n    </div>\n\n    <div class=\"n7-inner-title__tools\">\n        <!-- Toolbar label -->\n        <div *ngIf=\"data.tools\"\n            class=\"n7-inner-title__tools-label \">\n            {{data.tools}}\n        </div>\n        <!-- Actions -->\n        <ng-container *ngIf=\"data.actions\">\n            <ng-container *ngTemplateOutlet=\"actions; \n                        context:{$implicit: data.actions}\">\n            </ng-container>\n        </ng-container>\n    </div>\n\n</div>\n\n<!-- Template actions -->\n<ng-template #actions let-action>\n    <ng-container *ngIf=\"action.select\">\n        <ng-container *ngTemplateOutlet=\"select;\n                      context:{$implicit: action.select}\">\n        </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"action.search\">\n        <ng-container *ngTemplateOutlet=\"search; \n                      context:{$implicit: action.search}\">\n        </ng-container>\n    </ng-container>\n    \n    <ng-container *ngIf=\"action.buttons\">\n        <ng-container *ngTemplateOutlet=\"buttons;\n                      context:{$implicit: action.buttons}\">\n        </ng-container>\n    </ng-container>\n</ng-template>\n    \n<!-- Template sorting -->\n<ng-template #select let-select>\n<div class=\"n7-inner-title__sorting\">\n    <span *ngIf=\"select.label\"\n          class=\"n7-inner-title__sorting-label \">\n        {{select.label}}\n    </span>\n    <select (change)=\"onChange(select.payload, $event.target.value)\"\n            class=\"n7-inner-title__sorting-select\">\n        <option *ngFor=\"let opt of select.options\"\n        value=\"{{opt.value}}\"\n        class=\"n7-inner-title__sorting-option\"\n        [selected]=\"opt.selected\"\n        [disabled]=\"opt.disabled\">\n            {{opt.text}}\n        </option>\n    </select>\n</div>\n</ng-template>\n\n<!-- Template search -->\n<ng-template #search let-search>\n    <div class=\"n7-inner-title__search\">\n        <input type=\"text\" \n            class=\"n7-inner-title__search-bar \" \n            placeholder=\"{{search.placeholder}}\"\n            (input)=\"onInputChange(search.payload, $event.target.value)\"\n            (keyup.enter)=\"onInputEnter(search.payload, $event.target.value)\">\n     <button *ngIf=\"search.button\" \n             (click)=\"onClick(search.button.payload)\"\n             class=\"n7-btn n7-inner-title__search-button \">\n         {{search.button.text}}\n     </button>\n    </div>\n</ng-template>\n\n<!-- Template buttons -->\n<ng-template #buttons let-buttons>\n    <div class=\"n7-inner-title__buttons-wrapper\">\n        <div *ngFor=\"let btn of buttons\"\n            class=\"n7-inner-title__single-button-wrapper\">\n            <button (click)=\"onClick(btn.payload)\" \n                    class=\"n7-btn n7-inner-title__buttons-action {{btn.classes || ''}}\">\n                    <span *ngIf=\"btn.icon\" class=\"n7-btn__icon {{btn.icon || ''}}\"></span>\n                {{btn.text}}\n            </button>\n        </div>\n    </div>\n</ng-template>"
-            }] }
-];
-InnerTitleComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    InnerTitleComponent.prototype.data;
-    /** @type {?} */
-    InnerTitleComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InnerTitleComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InnerTitleComponent.prototype, "emit", void 0);
+InnerTitleComponent = __decorate([
+    Component({
+        selector: 'n7-inner-title',
+        template: "<div *ngIf=\"data\" class=\"n7-inner-title\">\n    <div class=\"n7-inner-title__left-wrapper\">\n        <span *ngIf=\"data.icon\" class=\"n7-inner-title__icon-left {{data.icon || ''}}\"></span>\n        <div *ngIf=\"data.image\" \n             class=\"n7-inner-title__image-left\" \n             [ngStyle]=\"{'background-image': 'url(' + data.image + ')'}\"></div>\n\n        <div class=\"n7-inner-title__wrapper-texts\">\n            <div class=\"n7-inner-title__title {{data.title.main.classes || ''}}\">\n                {{data.title.main.text}}\n            </div>\n            <div *ngIf=\"data.title.secondary\" \n                class=\"n7-inner-title__subtitle {{data.title.secondary.classes || ''}}\">\n                {{data.title.secondary.text}}\n            </div>\n        </div>\n    </div>\n\n    <div class=\"n7-inner-title__tools\">\n        <!-- Toolbar label -->\n        <div *ngIf=\"data.tools\"\n            class=\"n7-inner-title__tools-label \">\n            {{data.tools}}\n        </div>\n        <!-- Actions -->\n        <ng-container *ngIf=\"data.actions\">\n            <ng-container *ngTemplateOutlet=\"actions; \n                        context:{$implicit: data.actions}\">\n            </ng-container>\n        </ng-container>\n    </div>\n\n</div>\n\n<!-- Template actions -->\n<ng-template #actions let-action>\n    <ng-container *ngIf=\"action.select\">\n        <ng-container *ngTemplateOutlet=\"select;\n                      context:{$implicit: action.select}\">\n        </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"action.search\">\n        <ng-container *ngTemplateOutlet=\"search; \n                      context:{$implicit: action.search}\">\n        </ng-container>\n    </ng-container>\n    \n    <ng-container *ngIf=\"action.buttons\">\n        <ng-container *ngTemplateOutlet=\"buttons;\n                      context:{$implicit: action.buttons}\">\n        </ng-container>\n    </ng-container>\n</ng-template>\n    \n<!-- Template sorting -->\n<ng-template #select let-select>\n<div class=\"n7-inner-title__sorting\">\n    <span *ngIf=\"select.label\"\n          class=\"n7-inner-title__sorting-label \">\n        {{select.label}}\n    </span>\n    <select (change)=\"onChange(select.payload, $event.target.value)\"\n            class=\"n7-inner-title__sorting-select\">\n        <option *ngFor=\"let opt of select.options\"\n        value=\"{{opt.value}}\"\n        class=\"n7-inner-title__sorting-option\"\n        [selected]=\"opt.selected\"\n        [disabled]=\"opt.disabled\">\n            {{opt.text}}\n        </option>\n    </select>\n</div>\n</ng-template>\n\n<!-- Template search -->\n<ng-template #search let-search>\n    <div class=\"n7-inner-title__search\">\n        <input type=\"text\" \n            class=\"n7-inner-title__search-bar \" \n            placeholder=\"{{search.placeholder}}\"\n            (input)=\"onInputChange(search.payload, $event.target.value)\"\n            (keyup.enter)=\"onInputEnter(search.payload, $event.target.value)\">\n     <button *ngIf=\"search.button\" \n             (click)=\"onClick(search.button.payload)\"\n             class=\"n7-btn n7-inner-title__search-button \">\n         {{search.button.text}}\n     </button>\n    </div>\n</ng-template>\n\n<!-- Template buttons -->\n<ng-template #buttons let-buttons>\n    <div class=\"n7-inner-title__buttons-wrapper\">\n        <div *ngFor=\"let btn of buttons\"\n            class=\"n7-inner-title__single-button-wrapper\">\n            <button (click)=\"onClick(btn.payload)\" \n                    class=\"n7-btn n7-inner-title__buttons-action {{btn.classes || ''}}\">\n                    <span *ngIf=\"btn.icon\" class=\"n7-btn__icon {{btn.icon || ''}}\"></span>\n                {{btn.text}}\n            </button>\n        </div>\n    </div>\n</ng-template>"
+    })
+], InnerTitleComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/input-checkbox/input-checkbox.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for InputCheckbox
- *
- * \@property id (required)
- * \@property label (required)
- * \@property checked (optional)
- * \@property disabled (optional)
- * \@property payload (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function InputCheckbox() { }
-if (false) {
-    /**
-     * Unique ID for the checkbox
-     * @type {?}
-     */
-    InputCheckbox.prototype.id;
-    /**
-     * Label for the checkbox
-     * @type {?}
-     */
-    InputCheckbox.prototype.label;
-    /**
-     * Defaults the checkbox to be checked
-     * @type {?|undefined}
-     */
-    InputCheckbox.prototype.checked;
-    /**
-     * Sets the disabled HTML attribute
-     * @type {?|undefined}
-     */
-    InputCheckbox.prototype.disabled;
-    /**
-     * Payload for the change event
-     * @type {?|undefined}
-     */
-    InputCheckbox.prototype.payload;
-    /**
-     * Additional HTML Classes
-     * @type {?|undefined}
-     */
-    InputCheckbox.prototype.classes;
-    /**
-     * Additional data for the component's logic
-     * @type {?|undefined}
-     */
-    InputCheckbox.prototype._meta;
-}
-/**
- * Interface for InputCheckboxData
- * \@property checkboxes (required)
- * @record
- */
-function InputCheckboxData() { }
-if (false) {
-    /**
-     * An array of input checkboxes
-     * @type {?}
-     */
-    InputCheckboxData.prototype.checkboxes;
-}
-class InputCheckboxComponent {
-    /**
-     * @param {?} inputPayload
-     * @param {?=} value
-     * @return {?}
-     */
+//---------------------------
+let InputCheckboxComponent = class InputCheckboxComponent {
     onChange(inputPayload, value) {
         if (!this.emit)
             return;
         this.emit('change', { inputPayload, value });
     }
-}
-InputCheckboxComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-input-checkbox',
-                template: "<div *ngIf=\"data\"\n     class=\"n7-input-checkbox\">\n  <ng-container *ngFor=\"let input of data.checkboxes\">\n    <input type=\"checkbox\"\n           id=\"{{ input.id }}\"\n           class=\"n7-input-checkbox__input\"\n           [checked]=\"input.checked\"\n           [disabled]=\"input.disabled\"\n           (change)=\"onChange(input.payload, $event.target.checked)\">\n    <label *ngIf=\"input.label\"\n           class=\"n7-input-checkbox__label\"\n           for=\"{{ input.id }}\">\n      {{ input.label }}\n    </label>\n  </ng-container>\n</div>\n"
-            }] }
-];
-InputCheckboxComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    InputCheckboxComponent.prototype.data;
-    /** @type {?} */
-    InputCheckboxComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InputCheckboxComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InputCheckboxComponent.prototype, "emit", void 0);
+InputCheckboxComponent = __decorate([
+    Component({
+        selector: 'n7-input-checkbox',
+        template: "<div *ngIf=\"data\"\n     class=\"n7-input-checkbox\">\n  <ng-container *ngFor=\"let input of data.checkboxes\">\n    <input type=\"checkbox\"\n           id=\"{{ input.id }}\"\n           class=\"n7-input-checkbox__input\"\n           [checked]=\"input.checked\"\n           [disabled]=\"input.disabled\"\n           (change)=\"onChange(input.payload, $event.target.checked)\">\n    <label *ngIf=\"input.label\"\n           class=\"n7-input-checkbox__label\"\n           for=\"{{ input.id }}\">\n      {{ input.label }}\n    </label>\n  </ng-container>\n</div>\n"
+    })
+], InputCheckboxComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/input-link/input-link.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for an InputLink
- *
- * \@property icon (optional)
- * \@property text (required)
- * \@property counter (optional)
- * \@property payload (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function InputLink() { }
-if (false) {
-    /**
-     * The rendered text of the link
-     * @type {?}
-     */
-    InputLink.prototype.text;
-    /**
-     * An icon to be added next to the text
-     * @type {?|undefined}
-     */
-    InputLink.prototype.icon;
-    /**
-     * A colorful counter with a number
-     * @type {?|undefined}
-     */
-    InputLink.prototype.counter;
-    /**
-     * The payload for the click event
-     * @type {?|undefined}
-     */
-    InputLink.prototype.payload;
-    /**
-     * Additional HTML Classes
-     * @type {?|undefined}
-     */
-    InputLink.prototype.classes;
-    /**
-     * Additional data for the component's logic
-     * @type {?|undefined}
-     */
-    InputLink.prototype._meta;
-}
-/**
- * Interface for InputLinkData
- * \@property links (required)
- * @record
- */
-function InputLinkData() { }
-if (false) {
-    /**
-     * A list of input links
-     * @type {?}
-     */
-    InputLinkData.prototype.links;
-}
-class InputLinkComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let InputLinkComponent = class InputLinkComponent {
     onChange(payload) {
         if (!this.emit)
             return;
         this.emit('change', payload);
     }
-}
-InputLinkComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-input-link',
-                template: "<div *ngIf=\"data\"\n     class=\"n7-input-link\">\n  <ng-container *ngFor=\"let input of data.links\">\n    <div class=\"n7-input-link__link {{ input.classes || '' }}\"\n         (click)=\"onChange(input.payload)\">\n      <span *ngIf=\"input.icon\"\n            class=\"n7-input-link__icon {{ input.icon }}\"></span>\n      <span class=\"n7-input-link__text\">{{ input.text }}</span>\n      <span *ngIf=\"input.counter || input.counter === 0\"\n            class=\"n7-input-link__counter\">{{ input.counter }}</span>\n    </div>\n  </ng-container>\n</div>\n"
-            }] }
-];
-InputLinkComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    InputLinkComponent.prototype.data;
-    /** @type {?} */
-    InputLinkComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InputLinkComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InputLinkComponent.prototype, "emit", void 0);
+InputLinkComponent = __decorate([
+    Component({
+        selector: 'n7-input-link',
+        template: "<div *ngIf=\"data\"\n     class=\"n7-input-link\">\n  <ng-container *ngFor=\"let input of data.links\">\n    <div class=\"n7-input-link__link {{ input.classes || '' }}\"\n         (click)=\"onChange(input.payload)\">\n      <span *ngIf=\"input.icon\"\n            class=\"n7-input-link__icon {{ input.icon }}\"></span>\n      <span class=\"n7-input-link__text\">{{ input.text }}</span>\n      <span *ngIf=\"input.counter || input.counter === 0\"\n            class=\"n7-input-link__counter\">{{ input.counter }}</span>\n    </div>\n  </ng-container>\n</div>\n"
+    })
+], InputLinkComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/input-select/input-select.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for InputSelect
- *
- * \@property id (required)
- * \@property options (required)
- * \@property label (optional)
- * \@property disabled (optional)
- * \@property icon (optional)
- * \@property payload (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function InputSelectData() { }
-if (false) {
-    /**
-     * A unique ID for the select item
-     * @type {?}
-     */
-    InputSelectData.prototype.id;
-    /**
-     * The array of <option> elements
-     * @type {?}
-     */
-    InputSelectData.prototype.options;
-    /**
-     * Label for the <select> element
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype.label;
-    /**
-     * Prevents the user from changing any option
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype.disabled;
-    /**
-     * Payload for the select's change event
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype.payload;
-    /**
-     * Additional HTML Classes
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype.classes;
-    /**
-     * Additional data for the component's logic
-     * @type {?|undefined}
-     */
-    InputSelectData.prototype._meta;
-}
-class InputSelectComponent {
-    /**
-     * @param {?} inputPayload
-     * @param {?=} value
-     * @return {?}
-     */
+//---------------------------
+let InputSelectComponent = class InputSelectComponent {
     onChange(inputPayload, value) {
         if (!this.emit)
             return;
         this.emit('change', { inputPayload, value });
     }
-}
-InputSelectComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-input-select',
-                template: "<div *ngIf=\"data as input\"\n     class=\"n7-input-select\">\n  <label *ngIf=\"input.label\"\n         for=\"{{ input.id }}\">{{ input.label }}</label>\n  <select (change)=\"onChange(input.payload, $event.target.value)\"\n          id=\"{{ input.id }}\"\n          class=\"n7-facet__input-select {{ input.classes || '' }}\"\n          [disabled]=\"input.disabled\">\n    <option *ngFor=\"let option of input.options\"\n            [value]=\"option.value\"\n            [disabled]=\"option.disabled\"\n            [selected]=\"option.selected\">{{ option.label }}</option>\n  </select>\n</div>\n"
-            }] }
-];
-InputSelectComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    InputSelectComponent.prototype.data;
-    /** @type {?} */
-    InputSelectComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InputSelectComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InputSelectComponent.prototype, "emit", void 0);
+InputSelectComponent = __decorate([
+    Component({
+        selector: 'n7-input-select',
+        template: "<div *ngIf=\"data as input\"\n     class=\"n7-input-select\">\n  <label *ngIf=\"input.label\"\n         for=\"{{ input.id }}\">{{ input.label }}</label>\n  <select (change)=\"onChange(input.payload, $event.target.value)\"\n          id=\"{{ input.id }}\"\n          class=\"n7-facet__input-select {{ input.classes || '' }}\"\n          [disabled]=\"input.disabled\">\n    <option *ngFor=\"let option of input.options\"\n            [value]=\"option.value\"\n            [disabled]=\"option.disabled\"\n            [selected]=\"option.selected\">{{ option.label }}</option>\n  </select>\n</div>\n"
+    })
+], InputSelectComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/input-text/input-text.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for InputTextData
- *
- * \@property id (required)
- * \@property placeholder (optional)
- * \@property value (optional)
- * \@property label (optional)
- * \@property disabled (optional)
- * \@property icon (optional)
- * \@property inputPayload (optional)
- * \@property enterPayload (optional)
- * \@property iconPayload (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function InputTextData() { }
-if (false) {
-    /**
-     * Unique ID for the text input element
-     * @type {?}
-     */
-    InputTextData.prototype.id;
-    /**
-     * Placeholder text inside the input box
-     * @type {?|undefined}
-     */
-    InputTextData.prototype.placeholder;
-    /**
-     * Default value of the input box
-     * @type {?|undefined}
-     */
-    InputTextData.prototype.value;
-    /**
-     * Label for the input box
-     * @type {?|undefined}
-     */
-    InputTextData.prototype.label;
-    /**
-     * Prevents the user from changing the input's value
-     * @type {?|undefined}
-     */
-    InputTextData.prototype.disabled;
-    /**
-     * Optional icon to render inside the input box (eg. n7-icon-search)
-     * @type {?|undefined}
-     */
-    InputTextData.prototype.icon;
-    /**
-     * Payload that is sent when the user changes the value
-     * @type {?|undefined}
-     */
-    InputTextData.prototype.inputPayload;
-    /**
-     * Payload that is sent when the user presses the "Enter" key
-     * @type {?|undefined}
-     */
-    InputTextData.prototype.enterPayload;
-    /**
-     * Payload that is sent when the user clicks on the icon
-     * @type {?|undefined}
-     */
-    InputTextData.prototype.iconPayload;
-    /**
-     * Additional HTML Classes
-     * @type {?|undefined}
-     */
-    InputTextData.prototype.classes;
-    /**
-     * Additional data for the component's logic
-     * @type {?|undefined}
-     */
-    InputTextData.prototype._meta;
-}
-class InputTextComponent {
-    /**
-     * @param {?} inputPayload
-     * @param {?=} value
-     * @return {?}
-     */
+//---------------------------
+let InputTextComponent = class InputTextComponent {
     onChange(inputPayload, value) {
         if (!this.emit)
             return;
         this.emit('change', { inputPayload, value });
     }
-}
-InputTextComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-input-text',
-                template: "<div *ngIf=\"data as input\"\n     class=\"n7-input-text\">\n    <label *ngIf=\"input.label\"\n           class=\"n7-input-text__label\"\n           for=\"{{ input.id }}\">\n      {{ input.label }}\n    </label>\n    <div class=\"n7-input-text__wrapper\">\n      <input type=\"text\"\n             id=\"{{ input.id }}\"\n             class=\"n7-input-text__text {{input.classes || ''}}\"\n             placeholder=\"{{input.placeholder || ''}}\"\n             [value]=\"input.value || null\"\n             [disabled]=\"input.disabled\"\n             (input)=\"onChange(input.inputPayload, $event.target.value)\"\n             (keyup.enter)=\"onChange(input.enterPayload, $event.target.value)\">\n      <span *ngIf=\"input.icon\"\n            class=\"n7-input-text__icon {{input.icon || ''}}\"\n            (click)=\"onChange(input.iconPayload)\">\n      </span>\n    </div>\n</div>\n"
-            }] }
-];
-InputTextComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    InputTextComponent.prototype.data;
-    /** @type {?} */
-    InputTextComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InputTextComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], InputTextComponent.prototype, "emit", void 0);
+InputTextComponent = __decorate([
+    Component({
+        selector: 'n7-input-text',
+        template: "<div *ngIf=\"data as input\"\n     class=\"n7-input-text\">\n    <label *ngIf=\"input.label\"\n           class=\"n7-input-text__label\"\n           for=\"{{ input.id }}\">\n      {{ input.label }}\n    </label>\n    <div class=\"n7-input-text__wrapper\">\n      <input type=\"text\"\n             id=\"{{ input.id }}\"\n             class=\"n7-input-text__text {{input.classes || ''}}\"\n             placeholder=\"{{input.placeholder || ''}}\"\n             [value]=\"input.value || null\"\n             [disabled]=\"input.disabled\"\n             (input)=\"onChange(input.inputPayload, $event.target.value)\"\n             (keyup.enter)=\"onChange(input.enterPayload, $event.target.value)\">\n      <span *ngIf=\"input.icon\"\n            class=\"n7-input-text__icon {{input.icon || ''}}\"\n            (click)=\"onChange(input.iconPayload)\">\n      </span>\n    </div>\n</div>\n"
+    })
+], InputTextComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/item-preview/item-preview.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for ItemPreviewComponent's "data"
- *
- * \@property image (optional)
- * \@property title (required)
- * \@property text (optional)
- * \@property anchor (optional)
- * \@property metadata (optional)
- * \@property classes (optional)
- * @record
- */
-function ItemPreviewData() { }
-if (false) {
-    /**
-     * image of the preview
-     * @type {?|undefined}
-     */
-    ItemPreviewData.prototype.image;
-    /**
-     * name of the item
-     * @type {?}
-     */
-    ItemPreviewData.prototype.title;
-    /**
-     * text of the item
-     * @type {?|undefined}
-     */
-    ItemPreviewData.prototype.text;
-    /** @type {?|undefined} */
-    ItemPreviewData.prototype.anchor;
-    /**
-     * list of the data in the metadata
-     * @type {?|undefined}
-     */
-    ItemPreviewData.prototype.metadata;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    ItemPreviewData.prototype.classes;
-}
-/**
- * Interface for the element that wraps the metadata
- *
- * \@property title (optional)
- * \@property classes (optional)
- * \@property items (optional)
- * @record
- */
-function MetadataGroup() { }
-if (false) {
-    /**
-     * title of metadata group
-     * @type {?|undefined}
-     */
-    MetadataGroup.prototype.title;
-    /**
-     * classes of metadata group
-     * @type {?|undefined}
-     */
-    MetadataGroup.prototype.classes;
-    /**
-     * array of metadata items
-     * @type {?|undefined}
-     */
-    MetadataGroup.prototype.items;
-}
-/**
- * Interface for a list of metadata
- *
- * \@property label (optional)
- * \@property value (optional)
- * \@property classes (optional)
- * \@property icon (optional)
- * @record
- */
-function MetadataData() { }
-if (false) {
-    /**
-     * label of a single property of the metadata
-     * @type {?|undefined}
-     */
-    MetadataData.prototype.label;
-    /**
-     * value of a single property of the metadata
-     * @type {?|undefined}
-     */
-    MetadataData.prototype.value;
-    /**
-     * category of a item of the icon list, used to give a different class
-     * @type {?|undefined}
-     */
-    MetadataData.prototype.classes;
-    /**
-     * icon of an item of the icon list
-     * @type {?|undefined}
-     */
-    MetadataData.prototype.icon;
-}
-class ItemPreviewComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let ItemPreviewComponent = class ItemPreviewComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-ItemPreviewComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-item-preview',
-                template: "<div *ngIf=\"data\" class=\"n7-item-preview {{data.classes || ''}}\" [ngClass]=\"{ 'has-image' : !!data.image }\">\n    <n7-anchor-wrapper\n    [data]=\"data.anchor\"\n    (clicked)=\"onClick($event)\"\n    [classes]=\"'n7-item-preview__inner'\">\n        <!-- Image -->\n        <div class=\"n7-item-preview__image\"\n            *ngIf=\"data.image\"\n            [style.background-image] = \"'url(' + data.image + ')'\">       \n        </div>\n        <div class=\"n7-item-preview__content\">\n            <!-- Title and text -->\n            <div class=\"n7-item-preview__title-text\">\n                <h1 class=\"n7-item-preview__title\" [innerHTML]=\"data.title\"></h1>\n                <p class=\"n7-item-preview__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></p>\n            </div>\n            <!-- Metadata -->\n            <div class=\"n7-item-preview__metadata\" *ngIf=\"data.metadata\">       \n                <div class=\"n7-item-preview__metadata-group {{ meta.classes || '' }}\" *ngFor=\"let meta of data.metadata\">\n                    <h3 class=\"n7-item-preview__metadata-group-title\" *ngIf=\"meta.title\" [innerHTML]=\"meta.title\"></h3>\n                    <div class=\"n7-item-preview__metadata-item {{ item.classes || '' }}\" *ngFor=\"let item of meta.items\">\n                        <span class=\"n7-item-preview__metadata-item-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\n                        <span class=\"n7-item-preview__metadata-item-label\" *ngIf=\"item.label\" [innerHTML]=\"item.label\"></span>\n                        <span class=\"n7-item-preview__metadata-item-value\" *ngIf=\"item.value\" [innerHTML]=\"item.value\"></span>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </n7-anchor-wrapper>\n</div>\n"
-            }] }
-];
-ItemPreviewComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    ItemPreviewComponent.prototype.data;
-    /** @type {?} */
-    ItemPreviewComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ItemPreviewComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ItemPreviewComponent.prototype, "emit", void 0);
+ItemPreviewComponent = __decorate([
+    Component({
+        selector: 'n7-item-preview',
+        template: "<div *ngIf=\"data\" class=\"n7-item-preview {{data.classes || ''}}\" [ngClass]=\"{ 'has-image' : !!data.image }\">\n    <n7-anchor-wrapper\n    [data]=\"data.anchor\"\n    (clicked)=\"onClick($event)\"\n    [classes]=\"'n7-item-preview__inner'\">\n        <!-- Image -->\n        <div class=\"n7-item-preview__image\"\n            *ngIf=\"data.image\"\n            [style.background-image] = \"'url(' + data.image + ')'\">       \n        </div>\n        <div class=\"n7-item-preview__content\">\n            <!-- Title and text -->\n            <div class=\"n7-item-preview__title-text\">\n                <h1 class=\"n7-item-preview__title\" [innerHTML]=\"data.title\"></h1>\n                <p class=\"n7-item-preview__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></p>\n            </div>\n            <!-- Metadata -->\n            <div class=\"n7-item-preview__metadata\" *ngIf=\"data.metadata\">       \n                <div class=\"n7-item-preview__metadata-group {{ meta.classes || '' }}\" *ngFor=\"let meta of data.metadata\">\n                    <h3 class=\"n7-item-preview__metadata-group-title\" *ngIf=\"meta.title\" [innerHTML]=\"meta.title\"></h3>\n                    <div class=\"n7-item-preview__metadata-item {{ item.classes || '' }}\" *ngFor=\"let item of meta.items\">\n                        <span class=\"n7-item-preview__metadata-item-icon {{item.icon}}\" *ngIf=\"item.icon\"></span>\n                        <span class=\"n7-item-preview__metadata-item-label\" *ngIf=\"item.label\" [innerHTML]=\"item.label\"></span>\n                        <span class=\"n7-item-preview__metadata-item-value\" *ngIf=\"item.value\" [innerHTML]=\"item.value\"></span>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </n7-anchor-wrapper>\n</div>\n"
+    })
+], ItemPreviewComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/loader/loader.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for LoaderComponent's "data"
- *
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function LoaderData() { }
-if (false) {
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    LoaderData.prototype.classes;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    LoaderData.prototype._meta;
-}
-class LoaderComponent {
-}
-LoaderComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-loader',
-                template: "<div class=\"n7-loader {{ data && data.classes ? data.classes : '' }}\">\n    Loading\n</div>"
-            }] }
-];
-LoaderComponent.propDecorators = {
-    data: [{ type: Input }]
+//---------------------------
+let LoaderComponent = class LoaderComponent {
 };
-if (false) {
-    /** @type {?} */
-    LoaderComponent.prototype.data;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], LoaderComponent.prototype, "data", void 0);
+LoaderComponent = __decorate([
+    Component({
+        selector: 'n7-loader',
+        template: "<div class=\"n7-loader {{ data && data.classes ? data.classes : '' }}\">\n    Loading\n</div>"
+    })
+], LoaderComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/metadata-viewer/metadata-viewer.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for MetadataViewerComponent's "data"
- *
- * \@property group (required)
- * \@property classes (optional)
- * @record
- */
-function MetadataViewerData() { }
-if (false) {
-    /**
-     * the CHILD metadata groups
-     * @type {?}
-     */
-    MetadataViewerData.prototype.group;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    MetadataViewerData.prototype.classes;
-}
-/**
- * Interface for MetadataViewerComponent's "data"
- *
- * \@property title (optional)
- * \@property items (optional)
- * \@property group (optional)
- * \@property classes (optional)
- * @record
- */
-function MetadataViewerChildGroups() { }
-if (false) {
-    /**
-     * component header (if root)
-     * or group title
-     * @type {?|undefined}
-     */
-    MetadataViewerChildGroups.prototype.title;
-    /**
-     * the metadata items
-     * @type {?|undefined}
-     */
-    MetadataViewerChildGroups.prototype.items;
-    /**
-     * the CHILD metadata groups
-     * @type {?|undefined}
-     */
-    MetadataViewerChildGroups.prototype.group;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    MetadataViewerChildGroups.prototype.classes;
-}
-/**
- * Interface for MetadataViewerComponent's "items"
- * \@property label (required)
- * \@property value (required)
- * @record
- */
-function MetadataViewerItems() { }
-if (false) {
-    /**
-     * the item's label
-     * @type {?}
-     */
-    MetadataViewerItems.prototype.label;
-    /**
-     * the value for \@property label
-     * @type {?}
-     */
-    MetadataViewerItems.prototype.value;
-}
-class MetadataViewerComponent {
-}
-MetadataViewerComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-metadata-viewer',
-                template: "<div *ngIf=\"data\" class=\"n7-metadata-viewer\">\n    <!-- Metadata groups wrapper -->\n    <div class=\"n7-metadata-viewer__wrapper {{ data.classes  || ''}}\"\n          *ngFor=\"let grp of data.group\">\n        <!-- For each data group, render it -->\n        <ng-container *ngTemplateOutlet=\"group; context:{$implicit: grp}\"></ng-container>\n    </div>\n</div>\n\n<!-- Template for Metadata.group -->\n<ng-template #group let-grp>\n    <div *ngIf=\"grp.title || grp.items\" class=\"n7-metadata-viewer__group {{ grp.classes || '' }}\">\n        <div class=\"n7-metadata-viewer__group-title\" *ngIf=\"grp.title\">{{grp.title}}</div>\n        <div class=\"n7-metadata-viewer__group-content\" *ngIf=\"grp.items\">\n            <div class=\"n7-metadata-viewer__item\" *ngFor=\"let i of grp.items\">\n                <span class=\"n7-metadata-viewer__item-label\">{{i.label}} </span>\n                <span class=\"n7-metadata-viewer__item-value\" [innerHTML]=\"i.value\"></span>\n            </div>\n        </div>\n    </div>\n    <!-- Render all child groups -->\n    <div *ngIf=\"grp.group\">\n        <div class=\"n7-metadata-viewer__group-wrapper\"\n              *ngFor=\"let grp of grp.group\">\n            <ng-container *ngTemplateOutlet=\"group; context:{$implicit: grp}\"></ng-container>\n        </div>\n    </div>\n</ng-template>"
-            }] }
-];
-MetadataViewerComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
+//---------------------------
+let MetadataViewerComponent = class MetadataViewerComponent {
 };
-if (false) {
-    /** @type {?} */
-    MetadataViewerComponent.prototype.data;
-    /** @type {?} */
-    MetadataViewerComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], MetadataViewerComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], MetadataViewerComponent.prototype, "emit", void 0);
+MetadataViewerComponent = __decorate([
+    Component({
+        selector: 'n7-metadata-viewer',
+        template: "<div *ngIf=\"data\" class=\"n7-metadata-viewer\">\n    <!-- Metadata groups wrapper -->\n    <div class=\"n7-metadata-viewer__wrapper {{ data.classes  || ''}}\"\n          *ngFor=\"let grp of data.group\">\n        <!-- For each data group, render it -->\n        <ng-container *ngTemplateOutlet=\"group; context:{$implicit: grp}\"></ng-container>\n    </div>\n</div>\n\n<!-- Template for Metadata.group -->\n<ng-template #group let-grp>\n    <div *ngIf=\"grp.title || grp.items\" class=\"n7-metadata-viewer__group {{ grp.classes || '' }}\">\n        <div class=\"n7-metadata-viewer__group-title\" *ngIf=\"grp.title\">{{grp.title}}</div>\n        <div class=\"n7-metadata-viewer__group-content\" *ngIf=\"grp.items\">\n            <div class=\"n7-metadata-viewer__item\" *ngFor=\"let i of grp.items\">\n                <span class=\"n7-metadata-viewer__item-label\">{{i.label}} </span>\n                <span class=\"n7-metadata-viewer__item-value\" [innerHTML]=\"i.value\"></span>\n            </div>\n        </div>\n    </div>\n    <!-- Render all child groups -->\n    <div *ngIf=\"grp.group\">\n        <div class=\"n7-metadata-viewer__group-wrapper\"\n              *ngFor=\"let grp of grp.group\">\n            <ng-container *ngTemplateOutlet=\"group; context:{$implicit: grp}\"></ng-container>\n        </div>\n    </div>\n</ng-template>"
+    })
+], MetadataViewerComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/nav/nav.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for a single navbar item
- *
- * \@property text (required)
- * \@property classes (optional)
- * \@property link (optional)
- * \@property _meta (optional)
- * @record
- */
-function NavItem() { }
-if (false) {
-    /**
-     * text of a single item of the navbar (text and payload are connected)
-     * @type {?}
-     */
-    NavItem.prototype.text;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    NavItem.prototype.classes;
-    /** @type {?|undefined} */
-    NavItem.prototype.anchor;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    NavItem.prototype._meta;
-}
-/**
- * Interface for the navbar
- *
- * \@property items (required)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-function NavData() { }
-if (false) {
-    /**
-     * list of the items in the navbar
-     * @type {?}
-     */
-    NavData.prototype.items;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    NavData.prototype.classes;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    NavData.prototype.payload;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    NavData.prototype._meta;
-}
-class NavComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+let NavComponent = class NavComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-NavComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-nav',
-                template: "<nav class=\"n7-nav {{data.classes || ''}}\" *ngIf=\"data\">\n    <ul class=\"n7-nav__list\">\n        <li class=\"n7-nav__item {{ item.classes || '' }}\" *ngFor=\"let item of data.items\">\n            <n7-anchor-wrapper [data]=\"item.anchor\" [classes]=\"'n7-nav__link'\" (clicked)=\"onClick($event)\">\n                <span class=\"n7-nav__label\">{{ item.text }}</span>\n            </n7-anchor-wrapper>\n        </li>\n    </ul>\n</nav>"
-            }] }
-];
-NavComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    NavComponent.prototype.data;
-    /** @type {?} */
-    NavComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], NavComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], NavComponent.prototype, "emit", void 0);
+NavComponent = __decorate([
+    Component({
+        selector: 'n7-nav',
+        template: "<nav class=\"n7-nav {{data.classes || ''}}\" *ngIf=\"data\">\n    <ul class=\"n7-nav__list\">\n        <li class=\"n7-nav__item {{ item.classes || '' }}\" *ngFor=\"let item of data.items\">\n            <n7-anchor-wrapper [data]=\"item.anchor\" [classes]=\"'n7-nav__link'\" (clicked)=\"onClick($event)\">\n                <span class=\"n7-nav__label\">{{ item.text }}</span>\n            </n7-anchor-wrapper>\n        </li>\n    </ul>\n</nav>"
+    })
+], NavComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/pagination/pagination.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for PaginationComponent's options (page size select options)
- *
- * \@property text (required)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function Option() { }
-if (false) {
-    /**
-     * option text value
-     * @type {?}
-     */
-    Option.prototype.text;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    Option.prototype.classes;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    Option.prototype._meta;
-    /**
-     * render as disabled
-     * @type {?|undefined}
-     */
-    Option.prototype.disabled;
-    /**
-     * force selection
-     * @type {?|undefined}
-     */
-    Option.prototype.selected;
-}
-/**
- * Interface for PaginationComponent's "data"
- *
- * \@property links (required)
- * \@property first (optional)
- * \@property prev (optional)
- * \@property next (optional)
- * \@property last (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-function PaginationData() { }
-if (false) {
-    /**
-     * innerHtml for the "first" label
-     * @type {?|undefined}
-     */
-    PaginationData.prototype.first;
-    /**
-     * innerHtml for the "prev" label
-     * @type {?|undefined}
-     */
-    PaginationData.prototype.prev;
-    /**
-     * innerHtml for the "next" label
-     * @type {?|undefined}
-     */
-    PaginationData.prototype.next;
-    /**
-     * innerHtml for the "last" label
-     * @type {?|undefined}
-     */
-    PaginationData.prototype.last;
-    /**
-     * array of "pages" label (as text)
-     * @type {?}
-     */
-    PaginationData.prototype.links;
-    /**
-     * page size select
-     * @type {?|undefined}
-     */
-    PaginationData.prototype.select;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    PaginationData.prototype.classes;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    PaginationData.prototype.payload;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    PaginationData.prototype._meta;
-}
-class PaginationComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let PaginationComponent = class PaginationComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-    /**
-     * @param {?} payload
-     * @param {?} value
-     * @return {?}
-     */
     onChange(payload, value) {
         if (!this.emit)
             return;
         // needs to also emit selected value
         this.emit('change', { inputPayload: payload, value });
     }
-}
-PaginationComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-pagination',
-                template: "<nav class=\"n7-pagination {{data.classes || ''}}\" \n     *ngIf=\"data\"\n     [ngClass]=\"{ 'has-results-select' : data.select }\">\n    <ul class=n7-pagination__items>\n\n        <li class=\"n7-pagination__first {{data.first.classes || ''}}\" *ngIf=\"data.first\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'first',\n                data: data.first,\n                iconClass: 'n7-icon-angle-double-left'\n            }\"></ng-container>\n        </li>\n        <li class=\"n7-pagination__prev {{data.prev.classes || ''}}\" *ngIf=\"data.prev\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'prev',\n                data: data.prev,\n                iconClass: 'n7-icon-angle-left'\n            }\"></ng-container>\n        </li>\n\n        <li class=\"n7-pagination__page {{page.classes || ''}}\" *ngFor=\"let page of data.links\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'page',\n                data: page,\n                clicked: onClick\n            }\"></ng-container>\n        </li>\n\n        <li class=\"n7-pagination__next {{data.next.classes || ''}}\" *ngIf=\"data.next\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'next',\n                data: data.next,\n                iconClass: 'n7-icon-angle-right'\n            }\"></ng-container>\n        </li>\n        <li class=\"n7-pagination__last {{data.last.classes || ''}}\" *ngIf=\"data.last\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'last',\n                data: data.last,\n                iconClass: 'n7-icon-angle-double-right'\n            }\"></ng-container>\n        </li>\n    </ul>\n    \n    <div class=\"n7-pagination__setting\"\n         *ngIf=\"data.select\">\n        <span class=\"n7-pagination__setting-label\"\n              *ngIf=\"data.select.label\">\n            {{data.select.label}}\n        </span>\n        <select *ngIf=\"data.select.options\" \n                name=\"n7-pagination__select-size\" \n                class=\"n7-pagination__setting-select\"\n                (change)=\"onChange(data.select.payload, $event.target.value)\"\n                [disabled]=\"data.select.disabled\">\n            <option *ngFor=\"let opt of data.select.options\"\n                    [disabled]=\"opt.disabled\"\n                    [selected]=\"opt.selected\">\n                {{opt.text}}\n            </option>\n        </select>\n    </div>\n</nav>\n\n<ng-template #button let-type=\"type\" let-data=\"data\" let-clicked=\"clicked\" let-iconClass=\"iconClass\">\n    <n7-anchor-wrapper \n    [classes]=\"'n7-pagination__' + type + '-link' + (data.text ? ' has-text' : '')\" \n    [data]=\"data.anchor\" \n    (clicked)=\"onClick($event)\">\n        <span class=\"n7-pagination__{{ type }}-label\" *ngIf=\"data.text\">\n            {{ data.text }}\n        </span>\n        <span *ngIf=\"iconClass\" class=\"n7-pagination__{{ type }}-icon {{ iconClass }}\"></span>\n    </n7-anchor-wrapper>\n</ng-template>"
-            }] }
-];
-PaginationComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    PaginationComponent.prototype.data;
-    /** @type {?} */
-    PaginationComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], PaginationComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], PaginationComponent.prototype, "emit", void 0);
+PaginationComponent = __decorate([
+    Component({
+        selector: 'n7-pagination',
+        template: "<nav class=\"n7-pagination {{data.classes || ''}}\" \n     *ngIf=\"data\"\n     [ngClass]=\"{ 'has-results-select' : data.select }\">\n    <ul class=n7-pagination__items>\n\n        <li class=\"n7-pagination__first {{data.first.classes || ''}}\" *ngIf=\"data.first\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'first',\n                data: data.first,\n                iconClass: 'n7-icon-angle-double-left'\n            }\"></ng-container>\n        </li>\n        <li class=\"n7-pagination__prev {{data.prev.classes || ''}}\" *ngIf=\"data.prev\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'prev',\n                data: data.prev,\n                iconClass: 'n7-icon-angle-left'\n            }\"></ng-container>\n        </li>\n\n        <li class=\"n7-pagination__page {{page.classes || ''}}\" *ngFor=\"let page of data.links\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'page',\n                data: page,\n                clicked: onClick\n            }\"></ng-container>\n        </li>\n\n        <li class=\"n7-pagination__next {{data.next.classes || ''}}\" *ngIf=\"data.next\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'next',\n                data: data.next,\n                iconClass: 'n7-icon-angle-right'\n            }\"></ng-container>\n        </li>\n        <li class=\"n7-pagination__last {{data.last.classes || ''}}\" *ngIf=\"data.last\">\n            <ng-container *ngTemplateOutlet=\"button; context: {\n                type: 'last',\n                data: data.last,\n                iconClass: 'n7-icon-angle-double-right'\n            }\"></ng-container>\n        </li>\n    </ul>\n    \n    <div class=\"n7-pagination__setting\"\n         *ngIf=\"data.select\">\n        <span class=\"n7-pagination__setting-label\"\n              *ngIf=\"data.select.label\">\n            {{data.select.label}}\n        </span>\n        <select *ngIf=\"data.select.options\" \n                name=\"n7-pagination__select-size\" \n                class=\"n7-pagination__setting-select\"\n                (change)=\"onChange(data.select.payload, $event.target.value)\"\n                [disabled]=\"data.select.disabled\">\n            <option *ngFor=\"let opt of data.select.options\"\n                    [disabled]=\"opt.disabled\"\n                    [selected]=\"opt.selected\">\n                {{opt.text}}\n            </option>\n        </select>\n    </div>\n</nav>\n\n<ng-template #button let-type=\"type\" let-data=\"data\" let-clicked=\"clicked\" let-iconClass=\"iconClass\">\n    <n7-anchor-wrapper \n    [classes]=\"'n7-pagination__' + type + '-link' + (data.text ? ' has-text' : '')\" \n    [data]=\"data.anchor\" \n    (clicked)=\"onClick($event)\">\n        <span class=\"n7-pagination__{{ type }}-label\" *ngIf=\"data.text\">\n            {{ data.text }}\n        </span>\n        <span *ngIf=\"iconClass\" class=\"n7-pagination__{{ type }}-icon {{ iconClass }}\"></span>\n    </n7-anchor-wrapper>\n</ng-template>"
+    })
+], PaginationComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/sidebar-header/sidebar-header.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for SidebarHeaderComponent's "data"
- *
- * \@property iconLeft (optional)
- * \@property text (optional)
- * \@property additionalText (optional)
- * \@property iconRight (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * @record
- */
-function SidebarHeaderData() { }
-if (false) {
-    /**
-     * the headers leftmost icon
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.iconLeft;
-    /**
-     * the title text
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.text;
-    /**
-     * additional text, displayed on the right of the text
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.additionalText;
-    /**
-     * the headers rightmost icon
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.iconRight;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.classes;
-    /**
-     * payload for onClick events
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.payload;
-}
-class SidebarHeaderComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let SidebarHeaderComponent = class SidebarHeaderComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-SidebarHeaderComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-sidebar-header',
-                template: "<div *ngIf=\"data\" class=\"n7-sidebar-header {{ data.classes || ''}}\">\n    <span class=\"n7-sidebar-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-sidebar-header__text-wrapper\"\n          *ngIf=\"data.text || data.additionalText\">\n        <span class=\"n7-sidebar-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-sidebar-header__secondary-text\" \n              *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\"\n          class=\"n7-sidebar-header__icon-right {{ data.iconRight }}\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
-            }] }
-];
-SidebarHeaderComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    SidebarHeaderComponent.prototype.data;
-    /** @type {?} */
-    SidebarHeaderComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], SidebarHeaderComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], SidebarHeaderComponent.prototype, "emit", void 0);
+SidebarHeaderComponent = __decorate([
+    Component({
+        selector: 'n7-sidebar-header',
+        template: "<div *ngIf=\"data\" class=\"n7-sidebar-header {{ data.classes || ''}}\">\n    <span class=\"n7-sidebar-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-sidebar-header__text-wrapper\"\n          *ngIf=\"data.text || data.additionalText\">\n        <span class=\"n7-sidebar-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-sidebar-header__secondary-text\" \n              *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\"\n          class=\"n7-sidebar-header__icon-right {{ data.iconRight }}\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
+    })
+], SidebarHeaderComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/signup/signup.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for Signup field
- *
- * \@property id (M)
- * \@property label (M)
- * \@property inputType (M)
- * \@property payload (M)
- * \@property error (O)
- * \@property hint (O)
- * \@property classes (O)
- * @record
- */
-function SignupField() { }
-if (false) {
-    /** @type {?} */
-    SignupField.prototype.id;
-    /** @type {?} */
-    SignupField.prototype.label;
-    /** @type {?} */
-    SignupField.prototype.inputType;
-    /** @type {?} */
-    SignupField.prototype.payload;
-    /** @type {?|undefined} */
-    SignupField.prototype.error;
-    /** @type {?|undefined} */
-    SignupField.prototype.hint;
-    /** @type {?|undefined} */
-    SignupField.prototype.classes;
-}
-/**
- * Interface for Signup password field (extends SignupField)
- *
- * \@property show (O)
- * @record
- */
-function SignupPasswordField() { }
-if (false) {
-    /** @type {?|undefined} */
-    SignupPasswordField.prototype.show;
-}
-/**
- * Interface for Signup submit
- *
- * \@property label (M)
- * \@property payload (M)
- * \@property error (O)
- * \@property classes (O)
- * @record
- */
-function SignupSubmit() { }
-if (false) {
-    /** @type {?} */
-    SignupSubmit.prototype.label;
-    /** @type {?} */
-    SignupSubmit.prototype.payload;
-    /** @type {?|undefined} */
-    SignupSubmit.prototype.error;
-    /** @type {?|undefined} */
-    SignupSubmit.prototype.classes;
-}
-/**
- * Interface for Signup footer
- *
- * \@property label (M)
- * \@property action (M)
- * \@property classes (O)
- * @record
- */
-function SignupFooter() { }
-if (false) {
-    /** @type {?} */
-    SignupFooter.prototype.label;
-    /** @type {?} */
-    SignupFooter.prototype.action;
-    /** @type {?|undefined} */
-    SignupFooter.prototype.classes;
-}
-/**
- * Interface for Signup data
- * login/signup/forgotPassword groups
- *
- * \@property login (O)
- * \@property signup (O)
- * \@property forgotPassword (O)
- * @record
- */
-function SignupData() { }
-if (false) {
-    /** @type {?|undefined} */
-    SignupData.prototype.login;
-    /** @type {?|undefined} */
-    SignupData.prototype.signup;
-    /** @type {?|undefined} */
-    SignupData.prototype.forgotPassword;
-}
-class SignupComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let SignupComponent = class SignupComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-    /**
-     * @param {?} inputPayload
-     * @param {?} value
-     * @return {?}
-     */
     onChange(inputPayload, value) {
         if (!this.emit)
             return;
         this.emit('change', { inputPayload, value });
     }
-    /**
-     * @param {?} inputPayload
-     * @param {?} value
-     * @return {?}
-     */
     onInputEnter(inputPayload, value) {
         if (!this.emit)
             return;
         this.emit('enter', { inputPayload, value });
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
     onFocus(payload) {
         if (!this.emit)
             return;
         this.emit('focus', payload);
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
     onFocusOut(payload) {
         if (!this.emit)
             return;
         this.emit('focusout', payload);
     }
-}
-SignupComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-signup',
-                template: "<!-- Signup: login -->\n<section *ngIf=\"data && data.login\" class=\"n7-signup n7-signup--login\">\n    <form class=\"n7-signup__form\" novalidate>\n        <ng-container *ngTemplateOutlet=\"field; context: { $implicit: data.login.email }\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"\n        passwordField;\n        context: { $implicit: data.login.password }\n      \"></ng-container>\n        <div *ngIf=\"data.login.forgotPassword\" class=\"n7-signup__form-item n7-signup__form-item-forgot-password\">\n            <a (click)=\"onClick(data.login.forgotPassword.payload)\" title=\"{{ data.login.forgotPassword.title }}\"\n                [attr.aria-label]=\"data.login.forgotPassword.title\">{{ data.login.forgotPassword.label }}</a>\n        </div>\n        <ng-container *ngTemplateOutlet=\"submit; context: { $implicit: data.login.submit }\"></ng-container>\n    </form>\n    <ng-container *ngTemplateOutlet=\"footer; context: { $implicit: data.login.footer }\"></ng-container>\n</section>\n\n<!-- Signup: signup -->\n<section *ngIf=\"data && data.signup\" class=\"n7-signup n7-signup--signup\">\n    <form class=\"n7-signup__form\" novalidate>\n        <ng-container *ngTemplateOutlet=\"field; context: { $implicit: data.signup.name }\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"field; context: { $implicit: data.signup.email }\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"\n        passwordField;\n        context: { $implicit: data.signup.password }\n      \"></ng-container>\n        <ng-container *ngTemplateOutlet=\"\n        passwordField;\n        context: { $implicit: data.signup.rePassword }\n      \"></ng-container>\n        <ng-container *ngTemplateOutlet=\"submit; context: { $implicit: data.signup.submit }\"></ng-container>\n    </form>\n    <ng-container *ngTemplateOutlet=\"footer; context: { $implicit: data.signup.footer }\"></ng-container>\n</section>\n\n<!-- Signup: forgot password -->\n<section *ngIf=\"data && data.forgotPassword\" class=\"n7-signup n7-signup--forgot-password\">\n    <p class=\"n7-signup__text\">\n        {{ data.forgotPassword.description }}\n    </p>\n    <form class=\"n7-signup__form\" novalidate>\n        <ng-container *ngTemplateOutlet=\"\n        field;\n        context: { $implicit: data.forgotPassword.email }\n      \"></ng-container>\n\n        <ng-container *ngTemplateOutlet=\"\n        submit;\n        context: { $implicit: data.forgotPassword.submit }\n      \"></ng-container>\n\n      <!-- hidden submit button to prevent submit on enter -->\n      <button type=\"submit\" disabled style=\"display: none\" aria-hidden=\"true\"></button>\n    </form>\n    <ng-container *ngTemplateOutlet=\"\n      footer;\n      context: { $implicit: data.forgotPassword.footer }\n    \"></ng-container>\n</section>\n\n<!-- Template: field -->\n<ng-template #field let-field>\n    <div [ngClass]=\"{\n      'has-error': field.error,\n      'has-hint': field.hint\n    }\" class=\"n7-signup__form-item {{ field.classes || '' }}\">\n        <label class=\"n7-signup__form-item-label\" for=\"{{ field.id }}\">{{\n      field.label\n    }}</label>\n        <div *ngIf=\"field.hint\" class=\"n7-signup__form-item-hint\">\n            {{ field.hint }}\n        </div>\n        <div class=\"n7-signup__input-wrapper\">\n            <input (focus)=\"onFocus(field.payload)\" (focusout)=\"onFocusOut(field.payload)\"\n                (keyup.enter)=\"onInputEnter(field.payload, $event.target.value)\"\n                (input)=\"onChange(field.payload, $event.target.value)\" class=\"n7-signup__form-item-input\"\n                type=\"{{ field.inputType }}\" id=\"{{ field.id }}\" />\n        </div>\n        <div *ngIf=\"field.error\" class=\"n7-signup__form-error\">\n            {{ field.error }}\n        </div>\n    </div>\n</ng-template>\n\n<!-- Template: password-field -->\n<ng-template #passwordField let-field>\n    <div [ngClass]=\"{\n      'has-error': field.error,\n      'has-hint': field.hint\n    }\" class=\"n7-signup__form-item {{ field.classes || '' }}\">\n        <label class=\"n7-signup__form-item-label\" for=\"{{ field.id }}\">{{\n      field.label\n    }}</label>\n        <div *ngIf=\"field.hint\" class=\"n7-signup__form-item-hint\">\n            {{ field.hint }}\n        </div>\n        <div class=\"n7-signup__input-wrapper\">\n            <input (focus)=\"onFocus(field.payload)\" (focusout)=\"onFocusOut(field.payload)\"\n                (keyup.enter)=\"onInputEnter(field.payload, $event.target.value)\"\n                (input)=\"onChange(field.payload, $event.target.value)\" class=\"n7-signup__form-item-input\"\n                type=\"{{ field.inputType }}\" id=\"{{ field.id }}\" />\n            <button *ngIf=\"field.show\" type=\"button\" (click)=\"onClick(field.show.payload)\"\n                [attr.aria-label]=\"field.show.label\" class=\"n7-signup__form-item-show-password\">\n                <i [attr.aria-label]=\"field.show.label\" class=\"{{ field.show.icon }}\"></i>\n            </button>\n        </div>\n        <div *ngIf=\"field.error\" class=\"n7-signup__form-error\">\n            {{ field.error }}\n        </div>\n    </div>\n</ng-template>\n\n<!-- Template: footer -->\n<ng-template #footer let-footer>\n    <footer *ngIf=\"footer\" class=\"n7-signup__footer {{ footer.classes || '' }}\">\n        <div class=\"n7-signup__footer-text\">{{ footer.label }}</div>\n        <a *ngIf=\"footer.action\" (click)=\"onClick(footer.action.payload)\" title=\"{{ footer.action.label }}\"\n            class=\"n7-btn\">{{ footer.action.label }}</a>\n    </footer>\n</ng-template>\n\n<!-- Template: submit button -->\n<ng-template #submit let-submit>\n    <div [ngClass]=\"{\n      'has-error': submit.error\n    }\" class=\"n7-signup__form-item n7-signup__form-item-action {{\n      submit.classes || ''\n    }}\">\n        <button type=\"button\" (click)=\"onClick(submit.payload)\" [attr.aria-label]=\"submit.label\"\n            class=\"n7-btn n7-btn-cta\">\n            {{ submit.label }}\n        </button>\n        <div *ngIf=\"submit.error\" class=\"n7-signup__form-error\">\n            {{ submit.error }}\n        </div>\n    </div>\n</ng-template>"
-            }] }
-];
-SignupComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    SignupComponent.prototype.data;
-    /** @type {?} */
-    SignupComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], SignupComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], SignupComponent.prototype, "emit", void 0);
+SignupComponent = __decorate([
+    Component({
+        selector: 'n7-signup',
+        template: "<!-- Signup: login -->\n<section *ngIf=\"data && data.login\" class=\"n7-signup n7-signup--login\">\n    <form class=\"n7-signup__form\" novalidate>\n        <ng-container *ngTemplateOutlet=\"field; context: { $implicit: data.login.email }\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"\n        passwordField;\n        context: { $implicit: data.login.password }\n      \"></ng-container>\n        <div *ngIf=\"data.login.forgotPassword\" class=\"n7-signup__form-item n7-signup__form-item-forgot-password\">\n            <a (click)=\"onClick(data.login.forgotPassword.payload)\" title=\"{{ data.login.forgotPassword.title }}\"\n                [attr.aria-label]=\"data.login.forgotPassword.title\">{{ data.login.forgotPassword.label }}</a>\n        </div>\n        <ng-container *ngTemplateOutlet=\"submit; context: { $implicit: data.login.submit }\"></ng-container>\n    </form>\n    <ng-container *ngTemplateOutlet=\"footer; context: { $implicit: data.login.footer }\"></ng-container>\n</section>\n\n<!-- Signup: signup -->\n<section *ngIf=\"data && data.signup\" class=\"n7-signup n7-signup--signup\">\n    <form class=\"n7-signup__form\" novalidate>\n        <ng-container *ngTemplateOutlet=\"field; context: { $implicit: data.signup.name }\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"field; context: { $implicit: data.signup.email }\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"\n        passwordField;\n        context: { $implicit: data.signup.password }\n      \"></ng-container>\n        <ng-container *ngTemplateOutlet=\"\n        passwordField;\n        context: { $implicit: data.signup.rePassword }\n      \"></ng-container>\n        <ng-container *ngTemplateOutlet=\"submit; context: { $implicit: data.signup.submit }\"></ng-container>\n    </form>\n    <ng-container *ngTemplateOutlet=\"footer; context: { $implicit: data.signup.footer }\"></ng-container>\n</section>\n\n<!-- Signup: forgot password -->\n<section *ngIf=\"data && data.forgotPassword\" class=\"n7-signup n7-signup--forgot-password\">\n    <p class=\"n7-signup__text\">\n        {{ data.forgotPassword.description }}\n    </p>\n    <form class=\"n7-signup__form\" novalidate>\n        <ng-container *ngTemplateOutlet=\"\n        field;\n        context: { $implicit: data.forgotPassword.email }\n      \"></ng-container>\n\n        <ng-container *ngTemplateOutlet=\"\n        submit;\n        context: { $implicit: data.forgotPassword.submit }\n      \"></ng-container>\n\n      <!-- hidden submit button to prevent submit on enter -->\n      <button type=\"submit\" disabled style=\"display: none\" aria-hidden=\"true\"></button>\n    </form>\n    <ng-container *ngTemplateOutlet=\"\n      footer;\n      context: { $implicit: data.forgotPassword.footer }\n    \"></ng-container>\n</section>\n\n<!-- Template: field -->\n<ng-template #field let-field>\n    <div [ngClass]=\"{\n      'has-error': field.error,\n      'has-hint': field.hint\n    }\" class=\"n7-signup__form-item {{ field.classes || '' }}\">\n        <label class=\"n7-signup__form-item-label\" for=\"{{ field.id }}\">{{\n      field.label\n    }}</label>\n        <div *ngIf=\"field.hint\" class=\"n7-signup__form-item-hint\">\n            {{ field.hint }}\n        </div>\n        <div class=\"n7-signup__input-wrapper\">\n            <input (focus)=\"onFocus(field.payload)\" (focusout)=\"onFocusOut(field.payload)\"\n                (keyup.enter)=\"onInputEnter(field.payload, $event.target.value)\"\n                (input)=\"onChange(field.payload, $event.target.value)\" class=\"n7-signup__form-item-input\"\n                type=\"{{ field.inputType }}\" id=\"{{ field.id }}\" />\n        </div>\n        <div *ngIf=\"field.error\" class=\"n7-signup__form-error\">\n            {{ field.error }}\n        </div>\n    </div>\n</ng-template>\n\n<!-- Template: password-field -->\n<ng-template #passwordField let-field>\n    <div [ngClass]=\"{\n      'has-error': field.error,\n      'has-hint': field.hint\n    }\" class=\"n7-signup__form-item {{ field.classes || '' }}\">\n        <label class=\"n7-signup__form-item-label\" for=\"{{ field.id }}\">{{\n      field.label\n    }}</label>\n        <div *ngIf=\"field.hint\" class=\"n7-signup__form-item-hint\">\n            {{ field.hint }}\n        </div>\n        <div class=\"n7-signup__input-wrapper\">\n            <input (focus)=\"onFocus(field.payload)\" (focusout)=\"onFocusOut(field.payload)\"\n                (keyup.enter)=\"onInputEnter(field.payload, $event.target.value)\"\n                (input)=\"onChange(field.payload, $event.target.value)\" class=\"n7-signup__form-item-input\"\n                type=\"{{ field.inputType }}\" id=\"{{ field.id }}\" />\n            <button *ngIf=\"field.show\" type=\"button\" (click)=\"onClick(field.show.payload)\"\n                [attr.aria-label]=\"field.show.label\" class=\"n7-signup__form-item-show-password\">\n                <i [attr.aria-label]=\"field.show.label\" class=\"{{ field.show.icon }}\"></i>\n            </button>\n        </div>\n        <div *ngIf=\"field.error\" class=\"n7-signup__form-error\">\n            {{ field.error }}\n        </div>\n    </div>\n</ng-template>\n\n<!-- Template: footer -->\n<ng-template #footer let-footer>\n    <footer *ngIf=\"footer\" class=\"n7-signup__footer {{ footer.classes || '' }}\">\n        <div class=\"n7-signup__footer-text\">{{ footer.label }}</div>\n        <a *ngIf=\"footer.action\" (click)=\"onClick(footer.action.payload)\" title=\"{{ footer.action.label }}\"\n            class=\"n7-btn\">{{ footer.action.label }}</a>\n    </footer>\n</ng-template>\n\n<!-- Template: submit button -->\n<ng-template #submit let-submit>\n    <div [ngClass]=\"{\n      'has-error': submit.error\n    }\" class=\"n7-signup__form-item n7-signup__form-item-action {{\n      submit.classes || ''\n    }}\">\n        <button type=\"button\" (click)=\"onClick(submit.payload)\" [attr.aria-label]=\"submit.label\"\n            class=\"n7-btn n7-btn-cta\">\n            {{ submit.label }}\n        </button>\n        <div *ngIf=\"submit.error\" class=\"n7-signup__form-error\">\n            {{ submit.error }}\n        </div>\n    </div>\n</ng-template>"
+    })
+], SignupComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/simple-autocomplete/simple-autocomplete.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for SimpleAutocompleteComponent's "data"
- *
- * \@property suggestion (required)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function SimpleAutocompleteData() { }
-if (false) {
-    /**
-     * Suggested word endings
-     * @type {?}
-     */
-    SimpleAutocompleteData.prototype.suggestion;
-    /**
-     * Additional HTML classes
-     * @type {?|undefined}
-     */
-    SimpleAutocompleteData.prototype.classes;
-    /**
-     * Additional data useful for the component's logic
-     * @type {?|undefined}
-     */
-    SimpleAutocompleteData.prototype._meta;
-}
-/**
- * Interface for SimpleAutocompleteComponent's "Suggestion"
- *
- * \@property text
- * \@property anchor (optional)
- * @record
- */
-function SimpleAutocompleteSuggestion() { }
-if (false) {
-    /** @type {?} */
-    SimpleAutocompleteSuggestion.prototype.text;
-    /** @type {?|undefined} */
-    SimpleAutocompleteSuggestion.prototype.anchor;
-}
-class SimpleAutocompleteComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let SimpleAutocompleteComponent = class SimpleAutocompleteComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-SimpleAutocompleteComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-simple-autocomplete',
-                template: "<div *ngIf=\"data\" class=\"n7-simple-autocomplete\">\n    <ul class=\"n7-simple-autocomplete__list {{data.classes || ''}}\">\n        <li *ngFor=\"let suggestion of data.suggestion\" \n            class=\"n7-simple-autocomplete__item\">\n            <n7-anchor-wrapper\n            [classes]=\"'n7-simple-autocomplete__link'\"\n            [data]=\"suggestion.anchor\"\n            (clicked)=\"onClick($event)\">\n              <span class=\"n7-simple-autocomplete__label\" [innerHTML]=\"suggestion.text\"></span>\n            </n7-anchor-wrapper>\n        </li>\n    </ul> \n</div>"
-            }] }
-];
-SimpleAutocompleteComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    SimpleAutocompleteComponent.prototype.data;
-    /** @type {?} */
-    SimpleAutocompleteComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], SimpleAutocompleteComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], SimpleAutocompleteComponent.prototype, "emit", void 0);
+SimpleAutocompleteComponent = __decorate([
+    Component({
+        selector: 'n7-simple-autocomplete',
+        template: "<div *ngIf=\"data\" class=\"n7-simple-autocomplete\">\n    <ul class=\"n7-simple-autocomplete__list {{data.classes || ''}}\">\n        <li *ngFor=\"let suggestion of data.suggestion\" \n            class=\"n7-simple-autocomplete__item\">\n            <n7-anchor-wrapper\n            [classes]=\"'n7-simple-autocomplete__link'\"\n            [data]=\"suggestion.anchor\"\n            (clicked)=\"onClick($event)\">\n              <span class=\"n7-simple-autocomplete__label\" [innerHTML]=\"suggestion.text\"></span>\n            </n7-anchor-wrapper>\n        </li>\n    </ul> \n</div>"
+    })
+], SimpleAutocompleteComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/table/table.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for row's cells
- *
- * \@property content (required)
- * \@property type (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-function Cell() { }
-if (false) {
-    /** @type {?} */
-    Cell.prototype.content;
-    /**
-     * content type
-     * @type {?|undefined}
-     */
-    Cell.prototype.type;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    Cell.prototype.classes;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    Cell.prototype.payload;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    Cell.prototype._meta;
-}
-/**
- * Interface for table's rows (head, body or foot rows)
- *
- * \@property cells (required)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-function Row() { }
-if (false) {
-    /** @type {?} */
-    Row.prototype.cells;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    Row.prototype.classes;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    Row.prototype._meta;
-}
-/**
- * Interface for TableComponent's "data"
- *
- * \@property body (required)
- * \@property head (optional)
- * \@proprty foot (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- * @record
- */
-function TableData() { }
-if (false) {
-    /**
-     * table's head
-     * @type {?|undefined}
-     */
-    TableData.prototype.head;
-    /**
-     * table's body (the table its self)
-     * @type {?}
-     */
-    TableData.prototype.body;
-    /**
-     * table's foot
-     * @type {?|undefined}
-     */
-    TableData.prototype.foot;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    TableData.prototype.classes;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    TableData.prototype._meta;
-}
-class TableComponent {
-    /**
-     * @param {?} cellPayload
-     * @return {?}
-     */
+//---------------------------
+let TableComponent = class TableComponent {
     onCellClick(cellPayload) {
         if (!this.emit)
             return;
         this.emit('cellclick', cellPayload);
     }
-    /**
-     * @param {?} cellPayload
-     * @return {?}
-     */
     onCellDblClick(cellPayload) {
         if (!this.emit)
             return;
         this.emit('celldblclick', cellPayload);
     }
-    /**
-     * @param {?} cellPayload
-     * @param {?} cellValue
-     * @return {?}
-     */
     onInputTextChange(cellPayload, cellValue) {
         if (!this.emit)
             return;
-        /** @type {?} */
         const textChangePayload = { tcPayload: cellPayload, val: cellValue };
         this.emit('inputtextchange', textChangePayload);
     }
-}
-TableComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-table',
-                template: "<section class=\"n7-table {{data.classes || ''}}\" *ngIf=\"data\">\n    <table class=\"n7-table__table\">\n    \t<thead class=\"n7-table__table-header\" *ngIf=\"data.head\">\n            <tr class=\"n7-table__table-header-row {{row.classes || ''}}\"\n                *ngFor=\"let row of data.head\">\n                <th class=\"n7-table__table-header-cell {{cell.classes || ''}}\"\n                    *ngFor=\"let cell of row.cells\"\n                    (click)=\"onCellClick(cell.payload)\"\n                    [innerHTML]=\"cell.content\">\n                </th>\n            </tr>\n        </thead>\n\n        <tbody class=\"n7-table__table-body\" *ngIf=\"data.body\">\n            <tr class=\"n7-table__table-body-row {{row.classes || ''}}\"\n                *ngFor=\"let row of data.body\">\n                <td class=\"n7-table__table-body-cell {{cell.classes || ''}}\"\n                    *ngFor=\"let cell of row.cells; let i = index\"\n                    (click)=\"onCellClick(cell.payload)\"\n                    (dblclick)=\"onCellDblClick(cell.payload)\"\n                    [attr.aria-label]=\"data.head[0].cells[i].content\"\n                    >\n                    <span   class=\"n7-table__table-body-cell-innerhtml\"\n                            *ngIf=\"!cell.type || cell.type=='html'\"\n                            [innerHTML]=\"cell.content\"></span>\n                    <input  class=\"n7-table__table-body-cell-inputtext\"\n                            *ngIf=\"cell.type=='input:text'\"\n                            type=\"text\" placeholder=\"{{cell.content}}\"\n                            id=\"{{cell._meta.inputId}}\"\n                            (keyup.enter)=\"onInputTextChange(cell.payload, $event.target.value)\"/>                        \n                </td>\n            </tr>\n        </tbody>\n\n        <tfoot class=\"n7-table__table-footer\" *ngIf=\"data.foot\">\n            <tr class=\"n7-table__table-footer-row {{row.classes || ''}}\"\n                *ngFor=\"let row of data.foot\">\n                <td class=\"n7-table__table-footer-cell {{cell.classes || ''}}\"\n                    *ngFor=\"let cell of row.cells\"\n                    (click)=\"onCellClick(cell.payload)\"\n                    [innerHTML]=\"cell.content\">\n                </td>\n            </tr>\n        </tfoot>        \n \t </table> \n</section>\n"
-            }] }
-];
-TableComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    TableComponent.prototype.data;
-    /** @type {?} */
-    TableComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TableComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TableComponent.prototype, "emit", void 0);
+TableComponent = __decorate([
+    Component({
+        selector: 'n7-table',
+        template: "<section class=\"n7-table {{data.classes || ''}}\" *ngIf=\"data\">\n    <table class=\"n7-table__table\">\n    \t<thead class=\"n7-table__table-header\" *ngIf=\"data.head\">\n            <tr class=\"n7-table__table-header-row {{row.classes || ''}}\"\n                *ngFor=\"let row of data.head\">\n                <th class=\"n7-table__table-header-cell {{cell.classes || ''}}\"\n                    *ngFor=\"let cell of row.cells\"\n                    (click)=\"onCellClick(cell.payload)\"\n                    [innerHTML]=\"cell.content\">\n                </th>\n            </tr>\n        </thead>\n\n        <tbody class=\"n7-table__table-body\" *ngIf=\"data.body\">\n            <tr class=\"n7-table__table-body-row {{row.classes || ''}}\"\n                *ngFor=\"let row of data.body\">\n                <td class=\"n7-table__table-body-cell {{cell.classes || ''}}\"\n                    *ngFor=\"let cell of row.cells; let i = index\"\n                    (click)=\"onCellClick(cell.payload)\"\n                    (dblclick)=\"onCellDblClick(cell.payload)\"\n                    [attr.aria-label]=\"data.head[0].cells[i].content\"\n                    >\n                    <span   class=\"n7-table__table-body-cell-innerhtml\"\n                            *ngIf=\"!cell.type || cell.type=='html'\"\n                            [innerHTML]=\"cell.content\"></span>\n                    <input  class=\"n7-table__table-body-cell-inputtext\"\n                            *ngIf=\"cell.type=='input:text'\"\n                            type=\"text\" placeholder=\"{{cell.content}}\"\n                            id=\"{{cell._meta.inputId}}\"\n                            (keyup.enter)=\"onInputTextChange(cell.payload, $event.target.value)\"/>                        \n                </td>\n            </tr>\n        </tbody>\n\n        <tfoot class=\"n7-table__table-footer\" *ngIf=\"data.foot\">\n            <tr class=\"n7-table__table-footer-row {{row.classes || ''}}\"\n                *ngFor=\"let row of data.foot\">\n                <td class=\"n7-table__table-footer-cell {{cell.classes || ''}}\"\n                    *ngFor=\"let cell of row.cells\"\n                    (click)=\"onCellClick(cell.payload)\"\n                    [innerHTML]=\"cell.content\">\n                </td>\n            </tr>\n        </tfoot>        \n \t </table> \n</section>\n"
+    })
+], TableComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/tag/tag.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for TagComponent's "data"
- *
- * \@property text (required)
- * \@property label (optional)
- * \@property icon (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * \@property _meta (optional)
- *
- * @record
- */
-function TagData() { }
-if (false) {
-    /**
-     * tag's label
-     * @type {?|undefined}
-     */
-    TagData.prototype.label;
-    /**
-     * text visualized on the tag
-     * @type {?}
-     */
-    TagData.prototype.text;
-    /**
-     * action icon (on right side)
-     * @type {?|undefined}
-     */
-    TagData.prototype.icon;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    TagData.prototype.classes;
-    /**
-     * action click's payload
-     * @type {?|undefined}
-     */
-    TagData.prototype.payload;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    TagData.prototype._meta;
-}
-class TagComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let TagComponent = class TagComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-TagComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-tag',
-                template: "<span class=\"n7-tag {{data.classes || ''}}\" *ngIf=\"data\">\n    <span class=\"n7-tag__label\" *ngIf=\"data.label\">\n        {{ data.label }}\n    </span>\n    <span class=\"n7-tag__text\" *ngIf=\"data.text\">\n        {{ data.text }}\n    </span>\n    <span class=\"n7-tag__icon {{data.icon}}\" *ngIf=\"data.icon\" (click)=\"onClick(data.payload)\"></span>\n</span>"
-            }] }
-];
-TagComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    TagComponent.prototype.data;
-    /** @type {?} */
-    TagComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TagComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TagComponent.prototype, "emit", void 0);
+TagComponent = __decorate([
+    Component({
+        selector: 'n7-tag',
+        template: "<span class=\"n7-tag {{data.classes || ''}}\" *ngIf=\"data\">\n    <span class=\"n7-tag__label\" *ngIf=\"data.label\">\n        {{ data.label }}\n    </span>\n    <span class=\"n7-tag__text\" *ngIf=\"data.text\">\n        {{ data.text }}\n    </span>\n    <span class=\"n7-tag__icon {{data.icon}}\" *ngIf=\"data.icon\" (click)=\"onClick(data.payload)\"></span>\n</span>"
+    })
+], TagComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/timeline/timeline.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function LibOptions() { }
-if (false) {
-    /**
-     * Specifies how strong the zooming for each scroll tick.
-     * Higher zooming friction will slow zooming speed
-     * @type {?|undefined}
-     */
-    LibOptions.prototype.zoomFriction;
-}
-/**
- * @record
- */
-function TimelineData() { }
-if (false) {
-    /**
-     * ID for the HTML container element
-     * @type {?}
-     */
-    TimelineData.prototype.containerID;
-    /**
-     * Options for vis-timeline, full reference: https://visjs.github.io/vis-timeline/docs/timeline/#Configuration_Options
-     * @type {?}
-     */
-    TimelineData.prototype.libOptions;
-    /**
-     * Sets the timeline instance to the given parameter
-     * @type {?|undefined}
-     */
-    TimelineData.prototype._setInstance;
-    /**
-     * Dadaset in vis-js format, full ref: https://visjs.github.io/vis-timeline/docs/timeline/#Data_Format
-     * @type {?}
-     */
-    TimelineData.prototype.dataSet;
-}
-class TimelineComponent {
+//---------------------------
+let TimelineComponent = class TimelineComponent {
     constructor() {
-        /**
-         * Knows if the component is loaded
-         */
+        /** Knows if the component is loaded */
         this._loaded = false;
-        /**
-         * Dynamically load required node modules
-         */
-        this.loadModules = (/**
-         * @return {?}
-         */
-        () => __awaiter(this, void 0, void 0, function* () {
+        /** Dynamically load required node modules */
+        this.loadModules = () => __awaiter(this, void 0, void 0, function* () {
             return (Object.assign({}, yield import('vis-timeline/peer')));
-        }));
+        });
     }
-    /**
-     * @return {?}
-     */
     ngAfterContentChecked() {
         if (!this.data || this._loaded)
             return;
         this._loaded = true;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
-            this.loadModules().then((/**
-             * @param {?} modules
-             * @return {?}
-             */
-            (modules) => {
+        setTimeout(() => {
+            this.loadModules().then((modules) => {
                 // To enable two-way data binding, import { DataSet } from 'vis-data'
                 const { Timeline } = modules;
-                /** @type {?} */
                 const t = new Timeline(document.getElementById(this.data.containerID), // container
                 this.data.dataSet, this.data.libOptions);
                 this.data._setInstance(t);
-            }));
-        }));
+            });
+        });
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-TimelineComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-timeline',
-                template: "<div *ngIf=\"data\" class=\"n7-timeline\">\n  <div [id]=\"data.containerID\" style=\"border: 1px solid #ddd\"></div> \n</div>\n"
-            }] }
-];
-TimelineComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    TimelineComponent.prototype.data;
-    /** @type {?} */
-    TimelineComponent.prototype.emit;
-    /**
-     * Knows if the component is loaded
-     * @type {?}
-     * @private
-     */
-    TimelineComponent.prototype._loaded;
-    /**
-     * Dynamically load required node modules
-     * @type {?}
-     * @private
-     */
-    TimelineComponent.prototype.loadModules;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TimelineComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TimelineComponent.prototype, "emit", void 0);
+TimelineComponent = __decorate([
+    Component({
+        selector: 'n7-timeline',
+        template: "<div *ngIf=\"data\" class=\"n7-timeline\">\n  <div [id]=\"data.containerID\" style=\"border: 1px solid #ddd\"></div> \n</div>\n"
+    })
+], TimelineComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/toast/toast.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for ToastComponent's "data"
- *
- * \@property toasts (required)
- * \@property classes (optional)
- * @record
- */
-function ToastData() { }
-if (false) {
-    /** @type {?} */
-    ToastData.prototype.toasts;
-    /** @type {?|undefined} */
-    ToastData.prototype.classes;
-}
-/**
- * Interface for the single ToastComponent's "Box"
- *
- * \@property classes (required)
- * \@property timer (optional)
- * \@property closeIcon (optional)
- * - icon (required)
- * - payload (required)
- * \@property title (optional)
- * \@property text (optional)
- * \@property actions (optional)
- * @record
- */
-function ToastBox() { }
-if (false) {
-    /**
-     * requires: [is-success, is-warning, is-error] + optional additional html classes
-     * @type {?}
-     */
-    ToastBox.prototype.classes;
-    /**
-     * larger, title text
-     * @type {?|undefined}
-     */
-    ToastBox.prototype.title;
-    /**
-     * the toast's body text
-     * @type {?|undefined}
-     */
-    ToastBox.prototype.text;
-    /**
-     * 'X' icon, to dismiss/close the toast
-     * ( n7-icon-cross )
-     *
-     *  Each icon requires it's onClick payload
-     * @type {?|undefined}
-     */
-    ToastBox.prototype.closeIcon;
-    /**
-     * the toast's optional buttons
-     * suggestion: don't use more than 2 actions
-     * @type {?|undefined}
-     */
-    ToastBox.prototype.actions;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    ToastBox.prototype._meta;
-}
-/**
- * Interface for the single ToastComponent's "Action"
- *
- * \@property text (required)
- * \@property payload (required)
- * \@property classes (optional)
- * @record
- */
-function ToastAction() { }
-if (false) {
-    /**
-     * the button's rendered text
-     * @type {?}
-     */
-    ToastAction.prototype.text;
-    /**
-     * the button's onClick payload
-     * @type {?}
-     */
-    ToastAction.prototype.payload;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    ToastAction.prototype.classes;
-}
-class ToastComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let ToastComponent = class ToastComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-ToastComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-toast',
-                template: "<div *ngIf=\"data\" class=\"n7-toast\">\n    <div class=\"n7-toast__column {{data.classes || ''}}\">\n\n        <!-- Toast boxes -->\n        <div class=\"n7-toast__box\" \n             *ngFor=\"let box of data.toasts\"\n             [ngClass]=\"{ 'has-actions' : !! (box.actions || box.closeIcon) }\">\n        \n            <!-- Toast text -->\n            <div class=\"n7-toast__content {{box.classes || ''}}\" *ngIf=\"box.title || box.text\">\n                <span class=\"n7-toast__title\" *ngIf=\"box.title\">{{ box.title }}</span>\n                <span class=\"n7-toast__text\" *ngIf=\"box.text\">{{ box.text }}</span>\n            </div>\n\n            <!-- Toast actions -->\n            <div class=\"n7-toast__actions\" *ngIf=\"box.actions || box.closeIcon\">\n                <span\n                class=\"n7-toast__closeIcon {{ box.closeIcon.icon }}\" \n                *ngIf=\"box.closeIcon\" \n                (click)=\"onClick(box.closeIcon.payload)\">\n                </span>\n                <span class=\"n7-toast__action-wrapper\" *ngIf=\"box.actions\">\n                    <span class=\"n7-toast__action-content\" *ngFor=\"let action of box.actions\">\n                        <button class=\"n7-toast__action-button n7-btn n7-btn-s {{action.classes || ''}}\"\n                                (click)=\"onClick(action.payload)\">\n                                {{action.text}}\n                        </button>\n                    </span>\n                </span>\n            </div>\n        </div>\n    </div>\n</div>"
-            }] }
-];
-ToastComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    ToastComponent.prototype.data;
-    /** @type {?} */
-    ToastComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ToastComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], ToastComponent.prototype, "emit", void 0);
+ToastComponent = __decorate([
+    Component({
+        selector: 'n7-toast',
+        template: "<div *ngIf=\"data\" class=\"n7-toast\">\n    <div class=\"n7-toast__column {{data.classes || ''}}\">\n\n        <!-- Toast boxes -->\n        <div class=\"n7-toast__box\" \n             *ngFor=\"let box of data.toasts\"\n             [ngClass]=\"{ 'has-actions' : !! (box.actions || box.closeIcon) }\">\n        \n            <!-- Toast text -->\n            <div class=\"n7-toast__content {{box.classes || ''}}\" *ngIf=\"box.title || box.text\">\n                <span class=\"n7-toast__title\" *ngIf=\"box.title\">{{ box.title }}</span>\n                <span class=\"n7-toast__text\" *ngIf=\"box.text\">{{ box.text }}</span>\n            </div>\n\n            <!-- Toast actions -->\n            <div class=\"n7-toast__actions\" *ngIf=\"box.actions || box.closeIcon\">\n                <span\n                class=\"n7-toast__closeIcon {{ box.closeIcon.icon }}\" \n                *ngIf=\"box.closeIcon\" \n                (click)=\"onClick(box.closeIcon.payload)\">\n                </span>\n                <span class=\"n7-toast__action-wrapper\" *ngIf=\"box.actions\">\n                    <span class=\"n7-toast__action-content\" *ngFor=\"let action of box.actions\">\n                        <button class=\"n7-toast__action-button n7-btn n7-btn-s {{action.classes || ''}}\"\n                                (click)=\"onClick(action.payload)\">\n                                {{action.text}}\n                        </button>\n                    </span>\n                </span>\n            </div>\n        </div>\n    </div>\n</div>"
+    })
+], ToastComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/tooltip-content/tooltip-content.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for TooltipContentComponent's "data"
- *
- * \@property NAME (required|options) <--- TODO: update with interface properties
- * @record
- */
-function TooltipContentData() { }
-if (false) {
-    /**
-     * Title of the tooltip
-     * @type {?|undefined}
-     */
-    TooltipContentData.prototype.title;
-    /**
-     * Subtitle or text
-     * @type {?|undefined}
-     */
-    TooltipContentData.prototype.text;
-    /**
-     * Image for the tooltip
-     * @type {?|undefined}
-     */
-    TooltipContentData.prototype.image;
-    /**
-     * Action or list of actions
-     * @type {?|undefined}
-     */
-    TooltipContentData.prototype.actions;
-}
-class TooltipContentComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let TooltipContentComponent = class TooltipContentComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-TooltipContentComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-tooltip-content',
-                template: "<div *ngIf=\"data\"\n     class=\"n7-tooltip-content\">\n\n  <div *ngIf=\"data.title\">\n    {{data.title}}\n  </div>\n\n  <div *ngIf=\"data.text\"\n       [innerHTML]=\"data.text\">\n  </div>\n\n  <img *ngIf=\"data.image\"\n       [src]=\"data.image\">\n\n  <ng-container *ngFor=\"let btn of data.actions\">\n    <n7-anchor-wrapper [classes]=\"\"\n                       [data]=\"btn\"\n                       (clicked)=\"onClick(btn.anchor.payload)\">\n      <span *ngIf=\"data.text\" class=\"n7-btn\">\n        {{ btn.text }}\n      </span>\n    </n7-anchor-wrapper>\n  </ng-container>\n\n</div>\n"
-            }] }
-];
-TooltipContentComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    TooltipContentComponent.prototype.data;
-    /** @type {?} */
-    TooltipContentComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TooltipContentComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TooltipContentComponent.prototype, "emit", void 0);
+TooltipContentComponent = __decorate([
+    Component({
+        selector: 'n7-tooltip-content',
+        template: "<div *ngIf=\"data\"\n     class=\"n7-tooltip-content\">\n\n  <div *ngIf=\"data.title\">\n    {{data.title}}\n  </div>\n\n  <div *ngIf=\"data.text\"\n       [innerHTML]=\"data.text\">\n  </div>\n\n  <img *ngIf=\"data.image\"\n       [src]=\"data.image\">\n\n  <ng-container *ngFor=\"let btn of data.actions\">\n    <n7-anchor-wrapper [classes]=\"\"\n                       [data]=\"btn\"\n                       (clicked)=\"onClick(btn.anchor.payload)\">\n      <span *ngIf=\"data.text\" class=\"n7-btn\">\n        {{ btn.text }}\n      </span>\n    </n7-anchor-wrapper>\n  </ng-container>\n\n</div>\n"
+    })
+], TooltipContentComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/tree/tree.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for TreeComponent's "data"
- *
- * \@property header (required)
- * - icon (required)
- * - text (required)
- * - collapseIcon (required)
- * - classes (optional)
- * - payload (optional)
- * \@property items (required)
- * @record
- */
-function TreeData() { }
-if (false) {
-    /**
-     * tree of items
-     * @type {?}
-     */
-    TreeData.prototype.items;
-}
-/**
- * Interface for the single TreeComponent's "Item"
- *
- * \@property icon (optional)
- * \@property img (optional)
- * \@property classes (optional)
- * \@property text (required)
- * \@property anchor (optional)
- * \@property _meta (optional)
- * \@property items (optional)
- * @record
- */
-function TreeItem() { }
-if (false) {
-    /**
-     * the node's toggle arrow, to expand and
-     * collapse it's child nodes.
-     * @type {?|undefined}
-     */
-    TreeItem.prototype.toggle;
-    /**
-     * the item's icon, only used on leaf items
-     * @type {?|undefined}
-     */
-    TreeItem.prototype.icon;
-    /**
-     * the item's right icon, only used on tree items
-     * @type {?|undefined}
-     */
-    TreeItem.prototype.iconright;
-    /**
-     * the item's image, only used on leaf items
-     * @type {?|undefined}
-     */
-    TreeItem.prototype.img;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    TreeItem.prototype.classes;
-    /**
-     * the item's rendered text
-     * @type {?}
-     */
-    TreeItem.prototype.text;
-    /**
-     * anchor <a>
-     * @type {?|undefined}
-     */
-    TreeItem.prototype.anchor;
-    /**
-     * additional info useful for the component's logic
-     * @type {?|undefined}
-     */
-    TreeItem.prototype._meta;
-    /**
-     * item recursion
-     * @type {?|undefined}
-     */
-    TreeItem.prototype.items;
-}
-class TreeComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let TreeComponent = class TreeComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-TreeComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-tree',
-                template: "<div *ngIf=\"data\" class=\"n7-tree\">\n    <!-- Start recursive rendering -->\n    <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: data.items}\"></ng-container>\n\n    <!-- Template for recursive children rendering -->\n    <ng-template #recursiveTree let-node>\n        <div class=\"n7-tree__item {{ item.classes || '' }}\" *ngFor=\"let item of node\">\n            <div class=\"n7-tree__item-contents\">\n                <!-- Render expand/collapse arrow -->\n                <span *ngIf=\"item.toggle\"\n                      class=\"n7-tree__item-toggle {{ item.toggle.icon }}\"\n                      (click)=\"onClick(item.toggle.payload)\">\n                </span>\n                <!-- Render the node -->\n                <n7-anchor-wrapper \n                [classes]=\"'n7-tree__item-details'\"\n                [data]=\"item.anchor\"\n                (clicked)=\"onClick($event)\">\n                    <span *ngIf=\"item.icon\" class=\"n7-tree__item-icon {{ item.icon }}\"></span>\n                    <img class=\"n7-tree__item-img\" *ngIf=\"item.img\" src=\"{{ item.img }}\" alt=\"{{ item.text }}\"/>\n                    <span class=\"n7-tree__item-text\">{{ item.text }}</span>\n                    <span class=\"n7-tree__item-right-icon {{ item.iconright }}\"></span>\n                </n7-anchor-wrapper>\n            </div>\n            <!-- Check for more child nodes and render them -->\n            <div class=\"n7-tree__children-wrapper\" *ngIf=\"item.items\">\n                <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: item.items}\"></ng-container>\n            </div>\n        </div>\n    </ng-template>\n</div>"
-            }] }
-];
-TreeComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    TreeComponent.prototype.data;
-    /** @type {?} */
-    TreeComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TreeComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], TreeComponent.prototype, "emit", void 0);
+TreeComponent = __decorate([
+    Component({
+        selector: 'n7-tree',
+        template: "<div *ngIf=\"data\" class=\"n7-tree\">\n    <!-- Start recursive rendering -->\n    <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: data.items}\"></ng-container>\n\n    <!-- Template for recursive children rendering -->\n    <ng-template #recursiveTree let-node>\n        <div class=\"n7-tree__item {{ item.classes || '' }}\" *ngFor=\"let item of node\">\n            <div class=\"n7-tree__item-contents\">\n                <!-- Render expand/collapse arrow -->\n                <span *ngIf=\"item.toggle\"\n                      class=\"n7-tree__item-toggle {{ item.toggle.icon }}\"\n                      (click)=\"onClick(item.toggle.payload)\">\n                </span>\n                <!-- Render the node -->\n                <n7-anchor-wrapper \n                [classes]=\"'n7-tree__item-details'\"\n                [data]=\"item.anchor\"\n                (clicked)=\"onClick($event)\">\n                    <span *ngIf=\"item.icon\" class=\"n7-tree__item-icon {{ item.icon }}\"></span>\n                    <img class=\"n7-tree__item-img\" *ngIf=\"item.img\" src=\"{{ item.img }}\" alt=\"{{ item.text }}\"/>\n                    <span class=\"n7-tree__item-text\">{{ item.text }}</span>\n                    <span class=\"n7-tree__item-right-icon {{ item.iconright }}\"></span>\n                </n7-anchor-wrapper>\n            </div>\n            <!-- Check for more child nodes and render them -->\n            <div class=\"n7-tree__children-wrapper\" *ngIf=\"item.items\">\n                <ng-container *ngTemplateOutlet=\"recursiveTree; context:{$implicit: item.items}\"></ng-container>\n            </div>\n        </div>\n    </ng-template>\n</div>"
+    })
+], TreeComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/wizard/wizard.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for a single WizardComponent's "item"
- *
- * \@property text (optional)
- * \@property number (optional)
- * \@property classes (optional)
- * \@property payload (required)
- * \@property _meta (optional)
- *
- * @record
- */
-function WizardItem() { }
-if (false) {
-    /**
-     *  text rendered on the step
-     * @type {?|undefined}
-     */
-    WizardItem.prototype.text;
-    /**
-     * number rendered on the step
-     * @type {?|undefined}
-     */
-    WizardItem.prototype.number;
-    /**
-     * action click's payload
-     * @type {?}
-     */
-    WizardItem.prototype.payload;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    WizardItem.prototype.classes;
-    /**
-     * additional info useful for the component's logic
-     * @type {?|undefined}
-     */
-    WizardItem.prototype._meta;
-}
-/**
- * Interface for WizardComponent's "data"
- *
- * \@property items (required)
- * \@property classes (optional)
- *
- * @record
- */
-function WizardData() { }
-if (false) {
-    /**
-     * each item represents a step
-     * @type {?}
-     */
-    WizardData.prototype.items;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    WizardData.prototype.classes;
-}
-class WizardComponent {
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
+//---------------------------
+let WizardComponent = class WizardComponent {
     onClick(payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     }
-}
-WizardComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'n7-wizard',
-                template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\n  <ol class=\"n7-wizard__list\">\n      <li *ngFor=\"let item of data.items\" \n          class=\"n7-wizard__item {{ item.classes || '' }}\" \n          (click)=\"onClick(item.payload)\">\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\n      </li>\n  </ol>\n</div>"
-            }] }
-];
-WizardComponent.propDecorators = {
-    data: [{ type: Input }],
-    emit: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    WizardComponent.prototype.data;
-    /** @type {?} */
-    WizardComponent.prototype.emit;
-}
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], WizardComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], WizardComponent.prototype, "emit", void 0);
+WizardComponent = __decorate([
+    Component({
+        selector: 'n7-wizard',
+        template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\n  <ol class=\"n7-wizard__list\">\n      <li *ngFor=\"let item of data.items\" \n          class=\"n7-wizard__item {{ item.classes || '' }}\" \n          (click)=\"onClick(item.payload)\">\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\n      </li>\n  </ol>\n</div>"
+    })
+], WizardComponent);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/dv-components-lib.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [
     AdvancedAutocompleteComponent,
     AlertComponent,
@@ -4742,93 +1436,21 @@ const COMPONENTS = [
     TreeComponent,
     WizardComponent,
 ];
-class DvComponentsLibModule {
-}
-DvComponentsLibModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [
-                    COMPONENTS,
-                ],
-                entryComponents: COMPONENTS,
-                imports: [CommonModule, RouterModule],
-                exports: [
-                    COMPONENTS,
-                ],
-            },] }
-];
+let DvComponentsLibModule = class DvComponentsLibModule {
+};
+DvComponentsLibModule = __decorate([
+    NgModule({
+        declarations: [
+            COMPONENTS,
+        ],
+        entryComponents: COMPONENTS,
+        imports: [CommonModule, RouterModule],
+        exports: [
+            COMPONENTS,
+        ],
+    })
+], DvComponentsLibModule);
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/shared-interfaces.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * Interface for an anchor <a> element
- *
- * \@property href (optional)
- * \@property target (optional)
- * \@property payload (optional)
- * @record
- */
-function Anchor() { }
-if (false) {
-    /**
-     * href for link <a>
-     * @type {?|undefined}
-     */
-    Anchor.prototype.href;
-    /**
-     * link <a> target attribute
-     * @type {?|undefined}
-     */
-    Anchor.prototype.target;
-    /**
-     * click payload
-     * @type {?|undefined}
-     */
-    Anchor.prototype.payload;
-    /**
-     * Query parameters
-     * @type {?|undefined}
-     */
-    Anchor.prototype.queryParams;
-}
-/**
- * Interface for a simple Button
- *
- * \@property text (required)
- * \@property anchor (optional)
- * \@property classes (optional)
- * \@property _meta (optional)
- * @record
- */
-function Button() { }
-if (false) {
-    /**
-     * innerHTML or plain text for the label
-     * @type {?|undefined}
-     */
-    Button.prototype.text;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    Button.prototype.classes;
-    /** @type {?|undefined} */
-    Button.prototype.anchor;
-    /**
-     * additional info
-     * @type {?|undefined}
-     */
-    Button.prototype._meta;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/advanced-autocomplete/advanced-autocomplete.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const ADVANCED_AUTOCOMPLETE_MOCK = {
     results: [
         {
@@ -4929,12 +1551,6 @@ const ADVANCED_AUTOCOMPLETE_MOCK = {
     fallback: 'Spiacenti, non è stato trovato nessun risultato. <br> Riprova con una nuova ricerca.'
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/alert/alert.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const ALERT_MOCK = {
     text: `
   This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.
@@ -4946,12 +1562,6 @@ const ALERT_MOCK = {
     classes: 'is-warning'
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/breadcrumbs/breadcrumbs.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const BREADCRUMBS_MOCK = {
     items: [
         {
@@ -4977,11 +1587,6 @@ const BREADCRUMBS_MOCK = {
     ]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/bubble-chart/bubble-chart.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 const ɵ0 = [
     {
         entity: {
@@ -8984,7 +5589,6 @@ const ɵ0 = [
         count: 2
     }
 ];
-/** @type {?} */
 const BUBBLECHART_MOCK = {
     containerId: 'bubbleChartContainer',
     width: 500,
@@ -9009,12 +5613,6 @@ const BUBBLECHART_MOCK = {
     data: ɵ0,
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/carousel/carousel.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const CAROUSEL_MOCK = {
     containerId: 'carousel-root',
     classes: 'demo',
@@ -9140,11 +5738,6 @@ const CAROUSEL_MOCK = {
     ],
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/chart/chart.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 const ɵ0$1 = [['2019-08-01', '770.17'], ['2019-08-02', '645.03'],
     ['2019-08-03', '709.32'], ['2019-08-04', '708.11'],
     ['2019-08-05', '706.59'], ['2019-08-06', '607.28'],
@@ -9162,7 +5755,6 @@ const ɵ0$1 = [['2019-08-01', '770.17'], ['2019-08-02', '645.03'],
     ['2019-08-13', '913.78'], ['2019-08-14', '608.90'],
     ['2019-08-15', '611.88'], ['2019-08-16', '744.02'],
     ['2019-08-17', '600.46']];
-/** @type {?} */
 const CHART_MOCK = {
     containerId: 'test-Chart',
     libOptions: {
@@ -9239,12 +5831,6 @@ const CHART_MOCK = {
     }
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/content-placeholder/content-placeholder.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const CONTENT_PLACEHOLDER_MOCK = {
     blocks: [
         { classes: 'thumb-placeholder' },
@@ -9258,12 +5844,6 @@ const CONTENT_PLACEHOLDER_MOCK = {
     ]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/data-widget/data-widget.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const DATA_WIDGET_MOCK = {
     icon: 'n7-icon-earth',
     text: '497 <em>Dipendenti</em>',
@@ -9277,12 +5857,6 @@ const DATA_WIDGET_MOCK = {
     classes: 'is-positive'
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/datepicker/datepicker.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const DATEPICKER_MOCK = {
     id: 'datepicker',
     libOptions: {
@@ -9291,12 +5865,6 @@ const DATEPICKER_MOCK = {
     },
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/facet-header/facet-header.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const FACET_HEADER_MOCK = {
     iconLeft: 'n7-icon-earth',
     text: 'Persone',
@@ -9306,12 +5874,6 @@ const FACET_HEADER_MOCK = {
     payload: 'header',
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/facet-year-range/facet-year-range.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const FACET_YEAR_RANGE_MOCK = {
     inDate: {
         text: 'From',
@@ -9342,12 +5904,6 @@ const FACET_YEAR_RANGE_MOCK = {
     },
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/facet/facet.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const FACET_MOCK = {
     classes: 'facet-wrapper',
     sections: [{
@@ -9451,12 +6007,6 @@ const FACET_MOCK = {
         }]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/footer/footer.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const FOOTER_MOCK = {
     columns: [
         {
@@ -9505,12 +6055,6 @@ const FOOTER_MOCK = {
     ]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/header/header.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const HEADER_MOCK = {
     logo: {
         image: 'https://placeimg.com/128/128/any/grayscale',
@@ -9576,12 +6120,6 @@ const HEADER_MOCK = {
     }
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/hero/hero.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const HERO_MOCK = {
     title: "Il più bell'archivio che tu abbia mai visto",
     text: `
@@ -9607,17 +6145,7 @@ const HERO_MOCK = {
     image: 'https://placeimg.com/600/600/nature'
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/image-viewer/image-viewer.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-const ɵ0$2 = /**
- * @param {?} viewer
- * @return {?}
- */
-(viewer) => viewer;
-/** @type {?} */
+const ɵ0$2 = (viewer) => viewer;
 const IMAGE_VIEWER_MOCK = {
     images: [
         { type: 'image', url: '/assets/images/large-image.jpg', buildPyramid: false },
@@ -9633,7 +6161,6 @@ const IMAGE_VIEWER_MOCK = {
     libOptions: {
         /* SHOW GROUP */
         showNavigator: false,
-        // shows the mini-map
         autoHideControls: false,
         /* SHOW BUTTONS */
         showRotationControl: false,
@@ -9642,20 +6169,12 @@ const IMAGE_VIEWER_MOCK = {
         showZoomControl: true,
         /* SEQUENCE */
         sequenceMode: true,
-        // allows having multiple images (as in array of images + zoomed image)
         showReferenceStrip: true,
-        // shows the images array (default: horizontally)
         navigationControlAnchor: 'TOP_RIGHT',
     },
-    _setViewer: (ɵ0$2),
+    _setViewer: ɵ0$2,
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/inner-title/inner-title.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const INNER_TITLE_MOCK = {
     icon: 'n7-icon-file3',
     image: 'https://picsum.photos/200',
@@ -9695,12 +6214,6 @@ const INNER_TITLE_MOCK = {
     }
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/input-checkbox/input-checkbox.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const INPUT_CHECKBOX_MOCK = {
     checkboxes: [{
             id: 'check-00',
@@ -9724,12 +6237,6 @@ const INPUT_CHECKBOX_MOCK = {
         }]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/input-link/input-link.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const INPUT_LINK_MOCK = {
     links: [
         {
@@ -9768,12 +6275,6 @@ const INPUT_LINK_MOCK = {
     ]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/input-select/input-select.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const INPUT_SELECT_MOCK = {
     id: 'input-select-1',
     options: [
@@ -9786,12 +6287,6 @@ const INPUT_SELECT_MOCK = {
     payload: 'select',
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/input-text/input-text.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const INPUT_TEXT_MOCK = {
     id: 'input-text-1',
     label: 'SEARCH LABEL',
@@ -9802,12 +6297,6 @@ const INPUT_TEXT_MOCK = {
     iconPayload: 'search-icon',
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/item-preview/item-preview.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const ITEM_PREVIEW_MOCK = {
     image: 'https://placeimg.com/600/600/nature',
     title: 'Dummy title text',
@@ -9850,24 +6339,12 @@ const ITEM_PREVIEW_MOCK = {
     classes: 'is-vertical has-image' // leave it empty for default horizontal layout or 'is-overlay'
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/loader/loader.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const LOADER_MOCK = {
     classes: 'loader-test'
 };
 
 /**
- * @fileoverview added by tsickle
- * Generated from: lib/components/metadata-viewer/metadata-viewer.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
  * Mock Codebase
- * @type {?}
  */
 const METADATA_VIEWER_MOCK = {
     classes: 'example-class',
@@ -9931,13 +6408,15 @@ const METADATA_VIEWER_MOCK = {
             ]
         }]
 };
-
 /**
- * @fileoverview added by tsickle
- * Generated from: lib/components/nav/nav.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Mock Arianna Web
  */
-/** @type {?} */
+//
+// export const METADATA_VIEWER_MOCK: MetadataViewerData = {
+// }
+//
+//
+
 const NAV_MOCK = {
     items: [
         { text: 'Home', anchor: { href: 'https://google.com', target: '_blank', payload: 'clicked!' } },
@@ -9948,12 +6427,6 @@ const NAV_MOCK = {
     ],
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/pagination/pagination.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const PAGINATION_MOCK = {
     first: { classes: 'is-disabled', text: 'First', anchor: { href: '/first' } },
     prev: { classes: 'is-disabled', anchor: { payload: 'prev' } },
@@ -9977,12 +6450,6 @@ const PAGINATION_MOCK = {
     }
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/sidebar-header/sidebar-header.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const SIDEBAR_HEADER_MOCK = {
     iconLeft: 'n7-icon-tree-icon',
     text: 'Albero di navigazione',
@@ -9992,12 +6459,6 @@ const SIDEBAR_HEADER_MOCK = {
     payload: 'header',
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/signup/signup.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const SIGNUP_MOCK = {
     login: {
         email: {
@@ -10019,10 +6480,10 @@ const SIGNUP_MOCK = {
             payload: 'login-pwd'
         },
         /* forgotPassword: {
-              title: 'vai a recupero password',
-              label: 'Password dimenticata?',
-              payload: 'forgot-pwd',
-            }, */
+          title: 'vai a recupero password',
+          label: 'Password dimenticata?',
+          payload: 'forgot-pwd',
+        }, */
         submit: {
             label: 'Entra',
             payload: 'login-submit',
@@ -10097,12 +6558,6 @@ const SIGNUP_MOCK = {
     }
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/simple-autocomplete/simple-autocomplete.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const SIMPLE_AUTOCOMPLETE_MOCK = {
     suggestion: [
         { text: 'surfdome', anchor: { payload: 'dome', href: '/examples' } },
@@ -10118,12 +6573,6 @@ const SIMPLE_AUTOCOMPLETE_MOCK = {
     classes: 'surfing-autocomplete'
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/table/table.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const TABLE_MOCK = {
     classes: 'test-layout-table',
     head: [
@@ -10151,7 +6600,6 @@ const TABLE_MOCK = {
     ],
     body: [
         {
-            // first row
             classes: 'BODY',
             _meta: 'A',
             cells: [
@@ -10182,7 +6630,6 @@ const TABLE_MOCK = {
             ]
         },
         {
-            // second row
             classes: 'BODY',
             _meta: 'B',
             cells: [
@@ -10214,7 +6661,6 @@ const TABLE_MOCK = {
             ]
         },
         {
-            // third row
             classes: 'BODY',
             _meta: 'C',
             cells: [
@@ -10246,7 +6692,6 @@ const TABLE_MOCK = {
             ]
         },
         {
-            // fourth row
             classes: 'BODY',
             _meta: 'D',
             cells: [
@@ -10280,12 +6725,6 @@ const TABLE_MOCK = {
     ]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/tag/tag.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const TAG_MOCK = {
     label: 'label: ',
     text: 'text',
@@ -10294,27 +6733,7 @@ const TAG_MOCK = {
     classes: 'tag1-class',
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/timeline/timeline.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-const ɵ0$3 = /**
- * @param {?} f
- * @param {?} s
- * @return {?}
- */
-(f, s) => f.content.charAt(0) === s.content.charAt(0), ɵ1$1 = /**
- * @param {?} data
- * @param {?} element
- * @return {?}
- */
-(data, element) => `<div class="tooltip">${element.title}</div>`, ɵ2 = /**
- * @param {?} timeline
- * @return {?}
- */
-(timeline) => timeline;
-/** @type {?} */
+const ɵ0$3 = (f, s) => f.content.charAt(0) === s.content.charAt(0), ɵ1$1 = (data, element) => `<div class="tooltip">${element.title}</div>`, ɵ2 = (timeline) => timeline;
 const TIMELINE_MOCK = {
     containerID: 'demo-timeline',
     libOptions: {
@@ -10323,12 +6742,12 @@ const TIMELINE_MOCK = {
         cluster: {
             // titleTemplate: '{count}',
             // fitOnDoubleClick: true,
-            clusterCriteria: (ɵ0$3)
+            clusterCriteria: ɵ0$3
         },
         showTooltips: false,
         tooltip: {
             followMouse: false,
-            template: (ɵ1$1)
+            template: ɵ1$1
         },
         width: '100%',
         minHeight: '350px',
@@ -10370,18 +6789,11 @@ const TIMELINE_MOCK = {
             type: 'point'
         }
     ],
-    _setInstance: (ɵ2)
+    _setInstance: ɵ2
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/toast/toast.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const TOAST_MOCK = {
     toasts: [{
-            // array of toast boxes
             classes: 'is-warning',
             title: 'Title',
             text: 'Questo messaggio ha soltanto un titolo e del testo, è di tipo is-warning ed ha un tempo di 15 secondi',
@@ -10390,7 +6802,6 @@ const TOAST_MOCK = {
                 payload: 'closing'
             }
         }, {
-            // array of toast boxes
             classes: 'is-warning',
             title: 'Title',
             text: 'Questo messaggio ha soltanto un titolo e del testo, è di tipo is-warning ed ha un tempo di 15 secondi',
@@ -10421,7 +6832,6 @@ const TOAST_MOCK = {
                     classes: 'n7-btn-cta'
                 }]
         }, {
-            // array of toast boxes
             classes: 'is-warning',
             title: 'Title',
             text: 'Questo messaggio ha soltanto un titolo e del testo, è di tipo is-warning ed ha un tempo di 15 secondi',
@@ -10429,12 +6839,6 @@ const TOAST_MOCK = {
     ]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/tooltip-content/tooltip-content.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const TOOLTIP_CONTENT_MOCK = {
     title: 'Title',
     text: '<span>subtitle or text for the <strong>tooltip content</strong> component</span>',
@@ -10454,12 +6858,6 @@ const TOOLTIP_CONTENT_MOCK = {
     ]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/tree/tree.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const TREE_MOCK = {
     items: [
         {
@@ -10734,12 +7132,6 @@ const TREE_MOCK = {
     ]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/wizard/wizard.mock.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const WIZARD_MOCK = {
     items: [
         {
@@ -10769,17 +7161,13 @@ const WIZARD_MOCK = {
     ]
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: public-api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+/*
+ * Public API Surface of dv-components-lib
  */
 
 /**
- * @fileoverview added by tsickle
- * Generated from: n7-frontend-components.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
-export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HeaderComponent, HeroComponent, IMAGE_VIEWER_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, METADATA_VIEWER_MOCK, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PaginationComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent };
+export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HeaderComponent, HeroComponent, IMAGE_VIEWER_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, METADATA_VIEWER_MOCK, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PaginationComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent, ɵ0, ɵ1, ɵ2 };
 //# sourceMappingURL=n7-frontend-components.js.map

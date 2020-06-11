@@ -1,89 +1,31 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/components/sidebar-header/sidebar-header.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 //---------------------------
 // SIDEBAR-HEADER.ts
 //---------------------------
+import { __decorate, __metadata } from "tslib";
 import { Component, Input } from '@angular/core';
-/**
- * Interface for SidebarHeaderComponent's "data"
- *
- * \@property iconLeft (optional)
- * \@property text (optional)
- * \@property additionalText (optional)
- * \@property iconRight (optional)
- * \@property classes (optional)
- * \@property payload (optional)
- * @record
- */
-export function SidebarHeaderData() { }
-if (false) {
-    /**
-     * the headers leftmost icon
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.iconLeft;
-    /**
-     * the title text
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.text;
-    /**
-     * additional text, displayed on the right of the text
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.additionalText;
-    /**
-     * the headers rightmost icon
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.iconRight;
-    /**
-     * additional html classes
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.classes;
-    /**
-     * payload for onClick events
-     * @type {?|undefined}
-     */
-    SidebarHeaderData.prototype.payload;
-}
 var SidebarHeaderComponent = /** @class */ (function () {
     function SidebarHeaderComponent() {
     }
-    /**
-     * @param {?} payload
-     * @return {?}
-     */
-    SidebarHeaderComponent.prototype.onClick = /**
-     * @param {?} payload
-     * @return {?}
-     */
-    function (payload) {
+    SidebarHeaderComponent.prototype.onClick = function (payload) {
         if (!this.emit)
             return;
         this.emit('click', payload);
     };
-    SidebarHeaderComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'n7-sidebar-header',
-                    template: "<div *ngIf=\"data\" class=\"n7-sidebar-header {{ data.classes || ''}}\">\n    <span class=\"n7-sidebar-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-sidebar-header__text-wrapper\"\n          *ngIf=\"data.text || data.additionalText\">\n        <span class=\"n7-sidebar-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-sidebar-header__secondary-text\" \n              *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\"\n          class=\"n7-sidebar-header__icon-right {{ data.iconRight }}\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
-                }] }
-    ];
-    SidebarHeaderComponent.propDecorators = {
-        data: [{ type: Input }],
-        emit: [{ type: Input }]
-    };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], SidebarHeaderComponent.prototype, "data", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], SidebarHeaderComponent.prototype, "emit", void 0);
+    SidebarHeaderComponent = __decorate([
+        Component({
+            selector: 'n7-sidebar-header',
+            template: "<div *ngIf=\"data\" class=\"n7-sidebar-header {{ data.classes || ''}}\">\n    <span class=\"n7-sidebar-header__icon-left {{ data.iconLeft }}\" \n          *ngIf=\"data.iconLeft\">\n    </span>\n    <span class=\"n7-sidebar-header__text-wrapper\"\n          *ngIf=\"data.text || data.additionalText\">\n        <span class=\"n7-sidebar-header__text\">\n            {{data.text}}\n        </span>\n        <span class=\"n7-sidebar-header__secondary-text\" \n              *ngIf=\"data.additionalText\">\n            {{data.additionalText}}\n        </span>\n    </span>\n    <span *ngIf=\"data.iconRight\"\n          class=\"n7-sidebar-header__icon-right {{ data.iconRight }}\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
+        })
+    ], SidebarHeaderComponent);
     return SidebarHeaderComponent;
 }());
 export { SidebarHeaderComponent };
-if (false) {
-    /** @type {?} */
-    SidebarHeaderComponent.prototype.data;
-    /** @type {?} */
-    SidebarHeaderComponent.prototype.emit;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2lkZWJhci1oZWFkZXIuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AbjctZnJvbnRlbmQvY29tcG9uZW50cy8iLCJzb3VyY2VzIjpbImxpYi9jb21wb25lbnRzL3NpZGViYXItaGVhZGVyL3NpZGViYXItaGVhZGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBSUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7Ozs7OztBQVlqRCx1Q0F5QkM7Ozs7OztJQXJCQyxxQ0FBa0I7Ozs7O0lBSWxCLGlDQUFjOzs7OztJQUlkLDJDQUF3Qjs7Ozs7SUFJeEIsc0NBQW1COzs7OztJQUluQixvQ0FBYzs7Ozs7SUFJZCxvQ0FBYzs7QUFHaEI7SUFBQTtJQWVBLENBQUM7Ozs7O0lBTEMsd0NBQU87Ozs7SUFBUCxVQUFRLE9BQU87UUFDYixJQUFJLENBQUMsSUFBSSxDQUFDLElBQUk7WUFBRSxPQUFPO1FBRXZCLElBQUksQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDO0lBQzlCLENBQUM7O2dCQWRGLFNBQVMsU0FBQztvQkFDVCxRQUFRLEVBQUUsbUJBQW1CO29CQUM3Qiw2dUJBQW9DO2lCQUNyQzs7O3VCQUVFLEtBQUs7dUJBRUwsS0FBSzs7SUFRUiw2QkFBQztDQUFBLEFBZkQsSUFlQztTQVhZLHNCQUFzQjs7O0lBQ2pDLHNDQUFpQzs7SUFFakMsc0NBQW1CIiwic291cmNlc0NvbnRlbnQiOlsiLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbi8vIFNJREVCQVItSEVBREVSLnRzXG4vLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5pbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbi8qKlxuICogSW50ZXJmYWNlIGZvciBTaWRlYmFySGVhZGVyQ29tcG9uZW50J3MgXCJkYXRhXCJcbiAqXG4gKiBAcHJvcGVydHkgaWNvbkxlZnQgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IHRleHQgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IGFkZGl0aW9uYWxUZXh0IChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBpY29uUmlnaHQgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IGNsYXNzZXMgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IHBheWxvYWQgKG9wdGlvbmFsKVxuICovXG5leHBvcnQgaW50ZXJmYWNlIFNpZGViYXJIZWFkZXJEYXRhIHtcbiAgLyoqXG4gICAqIHRoZSBoZWFkZXJzIGxlZnRtb3N0IGljb25cbiAgICovXG4gIGljb25MZWZ0Pzogc3RyaW5nO1xuICAvKipcbiAgICogdGhlIHRpdGxlIHRleHRcbiAgICovXG4gIHRleHQ/OiBzdHJpbmc7XG4gIC8qKlxuICAgKiBhZGRpdGlvbmFsIHRleHQsIGRpc3BsYXllZCBvbiB0aGUgcmlnaHQgb2YgdGhlIHRleHRcbiAgICovXG4gIGFkZGl0aW9uYWxUZXh0Pzogc3RyaW5nO1xuICAvKipcbiAgICogdGhlIGhlYWRlcnMgcmlnaHRtb3N0IGljb25cbiAgICovXG4gIGljb25SaWdodD86IHN0cmluZztcbiAgLyoqXG4gICAqIGFkZGl0aW9uYWwgaHRtbCBjbGFzc2VzXG4gICAqL1xuICBjbGFzc2VzPzogYW55O1xuICAvKipcbiAgICogcGF5bG9hZCBmb3Igb25DbGljayBldmVudHNcbiAgICovXG4gIHBheWxvYWQ/OiBhbnk7XG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LXNpZGViYXItaGVhZGVyJyxcbiAgdGVtcGxhdGVVcmw6ICcuL3NpZGViYXItaGVhZGVyLmh0bWwnXG59KVxuZXhwb3J0IGNsYXNzIFNpZGViYXJIZWFkZXJDb21wb25lbnQge1xuICBASW5wdXQoKSBkYXRhOiBTaWRlYmFySGVhZGVyRGF0YTtcblxuICBASW5wdXQoKSBlbWl0OiBhbnk7XG5cblxuICBvbkNsaWNrKHBheWxvYWQpIHtcbiAgICBpZiAoIXRoaXMuZW1pdCkgcmV0dXJuO1xuXG4gICAgdGhpcy5lbWl0KCdjbGljaycsIHBheWxvYWQpO1xuICB9XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2lkZWJhci1oZWFkZXIuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AbjctZnJvbnRlbmQvY29tcG9uZW50cy8iLCJzb3VyY2VzIjpbImxpYi9jb21wb25lbnRzL3NpZGViYXItaGVhZGVyL3NpZGViYXItaGVhZGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDZCQUE2QjtBQUM3QixvQkFBb0I7QUFDcEIsNkJBQTZCOztBQUU3QixPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQztBQTJDakQ7SUFBQTtJQVdBLENBQUM7SUFMQyx3Q0FBTyxHQUFQLFVBQVEsT0FBTztRQUNiLElBQUksQ0FBQyxJQUFJLENBQUMsSUFBSTtZQUFFLE9BQU87UUFFdkIsSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUM7SUFDOUIsQ0FBQztJQVRRO1FBQVIsS0FBSyxFQUFFOzt3REFBeUI7SUFFeEI7UUFBUixLQUFLLEVBQUU7O3dEQUFXO0lBSFIsc0JBQXNCO1FBSmxDLFNBQVMsQ0FBQztZQUNULFFBQVEsRUFBRSxtQkFBbUI7WUFDN0IsNnVCQUFvQztTQUNyQyxDQUFDO09BQ1csc0JBQXNCLENBV2xDO0lBQUQsNkJBQUM7Q0FBQSxBQVhELElBV0M7U0FYWSxzQkFBc0IiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuLy8gU0lERUJBUi1IRUFERVIudHNcbi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5cbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIFNpZGViYXJIZWFkZXJDb21wb25lbnQncyBcImRhdGFcIlxuICpcbiAqIEBwcm9wZXJ0eSBpY29uTGVmdCAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgdGV4dCAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgYWRkaXRpb25hbFRleHQgKG9wdGlvbmFsKVxuICogQHByb3BlcnR5IGljb25SaWdodCAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgY2xhc3NlcyAob3B0aW9uYWwpXG4gKiBAcHJvcGVydHkgcGF5bG9hZCAob3B0aW9uYWwpXG4gKi9cbmV4cG9ydCBpbnRlcmZhY2UgU2lkZWJhckhlYWRlckRhdGEge1xuICAvKipcbiAgICogdGhlIGhlYWRlcnMgbGVmdG1vc3QgaWNvblxuICAgKi9cbiAgaWNvbkxlZnQ/OiBzdHJpbmc7XG4gIC8qKlxuICAgKiB0aGUgdGl0bGUgdGV4dFxuICAgKi9cbiAgdGV4dD86IHN0cmluZztcbiAgLyoqXG4gICAqIGFkZGl0aW9uYWwgdGV4dCwgZGlzcGxheWVkIG9uIHRoZSByaWdodCBvZiB0aGUgdGV4dFxuICAgKi9cbiAgYWRkaXRpb25hbFRleHQ/OiBzdHJpbmc7XG4gIC8qKlxuICAgKiB0aGUgaGVhZGVycyByaWdodG1vc3QgaWNvblxuICAgKi9cbiAgaWNvblJpZ2h0Pzogc3RyaW5nO1xuICAvKipcbiAgICogYWRkaXRpb25hbCBodG1sIGNsYXNzZXNcbiAgICovXG4gIGNsYXNzZXM/OiBhbnk7XG4gIC8qKlxuICAgKiBwYXlsb2FkIGZvciBvbkNsaWNrIGV2ZW50c1xuICAgKi9cbiAgcGF5bG9hZD86IGFueTtcbn1cblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnbjctc2lkZWJhci1oZWFkZXInLFxuICB0ZW1wbGF0ZVVybDogJy4vc2lkZWJhci1oZWFkZXIuaHRtbCdcbn0pXG5leHBvcnQgY2xhc3MgU2lkZWJhckhlYWRlckNvbXBvbmVudCB7XG4gIEBJbnB1dCgpIGRhdGE6IFNpZGViYXJIZWFkZXJEYXRhO1xuXG4gIEBJbnB1dCgpIGVtaXQ6IGFueTtcblxuXG4gIG9uQ2xpY2socGF5bG9hZCkge1xuICAgIGlmICghdGhpcy5lbWl0KSByZXR1cm47XG5cbiAgICB0aGlzLmVtaXQoJ2NsaWNrJywgcGF5bG9hZCk7XG4gIH1cbn1cbiJdfQ==
