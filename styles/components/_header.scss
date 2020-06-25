@@ -9,9 +9,13 @@
 \* ------------------------------------ */
 .n7-header {
     height: $header-height;
-    display: flex;
-    flex-wrap: nowrap;
     background-color: $header-bg-color;
+
+    &__content {
+        height: $header-height;
+        display: flex;
+        flex-wrap: nowrap;
+    }
 
     /* Logo and title */
     &__logo-title {
