@@ -1,0 +1,234 @@
+/**
+ * GRIDS
+ *
+ * Helper class to display items feed in grids.
+ * Apply the class to the container of the griddable elements (like cards). Direct
+ * descendants will be gridded.
+ */
+
+/* ------------------------------------ *\
+   #GRIDS
+\* ------------------------------------ */
+/* General grid setting */
+[class*="n7-grid-"],
+[class^="n7-grid-"] {
+    display: flex;
+    flex-wrap: wrap;
+
+    > * {
+        margin-bottom: $grid-gutter-v;
+        box-sizing: border-box;
+    }
+}
+
+/* 4 */
+.n7-grid-4 {
+    > * {
+        width: calc( ( (100% - 4px) - ( #{$grid-gutter-h} * 3) ) / 4 );
+        margin-right: $grid-gutter-h;
+        
+        &:nth-of-type(4n+4) {
+            margin-right: 0;
+        }
+    }
+
+    // display: grid;
+    // grid-template-columns: repeat(4, 1fr);
+    // grid-column-gap: $grid-gutter-h;
+    // grid-row-gap: $grid-gutter-v;
+}
+
+/* 3 */
+.n7-grid-3 {
+    > * {
+        width: calc( ( (100% - 3px) - ( #{$grid-gutter-h} * 2) ) / 3 );
+        margin-right: $grid-gutter-h;
+
+        &:nth-of-type(3n+3) {
+            margin-right: 0;
+        }
+    }
+
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    // grid-column-gap: $grid-gutter-h;
+    // grid-row-gap: $grid-gutter-v;
+}
+
+/* 2 */
+.n7-grid-2 {
+    > * {
+        width: calc( ( (100% - 2px) - ( #{$grid-gutter-h} * 1) ) / 2 );
+        margin-right: $grid-gutter-h;
+
+        &:nth-of-type(2n+2) {
+            margin-right: 0;
+        }
+    }
+
+    // display: grid;
+    // grid-template-columns: repeat(2, 1fr);
+    // grid-column-gap: $grid-gutter-h;
+    // grid-row-gap: $grid-gutter-v;
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+
+    /* 4 */
+    .n7-grid-4 {
+        > * {
+            width: calc( ( (100% - 3px) - ( #{$grid-gutter-h} * 2) ) / 3 );
+            margin-right: $grid-gutter-h;
+            
+            &:nth-of-type(1n) {
+                margin-right: $grid-gutter-h;
+            }
+    
+            &:nth-of-type(3n+3) {
+                margin-right: 0;
+            }
+        }
+
+        // grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* 3 */
+    .n7-grid-3 {
+        > * {
+            width: calc( ( (100% - 2px) - ( #{$grid-gutter-h} * 1) ) / 2 );
+            margin-right: $grid-gutter-h;
+
+            &:nth-of-type(1n) {
+                margin-right: $grid-gutter-h;
+            }
+
+            &:nth-of-type(2n+2) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+
+    /* 4 */
+    .n7-grid-4 {
+        > * {
+            width: calc( ( (100% - 2px) - ( #{$grid-gutter-h} * 1) ) / 2 );
+            margin-right: $grid-gutter-h;
+
+            &:nth-of-type(1n) {
+                margin-right: $grid-gutter-h;
+            }
+
+            &:nth-of-type(2n+2) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 3 */
+    .n7-grid-3 {
+        > * {
+            width: 100%;
+            margin-right: 0;
+
+            &:nth-of-type(1n) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(1, 1fr);
+    }
+
+    /* 2 */
+    .n7-grid-2 {
+        > * {
+            width: 100%;
+            margin-right: 0;
+
+            &:nth-of-type(1n) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(1, 1fr);
+    }
+
+}
+
+@media all and (max-width: $breakpoint-smartphone-portrait) {
+
+    /* 4 */
+    .n7-grid-4 {
+        > * {
+            width: 100%;
+            margin-right: 0;
+
+            &:nth-of-type(1n) {
+                margin-right: 0;
+            }
+        }
+        // grid-template-columns: repeat(1, 1fr);
+    }
+
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}
+
+
+/* ------------------------------------ *\
+   #PRINT
+\* ------------------------------------ */
+@media print {
+
+    [class*="n7-grid-"],
+    [class^="n7-grid-"] {
+        display: block;
+        float: none;
+        clear: both;
+        @include consistent;
+    }
+    
+    /* 4 */
+    .n7-grid-4 > * {
+        float: left;
+        width: calc( ( (100% - 1mm) - ( #{$grid-gutter-h} * 3) ) / 4 );
+        margin-right: $grid-gutter-h !important;
+        
+        &:nth-of-type(4n+4) {
+            margin-right: 0 !important;
+        }
+    }
+
+    .n7-grid-3 > * {
+        float: left;
+        width: calc( ( (100% - 1mm) - ( #{$grid-gutter-h} * 2) ) / 3 );
+        margin-right: $grid-gutter-h !important;
+        
+        &:nth-of-type(3n+3) {
+            margin-right: 0 !important;
+        }
+    }
+    
+    .n7-grid-2 > * {
+        float: left;
+        width: calc( ( (100% - 1mm) - ( #{$grid-gutter-h} * 1) ) / 2 );
+        margin-right: $grid-gutter-h !important;
+    
+        &:nth-of-type(2n+2) {
+            margin-right: 0 !important;
+        }
+    }
+
+}

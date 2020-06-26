@@ -1,0 +1,93 @@
+/**
+ * DATA WIDGET
+ *
+ * Brief description of the component here.
+ */
+ 
+/* ------------------------------------ *\
+   #DATA WIDGET
+\* ------------------------------------ */
+.n7-data-widget {
+    /* First row */
+    &__main {
+        display: flex;
+        align-items: center;
+    }
+
+    &__main-icon {
+        margin-right: $space/2;
+        font-size: $font-size-xl;
+    }
+
+    &__main-title {
+        margin: 0;
+        font-size: $font-size-xl;
+    }
+
+    /* Second row */
+    &__sub {
+        display: flex;
+        align-items: center;
+    }
+
+    &__sub-title {
+        margin: 0 $space/2 0 0;
+        font-size: $font-size-xs;
+        line-height: 1;
+    }
+
+    &__sub-info {
+        display: flex;
+    }
+
+    &__sub-info-icon {
+        font-size: $font-size-xs;
+        line-height: 1;
+    }
+
+    &__sub-info-label {
+        font-size: $font-size-xs;
+        line-height: 1;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #POSITIVE/NEGATIVE COLORS
+\* ------------------------------------ */
+.n7-data-widget.is-positive {
+    .n7-data-widget__sub-info-icon {
+        color: $color-success;
+    }
+
+    .n7-data-widget__sub-info-label {
+        color: $color-success;
+    }
+}
+
+.n7-data-widget.is-error {
+    .n7-data-widget__sub-info-icon {
+        color: $color-error;
+    }
+
+    .n7-data-widget__sub-info-label {
+        color: $color-error;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

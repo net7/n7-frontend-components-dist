@@ -1,0 +1,33 @@
+/**
+ * BUBBLECHART
+ *
+ * Component displaying a bubble graph. Based on 3djs.
+ */
+ 
+/* ------------------------------------ *\
+   #BUBBLECHART
+\* ------------------------------------ */
+.n7-bubble-chart {
+    .monospace-text {
+        font-family: monospace;
+        user-select: none;
+        font-weight: $font-weight-bold;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

@@ -1,0 +1,31 @@
+/**
+ * MAP
+ *
+ * Brief description of the component here.
+ */
+ 
+/* ------------------------------------ *\
+   #MAP
+\* ------------------------------------ */
+.n7-map {
+    &__container {
+        height: 600px;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

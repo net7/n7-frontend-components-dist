@@ -1,0 +1,44 @@
+/* ------------------------------------ *\
+   #INPUT TEXT
+\* ------------------------------------ */
+.n7-input-text {
+
+    &__label {
+        display: block;
+        font-size: $font-size-s;
+    }
+
+    &__wrapper {
+        position: relative;
+    }
+
+    &__text[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding-right: $space*4;
+    }
+
+    &__icon {
+        position: absolute;
+        bottom: 0;
+        right: $space;
+        line-height: $form-input-height;
+        color: $color-text-light;
+    }
+}
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

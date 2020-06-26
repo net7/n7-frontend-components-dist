@@ -1,0 +1,157 @@
+/**
+ * SIGNUP
+ *
+ * Component for login/signup/forgotten password managing. 
+ */
+ 
+/* ------------------------------------ *\
+   #SIGNUP
+\* ------------------------------------ */
+.n7-signup {
+    max-width: $signup-max-width;
+    margin-right: auto;
+    margin-left: auto;
+    padding: $space*2;
+    
+    &__text {
+        font-size: $font-size-s;
+    }
+
+    &__form-error {
+        margin-top: $space/2;
+        margin-bottom: $space/2;
+        font-size: $font-size-s;
+        color: $signup-error-color;
+    }
+
+    &__form-item {
+        display: flex;
+        flex-flow: column nowrap;
+        padding: $space 0;
+        position: relative;
+        
+        textarea,
+        input[type="date"],
+        input[type="datetime"],
+        input[type="datetime-local"],
+        input[type="email"], input[type="month"],
+        input[type="number"], input[type="password"],
+        input[type="search"], input[type="tel"],
+        input[type="text"], input[type="time"], input[type="url"], input[type="week"] {
+            background: $signup-input-background;
+
+            &:-webkit-autofill {
+                background: $signup-input-background !important;
+            }
+        }
+
+        input[type="password"] {
+            padding-right: 35px;
+        }
+
+        &.has-error {
+            textarea,
+            input[type="date"],
+            input[type="datetime"],
+            input[type="datetime-local"],
+            input[type="email"], input[type="month"],
+            input[type="number"], input[type="password"],
+            input[type="search"], input[type="tel"],
+            input[type="text"], input[type="time"], input[type="url"], input[type="week"] {
+                border-color: $signup-error-color;
+            }
+        }
+    }
+
+    &__form-item-label {
+        font-size: $font-size-s;
+    }
+
+    &__form-item-hint {
+        margin-bottom: $space;
+        font-size: $font-size-xs;
+        color: $color-text-light;
+    }
+
+    &__input-wrapper {
+        position: relative;
+        width: 100%;
+        
+        textarea,
+        input[type="date"],
+        input[type="datetime"],
+        input[type="datetime-local"],
+        input[type="email"], input[type="month"],
+        input[type="number"], input[type="password"],
+        input[type="search"], input[type="tel"],
+        input[type="text"], input[type="time"], input[type="url"], input[type="week"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .n7-signup__form-item-show-password {
+            position: absolute;
+            right: 2px;
+            line-height: $form-input-height;
+            border: none;
+            background: transparent;
+    
+            &:hover,
+            &:focus {
+                color: $color-text-hover;
+            }
+        }
+    }
+
+    &__form-item-forgot-password {
+        a {
+            text-decoration: underline;
+            font-size: $font-size-s;
+            color: $color-text;
+
+            &:hover,
+            &:focus {
+                color: $color-text-hover;
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        margin-top: $space;
+        padding: $space*1.5 0;
+        border-top: 1px solid $color-border-normal;
+
+        .n7-btn {
+            margin-left: auto;
+        }
+    }
+
+    &__footer-text {
+        font-size: $font-size-s;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait - 1) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+@media all and (min-width: $breakpoint-ipad-portrait) {
+    .n7-signup {
+        padding: $space*3;
+    }
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

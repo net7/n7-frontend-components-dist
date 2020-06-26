@@ -1,0 +1,115 @@
+/**
+ * ALERT
+ *
+ * Alert component, with a body (html), an optional icon and an optional close button.
+ * Can be used as an alert for events/warnings/informations.
+ * Classes to be added to the root element: .is-success, .is-warning, .is-error
+ */
+
+/* ------------------------------------ *\
+   #ALERT
+\* ------------------------------------ */
+.n7-alert {
+    position: relative;
+    padding: $space*2 $space*5 $space*2 $space*2;
+    border-radius: $border-radius;
+    background-color: $alert-background;
+    
+    &__close-button {
+        position: absolute;
+        top: $space*1.5;
+        right: $space*1.5;
+        cursor: pointer;
+    }
+
+    &__text {
+        margin: 0;
+        padding: 0;
+        font-size: $font-size-m;
+        line-height: 1.4;
+        color: $alert-color-text;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #WITH-ICON
+\* ------------------------------------ */
+.n7-alert.has-icon {
+    .n7-alert__icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: $space*6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-l;
+    }
+
+    .n7-alert__text {
+        margin-left: $space*3.5;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #COLORS
+\* ------------------------------------ */
+.n7-alert.is-success,
+.n7-alert.is-warning,
+.n7-alert.is-error {
+    .n7-alert__close-button,
+    .n7-alert__text,
+    .n7-alert__icon {
+        color: $color-text-inverse;
+    }
+}
+
+.n7-alert.is-success {
+    background-color: $alert-background-success;
+
+    .n7-alert__close-button,
+    .n7-alert__text,
+    .n7-alert__icon {
+        color: $alert-color-text-success;
+    }
+}
+
+.n7-alert.is-warning {
+    background-color: $alert-background-warning;
+
+    .n7-alert__close-button,
+    .n7-alert__text,
+    .n7-alert__icon {
+        color: $alert-color-text-warning;
+    }
+}
+
+.n7-alert.is-error {
+    background-color: $alert-background-error;
+
+    .n7-alert__close-button,
+    .n7-alert__text,
+    .n7-alert__icon {
+        color: $alert-color-text-error;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}
