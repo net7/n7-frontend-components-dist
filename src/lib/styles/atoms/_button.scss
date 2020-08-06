@@ -177,6 +177,29 @@
 \* ------------------------------------ */
 .n7-btn {
     [class*=n7-icon] {
-        margin-right: $space/4;
+        vertical-align: text-bottom;
+    }
+
+    /* Spacing between the icon and the label:
+    it assumes that the label is wrapper in a <span>.
+    This spacing supports the icon on the left and on the right */
+    [class*=n7-icon] + span {
+        margin-left: $space/4;
+    }
+
+    span + [class*=n7-icon] {
+        margin-left: $space/4;
+    }
+
+    /* Spacing for bigger buttons */
+    &.n7-btn-l,
+    &.n7-btn-xl {
+        [class*=n7-icon] + span {
+            margin-left: $space/2;
+        }
+
+        span + [class*=n7-icon] {
+            margin-left: $space/2;
+        }
     }
 }

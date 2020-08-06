@@ -1,5 +1,36 @@
 import { Anchor } from '../../shared-interfaces';
 /**
+ * Interface for a single button
+ *
+ * @property text (required)
+ * @property anchor (required)
+ * @property icon (optional)
+ * @property classes (optional)
+ * @property _meta (optional)
+ */
+export interface ButtonItem {
+    /**
+     * text
+     */
+    text: string;
+    /**
+     * anchor
+     */
+    anchor: Anchor;
+    /**
+     * icon class
+     */
+    icon?: string;
+    /**
+     * additional html classes
+     */
+    classes?: string;
+    /**
+     * additional info
+     */
+    _meta?: any;
+}
+/**
  * Interface for a single action item
  *
  * @property icon (required)
@@ -166,6 +197,10 @@ export interface HeaderData {
      * action items
      */
     actions?: ActionItem[];
+    /**
+     * buttons items
+     */
+    buttons?: ButtonItem[];
     /**
      * user parameters
      */

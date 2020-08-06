@@ -156,8 +156,8 @@ $header-height-mobile: 60px;
 $header-bg-color: $color-background-base;
 $header-logo-height: $header-height - ($space*2);
 $header-logo-height-mobile: $header-height-mobile - ($space*2);
-$header-user-thumb-size: 50px;
-$header-user-thumb-size-mobile: 38px;
+$header-user-thumb-size: 40px;
+$header-user-thumb-size-mobile: 28px;
 $header-search-input-height: 36px;
 $header-search-input-height-mobile: 28px;
 $header-breakpoint-mobile: 1180px;
@@ -199,7 +199,7 @@ $table-footer-bg: $color-background-medium;
 $breadcrumbs-background: $color-background-light;
 $breadcrumbs-arrow-color: $color-text-light;
 $breadcrumbs-current-color: $color-text;
-$breadcrumbs-arrow: '\e909';
+$breadcrumbs-arrow: '\e90a';
 $breadcrumbs-arrow-mobile: '\e908';
 
 

@@ -20,6 +20,7 @@
     /* Logo and title */
     &__logo-title {
         flex-grow: 0;
+        flex-shrink: 0;
         flex-basis: auto;
         cursor: pointer;
     }
@@ -79,7 +80,6 @@
         position: relative;
         height: 100%;
         margin: 0;
-        padding: 0 $space*1 0 $space*1;
         cursor: pointer;
 
         &:hover {
@@ -126,7 +126,7 @@
     &__subnav-item {
         margin: 0;
         padding: 0;
-        
+
         &:last-child {
             .n7-header__subnav-link {
                 border-bottom: 0;
@@ -148,10 +148,10 @@
         }
     }
 
-    /* Tools: search, actions, use profile or login/signup */
+    /* Tools: search, actions, buttons, user profile */
     &__tools {
         flex-grow: 0;
-        flex-basis: 0;
+        // flex-basis: 0;
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
@@ -161,6 +161,7 @@
         padding: 0 0 0 $space*2;
     }
 
+    /* Search */
     &__search {
         position: relative;
     }
@@ -169,7 +170,7 @@
         height: $header-search-input-height;
         line-height: $header-search-input-height;
     }
-    
+
     &__search-btn {
         position: absolute;
         right: 0;
@@ -179,7 +180,7 @@
         &:after {
             content: "\e9b9";
             color: $color-text-light;
-            font-family: 'n7-icon';
+            font-family: "n7-icon";
             font-size: $font-size-l;
             vertical-align: middle;
             line-height: $header-search-input-height;
@@ -189,12 +190,13 @@
     &__search-btn-label {
         display: none;
     }
-    
+
+    /* Actions */
     &__actions {
         display: flex;
         height: $header-height;
     }
-    
+
     &__action {
         position: relative;
         display: flex;
@@ -204,7 +206,7 @@
         height: $header-height;
         cursor: pointer;
     }
-    
+
     &__action-icon {
         font-size: $font-size-xxl;
     }
@@ -233,12 +235,28 @@
         }
     }
 
+    /* Buttons */
+    &__buttons {
+        flex-shrink: 0;
+
+        > * {
+            margin-right: $space;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    /* User */
     &__user {
+        flex-shrink: 0;
+        padding-left: $space * 2;
+    }
+
+    &__user-content {
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
-        padding-left: $space*2;
-        cursor: pointer;
     }
 
     &__user-img {
@@ -258,8 +276,8 @@
         font-size: $font-size-s;
 
         &:after {
-            content: "\e907";
-            font-family: 'n7-icon';
+            content: "\e908";
+            font-family: "n7-icon";
             font-size: $font-size-m;
             vertical-align: middle;
         }
@@ -360,23 +378,23 @@
             height: auto;
             overflow-y: auto;
         }
-        
+
         &__nav-item {
             display: block;
             height: auto;
             padding: $space*2 0;
         }
-    
+
         &__nav-link {
             display: block;
             text-align: center;
             height: auto;
         }
-    
+
         &__nav-icon {
             font-size: $font-size-l;
         }
-    
+
         &__nav-label {
             font-size: $font-size-xl;
         }
@@ -392,7 +410,6 @@
         }
 
         &__subnav-item {
-            
             &:last-child {
                 .n7-header__subnav-link {
                     padding-bottom: 0;
@@ -428,7 +445,7 @@
         &__title {
             font-size: $font-size-s;
         }
-    
+
         &__subtitle {
             font-size: $font-size-xs;
         }
@@ -453,5 +470,5 @@
             height: $header-height-mobile;
         }
     }
-
+    
 }
