@@ -1,5 +1,5 @@
 import { AfterContentChecked } from '@angular/core';
-import { GridLayerOptions } from 'leaflet';
+import { TileLayerOptions } from 'leaflet';
 /**
  * Interface for TileLayer's "data"
  *
@@ -8,7 +8,7 @@ import { GridLayerOptions } from 'leaflet';
  */
 export interface TileLayerData {
     url: string;
-    options: GridLayerOptions;
+    options: TileLayerOptions;
 }
 /**
  * Interface for Marker's "data"
