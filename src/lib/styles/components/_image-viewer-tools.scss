@@ -1,0 +1,105 @@
+/**
+ * IMAGE-VIEWER-TOOLS
+ *
+ * Brief description of the component here.
+ */
+ 
+/* ------------------------------------ *\
+   #IMAGE-VIEWER-TOOLS
+\* ------------------------------------ */
+
+.n7-image-viewer-tools {
+    width: 100%;
+    position: relative;
+    
+    /* Test layout */
+    &__test {
+        height: 600px;
+        background-color: #00a39b;
+    }
+
+    &__bar {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+    }
+
+    &__controls {
+        position: absolute;
+        top: -140px;
+        right: 10px;
+    }
+
+    &__btn-container {
+        display: block;
+        margin: 15px 0px;
+    }
+
+    &__thumbs {
+        background: rgba(0,0,0,0.75);
+        width: 100%;
+        height: auto;
+        padding: 10px 0px;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        position: relative;
+        bottom: 0px;
+    }
+
+    &__description {
+        background: rgba(0, 0, 0, 0.75);
+        max-width: 100%;
+        height: auto;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 30px 40px;
+        position: relative;
+        bottom: 0px;
+        color: #ffffff;
+    }
+
+    &__description-closebtn {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 150%;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__thumb-container {
+        margin: 0px 30px;
+
+        img {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+
+            &:hover {
+                cursor: pointer;
+                outline: 3px solid white;
+            }
+        }
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}
