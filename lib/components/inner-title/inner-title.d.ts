@@ -1,11 +1,11 @@
-import { Anchor } from '../../shared-interfaces';
+import { Anchor, Icon } from '../../shared-interfaces';
 /**
  * Interface for InnerTitleComponent's "data"
  *
  * @property NAME (required|options) <--- TODO: update with interface properties
  */
 export interface InnerTitleData {
-    icon?: string;
+    icon?: Icon;
     image?: string;
     title: {
         main: {
@@ -46,7 +46,7 @@ export interface InnerTitleButtons {
     anchor: Anchor;
     text: string;
     classes?: any;
-    icon?: any;
+    icon?: Icon;
 }
 export declare class InnerTitleComponent {
     data: InnerTitleData;

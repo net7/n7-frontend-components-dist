@@ -46,3 +46,13 @@ export interface Button {
      */
     _meta?: any;
 }
+/**
+ * Type for an icon.
+ * It may have a simple string type or an object type.
+ */
+export declare type Icon = {
+    /** Identifier of the icon in n7-icon-font */
+    id: string;
+    /** Custom inline css */
+    style?: object;
+} | string;
