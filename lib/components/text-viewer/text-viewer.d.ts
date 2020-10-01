@@ -9,6 +9,10 @@ export interface TextViewerData {
     endpoint: string;
     doc: any;
     facsimile?: any;
+    /**
+     * additional html classes
+     */
+    classes?: string;
 }
 export declare class TextViewerComponent implements OnInit {
     data: TextViewerData;
