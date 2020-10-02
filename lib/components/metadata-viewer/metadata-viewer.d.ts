@@ -43,18 +43,18 @@ export interface MetadataViewerChildGroups {
 }
 /**
  * Interface for MetadataViewerComponent's "items"
- * @property label (required)
- * @property value (required)
+ * @property label (optional)
+ * @property value (optional)
  */
 export interface MetadataViewerItems {
     /**
      * the item's label
      */
-    label: string;
+    label?: string;
     /**
      * the value for @property label
      */
-    value: string;
+    value?: string;
 }
 export declare class MetadataViewerComponent {
     data: MetadataViewerData;
