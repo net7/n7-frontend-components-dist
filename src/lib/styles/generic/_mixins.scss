@@ -70,3 +70,12 @@
     flex: 0 0 $width;
     width: $width;
 }
+
+// ------------------------------------ //
+// #FIRST LETTER CAPITAL
+// ------------------------------------ //
+@mixin first-letter-capital() {
+    &:first-letter {
+        text-transform: uppercase;
+    }
+}
