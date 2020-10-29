@@ -33,7 +33,7 @@ export interface InputCheckbox {
     /**
      * Additional HTML Classes
      */
-    classes?: any;
+    classes?: string;
     /**
      * Additional data for the component's logic
      */
@@ -48,6 +48,10 @@ export interface InputCheckboxData {
      * An array of input checkboxes
      */
     checkboxes: InputCheckbox[];
+    /**
+     * Additional HTML Classes
+     */
+    classes?: string;
 }
 export declare class InputCheckboxComponent {
     data: InputCheckboxData;

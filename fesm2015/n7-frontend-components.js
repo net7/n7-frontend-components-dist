@@ -935,7 +935,7 @@ __decorate([
 InputCheckboxComponent = __decorate([
     Component({
         selector: 'n7-input-checkbox',
-        template: "<div *ngIf=\"data\"\n     class=\"n7-input-checkbox\">\n  <ng-container *ngFor=\"let input of data.checkboxes\">\n    <input type=\"checkbox\"\n           id=\"{{ input.id }}\"\n           class=\"n7-input-checkbox__input\"\n           [checked]=\"input.checked\"\n           [disabled]=\"input.disabled\"\n           (change)=\"onChange(input.payload, $event.target.checked)\">\n    <label *ngIf=\"input.label\"\n           class=\"n7-input-checkbox__label\"\n           for=\"{{ input.id }}\">\n      {{ input.label }}\n    </label>\n  </ng-container>\n</div>\n"
+        template: "<div *ngIf=\"data\" class=\"n7-input-checkbox {{ data.classes || '' }}\">\n  <ng-container *ngFor=\"let input of data.checkboxes\">\n    <input type=\"checkbox\"\n           id=\"{{ input.id }}\"\n           class=\"n7-input-checkbox__input {{ input.classes || '' }}\"\n           [checked]=\"input.checked\"\n           [disabled]=\"input.disabled\"\n           (change)=\"onChange(input.payload, $event.target.checked)\">\n    <label *ngIf=\"input.label\"\n           class=\"n7-input-checkbox__label\"\n           for=\"{{ input.id }}\">\n      {{ input.label }}\n    </label>\n  </ng-container>\n</div>\n"
     })
 ], InputCheckboxComponent);
 
@@ -6351,6 +6351,7 @@ const INNER_TITLE_MOCK = {
 };
 
 const INPUT_CHECKBOX_MOCK = {
+    classes: 'checkbox-classes',
     checkboxes: [{
             id: 'check-00',
             label: 'Email',
