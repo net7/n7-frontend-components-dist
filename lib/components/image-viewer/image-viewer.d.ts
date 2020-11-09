@@ -23,19 +23,6 @@ export interface ImageData {
     crossOriginPolicy?: 'Anonymous' | 'use-credentials' | false;
 }
 /**
- * Interface for ImageViewerComponent's thumbs to preview available images
- *
- * @property  url (required) image url
- */
-export interface ThumbsData {
-    url: string;
-    /**
-     * action click's payload
-     */
-    payload?: any;
-    classes?: string;
-}
-/**
  * Interface for ImageViewerComponent's "data"
  *
  * @property prefixUrl (optional) Prepends the prefixUrl to navImages paths.
@@ -53,7 +40,6 @@ export interface ImageViewerData {
     viewerWidth?: number;
     viewerHeight?: number;
     images: ImageData[] | string;
-    thumbs?: ThumbsData[] | string;
     viewerId: string;
     libOptions: any;
     _setViewer: any;

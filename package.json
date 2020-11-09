@@ -17,7 +17,8 @@
   },
   "peerDependencies": {
     "@angular/common": "~9.1.10",
-    "@angular/core": "~9.1.10"
+    "@angular/core": "~9.1.10",
+    "@angular/router": "~9.1.10"
   },
   "main": "bundles/n7-frontend-components.umd.js",
   "module": "fesm5/n7-frontend-components.js",
