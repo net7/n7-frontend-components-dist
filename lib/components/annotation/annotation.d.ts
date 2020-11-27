@@ -1,4 +1,4 @@
-import { Anchor, Icon } from 'dv-components-lib/lib/shared-interfaces';
+import { Anchor, Icon } from '../../shared-interfaces';
 /**
  * Interface for AnnotationComponent's "data"
  *
