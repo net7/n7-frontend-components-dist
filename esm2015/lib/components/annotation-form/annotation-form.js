@@ -1,0 +1,35 @@
+import { __decorate, __metadata } from "tslib";
+//---------------------------
+// ANNOTATION-FORM.ts
+//---------------------------
+import { Component, Input } from '@angular/core';
+let AnnotationFormComponent = class AnnotationFormComponent {
+    onClick(payload) {
+        if (!this.emit) {
+            return;
+        }
+        this.emit('click', payload);
+    }
+    onChange(inputPayload, inputValue) {
+        if (!this.emit) {
+            return;
+        }
+        this.emit('change', { inputPayload, inputValue });
+    }
+};
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], AnnotationFormComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], AnnotationFormComponent.prototype, "emit", void 0);
+AnnotationFormComponent = __decorate([
+    Component({
+        selector: 'n7-annotation-form',
+        template: "<div *ngIf=\"data\" class=\"n7-annotation-form\">\r\n    <div *ngIf=\"data.textarea\" class=\"n7-annotation-form__textarea {{ data.textarea.classes || '' }}\">\r\n        <textarea\r\n            (input)=\"onChange(data.textarea.payload, $event.target.value)\">{{ data.textarea.value || '' }}</textarea>\r\n    </div>\r\n    <div *ngIf=\"data.select\" class=\"n7-annotation-form__select {{ data.select.classes || '' }}\">\r\n\r\n        <!-- Label of selected element -->\r\n        <div class=\"n7-annotation-form__select-label\"\r\n            (click)=\"onClick(data.select.payload)\">\r\n            {{ data.select.label }}\r\n        </div>\r\n\r\n        <!-- Select container -->\r\n        <div class=\"n7-annotation-form__select-container {{ data.select.classes || '' }}\">\r\n            <!-- Toggle for opening the select -->\r\n            <div class=\"n7-annotation-form__select-toggle\" (click)=\"onClick(data.select.payload)\">\r\n                <span class=\"n7-annotation-form__select-toggle-label\">{{ data.select.toggleLabel }}</span>\r\n                <span class=\"n7-icon n7-icon-caret-down\"></span>\r\n            </div>\r\n            <!-- List with elements to select from -->\r\n            <div class=\"n7-annotation-form__select-items\">\r\n                <ng-container *ngFor=\"let item of data.select.items\">\r\n                    <div *ngIf=\"!item['divider']\" \r\n                        class=\"n7-annotation-form__select-option\"\r\n                        [ngClass]=\"{\r\n                            'is-selected': !!item['selected']\r\n                        }\"\r\n                        (click)=\"onChange(data.select.payload, item['value'])\">\r\n                        {{ item['label'] }}\r\n                    </div>\r\n        \r\n                    <div *ngIf=\"item['divider']\" class=\"n7-annotation-form__select-divider\"></div>\r\n                </ng-container>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"n7-annotation-form__actions\">\r\n        <div *ngFor=\"let action of data.actions\"\r\n            class=\"n7-annotation-form__actions-item\">\r\n            <a (click)=\"onClick(action.payload)\" class=\"n7-btn {{ action.classes || '' }}\">\r\n                <span class=\"n7-annotation-form__actions-item-label\">{{ action.label }}</span>\r\n                <span *ngIf=\"action.icon\" class=\"n7-annotation-form__actions-item-icon n7-btn__icon {{ action.icon }}\"></span>\r\n            </a>\r\n        </div>\r\n    </div>\r\n</div>"
+    })
+], AnnotationFormComponent);
+export { AnnotationFormComponent };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW5ub3RhdGlvbi1mb3JtLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG43LWZyb250ZW5kL2NvbXBvbmVudHMvIiwic291cmNlcyI6WyJsaWIvY29tcG9uZW50cy9hbm5vdGF0aW9uLWZvcm0vYW5ub3RhdGlvbi1mb3JtLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSw2QkFBNkI7QUFDN0IscUJBQXFCO0FBQ3JCLDZCQUE2QjtBQUM3QixPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQztBQTJEakQsSUFBYSx1QkFBdUIsR0FBcEMsTUFBYSx1QkFBdUI7SUFLbEMsT0FBTyxDQUFDLE9BQU87UUFDYixJQUFJLENBQUMsSUFBSSxDQUFDLElBQUksRUFBRTtZQUNkLE9BQU87U0FDUjtRQUVELElBQUksQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDO0lBQzlCLENBQUM7SUFFRCxRQUFRLENBQUMsWUFBWSxFQUFFLFVBQVU7UUFDL0IsSUFBSSxDQUFDLElBQUksQ0FBQyxJQUFJLEVBQUU7WUFDZCxPQUFPO1NBQ1I7UUFFRCxJQUFJLENBQUMsSUFBSSxDQUFDLFFBQVEsRUFBRSxFQUFFLFlBQVksRUFBRSxVQUFVLEVBQUUsQ0FBQyxDQUFDO0lBQ3BELENBQUM7Q0FDRixDQUFBO0FBbkJVO0lBQVIsS0FBSyxFQUFFOztxREFBMEI7QUFFekI7SUFBUixLQUFLLEVBQUU7O3FEQUFXO0FBSFIsdUJBQXVCO0lBSm5DLFNBQVMsQ0FBQztRQUNULFFBQVEsRUFBRSxvQkFBb0I7UUFDOUIsMC9FQUFxQztLQUN0QyxDQUFDO0dBQ1csdUJBQXVCLENBb0JuQztTQXBCWSx1QkFBdUIiLCJzb3VyY2VzQ29udGVudCI6WyIvLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxyXG4vLyBBTk5PVEFUSU9OLUZPUk0udHNcclxuLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuaW1wb3J0IHsgQ29tcG9uZW50LCBJbnB1dCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xyXG5pbXBvcnQgeyBJY29uIH0gZnJvbSAnLi4vLi4vc2hhcmVkLWludGVyZmFjZXMnO1xyXG5cclxudHlwZSBTZWxlY3RJdGVtT3B0aW9uID0ge1xyXG4gIGxhYmVsOiBzdHJpbmc7XHJcbiAgdmFsdWU6IHN0cmluZztcclxuICBzZWxlY3RlZD86IGJvb2xlYW47XHJcbn07XHJcblxyXG50eXBlIFNlbGVjdEl0ZW1EaXZpZGVyID0ge1xyXG4gIGRpdmlkZXI6IGJvb2xlYW47XHJcbn07XHJcblxyXG4vKipcclxuICogSW50ZXJmYWNlIGZvciBBbm5vdGF0aW9uRm9ybUNvbXBvbmVudCdzIFwiZGF0YVwiXHJcbiAqXHJcbiAqIEBwcm9wZXJ0eSBzZWxlY3QgKHJlcXVpcmVkKVxyXG4gKiAtIGxhYmVsIChyZXF1aXJlZClcclxuICogLSB0b2dnbGVMYWJlbCAocmVxdWlyZWQpXHJcbiAqIC0gaXRlbXMgKHJlcXVpcmVkKVxyXG4gKiAtIHBheWxvYWQgKHJlcXVpcmVkKVxyXG4gKiAtIGljb24gKG9wdGlvbmFsKVxyXG4gKiAtIGNsYXNzZXMgKG9wdGlvbmFsKVxyXG4gKiBAcHJvcGVydHkgYWN0aW9ucyAocmVxdWlyZWQpXHJcbiAqIC0gbGFiZWwgKHJlcXVpcmVkKVxyXG4gKiAtIHBheWxvYWQgKHJlcXVpcmVkKVxyXG4gKiAtIGNsYXNzZXMgKG9wdGlvbmFsKVxyXG4gKiAtIGljb24gKG9wdGlvbmFsKVxyXG4gKiBAcHJvcGVydHkgdGV4dGFyZWEgKG9wdGlvbmFsKVxyXG4gKiAtIHZhbHVlIChyZXF1aXJlZClcclxuICogLSBwYXlsb2FkIChyZXF1aXJlZClcclxuICogLSBjbGFzc2VzIChvcHRpb25hbClcclxuICovXHJcbmV4cG9ydCBpbnRlcmZhY2UgQW5ub3RhdGlvbkZvcm1EYXRhIHtcclxuICBzZWxlY3Q6IHtcclxuICAgIGxhYmVsOiBzdHJpbmc7XHJcbiAgICB0b2dnbGVMYWJlbDogc3RyaW5nO1xyXG4gICAgaXRlbXM6IChTZWxlY3RJdGVtT3B0aW9uIHwgU2VsZWN0SXRlbURpdmlkZXIpW107XHJcbiAgICBwYXlsb2FkOiBhbnk7XHJcbiAgICBpY29uPzogSWNvbjtcclxuICAgIGNsYXNzZXM/OiBzdHJpbmc7XHJcbiAgfTtcclxuICBhY3Rpb25zOiB7XHJcbiAgICBsYWJlbDogc3RyaW5nO1xyXG4gICAgcGF5bG9hZDogYW55O1xyXG4gICAgY2xhc3Nlcz86IGFueTtcclxuICAgIGljb24/OiBJY29uO1xyXG4gIH1bXTtcclxuICB0ZXh0YXJlYT86IHtcclxuICAgIHZhbHVlOiBzdHJpbmcgfCBudWxsO1xyXG4gICAgcGF5bG9hZDogYW55O1xyXG4gICAgY2xhc3Nlcz86IHN0cmluZztcclxuICB9O1xyXG59XHJcblxyXG5AQ29tcG9uZW50KHtcclxuICBzZWxlY3RvcjogJ243LWFubm90YXRpb24tZm9ybScsXHJcbiAgdGVtcGxhdGVVcmw6ICcuL2Fubm90YXRpb24tZm9ybS5odG1sJ1xyXG59KVxyXG5leHBvcnQgY2xhc3MgQW5ub3RhdGlvbkZvcm1Db21wb25lbnQge1xyXG4gIEBJbnB1dCgpIGRhdGE6IEFubm90YXRpb25Gb3JtRGF0YTtcclxuXHJcbiAgQElucHV0KCkgZW1pdDogYW55O1xyXG5cclxuICBvbkNsaWNrKHBheWxvYWQpIHtcclxuICAgIGlmICghdGhpcy5lbWl0KSB7XHJcbiAgICAgIHJldHVybjtcclxuICAgIH1cclxuXHJcbiAgICB0aGlzLmVtaXQoJ2NsaWNrJywgcGF5bG9hZCk7XHJcbiAgfVxyXG5cclxuICBvbkNoYW5nZShpbnB1dFBheWxvYWQsIGlucHV0VmFsdWUpIHtcclxuICAgIGlmICghdGhpcy5lbWl0KSB7XHJcbiAgICAgIHJldHVybjtcclxuICAgIH1cclxuXHJcbiAgICB0aGlzLmVtaXQoJ2NoYW5nZScsIHsgaW5wdXRQYXlsb2FkLCBpbnB1dFZhbHVlIH0pO1xyXG4gIH1cclxufVxyXG4iXX0=

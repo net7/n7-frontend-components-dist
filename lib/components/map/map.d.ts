@@ -1,5 +1,5 @@
 import { AfterContentChecked } from '@angular/core';
-import { TileLayerOptions } from 'leaflet';
+import { TileLayerOptions, MapOptions } from 'leaflet';
 /**
  * Interface for TileLayer's "data"
  *
@@ -37,6 +37,8 @@ export interface MapData {
     containerId: string;
     /** Leaflet map layers */
     tileLayers: TileLayerData[];
+    /** Leaflet map options */
+    libOptions?: MapOptions;
     /** Coordinates of the initial view */
     initialView: {
         /** Coordinates tuple */

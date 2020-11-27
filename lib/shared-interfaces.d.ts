@@ -55,4 +55,6 @@ export declare type Icon = {
     id: string;
     /** Custom inline css */
     style?: object;
+    /** Event payload */
+    payload?: any;
 } | string;
