@@ -5,18 +5,18 @@
 }(this, (function (exports, core, common, router) { 'use strict';
 
     /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
+    Copyright (c) Microsoft Corporation.
 
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
 
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
     /* global Reflect, Promise */
 
@@ -72,10 +72,11 @@
     }
 
     function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
             function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
@@ -108,19 +109,25 @@
         }
     }
 
+    function __createBinding(o, m, k, k2) {
+        if (k2 === undefined) k2 = k;
+        o[k2] = m[k];
+    }
+
     function __exportStar(m, exports) {
-        for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+        for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
     }
 
     function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
         if (m) return m.call(o);
-        return {
+        if (o && typeof o.length === "number") return {
             next: function () {
                 if (o && i >= o.length) o = void 0;
                 return { value: o && o[i++], done: !o };
             }
         };
+        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
 
     function __read(o, n) {
@@ -199,6 +206,21 @@
 
     function __importDefault(mod) {
         return (mod && mod.__esModule) ? mod : { default: mod };
+    }
+
+    function __classPrivateFieldGet(receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to get private field on non-instance");
+        }
+        return privateMap.get(receiver);
+    }
+
+    function __classPrivateFieldSet(receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to set private field on non-instance");
+        }
+        privateMap.set(receiver, value);
+        return value;
     }
 
     //---------------------------
@@ -1723,7 +1745,7 @@
         TextViewerComponent = TextViewerComponent_1 = __decorate([
             core.Component({
                 selector: 'n7-text-viewer',
-                template: "<!-- NEW -->\n<div class=\"n7-text-viewer {{data.classes || ''}}\" *ngIf=\"data && data.endpoint\">\n<pb-page\n  [attr.endpoint]=\"data.endpoint\"\n>\n  <pb-document\n    *ngIf=\"data.doc\"\n    [path]=\"data.doc.xml[2]\"\n    [odd]=\"data.doc.odd\"\n    view=\"div\"\n    [id]=\"data.doc.id[1]\"\n  ></pb-document>\n  <pb-document\n    *ngIf=\"data.doc\"\n    [path]=\"data.doc.xml[1]\"\n    [odd]=\"data.doc.odd\"\n    view=\"page\"\n    [id]=\"data.doc.id[0]\"\n  ></pb-document>\n\n  <app-drawer-layout force-narrow=\"force-narrow\" narrow=\"\">\n    <app-header-layout>\n      <app-header\n        fixed=\"fixed\"\n        data-template=\"browse:fix-links\"\n        style=\"\n          transition-duration: 0ms;\n          transform: translate3d(0px, 0px, 0px);\n          left: 0px;\n          right: 0.399994px;\n        \"\n      >\n        <app-toolbar\n          class=\"toolbar\"\n          sticky=\"sticky\"\n          style=\"transform: translate3d(0px, 0px, 0px)\"\n        >\n          <paper-icon-button\n            id=\"tocToggle\"\n            class=\"toc-toggle\"\n            icon=\"icons:view-list\"\n            role=\"button\"\n            tabindex=\"0\"\n            aria-disabled=\"false\"\n          ></paper-icon-button>\n\n          <pb-toggle-feature\n            name=\"highlight2\"\n            selector=\"tei-app,pb-popover\"\n            default=\"off\"\n            action=\"disable\"\n            emit=\"transcription\"\n            subscribe=\"transcription\"\n          >\n            <pb-i18n key=\"document.plain\">Plain Reading View</pb-i18n>\n          </pb-toggle-feature>\n          <!-- <pb-toggle-feature emit=\"sferamundi\" name=\"view\" on=\"page\" off=\"div\">\n            <pb-i18n>Visualizzazione Pagina</pb-i18n>\n          </pb-toggle-feature> -->\n          <pb-zoom\n            emit=\"transcription\"\n            direction=\"in\"\n            icon=\"icons:zoom-in\"\n          ></pb-zoom>\n          <pb-zoom\n            emit=\"transcription\"\n            direction=\"out\"\n            icon=\"icons:zoom-out\"\n          ></pb-zoom>\n          <pb-navigation\n            emit=\"transcription\"\n            keyboard=\"left\"\n            subscribe=\"transcription\"\n            direction=\"backward\"\n            unit=\"page\"\n          >\n            <paper-icon-button\n              icon=\"icons:chevron-left\"\n              role=\"button\"\n              tabindex=\"0\"\n              aria-disabled=\"false\"\n            ></paper-icon-button>\n          </pb-navigation>\n          <pb-navigation\n            emit=\"transcription\"\n            keyboard=\"right\"\n            subscribe=\"transcription\"\n            direction=\"forward\"\n            unit=\"page\"\n          >\n            <paper-icon-button\n              icon=\"icons:chevron-right\"\n              role=\"button\"\n              tabindex=\"0\"\n              aria-disabled=\"false\"\n            ></paper-icon-button>\n          </pb-navigation>\n\n          <pb-progress\n            subscribe=\"transcription\"\n            indeterminate=\"\"\n            bottom-item=\"bottom-item\"\n            style=\"visibility: hidden\"\n          ></pb-progress>\n        </app-toolbar>\n      </app-header>\n      <pb-drawer\n        toggle=\"tocToggle\"\n        class=\"tocDrawer\"\n        emit=\"toc\"\n        subscribe=\"transcription\"\n      >\n        <div class=\"drawer-content\">\n          <h3>\n            <pb-i18n key=\"document.contents\">Contents</pb-i18n>\n          </h3>\n          <pb-load\n            *ngIf=\"data.doc\"\n            id=\"toc\"\n            url=\"templates/toc.html?target=transcription&amp;icons=true\"\n            [src]=\"data.doc.id[0]\"\n            subscribe=\"toc\"\n            load-once=\"load-once\"\n            >Loading ...</pb-load\n          >\n        </div>\n      </pb-drawer>\n      <main class=\"content-body\">\n        <pb-facsimile\n          id=\"facsimile\"\n          [attr.base-uri]=\"data.facsimile.uri\"\n          subscribe=\"transcription\"\n          default-zoom-level=\"0\"\n          show-navigation-control=\"show-navigation-control\"\n          show-navigator=\"show-navigator\"\n        ></pb-facsimile>\n        <pb-view\n          *ngIf=\"data.doc\"\n          id=\"view1\"\n          [src]=\"data.doc.id[0]\"\n          subscribe=\"transcription\"\n          emit=\"transcription\"\n          wait-for=\"#facsimile\"\n          column-separator=\".tei-cb\"\n          append-footnotes=\"append-footnotes\"\n          view=\"page\"\n        ></pb-view>\n        <pb-view\n          *ngIf=\"data.doc\"\n          id=\"view2\"\n          [src]=\"data.doc.id[1]\"\n          subscribe=\"sferamundi\"\n          emit=\"commentary\"\n          view=\"single\"\n        >\n          <pb-param name=\"mode\" value=\"commentary\"></pb-param>\n          \n        </pb-view>\n      </main>\n    </app-header-layout>\n  </app-drawer-layout>\n</pb-page>\n</div>\n"
+                template: "<!-- NEW -->\n<div class=\"n7-text-viewer {{data.classes || ''}}\" *ngIf=\"data && data.endpoint\">\n    <pb-page [attr.endpoint]=\"data.endpoint\">\n        <pb-document *ngFor=\"let doc of data.docs\" [path]=\"doc.xml\" [odd]=\"doc.odd\" view=\"page\" [id]=\"doc.id\">\n        </pb-document>\n\n        <app-drawer-layout force-narrow=\"force-narrow\" narrow=\"\">\n            <app-header-layout>\n                <app-header fixed=\"fixed\" data-template=\"browse:fix-links\" style=\"\n                transition-duration: 0ms;\n                transform: translate3d(0px, 0px, 0px);\n                left: 0px;\n                right: 0.399994px;\">\n                    <app-toolbar class=\"toolbar\" sticky=\"sticky\" style=\"transform: translate3d(0px, 0px, 0px)\">\n                        <paper-icon-button id=\"tocToggle\" class=\"toc-toggle\" icon=\"icons:view-list\" role=\"button\"\n                            tabindex=\"0\" aria-disabled=\"false\"></paper-icon-button>\n\n                        <pb-toggle-feature name=\"highlight\" selector=\"tei-app,pb-popover\" default=\"off\"\n                            action=\"disable\" emit=\"transcription\" subscribe=\"transcription\">\n                            <pb-i18n key=\"document.plain\">Plain Reading View</pb-i18n>\n                        </pb-toggle-feature>\n                        <pb-zoom emit=\"transcription\" direction=\"in\" icon=\"icons:zoom-in\"></pb-zoom>\n                        <pb-zoom emit=\"transcription\" direction=\"out\" icon=\"icons:zoom-out\"></pb-zoom>\n                        <pb-navigation emit=\"transcription\" keyboard=\"left\" subscribe=\"transcription\"\n                            direction=\"backward\" unit=\"page\">\n                            <paper-icon-button icon=\"icons:chevron-left\" role=\"button\" tabindex=\"0\"\n                                aria-disabled=\"false\"></paper-icon-button>\n                        </pb-navigation>\n                        <pb-navigation emit=\"transcription\" keyboard=\"right\" subscribe=\"transcription\"\n                            direction=\"forward\" unit=\"page\">\n                            <paper-icon-button icon=\"icons:chevron-right\" role=\"button\" tabindex=\"0\"\n                                aria-disabled=\"false\"></paper-icon-button>\n                        </pb-navigation>\n\n                        <pb-progress subscribe=\"transcription\" indeterminate=\"\" bottom-item=\"bottom-item\"\n                            style=\"visibility: hidden\"></pb-progress>\n                    </app-toolbar>\n                </app-header>\n                <pb-drawer toggle=\"tocToggle\" class=\"tocDrawer\" emit=\"toc\" subscribe=\"transcription\">\n                    <div class=\"drawer-content\">\n                        <h3>\n                            <pb-i18n key=\"document.contents\">Contents</pb-i18n>\n                        </h3>\n                        <pb-load *ngIf=\"data.docs\" id=\"toc\" url=\"templates/toc.html?target=transcription&amp;icons=true\"\n                            [src]=\"data.docs[0].id\" subscribe=\"toc\" load-once=\"load-once\">Loading ...</pb-load>\n                    </div>\n                </pb-drawer>\n                <main class=\"content-body\">\n                    <pb-facsimile *ngIf=\"data.facsimile\" id=\"facsimile\" [attr.base-uri]=\"data.facsimile.uri\"\n                        subscribe=\"transcription\" default-zoom-level=\"0\"\n                        show-navigation-control=\"show-navigation-control\" show-navigator=\"show-navigator\">\n                    </pb-facsimile>\n                    <ng-container *ngFor=\"let doc of data.docs; index as $i;\">\n                        <!-- NO CHANNEL -->\n                        <pb-view *ngIf=\"!doc.channel\" id=\"view{{ $i }}\" [src]=\"doc.id\" subscribe=\"transcription\"\n                            emit=\"transcription\" [attr.wait-for]=\"data.facsimile ? '#facsimile' : null\" column-separator=\".tei-cb\"\n                            append-footnotes=\"append-footnotes\" view=\"page\"></pb-view>\n                        <!-- WITH CHANNEL -->\n                        <pb-view *ngIf=\"doc.channel\" id=\"view{{ $i }}\" [src]=\"doc.id\" emit=\"{{ doc.channel }}\"\n                        view=\"single\">\n                            <pb-param name=\"mode\" value=\"{{ doc.channel }}\"></pb-param>\n                        </pb-view>\n                    </ng-container>\n                </main>\n            </app-header-layout>\n        </app-drawer-layout>\n    </pb-page>\n</div>"
             })
         ], TextViewerComponent);
         return TextViewerComponent;
@@ -7409,22 +7431,29 @@
         classes: 'tag1-class',
     };
 
-    var ɵ0$3 = ['transcription', 'sferamundi', 'commentary'];
     var TEXT_VIEWER_MOCK = {
         // TODO: update with mock values
-        endpoint: 'http://localhost:8080/exist/apps/tei-publisher',
-        doc: {
-            xml: ['playground/senili_pedretti_val.xml', 'playground/13.1_SFERAMUNDI1.xml', 'playground/sferacomm.xml'],
-            odd: 'pedretti-test-dodis',
-            id: ɵ0$3
-        },
+        endpoint: 'http://staging.teipublisher.netseven.it/exist/apps/tei-publisher',
+        docs: [
+            {
+                xml: 'test/seniles.xml',
+                odd: 'test',
+                id: 'seniles'
+            },
+            {
+                xml: 'test/seniles.xml',
+                odd: 'test',
+                id: 'seniles2',
+                channel: 'altrochannel'
+            },
+        ],
         facsimile: {
             uri: 'http://127.0.0.1:8182/iiif/2/',
             scans: ['001r.tif', '001v.tif', '002r.tif', '002v.tif', '003r.tif', '003v.tif', '004r.tif', '004v.tif', '005r.tif', '005v.tif', '006r.tif', '006v.tif', '007r.tif', '007v.tif', '008r.tif', '008v.tif', '009r.tif', '009v.tif', '010r.tif', '010v.tif', '011r.tif']
         }
     };
 
-    var ɵ0$4 = function (f, s) { return f.content.charAt(0) === s.content.charAt(0); }, ɵ1$1 = function (data, element) { return "<div class=\"tooltip\">" + element.title + "</div>"; }, ɵ2 = function (timeline) { return timeline; };
+    var ɵ0$3 = function (f, s) { return f.content.charAt(0) === s.content.charAt(0); }, ɵ1$1 = function (data, element) { return "<div class=\"tooltip\">" + element.title + "</div>"; }, ɵ2 = function (timeline) { return timeline; };
     var TIMELINE_MOCK = {
         containerID: 'demo-timeline',
         libOptions: {
@@ -7433,7 +7462,7 @@
             cluster: {
                 // titleTemplate: '{count}',
                 // fitOnDoubleClick: true,
-                clusterCriteria: ɵ0$4
+                clusterCriteria: ɵ0$3
             },
             showTooltips: false,
             tooltip: {

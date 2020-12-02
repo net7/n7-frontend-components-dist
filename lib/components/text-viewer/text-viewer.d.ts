@@ -7,7 +7,12 @@ import { OnInit } from '@angular/core';
  */
 export interface TextViewerData {
     endpoint: string;
-    doc: any;
+    docs: {
+        xml: string;
+        odd: string;
+        id: string;
+        channel?: string;
+    }[];
     facsimile?: any;
     /**
      * additional html classes
