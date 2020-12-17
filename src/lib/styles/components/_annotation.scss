@@ -18,7 +18,7 @@
 
     &__user-name {
         color: $color-text;
-        font-weight: bold;
+        font-weight: $font-weight-bold;
 
         &:hover {
             cursor: pointer;
@@ -39,6 +39,10 @@
         object-fit: cover;
         box-sizing: border-box;
         border-radius: 4px;
+    }
+
+    &__info {
+        cursor: pointer;
     }
 
     &__body {

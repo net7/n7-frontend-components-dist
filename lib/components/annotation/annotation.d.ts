@@ -44,9 +44,16 @@ export interface AnnotationData {
     comment?: string;
     /** HTML Classes */
     classes?: string;
+    /** element click payload */
+    payload?: any;
+    /** additional data useful for the component's logic */
+    _meta?: any;
 }
 export declare class AnnotationComponent {
     data: AnnotationData;
     emit: any;
     onClick(payload: any): void;
+    onContainerClick(target: HTMLElement, payload: any): void;
+    /** Test if a string is a n7-icon class */
+    isIconClass(classString: string): boolean;
 }

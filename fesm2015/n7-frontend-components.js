@@ -91,6 +91,15 @@ let AnnotationComponent = class AnnotationComponent {
             return;
         this.emit('click', payload);
     }
+    onContainerClick(target, payload) {
+        if (!this.emit || this.isIconClass(target.className))
+            return;
+        this.emit('click', payload);
+    }
+    /** Test if a string is a n7-icon class */
+    isIconClass(classString) {
+        return /n7-icon.*/.test(classString);
+    }
 };
 __decorate([
     Input(),
@@ -103,7 +112,7 @@ __decorate([
 AnnotationComponent = __decorate([
     Component({
         selector: 'n7-annotation',
-        template: "<div *ngIf=\"data\"\r\n     class=\"n7-annotation {{ data.classes || ''}}\">\r\n    <ng-container *ngIf=\"!data.isCollapsed\">\r\n        <!-- view the full annotation -->\r\n        <ng-container *ngTemplateOutlet=\"expanded\"></ng-container>\r\n    </ng-container>\r\n    <ng-container *ngIf=\"data.isCollapsed\">\r\n        <!-- minimal view of the annotation -->\r\n        <ng-container *ngTemplateOutlet=\"collapsed\"></ng-container>\r\n    </ng-container>\r\n</div>\r\n\r\n<ng-template #expanded>\r\n    <!-- metadata row -->\r\n    <div class=\"n7-annotation__metadata-row\">\r\n        <!-- avatar -->\r\n        <div class=\"n7-annotation__image-wrapper\">\r\n            <img [src]=\"data.user.image\"\r\n                 alt=\"User profile picture\"\r\n                 class=\"n7-annotation__image\">\r\n        </div>\r\n        <!-- name -->\r\n        <div class=\"n7-annotation__info-cont\">\r\n            <n7-anchor-wrapper [data]=\"data.user.anchor\">\r\n                <div class=\"n7-annotation__user-name\">{{data.user.name}}</div>\r\n            </n7-anchor-wrapper>\r\n            <!-- time ago - parent notebook -->\r\n            <div class=\"n7-annotation__info\">\r\n                <span class=\"n7-annotation__date\">{{data.date}}</span>\r\n                <span *ngIf=\"data.notebook?.anchor?.href\"> in\r\n                    <!-- rendering error appeared with n7-anchor-wrapper -->\r\n                    <a [href]=\"data.notebook.anchor.href\"\r\n                       [target]=\"data.notebook.anchor.target || '_self'\">\r\n                        <span>{{data.notebook.name}}</span>\r\n                    </a>\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- arrow icon -->\r\n        <span class=\"n7-icon-angle-down\"\r\n              *ngIf=\"data.icon\"\r\n              (click)=\"onClick(data.icon['payload'])\"></span>\r\n    </div>\r\n\r\n    <hr class=\"n7-annotation__divider\">\r\n\r\n    <!-- highlight -->\r\n    <div class=\"n7-annotation__body-row\"\r\n         *ngIf=\"data.body\">\r\n        <span class=\"n7-annotation__body\">\r\n            {{data.body}}\r\n        </span>\r\n    </div>\r\n\r\n    <!-- comment -->\r\n    <div class=\"n7-annotation__comment-row\"\r\n         *ngIf=\"data.comment\">\r\n        <span class=\"n7-annotation__comment\">\r\n            {{data.comment}}\r\n        </span>\r\n    </div>\r\n</ng-template>\r\n\r\n<ng-template #collapsed>\r\n    <div class=\"n7-annotation__collapsed\">\r\n        <span class=\"n7-annotation__body\">\r\n            {{data.body}}\r\n        </span>\r\n        <span>\r\n            <n7-anchor-wrapper [data]=\"data.notebook.anchor\"\r\n                               class=\"n7-annotation__notebook\">\r\n                {{data.notebook.name}}\r\n            </n7-anchor-wrapper>\r\n        </span>\r\n    </div>\r\n</ng-template>\r\n"
+        template: "<div *ngIf=\"data\"\r\n     class=\"n7-annotation__container {{ data.classes || ''}}\"\r\n     (click)=\"data.payload && onContainerClick($event.target, data.payload)\">\r\n    <ng-container *ngIf=\"!data.isCollapsed\">\r\n        <!-- view the full annotation -->\r\n        <ng-container *ngTemplateOutlet=\"expanded\"></ng-container>\r\n    </ng-container>\r\n    <ng-container *ngIf=\"data.isCollapsed\">\r\n        <!-- minimal view of the annotation -->\r\n        <ng-container *ngTemplateOutlet=\"collapsed\"></ng-container>\r\n    </ng-container>\r\n</div>\r\n\r\n<ng-template #expanded>\r\n    <!-- metadata row -->\r\n    <div class=\"n7-annotation__metadata-row\">\r\n        <!-- avatar -->\r\n        <div class=\"n7-annotation__image-wrapper\">\r\n            <img [src]=\"data.user.image\"\r\n                 alt=\"User profile picture\"\r\n                 class=\"n7-annotation__image\">\r\n        </div>\r\n        <!-- name -->\r\n        <div class=\"n7-annotation__info-cont\">\r\n            <n7-anchor-wrapper [data]=\"data.user.anchor\">\r\n                <div class=\"n7-annotation__user-name\">{{data.user.name}}</div>\r\n            </n7-anchor-wrapper>\r\n            <!-- time ago - parent notebook -->\r\n            <div class=\"n7-annotation__info\">\r\n                <span class=\"n7-annotation__date\">{{data.date}}</span>\r\n                <span *ngIf=\"data.notebook?.anchor?.href\"> in\r\n                    <!-- rendering error appeared with n7-anchor-wrapper -->\r\n                    <a [href]=\"data.notebook.anchor.href\"\r\n                       [target]=\"data.notebook.anchor.target || '_self'\">\r\n                        <span>{{data.notebook.name}}</span>\r\n                    </a>\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <div class=\"n7-annotation__info\">\r\n            <!-- arrow icon -->\r\n            <span *ngIf=\"data.icon\"\r\n                  [ngClass]=\"data.icon['id']\"\r\n                  (click)=\"data.icon['payload'] && onClick(data.icon['payload'])\">\r\n            </span>\r\n        </div>\r\n    </div>\r\n\r\n    <hr class=\"n7-annotation__divider\">\r\n\r\n    <!-- highlight -->\r\n    <div class=\"n7-annotation__body-row\"\r\n         *ngIf=\"data.body\">\r\n        <span class=\"n7-annotation__body\">\r\n            {{data.body}}\r\n        </span>\r\n    </div>\r\n\r\n    <!-- comment -->\r\n    <div class=\"n7-annotation__comment-row\"\r\n         *ngIf=\"data.comment\">\r\n        <span class=\"n7-annotation__comment\">\r\n            {{data.comment}}\r\n        </span>\r\n    </div>\r\n</ng-template>\r\n\r\n<ng-template #collapsed>\r\n    <div class=\"n7-annotation__collapsed\">\r\n        <span class=\"n7-annotation__body\">\r\n            {{data.body}}\r\n        </span>\r\n        <span>\r\n            <n7-anchor-wrapper [data]=\"data.notebook.anchor\"\r\n                               class=\"n7-annotation__notebook\">\r\n                {{data.notebook.name}}\r\n            </n7-anchor-wrapper>\r\n        </span>\r\n    </div>\r\n</ng-template>\r\n"
     })
 ], AnnotationComponent);
 
@@ -1782,6 +1791,8 @@ const ANNOTATION_FORM_MOCK = {
 };
 
 const ANNOTATION_MOCK = {
+    _meta: { uid: 'mock-annotation-01' },
+    payload: 'collapse',
     user: {
         image: 'https://placeimg.com/400/600/people',
         name: 'John Doe',
@@ -1796,7 +1807,7 @@ const ANNOTATION_MOCK = {
         anchor: { href: '/notebook-2019', target: '_blank' }
     },
     icon: {
-        id: 'n7-icon-angle-down',
+        id: 'n7-icon-cross',
         payload: 'expand-arrow'
     },
     body: 'To annotate or not to annotate, that is the question',
