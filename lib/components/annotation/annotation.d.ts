@@ -36,8 +36,26 @@ export interface AnnotationData {
     };
     /** View the annotation in a minimal form */
     isCollapsed: boolean;
-    /** Icon in the top-right corner of the annotation */
-    icon?: Icon;
+    /** Menu in the top-right corner of the annotation */
+    menu?: {
+        icon: Icon;
+        actions: {
+            label: string;
+            payload: any;
+        }[];
+        notebooks: {
+            header: {
+                label: string;
+                icon: Icon;
+                payload: any;
+            };
+            items: {
+                label: string;
+                payload: any;
+            }[];
+        };
+        classes?: string;
+    };
     /** Annotated text */
     body: string;
     /** Annotation comment */
@@ -52,8 +70,6 @@ export interface AnnotationData {
 export declare class AnnotationComponent {
     data: AnnotationData;
     emit: any;
-    onClick(payload: any): void;
+    onClick(ev: Event, payload: any): void;
     onContainerClick(target: HTMLElement, payload: any): void;
-    /** Test if a string is a n7-icon class */
-    isIconClass(classString: string): boolean;
 }
