@@ -46,7 +46,6 @@ export interface AnnotationData {
         notebooks: {
             header: {
                 label: string;
-                icon: Icon;
                 payload: any;
             };
             items: {
@@ -56,6 +55,8 @@ export interface AnnotationData {
         };
         classes?: string;
     };
+    /** Visible menu */
+    activeMenu?: 'actions' | 'notebooks';
     /** Annotated text */
     body: string;
     /** Annotation comment */
@@ -71,5 +72,8 @@ export declare class AnnotationComponent {
     data: AnnotationData;
     emit: any;
     onClick(ev: Event, payload: any): void;
-    onContainerClick(target: HTMLElement, payload: any): void;
+    onChange(ev: Event, payload: any): void;
+    onContainerClick(payload: any): void;
+    onEnter(payload: any): void;
+    onLeave(payload: any): void;
 }
