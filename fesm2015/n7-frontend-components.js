@@ -85,80 +85,6 @@ AnchorWrapperComponent = __decorate([
 ], AnchorWrapperComponent);
 
 //---------------------------
-let AnnotationComponent = class AnnotationComponent {
-    onClick(ev, payload) {
-        if (!this.emit)
-            return;
-        ev.stopImmediatePropagation();
-        this.emit('click', payload);
-    }
-    onChange(ev, payload) {
-        if (!this.emit)
-            return;
-        ev.stopPropagation();
-        this.emit('change', payload);
-    }
-    onContainerClick(payload) {
-        if (!this.emit)
-            return;
-        this.emit('click', payload);
-    }
-    onEnter(payload) {
-        if (!this.emit)
-            return;
-        this.emit('mouseenter', payload);
-    }
-    onLeave(payload) {
-        if (!this.emit)
-            return;
-        this.emit('mouseleave', payload);
-    }
-};
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], AnnotationComponent.prototype, "data", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], AnnotationComponent.prototype, "emit", void 0);
-AnnotationComponent = __decorate([
-    Component({
-        selector: 'n7-annotation',
-        template: "<div *ngIf=\"data\"\r\n     class=\"n7-annotation__container {{ data.classes || ''}}\"\r\n     (click)=\"data.payload && onContainerClick(data.payload)\"\r\n     (mouseenter)=\"data.payload && onEnter(data.payload)\"\r\n     (mouseleave)=\"data.payload && onLeave(data.payload)\">\r\n    <ng-container *ngIf=\"!data.isCollapsed\">\r\n        <!-- view the full annotation -->\r\n        <ng-container *ngTemplateOutlet=\"expanded\"></ng-container>\r\n    </ng-container>\r\n    <ng-container *ngIf=\"data.isCollapsed\">\r\n        <!-- minimal view of the annotation -->\r\n        <ng-container *ngTemplateOutlet=\"collapsed\"></ng-container>\r\n    </ng-container>\r\n</div>\r\n\r\n<ng-template #expanded>\r\n    <!-- metadata row -->\r\n    <div class=\"n7-annotation__metadata-row\">\r\n        <!-- avatar -->\r\n        <div class=\"n7-annotation__image-wrapper\">\r\n            <img [src]=\"data.user.image\"\r\n                 alt=\"User profile picture\"\r\n                 class=\"n7-annotation__image\">\r\n        </div>\r\n        <!-- name -->\r\n        <div class=\"n7-annotation__info-cont\">\r\n            <n7-anchor-wrapper [data]=\"data.user.anchor\">\r\n                <div class=\"n7-annotation__user-name\">{{data.user.name}}</div>\r\n            </n7-anchor-wrapper>\r\n            <!-- time ago - parent notebook -->\r\n            <div class=\"n7-annotation__info\">\r\n                <span class=\"n7-annotation__date\">{{data.date}}</span>\r\n                <span *ngIf=\"data.notebook?.anchor?.href\"> in\r\n                    <!-- rendering error appeared with n7-anchor-wrapper -->\r\n                    <a [href]=\"data.notebook.anchor.href\"\r\n                       [target]=\"data.notebook.anchor.target || '_self'\">\r\n                        <span>{{data.notebook.name}}</span>\r\n                    </a>\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <div *ngIf=\"data.menu\"\r\n             class=\"n7-annotation__menu {{ data.menu.classes || '' }}\">\r\n            <!-- arrow icon -->\r\n            <span class=\"n7-annotation__menu-icon\"\r\n                  [ngClass]=\"data.menu.icon['id']\"\r\n                  (click)=\"onClick($event, data.menu.icon['payload'])\">\r\n            </span>\r\n            <div class=\"n7-annotation__menu-dropdown\">\r\n                <!-- menu actions -->\r\n                <div class=\"n7-annotation__menu-actions\" *ngIf=\"data.activeMenu === 'actions'\">\r\n                    <div *ngFor=\"let action of data.menu.actions\"\r\n                            (click)=\"onClick($event, action.payload)\"\r\n                            class=\"n7-annotation__menu-action\">\r\n                        {{ action.label }}\r\n                    </div>\r\n                </div>\r\n                <div class=\"n7-annotation__menu-notebooks\" *ngIf=\"data.activeMenu === 'notebooks'\">\r\n                    <div class=\"n7-annotation__menu-notebooks-header\"\r\n                         (click)=\"onClick($event, data.menu.notebooks.header.payload)\">\r\n                        <!-- notebooks header label -->\r\n                        <span class=\"n7-annotation__notebooks-label\">\r\n                            {{ data.menu.notebooks.header.label }}\r\n                        </span>\r\n                    </div>\r\n                    <div class=\"n7-annotation__select-cont\">\r\n                        <select class=\"n7-annotation__select\"\r\n                                (change)=\"onChange($event, $event.target.value)\"\r\n                                (click)=\"onClick($event, 'notebook-select')\">\r\n                            <option *ngFor=\"let notebook of data.menu.notebooks.items\"\r\n                                    value=\"{{ notebook.payload }}\">\r\n                                {{ notebook.label }}\r\n                            </option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <hr class=\"n7-annotation__divider\">\r\n\r\n    <!-- highlight -->\r\n    <div class=\"n7-annotation__body-row\"\r\n         *ngIf=\"data.body\">\r\n        <span class=\"n7-annotation__body\">\r\n            {{data.body}}\r\n        </span>\r\n    </div>\r\n\r\n    <!-- comment -->\r\n    <div class=\"n7-annotation__comment-row\"\r\n         *ngIf=\"data.comment\">\r\n        <span class=\"n7-annotation__comment\">\r\n            {{data.comment}}\r\n        </span>\r\n    </div>\r\n</ng-template>\r\n\r\n<ng-template #collapsed>\r\n    <div class=\"n7-annotation__collapsed\">\r\n        <span class=\"n7-annotation__body\">\r\n            {{data.body}}\r\n        </span>\r\n        <span>\r\n            <n7-anchor-wrapper [data]=\"data.notebook.anchor\"\r\n                               class=\"n7-annotation__notebook\">\r\n                {{data.notebook.name}}\r\n            </n7-anchor-wrapper>\r\n        </span>\r\n    </div>\r\n</ng-template>\r\n"
-    })
-], AnnotationComponent);
-
-let AnnotationFormComponent = class AnnotationFormComponent {
-    onClick(payload) {
-        if (!this.emit) {
-            return;
-        }
-        this.emit('click', payload);
-    }
-    onChange(inputPayload, inputValue) {
-        if (!this.emit) {
-            return;
-        }
-        this.emit('change', { inputPayload, inputValue });
-    }
-};
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], AnnotationFormComponent.prototype, "data", void 0);
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], AnnotationFormComponent.prototype, "emit", void 0);
-AnnotationFormComponent = __decorate([
-    Component({
-        selector: 'n7-annotation-form',
-        template: "<div *ngIf=\"data\" class=\"n7-annotation-form\">\r\n    <div *ngIf=\"data.textarea\" class=\"n7-annotation-form__textarea {{ data.textarea.classes || '' }}\">\r\n        <textarea\r\n            (input)=\"onChange(data.textarea.payload, $event.target.value)\">{{ data.textarea.value || '' }}</textarea>\r\n    </div>\r\n    <div *ngIf=\"data.select\" class=\"n7-annotation-form__select {{ data.select.classes || '' }}\">\r\n\r\n        <!-- Label of selected element -->\r\n        <div class=\"n7-annotation-form__select-label\"\r\n            (click)=\"onClick(data.select.payload)\">\r\n            {{ data.select.label }}\r\n        </div>\r\n\r\n        <!-- Select container -->\r\n        <div class=\"n7-annotation-form__select-container {{ data.select.classes || '' }}\">\r\n            <!-- Toggle for opening the select -->\r\n            <div class=\"n7-annotation-form__select-toggle\" (click)=\"onClick(data.select.payload)\">\r\n                <span class=\"n7-annotation-form__select-toggle-label\">{{ data.select.toggleLabel }}</span>\r\n                <span class=\"n7-icon n7-icon-caret-down\"></span>\r\n            </div>\r\n            <!-- List with elements to select from -->\r\n            <div class=\"n7-annotation-form__select-items\">\r\n                <ng-container *ngFor=\"let item of data.select.items\">\r\n                    <div *ngIf=\"!item['divider']\" \r\n                        class=\"n7-annotation-form__select-option\"\r\n                        [ngClass]=\"{\r\n                            'is-selected': !!item['selected']\r\n                        }\"\r\n                        (click)=\"onChange(data.select.payload, item['value'])\">\r\n                        {{ item['label'] }}\r\n                    </div>\r\n        \r\n                    <div *ngIf=\"item['divider']\" class=\"n7-annotation-form__select-divider\"></div>\r\n                </ng-container>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"n7-annotation-form__actions\">\r\n        <div *ngFor=\"let action of data.actions\"\r\n            class=\"n7-annotation-form__actions-item\">\r\n            <a (click)=\"onClick(action.payload)\" class=\"n7-btn {{ action.classes || '' }}\">\r\n                <span class=\"n7-annotation-form__actions-item-label\">{{ action.label }}</span>\r\n                <span *ngIf=\"action.icon\" class=\"n7-annotation-form__actions-item-icon n7-btn__icon {{ action.icon }}\"></span>\r\n            </a>\r\n        </div>\r\n    </div>\r\n</div>"
-    })
-], AnnotationFormComponent);
-
-//---------------------------
 let BreadcrumbsComponent = class BreadcrumbsComponent {
     onClick(payload) {
         if (!this.emit)
@@ -1244,7 +1170,7 @@ __decorate([
 NavComponent = __decorate([
     Component({
         selector: 'n7-nav',
-        template: "<nav class=\"n7-nav {{data.classes || ''}}\" *ngIf=\"data\">\r\n    <ul class=\"n7-nav__list\">\r\n        <li class=\"n7-nav__item {{ item.classes || '' }}\" *ngFor=\"let item of data.items\">\r\n            <n7-anchor-wrapper [data]=\"item.anchor\" [classes]=\"'n7-nav__link'\" (clicked)=\"onClick($event)\">\r\n                <span class=\"n7-nav__label\">{{ item.text }}</span>\r\n            </n7-anchor-wrapper>\r\n        </li>\r\n    </ul>\r\n</nav>"
+        template: "<nav class=\"n7-nav {{data.classes || ''}}\" *ngIf=\"data\">\r\n    <ul class=\"n7-nav__list\">\r\n        <n7-anchor-wrapper \r\n        *ngFor=\"let item of data.items\"\r\n        [data]=\"item.anchor\" \r\n        [classes]=\"'n7-nav__link'\" \r\n        (clicked)=\"onClick($event)\">\r\n            <li class=\"n7-nav__item {{ item.classes || '' }}\">\r\n                <img class=\"n7-nav__image\" *ngIf=\"item.image\" src=\"{{ item.image }}\">\r\n                <span class=\"n7-nav__icon {{ item.icon }}\" *ngIf=\"item.icon\"></span>\r\n                <span class=\"n7-nav__label\">{{ item.text }}</span>\r\n            </li>\r\n        </n7-anchor-wrapper>\r\n    </ul>\r\n</nav>"
     })
 ], NavComponent);
 
@@ -1603,8 +1529,6 @@ const COMPONENTS = [
     AdvancedAutocompleteComponent,
     AlertComponent,
     AnchorWrapperComponent,
-    AnnotationComponent,
-    AnnotationFormComponent,
     BreadcrumbsComponent,
     BubbleChartComponent,
     CarouselComponent,
@@ -1768,86 +1692,6 @@ const ALERT_MOCK = {
     payload: 'close',
     icon: 'n7-icon-bell',
     classes: 'is-warning'
-};
-
-const ANNOTATION_FORM_MOCK = {
-    textarea: {
-        value: 'Textarea value...',
-        payload: 'textarea'
-    },
-    select: {
-        label: 'Save comment in',
-        toggleLabel: 'Public Notebook',
-        payload: 'select',
-        items: [{
-                label: 'Option 1',
-                value: 'option-1',
-            }, {
-                divider: true,
-            }, {
-                label: 'Option 2',
-                value: 'option-2',
-            }],
-        classes: 'is-open'
-    },
-    actions: [{
-            label: 'Cancel',
-            payload: 'cancel',
-            classes: 'cancel-button',
-            icon: 'n7-minus'
-        }, {
-            label: 'Save',
-            payload: 'save',
-            classes: 'save-button',
-            icon: 'n7-gear'
-        }]
-};
-
-const ANNOTATION_MOCK = {
-    _meta: { uid: 'mock-annotation-01' },
-    payload: 'collapse',
-    user: {
-        image: 'https://placeimg.com/400/600/people',
-        name: 'John Doe',
-        anchor: {
-            payload: 'user-page',
-        }
-    },
-    isCollapsed: false,
-    date: '18 minutes ago',
-    notebook: {
-        name: 'Default notebook',
-        anchor: { href: '/default-notebook', target: '_blank' }
-    },
-    menu: {
-        icon: {
-            id: 'n7-icon-angle-down',
-            payload: 'view-menu'
-        },
-        actions: [{
-                label: 'Change notebook',
-                payload: 'change-notebook'
-            }, {
-                label: 'Delete',
-                payload: 'delete'
-            }],
-        notebooks: {
-            header: {
-                label: 'Change current notebook',
-                payload: 'view-notebooks'
-            },
-            items: [{
-                    label: 'Default notebook',
-                    payload: 'change-with-other'
-                }, {
-                    label: 'My second notebook',
-                    payload: 'change-with-last'
-                }]
-        }
-    },
-    activeMenu: 'actions',
-    body: 'To annotate or not to annotate, that is the question',
-    comment: 'A quote by W.Shakespeare'
 };
 
 const BREADCRUMBS_MOCK = {
@@ -6803,8 +6647,27 @@ const METADATA_VIEWER_MOCK = {
 const NAV_MOCK = {
     items: [
         { text: 'Home', anchor: { href: 'https://google.com', target: '_blank', payload: 'clicked!' } },
-        { text: 'Single level', anchor: { payload: 'clicked!' } },
-        { text: 'Stuff', anchor: { href: '/examples', target: '_blank', payload: 'clicked!' } },
+        {
+            text: 'Single level',
+            anchor: { payload: 'clicked!' },
+            image: 'http://placekitten.com/200/300',
+        },
+        {
+            text: 'Single level 2',
+            anchor: { payload: 'clicked!' },
+            image: 'http://placekitten.com/10/10',
+        },
+        {
+            text: 'Test SVG',
+            anchor: { payload: 'clicked!' },
+            image: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
+        },
+        {
+            text: 'Stuff',
+            image: 'http://placekitten.com/200/300',
+            icon: 'n7-icon-archway',
+            anchor: { href: '/examples', target: '_blank', payload: 'clicked!' }
+        },
         { text: 'Other stuff', anchor: { payload: 'clicked!' } },
         { text: 'Cats', anchor: { href: '/examples', target: '_blank', payload: 'clicked!' } }
     ],
@@ -7574,5 +7437,5 @@ const WIZARD_MOCK = {
  * Generated bundle index. Do not edit.
  */
 
-export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, ANNOTATION_FORM_MOCK, ANNOTATION_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, AnnotationComponent, AnnotationFormComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HeaderComponent, HeroComponent, IMAGE_VIEWER_MOCK, IMAGE_VIEWER_TOOLS_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, ImageViewerToolsComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, MAP_MOCK, METADATA_VIEWER_MOCK, MapComponent, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PaginationComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TEXT_VIEWER_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TextViewerComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent, ɵ0, ɵ1, ɵ2 };
+export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HeaderComponent, HeroComponent, IMAGE_VIEWER_MOCK, IMAGE_VIEWER_TOOLS_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, ImageViewerToolsComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, MAP_MOCK, METADATA_VIEWER_MOCK, MapComponent, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PaginationComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TEXT_VIEWER_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TextViewerComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent, ɵ0, ɵ1, ɵ2 };
 //# sourceMappingURL=n7-frontend-components.js.map

@@ -13,6 +13,14 @@ export interface NavItem {
      */
     text: string;
     /**
+     * image url for contextual icon/thumbnail
+     */
+    image?: string;
+    /**
+     * icon name/class from icon font
+     */
+    icon?: string;
+    /**
      * additional html classes
      */
     classes?: string;

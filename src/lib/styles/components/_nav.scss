@@ -16,17 +16,26 @@
         list-style: none;
     }
 
-    &__item {
-        padding: 0;
-        margin: 0;
-    }
-
     &__link {
         cursor: pointer;
     }
+    
+    &__item {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
 
-    &__label {
-        
+    &__image {
+        height: $nav-image-height;
+        width: $nav-image-width;
+        object-fit: contain;
+        margin-right: $space/2;
+    }
+
+    &__icon {
+        margin-right: $space/2;
     }
 }
 
