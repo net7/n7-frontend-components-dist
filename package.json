@@ -1,6 +1,6 @@
 {
   "name": "@n7-frontend/components",
-  "version": "2.2.0",
+  "version": "2.8.0",
   "dependencies": {
     "apexcharts": "^3.8.5",
     "d3": "^5.11.0",

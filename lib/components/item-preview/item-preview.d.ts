@@ -15,6 +15,10 @@ export interface ItemPreviewData {
     */
     image?: string;
     /**
+     * Css code for the inline background color
+     */
+    color?: string;
+    /**
     * name of the item
     */
     title: string;

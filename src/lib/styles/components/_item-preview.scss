@@ -71,14 +71,15 @@
 
 
 /* ------------------------------------ *\
-   #HAS-IMAGE
+   #HAS-IMAGE, #HAS-COLOR
 \* ------------------------------------ */
-.n7-item-preview.has-image {
+.n7-item-preview.has-image,
+.n7-item-preview.has-color {
     .n7-item-preview__inner {
         display: flex;
     }
 
-    .n7-item-preview__image {
+    .n7-item-preview__image { /* Color background here */
         width: $item-preview-image-width;
         height: $item-preview-image-height;
         margin-right: $space*1.5;
@@ -96,12 +97,13 @@
 /* ------------------------------------ *\
    #IS-VERTICAL
 \* ------------------------------------ */
-.n7-item-preview.is-vertical.has-image {
+.n7-item-preview.is-vertical.has-image,
+.n7-item-preview.is-vertical.has-color {
     .n7-item-preview__inner {
         display: block;
     }
     
-    .n7-item-preview__image {
+    .n7-item-preview__image { /* Color background here */
         width: 100%;
         height: $item-preview-vertical-image-height;
         margin-bottom: $space;
@@ -115,13 +117,14 @@
 /* ------------------------------------ *\
    #IS-OVERLAY
 \* ------------------------------------ */
-.n7-item-preview.is-overlay.has-image {
+.n7-item-preview.is-overlay.has-image,
+.n7-item-preview.is-overlay.has-color {
     .n7-item-preview__inner {
         display: block;
         height: $item-preview-height;
     }
     
-    .n7-item-preview__image {
+    .n7-item-preview__image { /* Color background here */
         position: absolute;
         top: 0;
         bottom: 0;
@@ -131,17 +134,6 @@
         height: auto;
         margin-right: 0;
         z-index: 1;
-
-        &:after {
-            content: " ";
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0,0,0,0.5);
-        }
     }
 
     .n7-item-preview__content {
@@ -175,6 +167,23 @@
         color: $color-text-inverse;
     }
 }
+
+/* Dark overlay behind the text only with image (not with color bg only) */
+.n7-item-preview.is-overlay.has-image {
+    .n7-item-preview__image { /* Color background here */
+        &:after {
+            content: " ";
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.5);
+        }
+    }
+}
+
 
 /* ------------------------------------ *\
    #HOVER
