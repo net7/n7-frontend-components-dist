@@ -50,6 +50,8 @@ export interface MapData {
     markers?: MarkerData[];
     /** Sets the map instance to the given parameter */
     _setInstance?: Function;
+    /** Sets the marker layer to the given parameter */
+    _setMarkerLayer?: Function;
 }
 export declare class MapComponent implements AfterContentChecked {
     data: MapData;
