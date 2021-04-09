@@ -49,6 +49,10 @@ export interface InputCheckboxData {
      */
     checkboxes: InputCheckbox[];
     /**
+     * Fieldset (group) legend label
+     */
+    legend?: string;
+    /**
      * Additional HTML Classes
      */
     classes?: string;
