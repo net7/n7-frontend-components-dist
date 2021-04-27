@@ -1887,6 +1887,27 @@
         return WizardComponent;
     }());
 
+    //---------------------------
+    var ProgressLineComponent = /** @class */ (function () {
+        function ProgressLineComponent() {
+        }
+        __decorate([
+            core.Input(),
+            __metadata("design:type", Object)
+        ], ProgressLineComponent.prototype, "data", void 0);
+        __decorate([
+            core.Input(),
+            __metadata("design:type", Object)
+        ], ProgressLineComponent.prototype, "emit", void 0);
+        ProgressLineComponent = __decorate([
+            core.Component({
+                selector: 'n7-progress-line',
+                template: "<div *ngIf=\"data\" class=\"n7-progress-line\">\n    <div class=\"n7-progress-line__text-wrapper\">\n        <span class=\"n7-progress-line__label\" *ngIf=\"data.label\">\n            {{ data.label }}\n        </span>\n        <span class=\"n7-progress-line__value\" *ngIf=\"data.value || data.value===0\">\n            {{ data.value }}%\n        </span>\n    </div>\n    <div class=\"n7-progress-line__wrapper\">\n        <div class='n7-progress-line__bar' [ngStyle]=\"{'width.%':data.value}\"> {{data.value}}%\n        </div>\n    </div>\n</div>"
+            })
+        ], ProgressLineComponent);
+        return ProgressLineComponent;
+    }());
+
     var COMPONENTS = [
         AdvancedAutocompleteComponent,
         AlertComponent,
@@ -1928,6 +1949,7 @@
         TooltipContentComponent,
         TreeComponent,
         WizardComponent,
+        ProgressLineComponent,
     ];
     var DvComponentsLibModule = /** @class */ (function () {
         function DvComponentsLibModule() {
@@ -7056,6 +7078,11 @@
         }
     };
 
+    var PROGRESS_LINE_MOCK = {
+        label: 'left_label',
+        value: 70,
+    };
+
     var SIDEBAR_HEADER_MOCK = {
         iconLeft: 'n7-icon-tree-icon',
         text: 'Albero di navigazione',
@@ -7846,7 +7873,9 @@
     exports.NAV_MOCK = NAV_MOCK;
     exports.NavComponent = NavComponent;
     exports.PAGINATION_MOCK = PAGINATION_MOCK;
+    exports.PROGRESS_LINE_MOCK = PROGRESS_LINE_MOCK;
     exports.PaginationComponent = PaginationComponent;
+    exports.ProgressLineComponent = ProgressLineComponent;
     exports.SIDEBAR_HEADER_MOCK = SIDEBAR_HEADER_MOCK;
     exports.SIGNUP_MOCK = SIGNUP_MOCK;
     exports.SIMPLE_AUTOCOMPLETE_MOCK = SIMPLE_AUTOCOMPLETE_MOCK;

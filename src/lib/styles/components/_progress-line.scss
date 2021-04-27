@@ -1,0 +1,53 @@
+/**
+ * PROGRESS-LINE
+ *
+ * Style for the progress line.
+ */
+ 
+/* ------------------------------------ *\
+   #PROGRESS-LINE
+\* ------------------------------------ */
+.n7-progress-line {
+    &__text-wrapper {
+        margin-bottom: $space;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    &__label {
+
+    }
+
+    &__value {
+
+    }
+
+    &__wrapper {
+        height: $progress-line-height;
+        background-color: $progress-line-bg-color;
+    }
+
+    &__bar {
+        display: flex;
+        align-items: center;
+        height: $progress-line-height;
+        background-color: $progress-line-front-color;
+    }
+}
+
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+}

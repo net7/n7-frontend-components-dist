@@ -366,8 +366,17 @@ $footer-breakpoint-mobile: 700px;
 $carousel-content-width:960px;
 $carousel-height: 400px;
 
+
 // ------------------------------------ //
 // #NAV
 // ------------------------------------ //
 $nav-image-height: 50px;
 $nav-image-width: 50px;
+
+
+// ------------------------------------ //
+// #PROGRESS-LINE
+// ------------------------------------ //
+$progress-line-bg-color: $color-gray-02;
+$progress-line-front-color: $color-main;
+$progress-line-height: $space*3;
