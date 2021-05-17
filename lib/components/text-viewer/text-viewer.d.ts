@@ -11,7 +11,9 @@ export interface TextViewerData {
         xml: string;
         odd: string;
         id: string;
+        view: string;
         channel?: string;
+        translation?: boolean;
     }[];
     facsimile?: any;
     /**

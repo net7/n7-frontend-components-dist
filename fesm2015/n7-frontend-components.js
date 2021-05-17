@@ -1360,7 +1360,7 @@ __decorate([
 TextViewerComponent = TextViewerComponent_1 = __decorate([
     Component({
         selector: 'n7-text-viewer',
-        template: "<!-- NEW -->\n<div class=\"n7-text-viewer {{data.classes || ''}}\" *ngIf=\"data && data.endpoint\">\n    <pb-page [attr.endpoint]=\"data.endpoint\">\n        <pb-document *ngFor=\"let doc of data.docs\" [path]=\"doc.xml\" [odd]=\"doc.odd\" view=\"div\" [id]=\"doc.id\">\n        </pb-document>\n\n        <app-drawer-layout force-narrow=\"force-narrow\" narrow=\"\">\n            <app-header-layout>\n                <app-header fixed=\"fixed\" data-template=\"browse:fix-links\" style=\"\n                transition-duration: 0ms;\n                transform: translate3d(0px, 0px, 0px);\n                left: 0px;\n                right: 0.399994px;\">\n                    <app-toolbar class=\"toolbar\" sticky=\"sticky\" style=\"transform: translate3d(0px, 0px, 0px)\">\n                        <paper-icon-button id=\"tocToggle\" class=\"toc-toggle\" icon=\"icons:view-list\" role=\"button\"\n                            tabindex=\"0\" aria-disabled=\"false\"></paper-icon-button>\n\n                        <pb-toggle-feature name=\"highlight\" selector=\"tei-app,pb-popover\" default=\"off\"\n                            action=\"disable\" emit=\"transcription\" subscribe=\"transcription\">\n                            <pb-i18n key=\"document.plain\">Plain Reading View</pb-i18n>\n                        </pb-toggle-feature>\n                        <pb-zoom emit=\"transcription\" direction=\"in\" icon=\"icons:zoom-in\"></pb-zoom>\n                        <pb-zoom emit=\"transcription\" direction=\"out\" icon=\"icons:zoom-out\"></pb-zoom>\n                        <pb-navigation emit=\"transcription\" keyboard=\"left\" subscribe=\"transcription\"\n                            direction=\"backward\" unit=\"page\">\n                            <paper-icon-button icon=\"icons:chevron-left\" role=\"button\" tabindex=\"0\"\n                                aria-disabled=\"false\"></paper-icon-button>\n                        </pb-navigation>\n                        <pb-navigation emit=\"transcription\" keyboard=\"right\" subscribe=\"transcription\"\n                            direction=\"forward\" unit=\"page\">\n                            <paper-icon-button icon=\"icons:chevron-right\" role=\"button\" tabindex=\"0\"\n                                aria-disabled=\"false\"></paper-icon-button>\n                        </pb-navigation>\n\n                        <pb-progress subscribe=\"transcription\" indeterminate=\"\" bottom-item=\"bottom-item\"\n                            style=\"visibility: hidden\"></pb-progress>\n                    </app-toolbar>\n                </app-header>\n                <pb-drawer toggle=\"tocToggle\" class=\"tocDrawer\" emit=\"toc\" subscribe=\"transcription\">\n                    <div class=\"drawer-content\">\n                        <h3>\n                            <pb-i18n key=\"document.contents\">Contents</pb-i18n>\n                        </h3>\n                        <pb-load *ngIf=\"data.docs\" id=\"toc\" url=\"api/document/{doc}/contents?target=transcription&amp;icons=true\"\n                            [src]=\"data.docs[0].id\" subscribe=\"toc\" emit=\"toc\" expand=\"expand\" auto=\"auto\"><pb-i18n key=\"dialogs.loading\">Loading</pb-i18n></pb-load>\n                    </div>\n                </pb-drawer>\n                <main class=\"content-body\">\n                    <pb-facsimile *ngIf=\"data.facsimile\" id=\"facsimile\" [attr.base-uri]=\"data.facsimile.uri\"\n                        subscribe=\"transcription\" default-zoom-level=\"0\"\n                        show-navigation-control=\"show-navigation-control\" show-navigator=\"show-navigator\">\n                    </pb-facsimile>\n                    <ng-container *ngFor=\"let doc of data.docs; index as $i;\">\n                        <!-- NO CHANNEL -->\n                        <pb-view *ngIf=\"!doc.channel\" id=\"view{{ $i }}\" [src]=\"doc.id\" subscribe=\"transcription\"\n                            emit=\"transcription\" [attr.wait-for]=\"data.facsimile ? '#facsimile' : null\" column-separator=\".tei-cb\"\n                            append-footnotes=\"append-footnotes\" view=\"div\"></pb-view>\n                        <!-- WITH CHANNEL -->\n                        <pb-view *ngIf=\"doc.channel\" id=\"view{{ $i }}\" [src]=\"doc.id\" emit=\"{{ doc.channel }}\"\n                        view=\"single\">\n                            <pb-param name=\"mode\" value=\"{{ doc.channel }}\"></pb-param>\n                        </pb-view>\n                    </ng-container>\n                </main>\n            </app-header-layout>\n        </app-drawer-layout>\n    </pb-page>\n</div>"
+        template: "<!-- NEW -->\n<div\n  class=\"n7-text-viewer {{data.classes || ''}}\"\n  *ngIf=\"data && data.endpoint\"\n>\n  <pb-page [attr.endpoint]=\"data.endpoint\" api-version=\"1.0.0\">\n    <pb-document\n      *ngFor=\"let doc of data.docs\"\n      [path]=\"doc.xml\"\n      [odd]=\"doc.odd\"\n      [id]=\"doc.id\"\n    >\n    </pb-document>\n\n    <app-drawer-layout force-narrow=\"force-narrow\" narrow=\"\">\n      <app-header-layout>\n        <app-header\n          fixed=\"fixed\"\n          data-template=\"browse:fix-links\"\n          style=\"\n            transition-duration: 0ms;\n            transform: translate3d(0px, 0px, 0px);\n            left: 0px;\n            right: 0.399994px;\n          \"\n        >\n          <!-- <pb-login id=\"loginElem\" auto=\"false\"></pb-login> -->\n          <app-toolbar\n            class=\"toolbar\"\n            sticky=\"sticky\"\n            style=\"transform: translate3d(0px, 0px, 0px)\"\n          >\n            <paper-icon-button\n              id=\"tocToggle\"\n              class=\"toc-toggle\"\n              icon=\"icons:view-list\"\n              role=\"button\"\n              tabindex=\"0\"\n              aria-disabled=\"false\"\n            ></paper-icon-button>\n\n            <pb-toggle-feature *ngIf=\"data.docs.length === 1\"\n              name=\"highlight1\"\n              selector=\"tei-app,pb-popover,pb-highlight\"\n              default=\"off\"\n              action=\"disable\"\n              emit=\"transcription\"\n              subscribe=\"transcription\"\n            >\n              <pb-i18n key=\"document.plain\">Plain Reading View</pb-i18n>\n            </pb-toggle-feature>\n\n            <pb-zoom\n              emit=\"transcription\"\n              direction=\"in\"\n              icon=\"icons:zoom-in\"\n            ></pb-zoom>\n            <pb-zoom\n              emit=\"transcription\"\n              direction=\"out\"\n              icon=\"icons:zoom-out\"\n            ></pb-zoom>\n            <!-- *ngIf=\"data.docs.length > 1\" -->\n            <pb-select-feature *ngIf=\"data.docs.length > 1\"\n              id=\"select-view1\"\n              name=\"view1\"\n              label=\"View\"\n              items='[\n                    {\"name\": \"View All Named Entities\", \"selectors\": [{\"selector\": \".person\", \"state\": false}, {\"selector\": \".place\", \"state\": false}]},\n      {\"name\": \"View People\", \"selectors\": [{\"selector\": \".person\", \"state\": false}, {\"selector\": \".place\", \"state\": true}]},\n      {\"name\": \"View Places\", \"selectors\": [{\"selector\": \".place\", \"state\": false}, {\"selector\": \".person\", \"state\": true}]}\n        ]'\n              subscribe=\"altrochannel\"\n              emit=\"altrochannel\"\n            ></pb-select-feature>\n           \n            <pb-download\n              *ngIf=\"data.docs && data.docs.length > 1\"\n              type=\"epub\"\n              [src]=\"data.docs[0].id\"\n              dialog=\"downloadDialog\"\n              title=\"Download ePub\"\n            >\n              <paper-button raised=\"\">Download ePub</paper-button>\n            </pb-download>\n            \n            <pb-search class=\"hidden\" id=\"search-form\" action=\"search\" submitOnLoad=\"true\">\n              <div class=\"buttons\">\n                  <paper-button slot=\"searchButton\"><pb-i18n key=\"search.search\"></pb-i18n></paper-button>\n                  <paper-button slot=\"resetButton\"><pb-i18n key=\"search.reset\"></pb-i18n></paper-button>\n              </div>\n            </pb-search>\n            \n            <ng-container *ngIf=\"!data.docs[0].translation\">\n            <pb-navigation\n              emit=\"transcription\"\n              keyboard=\"left\"\n              subscribe=\"transcription\"\n              direction=\"backward\"\n              unit=\"page\"\n            >\n              <paper-icon-button\n                icon=\"icons:chevron-left\"\n                role=\"button\"\n                tabindex=\"0\"\n                aria-disabled=\"false\"\n              ></paper-icon-button>\n            </pb-navigation>\n            <pb-navigation\n              emit=\"transcription\"\n              keyboard=\"right\"\n              subscribe=\"transcription\"\n              direction=\"forward\"\n              unit=\"page\"\n            >\n              <paper-icon-button\n                icon=\"icons:chevron-right\"\n                role=\"button\"\n                tabindex=\"0\"\n                aria-disabled=\"false\"\n              ></paper-icon-button>\n            </pb-navigation>\n          </ng-container>\n\n            <pb-progress\n              subscribe=\"transcription\"\n              indeterminate=\"\"\n              bottom-item=\"bottom-item\"\n              style=\"visibility: hidden\"\n            ></pb-progress>\n          </app-toolbar>\n        </app-header>\n        <pb-drawer\n          toggle=\"tocToggle\"\n          class=\"tocDrawer\"\n          emit=\"toc\"\n          subscribe=\"transcription\"\n        >\n          <div class=\"drawer-content\">\n            <h3>\n              <pb-i18n key=\"document.contents\">Contents</pb-i18n>\n            </h3>\n            <pb-load\n              *ngIf=\"data.docs\"\n              id=\"toc\"\n              url=\"api/document/{doc}/contents?target=transcription&amp;icons=true\"\n              [src]=\"data.docs[0].id\"\n              subscribe=\"toc\"\n              emit=\"toc\"\n              expand=\"expand\"\n              auto=\"auto\"\n              ><pb-i18n key=\"dialogs.loading\">Loading</pb-i18n></pb-load\n            >\n          </div>\n        </pb-drawer>\n        <main class=\"content-body\">\n          <pb-facsimile\n            *ngIf=\"data.facsimile\"\n            id=\"facsimile\"\n            [attr.base-uri]=\"data.facsimile.uri\"\n            subscribe=\"transcription\"\n            default-zoom-level=\"0\"\n            show-navigation-control=\"show-navigation-control\"\n            show-navigator=\"show-navigator\"\n          >\n          </pb-facsimile>\n          <ng-container *ngFor=\"let doc of data.docs; index as $i;\">\n            <!-- NO CHANNEL -->\n            <pb-view\n              *ngIf=\"!doc.channel || (doc.channel && doc.translation)\"\n              id=\"view{{ $i }}\"\n              [src]=\"doc.id\"\n              subscribe=\"transcription\"\n              emit=\"transcription\"\n              [attr.wait-for]=\"data.facsimile ? '#facsimile' : null\"\n              column-separator=\".tei-cb\"\n              append-footnotes=\"append-footnotes\"\n              view=\"{{ doc.view }}\"\n            ></pb-view>\n            <!-- WITH CHANNEL -->\n            <pb-view\n              *ngIf=\"doc.channel && doc.translation\"\n              id=\"view{{ $i }}\"\n              [src]=\"doc.id\"\n              xpath=\"//text[@type='translation']\"\n              emit=\"{{ doc.channel }}\"\n              subscribe=\"{{ doc.channel }}\"\n              view=\"{{ doc.view }}\"\n            >\n              <pb-param name=\"mode\" value=\"commentary\"></pb-param>\n            </pb-view>\n            <pb-view\n              *ngIf=\"doc.channel && !doc.translation\"\n              id=\"view{{ $i }}\"\n              [src]=\"doc.id\"\n              emit=\"altrochannel\"\n              subscribe=\"altrochannel\"\n              view=\"{{ doc.view }}\"\n            >\n              <pb-param name=\"mode\" value=\"commentary\"></pb-param>\n            </pb-view>\n          </ng-container>\n        </main>\n      </app-header-layout>\n    </app-drawer-layout>\n  </pb-page>\n</div>\n"
     })
 ], TextViewerComponent);
 
@@ -1407,7 +1407,8 @@ let TimelineComponent = class TimelineComponent {
                 const { Timeline, DataSet } = modules;
                 const items = new DataSet(this.data.dataSet);
                 const t = new Timeline(document.getElementById(this.data.containerID), // container
-                items, this.data.libOptions);
+                items, this.data.libOptions // add groups below
+                );
                 // Set the timeline instance
                 if (this.data._setInstance)
                     this.data._setInstance(t);
@@ -7010,33 +7011,25 @@ const TAG_MOCK = {
 const TEXT_VIEWER_MOCK = {
     // TODO: update with mock values
     endpoint: 'http://staging.teipublisher.netseven.it/exist/apps/tei-publisher',
+    // endpoint: 'https://teipublisher.com/exist/apps/tei-publisher',
     docs: [
         {
-            xml: 'test/seniles.xml',
-            odd: 'test',
-            id: 'seniles'
-        },
-        {
-            xml: 'test/seniles.xml',
-            odd: 'test',
-            id: 'seniles2',
-            channel: 'altrochannel'
+            xml: 'playground/seniles_4.xml',
+            odd: 'muruca_1-0',
+            id: 'seniles',
+            view: 'div'
         },
     ],
-    facsimile: {
-        uri: 'http://127.0.0.1:8182/iiif/2/',
-        scans: ['001r.tif', '001v.tif', '002r.tif', '002v.tif', '003r.tif', '003v.tif', '004r.tif', '004v.tif', '005r.tif', '005v.tif', '006r.tif', '006v.tif', '007r.tif', '007v.tif', '008r.tif', '008v.tif', '009r.tif', '009v.tif', '010r.tif', '010v.tif', '011r.tif']
-    }
 };
 
-const ɵ0$3 = (f, s) => f.content.charAt(0) === s.content.charAt(0), ɵ1$1 = (data, element) => `<div class="tooltip">${element.title}</div>`, ɵ2 = (timeline) => timeline;
+const ɵ0$3 = (f, s) => f.content.charAt(0) === s.content.charAt(0), ɵ1$1 = (data, element) => `<div class="tooltip">${element.content}</div>`, ɵ2 = (timeline) => timeline;
 const TIMELINE_MOCK = {
     containerID: 'demo-timeline',
     libOptions: {
         height: '500px',
         locale: 'it_IT',
         cluster: {
-            // titleTemplate: '{count}',
+            // contentTemplate: '{count}',
             // fitOnDoubleClick: true,
             clusterCriteria: ɵ0$3
         },
@@ -7053,36 +7046,115 @@ const TIMELINE_MOCK = {
     },
     dataSet: [
         {
-            id: 1,
-            content: 'item 1',
-            start: '2014-04-20'
+            id: 788,
+            content: 'Luigi Capuana, Fiabe e favole classiche',
+            start: '01-01-1882',
+            end: '01-01-1913'
         },
         {
-            id: 2,
-            content: 'item 2',
-            start: '2014-04-14'
+            id: 786,
+            content: 'Fernan Caballero, Cuentos, adivinanzas y refranes populares',
+            start: '01-01-1921'
         },
         {
-            id: 3,
-            content: 'item 3',
-            start: '2014-04-18'
+            id: 784,
+            content: 'Charles Perrault, I racconti di mamma oca',
+            start: '01-01-1697'
         },
         {
-            id: 4,
-            content: 'item 4',
-            start: '2014-04-16',
-            end: '2014-04-19'
+            id: 782,
+            content: 'Fratelli Grimm, Fiabe del focolare',
+            start: '01-01-1812'
         },
         {
-            id: 5,
-            content: 'item 5',
-            start: '2014-04-25'
+            id: 776,
+            content: 'Giovanni Francesco Straparola, Le piacevoli notti',
+            start: '01-01-1550'
         },
         {
-            id: 6,
-            content: 'item 6',
-            start: '2014-04-27',
-            type: 'point'
+            id: 773,
+            content: 'Autore ignoto, Novellino',
+            start: '01-01-1201',
+            end: '01-01-1300'
+        },
+        {
+            id: 770,
+            content: 'Italo Calvino, Fiabe Italiane',
+            start: '01-01-1956'
+        },
+        {
+            id: 764,
+            content: 'Giovan Battista Basile, Lo Cunto de li Cunti',
+            start: '01-01-1634',
+            end: '01-01-1636'
+        },
+        {
+            id: 756,
+            content: 'Hans Christian Andersen, Fiabe',
+            start: '01-01-1843'
+        },
+        {
+            id: 752,
+            content: 'Fedro, Fabulae',
+            start: '01-01-1',
+            end: '01-01-100'
+        },
+        {
+            id: 717,
+            content: 'Esopo, Favole (Aἰσώπου μῦθοι)',
+            start: '-01-01-600',
+            end: '-01-01-501'
+        },
+        {
+            id: 710,
+            content: 'Elsie Spicer Eels, Fairy tales from Brazil',
+            start: '01-01-1918'
+        },
+        {
+            id: 700,
+            content: 'Guido Gozzano, Fiabe per “Il Corriere dei Piccoli”',
+            start: '01-01-1909',
+            end: '01-01-1914'
+        },
+        {
+            id: 694,
+            content: 'Aleksandr Nikolaevič Afanas’ev, Favole popolari russe (Narodnye russkie skazki)',
+            start: '01-01-1855',
+            end: '01-01-1864'
+        },
+        {
+            id: 689,
+            content: 'Autori sconosciuti, Le mille e una notte (ألف ليلة وليلة‎)',
+            start: '01-01-1001',
+            end: '01-01-1100'
+        },
+        {
+            id: 687,
+            content: 'Gianni Rodari, Favole al telefono',
+            start: '01-01-1962'
+        },
+        {
+            id: 681,
+            content: 'Giuseppe Pitrè, Fiabe, novelle e racconti popolari siciliani',
+            start: '01-01-1875'
+        },
+        {
+            id: 673,
+            content: 'Verità e Menzogna',
+            start: '-01-01-1300',
+            end: '-01-01-1201'
+        },
+        {
+            id: 671,
+            content: 'Il principe predestinato',
+            start: '-01-01-1300',
+            end: '-01-01-1201'
+        },
+        {
+            id: 669,
+            content: 'La Cenerentola Egiziana',
+            start: '-01-01-1300',
+            end: '-01-01-1201'
         }
     ],
     _setInstance: ɵ2
