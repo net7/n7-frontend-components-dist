@@ -1,4 +1,5 @@
 import { AfterContentChecked } from '@angular/core';
+import { ApexOptions } from 'apexcharts';
 /**
  * Interface for ChartComponent's "data"
  *
@@ -16,7 +17,7 @@ export interface ChartData {
     /**
      * libOptions for the chart ( docs here : https://apexcharts.com/docs/options/ )
      */
-    libOptions: any;
+    libOptions: ApexOptions;
     /**
      * additional html classes
      */
