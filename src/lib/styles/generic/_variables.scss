@@ -342,13 +342,16 @@ $inner-title-image-size: 60px;
 // #IMAGE-VIEWER
 // ------------------------------------ //
 $image-viewer-height: 400px;
-$image-viewer-thumb-height: 80px;
-$image-viewer-thumb-width: 80px;
-$image-viewer-control-height: 60px;
-$image-viewer-control-width: 60px;
+$image-viewer-thumb-height: 110px;
+$image-viewer-thumb-width: 110px;
+$image-viewer-control-height: 40px;
+$image-viewer-control-width: 40px;
+$image-viewer-control-icon-size: 24px;
 $image-viewer-background-color: $color-gray-05;
-$image-viewer-thumb-active-border-color: $color-main;
+$image-viewer-thumb-active-border-color: $color-gray-04;
 $image-viewer-thumb-hover-border-color: $color-main;
+$image-viewer-tools-control-color: $color-main;
+$image-viewer-tools-control-color-active: $color-second;
 
 
 // ------------------------------------ //

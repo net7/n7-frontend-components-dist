@@ -41,6 +41,7 @@ export interface ImageViewerData {
     viewerHeight?: number;
     images: ImageData[] | string;
     viewerId: string;
+    hideNavigation?: boolean;
     libOptions: any;
     _setViewer: any;
 }

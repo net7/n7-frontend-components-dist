@@ -34,6 +34,7 @@ export interface ImageViewerButtonData {
      * Button Anchor
      */
     anchor?: Anchor;
+    isActive?: boolean;
 }
 /**
  * Interface for ImageViewerToolsComponent's "data"
@@ -71,6 +72,19 @@ export interface ImageViewerToolsData {
         description: boolean;
         /** Toggle thumbnails strip visibility */
         thumbnails: boolean;
+    };
+    /**
+     * description overlay navigation
+     */
+    navigation?: {
+        prev: {
+            payload: any;
+            classes?: any;
+        };
+        next: {
+            payload: any;
+            classes?: any;
+        };
     };
     /**
      * Initial image in array (progressive number from 0)

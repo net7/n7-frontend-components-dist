@@ -22,6 +22,8 @@
 /* ------------------------------------ *\
    #THUMBS
 \* ------------------------------------ */
+/* This is the style for the default OpenSeaDragon thumbs. 
+For our custom thumbs please refer to ImageViewerTools. */
 .n7-image-viewer {
     &__thumbs {
         position: absolute;
@@ -73,17 +75,20 @@
     }
 
     .n7-image-viewer__controls-item {
-        display: block !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: $image-viewer-control-width;
+        height: $image-viewer-control-height;
         margin-bottom: $space !important;
-        padding: $space;
         cursor: pointer;
-        background-color: rgba(#000000, .7);
+        background-color: rgba(#000000, .9);
         border-radius: $border-radius;
 
         span {
-            color: rgba($color-text-inverse, .5);
-            font-size: $font-size-l;
-            transform: all $transition-durations;
+            color: rgba($color-text-inverse, .8);
+            font-size: $image-viewer-control-icon-size;
+            transition: color $transition-durations;
         }
 
         &:hover {
@@ -111,7 +116,7 @@
     span {
         color: rgba($color-text-inverse, .8);
         font-size: $font-size-xxl*2;
-        transform: all $transition-durations;
+        transition: all $transition-durations;
         cursor: pointer !important;
         text-shadow: 0 2px 4px rgba(#000000, .5);
 
