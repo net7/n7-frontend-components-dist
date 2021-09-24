@@ -124,7 +124,7 @@ $color-button-cta-bg-hover: $color-text-hover;
 $color-button-cta-bg-active: $color-text-hover;
 $color-button-cta-bg-disabled: rgba($color-main, .4);
 
-$color-button-cta-border: darken($color-main, 5); // $color-text-hover;
+$color-button-cta-border: $color-main-darker;
 
 // Light button (no background or border, only text)
 $color-button-light-text: $color-text-link;

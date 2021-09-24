@@ -20,7 +20,7 @@
         animation-iteration-count: infinite;
         animation-name: contentPlaceholderAnimation;
         animation-timing-function: linear;
-        background: linear-gradient(to right, $color-background-light 0%, darken($color-background-light, 3) 30%, $color-background-light 60%);
+        background: linear-gradient(to right, $color-background-light 0%, $color-background-medium 30%, $color-background-light 60%);
         background-size: 500px 104px;
         position: relative;
     }
