@@ -19,6 +19,10 @@ export interface InputTextData {
      */
     id: string;
     /**
+     * Input type
+     */
+    type?: 'text' | 'number';
+    /**
      * Placeholder text inside the input box
      */
     placeholder?: string;
@@ -50,6 +54,14 @@ export interface InputTextData {
      * Payload that is sent when the user clicks on the icon
      */
     iconPayload?: any;
+    /**
+     * Input minimun allowed value (only for type=number)
+     */
+    min?: number;
+    /**
+     * Input maximun allowed value (only for type=number)
+     */
+    max?: number;
     /**
      * Additional HTML Classes
      */

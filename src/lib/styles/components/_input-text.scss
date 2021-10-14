@@ -12,7 +12,7 @@
         position: relative;
     }
 
-    &__text[type="text"] {
+    &__text[type="text"], &__text[type="number"] {
         width: 100%;
         box-sizing: border-box;
         padding-right: $space*4;
