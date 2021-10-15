@@ -15,7 +15,16 @@
     &__text[type="text"], &__text[type="number"] {
         width: 100%;
         box-sizing: border-box;
-        padding-right: $space*4;
+    }
+
+    &__text[type="number"] {
+        padding-right: 0;
+    }
+    
+    .has-icon {
+        input {
+            padding-right: $space*4;
+        }
     }
 
     &__icon {
