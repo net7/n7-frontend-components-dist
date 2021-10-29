@@ -29,44 +29,39 @@
         &:last-of-type {
             padding-right: 0;
         }
+    }
 
-        &-nav {
-            &-list {
-                padding-left: 0;
-                list-style: none;
-                font-size: $font-size-xs;
-            }
+    &__column-nav-list {
+        padding-left: 0;
+        list-style: none;
+        font-size: $font-size-xs;
+    }
 
-            &-item {
-                margin-bottom: $space/2;
-            }
+    &__column-nav-item {
+        margin-bottom: $space/2;
+    }
 
-            &-link {
-                text-decoration: underline;
-                cursor: pointer;
-            }
-        }
+    &__column-nav-link {
+        text-decoration: underline;
+        cursor: pointer;
+    }
 
-        &-title,
-        &-text {
-            font-size: $font-size-xs;
-        }
+    &__column-title,
+    &__column-text {
+        font-size: $font-size-xs;
+    }
 
-        &-images {
-            padding-top: $space;
-            
-            img {
-                width: auto;
-                height: $footer-image-height;
-                margin-right: $space/2;
-
-                &:last-of-type {
-                    margin-right: 0;
-                }
-            }
+    &__column-images {
+        padding-top: $space;
+        
+        img {
+            width: auto;
+            height: $footer-image-height;
+            margin-right: $space/2;
         }
     }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -90,6 +85,7 @@
 }
 
 @media all and (max-width: $footer-breakpoint-mobile) {
+    
     .n7-footer {
         &__content {
             flex-flow: column nowrap;
@@ -101,20 +97,18 @@
             &:last-of-type {
                 padding-bottom: 0;
             }
+        }
 
-            &-nav {
-                &-list,
-                &-item {
-                    margin-bottom: 0;
-                }
+        &__column-nav-list,
+        &__column-nav-item {
+            margin-bottom: 0;
+        }
 
-                &-list {
-                    margin-top: 0;
-                }
-            }
-
+        &__column-nav-list {
+            margin-top: 0;
         }
     }
+
 }
 
 /* Retina */
