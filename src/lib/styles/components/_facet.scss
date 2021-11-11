@@ -75,6 +75,7 @@
 .n7-facet {
     &__section-input-links {
         max-height: $facet-links-max-height;
+        padding-right: $space;
         overflow-y: auto;
     }
 

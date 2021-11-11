@@ -10,7 +10,7 @@
 .n7-item-preview {
     /* anchor-wrapper wrapper af all contents */
     &__inner {
-        cursor: pointer;
+        cursor: default;
         position: relative;
     }
     
@@ -188,12 +188,18 @@
 /* ------------------------------------ *\
    #HOVER
 \* ------------------------------------ */
-.n7-item-preview:hover {
-    .n7-item-preview__title {
-        color: $color-text-link;
+/* Only applied when the class .has-link is present */
+.n7-item-preview.has-link {
+    .n7-item-preview__inner {
+        cursor: pointer;
+    }
+
+    &:hover {
+        .n7-item-preview__title {
+            color: $color-text-link;
+        }
     }
 }
-
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES

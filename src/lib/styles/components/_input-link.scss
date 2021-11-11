@@ -3,6 +3,7 @@
 \* ------------------------------------ */
 .n7-input-link {
     max-height: $facet-links-max-height;
+    padding-right: $space;
     overflow-y: auto;
 
     &__link {
