@@ -39,6 +39,8 @@ export interface MapData {
     tileLayers: TileLayerData[];
     /** Leaflet map options */
     libOptions?: MapOptions;
+    /** Leaflet cluster options */
+    clusterLibOptions?: any;
     /** Coordinates of the initial view */
     initialView: {
         /** Coordinates tuple */
