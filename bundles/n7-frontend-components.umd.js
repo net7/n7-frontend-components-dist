@@ -1,8 +1,11 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/router')) :
-    typeof define === 'function' && define.amd ? define('@n7-frontend/components', ['exports', '@angular/core', '@angular/common', '@angular/router'], factory) :
-    (global = global || self, factory((global['n7-frontend'] = global['n7-frontend'] || {}, global['n7-frontend'].components = {}), global.ng.core, global.ng.common, global.ng.router));
-}(this, (function (exports, core, common, router) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/router'), require('dayjs'), require('dayjs/plugin/objectSupport')) :
+    typeof define === 'function' && define.amd ? define('@n7-frontend/components', ['exports', '@angular/core', '@angular/common', '@angular/router', 'dayjs', 'dayjs/plugin/objectSupport'], factory) :
+    (global = global || self, factory((global['n7-frontend'] = global['n7-frontend'] || {}, global['n7-frontend'].components = {}), global.ng.core, global.ng.common, global.ng.router, global.dayjs, global.objectSupport));
+}(this, (function (exports, core, common, router, dayjs, objectSupport) { 'use strict';
+
+    dayjs = dayjs && Object.prototype.hasOwnProperty.call(dayjs, 'default') ? dayjs['default'] : dayjs;
+    objectSupport = objectSupport && Object.prototype.hasOwnProperty.call(objectSupport, 'default') ? objectSupport['default'] : objectSupport;
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -269,7 +272,7 @@
         AlertComponent = __decorate([
             core.Component({
                 selector: 'n7-alert',
-                template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" \n          *ngIf=\"data.hasCloseButton\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
+                template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\r\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\r\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\r\n    </div>\r\n    <span class=\"n7-alert__close-button n7-icon-close\" \r\n          *ngIf=\"data.hasCloseButton\" \r\n          (click)=\"onClick(data.payload)\"></span>\r\n</div>"
             })
         ], AlertComponent);
         return AlertComponent;
@@ -494,7 +497,7 @@
                     return Math.round(size) + "px";
                 })
                     .attr('cursor', 'pointer')
-                    .on('click', function (d) {
+                    .on('click', function (event, d) {
                     _this.onClick(d.data.entity.id);
                 })
                     .attr('id', function (d) { return "g_" + d.data.entity.id; })
@@ -776,7 +779,7 @@
         ChartComponent = __decorate([
             core.Component({
                 selector: 'n7-chart',
-                template: "<div *ngIf=\"data\" class=\"n7-chart {{ data.classes || '' }}\">\n    <div id=\"{{ data.containerId }}\"></div>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-chart {{ data.classes || '' }}\">\r\n    <div id=\"{{ data.containerId }}\"></div>\r\n</div>"
             })
         ], ChartComponent);
         return ChartComponent;
@@ -1101,6 +1104,293 @@
         return HeroComponent;
     }());
 
+    /* eslint-disable @typescript-eslint/no-use-before-define */
+    var HistogramRangeComponent = /** @class */ (function () {
+        function HistogramRangeComponent() {
+            var _this = this;
+            this._loaded = false;
+            this.draw = function () {
+                var d3 = _this.d3;
+                var _a = _this.data, width = _a.width, margin = _a.margin, height = _a.height, years = _a.years, colours = _a.colours, containerId = _a.containerId, innerRange = _a.innerRange;
+                if (innerRange) {
+                    var unit_1 = innerRange.unit, amount_1 = innerRange.amount;
+                    dayjs.extend(objectSupport);
+                    years.forEach(function (year) {
+                        year.end = dayjs({ y: year.key })
+                            .add(amount_1, unit_1)
+                            .year();
+                    });
+                }
+                // Helpers - Start:
+                var YEARtoX = d3
+                    .scaleBand()
+                    .domain(years.map(function (d) { return d.key; }))
+                    .range([0, width])
+                    .paddingInner(0.17)
+                    .paddingOuter(1);
+                var XtoYEAR = function (value) {
+                    var domain = YEARtoX.domain();
+                    var paddingOuter = YEARtoX(domain[0]);
+                    var eachBand = YEARtoX.step();
+                    var index = Math.floor(((value - paddingOuter) / eachBand));
+                    return domain[Math.max(0, Math.min(index, domain.length - 1))];
+                };
+                var YEARtoRANGE = function (year) {
+                    var unit = innerRange.unit, amount = innerRange.amount;
+                    var start = dayjs({ y: year });
+                    var end = start.add(amount - 1, unit);
+                    return "" + start.format('YYYY') + end.format('/YY');
+                };
+                // YEAR SELECTION CIRCLES
+                var yearBalls = d3
+                    .extent(years, function (d) { return d.key; })
+                    .map(function (d) { return ({ x: YEARtoX(d) + YEARtoX.bandwidth() / 2, y: height }); });
+                function isInRange(y) {
+                    var allYears = yearBalls.map(function (d) { return XtoYEAR(d.x); });
+                    if (y >= d3.min(allYears) && y <= d3.max(allYears))
+                        return true;
+                    return false;
+                }
+                function colourBars(d) {
+                    if (isInRange(d.key))
+                        return 'url(#gradient)';
+                    return '#e3e3e3';
+                }
+                function getSelectedRange() {
+                    var range = d3.sort(yearBalls.map(function (d) { return XtoYEAR(d.x); }));
+                    if (!innerRange)
+                        return range;
+                    var unit = innerRange.unit, amount = innerRange.amount;
+                    var end = dayjs({ y: range[1] }).add(amount - 1, unit).year();
+                    return [range[0], end];
+                }
+                // Helpers - End.
+                var svg = d3
+                    .select("#" + containerId)
+                    .attr('width', width + margin.left + margin.right)
+                    .attr('height', height + margin.top + margin.bottom);
+                var scaleHeight = d3
+                    .scaleSymlog() // most similar scale to the original
+                    .domain([0, d3.max(years, function (d) { return d.count; })])
+                    .range([height, 0]);
+                // GRADIENT
+                var defs = svg.append('defs'); // definitions
+                var gradient = defs
+                    .append('linearGradient')
+                    .attr('id', 'gradient')
+                    .attr('gradientUnits', 'userSpaceOnUse')
+                    .attr('x1', 0)
+                    .attr('y1', height)
+                    .attr('x2', 0)
+                    .attr('y2', margin.top);
+                gradient
+                    .append('stop')
+                    .attr('class', 'start')
+                    .attr('offset', '0%')
+                    .attr('stop-color', colours.bottom) // bottom gradient
+                    .attr('stop-opacity', 1);
+                gradient
+                    .append('stop')
+                    .attr('class', 'end')
+                    .attr('offset', '100%')
+                    .attr('stop-color', colours.top) // top gradient
+                    .attr('stop-opacity', 1);
+                // DRAW INSIDE MARGINS
+                var g = svg
+                    .append('g')
+                    .attr('class', 'chart')
+                    .attr('transform', "translate(" + margin.left + "," + margin.top + ")");
+                var barsLayer = g.append('g').attr('class', 'bars');
+                var controlsLayer = g.append('g').attr('class', 'controls');
+                // BAR CHART
+                barsLayer // bars
+                    .selectAll('rect.bars')
+                    .data(years)
+                    .join('rect')
+                    .attr('class', 'bars')
+                    .attr('width', YEARtoX.bandwidth)
+                    .attr('height', function (d) { return height - scaleHeight(d.count); })
+                    .attr('y', function (d) { return scaleHeight(d.count); })
+                    .attr('x', function (d) { return YEARtoX(d.key); })
+                    .attr('fill', 'url(#gradient)');
+                barsLayer // overlay
+                    .append('rect')
+                    .attr('width', width)
+                    .attr('height', height)
+                    .attr('opacity', 0)
+                    .on('mousemove', function (event) {
+                    var year = XtoYEAR(event.x);
+                    // console.log({ x: event.x, year });
+                    d3.selectAll('rect.bars').attr('fill', function (d) {
+                        if (year === d.key)
+                            return '#B0CCF8';
+                        return colourBars(d);
+                    });
+                })
+                    .on('mouseout', function () {
+                    d3.selectAll('rect.bars').attr('fill', function (d) { return colourBars(d); });
+                })
+                    .on('click', function (event) {
+                    var year = XtoYEAR(event.x);
+                    var xAxisValue = YEARtoX(year) + YEARtoX.bandwidth() / 2;
+                    var newValue = {
+                        x: xAxisValue,
+                        y: height
+                    };
+                    yearBalls = [newValue, newValue];
+                    yearPicker
+                        .data(yearBalls)
+                        .select('circle')
+                        .transition()
+                        .ease(d3.easeQuadOut)
+                        .duration(550)
+                        .attr('cx', function (d) { return d.x; });
+                    controlsLayer
+                        .select('path.blueline')
+                        .transition()
+                        .ease(d3.easeQuadOut)
+                        .duration(550)
+                        .attr('d', d3.line()(yearBalls.map(function (d) { return [d.x, d.y]; })));
+                    yearPicker
+                        .selectAll('text')
+                        .transition()
+                        .ease(d3.easeQuadOut)
+                        .duration(550)
+                        .attr('x', function () { return xAxisValue; })
+                        .text(function () {
+                        var startYear = year;
+                        if (innerRange)
+                            return YEARtoRANGE(startYear);
+                        return startYear;
+                    });
+                    g.selectAll('rect.bars').attr('fill', function (d) { return colourBars(d); });
+                    _this.emit('rangeselected', getSelectedRange());
+                });
+                controlsLayer // gray line
+                    .append('path')
+                    .attr('class', 'grayline')
+                    .attr('d', d3.line()([
+                    [0, height],
+                    [width, height]
+                ]))
+                    .attr('stroke-width', 2)
+                    .attr('opacity', 1)
+                    .attr('stroke', '#C1C5C7');
+                controlsLayer // blue line
+                    .append('path')
+                    .attr('class', 'blueline')
+                    .attr('d', d3.line()(yearBalls.map(function (d) { return [d.x, d.y]; })))
+                    .attr('stroke-width', 2)
+                    .attr('stroke', colours.accent);
+                var yearPicker = controlsLayer
+                    .selectAll('g.yearpicker')
+                    .data(yearBalls)
+                    .join('g')
+                    .attr('class', 'yearpicker');
+                /**
+                 * Animate the elements while the user is dragging one of the range selectors
+                 */
+                function draggingUpdate(event, data) {
+                    var year = XtoYEAR(event.sourceEvent.x);
+                    var xAxisValue = YEARtoX(year) + YEARtoX.bandwidth() / 2;
+                    var yb = [];
+                    g.selectAll('circle').each(function setBallPosition() {
+                        yb.push({ x: d3.select(this).attr('cx'), y: height });
+                    });
+                    yearBalls = yb;
+                    // move the circle
+                    d3.select(this)
+                        .select('circle')
+                        .attr('cx', data.x = xAxisValue);
+                    // move the blue line
+                    controlsLayer
+                        .select('path.blueline')
+                        .attr('d', d3.line()(yearBalls.map(function (d) { return [d.x, d.y]; })));
+                    // change the text
+                    d3.select(this)
+                        .selectAll('text')
+                        .attr('x', function () { return xAxisValue; })
+                        .text(function () {
+                        var startYear = year;
+                        if (innerRange)
+                            return YEARtoRANGE(startYear);
+                        return startYear;
+                    });
+                    // colour the bars
+                    g.selectAll('rect.bars').attr('fill', function (d) { return colourBars(d); });
+                }
+                yearPicker // drag handler
+                    .call(d3.drag()
+                    .on('drag', draggingUpdate)
+                    .on('end', function (event, data) {
+                    // update one last time to prevent desyncing
+                    draggingUpdate(event, data);
+                    // emit the selected range
+                    _this.emit('rangeselected', getSelectedRange());
+                }));
+                yearPicker
+                    .append('circle')
+                    .attr('cx', function (d) { return d.x; })
+                    .attr('cy', function (d) { return d.y; })
+                    .attr('r', 9)
+                    .attr('fill', 'white')
+                    .attr('stroke-width', 2)
+                    .attr('stroke', colours.accent)
+                    .attr('style', 'cursor: pointer');
+                yearPicker
+                    .attr('text-anchor', 'middle')
+                    .attr('font-family', 'Roboto, Arial, sans-serif')
+                    .attr('font-size', '12px')
+                    .append('text')
+                    .attr('y', function (d) { return d.y + margin.bottom / 2; })
+                    .attr('x', function (d) { return d.x; })
+                    .attr('fill', colours.accent)
+                    .text(function (d) {
+                    var startYear = XtoYEAR(d.x);
+                    if (innerRange)
+                        return YEARtoRANGE(startYear);
+                    return startYear;
+                });
+            };
+        }
+        HistogramRangeComponent.prototype.ngAfterContentChecked = function () {
+            var _this = this;
+            /*
+             Waits for the dom to be loaded, then fires the draw function
+             that renders the chart.
+            */
+            if (this.data) {
+                if (this._loaded)
+                    return;
+                this._loaded = true;
+                setTimeout(function () {
+                    import('d3').then(function (module) {
+                        _this.d3 = module;
+                        _this.draw();
+                        if (_this.data && _this.data.setDraw) {
+                            _this.data.setDraw(_this.draw);
+                        }
+                    });
+                });
+            }
+        };
+        __decorate([
+            core.Input(),
+            __metadata("design:type", Object)
+        ], HistogramRangeComponent.prototype, "data", void 0);
+        __decorate([
+            core.Input(),
+            __metadata("design:type", Object)
+        ], HistogramRangeComponent.prototype, "emit", void 0);
+        HistogramRangeComponent = __decorate([
+            core.Component({
+                selector: 'n7-histogram-range',
+                template: "<div *ngIf=\"data\" class=\"n7-histogram-range\">\r\n    <svg #histogramRange [id]=\"data.containerId\"></svg>\r\n</div>\r\n"
+            })
+        ], HistogramRangeComponent);
+        return HistogramRangeComponent;
+    }());
+
     //---------------------------
     /**
      * ImageViewerComponent <n7-image-viewer>
@@ -1411,7 +1701,7 @@
                     // map.on('click', this.onMapClick);
                     /** Handle markers */
                     if (_this.data.markers) {
-                        var markers_1 = leaflet.markerClusterGroup(_this.data.clusterLibOptions);
+                        var markers_1 = leaflet.markerClusterGroup();
                         _this.data.markers.forEach(function (mrk) {
                             leaflet.marker(mrk.coords).addTo(markers_1).bindPopup(mrk.template);
                         });
@@ -1715,7 +2005,7 @@
         TagComponent = __decorate([
             core.Component({
                 selector: 'n7-tag',
-                template: "<span class=\"n7-tag {{data.classes || ''}}\" *ngIf=\"data\">\n    <span class=\"n7-tag__label\" *ngIf=\"data.label\">\n        {{ data.label }}\n    </span>\n    <span class=\"n7-tag__text\" *ngIf=\"data.text\">\n        {{ data.text }}\n    </span>\n    <span class=\"n7-tag__icon {{data.icon}}\" *ngIf=\"data.icon\" (click)=\"onClick(data.payload)\"></span>\n</span>"
+                template: "<span class=\"n7-tag {{data.classes || ''}}\" *ngIf=\"data\">\r\n    <span class=\"n7-tag__label\" *ngIf=\"data.label\">\r\n        {{ data.label }}\r\n    </span>\r\n    <span class=\"n7-tag__text\" *ngIf=\"data.text\">\r\n        {{ data.text }}\r\n    </span>\r\n    <span class=\"n7-tag__icon {{data.icon}}\" *ngIf=\"data.icon\" (click)=\"onClick(data.payload)\"></span>\r\n</span>"
             })
         ], TagComponent);
         return TagComponent;
@@ -1804,7 +2094,7 @@
         ToastComponent = __decorate([
             core.Component({
                 selector: 'n7-toast',
-                template: "<div *ngIf=\"data\" class=\"n7-toast\">\n    <div class=\"n7-toast__column {{data.classes || ''}}\">\n\n        <!-- Toast boxes -->\n        <div class=\"n7-toast__box\" \n             *ngFor=\"let box of data.toasts\"\n             [ngClass]=\"{ 'has-actions' : !! (box.actions || box.closeIcon) }\">\n        \n            <!-- Toast text -->\n            <div class=\"n7-toast__content {{box.classes || ''}}\" *ngIf=\"box.title || box.text\">\n                <span class=\"n7-toast__title\" *ngIf=\"box.title\">{{ box.title }}</span>\n                <span class=\"n7-toast__text\" *ngIf=\"box.text\">{{ box.text }}</span>\n            </div>\n\n            <!-- Toast actions -->\n            <div class=\"n7-toast__actions\" *ngIf=\"box.actions || box.closeIcon\">\n                <span\n                class=\"n7-toast__closeIcon {{ box.closeIcon.icon }}\" \n                *ngIf=\"box.closeIcon\" \n                (click)=\"onClick(box.closeIcon.payload)\">\n                </span>\n                <span class=\"n7-toast__action-wrapper\" *ngIf=\"box.actions\">\n                    <span class=\"n7-toast__action-content\" *ngFor=\"let action of box.actions\">\n                        <button class=\"n7-toast__action-button n7-btn n7-btn-s {{action.classes || ''}}\"\n                                (click)=\"onClick(action.payload)\">\n                                {{action.text}}\n                        </button>\n                    </span>\n                </span>\n            </div>\n        </div>\n    </div>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-toast\">\r\n    <div class=\"n7-toast__column {{data.classes || ''}}\">\r\n\r\n        <!-- Toast boxes -->\r\n        <div class=\"n7-toast__box\" \r\n             *ngFor=\"let box of data.toasts\"\r\n             [ngClass]=\"{ 'has-actions' : !! (box.actions || box.closeIcon) }\">\r\n        \r\n            <!-- Toast text -->\r\n            <div class=\"n7-toast__content {{box.classes || ''}}\" *ngIf=\"box.title || box.text\">\r\n                <span class=\"n7-toast__title\" *ngIf=\"box.title\">{{ box.title }}</span>\r\n                <span class=\"n7-toast__text\" *ngIf=\"box.text\">{{ box.text }}</span>\r\n            </div>\r\n\r\n            <!-- Toast actions -->\r\n            <div class=\"n7-toast__actions\" *ngIf=\"box.actions || box.closeIcon\">\r\n                <span\r\n                class=\"n7-toast__closeIcon {{ box.closeIcon.icon }}\" \r\n                *ngIf=\"box.closeIcon\" \r\n                (click)=\"onClick(box.closeIcon.payload)\">\r\n                </span>\r\n                <span class=\"n7-toast__action-wrapper\" *ngIf=\"box.actions\">\r\n                    <span class=\"n7-toast__action-content\" *ngFor=\"let action of box.actions\">\r\n                        <button class=\"n7-toast__action-button n7-btn n7-btn-s {{action.classes || ''}}\"\r\n                                (click)=\"onClick(action.payload)\">\r\n                                {{action.text}}\r\n                        </button>\r\n                    </span>\r\n                </span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
             })
         ], ToastComponent);
         return ToastComponent;
@@ -1882,7 +2172,7 @@
         WizardComponent = __decorate([
             core.Component({
                 selector: 'n7-wizard',
-                template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\n  <ol class=\"n7-wizard__list\">\n      <li *ngFor=\"let item of data.items\" \n          class=\"n7-wizard__item {{ item.classes || '' }}\" \n          (click)=\"onClick(item.payload)\">\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\n      </li>\n  </ol>\n</div>"
+                template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\r\n  <ol class=\"n7-wizard__list\">\r\n      <li *ngFor=\"let item of data.items\" \r\n          class=\"n7-wizard__item {{ item.classes || '' }}\" \r\n          (click)=\"onClick(item.payload)\">\r\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\r\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\r\n      </li>\r\n  </ol>\r\n</div>"
             })
         ], WizardComponent);
         return WizardComponent;
@@ -1926,6 +2216,7 @@
         FooterComponent,
         HeaderComponent,
         HeroComponent,
+        HistogramRangeComponent,
         ImageViewerComponent,
         ImageViewerToolsComponent,
         InnerTitleComponent,
@@ -6696,6 +6987,217 @@
         image: 'https://placeimg.com/600/600/nature'
     };
 
+    var HISTOGRAM_RANGE_MOCK = {
+        containerId: 'container-for-histogram',
+        width: 300,
+        height: 50,
+        colours: {
+            top: '#F5AE34',
+            bottom: '#FBD45E',
+            accent: '#1857B6',
+        },
+        margin: {
+            left: 0,
+            right: 0,
+            top: 10,
+            bottom: 45
+        },
+        innerRange: {
+            unit: 'year',
+            amount: 10
+        },
+        years: [
+            // {
+            //   key: 1974,
+            //   count: 1
+            // },
+            {
+                key: 1975,
+                count: 0
+            },
+            // {
+            //   key: 1976,
+            //   count: 1
+            // },
+            // {
+            //   key: 1977,
+            //   count: 0
+            // },
+            // {
+            //   key: 1978,
+            //   count: 4
+            // },
+            // {
+            //   key: 1979,
+            //   count: 5
+            // },
+            {
+                key: 1980,
+                count: 6
+            },
+            // {
+            //   key: 1981,
+            //   count: 4
+            // },
+            // {
+            //   key: 1982,
+            //   count: 10
+            // },
+            // {
+            //   key: 1983,
+            //   count: 2
+            // },
+            // {
+            //   key: 1984,
+            //   count: 4
+            // },
+            {
+                key: 1985,
+                count: 6
+            },
+            // {
+            //   key: 1986,
+            //   count: 2
+            // },
+            // {
+            //   key: 1987,
+            //   count: 13
+            // },
+            // {
+            //   key: 1988,
+            //   count: 5
+            // },
+            // {
+            //   key: 1989,
+            //   count: 10
+            // },
+            {
+                key: 1990,
+                count: 13
+            },
+            // {
+            //   key: 1991,
+            //   count: 7
+            // },
+            // {
+            //   key: 1992,
+            //   count: 15
+            // },
+            // {
+            //   key: 1993,
+            //   count: 14
+            // },
+            // {
+            //   key: 1994,
+            //   count: 17
+            // },
+            {
+                key: 1995,
+                count: 18
+            },
+            // {
+            //   key: 1996,
+            //   count: 17
+            // },
+            // {
+            //   key: 1997,
+            //   count: 14
+            // },
+            // {
+            //   key: 1998,
+            //   count: 27
+            // },
+            // {
+            //   key: 1999,
+            //   count: 29
+            // },
+            {
+                key: 2000,
+                count: 30
+            },
+            // {
+            //   key: 2001,
+            //   count: 48
+            // },
+            // {
+            //   key: 2002,
+            //   count: 68
+            // },
+            // {
+            //   key: 2003,
+            //   count: 48
+            // },
+            // {
+            //   key: 2004,
+            //   count: 65
+            // },
+            {
+                key: 2005,
+                count: 65
+            },
+            // {
+            //   key: 2006,
+            //   count: 69
+            // },
+            // {
+            //   key: 2007,
+            //   count: 44
+            // },
+            // {
+            //   key: 2008,
+            //   count: 117
+            // },
+            // {
+            //   key: 2009,
+            //   count: 89
+            // },
+            {
+                key: 2010,
+                count: 70
+            },
+            // {
+            //   key: 2011,
+            //   count: 82
+            // },
+            // {
+            //   key: 2012,
+            //   count: 68
+            // },
+            // {
+            //   key: 2013,
+            //   count: 68
+            // },
+            // {
+            //   key: 2014,
+            //   count: 76
+            // },
+            {
+                key: 2015,
+                count: 62
+            },
+            // {
+            //   key: 2016,
+            //   count: 64
+            // },
+            // {
+            //   key: 2017,
+            //   count: 86
+            // },
+            // {
+            //   key: 2018,
+            //   count: 65
+            // },
+            // {
+            //   key: 2019,
+            //   count: 70
+            // },
+            {
+                key: 2020,
+                count: 55
+            },
+        ]
+    };
+
     var IMAGE_VIEWER_TOOLS_MOCK = {
         images: [
             { thumb: 'http://placekitten.com/200/130', payload: 'img1-payload' },
@@ -7956,8 +8458,10 @@
     exports.FooterComponent = FooterComponent;
     exports.HEADER_MOCK = HEADER_MOCK;
     exports.HERO_MOCK = HERO_MOCK;
+    exports.HISTOGRAM_RANGE_MOCK = HISTOGRAM_RANGE_MOCK;
     exports.HeaderComponent = HeaderComponent;
     exports.HeroComponent = HeroComponent;
+    exports.HistogramRangeComponent = HistogramRangeComponent;
     exports.IMAGE_VIEWER_MOCK = IMAGE_VIEWER_MOCK;
     exports.IMAGE_VIEWER_TOOLS_MOCK = IMAGE_VIEWER_TOOLS_MOCK;
     exports.INNER_TITLE_MOCK = INNER_TITLE_MOCK;

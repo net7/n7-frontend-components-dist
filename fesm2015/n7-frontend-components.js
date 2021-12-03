@@ -2,6 +2,8 @@ import { __decorate, __metadata, __awaiter } from 'tslib';
 import { Input, Component, EventEmitter, Output, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import dayjs from 'dayjs';
+import objectSupport from 'dayjs/plugin/objectSupport';
 
 //---------------------------
 let AdvancedAutocompleteComponent = class AdvancedAutocompleteComponent {
@@ -45,7 +47,7 @@ __decorate([
 AlertComponent = __decorate([
     Component({
         selector: 'n7-alert',
-        template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\n    </div>\n    <span class=\"n7-alert__close-button n7-icon-close\" \n          *ngIf=\"data.hasCloseButton\" \n          (click)=\"onClick(data.payload)\"></span>\n</div>"
+        template: "<div class=\"n7-alert {{data.classes || ''}} {{ data.icon ? 'has-icon' : '' }}\" *ngIf=\"data\" >\r\n    <span class=\"n7-alert__icon {{data.icon}}\" *ngIf=\"data.icon\"></span>\r\n    <div class=\"n7-alert__text\" [innerHTML]=\"data.text\">\r\n    </div>\r\n    <span class=\"n7-alert__close-button n7-icon-close\" \r\n          *ngIf=\"data.hasCloseButton\" \r\n          (click)=\"onClick(data.payload)\"></span>\r\n</div>"
     })
 ], AlertComponent);
 
@@ -263,7 +265,7 @@ let BubbleChartComponent = class BubbleChartComponent {
                 return `${Math.round(size)}px`;
             })
                 .attr('cursor', 'pointer')
-                .on('click', (d) => {
+                .on('click', (event, d) => {
                 this.onClick(d.data.entity.id);
             })
                 .attr('id', (d) => `g_${d.data.entity.id}`)
@@ -538,7 +540,7 @@ __decorate([
 ChartComponent = __decorate([
     Component({
         selector: 'n7-chart',
-        template: "<div *ngIf=\"data\" class=\"n7-chart {{ data.classes || '' }}\">\n    <div id=\"{{ data.containerId }}\"></div>\n</div>"
+        template: "<div *ngIf=\"data\" class=\"n7-chart {{ data.classes || '' }}\">\r\n    <div id=\"{{ data.containerId }}\"></div>\r\n</div>"
     })
 ], ChartComponent);
 
@@ -835,6 +837,290 @@ HeroComponent = __decorate([
     })
 ], HeroComponent);
 
+/* eslint-disable @typescript-eslint/no-use-before-define */
+let HistogramRangeComponent = class HistogramRangeComponent {
+    constructor() {
+        this._loaded = false;
+        this.draw = () => {
+            const { d3 } = this;
+            const { width, margin, height, years, colours, containerId, innerRange } = this.data;
+            if (innerRange) {
+                const { unit, amount } = innerRange;
+                dayjs.extend(objectSupport);
+                years.forEach((year) => {
+                    year.end = dayjs({ y: year.key })
+                        .add(amount, unit)
+                        .year();
+                });
+            }
+            // Helpers - Start:
+            const YEARtoX = d3
+                .scaleBand()
+                .domain(years.map((d) => d.key))
+                .range([0, width])
+                .paddingInner(0.17)
+                .paddingOuter(1);
+            const XtoYEAR = (value) => {
+                const domain = YEARtoX.domain();
+                const paddingOuter = YEARtoX(domain[0]);
+                const eachBand = YEARtoX.step();
+                const index = Math.floor(((value - paddingOuter) / eachBand));
+                return domain[Math.max(0, Math.min(index, domain.length - 1))];
+            };
+            const YEARtoRANGE = (year) => {
+                const { unit, amount } = innerRange;
+                const start = dayjs({ y: year });
+                const end = start.add(amount - 1, unit);
+                return `${start.format('YYYY')}${end.format('/YY')}`;
+            };
+            // YEAR SELECTION CIRCLES
+            let yearBalls = d3
+                .extent(years, (d) => d.key)
+                .map((d) => ({ x: YEARtoX(d) + YEARtoX.bandwidth() / 2, y: height }));
+            function isInRange(y) {
+                const allYears = yearBalls.map((d) => XtoYEAR(d.x));
+                if (y >= d3.min(allYears) && y <= d3.max(allYears))
+                    return true;
+                return false;
+            }
+            function colourBars(d) {
+                if (isInRange(d.key))
+                    return 'url(#gradient)';
+                return '#e3e3e3';
+            }
+            function getSelectedRange() {
+                const range = d3.sort(yearBalls.map((d) => XtoYEAR(d.x)));
+                if (!innerRange)
+                    return range;
+                const { unit, amount } = innerRange;
+                const end = dayjs({ y: range[1] }).add(amount - 1, unit).year();
+                return [range[0], end];
+            }
+            // Helpers - End.
+            const svg = d3
+                .select(`#${containerId}`)
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom);
+            const scaleHeight = d3
+                .scaleSymlog() // most similar scale to the original
+                .domain([0, d3.max(years, (d) => d.count)])
+                .range([height, 0]);
+            // GRADIENT
+            const defs = svg.append('defs'); // definitions
+            const gradient = defs
+                .append('linearGradient')
+                .attr('id', 'gradient')
+                .attr('gradientUnits', 'userSpaceOnUse')
+                .attr('x1', 0)
+                .attr('y1', height)
+                .attr('x2', 0)
+                .attr('y2', margin.top);
+            gradient
+                .append('stop')
+                .attr('class', 'start')
+                .attr('offset', '0%')
+                .attr('stop-color', colours.bottom) // bottom gradient
+                .attr('stop-opacity', 1);
+            gradient
+                .append('stop')
+                .attr('class', 'end')
+                .attr('offset', '100%')
+                .attr('stop-color', colours.top) // top gradient
+                .attr('stop-opacity', 1);
+            // DRAW INSIDE MARGINS
+            const g = svg
+                .append('g')
+                .attr('class', 'chart')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+            const barsLayer = g.append('g').attr('class', 'bars');
+            const controlsLayer = g.append('g').attr('class', 'controls');
+            // BAR CHART
+            barsLayer // bars
+                .selectAll('rect.bars')
+                .data(years)
+                .join('rect')
+                .attr('class', 'bars')
+                .attr('width', YEARtoX.bandwidth)
+                .attr('height', (d) => height - scaleHeight(d.count))
+                .attr('y', (d) => scaleHeight(d.count))
+                .attr('x', (d) => YEARtoX(d.key))
+                .attr('fill', 'url(#gradient)');
+            barsLayer // overlay
+                .append('rect')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('opacity', 0)
+                .on('mousemove', (event) => {
+                const year = XtoYEAR(event.x);
+                // console.log({ x: event.x, year });
+                d3.selectAll('rect.bars').attr('fill', (d) => {
+                    if (year === d.key)
+                        return '#B0CCF8';
+                    return colourBars(d);
+                });
+            })
+                .on('mouseout', () => {
+                d3.selectAll('rect.bars').attr('fill', (d) => colourBars(d));
+            })
+                .on('click', (event) => {
+                const year = XtoYEAR(event.x);
+                const xAxisValue = YEARtoX(year) + YEARtoX.bandwidth() / 2;
+                const newValue = {
+                    x: xAxisValue,
+                    y: height
+                };
+                yearBalls = [newValue, newValue];
+                yearPicker
+                    .data(yearBalls)
+                    .select('circle')
+                    .transition()
+                    .ease(d3.easeQuadOut)
+                    .duration(550)
+                    .attr('cx', (d) => d.x);
+                controlsLayer
+                    .select('path.blueline')
+                    .transition()
+                    .ease(d3.easeQuadOut)
+                    .duration(550)
+                    .attr('d', d3.line()(yearBalls.map((d) => [d.x, d.y])));
+                yearPicker
+                    .selectAll('text')
+                    .transition()
+                    .ease(d3.easeQuadOut)
+                    .duration(550)
+                    .attr('x', () => xAxisValue)
+                    .text(() => {
+                    const startYear = year;
+                    if (innerRange)
+                        return YEARtoRANGE(startYear);
+                    return startYear;
+                });
+                g.selectAll('rect.bars').attr('fill', (d) => colourBars(d));
+                this.emit('rangeselected', getSelectedRange());
+            });
+            controlsLayer // gray line
+                .append('path')
+                .attr('class', 'grayline')
+                .attr('d', d3.line()([
+                [0, height],
+                [width, height]
+            ]))
+                .attr('stroke-width', 2)
+                .attr('opacity', 1)
+                .attr('stroke', '#C1C5C7');
+            controlsLayer // blue line
+                .append('path')
+                .attr('class', 'blueline')
+                .attr('d', d3.line()(yearBalls.map((d) => [d.x, d.y])))
+                .attr('stroke-width', 2)
+                .attr('stroke', colours.accent);
+            const yearPicker = controlsLayer
+                .selectAll('g.yearpicker')
+                .data(yearBalls)
+                .join('g')
+                .attr('class', 'yearpicker');
+            /**
+             * Animate the elements while the user is dragging one of the range selectors
+             */
+            function draggingUpdate(event, data) {
+                const year = XtoYEAR(event.sourceEvent.x);
+                const xAxisValue = YEARtoX(year) + YEARtoX.bandwidth() / 2;
+                const yb = [];
+                g.selectAll('circle').each(function setBallPosition() {
+                    yb.push({ x: d3.select(this).attr('cx'), y: height });
+                });
+                yearBalls = yb;
+                // move the circle
+                d3.select(this)
+                    .select('circle')
+                    .attr('cx', data.x = xAxisValue);
+                // move the blue line
+                controlsLayer
+                    .select('path.blueline')
+                    .attr('d', d3.line()(yearBalls.map((d) => [d.x, d.y])));
+                // change the text
+                d3.select(this)
+                    .selectAll('text')
+                    .attr('x', () => xAxisValue)
+                    .text(() => {
+                    const startYear = year;
+                    if (innerRange)
+                        return YEARtoRANGE(startYear);
+                    return startYear;
+                });
+                // colour the bars
+                g.selectAll('rect.bars').attr('fill', (d) => colourBars(d));
+            }
+            yearPicker // drag handler
+                .call(d3.drag()
+                .on('drag', draggingUpdate)
+                .on('end', (event, data) => {
+                // update one last time to prevent desyncing
+                draggingUpdate(event, data);
+                // emit the selected range
+                this.emit('rangeselected', getSelectedRange());
+            }));
+            yearPicker
+                .append('circle')
+                .attr('cx', (d) => d.x)
+                .attr('cy', (d) => d.y)
+                .attr('r', 9)
+                .attr('fill', 'white')
+                .attr('stroke-width', 2)
+                .attr('stroke', colours.accent)
+                .attr('style', 'cursor: pointer');
+            yearPicker
+                .attr('text-anchor', 'middle')
+                .attr('font-family', 'Roboto, Arial, sans-serif')
+                .attr('font-size', '12px')
+                .append('text')
+                .attr('y', (d) => d.y + margin.bottom / 2)
+                .attr('x', (d) => d.x)
+                .attr('fill', colours.accent)
+                .text((d) => {
+                const startYear = XtoYEAR(d.x);
+                if (innerRange)
+                    return YEARtoRANGE(startYear);
+                return startYear;
+            });
+        };
+    }
+    ngAfterContentChecked() {
+        /*
+         Waits for the dom to be loaded, then fires the draw function
+         that renders the chart.
+        */
+        if (this.data) {
+            if (this._loaded)
+                return;
+            this._loaded = true;
+            setTimeout(() => {
+                import('d3').then((module) => {
+                    this.d3 = module;
+                    this.draw();
+                    if (this.data && this.data.setDraw) {
+                        this.data.setDraw(this.draw);
+                    }
+                });
+            });
+        }
+    }
+};
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HistogramRangeComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HistogramRangeComponent.prototype, "emit", void 0);
+HistogramRangeComponent = __decorate([
+    Component({
+        selector: 'n7-histogram-range',
+        template: "<div *ngIf=\"data\" class=\"n7-histogram-range\">\r\n    <svg #histogramRange [id]=\"data.containerId\"></svg>\r\n</div>\r\n"
+    })
+], HistogramRangeComponent);
+
 //---------------------------
 /**
  * ImageViewerComponent <n7-image-viewer>
@@ -1106,7 +1392,7 @@ let MapComponent = class MapComponent {
                 // map.on('click', this.onMapClick);
                 /** Handle markers */
                 if (this.data.markers) {
-                    const markers = leaflet.markerClusterGroup(this.data.clusterLibOptions);
+                    const markers = leaflet.markerClusterGroup();
                     this.data.markers.forEach((mrk) => {
                         leaflet.marker(mrk.coords).addTo(markers).bindPopup(mrk.template);
                     });
@@ -1383,7 +1669,7 @@ __decorate([
 TagComponent = __decorate([
     Component({
         selector: 'n7-tag',
-        template: "<span class=\"n7-tag {{data.classes || ''}}\" *ngIf=\"data\">\n    <span class=\"n7-tag__label\" *ngIf=\"data.label\">\n        {{ data.label }}\n    </span>\n    <span class=\"n7-tag__text\" *ngIf=\"data.text\">\n        {{ data.text }}\n    </span>\n    <span class=\"n7-tag__icon {{data.icon}}\" *ngIf=\"data.icon\" (click)=\"onClick(data.payload)\"></span>\n</span>"
+        template: "<span class=\"n7-tag {{data.classes || ''}}\" *ngIf=\"data\">\r\n    <span class=\"n7-tag__label\" *ngIf=\"data.label\">\r\n        {{ data.label }}\r\n    </span>\r\n    <span class=\"n7-tag__text\" *ngIf=\"data.text\">\r\n        {{ data.text }}\r\n    </span>\r\n    <span class=\"n7-tag__icon {{data.icon}}\" *ngIf=\"data.icon\" (click)=\"onClick(data.payload)\"></span>\r\n</span>"
     })
 ], TagComponent);
 
@@ -1455,7 +1741,7 @@ __decorate([
 ToastComponent = __decorate([
     Component({
         selector: 'n7-toast',
-        template: "<div *ngIf=\"data\" class=\"n7-toast\">\n    <div class=\"n7-toast__column {{data.classes || ''}}\">\n\n        <!-- Toast boxes -->\n        <div class=\"n7-toast__box\" \n             *ngFor=\"let box of data.toasts\"\n             [ngClass]=\"{ 'has-actions' : !! (box.actions || box.closeIcon) }\">\n        \n            <!-- Toast text -->\n            <div class=\"n7-toast__content {{box.classes || ''}}\" *ngIf=\"box.title || box.text\">\n                <span class=\"n7-toast__title\" *ngIf=\"box.title\">{{ box.title }}</span>\n                <span class=\"n7-toast__text\" *ngIf=\"box.text\">{{ box.text }}</span>\n            </div>\n\n            <!-- Toast actions -->\n            <div class=\"n7-toast__actions\" *ngIf=\"box.actions || box.closeIcon\">\n                <span\n                class=\"n7-toast__closeIcon {{ box.closeIcon.icon }}\" \n                *ngIf=\"box.closeIcon\" \n                (click)=\"onClick(box.closeIcon.payload)\">\n                </span>\n                <span class=\"n7-toast__action-wrapper\" *ngIf=\"box.actions\">\n                    <span class=\"n7-toast__action-content\" *ngFor=\"let action of box.actions\">\n                        <button class=\"n7-toast__action-button n7-btn n7-btn-s {{action.classes || ''}}\"\n                                (click)=\"onClick(action.payload)\">\n                                {{action.text}}\n                        </button>\n                    </span>\n                </span>\n            </div>\n        </div>\n    </div>\n</div>"
+        template: "<div *ngIf=\"data\" class=\"n7-toast\">\r\n    <div class=\"n7-toast__column {{data.classes || ''}}\">\r\n\r\n        <!-- Toast boxes -->\r\n        <div class=\"n7-toast__box\" \r\n             *ngFor=\"let box of data.toasts\"\r\n             [ngClass]=\"{ 'has-actions' : !! (box.actions || box.closeIcon) }\">\r\n        \r\n            <!-- Toast text -->\r\n            <div class=\"n7-toast__content {{box.classes || ''}}\" *ngIf=\"box.title || box.text\">\r\n                <span class=\"n7-toast__title\" *ngIf=\"box.title\">{{ box.title }}</span>\r\n                <span class=\"n7-toast__text\" *ngIf=\"box.text\">{{ box.text }}</span>\r\n            </div>\r\n\r\n            <!-- Toast actions -->\r\n            <div class=\"n7-toast__actions\" *ngIf=\"box.actions || box.closeIcon\">\r\n                <span\r\n                class=\"n7-toast__closeIcon {{ box.closeIcon.icon }}\" \r\n                *ngIf=\"box.closeIcon\" \r\n                (click)=\"onClick(box.closeIcon.payload)\">\r\n                </span>\r\n                <span class=\"n7-toast__action-wrapper\" *ngIf=\"box.actions\">\r\n                    <span class=\"n7-toast__action-content\" *ngFor=\"let action of box.actions\">\r\n                        <button class=\"n7-toast__action-button n7-btn n7-btn-s {{action.classes || ''}}\"\r\n                                (click)=\"onClick(action.payload)\">\r\n                                {{action.text}}\r\n                        </button>\r\n                    </span>\r\n                </span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
     })
 ], ToastComponent);
 
@@ -1524,7 +1810,7 @@ __decorate([
 WizardComponent = __decorate([
     Component({
         selector: 'n7-wizard',
-        template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\n  <ol class=\"n7-wizard__list\">\n      <li *ngFor=\"let item of data.items\" \n          class=\"n7-wizard__item {{ item.classes || '' }}\" \n          (click)=\"onClick(item.payload)\">\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\n      </li>\n  </ol>\n</div>"
+        template: "<div *ngIf=\"data\" class=\"n7-wizard {{ data.classes || '' }}\">\r\n  <ol class=\"n7-wizard__list\">\r\n      <li *ngFor=\"let item of data.items\" \r\n          class=\"n7-wizard__item {{ item.classes || '' }}\" \r\n          (click)=\"onClick(item.payload)\">\r\n            <span *ngIf=\"item.number\" class=\"n7-wizard__number\">{{ item.number }}</span>\r\n            <span *ngIf=\"item.text\" class=\"n7-wizard__text\">{{ item.text }}</span>\r\n      </li>\r\n  </ol>\r\n</div>"
     })
 ], WizardComponent);
 
@@ -1563,6 +1849,7 @@ const COMPONENTS = [
     FooterComponent,
     HeaderComponent,
     HeroComponent,
+    HistogramRangeComponent,
     ImageViewerComponent,
     ImageViewerToolsComponent,
     InnerTitleComponent,
@@ -6337,6 +6624,217 @@ const HERO_MOCK = {
     image: 'https://placeimg.com/600/600/nature'
 };
 
+const HISTOGRAM_RANGE_MOCK = {
+    containerId: 'container-for-histogram',
+    width: 300,
+    height: 50,
+    colours: {
+        top: '#F5AE34',
+        bottom: '#FBD45E',
+        accent: '#1857B6',
+    },
+    margin: {
+        left: 0,
+        right: 0,
+        top: 10,
+        bottom: 45
+    },
+    innerRange: {
+        unit: 'year',
+        amount: 10
+    },
+    years: [
+        // {
+        //   key: 1974,
+        //   count: 1
+        // },
+        {
+            key: 1975,
+            count: 0
+        },
+        // {
+        //   key: 1976,
+        //   count: 1
+        // },
+        // {
+        //   key: 1977,
+        //   count: 0
+        // },
+        // {
+        //   key: 1978,
+        //   count: 4
+        // },
+        // {
+        //   key: 1979,
+        //   count: 5
+        // },
+        {
+            key: 1980,
+            count: 6
+        },
+        // {
+        //   key: 1981,
+        //   count: 4
+        // },
+        // {
+        //   key: 1982,
+        //   count: 10
+        // },
+        // {
+        //   key: 1983,
+        //   count: 2
+        // },
+        // {
+        //   key: 1984,
+        //   count: 4
+        // },
+        {
+            key: 1985,
+            count: 6
+        },
+        // {
+        //   key: 1986,
+        //   count: 2
+        // },
+        // {
+        //   key: 1987,
+        //   count: 13
+        // },
+        // {
+        //   key: 1988,
+        //   count: 5
+        // },
+        // {
+        //   key: 1989,
+        //   count: 10
+        // },
+        {
+            key: 1990,
+            count: 13
+        },
+        // {
+        //   key: 1991,
+        //   count: 7
+        // },
+        // {
+        //   key: 1992,
+        //   count: 15
+        // },
+        // {
+        //   key: 1993,
+        //   count: 14
+        // },
+        // {
+        //   key: 1994,
+        //   count: 17
+        // },
+        {
+            key: 1995,
+            count: 18
+        },
+        // {
+        //   key: 1996,
+        //   count: 17
+        // },
+        // {
+        //   key: 1997,
+        //   count: 14
+        // },
+        // {
+        //   key: 1998,
+        //   count: 27
+        // },
+        // {
+        //   key: 1999,
+        //   count: 29
+        // },
+        {
+            key: 2000,
+            count: 30
+        },
+        // {
+        //   key: 2001,
+        //   count: 48
+        // },
+        // {
+        //   key: 2002,
+        //   count: 68
+        // },
+        // {
+        //   key: 2003,
+        //   count: 48
+        // },
+        // {
+        //   key: 2004,
+        //   count: 65
+        // },
+        {
+            key: 2005,
+            count: 65
+        },
+        // {
+        //   key: 2006,
+        //   count: 69
+        // },
+        // {
+        //   key: 2007,
+        //   count: 44
+        // },
+        // {
+        //   key: 2008,
+        //   count: 117
+        // },
+        // {
+        //   key: 2009,
+        //   count: 89
+        // },
+        {
+            key: 2010,
+            count: 70
+        },
+        // {
+        //   key: 2011,
+        //   count: 82
+        // },
+        // {
+        //   key: 2012,
+        //   count: 68
+        // },
+        // {
+        //   key: 2013,
+        //   count: 68
+        // },
+        // {
+        //   key: 2014,
+        //   count: 76
+        // },
+        {
+            key: 2015,
+            count: 62
+        },
+        // {
+        //   key: 2016,
+        //   count: 64
+        // },
+        // {
+        //   key: 2017,
+        //   count: 86
+        // },
+        // {
+        //   key: 2018,
+        //   count: 65
+        // },
+        // {
+        //   key: 2019,
+        //   count: 70
+        // },
+        {
+            key: 2020,
+            count: 55
+        },
+    ]
+};
+
 const IMAGE_VIEWER_TOOLS_MOCK = {
     images: [
         { thumb: 'http://placekitten.com/200/130', payload: 'img1-payload' },
@@ -7575,5 +8073,5 @@ const WIZARD_MOCK = {
  * Generated bundle index. Do not edit.
  */
 
-export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HeaderComponent, HeroComponent, IMAGE_VIEWER_MOCK, IMAGE_VIEWER_TOOLS_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, ImageViewerToolsComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, MAP_MOCK, METADATA_VIEWER_MOCK, MapComponent, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PROGRESS_LINE_MOCK, PaginationComponent, ProgressLineComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TEXT_VIEWER_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TextViewerComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent, ɵ0, ɵ1, ɵ2 };
+export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HISTOGRAM_RANGE_MOCK, HeaderComponent, HeroComponent, HistogramRangeComponent, IMAGE_VIEWER_MOCK, IMAGE_VIEWER_TOOLS_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, ImageViewerToolsComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, MAP_MOCK, METADATA_VIEWER_MOCK, MapComponent, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PROGRESS_LINE_MOCK, PaginationComponent, ProgressLineComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TEXT_VIEWER_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TextViewerComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent, ɵ0, ɵ1, ɵ2 };
 //# sourceMappingURL=n7-frontend-components.js.map
