@@ -274,7 +274,7 @@ var BubbleChartComponent = /** @class */ (function () {
                 return Math.round(size) + "px";
             })
                 .attr('cursor', 'pointer')
-                .on('click', function (d) {
+                .on('click', function (event, d) {
                 _this.onClick(d.data.entity.id);
             })
                 .attr('id', function (d) { return "g_" + d.data.entity.id; })
@@ -879,6 +879,302 @@ var HeroComponent = /** @class */ (function () {
         })
     ], HeroComponent);
     return HeroComponent;
+}());
+
+/* eslint-disable @typescript-eslint/no-use-before-define */
+var HistogramRangeComponent = /** @class */ (function () {
+    function HistogramRangeComponent() {
+        var _this = this;
+        this._loaded = false;
+        this.draw = function () {
+            var _a, _b;
+            var d3 = _this.d3;
+            var _c = _this.data, width = _c.width, margin = _c.margin, height = _c.height, items = _c.items, colours = _c.colours, containerId = _c.containerId, axis = _c.axis;
+            // data validation
+            var rangeMode = items.every(function (d) { return d.range; });
+            if (!rangeMode && items.some(function (d) { return !d.range; })) {
+                throw Error('All items must have the "range" property');
+            }
+            // Helpers - Start:
+            var ITEMtoX = d3
+                .scaleBand()
+                .domain(items.map(function (d) { return d.label; }))
+                .range([0, width])
+                .paddingInner(0.17)
+                .paddingOuter(1);
+            var XtoLABEL = function (value) {
+                var domain = ITEMtoX.domain();
+                var paddingOuter = ITEMtoX(domain[0]);
+                var eachBand = ITEMtoX.step();
+                var index = Math.floor(((value - paddingOuter) / eachBand));
+                return domain[Math.max(0, Math.min(index, domain.length - 1))];
+            };
+            // YEAR SELECTION CIRCLES
+            var sliders = d3
+                .extent(items, function (d) { return d.label; })
+                .map(function (d) { return ({ x: ITEMtoX(d) + ITEMtoX.bandwidth() / 2, y: height }); });
+            function isInRange(y) {
+                var allItems = sliders.map(function (d) { return XtoLABEL(d.x); });
+                if (y >= d3.min(allItems) && y <= d3.max(allItems))
+                    return true;
+                return false;
+            }
+            function colourBars(d) {
+                if (isInRange(d.label))
+                    return 'url(#gradient)';
+                return '#e3e3e3';
+            }
+            function getSelectedRange() {
+                var rangeStart = items.find(function (it) { return it.label === XtoLABEL(sliders[0].x); });
+                var rangeEnd = items.find(function (it) { return it.label === XtoLABEL(sliders[1].x); });
+                return [
+                    rangeStart.payload,
+                    rangeMode
+                        ? rangeEnd.range.payload
+                        : rangeEnd.payload
+                ];
+            }
+            // Helpers - End.
+            var svg = d3
+                .select("#" + containerId)
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom);
+            var scaleHeight = d3
+                .scaleSymlog() // most similar scale to the original
+                .domain([0, d3.max(items, function (d) { return d.value; })])
+                .range([height, 0]);
+            // GRADIENT
+            var defs = svg.append('defs'); // definitions
+            var gradient = defs
+                .append('linearGradient')
+                .attr('id', 'gradient')
+                .attr('gradientUnits', 'userSpaceOnUse')
+                .attr('x1', 0)
+                .attr('y1', height)
+                .attr('x2', 0)
+                .attr('y2', margin.top);
+            gradient
+                .append('stop')
+                .attr('class', 'start')
+                .attr('offset', '0%')
+                .attr('stop-color', colours.bottom) // bottom gradient
+                .attr('stop-opacity', 1);
+            gradient
+                .append('stop')
+                .attr('class', 'end')
+                .attr('offset', '100%')
+                .attr('stop-color', colours.top) // top gradient
+                .attr('stop-opacity', 1);
+            // DRAW INSIDE MARGINS
+            var g = svg
+                .append('g')
+                .attr('class', 'chart')
+                .attr('transform', "translate(" + margin.left + "," + margin.top + ")");
+            var barsLayer = g.append('g').attr('class', 'bars');
+            var controlsLayer = g.append('g').attr('class', 'controls');
+            // BAR CHART
+            barsLayer // bars
+                .selectAll('rect.bars')
+                .data(items)
+                .join('rect')
+                .attr('class', 'bars')
+                .attr('width', ITEMtoX.bandwidth)
+                .attr('height', function (d) { return height - scaleHeight(d.value); })
+                .attr('y', function (d) { return scaleHeight(d.value); })
+                .attr('x', function (d) { return ITEMtoX(d.label); })
+                .attr('data-start', function (d) { return d.payload; }) // make the data easily accessible
+                .attr('data-end', function (d) { return (d.range ? d.range.payload : d.payload); })
+                .attr('fill', 'url(#gradient)');
+            barsLayer // overlay
+                .append('rect')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('opacity', 0)
+                .on('mousemove', function (event) {
+                var year = XtoLABEL(event.offsetX - margin.left);
+                // console.log({ x: event.x, year });
+                d3.selectAll('rect.bars').attr('fill', function (d) {
+                    if (year === d.label)
+                        return '#B0CCF8';
+                    return colourBars(d);
+                });
+            })
+                .on('mouseout', function () {
+                d3.selectAll('rect.bars').attr('fill', function (d) { return colourBars(d); });
+            })
+                .on('click', function (event) {
+                var item = XtoLABEL(event.offsetX - margin.left);
+                var xAxisValue = ITEMtoX(item) + ITEMtoX.bandwidth() / 2;
+                var newValue = {
+                    x: xAxisValue,
+                    y: height
+                };
+                sliders = [
+                    __assign({}, newValue),
+                    __assign({}, newValue)
+                ];
+                rangePicker
+                    .data(sliders)
+                    .select('circle')
+                    .transition()
+                    .ease(d3.easeQuadOut)
+                    .duration(550)
+                    .attr('cx', function (d) { return d.x; });
+                controlsLayer
+                    .select('path.blueline')
+                    .transition()
+                    .ease(d3.easeQuadOut)
+                    .duration(550)
+                    .attr('d', d3.line()(sliders.map(function (d) { return [d.x, d.y]; })));
+                rangePicker
+                    .selectAll('text')
+                    .transition()
+                    .ease(d3.easeQuadOut)
+                    .duration(550)
+                    .attr('x', function () { return xAxisValue; })
+                    .text(function () { return item; });
+                g.selectAll('rect.bars').attr('fill', function (d) { return colourBars(d); });
+                _this.emit('rangeselected', getSelectedRange());
+            });
+            controlsLayer // gray line
+                .append('path')
+                .attr('class', 'grayline')
+                .attr('d', d3.line()([
+                [0, height],
+                [width, height]
+            ]))
+                .attr('stroke-width', 2)
+                .attr('opacity', 1)
+                .attr('stroke', '#C1C5C7');
+            controlsLayer // blue line
+                .append('path')
+                .attr('class', 'blueline')
+                .attr('d', d3.line()(sliders.map(function (d) { return [d.x, d.y]; })))
+                .attr('stroke-width', 2)
+                .attr('stroke', colours.accent);
+            var rangePicker = controlsLayer
+                .selectAll('g.rangepicker')
+                .data(sliders.sort(function (a, b) { return d3.ascending(a.x, b.x); }))
+                .join('g')
+                .attr('class', 'rangepicker');
+            /**
+             * Animate the elements while the user is dragging one of the range selectors
+             */
+            function draggingUpdate(event, data) {
+                var item = XtoLABEL(event.x);
+                var xAxisValue = ITEMtoX(item) + ITEMtoX.bandwidth() / 2;
+                var yb = [];
+                g.selectAll('circle').each(function setBallPosition() {
+                    yb.push({ x: +d3.select(this).attr('cx'), y: height });
+                });
+                sliders = yb.sort(function (a, b) { return d3.ascending(a.x, b.x); });
+                // move the circle
+                d3.select(this)
+                    .select('circle')
+                    .attr('cx', data.x = xAxisValue);
+                // move the blue line
+                controlsLayer
+                    .select('path.blueline')
+                    .attr('d', d3.line()(sliders.map(function (d) { return [d.x, d.y]; })));
+                // change the text position
+                d3.select(this)
+                    .select('text')
+                    .attr('x', function () { return xAxisValue; });
+                // change the text values
+                controlsLayer
+                    .selectAll('text')
+                    .text(function (d) {
+                    var l = XtoLABEL(d.x);
+                    var position = sliders.findIndex(function (slider) { return slider.x === d.x; });
+                    if (rangeMode && position === 1) {
+                        return items.find(function (it) { return it.label === l; }).range.label;
+                    }
+                    return l;
+                });
+                // colour the bars
+                g.selectAll('rect.bars').attr('fill', function (d) { return colourBars(d); });
+            }
+            rangePicker // drag handler
+                .call(d3.drag()
+                .on('drag', draggingUpdate)
+                .on('end', function (event, data) {
+                // update one last time to prevent desyncing
+                draggingUpdate(event, data);
+                // emit the selected range
+                _this.emit('rangeselected', getSelectedRange());
+            }));
+            rangePicker
+                .append('circle')
+                .attr('cx', function (d) { return d.x; })
+                .attr('cy', function (d) { return d.y; })
+                .attr('r', 9)
+                .attr('fill', 'white')
+                .attr('stroke-width', 2)
+                .attr('stroke', colours.accent)
+                .attr('style', 'cursor: pointer');
+            rangePicker
+                .attr('text-anchor', 'middle')
+                .attr('font-family', 'Roboto, Arial, sans-serif')
+                .attr('font-size', '12px')
+                .append('text')
+                .attr('y', function (d) { return d.y + margin.bottom / 2; })
+                .attr('x', function (d) { return d.x; })
+                .attr('fill', colours.accent)
+                .text(function (d, i) {
+                var l = XtoLABEL(d.x);
+                if (rangeMode && i === 1) {
+                    return items.find(function (item) { return item.label === l; }).range.label;
+                }
+                return l;
+            });
+            if ((_a = axis === null || axis === void 0 ? void 0 : axis.yAxis) === null || _a === void 0 ? void 0 : _a.show) {
+                var yAxis = d3.axisLeft(scaleHeight)
+                    .ticks((_b = axis.yAxis.tickAmount) !== null && _b !== void 0 ? _b : 2)
+                    .tickValues(axis.yAxis.values ? axis.yAxis.values : null);
+                var yAxisGroup = svg.append('g')
+                    .attr('transform', "translate(" + margin.left + ", " + margin.top + ")")
+                    .call(yAxis);
+                yAxisGroup.selectAll('path, line').style('stroke', colours.accent);
+                yAxisGroup.selectAll('text').style('fill', colours.accent);
+            }
+        };
+    }
+    HistogramRangeComponent.prototype.ngAfterContentChecked = function () {
+        var _this = this;
+        /*
+         Waits for the dom to be loaded, then fires the draw function
+         that renders the chart.
+        */
+        if (this.data) {
+            if (this._loaded)
+                return;
+            this._loaded = true;
+            setTimeout(function () {
+                import('d3').then(function (module) {
+                    _this.d3 = module;
+                    _this.draw();
+                    if (_this.data && _this.data.setDraw) {
+                        _this.data.setDraw(_this.draw);
+                    }
+                });
+            });
+        }
+    };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], HistogramRangeComponent.prototype, "data", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], HistogramRangeComponent.prototype, "emit", void 0);
+    HistogramRangeComponent = __decorate([
+        Component({
+            selector: 'n7-histogram-range',
+            template: "<div *ngIf=\"data\" class=\"n7-histogram-range\">\r\n    <svg #histogramRange [id]=\"data.containerId\"></svg>\r\n</div>\r\n"
+        })
+    ], HistogramRangeComponent);
+    return HistogramRangeComponent;
 }());
 
 //---------------------------
@@ -1706,6 +2002,7 @@ var COMPONENTS = [
     FooterComponent,
     HeaderComponent,
     HeroComponent,
+    HistogramRangeComponent,
     ImageViewerComponent,
     ImageViewerToolsComponent,
     InnerTitleComponent,
@@ -6476,6 +6773,247 @@ var HERO_MOCK = {
     image: 'https://placeimg.com/600/600/nature'
 };
 
+var HISTOGRAM_RANGE_MOCK = {
+    containerId: 'container-for-histogram',
+    width: 400,
+    height: 50,
+    colours: {
+        top: '#7091B3',
+        bottom: '#96c2f2',
+        accent: '#2F528B',
+    },
+    margin: {
+        left: 30,
+        right: 0,
+        top: 10,
+        bottom: 45
+    },
+    axis: {
+        yAxis: {
+            show: true,
+            values: [0, 10, 56],
+        }
+    },
+    items: [
+        {
+            label: '1200',
+            value: 1,
+            payload: 1200,
+            range: {
+                payload: 1225,
+                label: '1225',
+            },
+        },
+        {
+            label: '1225',
+            value: 0,
+            payload: 1225,
+            range: {
+                payload: 1250,
+                label: '1250',
+            },
+        },
+        {
+            label: '1250',
+            value: 2,
+            payload: 1250,
+            range: {
+                payload: 1275,
+                label: '1275',
+            },
+        },
+        {
+            label: '1275',
+            value: 2,
+            payload: 1275,
+            range: {
+                payload: 1300,
+                label: '1300',
+            },
+        },
+        {
+            label: '1300',
+            value: 6,
+            payload: 1300,
+            range: {
+                payload: 1325,
+                label: '1325',
+            },
+        },
+        {
+            label: '1325',
+            value: 5,
+            payload: 1325,
+            range: {
+                payload: 1350,
+                label: '1350',
+            },
+        },
+        {
+            label: '1350',
+            value: 10,
+            payload: 1350,
+            range: {
+                payload: 1375,
+                label: '1375',
+            },
+        },
+        {
+            label: '1375',
+            value: 6,
+            payload: 1375,
+            range: {
+                payload: 1400,
+                label: '1400',
+            },
+        },
+        {
+            label: '1400',
+            value: 10,
+            payload: 1400,
+            range: {
+                payload: 1425,
+                label: '1425',
+            },
+        },
+        {
+            label: '1425',
+            value: 11,
+            payload: 1425,
+            range: {
+                payload: 1450,
+                label: '1450',
+            },
+        },
+        {
+            label: '1450',
+            value: 18,
+            payload: 1450,
+            range: {
+                payload: 1475,
+                label: '1475',
+            },
+        },
+        {
+            label: '1475',
+            value: 32,
+            payload: 1475,
+            range: {
+                payload: 1500,
+                label: '1500',
+            },
+        },
+        {
+            label: '1500',
+            value: 29,
+            payload: 1500,
+            range: {
+                payload: 1525,
+                label: '1525',
+            },
+        },
+        {
+            label: '1525',
+            value: 26,
+            payload: 1525,
+            range: {
+                payload: 1550,
+                label: '1550',
+            },
+        },
+        {
+            label: '1550',
+            value: 25,
+            payload: 1550,
+            range: {
+                payload: 1575,
+                label: '1575',
+            },
+        },
+        {
+            label: '1575',
+            value: 56,
+            payload: 1575,
+            range: {
+                payload: 1600,
+                label: '1600',
+            },
+        },
+        {
+            label: '1600',
+            value: 27,
+            payload: 1600,
+            range: {
+                payload: 1625,
+                label: '1625',
+            },
+        },
+        {
+            label: '1625',
+            value: 20,
+            payload: 1625,
+            range: {
+                payload: 1650,
+                label: '1650',
+            },
+        },
+        {
+            label: '1650',
+            value: 15,
+            payload: 1650,
+            range: {
+                payload: 1675,
+                label: '1675',
+            },
+        },
+        {
+            label: '1675',
+            value: 17,
+            payload: 1675,
+            range: {
+                payload: 1700,
+                label: '1700',
+            },
+        },
+        {
+            label: '1700',
+            value: 13,
+            payload: 1700,
+            range: {
+                payload: 1725,
+                label: '1725',
+            },
+        },
+        {
+            label: '1725',
+            value: 21,
+            payload: 1725,
+            range: {
+                payload: 1750,
+                label: '1750',
+            },
+        },
+        {
+            label: '1750',
+            value: 33,
+            payload: 1750,
+            range: {
+                payload: 1775,
+                label: '1775',
+            },
+        },
+        {
+            label: '1775',
+            value: 38,
+            payload: 1775,
+            range: {
+                payload: 1800,
+                label: '1800',
+            },
+        },
+    ]
+};
+
 var IMAGE_VIEWER_TOOLS_MOCK = {
     images: [
         { thumb: 'http://placekitten.com/200/130', payload: 'img1-payload' },
@@ -7714,5 +8252,5 @@ var WIZARD_MOCK = {
  * Generated bundle index. Do not edit.
  */
 
-export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HeaderComponent, HeroComponent, IMAGE_VIEWER_MOCK, IMAGE_VIEWER_TOOLS_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, ImageViewerToolsComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, MAP_MOCK, METADATA_VIEWER_MOCK, MapComponent, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PROGRESS_LINE_MOCK, PaginationComponent, ProgressLineComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TEXT_VIEWER_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TextViewerComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent, ɵ0, ɵ1, ɵ2 };
+export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HISTOGRAM_RANGE_MOCK, HeaderComponent, HeroComponent, HistogramRangeComponent, IMAGE_VIEWER_MOCK, IMAGE_VIEWER_TOOLS_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, ImageViewerToolsComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, MAP_MOCK, METADATA_VIEWER_MOCK, MapComponent, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PROGRESS_LINE_MOCK, PaginationComponent, ProgressLineComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TEXT_VIEWER_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TextViewerComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent, ɵ0, ɵ1, ɵ2 };
 //# sourceMappingURL=n7-frontend-components.js.map

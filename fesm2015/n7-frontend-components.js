@@ -263,7 +263,7 @@ let BubbleChartComponent = class BubbleChartComponent {
                 return `${Math.round(size)}px`;
             })
                 .attr('cursor', 'pointer')
-                .on('click', (d) => {
+                .on('click', (event, d) => {
                 this.onClick(d.data.entity.id);
             })
                 .attr('id', (d) => `g_${d.data.entity.id}`)
@@ -834,6 +834,299 @@ HeroComponent = __decorate([
         template: "<section *ngIf=\"data\" class=\"n7-hero {{data.classes || ''}}\" \r\n    [ngClass]=\"{ \r\n        'has-image' : !!data.image, \r\n        'has-background-image': !!data.backgroundImage \r\n    }\"\r\n    [ngStyle]=\"{ \r\n        'background-image': getBackgroundImageCssValue(data.backgroundImage)\r\n    }\">\r\n    <div class=\"n7-hero__content\">\r\n        \r\n        <div class=\"n7-hero__text-wrapper\">\r\n            <h1 class=\"n7-hero__title\" [innerHTML]=\"data.title\"></h1>\r\n            <div class=\"n7-hero__text\" *ngIf=\"data.text\" [innerHTML]=\"data.text\"></div>\r\n            <div class=\"n7-hero__input-wrapper\" *ngIf=\"data.input || data.button\">\r\n                <input type=\"text\" \r\n                       class=\"n7-hero__input\" \r\n                       placeholder=\"{{data.input.placeholder || ''}}\" \r\n                       *ngIf=\"data.input\" \r\n                       (input)=\"onInputChange(data.input.payload, $event.target.value)\" \r\n                       (keyup.enter)=\"onInputEnter(data.input.payload, $event.target.value)\">\r\n                <span class=\"n7-hero__input-icon {{data.input.icon || ''}}\" \r\n                      *ngIf=\"data.input && data.input.icon\" \r\n                      (click)=\"onClick(data.input.payload)\"></span>\r\n                <ng-container *ngIf=\"data.button\">\r\n                    <n7-anchor-wrapper [classes]=\"'n7-hero__btn n7-btn n7-btn-cta n7-btn-l'\"\r\n                    [data]=\"data.button.anchor\"\r\n                    (clicked)=\"onClick($event)\">\r\n                        {{data.button.text}}\r\n                    </n7-anchor-wrapper>\r\n                </ng-container>\r\n            </div>\r\n        </div>\r\n        \r\n        <div class=\"n7-hero__image-wrapper\" *ngIf=\"data.image\">\r\n            <img class=\"n7-hero__image\" src=\"{{data.image}}\" alt=\"\">\r\n        </div>\r\n\r\n    </div>\r\n</section>"
     })
 ], HeroComponent);
+
+/* eslint-disable @typescript-eslint/no-use-before-define */
+let HistogramRangeComponent = class HistogramRangeComponent {
+    constructor() {
+        this._loaded = false;
+        this.draw = () => {
+            var _a, _b;
+            const { d3 } = this;
+            const { width, margin, height, items, colours, containerId, axis } = this.data;
+            // data validation
+            const rangeMode = items.every((d) => d.range);
+            if (!rangeMode && items.some((d) => !d.range)) {
+                throw Error('All items must have the "range" property');
+            }
+            // Helpers - Start:
+            const ITEMtoX = d3
+                .scaleBand()
+                .domain(items.map((d) => d.label))
+                .range([0, width])
+                .paddingInner(0.17)
+                .paddingOuter(1);
+            const XtoLABEL = (value) => {
+                const domain = ITEMtoX.domain();
+                const paddingOuter = ITEMtoX(domain[0]);
+                const eachBand = ITEMtoX.step();
+                const index = Math.floor(((value - paddingOuter) / eachBand));
+                return domain[Math.max(0, Math.min(index, domain.length - 1))];
+            };
+            // YEAR SELECTION CIRCLES
+            let sliders = d3
+                .extent(items, (d) => d.label)
+                .map((d) => ({ x: ITEMtoX(d) + ITEMtoX.bandwidth() / 2, y: height }));
+            function isInRange(y) {
+                const allItems = sliders.map((d) => XtoLABEL(d.x));
+                if (y >= d3.min(allItems) && y <= d3.max(allItems))
+                    return true;
+                return false;
+            }
+            function colourBars(d) {
+                if (isInRange(d.label))
+                    return 'url(#gradient)';
+                return '#e3e3e3';
+            }
+            function getSelectedRange() {
+                const rangeStart = items.find((it) => it.label === XtoLABEL(sliders[0].x));
+                const rangeEnd = items.find((it) => it.label === XtoLABEL(sliders[1].x));
+                return [
+                    rangeStart.payload,
+                    rangeMode
+                        ? rangeEnd.range.payload
+                        : rangeEnd.payload
+                ];
+            }
+            // Helpers - End.
+            const svg = d3
+                .select(`#${containerId}`)
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom);
+            const scaleHeight = d3
+                .scaleSymlog() // most similar scale to the original
+                .domain([0, d3.max(items, (d) => d.value)])
+                .range([height, 0]);
+            // GRADIENT
+            const defs = svg.append('defs'); // definitions
+            const gradient = defs
+                .append('linearGradient')
+                .attr('id', 'gradient')
+                .attr('gradientUnits', 'userSpaceOnUse')
+                .attr('x1', 0)
+                .attr('y1', height)
+                .attr('x2', 0)
+                .attr('y2', margin.top);
+            gradient
+                .append('stop')
+                .attr('class', 'start')
+                .attr('offset', '0%')
+                .attr('stop-color', colours.bottom) // bottom gradient
+                .attr('stop-opacity', 1);
+            gradient
+                .append('stop')
+                .attr('class', 'end')
+                .attr('offset', '100%')
+                .attr('stop-color', colours.top) // top gradient
+                .attr('stop-opacity', 1);
+            // DRAW INSIDE MARGINS
+            const g = svg
+                .append('g')
+                .attr('class', 'chart')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+            const barsLayer = g.append('g').attr('class', 'bars');
+            const controlsLayer = g.append('g').attr('class', 'controls');
+            // BAR CHART
+            barsLayer // bars
+                .selectAll('rect.bars')
+                .data(items)
+                .join('rect')
+                .attr('class', 'bars')
+                .attr('width', ITEMtoX.bandwidth)
+                .attr('height', (d) => height - scaleHeight(d.value))
+                .attr('y', (d) => scaleHeight(d.value))
+                .attr('x', (d) => ITEMtoX(d.label))
+                .attr('data-start', (d) => d.payload) // make the data easily accessible
+                .attr('data-end', (d) => (d.range ? d.range.payload : d.payload))
+                .attr('fill', 'url(#gradient)');
+            barsLayer // overlay
+                .append('rect')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('opacity', 0)
+                .on('mousemove', (event) => {
+                const year = XtoLABEL(event.offsetX - margin.left);
+                // console.log({ x: event.x, year });
+                d3.selectAll('rect.bars').attr('fill', (d) => {
+                    if (year === d.label)
+                        return '#B0CCF8';
+                    return colourBars(d);
+                });
+            })
+                .on('mouseout', () => {
+                d3.selectAll('rect.bars').attr('fill', (d) => colourBars(d));
+            })
+                .on('click', (event) => {
+                const item = XtoLABEL(event.offsetX - margin.left);
+                const xAxisValue = ITEMtoX(item) + ITEMtoX.bandwidth() / 2;
+                const newValue = {
+                    x: xAxisValue,
+                    y: height
+                };
+                sliders = [
+                    Object.assign({}, newValue),
+                    Object.assign({}, newValue)
+                ];
+                rangePicker
+                    .data(sliders)
+                    .select('circle')
+                    .transition()
+                    .ease(d3.easeQuadOut)
+                    .duration(550)
+                    .attr('cx', (d) => d.x);
+                controlsLayer
+                    .select('path.blueline')
+                    .transition()
+                    .ease(d3.easeQuadOut)
+                    .duration(550)
+                    .attr('d', d3.line()(sliders.map((d) => [d.x, d.y])));
+                rangePicker
+                    .selectAll('text')
+                    .transition()
+                    .ease(d3.easeQuadOut)
+                    .duration(550)
+                    .attr('x', () => xAxisValue)
+                    .text(() => item);
+                g.selectAll('rect.bars').attr('fill', (d) => colourBars(d));
+                this.emit('rangeselected', getSelectedRange());
+            });
+            controlsLayer // gray line
+                .append('path')
+                .attr('class', 'grayline')
+                .attr('d', d3.line()([
+                [0, height],
+                [width, height]
+            ]))
+                .attr('stroke-width', 2)
+                .attr('opacity', 1)
+                .attr('stroke', '#C1C5C7');
+            controlsLayer // blue line
+                .append('path')
+                .attr('class', 'blueline')
+                .attr('d', d3.line()(sliders.map((d) => [d.x, d.y])))
+                .attr('stroke-width', 2)
+                .attr('stroke', colours.accent);
+            const rangePicker = controlsLayer
+                .selectAll('g.rangepicker')
+                .data(sliders.sort((a, b) => d3.ascending(a.x, b.x)))
+                .join('g')
+                .attr('class', 'rangepicker');
+            /**
+             * Animate the elements while the user is dragging one of the range selectors
+             */
+            function draggingUpdate(event, data) {
+                const item = XtoLABEL(event.x);
+                const xAxisValue = ITEMtoX(item) + ITEMtoX.bandwidth() / 2;
+                const yb = [];
+                g.selectAll('circle').each(function setBallPosition() {
+                    yb.push({ x: +d3.select(this).attr('cx'), y: height });
+                });
+                sliders = yb.sort((a, b) => d3.ascending(a.x, b.x));
+                // move the circle
+                d3.select(this)
+                    .select('circle')
+                    .attr('cx', data.x = xAxisValue);
+                // move the blue line
+                controlsLayer
+                    .select('path.blueline')
+                    .attr('d', d3.line()(sliders.map((d) => [d.x, d.y])));
+                // change the text position
+                d3.select(this)
+                    .select('text')
+                    .attr('x', () => xAxisValue);
+                // change the text values
+                controlsLayer
+                    .selectAll('text')
+                    .text((d) => {
+                    const l = XtoLABEL(d.x);
+                    const position = sliders.findIndex((slider) => slider.x === d.x);
+                    if (rangeMode && position === 1) {
+                        return items.find((it) => it.label === l).range.label;
+                    }
+                    return l;
+                });
+                // colour the bars
+                g.selectAll('rect.bars').attr('fill', (d) => colourBars(d));
+            }
+            rangePicker // drag handler
+                .call(d3.drag()
+                .on('drag', draggingUpdate)
+                .on('end', (event, data) => {
+                // update one last time to prevent desyncing
+                draggingUpdate(event, data);
+                // emit the selected range
+                this.emit('rangeselected', getSelectedRange());
+            }));
+            rangePicker
+                .append('circle')
+                .attr('cx', (d) => d.x)
+                .attr('cy', (d) => d.y)
+                .attr('r', 9)
+                .attr('fill', 'white')
+                .attr('stroke-width', 2)
+                .attr('stroke', colours.accent)
+                .attr('style', 'cursor: pointer');
+            rangePicker
+                .attr('text-anchor', 'middle')
+                .attr('font-family', 'Roboto, Arial, sans-serif')
+                .attr('font-size', '12px')
+                .append('text')
+                .attr('y', (d) => d.y + margin.bottom / 2)
+                .attr('x', (d) => d.x)
+                .attr('fill', colours.accent)
+                .text((d, i) => {
+                const l = XtoLABEL(d.x);
+                if (rangeMode && i === 1) {
+                    return items.find((item) => item.label === l).range.label;
+                }
+                return l;
+            });
+            if ((_a = axis === null || axis === void 0 ? void 0 : axis.yAxis) === null || _a === void 0 ? void 0 : _a.show) {
+                const yAxis = d3.axisLeft(scaleHeight)
+                    .ticks((_b = axis.yAxis.tickAmount) !== null && _b !== void 0 ? _b : 2)
+                    .tickValues(axis.yAxis.values ? axis.yAxis.values : null);
+                const yAxisGroup = svg.append('g')
+                    .attr('transform', `translate(${margin.left}, ${margin.top})`)
+                    .call(yAxis);
+                yAxisGroup.selectAll('path, line').style('stroke', colours.accent);
+                yAxisGroup.selectAll('text').style('fill', colours.accent);
+            }
+        };
+    }
+    ngAfterContentChecked() {
+        /*
+         Waits for the dom to be loaded, then fires the draw function
+         that renders the chart.
+        */
+        if (this.data) {
+            if (this._loaded)
+                return;
+            this._loaded = true;
+            setTimeout(() => {
+                import('d3').then((module) => {
+                    this.d3 = module;
+                    this.draw();
+                    if (this.data && this.data.setDraw) {
+                        this.data.setDraw(this.draw);
+                    }
+                });
+            });
+        }
+    }
+};
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HistogramRangeComponent.prototype, "data", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HistogramRangeComponent.prototype, "emit", void 0);
+HistogramRangeComponent = __decorate([
+    Component({
+        selector: 'n7-histogram-range',
+        template: "<div *ngIf=\"data\" class=\"n7-histogram-range\">\r\n    <svg #histogramRange [id]=\"data.containerId\"></svg>\r\n</div>\r\n"
+    })
+], HistogramRangeComponent);
 
 //---------------------------
 /**
@@ -1563,6 +1856,7 @@ const COMPONENTS = [
     FooterComponent,
     HeaderComponent,
     HeroComponent,
+    HistogramRangeComponent,
     ImageViewerComponent,
     ImageViewerToolsComponent,
     InnerTitleComponent,
@@ -6337,6 +6631,247 @@ const HERO_MOCK = {
     image: 'https://placeimg.com/600/600/nature'
 };
 
+const HISTOGRAM_RANGE_MOCK = {
+    containerId: 'container-for-histogram',
+    width: 400,
+    height: 50,
+    colours: {
+        top: '#7091B3',
+        bottom: '#96c2f2',
+        accent: '#2F528B',
+    },
+    margin: {
+        left: 30,
+        right: 0,
+        top: 10,
+        bottom: 45
+    },
+    axis: {
+        yAxis: {
+            show: true,
+            values: [0, 10, 56],
+        }
+    },
+    items: [
+        {
+            label: '1200',
+            value: 1,
+            payload: 1200,
+            range: {
+                payload: 1225,
+                label: '1225',
+            },
+        },
+        {
+            label: '1225',
+            value: 0,
+            payload: 1225,
+            range: {
+                payload: 1250,
+                label: '1250',
+            },
+        },
+        {
+            label: '1250',
+            value: 2,
+            payload: 1250,
+            range: {
+                payload: 1275,
+                label: '1275',
+            },
+        },
+        {
+            label: '1275',
+            value: 2,
+            payload: 1275,
+            range: {
+                payload: 1300,
+                label: '1300',
+            },
+        },
+        {
+            label: '1300',
+            value: 6,
+            payload: 1300,
+            range: {
+                payload: 1325,
+                label: '1325',
+            },
+        },
+        {
+            label: '1325',
+            value: 5,
+            payload: 1325,
+            range: {
+                payload: 1350,
+                label: '1350',
+            },
+        },
+        {
+            label: '1350',
+            value: 10,
+            payload: 1350,
+            range: {
+                payload: 1375,
+                label: '1375',
+            },
+        },
+        {
+            label: '1375',
+            value: 6,
+            payload: 1375,
+            range: {
+                payload: 1400,
+                label: '1400',
+            },
+        },
+        {
+            label: '1400',
+            value: 10,
+            payload: 1400,
+            range: {
+                payload: 1425,
+                label: '1425',
+            },
+        },
+        {
+            label: '1425',
+            value: 11,
+            payload: 1425,
+            range: {
+                payload: 1450,
+                label: '1450',
+            },
+        },
+        {
+            label: '1450',
+            value: 18,
+            payload: 1450,
+            range: {
+                payload: 1475,
+                label: '1475',
+            },
+        },
+        {
+            label: '1475',
+            value: 32,
+            payload: 1475,
+            range: {
+                payload: 1500,
+                label: '1500',
+            },
+        },
+        {
+            label: '1500',
+            value: 29,
+            payload: 1500,
+            range: {
+                payload: 1525,
+                label: '1525',
+            },
+        },
+        {
+            label: '1525',
+            value: 26,
+            payload: 1525,
+            range: {
+                payload: 1550,
+                label: '1550',
+            },
+        },
+        {
+            label: '1550',
+            value: 25,
+            payload: 1550,
+            range: {
+                payload: 1575,
+                label: '1575',
+            },
+        },
+        {
+            label: '1575',
+            value: 56,
+            payload: 1575,
+            range: {
+                payload: 1600,
+                label: '1600',
+            },
+        },
+        {
+            label: '1600',
+            value: 27,
+            payload: 1600,
+            range: {
+                payload: 1625,
+                label: '1625',
+            },
+        },
+        {
+            label: '1625',
+            value: 20,
+            payload: 1625,
+            range: {
+                payload: 1650,
+                label: '1650',
+            },
+        },
+        {
+            label: '1650',
+            value: 15,
+            payload: 1650,
+            range: {
+                payload: 1675,
+                label: '1675',
+            },
+        },
+        {
+            label: '1675',
+            value: 17,
+            payload: 1675,
+            range: {
+                payload: 1700,
+                label: '1700',
+            },
+        },
+        {
+            label: '1700',
+            value: 13,
+            payload: 1700,
+            range: {
+                payload: 1725,
+                label: '1725',
+            },
+        },
+        {
+            label: '1725',
+            value: 21,
+            payload: 1725,
+            range: {
+                payload: 1750,
+                label: '1750',
+            },
+        },
+        {
+            label: '1750',
+            value: 33,
+            payload: 1750,
+            range: {
+                payload: 1775,
+                label: '1775',
+            },
+        },
+        {
+            label: '1775',
+            value: 38,
+            payload: 1775,
+            range: {
+                payload: 1800,
+                label: '1800',
+            },
+        },
+    ]
+};
+
 const IMAGE_VIEWER_TOOLS_MOCK = {
     images: [
         { thumb: 'http://placekitten.com/200/130', payload: 'img1-payload' },
@@ -7575,5 +8110,5 @@ const WIZARD_MOCK = {
  * Generated bundle index. Do not edit.
  */
 
-export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HeaderComponent, HeroComponent, IMAGE_VIEWER_MOCK, IMAGE_VIEWER_TOOLS_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, ImageViewerToolsComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, MAP_MOCK, METADATA_VIEWER_MOCK, MapComponent, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PROGRESS_LINE_MOCK, PaginationComponent, ProgressLineComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TEXT_VIEWER_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TextViewerComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent, ɵ0, ɵ1, ɵ2 };
+export { ADVANCED_AUTOCOMPLETE_MOCK, ALERT_MOCK, AdvancedAutocompleteComponent, AlertComponent, AnchorWrapperComponent, BREADCRUMBS_MOCK, BUBBLECHART_MOCK, BreadcrumbsComponent, BubbleChartComponent, CAROUSEL_MOCK, CHART_MOCK, CONTENT_PLACEHOLDER_MOCK, CarouselComponent, ChartComponent, ContentPlaceholderComponent, DATA_WIDGET_MOCK, DATEPICKER_MOCK, DataWidgetComponent, DatepickerComponent, DvComponentsLibModule, FACET_HEADER_MOCK, FACET_MOCK, FACET_YEAR_RANGE_MOCK, FOOTER_MOCK, FacetComponent, FacetHeaderComponent, FacetYearRangeComponent, FooterComponent, HEADER_MOCK, HERO_MOCK, HISTOGRAM_RANGE_MOCK, HeaderComponent, HeroComponent, HistogramRangeComponent, IMAGE_VIEWER_MOCK, IMAGE_VIEWER_TOOLS_MOCK, INNER_TITLE_MOCK, INPUT_CHECKBOX_MOCK, INPUT_LINK_MOCK, INPUT_SELECT_MOCK, INPUT_TEXT_MOCK, ITEM_PREVIEW_MOCK, ImageViewerComponent, ImageViewerToolsComponent, InnerTitleComponent, InputCheckboxComponent, InputLinkComponent, InputSelectComponent, InputTextComponent, ItemPreviewComponent, LOADER_MOCK, LoaderComponent, MAP_MOCK, METADATA_VIEWER_MOCK, MapComponent, MetadataViewerComponent, NAV_MOCK, NavComponent, PAGINATION_MOCK, PROGRESS_LINE_MOCK, PaginationComponent, ProgressLineComponent, SIDEBAR_HEADER_MOCK, SIGNUP_MOCK, SIMPLE_AUTOCOMPLETE_MOCK, SidebarHeaderComponent, SignupComponent, SimpleAutocompleteComponent, TABLE_MOCK, TAG_MOCK, TEXT_VIEWER_MOCK, TIMELINE_MOCK, TOAST_MOCK, TOOLTIP_CONTENT_MOCK, TREE_MOCK, TableComponent, TagComponent, TextViewerComponent, TimelineComponent, ToastComponent, TooltipContentComponent, TreeComponent, WIZARD_MOCK, WizardComponent, ɵ0, ɵ1, ɵ2 };
 //# sourceMappingURL=n7-frontend-components.js.map
