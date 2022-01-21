@@ -72,12 +72,26 @@ export interface HistogramRangeData {
      * this is needed to redraw bubble-chart-component on command
      */
     setDraw?: any;
+    /**
+     * setSliders
+     */
+    setSliders?: [string, string];
+    /**
+     * Public api
+     */
+    setApi?: any;
 }
 export declare class HistogramRangeComponent implements AfterContentChecked {
     data: HistogramRangeData;
     emit: any;
     private d3;
+    private sliders;
     private _loaded;
+    private colourBars;
+    private getSelectedRange;
     ngAfterContentChecked(): void;
     draw: () => void;
+    labelToX(): any;
+    setValue: ([startLabel, endLabel]: [any, any]) => any;
+    emitLoaded(payload: any): void;
 }
