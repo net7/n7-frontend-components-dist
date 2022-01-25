@@ -92,6 +92,7 @@ export declare class HistogramRangeComponent implements AfterContentChecked {
     ngAfterContentChecked(): void;
     draw: () => void;
     labelToX(): any;
-    setValue: ([startLabel, endLabel]: [any, any]) => any;
+    setBars: (newBars: any) => void;
+    setSliders: ([startLabel, endLabel]: [any, any]) => any;
     emitLoaded(payload: any): void;
 }
