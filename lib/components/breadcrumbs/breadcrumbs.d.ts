@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for a single BreadcrumbsComponent's "Item"
  *
@@ -44,4 +45,6 @@ export declare class BreadcrumbsComponent {
     data: BreadcrumbsData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<BreadcrumbsComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BreadcrumbsComponent, "n7-breadcrumbs", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

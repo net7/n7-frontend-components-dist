@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for datapicker component
  * @property id (required)
@@ -37,4 +38,6 @@ export declare class DatepickerComponent {
     emit: any;
     private _loaded;
     ngAfterContentChecked(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<DatepickerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DatepickerComponent, "n7-datepicker", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

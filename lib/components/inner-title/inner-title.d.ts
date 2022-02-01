@@ -1,4 +1,5 @@
 import { Anchor, Icon } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for InnerTitleComponent's "data"
  *
@@ -55,4 +56,6 @@ export declare class InnerTitleComponent {
     onChange(payload: any, value: any): void;
     onInputChange(payload: any, value: any): void;
     onInputEnter(payload: any, value: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<InnerTitleComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InnerTitleComponent, "n7-inner-title", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

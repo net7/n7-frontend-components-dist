@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for an index component Item
  *
@@ -44,4 +45,6 @@ export declare class DataWidgetComponent {
     emit: any;
     onMouseEnter(payload: any): void;
     onMouseLeave(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<DataWidgetComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DataWidgetComponent, "n7-data-widget", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

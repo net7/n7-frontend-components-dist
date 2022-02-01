@@ -1,6 +1,6 @@
 {
   "name": "@n7-frontend/components",
-  "version": "2.9.14",
+  "version": "3.0.0",
   "dependencies": {
     "apexcharts": "^3.8.5",
     "d3": "^7.1.1",
@@ -11,24 +11,34 @@
     "dayjs": "~1.10.7",
     "openseadragon": "^2.4.1",
     "vis-data": "~6.5.3",
+    "tslib": "^2.0.0",
     "vis-timeline": "~7.3.6",
     "vis-util": "~4.3.2",
-    "@teipublisher/pb-components": "~1.11.0",
-    "tslib": "^1.10.0"
+    "@teipublisher/pb-components": "~1.11.0"
   },
   "peerDependencies": {
-    "@angular/common": "~9.1.10",
-    "@angular/core": "~9.1.10",
-    "@angular/router": "~9.1.10"
+    "@angular/common": "~13.2.0",
+    "@angular/core": "~13.2.0",
+    "@angular/router": "~13.2.0"
   },
-  "main": "bundles/n7-frontend-components.umd.js",
-  "module": "fesm5/n7-frontend-components.js",
-  "es2015": "fesm2015/n7-frontend-components.js",
-  "esm5": "esm5/n7-frontend-components.js",
-  "esm2015": "esm2015/n7-frontend-components.js",
-  "fesm5": "fesm5/n7-frontend-components.js",
-  "fesm2015": "fesm2015/n7-frontend-components.js",
+  "module": "fesm2015/n7-frontend-components.mjs",
+  "es2020": "fesm2020/n7-frontend-components.mjs",
+  "esm2020": "esm2020/n7-frontend-components.mjs",
+  "fesm2020": "fesm2020/n7-frontend-components.mjs",
+  "fesm2015": "fesm2015/n7-frontend-components.mjs",
   "typings": "n7-frontend-components.d.ts",
-  "metadata": "n7-frontend-components.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./n7-frontend-components.d.ts",
+      "esm2020": "./esm2020/n7-frontend-components.mjs",
+      "es2020": "./fesm2020/n7-frontend-components.mjs",
+      "es2015": "./fesm2015/n7-frontend-components.mjs",
+      "node": "./fesm2015/n7-frontend-components.mjs",
+      "default": "./fesm2020/n7-frontend-components.mjs"
+    }
+  },
   "sideEffects": false
 }

@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for SidebarHeaderComponent's "data"
  *
@@ -38,4 +39,6 @@ export declare class SidebarHeaderComponent {
     data: SidebarHeaderData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SidebarHeaderComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SidebarHeaderComponent, "n7-sidebar-header", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

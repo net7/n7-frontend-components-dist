@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for InputTextData
  *
@@ -75,4 +76,6 @@ export declare class InputTextComponent {
     data: InputTextData;
     emit: any;
     onChange(inputPayload: any, value?: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<InputTextComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputTextComponent, "n7-input-text", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

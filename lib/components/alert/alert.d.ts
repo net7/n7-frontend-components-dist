@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for TagComponent's "data"
  *
@@ -40,4 +41,6 @@ export declare class AlertComponent {
     data: AlertData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AlertComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AlertComponent, "n7-alert", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for TagComponent's "data"
  *
@@ -39,4 +40,6 @@ export declare class TagComponent {
     data: TagData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TagComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TagComponent, "n7-tag", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

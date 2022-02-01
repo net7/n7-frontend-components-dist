@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for MetadataViewerComponent's "data"
  *
@@ -59,4 +60,6 @@ export interface MetadataViewerItems {
 export declare class MetadataViewerComponent {
     data: MetadataViewerData;
     emit: any;
+    static ɵfac: i0.ɵɵFactoryDeclaration<MetadataViewerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MetadataViewerComponent, "n7-metadata-viewer", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

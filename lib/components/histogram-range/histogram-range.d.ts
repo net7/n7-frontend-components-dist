@@ -1,4 +1,5 @@
 import { AfterContentChecked } from '@angular/core';
+import * as i0 from "@angular/core";
 /**
  * Interface for HistogramRangeComponent's "data"
  */
@@ -95,4 +96,6 @@ export declare class HistogramRangeComponent implements AfterContentChecked {
     setBars: (newBars: any) => void;
     setSliders: ([startLabel, endLabel]: [any, any]) => any;
     emitLoaded(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<HistogramRangeComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<HistogramRangeComponent, "n7-histogram-range", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

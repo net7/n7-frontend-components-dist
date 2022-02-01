@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
 * Interface for a single WizardComponent's "item"
 *
@@ -51,4 +52,6 @@ export declare class WizardComponent {
     data: WizardData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<WizardComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<WizardComponent, "n7-wizard", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

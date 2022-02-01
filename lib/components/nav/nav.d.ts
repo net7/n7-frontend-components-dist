@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for a single navbar item
  *
@@ -60,4 +61,6 @@ export declare class NavComponent {
     data: NavData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<NavComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NavComponent, "n7-nav", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

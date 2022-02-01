@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for each link in footer menus
  *
@@ -112,4 +113,6 @@ export declare class FooterComponent {
     data: FooterData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FooterComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FooterComponent, "n7-footer", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

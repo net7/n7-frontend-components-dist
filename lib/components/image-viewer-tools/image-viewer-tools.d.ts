@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for ImageViewerButtonsData, defines the thumbnail
  * url and its relative payload
@@ -110,4 +111,6 @@ export declare class ImageViewerToolsComponent {
     data: ImageViewerToolsData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ImageViewerToolsComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ImageViewerToolsComponent, "n7-image-viewer-tools", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

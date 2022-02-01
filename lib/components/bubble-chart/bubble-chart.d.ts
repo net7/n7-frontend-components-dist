@@ -1,4 +1,5 @@
 import { AfterContentChecked } from '@angular/core';
+import * as i0 from "@angular/core";
 /**
  * Interface for BubbleChartComponent's "data"
  *
@@ -102,4 +103,6 @@ export declare class BubbleChartComponent implements AfterContentChecked {
     ngAfterContentChecked(): void;
     onClick(payload: any): void;
     draw: () => void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<BubbleChartComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BubbleChartComponent, "n7-bubble-chart", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

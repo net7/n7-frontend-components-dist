@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for InputCheckbox
  *
@@ -61,4 +62,6 @@ export declare class InputCheckboxComponent {
     data: InputCheckboxData;
     emit: any;
     onChange(inputPayload: any, value?: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<InputCheckboxComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputCheckboxComponent, "n7-input-checkbox", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

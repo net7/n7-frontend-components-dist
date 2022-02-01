@@ -30,7 +30,7 @@
 
     &__link {
         display: block;
-        padding: $space/1.5 0 $space/1.5 0;
+        padding: calc($space/1.5) 0 calc($space/1.5) 0;
         color: $color-text;
 
         &:hover {

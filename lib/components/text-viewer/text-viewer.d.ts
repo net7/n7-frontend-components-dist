@@ -1,4 +1,5 @@
 import { OnInit } from '@angular/core';
+import * as i0 from "@angular/core";
 /**
  * Interface for TextViewerComponent's "data"
  * @property endpoint (required)
@@ -28,4 +29,6 @@ export declare class TextViewerComponent implements OnInit {
     ngOnInit(): void;
     onScriptLoaded(): void;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TextViewerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TextViewerComponent, "n7-text-viewer", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

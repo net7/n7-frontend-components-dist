@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for ContentPlaceholderComponent's "data"
  *
@@ -21,5 +22,7 @@ interface BlocksData {
 }
 export declare class ContentPlaceholderComponent {
     data: ContentPlaceholderData;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ContentPlaceholderComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ContentPlaceholderComponent, "n7-content-placeholder", never, { "data": "data"; }, {}, never, never>;
 }
 export {};

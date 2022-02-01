@@ -31,11 +31,11 @@
         height: $nav-image-height;
         width: $nav-image-width;
         object-fit: contain;
-        margin-right: $space/2;
+        margin-right: calc($space/2);
     }
 
     &__icon {
-        margin-right: $space/2;
+        margin-right: calc($space/2);
     }
 }
 

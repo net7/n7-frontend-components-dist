@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for FacetHeaderComponent's "data"
  *
@@ -38,4 +39,6 @@ export declare class FacetHeaderComponent {
     data: FacetHeaderData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FacetHeaderComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FacetHeaderComponent, "n7-facet-header", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

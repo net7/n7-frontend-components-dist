@@ -108,7 +108,7 @@
     }
 
     &__thumb {
-        margin: 0 $space/2;
+        margin: 0 calc($space/2);
 
         &.active {
             .n7-image-viewer-tools__thumb-image {

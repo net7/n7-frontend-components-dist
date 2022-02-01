@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for AdvancedAutocompleteComponent's "data"
  */
@@ -50,5 +51,7 @@ export declare class AdvancedAutocompleteComponent {
     data: AdvancedAutocompleteData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AdvancedAutocompleteComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AdvancedAutocompleteComponent, "n7-advanced-autocomplete", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }
 export {};

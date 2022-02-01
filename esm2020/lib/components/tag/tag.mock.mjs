@@ -1,0 +1,8 @@
+export const TAG_MOCK = {
+    label: 'label: ',
+    text: 'text',
+    icon: 'n7-icon-close',
+    payload: 'tag-payload',
+    classes: 'tag1-class',
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGFnLm1vY2suanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9kdi1jb21wb25lbnRzLWxpYi9zcmMvbGliL2NvbXBvbmVudHMvdGFnL3RhZy5tb2NrLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBLE1BQU0sQ0FBQyxNQUFNLFFBQVEsR0FBWTtJQUMvQixLQUFLLEVBQUUsU0FBUztJQUNoQixJQUFJLEVBQUUsTUFBTTtJQUNaLElBQUksRUFBRSxlQUFlO0lBQ3JCLE9BQU8sRUFBRSxhQUFhO0lBQ3RCLE9BQU8sRUFBRSxZQUFZO0NBQ3RCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBUYWdEYXRhIH0gZnJvbSAnLi90YWcnO1xuXG5leHBvcnQgY29uc3QgVEFHX01PQ0s6IFRhZ0RhdGEgPSB7XG4gIGxhYmVsOiAnbGFiZWw6ICcsXG4gIHRleHQ6ICd0ZXh0JyxcbiAgaWNvbjogJ243LWljb24tY2xvc2UnLFxuICBwYXlsb2FkOiAndGFnLXBheWxvYWQnLFxuICBjbGFzc2VzOiAndGFnMS1jbGFzcycsXG59O1xuIl19

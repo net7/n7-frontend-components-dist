@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for SimpleAutocompleteComponent's "data"
  *
@@ -34,4 +35,6 @@ export declare class SimpleAutocompleteComponent {
     data: SimpleAutocompleteData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SimpleAutocompleteComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SimpleAutocompleteComponent, "n7-simple-autocomplete", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

@@ -1,5 +1,6 @@
 import { AfterContentChecked } from '@angular/core';
 import { DataItem, TimelineOptions } from 'vis-timeline';
+import * as i0 from "@angular/core";
 export interface LibOptions extends TimelineOptions {
     /** Specifies how strong the zooming for each scroll tick.
      * Higher zooming friction will slow zooming speed */
@@ -24,4 +25,6 @@ export declare class TimelineComponent implements AfterContentChecked {
     private loadModules;
     ngAfterContentChecked(): void;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TimelineComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TimelineComponent, "n7-timeline", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

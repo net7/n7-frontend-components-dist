@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for FacetYearRangeComponent's "data"
  *
@@ -77,4 +78,6 @@ export declare class FacetYearRangeComponent {
     data: FacetYearRangeData;
     emit: any;
     onChange(payload: any, selected: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FacetYearRangeComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FacetYearRangeComponent, "n7-facet-year-range", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for a single button
  *
@@ -275,4 +276,6 @@ export declare class HeaderComponent {
     emit: any;
     onClick(payload: any): void;
     onKeyUp(payload: any, keyCode: any, value: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<HeaderComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<HeaderComponent, "n7-header", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

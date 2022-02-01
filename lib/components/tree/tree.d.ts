@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for TreeComponent's "data"
  *
@@ -73,4 +74,6 @@ export declare class TreeComponent {
     data: TreeData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TreeComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TreeComponent, "n7-tree", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

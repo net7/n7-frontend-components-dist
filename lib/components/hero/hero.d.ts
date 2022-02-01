@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for HeroComponent's "data"
  *
@@ -69,4 +70,6 @@ export declare class HeroComponent {
     onClick(payload: any): void;
     onInputChange(payload: any, value: any): void;
     onInputEnter(payload: any, value: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<HeroComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<HeroComponent, "n7-hero", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

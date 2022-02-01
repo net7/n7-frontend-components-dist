@@ -1,5 +1,6 @@
 import { AfterContentChecked } from '@angular/core';
 import { TileLayerOptions, MapOptions } from 'leaflet';
+import * as i0 from "@angular/core";
 /**
  * Interface for TileLayer's "data"
  *
@@ -63,4 +64,6 @@ export declare class MapComponent implements AfterContentChecked {
     /** Dynamically load required node modules */
     private loadModules;
     ngAfterContentChecked(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<MapComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MapComponent, "n7-map", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

@@ -50,11 +50,11 @@
     }
 
     &__metadata-item-icon {
-        margin-right: $space/2;
+        margin-right: calc($space/2);
     }
 
     &__metadata-item-label {
-        margin-right: $space/2;
+        margin-right: calc($space/2);
         font-family: $font-family-main;
         font-size: $font-size-s;
         font-weight: $font-weight-normal;

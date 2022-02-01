@@ -1,0 +1,24 @@
+//---------------------------
+// TAG.ts
+//---------------------------
+import { Component, Input } from '@angular/core';
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common";
+export class TagComponent {
+    onClick(payload) {
+        if (!this.emit)
+            return;
+        this.emit('click', payload);
+    }
+}
+TagComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.0", ngImport: i0, type: TagComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+TagComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.2.0", type: TagComponent, selector: "n7-tag", inputs: { data: "data", emit: "emit" }, ngImport: i0, template: "<span class=\"n7-tag {{data.classes || ''}}\" *ngIf=\"data\">\n    <span class=\"n7-tag__label\" *ngIf=\"data.label\">\n        {{ data.label }}\n    </span>\n    <span class=\"n7-tag__text\" *ngIf=\"data.text\">\n        {{ data.text }}\n    </span>\n    <span class=\"n7-tag__icon {{data.icon}}\" *ngIf=\"data.icon\" (click)=\"onClick(data.payload)\"></span>\n</span>", directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.0", ngImport: i0, type: TagComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'n7-tag', template: "<span class=\"n7-tag {{data.classes || ''}}\" *ngIf=\"data\">\n    <span class=\"n7-tag__label\" *ngIf=\"data.label\">\n        {{ data.label }}\n    </span>\n    <span class=\"n7-tag__text\" *ngIf=\"data.text\">\n        {{ data.text }}\n    </span>\n    <span class=\"n7-tag__icon {{data.icon}}\" *ngIf=\"data.icon\" (click)=\"onClick(data.payload)\"></span>\n</span>" }]
+        }], propDecorators: { data: [{
+                type: Input
+            }], emit: [{
+                type: Input
+            }] } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGFnLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvZHYtY29tcG9uZW50cy1saWIvc3JjL2xpYi9jb21wb25lbnRzL3RhZy90YWcudHMiLCIuLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9kdi1jb21wb25lbnRzLWxpYi9zcmMvbGliL2NvbXBvbmVudHMvdGFnL3RhZy5odG1sIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDZCQUE2QjtBQUM3QixTQUFTO0FBQ1QsNkJBQTZCO0FBRTdCLE9BQU8sRUFBRSxTQUFTLEVBQUUsS0FBSyxFQUFFLE1BQU0sZUFBZSxDQUFDOzs7QUE0Q2pELE1BQU0sT0FBTyxZQUFZO0lBS3JCLE9BQU8sQ0FBQyxPQUFPO1FBQ2IsSUFBSSxDQUFDLElBQUksQ0FBQyxJQUFJO1lBQUUsT0FBTztRQUN2QixJQUFJLENBQUMsSUFBSSxDQUFDLE9BQU8sRUFBRSxPQUFPLENBQUMsQ0FBQztJQUM5QixDQUFDOzt5R0FSUSxZQUFZOzZGQUFaLFlBQVksc0ZDaER6QixtWEFRTzsyRkR3Q00sWUFBWTtrQkFKeEIsU0FBUzsrQkFDRSxRQUFROzhCQUlBLElBQUk7c0JBQW5CLEtBQUs7Z0JBRVUsSUFBSTtzQkFBbkIsS0FBSyIsInNvdXJjZXNDb250ZW50IjpbIi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4vLyBUQUcudHNcbi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5cbmltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuLyoqXG4gKiBJbnRlcmZhY2UgZm9yIFRhZ0NvbXBvbmVudCdzIFwiZGF0YVwiXG4gKlxuICogQHByb3BlcnR5IHRleHQgKHJlcXVpcmVkKVxuICogQHByb3BlcnR5IGxhYmVsIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBpY29uIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBjbGFzc2VzIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBwYXlsb2FkIChvcHRpb25hbClcbiAqIEBwcm9wZXJ0eSBfbWV0YSAob3B0aW9uYWwpXG4gKlxuICovXG5leHBvcnQgaW50ZXJmYWNlIFRhZ0RhdGEge1xuICAgIC8qKlxuICAgICAqIHRhZydzIGxhYmVsXG4gICAgICovXG4gICAgbGFiZWw/OiBzdHJpbmc7XG4gICAgLyoqXG4gICAgICogdGV4dCB2aXN1YWxpemVkIG9uIHRoZSB0YWdcbiAgICAgKi9cbiAgICB0ZXh0OiBzdHJpbmc7XG4gICAgLyoqXG4gICAgICogYWN0aW9uIGljb24gKG9uIHJpZ2h0IHNpZGUpXG4gICAgICovXG4gICAgaWNvbj86IHN0cmluZztcbiAgICAvKipcbiAgICAgKiBhZGRpdGlvbmFsIGh0bWwgY2xhc3Nlc1xuICAgICAqL1xuICAgIGNsYXNzZXM/OiBzdHJpbmc7XG4gICAgLyoqXG4gICAgICogYWN0aW9uIGNsaWNrJ3MgcGF5bG9hZFxuICAgICAqL1xuICAgIHBheWxvYWQ/OiBhbnk7XG4gICAgLyoqXG4gICAgICogYWRkaXRpb25hbCBpbmZvXG4gICAgICovXG4gICAgX21ldGE/OiBhbnk7XG59XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ243LXRhZycsXG4gIHRlbXBsYXRlVXJsOiAnLi90YWcuaHRtbCdcbn0pXG5leHBvcnQgY2xhc3MgVGFnQ29tcG9uZW50IHtcbiAgICBASW5wdXQoKSBwdWJsaWMgZGF0YTogVGFnRGF0YTtcblxuICAgIEBJbnB1dCgpIHB1YmxpYyBlbWl0OiBhbnk7XG5cbiAgICBvbkNsaWNrKHBheWxvYWQpIHtcbiAgICAgIGlmICghdGhpcy5lbWl0KSByZXR1cm47XG4gICAgICB0aGlzLmVtaXQoJ2NsaWNrJywgcGF5bG9hZCk7XG4gICAgfVxufVxuIiwiPHNwYW4gY2xhc3M9XCJuNy10YWcge3tkYXRhLmNsYXNzZXMgfHwgJyd9fVwiICpuZ0lmPVwiZGF0YVwiPlxuICAgIDxzcGFuIGNsYXNzPVwibjctdGFnX19sYWJlbFwiICpuZ0lmPVwiZGF0YS5sYWJlbFwiPlxuICAgICAgICB7eyBkYXRhLmxhYmVsIH19XG4gICAgPC9zcGFuPlxuICAgIDxzcGFuIGNsYXNzPVwibjctdGFnX190ZXh0XCIgKm5nSWY9XCJkYXRhLnRleHRcIj5cbiAgICAgICAge3sgZGF0YS50ZXh0IH19XG4gICAgPC9zcGFuPlxuICAgIDxzcGFuIGNsYXNzPVwibjctdGFnX19pY29uIHt7ZGF0YS5pY29ufX1cIiAqbmdJZj1cImRhdGEuaWNvblwiIChjbGljayk9XCJvbkNsaWNrKGRhdGEucGF5bG9hZClcIj48L3NwYW4+XG48L3NwYW4+Il19

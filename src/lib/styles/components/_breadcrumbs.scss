@@ -10,7 +10,7 @@
 .n7-breadcrumbs {
     display: flex;
     box-sizing: border-box;
-    padding: $space / 2;
+    padding: calc($space/2);
     background-color: $breadcrumbs-background;
     @include consistent;
     
@@ -26,7 +26,7 @@
     }
 
     &__item {
-        margin: $space/2 0;
+        margin: calc($space/2) 0;
         list-style: none;
 
         &:after {
@@ -75,7 +75,7 @@
                     /* The back arrow is inserted within the A tag so it's clickable */
                     &:before {
                         content: $breadcrumbs-arrow-mobile;
-                        margin-right: $space/2;
+                        margin-right: calc($space/2);
                         font-family: 'n7-icon' !important;
                         color: $breadcrumbs-arrow-color;
                         vertical-align: bottom;

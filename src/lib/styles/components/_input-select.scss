@@ -3,7 +3,7 @@
 \* ------------------------------------ */
 .n7-input-select {
     display: inline-block;
-    margin-bottom: $space/2;
+    margin-bottom: calc($space/2);
     margin-right: $space;
 }
 

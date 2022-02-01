@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for ImageViewerComponent's images "data"
  *
@@ -55,4 +56,6 @@ export declare class ImageViewerComponent {
     private _loaded;
     ngAfterContentChecked(): void;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ImageViewerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ImageViewerComponent, "n7-image-viewer", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

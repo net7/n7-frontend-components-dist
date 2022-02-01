@@ -1,4 +1,5 @@
 import { Button } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for PaginationComponent's options (page size select options)
  *
@@ -88,4 +89,6 @@ export declare class PaginationComponent {
     emit: any;
     onClick(payload: any): void;
     onChange(payload: any, value: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<PaginationComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PaginationComponent, "n7-pagination", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for InputSelect
  *
@@ -61,4 +62,6 @@ export declare class InputSelectComponent {
     data: InputSelectData;
     emit: any;
     onChange(inputPayload: any, value?: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<InputSelectComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputSelectComponent, "n7-input-select", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

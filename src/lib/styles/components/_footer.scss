@@ -20,7 +20,7 @@
 
     &__column {
         flex: 1;
-        padding: 0 $grid-gutter-h/2;
+        padding: 0 calc($grid-gutter-h/2);
 
         &:first-of-type {
             padding-left: 0;
@@ -38,7 +38,7 @@
     }
 
     &__column-nav-item {
-        margin-bottom: $space/2;
+        margin-bottom: calc($space/2);
     }
 
     &__column-nav-link {
@@ -57,7 +57,7 @@
         img {
             width: auto;
             height: $footer-image-height;
-            margin-right: $space/2;
+            margin-right: calc($space/2);
         }
     }
 }
@@ -71,11 +71,11 @@
         &__column {
             
             &:first-of-type {
-                padding-left: $grid-gutter-h/2;
+                padding-left: calc($grid-gutter-h/2);
             }
 
             &:last-of-type {
-                padding-right: $grid-gutter-h/2;
+                padding-right: calc($grid-gutter-h/2);
             }
         }
     }
@@ -92,7 +92,7 @@
         }
 
         &__column {
-            padding-bottom: $grid-gutter-h/2;
+            padding-bottom: calc($grid-gutter-h/2);
         
             &:last-of-type {
                 padding-bottom: 0;

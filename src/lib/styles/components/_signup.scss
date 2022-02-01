@@ -18,8 +18,8 @@
     }
 
     &__form-error {
-        margin-top: $space/2;
-        margin-bottom: $space/2;
+        margin-top: calc($space/2);
+        margin-bottom: calc($space/2);
         font-size: $font-size-s;
         color: $signup-error-color;
     }

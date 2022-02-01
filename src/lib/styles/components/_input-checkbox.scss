@@ -11,7 +11,7 @@
     }
 
     &__input {
-        margin-right: $space/2;
+        margin-right: calc($space/2);
     }
 
     &__label {

@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for an InputLink
  *
@@ -48,4 +49,6 @@ export declare class InputLinkComponent {
     data: InputLinkData;
     emit: any;
     onChange(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<InputLinkComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputLinkComponent, "n7-input-link", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

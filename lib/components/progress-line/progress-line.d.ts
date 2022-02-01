@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for ProgressLineComponent's "data"
  *
@@ -17,4 +18,6 @@ export interface ProgressLineData {
 export declare class ProgressLineComponent {
     data: ProgressLineData;
     emit: any;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ProgressLineComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ProgressLineComponent, "n7-progress-line", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

@@ -9,7 +9,7 @@
     TAG
 \* ------------------------------------ */
 .n7-tag {
-    padding: $space/2 $space;
+    padding: calc($space/2) $space;
     background-color: $color-second;
     border-radius: $border-radius-hard;
     font-size: $font-size-xs;
@@ -25,7 +25,7 @@
     }
     
     &__icon {
-        margin-left: $space/2;
+        margin-left: calc($space/2);
         font-size: $font-size-xs;
         color: $color-text-inverse;
         line-height: 1;

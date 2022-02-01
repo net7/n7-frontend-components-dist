@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for Signup field
  *
@@ -102,5 +103,7 @@ export declare class SignupComponent {
     onInputEnter(inputPayload: any, value: any): void;
     onFocus(payload: any): void;
     onFocusOut(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SignupComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SignupComponent, "n7-signup", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }
 export {};

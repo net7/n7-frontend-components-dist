@@ -1,5 +1,6 @@
 import { AfterContentChecked } from '@angular/core';
 import { ApexOptions } from 'apexcharts';
+import * as i0 from "@angular/core";
 /**
  * Interface for ChartComponent's "data"
  *
@@ -40,4 +41,6 @@ export declare class ChartComponent implements AfterContentChecked {
     emit: any;
     private _loaded;
     ngAfterContentChecked(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ChartComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ChartComponent, "n7-chart", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

@@ -15,7 +15,7 @@
     }
 
     &__main-icon {
-        margin-right: $space/2;
+        margin-right: calc($space/2);
         font-size: $font-size-xl;
     }
 
@@ -31,7 +31,7 @@
     }
 
     &__sub-title {
-        margin: 0 $space/2 0 0;
+        margin: 0 calc($space/2) 0 0;
         font-size: $font-size-xs;
         line-height: 1;
     }

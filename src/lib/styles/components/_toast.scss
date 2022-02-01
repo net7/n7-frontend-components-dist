@@ -60,7 +60,7 @@
     margin-right: $space;
 
     .n7-toast__action-button {
-        margin-left: $space/2;
+        margin-left: calc($space/2);
     }
     
     &:first-child {

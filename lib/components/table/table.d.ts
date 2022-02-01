@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 /**
  * Interface for row's cells
  *
@@ -83,4 +84,6 @@ export declare class TableComponent {
     onCellClick(cellPayload: any): void;
     onCellDblClick(cellPayload: any): void;
     onInputTextChange(cellPayload: any, cellValue: string): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TableComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TableComponent, "n7-table", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

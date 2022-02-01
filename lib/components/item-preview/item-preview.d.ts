@@ -1,4 +1,5 @@
 import { Anchor } from '../../shared-interfaces';
+import * as i0 from "@angular/core";
 /**
  * Interface for ItemPreviewComponent's "data"
  *
@@ -87,4 +88,6 @@ export declare class ItemPreviewComponent {
     data: ItemPreviewData;
     emit: any;
     onClick(payload: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ItemPreviewComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ItemPreviewComponent, "n7-item-preview", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }

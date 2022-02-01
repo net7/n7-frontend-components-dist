@@ -21,8 +21,8 @@
 
     &__items {
         > li {
-            margin-left: $space/2;
-            margin-right: $space/2;
+            margin-left: calc($space/2);
+            margin-right: calc($space/2);
             user-select: none;
             
             &:first-child {
@@ -57,14 +57,14 @@
     &__first-link, &__prev-link {
         &.has-text {
             width: auto;
-            padding: 0 $space*1.5 0 $space/2;
+            padding: 0 $space*1.5 0 calc($space/2);
         }
     }
 
     &__next-link, &__last-link {
         &.has-text {
             width: auto;
-            padding: 0 $space/2 0 $space*1.5;
+            padding: 0 calc($space/2) 0 $space*1.5;
         }
     }
 

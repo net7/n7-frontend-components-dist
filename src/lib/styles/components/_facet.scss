@@ -30,7 +30,7 @@
     }
 
     &__input-checkbox-input {
-        margin-right: $space/2;
+        margin-right: calc($space/2);
     }
 
     &__input-checkbox-label {
@@ -105,7 +105,7 @@
 
     &__input-link-counter {
         margin-left: auto;
-        padding: $space/4 $space/2;
+        padding: calc($space/4) calc($space/2);
         border-radius: $border-radius;
         font-size: $font-size-xs;
         color: $color-text-inverse;
@@ -141,7 +141,7 @@
 .n7-facet {
     &__section-input-select {
         display: inline-block;
-        margin-bottom: $space/2;
+        margin-bottom: calc($space/2);
         margin-right: $space;
     }
 }
