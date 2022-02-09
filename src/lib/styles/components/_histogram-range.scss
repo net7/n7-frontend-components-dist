@@ -3,14 +3,21 @@
  *
  * Brief description of the component here.
  */
- 
+
 /* ------------------------------------ *\
    #HISTOGRAM-RANGE
 \* ------------------------------------ */
 .n7-histogram-range {
-    // TODO
-}
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    width: 100%;
 
+    & > svg {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+}
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES

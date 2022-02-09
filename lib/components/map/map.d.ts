@@ -52,9 +52,9 @@ export interface MapData {
     /** Collection of map markers */
     markers?: MarkerData[];
     /** Sets the map instance to the given parameter */
-    _setInstance?: Function;
+    _setInstance?: (map: any) => void;
     /** Sets the marker layer to the given parameter */
-    _setMarkerLayer?: Function;
+    _setMarkerLayer?: (markerLayer: any) => void;
 }
 export declare class MapComponent implements AfterContentChecked {
     data: MapData;

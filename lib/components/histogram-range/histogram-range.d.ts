@@ -76,12 +76,17 @@ export interface HistogramRangeData {
     /**
      * setSliders
      */
-    setSliders?: [string, string];
+    setSliders?: LabelCouple;
     /**
      * Public api
      */
     setApi?: any;
 }
+declare type Sliders = {
+    x: number;
+    y: number;
+}[];
+declare type LabelCouple = [string, string];
 export declare class HistogramRangeComponent implements AfterContentChecked {
     data: HistogramRangeData;
     emit: any;
@@ -92,10 +97,17 @@ export declare class HistogramRangeComponent implements AfterContentChecked {
     private getSelectedRange;
     ngAfterContentChecked(): void;
     draw: () => void;
+    /** Avoid collision of the slider labels */
+    textCollision: (sliders: Sliders) => void;
+    /** Get x-axis position from label */
     labelToX(): any;
+    /** Public api that allows to dinamically change the bars */
     setBars: (newBars: any) => void;
-    setSliders: ([startLabel, endLabel]: [any, any]) => any;
+    /** Public api that allows to dinamically change the slider position */
+    setSliders: ([startLabel, endLabel]: LabelCouple, emit?: boolean) => any;
+    /** Emits an event when the component has loaded */
     emitLoaded(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<HistogramRangeComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<HistogramRangeComponent, "n7-histogram-range", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
 }
+export {};
