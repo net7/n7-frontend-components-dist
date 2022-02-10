@@ -92,6 +92,8 @@ export declare class HistogramRangeComponent implements AfterContentChecked {
     emit: any;
     private d3;
     private sliders;
+    /** d3 selection svg root */
+    private svg;
     private _loaded;
     private colourBars;
     private getSelectedRange;
@@ -101,6 +103,14 @@ export declare class HistogramRangeComponent implements AfterContentChecked {
     textCollision: (sliders: Sliders) => void;
     /** Get x-axis position from label */
     labelToX(): any;
+    /**
+     * Get an event with viewBox coordinates and
+     * parse them in absolute coordinates
+     */
+    getEventCoords(event: any): {
+        x: number;
+        y: number;
+    };
     /** Public api that allows to dinamically change the bars */
     setBars: (newBars: any) => void;
     /** Public api that allows to dinamically change the slider position */

@@ -842,7 +842,9 @@ class HistogramRangeComponent {
             document.getElementById(containerId).innerHTML = '';
             const svg = d3
                 .select(`#${containerId}`)
-                .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`);
+                .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+                .style('border', '1px solid #1d1d1d');
+            this.svg = svg;
             const scaleHeight = d3
                 .scaleSymlog() // most similar scale to the original
                 .domain([0, d3.max(items, (d) => d.value)])
@@ -891,7 +893,7 @@ class HistogramRangeComponent {
                 .attr('fill', 'url(#gradient)');
             barsLayer // catch bar events
                 .on('mousemove', (event) => {
-                const year = XtoLABEL(event.offsetX - margin.left);
+                const year = XtoLABEL(this.getEventCoords(event).x);
                 d3.selectAll('rect.bars').attr('fill', (d) => {
                     if (year === d.label)
                         return '#B0CCF8';
@@ -902,7 +904,7 @@ class HistogramRangeComponent {
                 d3.selectAll('rect.bars').attr('fill', (d) => colourBars(d));
             })
                 .on('click', (event) => {
-                const label = XtoLABEL(event.offsetX - margin.left);
+                const label = XtoLABEL(this.getEventCoords(event).x);
                 const xAxisValue = LABELtoX(label) + LABELtoX.bandwidth() / 2;
                 const newValue = {
                     x: xAxisValue,
@@ -1081,6 +1083,7 @@ class HistogramRangeComponent {
         };
         /** Public api that allows to dinamically change the slider position */
         this.setSliders = ([startLabel, endLabel], emit = true) => {
+            // setSliders([1450, 1575])
             this.data.setSliders = [`${startLabel}`, `${endLabel}`];
             this.draw();
             this.d3.selectAll('rect.bars').attr('fill', (d) => this.colourBars(d));
@@ -1128,6 +1131,17 @@ class HistogramRangeComponent {
             .range([0, this.data.width])
             .paddingInner(0.17)
             .paddingOuter(1);
+    }
+    /**
+     * Get an event with viewBox coordinates and
+     * parse them in absolute coordinates
+     */
+    getEventCoords(event) {
+        const m = event.target.getScreenCTM();
+        const point = this.svg.node().createSVGPoint();
+        point.x = event.clientX;
+        point.y = event.clientY;
+        return point.matrixTransform(m.inverse());
     }
     /** Emits an event when the component has loaded */
     emitLoaded(payload) {
@@ -6653,8 +6667,8 @@ const HISTOGRAM_RANGE_MOCK = {
         accent: '#2F528B',
     },
     margin: {
-        left: 30,
-        right: 0,
+        left: 25,
+        right: 5,
         top: 10,
         bottom: 45
     },
