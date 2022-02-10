@@ -843,8 +843,7 @@ class HistogramRangeComponent {
             document.getElementById(containerId).innerHTML = '';
             const svg = d3
                 .select(`#${containerId}`)
-                .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
-                .style('border', '1px solid #1d1d1d');
+                .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`);
             this.svg = svg;
             const scaleHeight = d3
                 .scaleSymlog() // most similar scale to the original
