@@ -85,5 +85,5 @@ export declare class TableComponent {
     onCellDblClick(cellPayload: any): void;
     onInputTextChange(cellPayload: any, cellValue: string): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TableComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TableComponent, "n7-table", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TableComponent, "n7-table", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

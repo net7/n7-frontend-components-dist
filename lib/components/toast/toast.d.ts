@@ -84,5 +84,5 @@ export declare class ToastComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ToastComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ToastComponent, "n7-toast", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ToastComponent, "n7-toast", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

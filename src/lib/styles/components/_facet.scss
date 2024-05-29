@@ -6,18 +6,19 @@
  * - search inpout with label;
  * - list of results.
  */
-
+ 
 /* ------------------------------------ *\
    #FACET
 \* ------------------------------------ */
 .n7-facet {
     /* General section inside facet */
     &__section {
-        margin-bottom: $facet-inner-padding * 2;
+        margin-bottom: $facet-inner-padding*2;
         margin-left: $facet-inner-padding;
         margin-right: $facet-inner-padding;
     }
 }
+
 
 /* ------------------------------------ *\
    #INPUT CHECKBOX
@@ -25,32 +26,39 @@
 .n7-facet {
     &__section-input-checkbox {
         display: inline-block;
-        margin-right: $space * 2;
+        margin-right: $space*2;
     }
+
     &__input-checkbox-input {
-        margin-right: calc($space / 2);
+        margin-right: calc($space/2);
     }
+
     &__input-checkbox-label {
         font-size: $font-size-s;
     }
 }
 
+
 /* ------------------------------------ *\
    #INPUT TEXT
 \* ------------------------------------ */
 .n7-facet {
+
     &__input-text-label {
         display: block;
         font-size: $font-size-s;
     }
+
     &__input-text-wrapper {
         position: relative;
     }
-    &__input-text[type='text'] {
+
+    &__input-text[type="text"] {
         width: 100%;
         box-sizing: border-box;
-        padding-right: $space * 4;
+        padding-right: $space*4;
     }
+
     &__input-text-icon {
         position: absolute;
         bottom: 0;
@@ -59,6 +67,7 @@
         color: $color-text-light;
     }
 }
+
 
 /* ------------------------------------ *\
    #LIST
@@ -69,6 +78,7 @@
         padding-right: $space;
         overflow-y: auto;
     }
+
     &__input-link {
         display: flex;
         align-items: center;
@@ -76,22 +86,26 @@
         margin-bottom: $space;
         border-bottom: 1px solid $color-border-normal;
         cursor: pointer;
+
         &:last-child {
             margin-bottom: 0;
             border-bottom: 0;
         }
     }
+
     &__input-link-icon {
         margin-right: $space;
         font-size: $font-size-m;
     }
+
     &__input-link-text {
         padding-right: $space;
         font-size: $font-size-m;
     }
+
     &__input-link-counter {
         margin-left: auto;
-        padding: calc($space / 4) calc($space / 2);
+        padding: calc($space/4) calc($space/2);
         border-radius: $border-radius;
         font-size: $font-size-xs;
         color: $color-text-inverse;
@@ -107,17 +121,19 @@
 
     /* Active */
     .n7-facet__input-link.is-active {
-        &::before {
-            content: '\e938';
+        &:before {
+            content: "\e938";
             font-family: 'n7-icon';
             margin-right: $space;
             color: $color-success;
         }
+
         .n7-facet__input-link-text {
             font-weight: $font-weight-bold;
         }
     }
 }
+
 
 /* ------------------------------------ *\
    #SELECT
@@ -125,10 +141,11 @@
 .n7-facet {
     &__section-input-select {
         display: inline-block;
-        margin-bottom: calc($space / 2);
+        margin-bottom: calc($space/2);
         margin-right: $space;
     }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -143,5 +160,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

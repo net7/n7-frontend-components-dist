@@ -9,53 +9,56 @@
 // ------------------------------------ //
 @mixin overlay {
     position: absolute;
-    content: ' ';
-    inset: 0;
-    background-color: rgba(#000000, 0.4) !important;
+    content: " ";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(#000000, .4) !important;
     transition: all $transition-durations;
 }
 
 @mixin overlay-bottom-gradient {
     position: absolute;
-    content: ' ';
-    inset: 0;
-    background: linear-gradient(
-        top,
-        rgb(0 0 0 / 0%) 0%,
-        rgb(0 0 0 / 0%) 50%,
-        rgb(0 0 0 / 100%) 100%
-    ); /* FF3.6-15 */
+    content: " ";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-    background: linear-gradient(
-        top,
-        rgb(0 0 0 / 0%) 0%,
-        rgb(0 0 0 / 0%) 50%,
-        rgb(0 0 0 / 100%) 100%
-    ); /* Chrome10-25,Safari5.1-6 */
-
-    background: linear-gradient(
-        to bottom,
-        rgb(0 0 0 / 0%) 0%,
-        rgb(0 0 0 / 0%) 50%,
-        rgb(0 0 0 / 100%) 100%
-    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
     transition: all $transition-durations;
 }
 
 @mixin consistent {
-    &::after {
+    &:after {
         content: ' ';
         clear: both;
         display: block;
     }
 }
 
+
 // ------------------------------------ //
 // #INPUT PLACEHOLDER STYLE
 // ------------------------------------ //
 @mixin placeholder {
-    &::placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
         @content;
     }
 }
@@ -72,7 +75,7 @@
 // #FIRST LETTER CAPITAL
 // ------------------------------------ //
 @mixin first-letter-capital() {
-    &::first-letter {
+    &:first-letter {
         text-transform: uppercase;
     }
 }

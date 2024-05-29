@@ -1,5 +1,27 @@
 import * as i0 from "@angular/core";
 /**
+ * Interface for FacetComponent's "data"
+ *
+ * @property sections (required)
+ * @property classes (optional)
+ */
+export interface FacetData {
+    sections: FacetSection[];
+    classes?: string;
+}
+/**
+ * Interface for FacetSection
+ *
+ * @property inputs (required)
+ * @property classes (optional)
+ * @property _meta (optional)
+ */
+export interface FacetSection {
+    inputs: Array<FacetInputCheckbox | FacetInputLink | FacetInputText | FacetInputSelect>;
+    classes?: string;
+    _meta?: any;
+}
+/**
  * Interface for FacetInputText
  *
  * @property type (required)
@@ -98,32 +120,10 @@ export interface FacetInputLink {
     classes?: any;
     _meta?: any;
 }
-/**
- * Interface for FacetSection
- *
- * @property inputs (required)
- * @property classes (optional)
- * @property _meta (optional)
- */
-export interface FacetSection {
-    inputs: Array<FacetInputCheckbox | FacetInputLink | FacetInputText | FacetInputSelect>;
-    classes?: string;
-    _meta?: any;
-}
-/**
- * Interface for FacetComponent's "data"
- *
- * @property sections (required)
- * @property classes (optional)
- */
-export interface FacetData {
-    sections: FacetSection[];
-    classes?: string;
-}
 export declare class FacetComponent {
     data: FacetData;
     emit: any;
     onChange(inputPayload: any, value?: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FacetComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FacetComponent, "n7-facet", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FacetComponent, "n7-facet", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

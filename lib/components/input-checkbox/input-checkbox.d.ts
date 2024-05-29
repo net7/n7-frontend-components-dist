@@ -67,5 +67,5 @@ export declare class InputCheckboxComponent {
     emit: any;
     onChange(inputPayload: any, value?: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<InputCheckboxComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InputCheckboxComponent, "n7-input-checkbox", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputCheckboxComponent, "n7-input-checkbox", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

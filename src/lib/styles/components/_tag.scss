@@ -9,30 +9,33 @@
     TAG
 \* ------------------------------------ */
 .n7-tag {
-    padding: calc($space / 2) + 2 $space;
+    padding: calc($space/2) + 2 $space;
     background-color: $color-second;
     border-radius: $border-radius-hard;
     font-size: $font-size-xs;
     display: inline-flex;
     align-items: center;
-    &__label,
-    &__text {
+
+    &__label, &__text {
         color: $color-text-inverse;
         font-size: $font-size-xs;
         line-height: 1;
     }
+
     &__label {
         font-weight: $font-weight-bold;
-        margin-right: calc($space / 2);
+        margin-right: calc($space/2);
     }
+    
     &__icon {
-        margin: 0 calc($space / 2);
+        margin: 0 calc($space/2);
         font-size: $font-size-xs;
         color: $color-text-inverse;
         line-height: 1;
         cursor: pointer;
     }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -47,5 +50,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

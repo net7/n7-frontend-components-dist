@@ -1,51 +1,51 @@
 import * as i0 from "@angular/core";
 /**
- * Interface for a single WizardComponent's "item"
- *
- * @property text (optional)
- * @property number (optional)
- * @property classes (optional)
- * @property payload (required)
- * @property _meta (optional)
- *
- */
+* Interface for a single WizardComponent's "item"
+*
+* @property text (optional)
+* @property number (optional)
+* @property classes (optional)
+* @property payload (required)
+* @property _meta (optional)
+*
+*/
 export interface WizardItem {
     /**
-     *  text rendered on the step
-     */
+    *  text rendered on the step
+    */
     text?: string;
     /**
-     * number rendered on the step
-     */
+    * number rendered on the step
+    */
     number?: number;
     /**
-     * action click's payload
-     */
+    * action click's payload
+    */
     payload: any;
     /**
-     * additional html classes
-     */
+    * additional html classes
+    */
     classes?: any;
     /**
-     * additional info useful for the component's logic
-     */
+    * additional info useful for the component's logic
+    */
     _meta?: any;
 }
 /**
- * Interface for WizardComponent's "data"
- *
- * @property items (required)
- * @property classes (optional)
- *
- */
+* Interface for WizardComponent's "data"
+*
+* @property items (required)
+* @property classes (optional)
+*
+*/
 export interface WizardData {
     /**
-     * each item represents a step
-     */
+    * each item represents a step
+    */
     items: WizardItem[];
     /**
-     * additional html classes
-     */
+    * additional html classes
+    */
     classes?: any;
 }
 export declare class WizardComponent {
@@ -53,5 +53,5 @@ export declare class WizardComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<WizardComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<WizardComponent, "n7-wizard", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<WizardComponent, "n7-wizard", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

@@ -25,5 +25,5 @@ export declare class FileSelectorComponent {
     /** Obtain base64 string for upload and storage */
     toBase64(file: File): Promise<FileReader['result']>;
     static ɵfac: i0.ɵɵFactoryDeclaration<FileSelectorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FileSelectorComponent, "n7-file-selector", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FileSelectorComponent, "n7-file-selector", never, { "data": "data"; "emit": "emit"; }, {}, never, ["*"], false>;
 }

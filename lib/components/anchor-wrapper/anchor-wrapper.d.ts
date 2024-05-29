@@ -12,5 +12,5 @@ export declare class AnchorWrapperComponent {
      */
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<AnchorWrapperComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AnchorWrapperComponent, "n7-anchor-wrapper", never, { "data": { "alias": "data"; "required": false; }; "classes": { "alias": "classes"; "required": false; }; }, { "clicked": "clicked"; }, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AnchorWrapperComponent, "n7-anchor-wrapper", never, { "data": "data"; "classes": "classes"; }, { "clicked": "clicked"; }, never, ["*"], false>;
 }

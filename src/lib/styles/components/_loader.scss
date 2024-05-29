@@ -7,6 +7,7 @@
 /* ------------------------------------ *\
     LOADER
 \* ------------------------------------ */
+
 .n7-loader {
     width: $loader-size;
     height: $loader-size;
@@ -28,4 +29,4 @@
     100% {
         transform: rotate(360deg);
     }
-}
+} 

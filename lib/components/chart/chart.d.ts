@@ -9,7 +9,7 @@ import * as i0 from "@angular/core";
  * @property classes (optional)
  * @property payload (optional)
  * @property _meta (optional)
- */
+*/
 export interface ChartData {
     /**
      * unique identifier for the chart
@@ -42,5 +42,5 @@ export declare class ChartComponent implements AfterContentChecked {
     private _loaded;
     ngAfterContentChecked(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ChartComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ChartComponent, "n7-chart", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ChartComponent, "n7-chart", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

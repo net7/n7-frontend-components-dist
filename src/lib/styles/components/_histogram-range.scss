@@ -12,6 +12,7 @@
     display: inline-block;
     position: relative;
     width: 100%;
+
     & > svg {
         width: 100% !important;
         box-sizing: border-box;
@@ -31,5 +32,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

@@ -1,0 +1,8 @@
+export const ICON_MOCK = {
+    id: 'n7-icon-bell',
+    payload: 'bell-click',
+    style: {
+        color: 'tomato',
+    }
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaWNvbi5tb2NrLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvZHYtY29tcG9uZW50cy1saWIvc3JjL2xpYi9jb21wb25lbnRzL2ljb24vaWNvbi5tb2NrLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBLE1BQU0sQ0FBQyxNQUFNLFNBQVMsR0FBUztJQUM3QixFQUFFLEVBQUUsY0FBYztJQUNsQixPQUFPLEVBQUUsWUFBWTtJQUNyQixLQUFLLEVBQUU7UUFDTCxLQUFLLEVBQUUsUUFBUTtLQUNoQjtDQUNGLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJY29uIH0gZnJvbSAnLi4vLi4vc2hhcmVkLWludGVyZmFjZXMnO1xuXG5leHBvcnQgY29uc3QgSUNPTl9NT0NLOiBJY29uID0ge1xuICBpZDogJ243LWljb24tYmVsbCcsXG4gIHBheWxvYWQ6ICdiZWxsLWNsaWNrJyxcbiAgc3R5bGU6IHtcbiAgICBjb2xvcjogJ3RvbWF0bycsXG4gIH1cbn07XG4iXX0=

@@ -18,5 +18,5 @@ export interface LoaderData {
 export declare class LoaderComponent {
     data: LoaderData;
     static ɵfac: i0.ɵɵFactoryDeclaration<LoaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LoaderComponent, "n7-loader", never, { "data": { "alias": "data"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LoaderComponent, "n7-loader", never, { "data": "data"; }, {}, never, never, false>;
 }

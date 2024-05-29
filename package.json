@@ -1,6 +1,6 @@
 {
   "name": "@net7/components",
-  "version": "4.2.2",
+  "version": "4.1.0",
   "dependencies": {
     "apexcharts": "^3.8.5",
     "d3": "^7.1.1",
@@ -17,11 +17,15 @@
     "@teipublisher/pb-components": "~1.11.0"
   },
   "peerDependencies": {
-    "@angular/common": "^17.1.20",
-    "@angular/core": "^17.1.20",
-    "@angular/router": "^17.1.20"
+    "@angular/common": "^14.2.12",
+    "@angular/core": "^14.2.12",
+    "@angular/router": "^14.2.12"
   },
-  "module": "fesm2022/net7-components.mjs",
+  "module": "fesm2015/net7-components.mjs",
+  "es2020": "fesm2020/net7-components.mjs",
+  "esm2020": "esm2020/net7-components.mjs",
+  "fesm2020": "fesm2020/net7-components.mjs",
+  "fesm2015": "fesm2015/net7-components.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -29,9 +33,11 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2022": "./esm2022/net7-components.mjs",
-      "esm": "./esm2022/net7-components.mjs",
-      "default": "./fesm2022/net7-components.mjs"
+      "esm2020": "./esm2020/net7-components.mjs",
+      "es2020": "./fesm2020/net7-components.mjs",
+      "es2015": "./fesm2015/net7-components.mjs",
+      "node": "./fesm2015/net7-components.mjs",
+      "default": "./fesm2020/net7-components.mjs"
     }
   },
   "sideEffects": false

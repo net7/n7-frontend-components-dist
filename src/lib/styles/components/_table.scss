@@ -29,9 +29,11 @@
     &__table-body-row:nth-child(even) {
         background-color: $table-bg-even;
     }
+
     &__table-body-row:nth-child(odd) {
         background-color: $table-bg-odd;
     }
+
     &__table-body-cell {
         padding: $space;
         border: $table-border-size solid $table-border-color;
@@ -52,10 +54,12 @@
     .hidden {
         display: none;
     }
+    
     .showing {
         display: table-row;
     }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -64,53 +68,62 @@
 }
 
 @media all and (max-width: $breakpoint-ipad-portrait) {
+
     .n7-table {
         &__table {
             display: block;
             width: 100%;
             border: 0;
         }
+        
         &__table-footer {
             display: none;
         }
+
         &__table-header {
             display: block;
             display: none;
         }
+
         &__table-body {
             display: block;
             width: 100%;
         }
+
         &__table-body-row {
             display: block;
             width: 100%;
             border-bottom: $table-border-size solid $table-border-color;
-            margin-bottom: 0.625em;
+            margin-bottom: .625em;
         }
+
         &__table-body-cell {
             display: block;
             border-top: $table-border-size solid $table-border-color;
             border-left: $table-border-size solid $table-border-color;
             border-right: $table-border-size solid $table-border-color;
             border-bottom: 0;
-            font-size: 0.8em;
+            font-size: .8em;
             text-align: right;
-            &::before {
+
+            &:before {
                 content: attr(aria-label);
                 float: left;
                 font-weight: $font-weight-bold;
                 text-transform: uppercase;
             }
+
             &:last-child {
                 border-bottom: 0;
             }
         }
     }
+
 }
 
 @media all and (max-width: $breakpoint-smartphone-landscape) {
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

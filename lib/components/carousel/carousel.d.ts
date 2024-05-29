@@ -166,5 +166,5 @@ export declare class CarouselComponent implements AfterContentChecked {
         containerId: any;
     }): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CarouselComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CarouselComponent, "n7-carousel", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CarouselComponent, "n7-carousel", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

@@ -1,6 +1,23 @@
 import { Anchor } from '../../shared-interfaces';
 import * as i0 from "@angular/core";
 /**
+ * Interface for TreeComponent's "data"
+ *
+ * @property header (required)
+ * - icon (required)
+ * - text (required)
+ * - collapseIcon (required)
+ * - classes (optional)
+ * - payload (optional)
+ * @property items (required)
+ */
+export interface TreeData {
+    /**
+     * tree of items
+     */
+    items: TreeItem[];
+}
+/**
  * Interface for the single TreeComponent's "Item"
  *
  * @property icon (optional)
@@ -25,8 +42,8 @@ export interface TreeItem {
      */
     icon?: string;
     /**
-     * the item's right icon, only used on tree items
-     */
+    * the item's right icon, only used on tree items
+    */
     iconright?: string;
     /**
      * the item's image, only used on leaf items
@@ -53,27 +70,10 @@ export interface TreeItem {
      */
     items?: TreeItem[];
 }
-/**
- * Interface for TreeComponent's "data"
- *
- * @property header (required)
- * - icon (required)
- * - text (required)
- * - collapseIcon (required)
- * - classes (optional)
- * - payload (optional)
- * @property items (required)
- */
-export interface TreeData {
-    /**
-     * tree of items
-     */
-    items: TreeItem[];
-}
 export declare class TreeComponent {
     data: TreeData;
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TreeComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TreeComponent, "n7-tree", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TreeComponent, "n7-tree", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

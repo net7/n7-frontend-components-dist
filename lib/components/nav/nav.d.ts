@@ -67,5 +67,5 @@ export declare class NavComponent {
     onClick(payload: any): void;
     onMouseEnter(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NavComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<NavComponent, "n7-nav", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NavComponent, "n7-nav", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

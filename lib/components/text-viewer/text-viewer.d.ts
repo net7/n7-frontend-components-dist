@@ -17,7 +17,6 @@ export interface TextViewerData {
         translation?: boolean;
         download?: string;
         rootPath?: string;
-        mapFunction?: string;
         url?: string;
     }[];
     download?: {
@@ -60,5 +59,5 @@ export declare class TextViewerComponent implements OnInit {
     onScriptLoaded(): void;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TextViewerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TextViewerComponent, "n7-text-viewer", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TextViewerComponent, "n7-text-viewer", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

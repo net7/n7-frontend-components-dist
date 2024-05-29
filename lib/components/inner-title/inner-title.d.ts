@@ -56,5 +56,5 @@ export declare class InnerTitleComponent {
     onInputChange(payload: any, value: any): void;
     onInputEnter(payload: any, value: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<InnerTitleComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InnerTitleComponent, "n7-inner-title", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InnerTitleComponent, "n7-inner-title", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

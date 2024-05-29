@@ -13,9 +13,9 @@ export interface DatePickerData {
      */
     id: string;
     /**
-     * datepicker library options
-     * view LINK: https://flatpickr.js.org/
-     */
+    * datepicker library options
+    * view LINK: https://flatpickr.js.org/
+    */
     libOptions: any;
     /**
      * for datepicker range min and max range value
@@ -39,5 +39,5 @@ export declare class DatepickerComponent {
     private _loaded;
     ngAfterContentChecked(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<DatepickerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<DatepickerComponent, "n7-datepicker", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DatepickerComponent, "n7-datepicker", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

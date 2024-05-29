@@ -63,5 +63,5 @@ export declare class DataWidgetComponent {
     onMouseEnter(payload: any): void;
     onMouseLeave(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<DataWidgetComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<DataWidgetComponent, "n7-data-widget", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DataWidgetComponent, "n7-data-widget", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

@@ -82,5 +82,5 @@ export declare class InputSelectComponent {
     emit: any;
     onChange(inputPayload: any, value?: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<InputSelectComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InputSelectComponent, "n7-input-select", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputSelectComponent, "n7-input-select", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

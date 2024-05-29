@@ -3,7 +3,7 @@
  *
  * Header for sidebar with icons (on the left and the right) and a text.
  */
-
+ 
 /* ------------------------------------ *\
    #SIDEBAR-HEADER
 \* ------------------------------------ */
@@ -12,6 +12,7 @@
     width: 100%;
     height: $sidebar-header-height;
     background-color: $sidebar-header-background-color;
+
     &__icon-left {
         display: block;
         width: $sidebar-header-height;
@@ -22,6 +23,7 @@
         color: $sidebar-left-text-color;
         background-color: $sidebar-left-background-color;
     }
+    
     &__text {
         margin-right: $space;
         margin-left: $space;
@@ -29,11 +31,13 @@
         font-size: $font-size-m;
         color: $sidebar-header-text-color;
     }
+
     &__secondary-text {
         line-height: $sidebar-header-height;
         font-size: $font-size-s;
         color: $sidebar-header-text-color;
     }
+    
     &__icon-right {
         margin-left: auto; // Flexbox stuff
         display: block;
@@ -46,6 +50,7 @@
         font-size: $font-size-xl;
     }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -60,5 +65,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

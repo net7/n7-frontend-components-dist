@@ -26,8 +26,8 @@ export interface FooterLink {
      */
     _meta?: any;
 }
-export type FooterTitle = string;
-export type FooterText = string;
+export declare type FooterTitle = string;
+export declare type FooterText = string;
 /**
  * Interface for each image in the footer (usually logos)
  *
@@ -78,7 +78,7 @@ export interface FooterLinksItem {
     type: 'links';
     links: FooterLink[];
 }
-export type FooterItem = FooterTitleItem | FooterImagesItem | FooterSelectsItem | FooterTextItem | FooterLinksItem;
+export declare type FooterItem = FooterTitleItem | FooterImagesItem | FooterSelectsItem | FooterTextItem | FooterLinksItem;
 /**
  * Interface for a single Footer column that can display title, images, text and a nav list
  *
@@ -146,5 +146,5 @@ export declare class FooterComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FooterComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FooterComponent, "n7-footer", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FooterComponent, "n7-footer", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

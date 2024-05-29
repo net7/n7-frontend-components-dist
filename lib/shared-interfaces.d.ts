@@ -46,7 +46,7 @@ export interface Button extends EssentialData {
  * Type for an icon.
  * It may have a simple string type or an object type.
  */
-export type Icon = {
+export declare type Icon = {
     /** Identifier of the icon in n7-icon-font */
     id: string;
     /** Custom inline css */
@@ -57,7 +57,7 @@ export type Icon = {
 /**
  * Type for an image / svg element.
  */
-export type Image = {
+export declare type Image = {
     /** File path */
     src: string;
     /** Alt text */
@@ -65,4 +65,4 @@ export type Image = {
     /** Optional classes */
     classes?: string;
 };
-export type OnOff = 'on' | 'off';
+export declare type OnOff = 'on' | 'off';

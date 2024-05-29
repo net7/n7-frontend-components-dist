@@ -3,7 +3,7 @@
  *
  * Common pagination component used at the bottom of lists and feeds.
  */
-
+ 
 /* ------------------------------------ *\
    #PAGINATION
 \* ------------------------------------ */
@@ -11,30 +11,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     &__items {
         display: flex;
         list-style: none;
         padding: 0;
         margin: 0;
     }
+
     &__items {
         > li {
-            margin-left: calc($space / 2);
-            margin-right: calc($space / 2);
+            margin-left: calc($space/2);
+            margin-right: calc($space/2);
             user-select: none;
+            
             &:first-child {
                 margin-left: 0;
             }
+
             &:last-child {
                 margin-right: 0;
             }
         }
     }
-    &__first-link,
-    &__prev-link,
-    &__page-link,
-    &__next-link,
-    &__last-link {
+
+    &__first-link, &__prev-link, &__page-link, &__next-link, &__last-link {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -46,40 +47,36 @@
         border-radius: $pagination-radius;
         cursor: pointer;
         color: $pagination-color;
+
         &:hover {
             color: $pagination-color-hover;
         }
     }
 
     /* Special spacing and width for first, prev, next, last with text */
-    &__first-link,
-    &__prev-link {
+    &__first-link, &__prev-link {
         &.has-text {
             width: auto;
-            padding: 0 $space * 1.5 0 calc($space / 2);
+            padding: 0 $space*1.5 0 calc($space/2);
         }
     }
-    &__next-link,
-    &__last-link {
+
+    &__next-link, &__last-link {
         &.has-text {
             width: auto;
-            padding: 0 calc($space / 2) 0 $space * 1.5;
+            padding: 0 calc($space/2) 0 $space*1.5;
         }
     }
-    &__first-link,
-    &__prev-link,
-    &__next-link,
-    &__last-link {
+
+    &__first-link, &__prev-link, &__next-link, &__last-link {
         font-size: $font-size-l;
     }
 
     /* Text labels for text in first, prev, next, last */
-    &__first-label,
-    &__prev-label,
-    &__next-label,
-    &__last-label {
+    &__first-label, &__prev-label, &__next-label, &__last-label {
         font-size: $font-size-s;
     }
+
     &__page-link {
         font-size: $font-size-m;
     }
@@ -95,6 +92,7 @@
             cursor: not-allowed;
         }
     }
+
     .is-active {
         .n7-pagination__page-link {
             border: $pagination-border-current;
@@ -105,27 +103,29 @@
     }
 }
 
+
 /* ------------------------------------ *\
    #HIDDEN-ICONS
 \* ------------------------------------ */
-
 /*
 if class .has-hidden-icons is added to the root element, icons for first, previous,
 next and last are hidden.
 */
 .n7-pagination.has-hidden-icons {
     .n7-pagination__first-link,
-    .n7-pagination__prev-link,
-    .n7-pagination__next-link,
+    .n7-pagination__prev-link, 
+    .n7-pagination__next-link, 
     .n7-pagination__last-link {
-        [class*=' n7-icon-'] {
+        [class*=" n7-icon-"] {
             display: none;
         }
+
         &.has-text {
-            padding: 0 $space * 1.5 0 $space * 1.5;
+            padding: 0 $space*1.5 0 $space*1.5;
         }
     }
 }
+
 
 /* ------------------------------------ *\
    #WITH-RESULTS-NUMBER-SELECT
@@ -135,6 +135,7 @@ next and last are hidden.
     justify-content: space-between;
 }
 
+
 /* ------------------------------------ *\
    #RESULTS-NUMBER-SELECT
 \* ------------------------------------ */
@@ -143,6 +144,7 @@ next and last are hidden.
         margin-left: $space;
     }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -154,13 +156,15 @@ next and last are hidden.
 }
 
 @media all and (max-width: $breakpoint-smartphone-landscape) {
+
     .n7-pagination {
         &__page {
             display: none;
         }
     }
+
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

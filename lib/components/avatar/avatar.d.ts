@@ -53,5 +53,5 @@ export declare class AvatarComponent {
     onMouseEnter(payload: any): void;
     onMouseLeave(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<AvatarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AvatarComponent, "n7-avatar", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AvatarComponent, "n7-avatar", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

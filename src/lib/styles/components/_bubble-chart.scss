@@ -3,7 +3,7 @@
  *
  * Component displaying a bubble graph. Based on 3djs.
  */
-
+ 
 /* ------------------------------------ *\
    #BUBBLECHART
 \* ------------------------------------ */
@@ -14,6 +14,7 @@
         font-weight: $font-weight-bold;
     }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -28,5 +29,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

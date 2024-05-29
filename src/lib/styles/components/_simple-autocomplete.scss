@@ -3,38 +3,45 @@
  *
  * Autocomplete results suggestions component, simpler version of advanced-autocomplete.
  */
-
+ 
 /* ------------------------------------ *\
    #SIMPLE-AUTOCOMPLETE
 \* ------------------------------------ */
 .n7-simple-autocomplete {
-    padding: 0 $space * 1.5;
+    padding: 0 $space*1.5;
     border-radius: $border-radius;
     border: 1px solid $color-border-normal;
     font-size: $font-size-s;
+
     &__list {
         margin: 0;
         padding: 0;
         list-style: none;
     }
+
     &__item {
         border-bottom: 1px solid $color-border-light;
         cursor: pointer;
+
         &:last-child {
             border-bottom: none;
         }
     }
+
     &__link {
         display: block;
-        padding: calc($space / 1.5) 0 calc($space / 1.5) 0;
+        padding: calc($space/1.5) 0 calc($space/1.5) 0;
         color: $color-text;
+
         &:hover {
             color: $color-text-link-hover;
         }
     }
+
     &__label {
     }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -49,5 +56,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

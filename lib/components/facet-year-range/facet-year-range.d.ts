@@ -1,10 +1,4 @@
 import * as i0 from "@angular/core";
-export interface FacetOptions {
-    /**
-     * value of each <option>
-     */
-    value: any;
-}
 /**
  * Interface for FacetYearRangeComponent's "data"
  *
@@ -48,8 +42,8 @@ export interface FacetYearRangeData {
         options: FacetOptions[];
     };
     /**
-     * end year range selection
-     */
+    * end year range selection
+    */
     outDate: {
         /**
          * <select> heading
@@ -74,10 +68,16 @@ export interface FacetYearRangeData {
         options: FacetOptions[];
     };
 }
+export interface FacetOptions {
+    /**
+     * value of each <option>
+     */
+    value: any;
+}
 export declare class FacetYearRangeComponent {
     data: FacetYearRangeData;
     emit: any;
     onChange(payload: any, selected: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FacetYearRangeComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FacetYearRangeComponent, "n7-facet-year-range", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FacetYearRangeComponent, "n7-facet-year-range", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

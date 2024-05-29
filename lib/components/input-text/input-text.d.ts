@@ -97,5 +97,5 @@ export declare class InputTextComponent {
     onBlur(): void;
     onFocus(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<InputTextComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InputTextComponent, "n7-input-text", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputTextComponent, "n7-input-text", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

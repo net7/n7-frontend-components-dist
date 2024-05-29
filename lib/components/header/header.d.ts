@@ -280,5 +280,5 @@ export declare class HeaderComponent {
     onClick(payload: any): void;
     onKeyUp(payload: any, keyCode: any, value: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<HeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<HeaderComponent, "n7-header", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<HeaderComponent, "n7-header", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

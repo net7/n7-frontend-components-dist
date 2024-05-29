@@ -26,7 +26,7 @@ import * as i0 from "@angular/core";
  * - label (optional)
  * - typeOfEntity (optional)
  * @property count (required)
- */
+*/
 export interface BubbleChartDataItem {
     entity: {
         id: string;
@@ -62,7 +62,7 @@ export interface CircleNode {
  * @property isForceSimulationEnabled (required)
  * @property classes (optional)
  * @property reset (optional)
- */
+*/
 export interface BubbleChartData {
     /**
      * unique identifier for the bubble-chart
@@ -146,5 +146,5 @@ export declare class BubbleChartComponent implements AfterContentChecked {
     removeUnneededNodes(svg: any): void;
     draw: () => void;
     static ɵfac: i0.ɵɵFactoryDeclaration<BubbleChartComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<BubbleChartComponent, "n7-bubble-chart", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BubbleChartComponent, "n7-bubble-chart", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

@@ -57,5 +57,5 @@ export declare class ImageViewerComponent {
     ngAfterContentChecked(): void;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ImageViewerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ImageViewerComponent, "n7-image-viewer", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ImageViewerComponent, "n7-image-viewer", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

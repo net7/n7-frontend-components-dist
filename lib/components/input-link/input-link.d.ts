@@ -50,5 +50,5 @@ export declare class InputLinkComponent {
     emit: any;
     onChange(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<InputLinkComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InputLinkComponent, "n7-input-link", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputLinkComponent, "n7-input-link", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

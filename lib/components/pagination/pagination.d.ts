@@ -90,5 +90,5 @@ export declare class PaginationComponent {
     onClick(payload: any): void;
     onChange(payload: any, value: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<PaginationComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PaginationComponent, "n7-pagination", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PaginationComponent, "n7-pagination", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

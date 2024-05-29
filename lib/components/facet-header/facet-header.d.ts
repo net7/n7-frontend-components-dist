@@ -40,5 +40,5 @@ export declare class FacetHeaderComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FacetHeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FacetHeaderComponent, "n7-facet-header", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FacetHeaderComponent, "n7-facet-header", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

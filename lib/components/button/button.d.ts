@@ -11,5 +11,5 @@ export declare class ButtonComponent {
     emit: (type: string, payload?: unknown) => void;
     onClick(value: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ButtonComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ButtonComponent, "n7-button", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ButtonComponent, "n7-button", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

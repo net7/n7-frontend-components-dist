@@ -19,5 +19,5 @@ export declare class ProgressLineComponent {
     data: ProgressLineData;
     emit: any;
     static ɵfac: i0.ɵɵFactoryDeclaration<ProgressLineComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ProgressLineComponent, "n7-progress-line", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ProgressLineComponent, "n7-progress-line", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

@@ -3,13 +3,14 @@
  *
  * Brief description of the component here.
  */
-
+ 
 /* ------------------------------------ *\
    #FILE-SELECTOR
 \* ------------------------------------ */
 .n7-file-selector {
     // TODO
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -24,5 +25,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

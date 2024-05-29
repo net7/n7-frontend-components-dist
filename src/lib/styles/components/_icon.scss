@@ -12,11 +12,13 @@
     display: inline-flex;
     align-items: center;
 }
+
 n7-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -31,5 +33,5 @@ n7-icon {
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

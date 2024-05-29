@@ -2,14 +2,17 @@
    #INPUT TEXT
 \* ------------------------------------ */
 .n7-input-textarea {
+
     &__label {
         display: block;
         font-size: $font-size-s;
     }
+
     &__wrapper {
         position: relative;
     }
-    &__text[type='textarea'] {
+
+    &__text[type="textarea"] {
         width: 100%;
         height: 200px;
         box-sizing: border-box;
@@ -18,11 +21,13 @@
         border-radius: 3px;
         resize: vertical;
     }
+
     .has-icon {
         input {
-            padding-right: $space * 4;
+            padding-right: $space*4;
         }
     }
+
 }
 
 /* ------------------------------------ *\
@@ -38,5 +43,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

@@ -65,5 +65,5 @@ export declare class MapComponent implements AfterContentChecked {
     private loadModules;
     ngAfterContentChecked(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MapComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MapComponent, "n7-map", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MapComponent, "n7-map", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }

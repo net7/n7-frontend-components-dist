@@ -3,14 +3,15 @@
  *
  * Component used to display alerts on the bottom left of the application.
  */
-
+ 
 /* ------------------------------------ *\
    #TOAST
 \* ------------------------------------ */
 .n7-toast {
     position: fixed;
-    bottom: $space * 2;
-    left: $space * 2;
+    bottom: $space*2;
+    left: $space*2;
+
     &__box {
         display: flex;
         column-gap: $space;
@@ -20,12 +21,14 @@
         background-color: $toast-background-color;
         border: $toast-border-size solid $toast-border-color;
     }
+
     &__title {
         display: block;
         padding-bottom: $space;
         font-size: $font-size-m;
         color: $toast-title-color;
     }
+
     &__text {
         display: block;
         padding-bottom: $space;
@@ -34,17 +37,18 @@
     }
 }
 
+
 /* ------------------------------------ *\
    #WITH-ACTIONS
 \* ------------------------------------ */
 .n7-toast__box.has-actions {
     position: relative;
     display: flex;
-
     // display: grid;
     // grid-template-columns: auto minmax(20px, auto);
     // grid-column-gap: $space;
 }
+
 .n7-toast__actions {
     display: flex;
     align-items: center;
@@ -52,27 +56,33 @@
     flex: 1 0 auto;
     min-width: 20px;
 }
+
 .n7-toast__action-content {
     flex: 1;
     margin-right: $space;
+
     .n7-toast__action-button {
-        margin-left: calc($space / 2);
+        margin-left: calc($space/2);
     }
+    
     &:first-child {
         .n7-toast__action-button {
             margin-left: 0;
         }
     }
 }
+
 .n7-toast__closeIcon {
     position: absolute;
     top: $space;
     right: $space;
     cursor: pointer;
+
     &:hover {
         color: $color-text-link;
     }
 }
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -87,5 +97,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

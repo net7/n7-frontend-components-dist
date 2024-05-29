@@ -1,21 +1,26 @@
 /* ------------------------------------ *\
    #SELECT
 \* ------------------------------------ */
+
 .n7-input-select {
+   
     select:required:invalid {
         color: $color-gray-04;
     }
-    option[value=''][disabled] {
+    option[value=""][disabled] {
         display: none;
     }
     option {
         color: $color-gray-05;
     }
+
     option[disabled] {
         background-color: $color-gray-03;
         color: $color-gray-04;
     }
 }
+
+
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -30,5 +35,5 @@
 }
 
 /* Retina */
-@media (resolution >= 2), (resolution >=192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 }

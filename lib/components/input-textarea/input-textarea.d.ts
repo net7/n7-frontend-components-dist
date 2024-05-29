@@ -1,6 +1,6 @@
 import { OnOff } from '../../shared-interfaces';
 import * as i0 from "@angular/core";
-export type InputTextareaData = {
+export declare type InputTextareaData = {
     /** Unique ID for the text input element */
     id: string;
     /** A hint to the user of what can be entered in the control. */
@@ -63,5 +63,5 @@ export declare class InputTextareaComponent {
     emit: (type: string, payload?: unknown) => void;
     onChange(inputPayload: any, value?: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<InputTextareaComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InputTextareaComponent, "n7-input-textarea", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputTextareaComponent, "n7-input-textarea", never, { "data": "data"; "emit": "emit"; }, {}, never, never, false>;
 }
