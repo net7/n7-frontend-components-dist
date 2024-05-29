@@ -1,4 +1,9 @@
 import * as i0 from "@angular/core";
+interface BlocksData {
+    classes?: string;
+    image?: string;
+    alt?: string;
+}
 /**
  * Interface for ContentPlaceholderComponent's "data"
  *
@@ -15,14 +20,9 @@ export interface ContentPlaceholderData {
      */
     _meta?: any;
 }
-interface BlocksData {
-    classes?: string;
-    image?: string;
-    alt?: string;
-}
 export declare class ContentPlaceholderComponent {
     data: ContentPlaceholderData;
     static ɵfac: i0.ɵɵFactoryDeclaration<ContentPlaceholderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ContentPlaceholderComponent, "n7-content-placeholder", never, { "data": "data"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ContentPlaceholderComponent, "n7-content-placeholder", never, { "data": { "alias": "data"; "required": false; }; }, {}, never, never, false, never>;
 }
 export {};

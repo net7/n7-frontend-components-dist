@@ -1,3 +1,4 @@
+import { OnOff } from '../../shared-interfaces';
 import * as i0 from "@angular/core";
 /**
  * Interface for InputTextData
@@ -24,7 +25,11 @@ export interface InputTextData {
      */
     type?: 'text' | 'number';
     /**
-     * Placeholder text inside the input box
+     * The name of the control.
+     */
+    name?: string;
+    /**
+     * A hint to the user of what can be entered in the control.
      */
     placeholder?: string;
     /**
@@ -64,6 +69,19 @@ export interface InputTextData {
      */
     max?: number;
     /**
+     * The maximum number of characters (UTF-16 code units) that the user can enter.
+     * If this value isn't specified, the user can enter an unlimited number of characters.
+     */
+    maxlength?: number;
+    /**
+     * The minimum number of characters (UTF-16 code units) required that the user should enter.
+     */
+    minlength?: number;
+    /** Indicates whether the value of the control can be automatically completed by the browser. */
+    autocomplete?: OnOff;
+    /** Specifies that the user must fill in a value before submitting a form. */
+    required?: boolean;
+    /**
      * Additional HTML Classes
      */
     classes?: any;
@@ -76,6 +94,8 @@ export declare class InputTextComponent {
     data: InputTextData;
     emit: any;
     onChange(inputPayload: any, value?: any): void;
+    onBlur(): void;
+    onFocus(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<InputTextComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InputTextComponent, "n7-input-text", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InputTextComponent, "n7-input-text", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -2,31 +2,26 @@
    #INPUT TEXT
 \* ------------------------------------ */
 .n7-input-text {
-
     &__label {
         display: block;
         font-size: $font-size-s;
     }
-
     &__wrapper {
         position: relative;
     }
-
-    &__text[type="text"], &__text[type="number"] {
+    &__text[type='text'],
+    &__text[type='number'] {
         width: 100%;
         box-sizing: border-box;
     }
-
-    &__text[type="number"] {
+    &__text[type='number'] {
         padding-right: 0;
     }
-    
     .has-icon {
         input {
-            padding-right: $space*4;
+            padding-right: $space * 4;
         }
     }
-
     &__icon {
         position: absolute;
         bottom: 0;
@@ -49,5 +44,5 @@
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

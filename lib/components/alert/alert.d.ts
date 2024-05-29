@@ -13,7 +13,7 @@ import * as i0 from "@angular/core";
 export interface AlertData {
     /**
      * the alert's body/message which can include html tags
-    */
+     */
     text: string;
     /**
      * alert icon (on left side)
@@ -42,5 +42,5 @@ export declare class AlertComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<AlertComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AlertComponent, "n7-alert", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AlertComponent, "n7-alert", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

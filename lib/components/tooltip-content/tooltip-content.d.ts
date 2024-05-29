@@ -20,5 +20,5 @@ export declare class TooltipContentComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TooltipContentComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TooltipContentComponent, "n7-tooltip-content", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TooltipContentComponent, "n7-tooltip-content", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

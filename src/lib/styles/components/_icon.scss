@@ -1,0 +1,35 @@
+/**
+ * Icon
+ *
+ * Icon component.
+ */
+
+/* ------------------------------------ *\
+    ICON
+\* ------------------------------------ */
+.n7-icon {
+    margin: 0 $space * 0.5;
+    display: inline-flex;
+    align-items: center;
+}
+n7-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (resolution >= 2), (resolution >=192dpi) {
+}

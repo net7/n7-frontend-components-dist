@@ -1,9 +1,19 @@
 import { Anchor, Icon } from '../../shared-interfaces';
 import * as i0 from "@angular/core";
+export interface InnerTitleOptions {
+    text: string;
+    value: string;
+    disabled?: boolean;
+    selected?: boolean;
+}
+export interface InnerTitleButtons {
+    anchor: Anchor;
+    text: string;
+    classes?: any;
+    icon?: string;
+}
 /**
  * Interface for InnerTitleComponent's "data"
- *
- * @property NAME (required|options) <--- TODO: update with interface properties
  */
 export interface InnerTitleData {
     icon?: Icon;
@@ -36,18 +46,7 @@ export interface InnerTitleData {
         };
         buttons?: InnerTitleButtons[];
     };
-}
-export interface InnerTitleOptions {
-    text: string;
-    value: string;
-    disabled?: boolean;
-    selected?: boolean;
-}
-export interface InnerTitleButtons {
-    anchor: Anchor;
-    text: string;
-    classes?: any;
-    icon?: Icon;
+    classes?: string;
 }
 export declare class InnerTitleComponent {
     data: InnerTitleData;
@@ -57,5 +56,5 @@ export declare class InnerTitleComponent {
     onInputChange(payload: any, value: any): void;
     onInputEnter(payload: any, value: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<InnerTitleComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<InnerTitleComponent, "n7-inner-title", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<InnerTitleComponent, "n7-inner-title", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

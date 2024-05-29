@@ -21,23 +21,27 @@ import * as i0 from "@angular/core";
 export interface HeroData {
     /**
      * main text displayed in the hero section
-    */
+     */
     title: string;
     /**
-    * additional text under the title
-    */
+     * optional text displayed above the title
+     */
+    preTitle?: string;
+    /**
+     * additional text under the title
+     */
     text?: string;
     /**
-    * input field (usually for search) and it's parameters
-    */
+     * input field (usually for search) and it's parameters
+     */
     input?: {
         placeholder: string;
         icon: string;
         payload: any;
     };
     /**
-    * call to action button and it's parameters
-    */
+     * call to action button and it's parameters
+     */
     button?: {
         text: string;
         anchor?: Anchor;
@@ -47,20 +51,20 @@ export interface HeroData {
      */
     image?: string;
     /**
-    * background image that covers the full background area of the hero
-    */
+     * background image that covers the full background area of the hero
+     */
     backgroundImage?: string;
     /**
-    * additional html classes
-    */
+     * additional html classes
+     */
     classes?: string;
     /**
-    * action click's payload
-    */
+     * action click's payload
+     */
     payload?: any;
     /**
-    * additional info
-    */
+     * additional info
+     */
     _meta?: any;
 }
 export declare class HeroComponent {
@@ -71,5 +75,5 @@ export declare class HeroComponent {
     onInputChange(payload: any, value: any): void;
     onInputEnter(payload: any, value: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<HeroComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<HeroComponent, "n7-hero", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<HeroComponent, "n7-hero", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

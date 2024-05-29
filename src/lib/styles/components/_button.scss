@@ -1,0 +1,55 @@
+/**
+ * BUTTON
+ *
+ * 
+ */
+
+/* ------------------------------------ *\
+   #BUTTON
+\* ------------------------------------ */
+.n7-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.n7-btn.is-loading {
+    min-width: 80px;
+    .n7-loader {
+        width: 18px;
+        height: 18px;
+        border: 3px solid $loader-color-back;
+        border-bottom-color: $loader-color-front;
+    }
+}
+.n7-btn.n7-btn-cta {
+    .n7-loader {
+        border: 3px solid rgb(200 212 255 / 30%);
+        border-bottom-color: $color-gray-00;
+    }
+}
+.n7-btn-cta.is-disabled,
+.n7-btn-cta.is-disabled:hover {
+    border-color: unset;
+}
+.n7-btn__text {
+    margin: 0 $space * 0.5;
+}
+n7-loader {
+    display: inline-flex;
+}
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (resolution >= 2), (resolution >=192dpi) {
+}

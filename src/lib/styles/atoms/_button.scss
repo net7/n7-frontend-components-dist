@@ -38,8 +38,10 @@
     }
 
     /* Disabled */
-    &.is-disabled, &.is-disabled:hover,
-    &.is-disabled:active, &.is-disabled:active:hover {
+    &.is-disabled,
+    &.is-disabled:hover,
+    &.is-disabled:active,
+    &.is-disabled:active:hover {
         color: $color-button-text-disabled;
         border-color: $color-button-border;
         background-color: $color-button-bg-disabled;
@@ -48,7 +50,10 @@
     }
 
     /* Active */
-    &.is-active, &:active, &.is-active:hover, &:active:hover {
+    &.is-active,
+    &:active,
+    &.is-active:hover,
+    &:active:hover {
         color: $color-button-text-hover;
         border-color: $color-button-text-hover;
         background-color: $color-button-bg;
@@ -59,10 +64,10 @@
     }
 }
 
-
 /* ------------------------------------ *\
    #LIGHT-BUTTON
 \* ------------------------------------ */
+
 /* No background button */
 .n7-btn-light {
     padding: 0 4px;
@@ -82,8 +87,10 @@
     }
 
     /* Disabled */
-    &.is-disabled, &.is-disabled:hover,
-    &.is-disabled:active, &.is-disabled:active:hover {
+    &.is-disabled,
+    &.is-disabled:hover,
+    &.is-disabled:active,
+    &.is-disabled:active:hover {
         color: $color-button-light-text-disabled;
         background-color: transparent;
         border: 0;
@@ -92,7 +99,10 @@
     }
 
     /* Active */
-    &.is-active, &:active, &.is-active:hover, &:active:hover {
+    &.is-active,
+    &:active,
+    &.is-active:hover,
+    &:active:hover {
         color: $color-button-light-text-active;
         background-color: transparent;
         border: 0;
@@ -103,7 +113,6 @@
     }
 }
 
-
 /* ------------------------------------ *\
    #CALL-TO-ACTION-BUTTON
 \* ------------------------------------ */
@@ -111,7 +120,6 @@
     background-color: $color-button-cta-bg;
     border-color: $color-button-cta-border;
     color: $color-button-cta-text;
-
     &:hover {
         background-color: $color-button-cta-bg-hover;
         border-color: $color-button-cta-border;
@@ -119,8 +127,10 @@
     }
 
     /* Disabled */
-    &.is-disabled, &.is-disabled:hover,
-    &.is-disabled:active, &.is-disabled:active:hover {
+    &.is-disabled,
+    &.is-disabled:hover,
+    &.is-disabled:active,
+    &.is-disabled:active:hover {
         background-color: $color-button-cta-bg-disabled;
         border-color: $color-button-cta-border;
         color: $color-button-cta-text-disabled;
@@ -128,7 +138,10 @@
     }
 
     /* Active */
-    &.is-active, &:active, &.is-active:hover, &:active:hover {
+    &.is-active,
+    &:active,
+    &.is-active:hover,
+    &:active:hover {
         background-color: $color-button-cta-bg-active;
         border-color: $color-button-cta-border;
         color: $color-button-cta-text;
@@ -139,7 +152,6 @@
     }
 }
 
-
 /* ------------------------------------ *\
    #SIZES
 \* ------------------------------------ */
@@ -147,20 +159,18 @@
     /* Sizes */
     &.n7-btn-s {
         height: $button-small-height;
-        padding: 0 calc($space/2);
+        padding: 0 calc($space / 2);
         line-height: $button-small-height - $button-border-width;
         font-size: $font-size-xs;
     }
-
     &.n7-btn-l {
         height: $button-large-height;
-        padding: 0 $space*3;
+        padding: 0 $space * 3;
         line-height: $button-large-height - $button-border-width;
     }
-
     &.n7-btn-xl {
         height: $button-large-height;
-        padding: 0 $space*3;
+        padding: 0 $space * 3;
         font-size: $font-size-m;
         line-height: $button-large-height - $button-border-width;
     }
@@ -171,35 +181,32 @@
     }
 }
 
-
 /* ------------------------------------ *\
    #ICON
 \* ------------------------------------ */
 .n7-btn {
-    [class*=n7-icon] {
+    [class*='n7-icon'] {
         vertical-align: text-bottom;
     }
 
     /* Spacing between the icon and the label:
     it assumes that the label is wrapper in a <span>.
     This spacing supports the icon on the left and on the right */
-    [class*=n7-icon] + span {
-        margin-left: calc($space/4);
+    [class*='n7-icon'] + span {
+        margin-left: calc($space / 4);
     }
-
-    span + [class*=n7-icon] {
-        margin-left: calc($space/4);
+    span + [class*='n7-icon'] {
+        margin-left: calc($space / 4);
     }
 
     /* Spacing for bigger buttons */
     &.n7-btn-l,
     &.n7-btn-xl {
-        [class*=n7-icon] + span {
-            margin-left: calc($space/2);
+        [class*='n7-icon'] + span {
+            margin-left: calc($space / 2);
         }
-
-        span + [class*=n7-icon] {
-            margin-left: calc($space/2);
+        span + [class*='n7-icon'] {
+            margin-left: calc($space / 2);
         }
     }
 }

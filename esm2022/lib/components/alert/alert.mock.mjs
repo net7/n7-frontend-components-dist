@@ -1,0 +1,11 @@
+export const ALERT_MOCK = {
+    text: `
+  This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.
+  This is an alert for the user with some <strong>bold</strong> and <i>italic</i> text.
+  `,
+    hasCloseButton: true,
+    payload: 'close',
+    icon: 'n7-icon-bell',
+    classes: 'is-warning',
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWxlcnQubW9jay5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL2R2LWNvbXBvbmVudHMtbGliL3NyYy9saWIvY29tcG9uZW50cy9hbGVydC9hbGVydC5tb2NrLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBLE1BQU0sQ0FBQyxNQUFNLFVBQVUsR0FBYztJQUNuQyxJQUFJLEVBQUU7OztHQUdMO0lBQ0QsY0FBYyxFQUFFLElBQUk7SUFDcEIsT0FBTyxFQUFFLE9BQU87SUFDaEIsSUFBSSxFQUFFLGNBQWM7SUFDcEIsT0FBTyxFQUFFLFlBQVk7Q0FDdEIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEFsZXJ0RGF0YSB9IGZyb20gJy4vYWxlcnQnO1xuXG5leHBvcnQgY29uc3QgQUxFUlRfTU9DSzogQWxlcnREYXRhID0ge1xuICB0ZXh0OiBgXG4gIFRoaXMgaXMgYW4gYWxlcnQgZm9yIHRoZSB1c2VyIHdpdGggc29tZSA8c3Ryb25nPmJvbGQ8L3N0cm9uZz4gYW5kIDxpPml0YWxpYzwvaT4gdGV4dC5cbiAgVGhpcyBpcyBhbiBhbGVydCBmb3IgdGhlIHVzZXIgd2l0aCBzb21lIDxzdHJvbmc+Ym9sZDwvc3Ryb25nPiBhbmQgPGk+aXRhbGljPC9pPiB0ZXh0LlxuICBgLFxuICBoYXNDbG9zZUJ1dHRvbjogdHJ1ZSxcbiAgcGF5bG9hZDogJ2Nsb3NlJyxcbiAgaWNvbjogJ243LWljb24tYmVsbCcsXG4gIGNsYXNzZXM6ICdpcy13YXJuaW5nJyxcbn07XG4iXX0=

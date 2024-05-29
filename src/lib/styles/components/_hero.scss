@@ -12,7 +12,7 @@
  * This component is used for hero section at the top of the homepage or
  *  for call to action sections (usually in homepage)
  */
- 
+
 /* ------------------------------------ *\
    #HERO
 \* ------------------------------------ */
@@ -25,10 +25,9 @@
     background-position: center center;
 
     /* Overlay */
-    &.has-background-image:after {
-        @include overlay();
+    &.has-background-image::after {
+        @include overlay;
     }
-
     &__content {
         position: relative;
         z-index: 10;
@@ -44,42 +43,44 @@
         align-items: flex-start;
         height: $hero-height;
     }
-
     &__title {
-        margin: 0 0 $space*2 0;
+        margin: 0 0 $space * 2 0;
         font-family: $font-family-headings;
         font-size: $font-size-xxl;
         font-weight: $font-weight-bold;
         line-height: 1.1;
         color: $color-text-inverse;
     }
-
+    &__pre-title {
+        margin: 0 0 $space * 2 0;
+        font-family: $font-family-main;
+        font-size: $font-size-m;
+        font-weight: $font-weight-normal;
+        line-height: 1.1;
+        color: $color-text-inverse;
+    }
     &__text {
-        margin: 0 0 $space*2 0;
+        margin: 0 0 $space * 2 0;
         font-family: $font-family-main;
         font-size: $font-size-l;
         font-weight: $font-weight-normal;
         line-height: 1.3;
         color: $color-text-inverse;
-
         p {
             margin-bottom: 0;
             font-size: $font-size-l;
             color: $color-text-inverse;
         }
     }
-
     &__input-wrapper {
         min-width: 50%;
         position: relative;
     }
-
     &__input {
         width: 100%;
-        margin: 0 0 $space*2 0;
+        margin: 0 0 $space * 2 0;
         box-sizing: border-box;
     }
-
     &__input-icon {
         position: absolute;
         top: 0;
@@ -88,12 +89,10 @@
         color: $color-text-light;
         line-height: $form-input-height;
     }
-
     &__btn {
         display: inline-block;
     }
 }
-
 
 /* ------------------------------------ *\
    #WITH-IMAGE
@@ -101,6 +100,7 @@
 .n7-hero.has-image {
     .n7-hero__content {
         display: flex;
+
         // display: grid;
         // grid-template-columns: 1fr 300px;
         // grid-column-gap: $grid-gutter-h;
@@ -111,10 +111,11 @@
         flex: 1;
         margin-right: $grid-gutter-h;
     }
-
     .n7-hero__title,
     .n7-hero__text {
-        width: 100%; /* For IE bug, text overflowing container when contained in flex item */
+        width: 100%;
+
+        /* For IE bug, text overflowing container when contained in flex item */
     }
 
     /* Image */
@@ -122,10 +123,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        @include flex-item-width($hero-image-text-width);
-        padding: $space*3 0;
-    }
 
+        @include flex-item-width($hero-image-text-width);
+
+        padding: $space * 3 0;
+    }
     .n7-hero__image {
         max-width: 100%;
         max-height: 100%;
@@ -135,48 +137,39 @@
     }
 }
 
-
 /* ------------------------------------ *\
    #MEDIA-QUERIES
 \* ------------------------------------ */
-@media all and (max-width: $hero-content-width + $space*4) {
-
+@media all and (width <=calc(#{$hero-content-width} + #{$space} * 4)) {
     .n7-hero {
         &__content {
-            padding: 0 $space*2;
+            padding: 0 $space * 2;
         }
     }
-
 }
 
 @media all and (max-width: $breakpoint-laptop) {
-
     /* With image */
     .n7-hero.has-image {
         .n7-hero__content {
             grid-template-columns: 1fr 220px;
         }
     }
-
 }
 
 @media all and (max-width: $breakpoint-mobile) {
-
     .n7-hero {
         height: auto;
-        padding: $space*2 0;
-
+        padding: $space * 2 0;
         &__text-wrapper {
             height: auto;
         }
-        
         &__title {
-            margin: 0 0 $space*2 0;
+            margin: 0 0 $space * 2 0;
             font-size: $font-size-l;
         }
-    
         &__text {
-            margin: 0 0 $space*2 0;
+            margin: 0 0 $space * 2 0;
             font-size: $font-size-m;
         }
     }
@@ -192,16 +185,14 @@
         .n7-hero__text-wrapper {
             order: 2;
         }
-
         .n7-hero__image-wrapper {
             order: 1;
             padding: 0;
-            margin-bottom: $space*2;
+            margin-bottom: $space * 2;
         }
     }
-
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

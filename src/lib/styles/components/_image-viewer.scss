@@ -5,23 +5,22 @@
  * The component includes a thumb preview tool and
  * native controls for zoomin zoomout home and fullscreen.
  */
- 
+
 /* ------------------------------------ *\
    #IMAGE-VIEWER
 \* ------------------------------------ */
 .n7-image-viewer {
     position: relative;
     background-color: $image-viewer-background-color;
-
     &__viewer {
         height: $image-viewer-height;
     }
 }
 
-
 /* ------------------------------------ *\
    #THUMBS
 \* ------------------------------------ */
+
 /* This is the style for the default OpenSeaDragon thumbs. 
 For our custom thumbs please refer to ImageViewerTools. */
 .n7-image-viewer {
@@ -29,13 +28,11 @@ For our custom thumbs please refer to ImageViewerTools. */
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        right: $space*2;
+        right: $space * 2;
     }
-
     &__thumb-list {
         list-style: none;
     }
-
     &__thumb-item {
         width: $image-viewer-thumb-width !important;
         height: $image-viewer-thumb-height !important;
@@ -45,35 +42,29 @@ For our custom thumbs please refer to ImageViewerTools. */
         background-repeat: none;
         border: 2px solid transparent;
         cursor: pointer;
-
         &:last-child {
             margin-bottom: 0;
         }
-
         &:hover:not(.is-active) {
             border: 2px solid $image-viewer-thumb-hover-border-color;
         }
-
         &.is-active {
             border: 2px solid $image-viewer-thumb-active-border-color;
         }
     }
 }
 
-
 /* ------------------------------------ *\
    #CONTROLS
 \* ------------------------------------ */
 .n7-image-viewer__controls {
     position: absolute;
-    top: $space*2;
-    right: $space*2;
-    
+    top: $space * 2;
+    right: $space * 2;
     .n7-image-viewer__controls-list {
         margin: 0;
         padding: 0;
     }
-
     .n7-image-viewer__controls-item {
         display: flex !important;
         align-items: center;
@@ -82,58 +73,50 @@ For our custom thumbs please refer to ImageViewerTools. */
         height: $image-viewer-control-height;
         margin-bottom: $space !important;
         cursor: pointer;
-        background-color: rgba(#000000, .9);
+        background-color: rgba(#000000, 0.9);
         border-radius: $border-radius;
-
         span {
-            color: rgba($color-text-inverse, .8);
+            color: rgba($color-text-inverse, 0.8);
             font-size: $image-viewer-control-icon-size;
             transition: color $transition-durations;
         }
-
         &:hover {
             background-color: rgba(#000000, 1);
             span {
                 color: rgba($color-text-inverse, 1);
             }
         }
-
         &:last-child {
             margin-bottom: 0;
         }
     }
 }
 
-
 /* ------------------------------------ *\
    #PREV-NEXT
 \* ------------------------------------ */
-.n7-image-viewer__prev, .n7-image-viewer__next {
+.n7-image-viewer__prev,
+.n7-image-viewer__next {
     position: absolute !important;
     top: 50%;
     transform: translateY(-50%);
-    
     span {
-        color: rgba($color-text-inverse, .8);
-        font-size: $font-size-xxl*2;
+        color: rgba($color-text-inverse, 0.8);
+        font-size: $font-size-xxl * 2;
         transition: all $transition-durations;
         cursor: pointer !important;
-        text-shadow: 0 2px 4px rgba(#000000, .5);
-
+        text-shadow: 0 2px 4px rgba(#000000, 0.5);
         &:hover {
             color: rgba($color-text-inverse, 1);
         }
     }
 }
-
 .n7-image-viewer__prev {
     left: 0;
 }
-
 .n7-image-viewer__next {
     right: 0;
 }
-
 
 /* ------------------------------------ *\
    #REFERENCE-STRIP
@@ -145,16 +128,17 @@ For our custom thumbs please refer to ImageViewerTools. */
         }
     }
 }
-
 .referencestrip {
     margin-bottom: -100px !important;
-    transition: all $transition-durations*2;
-
-    > *, .openseadragon-container, .openseadragon-canvas, canvas, .displayregion {
+    transition: all $transition-durations * 2;
+    > *,
+    .openseadragon-container,
+    .openseadragon-canvas,
+    canvas,
+    .displayregion {
         cursor: pointer !important;
     }
 }
-
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -169,5 +153,5 @@ For our custom thumbs please refer to ImageViewerTools. */
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

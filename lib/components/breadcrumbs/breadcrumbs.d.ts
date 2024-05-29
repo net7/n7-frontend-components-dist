@@ -46,5 +46,5 @@ export declare class BreadcrumbsComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<BreadcrumbsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<BreadcrumbsComponent, "n7-breadcrumbs", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BreadcrumbsComponent, "n7-breadcrumbs", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

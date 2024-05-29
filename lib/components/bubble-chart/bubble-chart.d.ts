@@ -1,5 +1,57 @@
+/**
+ * The bubble chart is drawn using d3js, a library to create and update anything in svg.
+ *
+ * LEGEND:
+ * - svg -> the canvas/<svg> element where everything will be drawn on (appended).
+ * - g -> <g> is a group of svg elements.
+ * - leaf -> this is the svg circle, the bubble.
+ * - text -> this is all the text inside the circle.
+ * - tspan -> this is just one line of text.
+ *
+ * What are "join, enter, update, exit?"
+ * https://observablehq.com/@d3/learn-d3-joins?collection=@d3/learn-d3
+ * https://observablehq.com/@thetylerwolf/day-18-join-enter-update-exit
+ *
+ * Each line can have a different width, but all of the text inside a circle
+ * needs to be scaled by a constant factor.
+ * https://observablehq.com/@mbostock/fit-text-to-circle
+ */
 import { AfterContentChecked } from '@angular/core';
 import * as i0 from "@angular/core";
+/**
+ * Interface for D3Chart's "data"
+ *
+ * @property entity (required)
+ * - id (required)
+ * - label (optional)
+ * - typeOfEntity (optional)
+ * @property count (required)
+ */
+export interface BubbleChartDataItem {
+    entity: {
+        id: string;
+        label?: string;
+        typeOfEntity?: string;
+    };
+    count: number;
+}
+/**
+ * Interface for a Circle's node data
+ */
+export interface CircleNode {
+    clipUid: string;
+    data: BubbleChartDataItem;
+    depth: number;
+    height: number;
+    leafUid: string;
+    parent: Node;
+    x: number;
+    y: number;
+    r: number;
+    value: number;
+    /** Dynamic data for internal logic */
+    _meta?: any;
+}
 /**
  * Interface for BubbleChartComponent's "data"
  *
@@ -10,7 +62,7 @@ import * as i0 from "@angular/core";
  * @property isForceSimulationEnabled (required)
  * @property classes (optional)
  * @property reset (optional)
-*/
+ */
 export interface BubbleChartData {
     /**
      * unique identifier for the bubble-chart
@@ -78,23 +130,6 @@ export interface BubbleChartData {
      */
     setDraw?: any;
 }
-/**
- * Interface for D3Chart's "data"
- *
- * @property entity (required)
- * - id (required)
- * - label (optional)
- * - typeOfEntity (optional)
- * @property count (required)
-*/
-export interface BubbleChartDataItem {
-    entity: {
-        id: string;
-        label?: string;
-        typeOfEntity?: string;
-    };
-    count: number;
-}
 export declare class BubbleChartComponent implements AfterContentChecked {
     data: BubbleChartData;
     emit: any;
@@ -102,7 +137,14 @@ export declare class BubbleChartComponent implements AfterContentChecked {
     private _loaded;
     ngAfterContentChecked(): void;
     onClick(payload: any): void;
+    /**
+     * Reference for much of the new text scaling code comes from:
+     * https://observablehq.com/@mbostock/fit-text-to-circle
+     */
+    measureWidth: (text: any) => number;
+    isValidNumber: (value: any) => boolean;
+    removeUnneededNodes(svg: any): void;
     draw: () => void;
     static ɵfac: i0.ɵɵFactoryDeclaration<BubbleChartComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<BubbleChartComponent, "n7-bubble-chart", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BubbleChartComponent, "n7-bubble-chart", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

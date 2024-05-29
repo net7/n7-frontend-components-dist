@@ -9,13 +9,13 @@
 /* ------------------------------------ *\
    #TAGS
 \* ------------------------------------ */
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
     font-size: 16px;
 }
-
 body {
     box-sizing: border-box;
     background-color: $color-background-base;
@@ -23,11 +23,9 @@ body {
     font-family: $font-family-main;
     -webkit-font-smoothing: antialiased;
 }
-
 :focus {
     outline: 0;
 }
-
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -42,5 +40,5 @@ body {
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

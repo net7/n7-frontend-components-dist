@@ -92,8 +92,8 @@ export interface ImageViewerToolsData {
      */
     initial: number;
     /**
-    * additional html classes
-    */
+     * additional html classes
+     */
     classes?: string;
     /**
      * action click's payload
@@ -112,5 +112,5 @@ export declare class ImageViewerToolsComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ImageViewerToolsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ImageViewerToolsComponent, "n7-image-viewer-tools", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ImageViewerToolsComponent, "n7-image-viewer-tools", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

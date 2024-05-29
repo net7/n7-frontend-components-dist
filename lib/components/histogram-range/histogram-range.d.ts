@@ -82,11 +82,11 @@ export interface HistogramRangeData {
      */
     setApi?: any;
 }
-declare type Sliders = {
+type Sliders = {
     x: number;
     y: number;
 }[];
-declare type LabelCouple = [string, string];
+type LabelCouple = [string, string];
 export declare class HistogramRangeComponent implements AfterContentChecked {
     data: HistogramRangeData;
     emit: any;
@@ -118,6 +118,6 @@ export declare class HistogramRangeComponent implements AfterContentChecked {
     /** Emits an event when the component has loaded */
     emitLoaded(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<HistogramRangeComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<HistogramRangeComponent, "n7-histogram-range", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<HistogramRangeComponent, "n7-histogram-range", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }
 export {};

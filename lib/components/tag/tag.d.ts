@@ -1,3 +1,4 @@
+import { Icon } from '../../shared-interfaces';
 import * as i0 from "@angular/core";
 /**
  * Interface for TagComponent's "data"
@@ -22,7 +23,11 @@ export interface TagData {
     /**
      * action icon (on right side)
      */
-    icon?: string;
+    icon?: Icon | string;
+    /**
+     * action icon (on right side)
+     */
+    preIcon?: Icon;
     /**
      * additional html classes
      */
@@ -40,6 +45,7 @@ export declare class TagComponent {
     data: TagData;
     emit: any;
     onClick(payload: any): void;
+    getIcon(data: any): any;
     static ɵfac: i0.ɵɵFactoryDeclaration<TagComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TagComponent, "n7-tag", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TagComponent, "n7-tag", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

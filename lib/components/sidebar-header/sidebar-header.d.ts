@@ -40,5 +40,5 @@ export declare class SidebarHeaderComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SidebarHeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SidebarHeaderComponent, "n7-sidebar-header", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SidebarHeaderComponent, "n7-sidebar-header", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

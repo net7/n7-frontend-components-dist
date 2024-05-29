@@ -1,22 +1,21 @@
 import * as i0 from "@angular/core";
 /**
- * Interface for MetadataViewerComponent's "data"
- *
- * @property group (required)
- * @property classes (optional)
+ * Interface for MetadataViewerComponent's "items"
+ * @property label (optional)
+ * @property value (optional)
  */
-export interface MetadataViewerData {
+export interface MetadataViewerItems {
     /**
-     * the CHILD metadata groups
+     * the item's label
      */
-    group: MetadataViewerChildGroups[];
+    label?: string;
     /**
-     * additional html classes
+     * the value for @property label
      */
-    classes?: any;
+    value?: string;
 }
 /**
- * Interface for MetadataViewerComponent's "data"
+ * Interface for MetadataViewerComponent's "child groups"
  *
  * @property title (optional)
  * @property items (optional)
@@ -43,23 +42,24 @@ export interface MetadataViewerChildGroups {
     classes?: any;
 }
 /**
- * Interface for MetadataViewerComponent's "items"
- * @property label (optional)
- * @property value (optional)
+ * Interface for MetadataViewerComponent's "data"
+ *
+ * @property group (required)
+ * @property classes (optional)
  */
-export interface MetadataViewerItems {
+export interface MetadataViewerData {
     /**
-     * the item's label
+     * the CHILD metadata groups
      */
-    label?: string;
+    group: MetadataViewerChildGroups[];
     /**
-     * the value for @property label
+     * additional html classes
      */
-    value?: string;
+    classes?: any;
 }
 export declare class MetadataViewerComponent {
     data: MetadataViewerData;
     emit: any;
     static ɵfac: i0.ɵɵFactoryDeclaration<MetadataViewerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MetadataViewerComponent, "n7-metadata-viewer", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MetadataViewerComponent, "n7-metadata-viewer", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -1,5 +1,21 @@
+import { InputSelectData } from '../input-select/input-select';
 import { Anchor } from '../../shared-interfaces';
+import { AvatarData } from '../avatar/avatar';
 import * as i0 from "@angular/core";
+export interface UserData extends AvatarData {
+    /**
+     * user's profile name
+     */
+    name?: string;
+    /**
+     * external url
+     */
+    anchor?: Anchor;
+    /**
+     * additional info
+     */
+    _meta?: any;
+}
 /**
  * Interface for a single button
  *
@@ -203,27 +219,14 @@ export interface HeaderData {
      */
     buttons?: ButtonItem[];
     /**
+     * Select elements with some options
+     * useful for the header's language selector
+     */
+    selects?: InputSelectData[];
+    /**
      * user parameters
      */
-    user?: {
-        /**
-         * user's profile picture
-         */
-        img?: string;
-        /**
-         * user's profile name
-         */
-        name?: string;
-        /**
-         * additional html classes
-         */
-        classes?: string;
-        anchor: Anchor;
-        /**
-         * additional info
-         */
-        _meta?: any;
-    };
+    user?: UserData;
     /**
      * menu toggle for mobile
      */
@@ -277,5 +280,5 @@ export declare class HeaderComponent {
     onClick(payload: any): void;
     onKeyUp(payload: any, keyCode: any, value: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<HeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<HeaderComponent, "n7-header", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<HeaderComponent, "n7-header", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -3,50 +3,45 @@
  *
  * Style for breadcrumbs for desktop and mobile
  */
- 
+
 /* ------------------------------------ *\
     BREADCRUMBS
 \* ------------------------------------ */
 .n7-breadcrumbs {
     display: flex;
     box-sizing: border-box;
-    padding: calc($space/2);
+    padding: calc($space / 2);
     background-color: $breadcrumbs-background;
+
     @include consistent;
-    
     &__nav {
         display: flex;
     }
-
     &__list {
         display: flex;
         margin: 0;
         padding: 0;
         align-items: center;
     }
-
     &__item {
-        margin: calc($space/2) 0;
+        margin: calc($space / 2) 0;
         list-style: none;
-
-        &:after {
+        &::after {
             content: $breadcrumbs-arrow;
             color: $breadcrumbs-arrow-color;
             font-family: 'n7-icon' !important;
             vertical-align: bottom;
         }
-
         &:last-child {
             a {
                 color: $breadcrumbs-current-color;
                 cursor: default;
             }
-            &:after {
-                content: ''
+            &::after {
+                content: '';
             }
         }
     }
-
     &__label {
         padding: $space;
         text-decoration: none;
@@ -61,39 +56,33 @@
 }
 
 @media all and (max-width: $breakpoint-ipad-portrait) {
-    
     .n7-breadcrumbs {
         background: none;
-
         &__item {
             display: none;
-
             &:nth-last-child(2) {
                 display: block;
-
                 .n7-breadcrumbs__label {
                     /* The back arrow is inserted within the A tag so it's clickable */
-                    &:before {
+                    &::before {
                         content: $breadcrumbs-arrow-mobile;
-                        margin-right: calc($space/2);
+                        margin-right: calc($space / 2);
                         font-family: 'n7-icon' !important;
                         color: $breadcrumbs-arrow-color;
                         vertical-align: bottom;
                     }
                 }
-                
-                &:after {
-                    content: ''
+                &::after {
+                    content: '';
                 }
             }
         }
     }
-    
 }
 
 @media all and (max-width: $breakpoint-smartphone-landscape) {
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

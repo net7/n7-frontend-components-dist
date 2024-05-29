@@ -7,11 +7,21 @@
 /* ------------------------------------ *\
    #GENERAL
 \* ------------------------------------ */
-select, textarea, input[type="date"], input[type="datetime"],
-input[type="datetime-local"], input[type="email"],
-input[type="month"], input[type="number"], input[type="password"],
-input[type="search"], input[type="tel"], input[type="text"],
-input[type="time"], input[type="url"], input[type="week"] {
+select,
+textarea,
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'] {
     box-sizing: border-box;
     padding: 0 $space;
     border-width: $form-border-size;
@@ -23,56 +33,50 @@ input[type="time"], input[type="url"], input[type="week"] {
     font-size: $font-size-s;
     font-weight: $font-weight-normal;
     outline: none;
+    height: $form-input-height;
+    line-height: $form-input-height;
+
     // box-shadow: inset 0px 0px 6px 0px rgba(0,0,0,0.05);
     // transition-property: border;
     // transition-duration: $transition-durations;
-
     &:hover {
     }
-
     &:focus,
     &:active {
         // border-color: $color-brand;
         // box-shadow: inset 0 0 6px 0 rgba(0,0,0,0.05), 0 0 2px fade($color-brand, 20%);
     }
-
     &.small {
         // height: $form-input-small-height;
         // padding: 0 8px;
         // font-size: $font-size-s;
         // line-height: $form-input-small-height;
     }
+    &::placeholder {
+        color: $color-text-light !important;
+        font-weight: $font-weight-normal !important;
+    }
 
-    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-        color: $color-text-light !important;
-        font-weight: $font-weight-normal!important;
-    }
-    &::-moz-placeholder { /* Firefox 19+ */
-        color: $color-text-light !important;
-        font-weight: $font-weight-normal !important;
-    }
-    &:-ms-input-placeholder { /* IE 10+ */
-        color: $color-text-light !important;
-        font-weight: $font-weight-normal !important;
-    }
-    &:-moz-placeholder { /* Firefox 18- */
-        color: $color-text-light !important;
-        font-weight: $font-weight-normal !important;
-    }
-}
+    /* ------------------------------------ *\
+       #DISABLED
+    \* ------------------------------------ */
+    &:disabled,
+    &.is-disabled {
+        border-color: $color-border-light;
+        background-color: $color-background-medium;
+        color: $color-text-light;
 
-/* Set Height */
-textarea, input[type="date"], input[type="datetime"],
-input[type="datetime-local"], input[type="email"],
-input[type="month"], input[type="number"], input[type="password"],
-input[type="search"], input[type="tel"], input[type="text"],
-input[type="time"], input[type="url"], input[type="week"] {
-    height: $form-input-height;
-    line-height: $form-input-height;
+        /* Placeholder text for disableds */
+        &::placeholder {
+            color: rgba($color-text-light, 0.5);
+        }
+    }
 }
 
 /* Select */
-select, #new_post select {
+/* stylelint-disable-next-line */
+select,
+#new_post select {
     height: $form-input-height;
 }
 
@@ -86,37 +90,8 @@ label {
 }
 
 /* Textarea */
-textarea, .form-control textarea {
+textarea,
+.form-control textarea {
     line-height: 1.2;
     padding: $space;
-}
-
-
-/* ------------------------------------ *\
-   #DISABLED
-\* ------------------------------------ */
-select, textarea, input[type="date"], input[type="datetime"],
-input[type="datetime-local"], input[type="email"],
-input[type="month"], input[type="number"], input[type="password"],
-input[type="search"], input[type="tel"], input[type="text"],
-input[type="time"], input[type="url"], input[type="week"] {
-    &:disabled, &.is-disabled {
-        border-color: $color-border-light;
-        background-color: $color-background-medium;
-        color: $color-text-light;
-
-        /* Placeholder text for disableds */
-        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-            color: rgba($color-text-light, .5);
-        }
-        &::-moz-placeholder { /* Firefox 19+ */
-            color: rgba($color-text-light, .5);
-        }
-        &:-ms-input-placeholder { /* IE 10+ */
-            color: rgba($color-text-light, .5);
-        }
-        &:-moz-placeholder { /* Firefox 18- */
-            color: rgba($color-text-light, .5);
-        }
-    }
 }

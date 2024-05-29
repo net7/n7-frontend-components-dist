@@ -1,3 +1,4 @@
+import { InputSelectData } from '../input-select/input-select';
 import { Anchor } from '../../shared-interfaces';
 import * as i0 from "@angular/core";
 /**
@@ -25,6 +26,8 @@ export interface FooterLink {
      */
     _meta?: any;
 }
+export type FooterTitle = string;
+export type FooterText = string;
 /**
  * Interface for each image in the footer (usually logos)
  *
@@ -55,6 +58,27 @@ export interface FooterImage {
      */
     _meta?: any;
 }
+export interface FooterTitleItem {
+    type: 'title';
+    title: FooterTitle;
+}
+export interface FooterImagesItem {
+    type: 'images';
+    images: FooterImage[];
+}
+export interface FooterSelectsItem {
+    type: 'selects';
+    selects: InputSelectData[];
+}
+export interface FooterTextItem {
+    type: 'text';
+    text: FooterText;
+}
+export interface FooterLinksItem {
+    type: 'links';
+    links: FooterLink[];
+}
+export type FooterItem = FooterTitleItem | FooterImagesItem | FooterSelectsItem | FooterTextItem | FooterLinksItem;
 /**
  * Interface for a single Footer column that can display title, images, text and a nav list
  *
@@ -70,15 +94,19 @@ export interface FooterColumn {
     /**
      * column's title
      */
-    title?: string;
+    title?: FooterTitle;
     /**
      * column's images
      */
     images?: FooterImage[];
     /**
+     * HTMLSelect with some options
+     */
+    selects?: InputSelectData[];
+    /**
      * column's text
      */
-    text?: string;
+    text?: FooterText;
     /**
      * column's nav
      */
@@ -91,6 +119,10 @@ export interface FooterColumn {
      * additional info useful for the component's logic
      */
     _meta?: any;
+    /**
+     * custom order for footer column content
+     */
+    sections?: FooterItem[];
 }
 /**
  * Interface for FooterComponents's "Data"
@@ -114,5 +146,5 @@ export declare class FooterComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FooterComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FooterComponent, "n7-footer", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FooterComponent, "n7-footer", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -26,5 +26,5 @@ export declare class TimelineComponent implements AfterContentChecked {
     ngAfterContentChecked(): void;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TimelineComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TimelineComponent, "n7-timeline", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TimelineComponent, "n7-timeline", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

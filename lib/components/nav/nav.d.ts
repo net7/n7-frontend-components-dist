@@ -1,4 +1,4 @@
-import { Anchor } from '../../shared-interfaces';
+import { Anchor, Icon } from '../../shared-interfaces';
 import * as i0 from "@angular/core";
 /**
  * Interface for a single navbar item
@@ -20,7 +20,11 @@ export interface NavItem {
     /**
      * icon name/class from icon font
      */
-    icon?: string;
+    icon?: Icon;
+    /**
+     * A secondary icon
+     */
+    iconSecondary?: Icon;
     /**
      * additional html classes
      */
@@ -61,6 +65,7 @@ export declare class NavComponent {
     data: NavData;
     emit: any;
     onClick(payload: any): void;
+    onMouseEnter(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NavComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<NavComponent, "n7-nav", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NavComponent, "n7-nav", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

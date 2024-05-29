@@ -1,3 +1,9 @@
+export interface EssentialData {
+    /**
+     * main set of classes of the component
+     */
+    classes?: string;
+}
 /**
  * Interface for an anchor <a> element
  *
@@ -31,30 +37,32 @@ export interface Anchor {
  * @property classes (optional)
  * @property _meta (optional)
  */
-export interface Button {
-    /**
-     * innerHTML or plain text for the label
-     */
+export interface Button extends EssentialData {
+    /** innerHTML or plain text for the label */
     text?: string;
-    /**
-     * additional html classes
-     */
-    classes?: string;
     anchor?: Anchor;
-    /**
-     * additional info
-     */
-    _meta?: any;
 }
 /**
  * Type for an icon.
  * It may have a simple string type or an object type.
  */
-export declare type Icon = {
+export type Icon = {
     /** Identifier of the icon in n7-icon-font */
     id: string;
     /** Custom inline css */
     style?: object;
     /** Event payload */
     payload?: any;
-} | string;
+};
+/**
+ * Type for an image / svg element.
+ */
+export type Image = {
+    /** File path */
+    src: string;
+    /** Alt text */
+    alt?: string;
+    /** Optional classes */
+    classes?: string;
+};
+export type OnOff = 'on' | 'off';

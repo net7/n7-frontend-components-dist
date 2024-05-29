@@ -1,0 +1,38 @@
+/**
+ * AVATAR
+ *
+ * User avatar component.
+ */
+
+/* ------------------------------------ *\
+    NAV
+\* ------------------------------------ */
+.n7-avatar {
+    padding: 0;
+    margin: 0;
+    &__background {
+        border-radius: 50%;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $font-family-main;
+        font-weight: $font-weight-bold;
+    }
+}
+
+/* ------------------------------------ *\
+   #MEDIA-QUERIES
+\* ------------------------------------ */
+@media all and (max-width: $breakpoint-laptop) {
+}
+
+@media all and (max-width: $breakpoint-ipad-portrait) {
+}
+
+@media all and (max-width: $breakpoint-smartphone-landscape) {
+}
+
+/* Retina */
+@media (resolution >= 2), (resolution >=192dpi) {
+}

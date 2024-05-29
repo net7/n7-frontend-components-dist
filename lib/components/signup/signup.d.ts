@@ -104,6 +104,6 @@ export declare class SignupComponent {
     onFocus(payload: any): void;
     onFocusOut(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SignupComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SignupComponent, "n7-signup", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SignupComponent, "n7-signup", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }
 export {};

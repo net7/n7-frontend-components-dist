@@ -3,24 +3,28 @@
  *
  * Component used in loading status to show a preview of what real results/contents will be.
  */
- 
+
 /* ------------------------------------ *\
    #CONTENT-PLACEHOLDER
 \* ------------------------------------ */
 .n7-content-placeholder {
     &__item {
         background-color: $color-background-light;
-        height: $space*2;
+        height: $space * 2;
         width: auto;
         margin-bottom: $space;
         border-radius: $border-radius;
-
         animation-duration: 1.3s;
         animation-fill-mode: forwards;
         animation-iteration-count: infinite;
         animation-name: contentPlaceholderAnimation;
         animation-timing-function: linear;
-        background: linear-gradient(to right, $color-background-light 0%, $color-background-medium 30%, $color-background-light 60%);
+        background: linear-gradient(
+            to right,
+            $color-background-light 0%,
+            $color-background-medium 30%,
+            $color-background-light 60%
+        );
         background-size: 500px 104px;
         position: relative;
     }
@@ -28,20 +32,17 @@
     // Example application
     .thumb-placeholder {
         float: left;
-        height: $space*7;
-        width: $space*7;
+        height: $space * 7;
+        width: $space * 7;
         border-radius: 50%;
     }
-
     .title-placeholder {
-        margin-left: $space*9;
+        margin-left: $space * 9;
     }
-
     .text-placeholder {
-        margin-left: $space*9;
-        height: $space*4;
+        margin-left: $space * 9;
+        height: $space * 4;
     }
-
     .text-placeholder + .n7-content-placeholder__item {
         clear: both;
     }
@@ -49,13 +50,12 @@
 
 @keyframes contentPlaceholderAnimation {
     0% {
-        background-position: 0 0
+        background-position: 0 0;
     }
     100% {
-        background-position: 1000px 0
+        background-position: 1000px 0;
     }
 }
-
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -70,5 +70,5 @@
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

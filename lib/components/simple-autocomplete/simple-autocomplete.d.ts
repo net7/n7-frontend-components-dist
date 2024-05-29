@@ -1,6 +1,16 @@
 import { Anchor } from '../../shared-interfaces';
 import * as i0 from "@angular/core";
 /**
+ * Interface for SimpleAutocompleteComponent's "Suggestion"
+ *
+ * @property text
+ * @property anchor (optional)
+ */
+export interface SimpleAutocompleteSuggestion {
+    text: string;
+    anchor?: Anchor;
+}
+/**
  * Interface for SimpleAutocompleteComponent's "data"
  *
  * @property suggestion (required)
@@ -21,20 +31,10 @@ export interface SimpleAutocompleteData {
      */
     _meta?: any;
 }
-/**
- * Interface for SimpleAutocompleteComponent's "Suggestion"
- *
- * @property text
- * @property anchor (optional)
- */
-export interface SimpleAutocompleteSuggestion {
-    text: string;
-    anchor?: Anchor;
-}
 export declare class SimpleAutocompleteComponent {
     data: SimpleAutocompleteData;
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SimpleAutocompleteComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SimpleAutocompleteComponent, "n7-simple-autocomplete", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SimpleAutocompleteComponent, "n7-simple-autocomplete", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -5,7 +5,6 @@
     max-height: $facet-links-max-height;
     padding-right: $space;
     overflow-y: auto;
-
     &__link {
         display: flex;
         align-items: center;
@@ -13,26 +12,22 @@
         margin-bottom: $space;
         border-bottom: 1px solid $color-border-normal;
         cursor: pointer;
-
         &:last-child {
             margin-bottom: 0;
             border-bottom: 0;
         }
     }
-
     &__icon {
         margin-right: $space;
         font-size: $font-size-m;
     }
-
     &__text {
         padding-right: $space;
         font-size: $font-size-m;
     }
-
     &__counter {
         margin-left: auto;
-        padding: calc($space/4) calc($space/2);
+        padding: calc($space / 4) calc($space / 2);
         border-radius: $border-radius;
         font-size: $font-size-xs;
         color: $color-text-inverse;
@@ -48,13 +43,12 @@
 
     /* Active */
     .n7-input-link__link.is-active {
-        &:before {
-            content: "\e938";
+        &::before {
+            content: '\e938';
             font-family: 'n7-icon';
             margin-right: $space;
             color: $color-success;
         }
-
         .n7-input-link__text {
             font-weight: $font-weight-bold;
         }
@@ -74,5 +68,5 @@
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

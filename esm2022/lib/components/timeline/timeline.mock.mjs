@@ -1,0 +1,137 @@
+export const TIMELINE_MOCK = {
+    containerID: 'demo-timeline',
+    libOptions: {
+        height: '500px',
+        locale: 'it_IT',
+        cluster: {
+            // contentTemplate: '{count}',
+            // fitOnDoubleClick: true,
+            clusterCriteria: (f, s) => f.content.charAt(0) === s.content.charAt(0),
+        },
+        showTooltips: false,
+        tooltip: {
+            followMouse: false,
+            template: (data, element) => `<div class="tooltip">${element.content}</div>`,
+        },
+        width: '100%',
+        minHeight: '350px',
+        maxHeight: '800px',
+        // zoomMax: 31557600000, // one year
+        zoomFriction: 8,
+    },
+    dataSet: [
+        {
+            id: 788,
+            content: 'Luigi Capuana, Fiabe e favole classiche',
+            start: '01-01-1882',
+            end: '01-01-1913',
+        },
+        {
+            id: 786,
+            content: 'Fernan Caballero, Cuentos, adivinanzas y refranes populares',
+            start: '01-01-1921',
+        },
+        {
+            id: 784,
+            content: 'Charles Perrault, I racconti di mamma oca',
+            start: '01-01-1697',
+        },
+        {
+            id: 782,
+            content: 'Fratelli Grimm, Fiabe del focolare',
+            start: '01-01-1812',
+        },
+        {
+            id: 776,
+            content: 'Giovanni Francesco Straparola, Le piacevoli notti',
+            start: '01-01-1550',
+        },
+        {
+            id: 773,
+            content: 'Autore ignoto, Novellino',
+            start: '01-01-1201',
+            end: '01-01-1300',
+        },
+        {
+            id: 770,
+            content: 'Italo Calvino, Fiabe Italiane',
+            start: '01-01-1956',
+        },
+        {
+            id: 764,
+            content: 'Giovan Battista Basile, Lo Cunto de li Cunti',
+            start: '01-01-1634',
+            end: '01-01-1636',
+        },
+        {
+            id: 756,
+            content: 'Hans Christian Andersen, Fiabe',
+            start: '01-01-1843',
+        },
+        {
+            id: 752,
+            content: 'Fedro, Fabulae',
+            start: '01-01-1',
+            end: '01-01-100',
+        },
+        {
+            id: 717,
+            content: 'Esopo, Favole (Aἰσώπου μῦθοι)',
+            start: '-01-01-600',
+            end: '-01-01-501',
+        },
+        {
+            id: 710,
+            content: 'Elsie Spicer Eels, Fairy tales from Brazil',
+            start: '01-01-1918',
+        },
+        {
+            id: 700,
+            content: 'Guido Gozzano, Fiabe per “Il Corriere dei Piccoli”',
+            start: '01-01-1909',
+            end: '01-01-1914',
+        },
+        {
+            id: 694,
+            content: 'Aleksandr Nikolaevič Afanas’ev, Favole popolari russe (Narodnye russkie skazki)',
+            start: '01-01-1855',
+            end: '01-01-1864',
+        },
+        {
+            id: 689,
+            content: 'Autori sconosciuti, Le mille e una notte (ألف ليلة وليلة‎)',
+            start: '01-01-1001',
+            end: '01-01-1100',
+        },
+        {
+            id: 687,
+            content: 'Gianni Rodari, Favole al telefono',
+            start: '01-01-1962',
+        },
+        {
+            id: 681,
+            content: 'Giuseppe Pitrè, Fiabe, novelle e racconti popolari siciliani',
+            start: '01-01-1875',
+        },
+        {
+            id: 673,
+            content: 'Verità e Menzogna',
+            start: '-01-01-1300',
+            end: '-01-01-1201',
+        },
+        {
+            id: 671,
+            content: 'Il principe predestinato',
+            start: '-01-01-1300',
+            end: '-01-01-1201',
+        },
+        {
+            id: 669,
+            content: 'La Cenerentola Egiziana',
+            start: '-01-01-1300',
+            end: '-01-01-1201',
+        },
+    ],
+    _setInstance: (timeline) => timeline,
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGltZWxpbmUubW9jay5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL2R2LWNvbXBvbmVudHMtbGliL3NyYy9saWIvY29tcG9uZW50cy90aW1lbGluZS90aW1lbGluZS5tb2NrLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBLE1BQU0sQ0FBQyxNQUFNLGFBQWEsR0FBaUI7SUFDekMsV0FBVyxFQUFFLGVBQWU7SUFDNUIsVUFBVSxFQUFFO1FBQ1YsTUFBTSxFQUFFLE9BQU87UUFDZixNQUFNLEVBQUUsT0FBTztRQUNmLE9BQU8sRUFBRTtZQUNQLDhCQUE4QjtZQUM5QiwwQkFBMEI7WUFDMUIsZUFBZSxFQUFFLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFLENBQUMsQ0FBQyxDQUFDLE9BQU8sQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLEtBQUssQ0FBQyxDQUFDLE9BQU8sQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDO1NBQ3ZFO1FBQ0QsWUFBWSxFQUFFLEtBQUs7UUFDbkIsT0FBTyxFQUFFO1lBQ1AsV0FBVyxFQUFFLEtBQUs7WUFDbEIsUUFBUSxFQUFFLENBQUMsSUFBSSxFQUFFLE9BQU8sRUFBRSxFQUFFLENBQzFCLHdCQUF3QixPQUFPLENBQUMsT0FBTyxRQUFRO1NBQ2xEO1FBQ0QsS0FBSyxFQUFFLE1BQU07UUFDYixTQUFTLEVBQUUsT0FBTztRQUNsQixTQUFTLEVBQUUsT0FBTztRQUNsQixvQ0FBb0M7UUFDcEMsWUFBWSxFQUFFLENBQUM7S0FDaEI7SUFDRCxPQUFPLEVBQUU7UUFDUDtZQUNFLEVBQUUsRUFBRSxHQUFHO1lBQ1AsT0FBTyxFQUFFLHlDQUF5QztZQUNsRCxLQUFLLEVBQUUsWUFBWTtZQUNuQixHQUFHLEVBQUUsWUFBWTtTQUNsQjtRQUNEO1lBQ0UsRUFBRSxFQUFFLEdBQUc7WUFDUCxPQUFPLEVBQUUsNkRBQTZEO1lBQ3RFLEtBQUssRUFBRSxZQUFZO1NBQ3BCO1FBQ0Q7WUFDRSxFQUFFLEVBQUUsR0FBRztZQUNQLE9BQU8sRUFBRSwyQ0FBMkM7WUFDcEQsS0FBSyxFQUFFLFlBQVk7U0FDcEI7UUFDRDtZQUNFLEVBQUUsRUFBRSxHQUFHO1lBQ1AsT0FBTyxFQUFFLG9DQUFvQztZQUM3QyxLQUFLLEVBQUUsWUFBWTtTQUNwQjtRQUNEO1lBQ0UsRUFBRSxFQUFFLEdBQUc7WUFDUCxPQUFPLEVBQUUsbURBQW1EO1lBQzVELEtBQUssRUFBRSxZQUFZO1NBQ3BCO1FBQ0Q7WUFDRSxFQUFFLEVBQUUsR0FBRztZQUNQLE9BQU8sRUFBRSwwQkFBMEI7WUFDbkMsS0FBSyxFQUFFLFlBQVk7WUFDbkIsR0FBRyxFQUFFLFlBQVk7U0FDbEI7UUFDRDtZQUNFLEVBQUUsRUFBRSxHQUFHO1lBQ1AsT0FBTyxFQUFFLCtCQUErQjtZQUN4QyxLQUFLLEVBQUUsWUFBWTtTQUNwQjtRQUNEO1lBQ0UsRUFBRSxFQUFFLEdBQUc7WUFDUCxPQUFPLEVBQUUsOENBQThDO1lBQ3ZELEtBQUssRUFBRSxZQUFZO1lBQ25CLEdBQUcsRUFBRSxZQUFZO1NBQ2xCO1FBQ0Q7WUFDRSxFQUFFLEVBQUUsR0FBRztZQUNQLE9BQU8sRUFBRSxnQ0FBZ0M7WUFDekMsS0FBSyxFQUFFLFlBQVk7U0FDcEI7UUFDRDtZQUNFLEVBQUUsRUFBRSxHQUFHO1lBQ1AsT0FBTyxFQUFFLGdCQUFnQjtZQUN6QixLQUFLLEVBQUUsU0FBUztZQUNoQixHQUFHLEVBQUUsV0FBVztTQUNqQjtRQUNEO1lBQ0UsRUFBRSxFQUFFLEdBQUc7WUFDUCxPQUFPLEVBQUUsK0JBQStCO1lBQ3hDLEtBQUssRUFBRSxZQUFZO1lBQ25CLEdBQUcsRUFBRSxZQUFZO1NBQ2xCO1FBQ0Q7WUFDRSxFQUFFLEVBQUUsR0FBRztZQUNQLE9BQU8sRUFBRSw0Q0FBNEM7WUFDckQsS0FBSyxFQUFFLFlBQVk7U0FDcEI7UUFDRDtZQUNFLEVBQUUsRUFBRSxHQUFHO1lBQ1AsT0FBTyxFQUFFLG9EQUFvRDtZQUM3RCxLQUFLLEVBQUUsWUFBWTtZQUNuQixHQUFHLEVBQUUsWUFBWTtTQUNsQjtRQUNEO1lBQ0UsRUFBRSxFQUFFLEdBQUc7WUFDUCxPQUFPLEVBQ0wsaUZBQWlGO1lBQ25GLEtBQUssRUFBRSxZQUFZO1lBQ25CLEdBQUcsRUFBRSxZQUFZO1NBQ2xCO1FBQ0Q7WUFDRSxFQUFFLEVBQUUsR0FBRztZQUNQLE9BQU8sRUFBRSw0REFBNEQ7WUFDckUsS0FBSyxFQUFFLFlBQVk7WUFDbkIsR0FBRyxFQUFFLFlBQVk7U0FDbEI7UUFDRDtZQUNFLEVBQUUsRUFBRSxHQUFHO1lBQ1AsT0FBTyxFQUFFLG1DQUFtQztZQUM1QyxLQUFLLEVBQUUsWUFBWTtTQUNwQjtRQUNEO1lBQ0UsRUFBRSxFQUFFLEdBQUc7WUFDUCxPQUFPLEVBQUUsOERBQThEO1lBQ3ZFLEtBQUssRUFBRSxZQUFZO1NBQ3BCO1FBQ0Q7WUFDRSxFQUFFLEVBQUUsR0FBRztZQUNQLE9BQU8sRUFBRSxtQkFBbUI7WUFDNUIsS0FBSyxFQUFFLGFBQWE7WUFDcEIsR0FBRyxFQUFFLGFBQWE7U0FDbkI7UUFDRDtZQUNFLEVBQUUsRUFBRSxHQUFHO1lBQ1AsT0FBTyxFQUFFLDBCQUEwQjtZQUNuQyxLQUFLLEVBQUUsYUFBYTtZQUNwQixHQUFHLEVBQUUsYUFBYTtTQUNuQjtRQUNEO1lBQ0UsRUFBRSxFQUFFLEdBQUc7WUFDUCxPQUFPLEVBQUUseUJBQXlCO1lBQ2xDLEtBQUssRUFBRSxhQUFhO1lBQ3BCLEdBQUcsRUFBRSxhQUFhO1NBQ25CO0tBQ0Y7SUFDRCxZQUFZLEVBQUUsQ0FBQyxRQUFRLEVBQUUsRUFBRSxDQUFDLFFBQVE7Q0FDckMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFRpbWVsaW5lRGF0YSB9IGZyb20gJy4vdGltZWxpbmUnO1xuXG5leHBvcnQgY29uc3QgVElNRUxJTkVfTU9DSzogVGltZWxpbmVEYXRhID0ge1xuICBjb250YWluZXJJRDogJ2RlbW8tdGltZWxpbmUnLFxuICBsaWJPcHRpb25zOiB7XG4gICAgaGVpZ2h0OiAnNTAwcHgnLFxuICAgIGxvY2FsZTogJ2l0X0lUJyxcbiAgICBjbHVzdGVyOiB7XG4gICAgICAvLyBjb250ZW50VGVtcGxhdGU6ICd7Y291bnR9JyxcbiAgICAgIC8vIGZpdE9uRG91YmxlQ2xpY2s6IHRydWUsXG4gICAgICBjbHVzdGVyQ3JpdGVyaWE6IChmLCBzKSA9PiBmLmNvbnRlbnQuY2hhckF0KDApID09PSBzLmNvbnRlbnQuY2hhckF0KDApLFxuICAgIH0sXG4gICAgc2hvd1Rvb2x0aXBzOiBmYWxzZSxcbiAgICB0b29sdGlwOiB7XG4gICAgICBmb2xsb3dNb3VzZTogZmFsc2UsXG4gICAgICB0ZW1wbGF0ZTogKGRhdGEsIGVsZW1lbnQpID0+XG4gICAgICAgIGA8ZGl2IGNsYXNzPVwidG9vbHRpcFwiPiR7ZWxlbWVudC5jb250ZW50fTwvZGl2PmAsXG4gICAgfSxcbiAgICB3aWR0aDogJzEwMCUnLFxuICAgIG1pbkhlaWdodDogJzM1MHB4JyxcbiAgICBtYXhIZWlnaHQ6ICc4MDBweCcsXG4gICAgLy8gem9vbU1heDogMzE1NTc2MDAwMDAsIC8vIG9uZSB5ZWFyXG4gICAgem9vbUZyaWN0aW9uOiA4LFxuICB9LFxuICBkYXRhU2V0OiBbXG4gICAge1xuICAgICAgaWQ6IDc4OCxcbiAgICAgIGNvbnRlbnQ6ICdMdWlnaSBDYXB1YW5hLCBGaWFiZSBlIGZhdm9sZSBjbGFzc2ljaGUnLFxuICAgICAgc3RhcnQ6ICcwMS0wMS0xODgyJyxcbiAgICAgIGVuZDogJzAxLTAxLTE5MTMnLFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6IDc4NixcbiAgICAgIGNvbnRlbnQ6ICdGZXJuYW4gQ2FiYWxsZXJvLCBDdWVudG9zLCBhZGl2aW5hbnphcyB5IHJlZnJhbmVzIHBvcHVsYXJlcycsXG4gICAgICBzdGFydDogJzAxLTAxLTE5MjEnLFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6IDc4NCxcbiAgICAgIGNvbnRlbnQ6ICdDaGFybGVzIFBlcnJhdWx0LCBJIHJhY2NvbnRpIGRpIG1hbW1hIG9jYScsXG4gICAgICBzdGFydDogJzAxLTAxLTE2OTcnLFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6IDc4MixcbiAgICAgIGNvbnRlbnQ6ICdGcmF0ZWxsaSBHcmltbSwgRmlhYmUgZGVsIGZvY29sYXJlJyxcbiAgICAgIHN0YXJ0OiAnMDEtMDEtMTgxMicsXG4gICAgfSxcbiAgICB7XG4gICAgICBpZDogNzc2LFxuICAgICAgY29udGVudDogJ0dpb3Zhbm5pIEZyYW5jZXNjbyBTdHJhcGFyb2xhLCBMZSBwaWFjZXZvbGkgbm90dGknLFxuICAgICAgc3RhcnQ6ICcwMS0wMS0xNTUwJyxcbiAgICB9LFxuICAgIHtcbiAgICAgIGlkOiA3NzMsXG4gICAgICBjb250ZW50OiAnQXV0b3JlIGlnbm90bywgTm92ZWxsaW5vJyxcbiAgICAgIHN0YXJ0OiAnMDEtMDEtMTIwMScsXG4gICAgICBlbmQ6ICcwMS0wMS0xMzAwJyxcbiAgICB9LFxuICAgIHtcbiAgICAgIGlkOiA3NzAsXG4gICAgICBjb250ZW50OiAnSXRhbG8gQ2FsdmlubywgRmlhYmUgSXRhbGlhbmUnLFxuICAgICAgc3RhcnQ6ICcwMS0wMS0xOTU2JyxcbiAgICB9LFxuICAgIHtcbiAgICAgIGlkOiA3NjQsXG4gICAgICBjb250ZW50OiAnR2lvdmFuIEJhdHRpc3RhIEJhc2lsZSwgTG8gQ3VudG8gZGUgbGkgQ3VudGknLFxuICAgICAgc3RhcnQ6ICcwMS0wMS0xNjM0JyxcbiAgICAgIGVuZDogJzAxLTAxLTE2MzYnLFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6IDc1NixcbiAgICAgIGNvbnRlbnQ6ICdIYW5zIENocmlzdGlhbiBBbmRlcnNlbiwgRmlhYmUnLFxuICAgICAgc3RhcnQ6ICcwMS0wMS0xODQzJyxcbiAgICB9LFxuICAgIHtcbiAgICAgIGlkOiA3NTIsXG4gICAgICBjb250ZW50OiAnRmVkcm8sIEZhYnVsYWUnLFxuICAgICAgc3RhcnQ6ICcwMS0wMS0xJyxcbiAgICAgIGVuZDogJzAxLTAxLTEwMCcsXG4gICAgfSxcbiAgICB7XG4gICAgICBpZDogNzE3LFxuICAgICAgY29udGVudDogJ0Vzb3BvLCBGYXZvbGUgKEHhvLDPg8+Oz4DOv8+FIM684b+mzrjOv865KScsXG4gICAgICBzdGFydDogJy0wMS0wMS02MDAnLFxuICAgICAgZW5kOiAnLTAxLTAxLTUwMScsXG4gICAgfSxcbiAgICB7XG4gICAgICBpZDogNzEwLFxuICAgICAgY29udGVudDogJ0Vsc2llIFNwaWNlciBFZWxzLCBGYWlyeSB0YWxlcyBmcm9tIEJyYXppbCcsXG4gICAgICBzdGFydDogJzAxLTAxLTE5MTgnLFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6IDcwMCxcbiAgICAgIGNvbnRlbnQ6ICdHdWlkbyBHb3p6YW5vLCBGaWFiZSBwZXIg4oCcSWwgQ29ycmllcmUgZGVpIFBpY2NvbGnigJ0nLFxuICAgICAgc3RhcnQ6ICcwMS0wMS0xOTA5JyxcbiAgICAgIGVuZDogJzAxLTAxLTE5MTQnLFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6IDY5NCxcbiAgICAgIGNvbnRlbnQ6XG4gICAgICAgICdBbGVrc2FuZHIgTmlrb2xhZXZpxI0gQWZhbmFz4oCZZXYsIEZhdm9sZSBwb3BvbGFyaSBydXNzZSAoTmFyb2RueWUgcnVzc2tpZSBza2F6a2kpJyxcbiAgICAgIHN0YXJ0OiAnMDEtMDEtMTg1NScsXG4gICAgICBlbmQ6ICcwMS0wMS0xODY0JyxcbiAgICB9LFxuICAgIHtcbiAgICAgIGlkOiA2ODksXG4gICAgICBjb250ZW50OiAnQXV0b3JpIHNjb25vc2NpdXRpLCBMZSBtaWxsZSBlIHVuYSBub3R0ZSAo2KPZhNmBINmE2YrZhNipINmI2YTZitmE2KnigI4pJyxcbiAgICAgIHN0YXJ0OiAnMDEtMDEtMTAwMScsXG4gICAgICBlbmQ6ICcwMS0wMS0xMTAwJyxcbiAgICB9LFxuICAgIHtcbiAgICAgIGlkOiA2ODcsXG4gICAgICBjb250ZW50OiAnR2lhbm5pIFJvZGFyaSwgRmF2b2xlIGFsIHRlbGVmb25vJyxcbiAgICAgIHN0YXJ0OiAnMDEtMDEtMTk2MicsXG4gICAgfSxcbiAgICB7XG4gICAgICBpZDogNjgxLFxuICAgICAgY29udGVudDogJ0dpdXNlcHBlIFBpdHLDqCwgRmlhYmUsIG5vdmVsbGUgZSByYWNjb250aSBwb3BvbGFyaSBzaWNpbGlhbmknLFxuICAgICAgc3RhcnQ6ICcwMS0wMS0xODc1JyxcbiAgICB9LFxuICAgIHtcbiAgICAgIGlkOiA2NzMsXG4gICAgICBjb250ZW50OiAnVmVyaXTDoCBlIE1lbnpvZ25hJyxcbiAgICAgIHN0YXJ0OiAnLTAxLTAxLTEzMDAnLFxuICAgICAgZW5kOiAnLTAxLTAxLTEyMDEnLFxuICAgIH0sXG4gICAge1xuICAgICAgaWQ6IDY3MSxcbiAgICAgIGNvbnRlbnQ6ICdJbCBwcmluY2lwZSBwcmVkZXN0aW5hdG8nLFxuICAgICAgc3RhcnQ6ICctMDEtMDEtMTMwMCcsXG4gICAgICBlbmQ6ICctMDEtMDEtMTIwMScsXG4gICAgfSxcbiAgICB7XG4gICAgICBpZDogNjY5LFxuICAgICAgY29udGVudDogJ0xhIENlbmVyZW50b2xhIEVnaXppYW5hJyxcbiAgICAgIHN0YXJ0OiAnLTAxLTAxLTEzMDAnLFxuICAgICAgZW5kOiAnLTAxLTAxLTEyMDEnLFxuICAgIH0sXG4gIF0sXG4gIF9zZXRJbnN0YW5jZTogKHRpbWVsaW5lKSA9PiB0aW1lbGluZSxcbn07XG4iXX0=

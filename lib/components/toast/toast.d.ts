@@ -1,12 +1,23 @@
 import * as i0 from "@angular/core";
 /**
- * Interface for ToastComponent's "data"
+ * Interface for the single ToastComponent's "Action"
  *
- * @property toasts (required)
+ * @property text (required)
+ * @property payload (required)
  * @property classes (optional)
  */
-export interface ToastData {
-    toasts: ToastBox[];
+export interface ToastAction {
+    /**
+     * the button's rendered text
+     */
+    text: string;
+    /**
+     * the button's onClick payload
+     */
+    payload: any;
+    /**
+     * additional html classes
+     */
     classes?: string;
 }
 /**
@@ -26,6 +37,10 @@ export interface ToastBox {
      * requires: [is-success, is-warning, is-error] + optional additional html classes
      */
     classes: string;
+    /**
+     * Icon to display inside the toast
+     */
+    icon?: string;
     /**
      * larger, title text
      */
@@ -55,24 +70,13 @@ export interface ToastBox {
     _meta?: any;
 }
 /**
- * Interface for the single ToastComponent's "Action"
+ * Interface for ToastComponent's "data"
  *
- * @property text (required)
- * @property payload (required)
+ * @property toasts (required)
  * @property classes (optional)
  */
-export interface ToastAction {
-    /**
-     * the button's rendered text
-     */
-    text: string;
-    /**
-     * the button's onClick payload
-     */
-    payload: any;
-    /**
-     * additional html classes
-     */
+export interface ToastData {
+    toasts: ToastBox[];
     classes?: string;
 }
 export declare class ToastComponent {
@@ -80,5 +84,5 @@ export declare class ToastComponent {
     emit: any;
     onClick(payload: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ToastComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ToastComponent, "n7-toast", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ToastComponent, "n7-toast", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -3,13 +3,12 @@
  *
  * Style to overwrite or complete default library style.
  */
- 
+
 /* ------------------------------------ *\
    #CHART
 \* ------------------------------------ */
 .n7-chart {
 }
-
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -24,5 +23,5 @@
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

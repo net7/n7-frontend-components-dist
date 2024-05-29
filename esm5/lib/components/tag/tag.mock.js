@@ -1,8 +1,0 @@
-export var TAG_MOCK = {
-    label: 'label: ',
-    text: 'text',
-    icon: 'n7-icon-close',
-    payload: 'tag-payload',
-    classes: 'tag1-class',
-};
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGFnLm1vY2suanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AbjctZnJvbnRlbmQvY29tcG9uZW50cy8iLCJzb3VyY2VzIjpbImxpYi9jb21wb25lbnRzL3RhZy90YWcubW9jay50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQSxNQUFNLENBQUMsSUFBTSxRQUFRLEdBQVk7SUFDL0IsS0FBSyxFQUFFLFNBQVM7SUFDaEIsSUFBSSxFQUFFLE1BQU07SUFDWixJQUFJLEVBQUUsZUFBZTtJQUNyQixPQUFPLEVBQUUsYUFBYTtJQUN0QixPQUFPLEVBQUUsWUFBWTtDQUN0QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgVGFnRGF0YSB9IGZyb20gJy4vdGFnJztcclxuXHJcbmV4cG9ydCBjb25zdCBUQUdfTU9DSzogVGFnRGF0YSA9IHtcclxuICBsYWJlbDogJ2xhYmVsOiAnLFxyXG4gIHRleHQ6ICd0ZXh0JyxcclxuICBpY29uOiAnbjctaWNvbi1jbG9zZScsXHJcbiAgcGF5bG9hZDogJ3RhZy1wYXlsb2FkJyxcclxuICBjbGFzc2VzOiAndGFnMS1jbGFzcycsXHJcbn07XHJcbiJdfQ==

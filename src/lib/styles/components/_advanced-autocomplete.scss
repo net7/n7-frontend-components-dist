@@ -3,7 +3,7 @@
  *
  * Search bar autocomplete component which shows datas preview matching the typed words or words parts
  */
- 
+
 /* ------------------------------------ *\
    #ADVANCED-AUTOCOMPLETE
 \* ------------------------------------ */
@@ -11,55 +11,48 @@
     &__results {
         max-height: $advanced-autocomplete-results-max-height;
         overflow-y: auto;
-        padding: $space*2 $space*2;
+        padding: $space * 2 $space * 2;
     }
-
     &__group {
         display: flex;
+
         // display: grid;
         // grid-template-columns: 180px 2fr;
         // grid-template-rows: 1fr;
         // grid-column-gap: $space*2;
-        margin-bottom: $space*2;
-        padding-bottom: $space*2;
+        margin-bottom: $space * 2;
+        padding-bottom: $space * 2;
         border-bottom: 1px solid $color-border-normal;
-
         &:last-child {
             border-bottom: 0;
             margin-bottom: 0;
         }
     }
-
     &__group-title-wrapper {
         flex: 0 0 $advanced-autocomplete-group-title-width;
         width: $advanced-autocomplete-group-title-width;
-        margin-right: $space*2;
+        margin-right: $space * 2;
         color: $color-text-light;
     }
-
     &__group-title {
         font-size: $font-size-m;
         font-family: $font-family-headings;
         line-height: 1.4;
         vertical-align: middle;
     }
-
     &__group-icon {
-        margin-right: calc($space/2);
+        margin-right: calc($space / 2);
         font-size: $font-size-l;
         vertical-align: middle;
     }
-
     &__items {
         flex: 1;
-
         > *:last-child {
             .n7-advanced-autocomplete__item {
                 margin-bottom: 0;
             }
         }
     }
-
     &__item {
         display: block;
         margin-bottom: $space;
@@ -67,7 +60,6 @@
         color: $color-text;
         word-break: break-all;
         cursor: pointer;
-
         &:hover {
             color: $color-text-link;
         }
@@ -82,13 +74,12 @@
     &__item-metadata {
         font-size: $font-size-s;
     }
-
     &__item-metadata-key {
-        margin-right: calc($space/2);
+        margin-right: calc($space / 2);
         color: $color-text-light;
     }
     &__item-metadata-value {
-        margin-right: calc($space/2);
+        margin-right: calc($space / 2);
         color: $color-text-light;
         font-weight: $font-weight-bold;
     }
@@ -98,17 +89,14 @@
         display: flex;
         justify-content: center;
         padding: $space;
-        
         .n7-btn {
             margin-right: $space;
-
             &:last-child {
                 margin-right: 0;
             }
         }
     }
 }
-
 
 /* ------------------------------------ *\
    #EMPTY
@@ -123,7 +111,6 @@
     }
 }
 
-
 /* ------------------------------------ *\
    #LOADING
 \* ------------------------------------ */
@@ -136,7 +123,6 @@
     }
 }
 
-
 /* ------------------------------------ *\
    #MEDIA-QUERIES
 \* ------------------------------------ */
@@ -144,47 +130,38 @@
 }
 
 @media all and (max-width: $breakpoint-ipad-portrait - 1) {
-    
     .n7-advanced-autocomplete {
         &__results {
-            padding: $space*1.5 $space*1.5;
+            padding: $space * 1.5 $space * 1.5;
         }
-    
         &__group {
             display: block;
-            margin-bottom: $space*1.5;
-            padding-bottom: $space*1.5;
+            margin-bottom: $space * 1.5;
+            padding-bottom: $space * 1.5;
         }
-
         &__group-title {
             margin-bottom: $space;
             font-size: $font-size-m;
         }
-
         &__item {
-            margin-bottom: $space*1.5;
+            margin-bottom: $space * 1.5;
         }
-
-        
         &__action-bar {
             flex-flow: column nowrap;
-
             .n7-btn {
                 margin-right: 0;
                 margin-bottom: $space;
-
                 &:last-child {
                     margin-bottom: 0;
                 }
             }
         }
     }
-
 }
 
 @media all and (max-width: $breakpoint-smartphone-landscape) {
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

@@ -3,7 +3,7 @@
  *
  * Style for the progress line.
  */
- 
+
 /* ------------------------------------ *\
    #PROGRESS-LINE
 \* ------------------------------------ */
@@ -13,20 +13,14 @@
         display: flex;
         justify-content: space-between;
     }
-    
     &__label {
-
     }
-
     &__value {
-
     }
-
     &__wrapper {
         height: $progress-line-height;
         background-color: $progress-line-bg-color;
     }
-
     &__bar {
         display: flex;
         align-items: center;
@@ -34,7 +28,6 @@
         background-color: $progress-line-front-color;
     }
 }
-
 
 /* ------------------------------------ *\
    #MEDIA-QUERIES
@@ -49,5 +42,5 @@
 }
 
 /* Retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (resolution >= 2), (resolution >=192dpi) {
 }

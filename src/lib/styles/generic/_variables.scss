@@ -9,32 +9,27 @@
 // ------------------------------------ //
 $space: 8px;
 
-
 // ------------------------------------ //
 // #LAYOUT
 // ------------------------------------ //
 $page-max-width: 1350px;
 
-
 // ------------------------------------ //
 // #GRIDS
 // ------------------------------------ //
-$grid-gutter-h: $space*3;
-$grid-gutter-v: $space*2;
-
+$grid-gutter-h: $space * 3;
+$grid-gutter-v: $space * 2;
 
 // ------------------------------------ //
 // #FONTS
 // ------------------------------------ //
-@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i');
-
+@import 'https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i';
 
 // ------------------------------------ //
 // TYPOGRAPHY
 // ------------------------------------ //
 $font-family-main: 'Lato', sans-serif;
 $font-family-headings: 'Lato', sans-serif;
-
 $font-size-xxxl: 38px; // 2.875rem; // 46px
 $font-size-xxl: 30px; // 1.85rem; // 40px
 $font-size-xl: 26px; // 1.425rem; // 26px
@@ -46,7 +41,6 @@ $font-size-xs: 12px; // 0.75rem; // 12px
 // Font weight
 $font-weight-normal: 400;
 $font-weight-bold: 700;
-
 
 // ------------------------------------ //
 // COLORS
@@ -70,7 +64,6 @@ $color-background-light: $color-gray-01;
 $color-background-medium: $color-gray-02;
 $color-background-dark: $color-gray-03;
 
-
 // ------------------------------------ //
 // #MEDIA-QUERIES-BREAKPOINT
 // ------------------------------------ //
@@ -85,13 +78,11 @@ $breakpoint-smartphone-portrait: 400px;
 $breakpoint-inner-title-medium: $breakpoint-desktop-wide - 1;
 $breakpoint-inner-title-small: $breakpoint-ipad-portrait - 1;
 
-
 // ------------------------------------ //
 // #BORDER-RADIUS
 // ------------------------------------ //
 $border-radius: 3px;
 $border-radius-hard: 8px;
-
 
 // ------------------------------------ //
 // #BUTTONS
@@ -105,25 +96,21 @@ $button-large-height: 50px;
 // Normal button
 $color-button-text: $color-text-light;
 $color-button-text-hover: $color-text-link;
-$color-button-text-disabled: rgba($color-text, .4);
-
+$color-button-text-disabled: rgba($color-text, 0.4);
 $color-button-bg: $color-gray-02;
 $color-button-bg-hover: $color-gray-01;
 $color-button-bg-disabled: $color-gray-01;
-
 $color-button-border: $color-border-normal;
 $color-button-border-hover: $color-border-normal;
 
 // Call to action button
 $color-button-cta-text: $color-text-inverse;
 $color-button-cta-text-hover: $color-text-inverse;
-$color-button-cta-text-disabled: rgba($color-text-inverse, .4);
-
+$color-button-cta-text-disabled: rgba($color-text-inverse, 0.4);
 $color-button-cta-bg: $color-main;
 $color-button-cta-bg-hover: $color-text-hover;
 $color-button-cta-bg-active: $color-text-hover;
-$color-button-cta-bg-disabled: rgba($color-main, .4);
-
+$color-button-cta-bg-disabled: rgba($color-main, 0.4);
 $color-button-cta-border: $color-main; // Change this if you want a darker button border.
 
 // Light button (no background or border, only text)
@@ -131,7 +118,6 @@ $color-button-light-text: $color-text-link;
 $color-button-light-text-hover: $color-text-link-hover;
 $color-button-light-text-disabled: $color-text-light;
 $color-button-light-text-active: $color-text-link-hover;
-
 
 // ------------------------------------ //
 // #FORMS
@@ -141,12 +127,10 @@ $form-input-small-height: 26px;
 $form-border-radius: $border-radius;
 $form-border-size: 1px;
 
-
 // ------------------------------------ //
 // #TRANSITIONS
 // ------------------------------------ //
 $transition-durations: 0.2s;
-
 
 // ------------------------------------ //
 // #HEADER
@@ -154,8 +138,8 @@ $transition-durations: 0.2s;
 $header-height: 80px;
 $header-height-mobile: 60px;
 $header-bg-color: $color-background-base;
-$header-logo-height: $header-height - ($space*2);
-$header-logo-height-mobile: $header-height-mobile - ($space*2);
+$header-logo-height: $header-height - ($space * 2);
+$header-logo-height-mobile: $header-height-mobile - ($space * 2);
 $header-user-thumb-size: 40px;
 $header-user-thumb-size-mobile: 28px;
 $header-search-input-height: 36px;
@@ -163,35 +147,35 @@ $header-search-input-height-mobile: 28px;
 $header-breakpoint-mobile: 1180px;
 $header-breakpoint-mobile-small: 600px;
 
-
 // ------------------------------------ //
 // #LOADER
 // ------------------------------------ //
 $loader-size: 70px;
 $loader-thickness: 5px;
 $loader-color-front: $color-main;
-$loader-color-back: rgba($color-main, .3);
-
+$loader-color-back: rgba($color-main, 0.3);
 
 // ------------------------------------ //
 // #TABLE
 // ------------------------------------ //
 $table-border-color: $color-border-normal;
 $table-border-size: 2px;
+
 /* Header */
 $table-header-font-size: $font-size-m;
 $table-header-text-color: $color-text;
 $table-header-bg: $color-background-medium;
+
 /* Contents */
 $table-font-size: $font-size-s;
 $table-text-color: $color-text;
 $table-bg-odd: $color-background-base;
 $table-bg-even: $color-background-medium;
+
 /* Footer */
 $table-footer-font-size: $font-size-s;
 $table-footer-text-color: $color-text-light;
 $table-footer-bg: $color-background-medium;
-
 
 // ------------------------------------ //
 // #BREADCRUMBS
@@ -201,7 +185,6 @@ $breadcrumbs-arrow-color: $color-text-light;
 $breadcrumbs-current-color: $color-text;
 $breadcrumbs-arrow: '\e90a';
 $breadcrumbs-arrow-mobile: '\e908';
-
 
 // ------------------------------------ //
 // #PAGINATION
@@ -218,7 +201,6 @@ $pagination-color-hover: $color-text-link;
 $pagination-color-disabled: $color-text-light;
 $pagination-color-current: $color-text-inverse;
 
-
 // ------------------------------------ //
 // #ALERT
 // ------------------------------------ //
@@ -231,7 +213,6 @@ $alert-color-text-success: $color-text-inverse;
 $alert-color-text-warning: $color-text-inverse;
 $alert-color-text-error: $color-text-inverse;
 
-
 // ------------------------------------ //
 // #ITEM-PREVIEW
 // ------------------------------------ //
@@ -239,7 +220,7 @@ $item-preview-image-width: 60px;
 $item-preview-image-height: $item-preview-image-width;
 $item-preview-vertical-image-height: 180px;
 $item-preview-height: 250px;
-
+$item-preview-frontpage-aspect-ratio: 0.75;
 
 // ------------------------------------ //
 // #HERO
@@ -249,31 +230,28 @@ $hero-content-width: 1140px;
 $hero-image-text-width: 300px;
 $hero-background-color: $color-gray-05;
 
-
 // ------------------------------------ //
 // #WIZARD
 // ------------------------------------ //
 $wizard-height: 40px;
 $wizard-number-circle-margin: 5px;
 $wizard-past-bg-color: $color-main;
-$wizard-past-number-bg-color: rgba($color-background-base, .2);
+$wizard-past-number-bg-color: rgba($color-background-base, 0.2);
 $wizard-past-text-color: $color-text-inverse;
 $wizard-present-bg-color: $color-second;
-$wizard-present-number-bg-color: rgba($color-background-base, .2);
+$wizard-present-number-bg-color: rgba($color-background-base, 0.2);
 $wizard-present-text-color: $color-text-inverse;
 $wizard-future-bg-color: $color-background-medium;
-$wizard-future-number-bg-color: rgba($color-background-dark, .4);
+$wizard-future-number-bg-color: rgba($color-background-dark, 0.4);
 $wizard-future-text-color: $color-text;
 $wizard-number-size: $font-size-s;
 $wizard-text-size: $font-size-s;
 
-
 // ------------------------------------ //
 // #TREE
 // ------------------------------------ //
-$tree-image-size:28px;
+$tree-image-size: 28px;
 $tree-indent: $space;
-
 
 // ------------------------------------ //
 // #SIDEBAR-HEADER
@@ -286,7 +264,6 @@ $sidebar-left-text-color: $sidebar-header-text-color;
 $sidebar-right-background-color: $color-text-link;
 $sidebar-right-text-color: $color-text-inverse;
 
-
 // ------------------------------------ //
 // #TOAST
 // ------------------------------------ //
@@ -297,7 +274,6 @@ $toast-title-color: $color-text;
 $toast-text-color: $color-text;
 $toast-max-width: 300px;
 
-
 // ------------------------------------ //
 // #SIGNUP
 // ------------------------------------ //
@@ -305,15 +281,13 @@ $signup-max-width: 400px;
 $signup-input-background: $color-gray-01;
 $signup-error-color: $color-error;
 
-
 // ------------------------------------ //
 // #ADVANCED-AUTOCOMPLETE
 // ------------------------------------ //
 $advanced-autocomplete-results-max-height: 300px;
 $advanced-autocomplete-group-title-width: 180px;
 $advanced-autocomplete-empty-height: 180px;
-$advanced-autocomplete-action-bar-shadow: 0 -5px 15px -5px rgba(0, 0, 0, 0.3);
-
+$advanced-autocomplete-action-bar-shadow: 0 -5px 15px -5px rgb(0 0 0 / 30%);
 
 // ------------------------------------ //
 // #FACET-HEADER
@@ -323,20 +297,17 @@ $facet-header-background: $color-gray-05;
 $facet-header-icon-background: $color-second;
 $facet-header-height: 30px;
 
-
 // ------------------------------------ //
 // #FACET
 // ------------------------------------ //
 $facet-inner-padding: $space;
 $facet-links-max-height: 200px;
 
-
 // ------------------------------------ //
 // #INNER-TITLE
 // ------------------------------------ //
 $inner-title-filters-height: $button-normal-height;
 $inner-title-image-size: 60px;
-
 
 // ------------------------------------ //
 // #IMAGE-VIEWER
@@ -353,7 +324,6 @@ $image-viewer-thumb-hover-border-color: $color-main;
 $image-viewer-tools-control-color: $color-main;
 $image-viewer-tools-control-color-active: $color-second;
 
-
 // ------------------------------------ //
 // #FOOTER
 // ------------------------------------ //
@@ -362,13 +332,11 @@ $footer-background-color: $color-gray-03;
 $footer-breakpoint-desktop: $page-max-width + $grid-gutter-h;
 $footer-breakpoint-mobile: 700px;
 
-
 // ------------------------------------ //
 // #CAROUSEL
 // ------------------------------------ //
-$carousel-content-width:960px;
+$carousel-content-width: 960px;
 $carousel-height: 400px;
-
 
 // ------------------------------------ //
 // #NAV
@@ -376,10 +344,9 @@ $carousel-height: 400px;
 $nav-image-height: 50px;
 $nav-image-width: 50px;
 
-
 // ------------------------------------ //
 // #PROGRESS-LINE
 // ------------------------------------ //
 $progress-line-bg-color: $color-gray-02;
 $progress-line-front-color: $color-main;
-$progress-line-height: $space*3;
+$progress-line-height: $space * 3;

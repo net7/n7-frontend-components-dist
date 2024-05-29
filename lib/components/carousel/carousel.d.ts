@@ -1,5 +1,5 @@
 import { AfterContentChecked } from '@angular/core';
-import { Anchor } from '../../shared-interfaces';
+import { Anchor, Image } from '../../shared-interfaces';
 import * as i0 from "@angular/core";
 /**
  * Interface for PaginationComponent's links (pages and navigation buttons)
@@ -83,6 +83,10 @@ export interface CarouselForegroundItem {
      */
     text?: string;
     /**
+     * Image file path
+     */
+    image?: Image;
+    /**
      * Metadata
      */
     metadata?: CarouselMetadata[];
@@ -162,5 +166,5 @@ export declare class CarouselComponent implements AfterContentChecked {
         containerId: any;
     }): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CarouselComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CarouselComponent, "n7-carousel", never, { "data": "data"; "emit": "emit"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CarouselComponent, "n7-carousel", never, { "data": { "alias": "data"; "required": false; }; "emit": { "alias": "emit"; "required": false; }; }, {}, never, never, false, never>;
 }
